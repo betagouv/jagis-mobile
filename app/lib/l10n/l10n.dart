@@ -150,10 +150,10 @@ abstract final class Localisation {
   static const missionTitle = 'Recommandés **pour vous**';
   static const missionSubTitle =
       'Des solutions **adaptées à votre situation** et les clés pour comprendre';
-  static const homeActionsTitle = 'Mes actions';
-  static const homeActionsSubTitle =
+  static const actionsSectionTitle = 'Mes actions';
+  static const actionsSectionSubTitle =
       'Gagner des feuilles chaque semaine avec de nouvelles actions';
-  static const homeActionsListEmpty =
+  static const actionsSectionListEmpty =
       'Vous n’avez aucune action à réaliser en ce moment. Débloquez-en de nouvelles dans les missions.';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';

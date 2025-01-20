@@ -24,9 +24,12 @@ Future<void> initializeContext(final WidgetTester tester) async {
   setBilanEmpty();
   setMiniBilan();
   setMissionRecommanded();
+  setMissionRecommandedByThematique();
   setAssistances();
   setPoints();
   setActions();
+  setRecommandations();
+  setServices();
 }
 
 void setNotification() {
@@ -67,6 +70,12 @@ void setMiniBilan() => FeatureContext.instance.dioMock.getM(
 
 void setMissionRecommanded() => FeatureContext.instance.dioMock
     .getM(Endpoints.missionsRecommandees, responseData: <dynamic>[]);
+
+void setMissionRecommandedByThematique() =>
+    FeatureContext.instance.dioMock.getM(
+      Endpoints.missionsRecommandeesParThematique('alimentation'),
+      responseData: <dynamic>[],
+    );
 
 void setAssistances() => FeatureContext.instance.dioMock.getM(
       Endpoints.assistances,
@@ -150,4 +159,31 @@ void setActions() => FeatureContext.instance.dioMock
   ..getM(
     '/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours',
     responseData: <dynamic>[],
+  )
+  ..getM(
+    '/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation',
+    responseData: <dynamic>[],
+  );
+
+void setRecommandations() => FeatureContext.instance.dioMock
+  ..getM(
+    Endpoints.recommandationsParThematique('alimentation'),
+    responseData: <dynamic>[],
+  );
+
+void setServices() => FeatureContext.instance.dioMock
+  ..getM(
+    Endpoints.servicesParThematique('alimentation'),
+    responseData: jsonDecode('''
+[
+ {
+      "id_service": "fruits_legumes",
+      "titre": "Fruits et légumes de saison",
+      "sous_titre": "janvier",
+      "external_url": "https://impactco2.fr/outils/fruitsetlegumes",
+      "icon_url": "https://agir-front-dev.osc-fr1.scalingo.io/cerise.webp",
+      "thematique": "alimentation",
+      "is_available_inhouse": true
+  }
+]'''),
   );

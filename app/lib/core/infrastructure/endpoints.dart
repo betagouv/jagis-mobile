@@ -44,4 +44,6 @@ abstract final class Endpoints {
       '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$enchainementId';
   static String servicesParThematique(final String codeThematique) =>
       '/utilisateurs/{userId}/thematiques/$codeThematique/recherche_services';
+  static const seasonalFruitsAndVegetables =
+      '/utilisateurs/{userId}/recherche_services/fruits_legumes/categories';
 }

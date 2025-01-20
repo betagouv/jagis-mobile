@@ -2,6 +2,7 @@ import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:faker/faker.dart';
 
 ServiceItem serviceItemFaker() => ServiceItem(
+      idService: faker.guid.guid(),
       titre: _fakerSentenceBetter(),
       sousTitre: _fakerSentenceBetter(),
       externalUrl: faker.internet.httpsUrl(),

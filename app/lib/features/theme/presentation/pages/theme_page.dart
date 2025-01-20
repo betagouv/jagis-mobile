@@ -4,9 +4,10 @@ import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/actions/home/presentation/widgets/actions_section.dart';
+import 'package:app/features/actions/section/presentation/widgets/actions_section.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
+import 'package:app/features/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
 import 'package:app/features/theme/core/domain/mission_liste.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -273,6 +274,7 @@ class _Service extends StatefulWidget {
 class _ServiceState extends State<_Service> with MaterialStateMixin<_Service> {
   @override
   Widget build(final context) {
+    final service = widget.service;
     const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
 
     return DsfrFocusWidget(
@@ -289,8 +291,16 @@ class _ServiceState extends State<_Service> with MaterialStateMixin<_Service> {
         child: Material(
           color: FnvColors.transparent,
           child: InkWell(
-            onTap: () async =>
-                FnvUrlLauncher.launch(widget.service.externalUrl),
+            onTap: () async {
+              if (service.isFruitsLegumesService) {
+                await GoRouter.of(context)
+                    .pushNamed(SeasonalFruitsAndVegetablesPage.name);
+
+                return;
+              }
+
+              await FnvUrlLauncher.launch(service.externalUrl);
+            },
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),
             focusColor: FnvColors.transparent,
@@ -305,7 +315,7 @@ class _ServiceState extends State<_Service> with MaterialStateMixin<_Service> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.service.titre,
+                      service.titre,
                       style: const DsfrTextStyle.bodyMdMedium(
                         color: DsfrColors.blueFranceSun113,
                       ),
@@ -318,7 +328,7 @@ class _ServiceState extends State<_Service> with MaterialStateMixin<_Service> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.service.sousTitre,
+                            service.sousTitre,
                             style: const DsfrTextStyle.bodySmMedium(
                               color: DsfrColors.blueFranceSun113,
                             ),

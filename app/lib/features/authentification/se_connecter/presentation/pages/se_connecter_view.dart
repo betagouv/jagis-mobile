@@ -1,4 +1,6 @@
+import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/alert.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -32,6 +34,8 @@ class SeConnecterView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
+          const Align(alignment: Alignment.centerLeft, child: _FranceConnectButton()),
+
           const Text(Localisation.pageConnexionTitre, style: DsfrTextStyle.headline2()),
           const SizedBox(height: DsfrSpacings.s3w),
           DsfrInput(
@@ -68,12 +72,7 @@ class SeConnecterView extends StatelessWidget {
                   label: Localisation.meConnecter,
                   variant: DsfrButtonVariant.primary,
                   size: DsfrButtonSize.lg,
-                  onPressed:
-                      state
-                          ? () {
-                            context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee());
-                          }
-                          : null,
+                  onPressed: state ? () => context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee()) : null,
                 ),
           ),
           const SizedBox(height: DsfrSpacings.s2w),
@@ -85,6 +84,37 @@ class SeConnecterView extends StatelessWidget {
           ),
           const SafeArea(child: SizedBox.shrink()),
         ],
+      ),
+    ),
+  );
+}
+
+class _FranceConnectButton extends StatelessWidget {
+  const _FranceConnectButton();
+
+  @override
+  Widget build(final BuildContext context) => InkWell(
+    onTap: () {},
+    child: const ColoredBox(
+      color: DsfrColors.blueFranceSun113,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s1v, horizontal: DsfrSpacings.s3v),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: DsfrSpacings.s3v,
+          children: [
+            FnvImage.asset(AssetImages.franceConnect, width: 40),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('S’identifier avec', style: DsfrTextStyle(fontSize: 17, color: Colors.white)),
+                  Text('FranceConnect', style: DsfrTextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

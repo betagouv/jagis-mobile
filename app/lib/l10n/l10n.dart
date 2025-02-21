@@ -268,6 +268,11 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String parOuSouhaitezVousCommencerDescription(final String city) =>
       'D’après nos calculs, à ***$city***, voici ce que nous pouvons vous proposer :';
+  static const votreVehiculeActuel = 'Votre véhicule actuel';
+  static const coutAnnuel = 'Coût annuel';
+  static const emissionsAnnuelles = 'Émissions annuelles';
+  static const euroSymbol = '€';
+  static const kgCO2e = 'kgCO2e';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

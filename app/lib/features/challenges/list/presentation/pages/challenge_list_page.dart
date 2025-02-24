@@ -38,7 +38,7 @@ class _View extends StatelessWidget {
     children: [
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: FnvTitle(title: Localisation.mesActions),
+        child: FnvTitle(title: Localisation.mesDefis),
       ),
       const SizedBox(height: DsfrSpacings.s3w),
       BlocBuilder<ChallengeListBloc, ChallengeListState>(
@@ -54,11 +54,11 @@ class _View extends StatelessWidget {
                   final item = state.challenges[index];
                   final subTitle = switch (item.status) {
                     ChallengeStatus.toDo => '📝 À faire',
-                    ChallengeStatus.inProgress => '⏳ Action en cours',
+                    ChallengeStatus.inProgress => '⏳ Défi en cours',
                     ChallengeStatus.refused => '👎 Pas envie',
                     ChallengeStatus.alreadyDone => '✅ Déjà fait',
                     ChallengeStatus.abandonned => '❌ Abandonnée',
-                    ChallengeStatus.done => '🏆 Action réalisée',
+                    ChallengeStatus.done => '🏆 Défi réalisé',
                   };
 
                   return ListItem(

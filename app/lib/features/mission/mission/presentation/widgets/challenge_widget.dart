@@ -34,7 +34,7 @@ class ChallengeWidget extends StatelessWidget {
             _ActionCard(
               title: challenge.title,
               button: DsfrButton(
-                label: Localisation.allerALAction,
+                label: Localisation.allerAuDefi,
                 variant: DsfrButtonVariant.primary,
                 size: DsfrButtonSize.lg,
                 onPressed: onPressed,
@@ -53,7 +53,7 @@ class ChallengeWidget extends StatelessWidget {
             _ActionCard(
               title: challenge.title,
               button: DsfrButton(
-                label: Localisation.reprendreLaction,
+                label: Localisation.reprendreLeDefi,
                 variant: DsfrButtonVariant.secondary,
                 size: DsfrButtonSize.lg,
                 onPressed: onPressed,

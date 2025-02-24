@@ -95,19 +95,19 @@ class _SuccessContent extends StatelessWidget {
       ),
       if (state.isAccepted ?? true) ...[
         const SizedBox(height: DsfrSpacings.s4w),
-        const Text(Localisation.bonnesAstucesPourRealiserCetteAction, style: DsfrTextStyle.headline4()),
+        const Text(Localisation.bonnesAstucesPourRealiserCeDefi, style: DsfrTextStyle.headline4()),
         const SizedBox(height: DsfrSpacings.s1w),
         FnvHtmlWidget(state.challenge.tips),
         const SizedBox(height: DsfrSpacings.s4w),
-        const Text(Localisation.pourquoiCetteAction, style: DsfrTextStyle.headline4()),
+        const Text(Localisation.pourquoiCeDefi, style: DsfrTextStyle.headline4()),
         const SizedBox(height: DsfrSpacings.s1w),
         FnvHtmlWidget(state.challenge.why),
       ] else ...[
         const SizedBox(height: DsfrSpacings.s2w),
-        const Text(Localisation.cetteActionNeVousConvientPas, style: DsfrTextStyle.headline3()),
+        const Text(Localisation.ceDefiNeVousConvientPas, style: DsfrTextStyle.headline3()),
         const SizedBox(height: DsfrSpacings.s2w),
         DsfrInput(
-          label: Localisation.cetteActionNeVousConvientPasDetails,
+          label: Localisation.ceDefiNeVousConvientPasDetails,
           initialValue: state.challenge.reason,
           onChanged: (final value) => context.read<ChallengeDetailBloc>().add(ChallengeDetailReasonChanged(value)),
         ),

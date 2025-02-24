@@ -32,7 +32,7 @@ final class ChallengeDetailLoadSuccess extends ChallengeDetailState {
   final Option<String?> newReason;
 
   String get acceptanceText =>
-      _getRadioButtonText(initialStatus: Localisation.jeReleveLAction, progressStatus: Localisation.actionRealisee);
+      _getRadioButtonText(initialStatus: Localisation.jeReleveLeDefi, progressStatus: Localisation.defiRealise);
 
   String get refusalText =>
       _getRadioButtonText(initialStatus: Localisation.pasPourMoi, progressStatus: Localisation.finalementPasPourMoi);

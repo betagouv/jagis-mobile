@@ -44,12 +44,12 @@ class _Section extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      const TitleSection(title: Localisation.actionsSectionTitle, subTitle: Localisation.actionsSectionSubTitle),
+      const TitleSection(title: Localisation.mesDefis, subTitle: Localisation.defisSectionSubTitle),
       _Challenges(value: state.challenges),
       Align(
         alignment: Alignment.centerLeft,
         child: DsfrLink.md(
-          label: Localisation.homeActionsLink,
+          label: Localisation.homeDefisLink,
           onTap: () async => GoRouter.of(context).pushNamed(ChallengeListPage.name),
         ),
       ),
@@ -65,7 +65,7 @@ class _Challenges extends StatelessWidget {
   @override
   Widget build(final BuildContext context) =>
       value.isEmpty
-          ? const Text(Localisation.actionsSectionListEmpty, style: DsfrTextStyle.bodySm())
+          ? const Text(Localisation.defisSectionListEmpty, style: DsfrTextStyle.bodySm())
           : SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.zero,

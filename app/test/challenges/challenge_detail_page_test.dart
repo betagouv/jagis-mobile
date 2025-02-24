@@ -69,77 +69,77 @@ void main() {
     testWidgets('le défi à faire', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'todo'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.pasPourMoi), false);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsOneWidget);
-      expect(find.text(Localisation.pourquoiCetteAction, skipOffstage: false), findsOneWidget);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsOneWidget);
+      expect(find.text(Localisation.pourquoiCeDefi, skipOffstage: false), findsOneWidget);
     });
 
     testWidgets('le défi non désirée', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'pas_envie'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.pasPourMoi), true);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsNothing);
-      expect(find.text(Localisation.pourquoiCetteAction), findsNothing);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsNothing);
+      expect(find.text(Localisation.pourquoiCeDefi), findsNothing);
     });
 
     testWidgets('le défi non désirée avec motif', (final tester) async {
       const reason = 'parce que';
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'pas_envie', reason: reason));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.pasPourMoi), true);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsNothing);
-      expect(find.text(Localisation.pourquoiCetteAction), findsNothing);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsNothing);
+      expect(find.text(Localisation.pourquoiCeDefi), findsNothing);
       expect(find.text(reason), findsOneWidget);
     });
 
     testWidgets('le défi en cours', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'en_cours'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.finalementPasPourMoi), false);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsOneWidget);
-      expect(find.text(Localisation.pourquoiCetteAction, skipOffstage: false), findsOneWidget);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsOneWidget);
+      expect(find.text(Localisation.pourquoiCeDefi, skipOffstage: false), findsOneWidget);
     });
 
     testWidgets('le défi déjà réalisée', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'deja_fait'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), true);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), true);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.finalementPasPourMoi), false);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsOneWidget);
-      expect(find.text(Localisation.pourquoiCetteAction, skipOffstage: false), findsOneWidget);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsOneWidget);
+      expect(find.text(Localisation.pourquoiCeDefi, skipOffstage: false), findsOneWidget);
     });
 
     testWidgets('le défi abandonnée', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'abondon'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.finalementPasPourMoi), true);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsNothing);
-      expect(find.text(Localisation.pourquoiCetteAction), findsNothing);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsNothing);
+      expect(find.text(Localisation.pourquoiCeDefi), findsNothing);
     });
 
     testWidgets('le défi abandonnée avec motif', (final tester) async {
       const reason = 'parce que';
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'abondon', reason: reason));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), false);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.finalementPasPourMoi), true);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsNothing);
-      expect(find.text(Localisation.pourquoiCetteAction), findsNothing);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsNothing);
+      expect(find.text(Localisation.pourquoiCeDefi), findsNothing);
       expect(find.text(reason), findsOneWidget);
     });
 
     testWidgets('le défi terminée', (final tester) async {
       await pumpChallengeDetailPage(tester, responseData: challengeFaker(status: 'fait'));
       await tester.pumpAndSettle();
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), true);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), true);
       expect(isRadioButtonEnabled<bool>(tester, Localisation.finalementPasPourMoi), false);
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsOneWidget);
-      expect(find.text(Localisation.pourquoiCetteAction, skipOffstage: false), findsOneWidget);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsOneWidget);
+      expect(find.text(Localisation.pourquoiCeDefi, skipOffstage: false), findsOneWidget);
     });
   });
 
@@ -152,13 +152,13 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), false);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), false);
 
       expect(isRadioButtonEnabled<bool>(tester, Localisation.pasPourMoi), true);
 
-      expect(find.text(Localisation.bonnesAstucesPourRealiserCetteAction), findsNothing);
+      expect(find.text(Localisation.bonnesAstucesPourRealiserCeDefi), findsNothing);
 
-      expect(find.text(Localisation.pourquoiCetteAction), findsNothing);
+      expect(find.text(Localisation.pourquoiCeDefi), findsNothing);
     });
 
     testWidgets('commencer le défi', (final tester) async {
@@ -173,11 +173,11 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(Localisation.jeReleveLAction));
+      await tester.tap(find.text(Localisation.jeReleveLeDefi));
 
       await tester.pumpAndSettle();
 
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), true);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), true);
 
       await tester.tap(find.text(Localisation.valider));
 
@@ -207,7 +207,7 @@ void main() {
       expect(isRadioButtonEnabled<bool>(tester, Localisation.pasPourMoi), true);
 
       const reason = 'parce que';
-      await tester.enterText(find.byKey(const ValueKey(Localisation.cetteActionNeVousConvientPasDetails)), reason);
+      await tester.enterText(find.byKey(const ValueKey(Localisation.ceDefiNeVousConvientPasDetails)), reason);
 
       await tester.pump();
 
@@ -232,11 +232,11 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(Localisation.jeReleveLAction));
+      await tester.tap(find.text(Localisation.jeReleveLeDefi));
 
       await tester.pumpAndSettle();
 
-      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLAction), true);
+      expect(isRadioButtonEnabled<bool>(tester, Localisation.jeReleveLeDefi), true);
 
       await tester.tap(find.text(Localisation.valider));
 
@@ -260,7 +260,7 @@ void main() {
       await tester.pumpAndSettle();
 
       const reason = 'parce que 2';
-      await tester.enterText(find.byKey(const ValueKey(Localisation.cetteActionNeVousConvientPasDetails)), reason);
+      await tester.enterText(find.byKey(const ValueKey(Localisation.ceDefiNeVousConvientPasDetails)), reason);
 
       await tester.pump();
 
@@ -292,7 +292,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(Localisation.jeReleveLAction));
+      await tester.tap(find.text(Localisation.jeReleveLeDefi));
 
       await tester.pumpAndSettle();
 
@@ -333,9 +333,9 @@ void main() {
 
         await pumpChallengeDetailPage(tester, dio: dio, messageBus: messageBus);
         await tester.pumpAndSettle();
-        await tester.tap(find.text(Localisation.actionRealisee));
+        await tester.tap(find.text(Localisation.defiRealise));
         await tester.pumpAndSettle();
-        expect(isRadioButtonEnabled<bool>(tester, Localisation.actionRealisee), true);
+        expect(isRadioButtonEnabled<bool>(tester, Localisation.defiRealise), true);
         await tester.tap(find.text(Localisation.valider));
         await tester.pumpAndSettle();
 

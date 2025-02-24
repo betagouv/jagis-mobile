@@ -69,7 +69,7 @@ class _MenuItems extends StatelessWidget {
           HomePage.name: Localisation.home,
           AidsPage.name: Localisation.mesAides,
           ActionsPage.name: Localisation.actions,
-          ChallengeListPage.name: Localisation.mesActions,
+          ChallengeListPage.name: Localisation.mesDefis,
           BibliothequePage.name: Localisation.bibliotheque,
           EnvironmentalPerformanceSummaryPage.name: Localisation.bilanEnvironnemental,
         }.entries.map((final e) => _MenuItem(label: e.value, value: e.key, groupValue: groupValue)),

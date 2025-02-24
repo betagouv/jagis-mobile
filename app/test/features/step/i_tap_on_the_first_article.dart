@@ -13,7 +13,7 @@ Future<void> iTapOnTheFirstArticle(final WidgetTester tester) async {
       'titre': "Qu'est-ce qu'une alimentation durable ?",
       'soustitre': "Comment réduire l'impact de notre alimentation sur le climat ?",
       'thematique_principale': 'alimentation',
-      'thematique_principale_label': 'Me nourrir',
+      'thematique_principale_label': '🍛 Me nourrir',
       'thematiques': ['alimentation'],
       'image_url':
           'https://res.cloudinary.com/dq023imd8/image/upload/t_media_lib_thumb/v1701355699/ella_olsson_n_Z_Aem1_CDE_9s_unsplash_1be02f4385.jpg',

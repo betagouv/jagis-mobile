@@ -2,15 +2,8 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 
 class HomeTabBar extends TabBar {
-  const HomeTabBar({super.key, required final TextScaler textScaler})
+  const HomeTabBar({super.key, required TextScaler super.textScaler, required super.tabs})
     : super(
-        tabs: const [
-          Tab(icon: Icon(DsfrIcons.buildingsHome4Line)),
-          Tab(text: 'Me nourrir'),
-          Tab(text: 'Me loger'),
-          Tab(text: 'Me déplacer'),
-          Tab(text: 'Consommer'),
-        ],
         isScrollable: true,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         indicator: const UnderlineTabIndicator(borderSide: BorderSide(color: DsfrColors.blueFranceSun113, width: 3)),
@@ -19,6 +12,5 @@ class HomeTabBar extends TabBar {
         labelPadding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s1w),
         unselectedLabelStyle: const DsfrTextStyle.bodyMd(),
         tabAlignment: TabAlignment.start,
-        textScaler: textScaler,
       );
 }

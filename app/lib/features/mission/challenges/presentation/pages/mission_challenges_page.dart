@@ -36,7 +36,7 @@ class _View extends StatelessWidget {
           padding: const EdgeInsets.all(paddingVerticalPage),
           children: [
             MarkdownBody(
-              data: Localisation.missionActionsTitle,
+              data: Localisation.missionDefisTitle,
               styleSheet: MarkdownStyleSheet(
                 p: const DsfrTextStyle.headline2(),
                 strong: const DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
@@ -44,7 +44,7 @@ class _View extends StatelessWidget {
             ),
             const SizedBox(height: DsfrSpacings.s1w),
             MarkdownBody(
-              data: Localisation.missionActionsSubTitle,
+              data: Localisation.missionDefisSubTitle,
               styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd()),
             ),
             const SizedBox(height: DsfrSpacings.s3w),

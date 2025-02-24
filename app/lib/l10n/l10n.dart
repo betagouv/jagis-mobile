@@ -15,13 +15,13 @@ abstract final class Localisation {
   static const home = 'Accueil';
   static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
   static const acheterUnVelo = 'Acheter un vélo';
-  static const actionRealisee = 'Action réalisée';
+  static const defiRealise = 'Défi réalisé';
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const ajouterEnFavoris = 'Ajouter en favoris';
-  static const allerALAction = 'Aller à l’action';
+  static const allerAuDefi = 'Aller au défi';
   static const anneeDeNaissance = 'Année de naissance';
   static const annuler = 'Annuler';
   static const appEstEnConstruction = 'J’agis est en construction !';
@@ -42,12 +42,12 @@ abstract final class Localisation {
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Mon bilan environnemental';
   static const bonjour = 'Bonjour,\n';
-  static const bonnesAstucesPourRealiserCetteAction = 'Bonnes astuces pour réaliser cette action';
+  static const bonnesAstucesPourRealiserCeDefi = 'Bonnes astuces pour réaliser ce défi';
   static const bravo = 'BRAVO !';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
-  static const cetteActionNeVousConvientPas = 'Cette action ne vous convient pas ?';
-  static const cetteActionNeVousConvientPasDetails =
+  static const ceDefiNeVousConvientPas = 'Ce défi ne vous convient pas ?';
+  static const ceDefiNeVousConvientPasDetails =
       'On ne vise pas toujours juste ! Dites-nous pourquoi en quelques mots et nous affinerons nos recommandations à l’avenir. (facultatif)';
   static const changerMonMotDePasse = 'Changer mon mot de passe';
   static const changerVotreMotDePasseConfirmation = 'Votre mot de passe a été changé.';
@@ -128,7 +128,7 @@ abstract final class Localisation {
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jeCreeMonCompte = 'Je crée mon compte';
-  static const jeReleveLAction = 'Je relève l’action';
+  static const jeReleveLeDefi = 'Je relève le défi';
   static const jusqua = 'Jusqu’à ';
   static const leServiveNeCouvrePasEncoreVotreVille = 'Le service ne couvre pas encore votre ville.';
   static const leServiveNeCouvrePasEncoreVotreVilleDescription = 'Nous mettons les informations à jour progressivement.';
@@ -142,7 +142,7 @@ abstract final class Localisation {
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
   static const menu = 'Menu';
-  static const mesActions = 'Mes actions';
+  static const mesDefis = 'Mes défis';
   static const mesAides = 'Mes aides';
   static const mesAidesDisponibles = 'Mes aides disponibles';
   static const mesAidesLien = 'Voir toutes les aides';
@@ -154,14 +154,13 @@ abstract final class Localisation {
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
-  static const missionActionsSubTitle = 'Pour réduire votre impact, voici une liste d’actions recommandés **pour vous !**';
-  static const missionActionsTitle = 'Choisir au moins **une action** que vous pourriez réaliser';
+  static const missionDefisSubTitle = 'Pour réduire votre impact, voici une liste de défis recommandés **pour vous !**';
+  static const missionDefisTitle = 'Choisir au moins **un défi** que vous pourriez réaliser';
   static const missionTitle = 'Recommandés **pour vous**';
   static const missionSubTitle = 'Des solutions **adaptées à votre situation** et les clés pour comprendre';
-  static const actionsSectionTitle = 'Mes actions';
-  static const actionsSectionSubTitle = 'Gagner des feuilles chaque semaine avec de nouvelles actions';
-  static const actionsSectionListEmpty =
-      'Vous n’avez aucune action à réaliser en ce moment. Débloquez-en de nouvelles dans les missions.';
+  static const defisSectionSubTitle = 'Gagner des feuilles chaque semaine avec de nouveaux défis';
+  static const defisSectionListEmpty =
+      'Vous n’avez aucun défi à réaliser en ce moment. Débloquez-en de nouveaux dans les missions.';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
   static const monIdentite = 'Mon identité';
@@ -210,7 +209,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
-  static const pourquoiCetteAction = 'Pourquoi cette action ?';
+  static const pourquoiCeDefi = 'Pourquoi ce défi ?';
   static const preOnboardingTitre = 'Ensemble,\naméliorons\nnos habitudes\nau jour le jour';
   static const premiereFoisSur = 'Première fois sur J’agis ?';
   static const prenom = 'Prénom';
@@ -232,7 +231,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommande = 'Recommandé';
   static const renvoyerCode = 'Renvoyer le code';
   static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';
-  static const reprendreLaction = 'Reprendre l’action';
+  static const reprendreLeDefi = 'Reprendre le défi';
   static const retirerDesFavoris = 'Retirer des favoris';
   static const retour = 'Retour';
   static const revenirAuSimulateur = 'Revenir au simulateur';
@@ -256,7 +255,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const uneMaison = 'Une maison';
   static const valider = 'Valider';
   static const voirLesDemarches = 'Voir les démarches';
-  static const homeActionsLink = 'Voir toutes mes actions';
+  static const homeDefisLink = 'Voir tous mes défis';
   static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
 

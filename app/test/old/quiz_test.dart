@@ -172,7 +172,7 @@ Future<void> _init(final WidgetTester tester, final String titre) async {
   ielEstConnecte();
   ScenarioContext().dioMock!.postM(Endpoints.events);
   await ielLanceLapplication(tester);
-  await tester.tap(find.text('Me nourrir').last);
+  await tester.tap(find.text('🍛 Me nourrir').last);
   await tester.pumpAndSettle();
   await ielScrolle(tester, titre);
   await ielAppuieSur(tester, titre);

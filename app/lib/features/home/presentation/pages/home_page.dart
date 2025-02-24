@@ -1,4 +1,4 @@
-import 'package:app/features/home/presentation/widgets/home_tab_controller.dart';
+import 'package:app/features/home/presentation/widgets/home_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,5 +12,5 @@ class HomePage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const HomePage(), routes: routes);
 
   @override
-  Widget build(final BuildContext context) => const HomeTabController();
+  Widget build(final BuildContext context) => const HomeTabView();
 }

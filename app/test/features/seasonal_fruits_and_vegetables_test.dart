@@ -18,7 +18,7 @@ void main() {
       await initializeContext(tester);
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
-      await iTapOn(tester, 'Me nourrir');
+      await iTapOn(tester, '🍛 Me nourrir');
       await iScrollDown(tester);
       await iTapOn(tester, 'Fruits et légumes de saison');
     }

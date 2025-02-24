@@ -3,7 +3,7 @@ Feature: Seasonal fruits and vegetables service
     Given initialize context
     Given I am logged in
     Given The application is launched
-    When I tap on {'Me nourrir'}
+    When I tap on {'🍛 Me nourrir'}
     When I scroll down
     When I tap on {'Fruits et légumes de saison'}
 

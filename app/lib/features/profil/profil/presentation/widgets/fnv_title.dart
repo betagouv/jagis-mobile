@@ -20,13 +20,6 @@ class FnvTitle extends StatelessWidget {
         ),
       ),
       if (subtitle != null) ...[const SizedBox(height: DsfrSpacings.s1v5), Text(subtitle!, style: const DsfrTextStyle.bodyMd())],
-      const SizedBox(height: DsfrSpacings.s2w),
-      const DsfrDivider(
-        width: DsfrSpacings.s4w,
-        height: DsfrSpacings.s0v5,
-        color: DsfrColors.blueFranceSun113,
-        alignment: Alignment.centerLeft,
-      ),
     ],
   );
 }

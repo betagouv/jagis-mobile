@@ -41,5 +41,6 @@ Feature: Actions
     Scenario: See recipe service
         Given I have recipe services in my library
         When I tap on {'Actions'}
+        When I scroll down
         When I tap on {'Tester une nouvelle recette végétarienne'}
         Then I see {'Salade de pâtes complètes et lentilles'}

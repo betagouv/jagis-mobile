@@ -62,6 +62,9 @@ class DsfrTextStyle extends TextStyle {
 
   const DsfrTextStyle.bodyMd({final Color color = DsfrColors.grey50}) : this(fontSize: 16, color: color);
 
+  const DsfrTextStyle.bodyMdItalic({final Color color = DsfrColors.grey50})
+    : this(fontSize: 16, color: color, fontStyle: FontStyle.italic);
+
   const DsfrTextStyle.bodyMdMedium({final Color color = DsfrColors.grey50})
     : this(fontSize: 16, fontWeight: FontWeight.w500, color: color);
 

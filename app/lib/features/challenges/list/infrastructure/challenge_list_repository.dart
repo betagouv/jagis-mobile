@@ -13,7 +13,7 @@ class ChallengeListRepository {
   final DioHttpClient _client;
 
   Future<Either<Exception, List<ChallengeItem>>> fetchChallenges() async {
-    final string =
+    final url =
         Uri(
           path: Endpoints.challenges,
           queryParameters: {
@@ -21,7 +21,7 @@ class ChallengeListRepository {
           },
         ).toString();
 
-    final response = await _client.get(string);
+    final response = await _client.get(url);
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération des défis'));

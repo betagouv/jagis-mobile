@@ -1,7 +1,7 @@
 abstract final class Endpoints {
   Endpoints._();
 
-  static const actions = '/actions';
+  static const actions = '/utilisateurs/{userId}/actions';
   static String action({required final String type, required final String code}) => '/utilisateurs/{userId}/actions/$type/$code';
   static const aids = '/utilisateurs/{userId}/aides_v2';
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';

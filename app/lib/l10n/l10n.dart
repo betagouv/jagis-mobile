@@ -10,7 +10,7 @@ abstract final class Localisation {
   static const action = 'action';
   static const aide = 'aide';
 
-  static const toutesLesActions = 'Toutes **les actions**';
+  static const catalogueActions = "Catalogue d'actions";
   static const accederAuSimulateur = 'Accéder au simulateur';
   static const home = 'Accueil';
   static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';

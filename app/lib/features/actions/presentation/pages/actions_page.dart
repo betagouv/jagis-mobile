@@ -1,6 +1,8 @@
 import 'package:app/core/presentation/widgets/composants/card.dart';
+import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
+import 'package:app/features/actions/domain/action_filter.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions/presentation/bloc/actions_bloc.dart';
 import 'package:app/features/actions/presentation/bloc/actions_event.dart';
@@ -36,8 +38,14 @@ class _View extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
-        MarkdownBody(data: Localisation.toutesLesActions, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 24))),
-        const SizedBox(height: 16),
+        const Text(Localisation.catalogueActions, style: DsfrTextStyle.headline2()),
+        const SizedBox(height: DsfrSpacings.s3w),
+        const _ThemesFilter(),
+        const SizedBox(height: DsfrSpacings.s2w),
+        DsfrSearchBar(onChanged: (final value) {}),
+        const SizedBox(height: DsfrSpacings.s2w),
+        DsfrToggleSwitch(label: 'Déjà consultées', value: false, onChanged: (final value) {}),
+        const SizedBox(height: DsfrSpacings.s3w),
         BlocBuilder<ActionsBloc, ActionsState>(
           builder:
               (final context, final state) => switch (state) {
@@ -51,6 +59,30 @@ class _View extends StatelessWidget {
   );
 }
 
+class _ThemesFilter extends StatelessWidget {
+  const _ThemesFilter();
+
+  @override
+  Widget build(final context) {
+    const spacing = DsfrSpacings.s1w - 2;
+
+    final filters = [
+      const ActionFilter(code: 'all', titre: 'Tout', choisi: true),
+      const ActionFilter(code: 'alimentation', titre: '🍛 Me nourrir', choisi: false),
+      const ActionFilter(code: 'transport', titre: '🚲 Transports', choisi: false),
+      const ActionFilter(code: 'consommation', titre: '🛒 Consommation', choisi: false),
+      const ActionFilter(code: 'logment', titre: '🏠 Logement', choisi: false),
+    ];
+
+    return Wrap(
+      spacing: spacing,
+      runSpacing: spacing,
+      children:
+          filters.map((final thematique) => FnvTag(label: thematique.titre, selected: thematique.choisi, onTap: () {})).toList(),
+    );
+  }
+}
+
 class _Success extends StatelessWidget {
   const _Success({required this.state});
 
@@ -60,12 +92,12 @@ class _Success extends StatelessWidget {
   Widget build(final BuildContext context) {
     final actions = state.actions;
 
-    return GridView.builder(
+    return ListView.separated(
       primary: false,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
       itemBuilder: (final context, final index) => _Element(action: actions[index]),
+      separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
       itemCount: actions.length,
     );
   }
@@ -77,29 +109,53 @@ class _Element extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final BuildContext context) => FnvCard(
-    onTap: () async {
+  Widget build(final BuildContext context) {
+    Future<void> onTap() async {
       await GoRouter.of(context).pushNamed(
         ActionPage.name,
         pathParameters: ActionPage.pathParameters(type: action.type, title: action.title, id: action.id),
       );
-    },
-    child: Padding(
-      padding: const EdgeInsets.all(DsfrSpacings.s2w),
-      child: Column(
-        children: [
-          MarkdownBody(data: action.title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd())),
-          const SizedBox(height: DsfrSpacings.s2w),
-          _Information(icon: DsfrIcons.userTeamLine, value: action.numberOfActionsCompleted, suffix: Localisation.action),
-          _Information(
-            icon: DsfrIcons.financeMoneyEuroCircleLine,
-            value: action.numberOfAidsAvailable,
-            suffix: Localisation.aide,
-          ),
-        ],
+    }
+
+    return FnvCard(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: DsfrSpacings.s2w,
+          top: DsfrSpacings.s3w,
+          right: DsfrSpacings.s2w,
+          bottom: DsfrSpacings.s1w,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MarkdownBody(data: action.title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyLg())),
+            const SizedBox(height: DsfrSpacings.s1v),
+            Wrap(
+              spacing: DsfrSpacings.s1w,
+              children: [
+                _Information(icon: DsfrIcons.userTeamLine, value: action.numberOfActionsCompleted, suffix: Localisation.action),
+                _Information(
+                  icon: DsfrIcons.financeMoneyEuroCircleLine,
+                  value: action.numberOfAidsAvailable,
+                  suffix: Localisation.aide,
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: DsfrButtonIcon(
+                icon: DsfrIcons.systemArrowRightLine,
+                variant: DsfrButtonVariant.tertiaryWithouBorder,
+                size: DsfrButtonSize.md,
+                onPressed: onTap,
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class _Information extends StatelessWidget {
@@ -116,6 +172,7 @@ class _Information extends StatelessWidget {
           : ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 24),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               spacing: DsfrSpacings.s1w,
               children: [
                 ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),

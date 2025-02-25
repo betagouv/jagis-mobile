@@ -1,9 +1,9 @@
+import 'package:app/core/infrastructure/theme_type_mapper.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
 import 'package:app/features/know_your_customer/core/domain/response.dart';
 import 'package:app/features/know_your_customer/core/domain/response_choice.dart';
 import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 
 abstract final class QuestionMapper {
   const QuestionMapper._();
@@ -24,7 +24,7 @@ abstract final class QuestionMapper {
 
   static QuestionMultipleChoice _questionMultipleChoice(final Map<String, dynamic> json) => QuestionMultipleChoice(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     responses: _responseChoices(json['reponse_multiple'] as List<dynamic>),
@@ -33,7 +33,7 @@ abstract final class QuestionMapper {
 
   static QuestionSingleChoice _questionSingleChoice(final Map<String, dynamic> json) => QuestionSingleChoice(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     responses: _responseChoices(json['reponse_multiple'] as List<dynamic>),
@@ -51,7 +51,7 @@ abstract final class QuestionMapper {
 
   static QuestionOpen _questionOpen(final Map<String, dynamic> json) => QuestionOpen(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     response: _response(json['reponse_unique'] as Map<String, dynamic>),
@@ -60,7 +60,7 @@ abstract final class QuestionMapper {
 
   static QuestionInteger _questionInteger(final Map<String, dynamic> json) => QuestionInteger(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     response: _response(json['reponse_unique'] as Map<String, dynamic>),
@@ -69,7 +69,7 @@ abstract final class QuestionMapper {
 
   static QuestionDecimal _questionDecimal(final Map<String, dynamic> json) => QuestionDecimal(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     response: _response(json['reponse_unique'] as Map<String, dynamic>),
@@ -83,7 +83,7 @@ abstract final class QuestionMapper {
 
   static QuestionMosaicBoolean _questionMosaicBoolean(final Map<String, dynamic> json) => QuestionMosaicBoolean(
     id: QuestionCode(json['code'] as String),
-    theme: _mapThemeType(json['thematique'] as String),
+    theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
     responses: _responseMosaics(json['reponse_multiple'] as List<dynamic>),
@@ -103,12 +103,4 @@ abstract final class QuestionMapper {
             ),
           )
           .toList();
-
-  static ThemeType _mapThemeType(final String? type) => switch (type) {
-    'alimentation' => ThemeType.alimentation,
-    'transport' => ThemeType.transport,
-    'consommation' => ThemeType.consommation,
-    'logement' => ThemeType.logement,
-    _ => ThemeType.decouverte,
-  };
 }

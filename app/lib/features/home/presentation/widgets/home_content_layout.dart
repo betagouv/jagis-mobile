@@ -5,6 +5,7 @@ import 'package:app/features/environmental_performance/home/presentation/widgets
 import 'package:app/features/home/presentation/widgets/home_disclaimer.dart';
 import 'package:app/features/mission/home/presentation/widgets/mission_section.dart';
 import 'package:app/features/survey/survey_section.dart';
+import 'package:app/features/theme_hub/presentation/widgets/theme_hub_section.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,8 @@ class HomeContentLayout extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: const [
         HomeDisclaimer(),
-        SizedBox(height: paddingVerticalPage),
+        ThemeHubSection(),
+        spacing,
         Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: EnvironmentalPerformanceSection()),
         spacing,
         Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: MissionSection()),

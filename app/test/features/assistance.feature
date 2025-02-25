@@ -5,6 +5,8 @@ Feature: Assistance
     Given The application is launched
 
   Scenario: Show 2 first assistances on the home page
+    When I scroll down
+    When I scroll down
     Then I see {'Rénover son logement'}
     Then I see {'Acheter un vélo'}
     Then I don't see {'Composter ses déchets'}

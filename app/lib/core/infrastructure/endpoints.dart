@@ -18,6 +18,7 @@ abstract final class Endpoints {
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
   static const missionsRecommandees = '/utilisateurs/{userId}/tuiles_missions';
+  static const themes = '/utilisateurs/{userId}/thematiques';
   static String missionsRecommandeesParThematique(final String codeThematique) =>
       '/utilisateurs/{userId}/thematiques/$codeThematique/tuiles_missions';
   static String mission(final String codeMission) => '/utilisateurs/{userId}/missions/$codeMission';

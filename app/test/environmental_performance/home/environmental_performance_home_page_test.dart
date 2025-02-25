@@ -19,6 +19,7 @@ import 'package:app/features/mission/home/infrastructure/mission_home_repository
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/recommandations/presentation/bloc/recommandations_bloc.dart';
+import 'package:app/features/theme_hub/infrastructure/theme_hub_repository.dart';
 import 'package:app/features/utilisateur/infrastructure/user_repository.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -41,7 +42,19 @@ Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
     ..getM(Endpoints.utilisateur, responseData: {'prenom': 'Lucas', 'is_onboarding_done': true})
     ..getM(Endpoints.missionsRecommandees, responseData: missionThematiques)
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
-    ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]});
+    ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]})
+    ..getM(
+      Endpoints.themes,
+      responseData: {
+        'nom_commune': 'Dole',
+        'liste_thematiques': [
+          {'thematique': 'alimentation', 'nombre_actions': 5},
+          {'thematique': 'logement', 'nombre_actions': 5},
+          {'thematique': 'transport', 'nombre_actions': 5},
+          {'thematique': 'consommation', 'nombre_actions': 5},
+        ],
+      },
+    );
 
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
 
@@ -54,6 +67,7 @@ Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
       RepositoryProvider<NotificationService>(
         create: (final context) => const NotificationServiceFake(AuthorizationStatus.denied),
       ),
+      RepositoryProvider<ThemeHubRepository>.value(value: ThemeHubRepository(client: client)),
     ],
     blocProviders: [
       BlocProvider(create: (final context) => AidsHomeBloc(aidsRepository: AidsRepository(client: client))),
@@ -132,6 +146,8 @@ void main() {
             ..getM(Endpoints.questions('ENCHAINEMENT_KYC_bilan_transport'), responseData: miniBilan);
       await mockNetworkImages(() async {
         await pumpHomePage(tester, dio);
+        await tester.pumpAndSettle();
+        await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
         await tester.pumpAndSettle();
         await tester.tap(find.text('7 questions'));
         await tester.pumpAndSettle();

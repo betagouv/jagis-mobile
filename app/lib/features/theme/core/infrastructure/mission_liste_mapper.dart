@@ -1,5 +1,5 @@
+import 'package:app/core/infrastructure/theme_type_mapper.dart';
 import 'package:app/features/theme/core/domain/mission_liste.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 
 abstract final class MissionListeMapper {
   const MissionListeMapper._();
@@ -11,14 +11,6 @@ abstract final class MissionListeMapper {
     progressionCible: (json['cible_progression'] as num).toInt(),
     estNouvelle: json['is_new'] as bool,
     imageUrl: json['image_url'] as String,
-    themeType: _mapThemeType(json['thematique'] as String),
+    themeType: ThemeTypeMapper.convert(json['thematique'] as String),
   );
-
-  static ThemeType _mapThemeType(final String type) => switch (type) {
-    'alimentation' => ThemeType.alimentation,
-    'transport' => ThemeType.transport,
-    'consommation' => ThemeType.consommation,
-    'logement' => ThemeType.logement,
-    _ => ThemeType.decouverte,
-  };
 }

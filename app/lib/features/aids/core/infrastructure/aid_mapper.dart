@@ -1,12 +1,12 @@
+import 'package:app/core/infrastructure/theme_type_mapper.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/articles/domain/partner.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 
 abstract final class AidMapper {
   const AidMapper._();
 
   static Aid fromJson(final Map<String, dynamic> json) => Aid(
-    themeType: _mapThemeType((json['thematiques'] as List<dynamic>).cast<String>().firstOrNull ?? ''),
+    themeType: ThemeTypeMapper.convert((json['thematiques'] as List<dynamic>).cast<String>().firstOrNull ?? ''),
     title: json['titre'] as String,
     content: json['contenu'] as String,
     amountMax: (json['montant_max'] as num?)?.toInt(),
@@ -21,12 +21,4 @@ abstract final class AidMapper {
               logo: json['partenaire_logo_url'] as String? ?? '',
             ),
   );
-
-  static ThemeType _mapThemeType(final String? type) => switch (type) {
-    'alimentation' => ThemeType.alimentation,
-    'transport' => ThemeType.transport,
-    'consommation' => ThemeType.consommation,
-    'logement' => ThemeType.logement,
-    _ => ThemeType.decouverte,
-  };
 }

@@ -258,6 +258,11 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const homeDefisLink = 'Voir tous mes défis';
   static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
+  static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';
+  static const decouvrir = 'Découvrir';
+
+  static String parOuSouhaitezVousCommencerDescription(final String city) =>
+      'D’après nos calculs, à ***$city***, voici ce que nous pouvons vous proposer :';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

@@ -61,7 +61,19 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
       },
     )
     ..getM(Endpoints.missionsRecommandeesParThematique('alimentation'), responseData: <dynamic>[])
-    ..getM(Endpoints.servicesParThematique('alimentation'), responseData: <dynamic>[]);
+    ..getM(Endpoints.servicesParThematique('alimentation'), responseData: <dynamic>[])
+    ..getM(
+      Endpoints.themes,
+      responseData: {
+        'nom_commune': 'Dole',
+        'liste_thematiques': [
+          {'thematique': 'alimentation', 'nombre_actions': 5},
+          {'thematique': 'logement', 'nombre_actions': 5},
+          {'thematique': 'transport', 'nombre_actions': 5},
+          {'thematique': 'consommation', 'nombre_actions': 5},
+        ],
+      },
+    );
 
   await mockNetworkImages(() async {
     await tester.pumpFrames(

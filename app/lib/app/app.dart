@@ -57,6 +57,7 @@ import 'package:app/features/services/seasonal_fruits_and_vegetables/infrastruct
 import 'package:app/features/simulateur_velo/infrastructure/aide_velo_repository.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.dart';
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
+import 'package:app/features/theme_hub/infrastructure/theme_hub_repository.dart';
 import 'package:app/features/upgrade/infrastructure/upgrade_interceptor.dart';
 import 'package:app/features/upgrade/presentation/bloc/upgrade_bloc.dart';
 import 'package:app/features/upgrade/presentation/widgets/upgrade_widget.dart';
@@ -206,6 +207,7 @@ class _AppState extends State<App> {
               ),
               RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
             ],
             child: MultiBlocProvider(
               providers: [

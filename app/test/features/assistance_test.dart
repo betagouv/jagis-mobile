@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import './step/initialize_context.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
+import './step/i_scroll_down.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';
 import './step/i_tap_on_the_menu_button.dart';
@@ -20,9 +21,10 @@ void main() {
       await theApplicationIsLaunched(tester);
     }
 
-    testWidgets('''Show 2 first assistances on the home page''',
-        (tester) async {
+    testWidgets('''Show 2 first assistances on the home page''', (tester) async {
       await bddSetUp(tester);
+      await iScrollDown(tester);
+      await iScrollDown(tester);
       await iSee(tester, 'Rénover son logement');
       await iSee(tester, 'Acheter un vélo');
       await iDontSee(tester, 'Composter ses déchets');

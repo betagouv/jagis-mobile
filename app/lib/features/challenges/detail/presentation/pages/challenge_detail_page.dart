@@ -65,7 +65,7 @@ class _Body extends StatelessWidget {
           ChallengeDetailInitial() || ChallengeDetailUpdateSuccess() || ChallengeDetailUpdateIgnored() => const SizedBox(),
           ChallengeDetailLoadInProgress() => const Center(child: CircularProgressIndicator()),
           ChallengeDetailLoadSuccess() => _SuccessContent(state: state),
-          ChallengeDetailLoadFailure() => const Text('Oups'),
+          ChallengeDetailLoadFailure() => const Center(child: Text('Une erreur est survenue')),
         },
   );
 }

@@ -21,10 +21,12 @@ import 'package:app/features/mission/mission/infrastructure/mission_repository.d
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/recommandations/presentation/bloc/recommandations_bloc.dart';
+import 'package:app/features/theme_hub/infrastructure/theme_hub_repository.dart';
 import 'package:app/features/utilisateur/infrastructure/user_repository.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -44,7 +46,19 @@ Future<void> pumpForMissionPage(final WidgetTester tester, {required final DioMo
     ..getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilan)
     ..getM(Endpoints.missionsRecommandees, responseData: missionThematiques)
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
-    ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]});
+    ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]})
+    ..getM(
+      Endpoints.themes,
+      responseData: {
+        'nom_commune': 'Dole',
+        'liste_thematiques': [
+          {'thematique': 'alimentation', 'nombre_actions': 5},
+          {'thematique': 'logement', 'nombre_actions': 5},
+          {'thematique': 'transport', 'nombre_actions': 5},
+          {'thematique': 'consommation', 'nombre_actions': 5},
+        ],
+      },
+    );
 
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
 
@@ -59,6 +73,7 @@ Future<void> pumpForMissionPage(final WidgetTester tester, {required final DioMo
       RepositoryProvider<NotificationService>(
         create: (final context) => const NotificationServiceFake(AuthorizationStatus.denied),
       ),
+      RepositoryProvider<ThemeHubRepository>.value(value: ThemeHubRepository(client: client)),
     ],
     blocProviders: [
       BlocProvider(create: (final context) => AidsHomeBloc(aidsRepository: AidsRepository(client: client))),
@@ -89,6 +104,7 @@ Future<void> pumpForMissionPage(final WidgetTester tester, {required final DioMo
     ),
   );
   await tester.pumpAndSettle();
+  await _scrollDown(tester);
 }
 
 void main() {
@@ -144,6 +160,13 @@ void main() {
       });
     });
   });
+}
+
+Future<void> _scrollDown(final WidgetTester tester) async {
+  await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+  await tester.pumpAndSettle();
+  await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+  await tester.pumpAndSettle();
 }
 
 const missionThematiques = [

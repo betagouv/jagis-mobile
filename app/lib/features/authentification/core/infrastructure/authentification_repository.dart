@@ -46,20 +46,6 @@ class AuthentificationRepository {
     }, (final r) => const Right(unit));
   }
 
-  Future<Either<Exception, Unit>> deconnexionDemandee() async {
-    final response = await _client.post(Endpoints.logout);
-    if (isResponseSuccessful(response.statusCode) && response.data is Map<String, dynamic>) {
-      final data = response.data as Map<String, dynamic>;
-      final callbackUrl = data['france_connect_logout_url'] as String?;
-      if (callbackUrl != null) {
-        unawaited(FnvUrlLauncher.launch(callbackUrl, mode: LaunchMode.externalApplication));
-      }
-    }
-    await _authenticationService.logout();
-
-    return const Right(unit);
-  }
-
   Future<Either<ApiErreur, Unit>> creationDeCompteDemandee(final InformationDeConnexion informationDeConnexion) async {
     final response = await _client.post(
       Endpoints.creationCompte,
@@ -128,7 +114,7 @@ class AuthentificationRepository {
   }
 
   void franceConnectStep1() =>
-      unawaited(FnvUrlLauncher.launch('${_client.baseUrl}/login_france_connect', mode: LaunchMode.externalApplication));
+      unawaited(FnvUrlLauncher.launch('${_client.baseUrl}/login_france_connect', mode: LaunchMode.inAppBrowserView));
 
   Future<Either<ApiErreur, Unit>> franceConnectStep2({required final OpenId openId}) async {
     final uri = Uri(path: Endpoints.franceConnectStep2, queryParameters: {'oidc_code': openId.code, 'oidc_state': openId.state});
@@ -144,5 +130,19 @@ class AuthentificationRepository {
     }
 
     return handleError(jsonEncode(response.data), defaultMessage: 'Erreur lors de la connexion via FranceConnect');
+  }
+
+  Future<Either<Exception, Unit>> deconnexionDemandee() async {
+    final response = await _client.post(Endpoints.logout);
+    if (isResponseSuccessful(response.statusCode) && response.data is Map<String, dynamic>) {
+      final data = response.data as Map<String, dynamic>;
+      final callbackUrl = data['france_connect_logout_url'] as String?;
+      if (callbackUrl != null) {
+        unawaited(FnvUrlLauncher.launch(callbackUrl, mode: LaunchMode.inAppBrowserView));
+      }
+    }
+    await _authenticationService.logout();
+
+    return const Right(unit);
   }
 }

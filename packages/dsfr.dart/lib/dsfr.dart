@@ -21,6 +21,7 @@ export 'src/composants/radios/radio_set.dart';
 export 'src/composants/radios/radio_set_headless.dart';
 export 'src/composants/search_bar.dart';
 export 'src/composants/select.dart';
+export 'src/composants/stepper/stepper.dart';
 export 'src/composants/tags.dart';
 export 'src/composants/toggle_switch.dart';
 export 'src/fondamentaux/colors.g.dart';

@@ -12,6 +12,7 @@ import 'package:dsfr_example/modals_page.dart';
 import 'package:dsfr_example/radios_page.dart';
 import 'package:dsfr_example/sandbox_page.dart';
 import 'package:dsfr_example/select_page.dart';
+import 'package:dsfr_example/stepper_page.dart';
 import 'package:dsfr_example/tags_page.dart';
 import 'package:dsfr_example/text_page.dart';
 import 'package:dsfr_example/toggles_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(final context) => MaterialApp(
     home: MasterPage(
       pageItems: [
+        StepperPage.model,
         SandboxPage.model,
         TextPage.model,
         AccordionsPage.model,

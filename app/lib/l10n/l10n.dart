@@ -10,7 +10,7 @@ abstract final class Localisation {
   static const action = 'action';
   static const aide = 'aide';
 
-  static const catalogueActions = "Catalogue d'actions";
+  static const catalogueActions = 'Catalogue d’actions';
   static const accederAuSimulateur = 'Accéder au simulateur';
   static const home = 'Accueil';
   static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
@@ -34,7 +34,7 @@ abstract final class Localisation {
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
-  static const besoinDInspiration = "Besoin **d'inspiration** ?";
+  static const besoinDInspiration = 'Besoin **d’inspiration** ?';
   static const bibliotheque = 'Ma bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
@@ -150,6 +150,7 @@ abstract final class Localisation {
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
   static const mesServices = 'Mes services';
+  static const mesMissions = 'Mes missions';
   static const mettreAJour = 'Mettre à jour';
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxVousConnaitre = 'Mieux vous connaître';
@@ -260,6 +261,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
   static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';
   static const decouvrir = 'Découvrir';
+  static const mesActionsRecommandees = 'Mes actions recommandées';
+  static const mesActionsRecommandeesDescription =
+      'Afin d’obtenir vos actions personnalisées, pouvez-vous nous en dire un peu plus sur vous ?';
 
   static String parOuSouhaitezVousCommencerDescription(final String city) =>
       'D’après nos calculs, à ***$city***, voici ce que nous pouvons vous proposer :';

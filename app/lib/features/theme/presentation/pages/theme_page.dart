@@ -2,7 +2,7 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
 import 'package:app/features/challenges/section/presentation/widgets/challenges_section.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
@@ -76,17 +76,19 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final context) => ListView(
-    padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
+      const SizedBox(height: DsfrSpacings.s4w),
       const _ImageEtTitre(),
-      const SizedBox(height: DsfrSpacings.s5w),
-      const _Missions(),
-      const SizedBox(height: DsfrSpacings.s5w),
-      ChallengesSection(themeType: themeType),
-      const SizedBox(height: DsfrSpacings.s5w),
-      const _Services(),
-      const SizedBox(height: DsfrSpacings.s5w),
-      const SafeArea(child: _Recommandations()),
+      const SizedBox(height: DsfrSpacings.s4w),
+      const ActionsRecommandedSection(),
+      const SizedBox(height: DsfrSpacings.s4w),
+      const Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Missions()),
+      const SizedBox(height: DsfrSpacings.s4w),
+      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: ChallengesSection(themeType: themeType)),
+      const SizedBox(height: DsfrSpacings.s4w),
+      const Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services()),
+      const SizedBox(height: DsfrSpacings.s4w),
+      const SafeArea(child: Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Recommandations())),
     ],
   );
 }
@@ -131,12 +133,19 @@ class _Missions extends StatelessWidget {
   Widget build(final context) {
     final thematiques = context.select<ThemeBloc, List<MissionListe>>((final bloc) => bloc.state.missions);
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      clipBehavior: Clip.none,
-      child: IntrinsicHeight(
-        child: Row(spacing: DsfrSpacings.s2w, children: thematiques.map((final e) => _Mission(mission: e)).toList()),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s2w,
+      children: [
+        const Text(Localisation.mesMissions, style: DsfrTextStyle.headline4()),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          clipBehavior: Clip.none,
+          child: IntrinsicHeight(
+            child: Row(spacing: DsfrSpacings.s2w, children: thematiques.map((final e) => _Mission(mission: e)).toList()),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -203,7 +212,6 @@ class _Services extends StatelessWidget {
       spacing: DsfrSpacings.s2w,
       children: [
         const Text(Localisation.mesServices, style: DsfrTextStyle.headline4()),
-
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,

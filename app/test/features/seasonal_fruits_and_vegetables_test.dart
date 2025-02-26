@@ -22,6 +22,7 @@ void main() {
       await iTapOn(tester, '🍛 Me nourrir');
       await iScrollDown(tester);
       await iScrollDown(tester);
+      await iScrollDown(tester);
       await iScrollDownTo(tester, 'Fruits et légumes de saison');
       await iTapOn(tester, 'Fruits et légumes de saison');
     }
@@ -33,7 +34,9 @@ void main() {
       await iSee(tester, 'Poire');
       await iDontSee(tester, 'Fraise');
     });
-    testWidgets('''Change the month to view different seasonal fruits and vegetables''', (tester) async {
+    testWidgets(
+        '''Change the month to view different seasonal fruits and vegetables''',
+        (tester) async {
       await bddSetUp(tester);
       await iTapOn(tester, 'janvier');
       await iTapOn(tester, 'juin');

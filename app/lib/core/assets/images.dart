@@ -22,6 +22,7 @@ abstract final class AssetImages {
   static const illustration3 = 'assets/images/illustration3.svg';
   static const illustration4 = 'assets/images/illustration4.svg';
   static const illustration5 = 'assets/images/illustration5.svg';
+  static const leaf = 'assets/images/leaf.svg';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
   static const miniBilan = 'assets/images/mini_bilan.svg';
   static const mangerBouger = 'assets/images/manger_bouger.webp';

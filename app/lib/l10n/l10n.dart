@@ -273,6 +273,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const emissionsAnnuelles = 'Émissions annuelles';
   static const euroSymbol = '€';
   static const kgCO2e = 'kgCO2e';
+  static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

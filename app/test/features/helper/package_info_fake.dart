@@ -30,5 +30,8 @@ class PackageInfoFake implements PackageInfo {
   final String version;
 
   @override
-  DateTime? get installTime => DateTime.fromMillisecondsSinceEpoch(1641031200000);
+  DateTime? get installTime => DateTime.fromMillisecondsSinceEpoch(715341792000);
+
+  @override
+  DateTime? get updateTime => DateTime.fromMillisecondsSinceEpoch(715341792000);
 }

@@ -1,7 +1,7 @@
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 
-abstract final class CurrentCarMapper {
-  static CurrentCar fromJson(final Map<String, dynamic> json) => CurrentCar(
+abstract final class CarInfosMapper {
+  static CarInfos fromJson(final Map<String, dynamic> json) => CarInfos(
     cost: json['couts'] as double,
     emissions: json['empreinte'] as double,
     size: ComputedValueMapper.fromJson(json['gabarit'] as Map<String, dynamic>, CarSizeMapper.fromJson),
@@ -11,6 +11,21 @@ abstract final class CurrentCarMapper {
             ? null
             : ComputedValueMapper.fromJson(json['carburant'] as Map<String, dynamic>, CarFuelMapper.fromJson),
   );
+}
+
+abstract final class CarSimulatorOptionMapper {
+  static CarSimulatorOption fromJson(final dynamic json) {
+    final carInfos = CarInfosMapper.fromJson(json as Map<String, dynamic>);
+    return CarSimulatorOption(
+      /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
+      type: CarOptionType.car,
+      cost: carInfos.cost,
+      emissions: carInfos.emissions,
+      size: carInfos.size,
+      motorisation: carInfos.motorisation,
+      fuel: carInfos.fuel,
+    );
+  }
 }
 
 abstract final class ComputedValueMapper {

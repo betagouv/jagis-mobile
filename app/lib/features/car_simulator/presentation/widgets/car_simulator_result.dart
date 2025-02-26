@@ -15,30 +15,46 @@ class CarSimulatorResult extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    context.read<CarSimulatorBloc>().add(const CarSimulatorGetCurrentCarResult());
     final state = context.watch<CarSimulatorBloc>().state;
+
     // NOTE(erolley): do we need an FnvScaffold here?
-    return switch (state) {
-      CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
-      CarSimulatorSuccess() => _CarSimulatorResultView(currentCar: state.currentCar, options: state.options),
-      CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-    };
+    switch (state) {
+      case CarSimulatorLoading():
+        {
+          context.read<CarSimulatorBloc>().add(const CarSimulatorGetCurrentCarResult());
+          return const Center(child: CircularProgressIndicator());
+        }
+      case CarSimulatorGetCurrentCarSuccess():
+        {
+          context.read<CarSimulatorBloc>().add(CarSimulatorGetCarOptions(state.currentCar));
+          return _CarSimulatorResultView(currentCar: state.currentCar);
+        }
+      case CarSimulatorGetCarOptionsSuccess():
+        return _CarSimulatorResultView(currentCar: state.currentCar, carOptions: state.carOptions);
+      case CarSimulatorLoadFailure(:final errorMessage):
+        return Center(child: Text(errorMessage));
+    }
   }
 }
 
 class _CarSimulatorResultView extends StatelessWidget {
-  const _CarSimulatorResultView({required this.currentCar, required this.options});
+  const _CarSimulatorResultView({required this.currentCar, this.carOptions});
 
   final CarInfos currentCar;
-  final List<CarSimulatorOption>? options;
+  final List<CarSimulatorOption>? carOptions;
 
   @override
-  Widget build(final BuildContext context) =>
-  // NOTE(erolley): ListView doesn't work here
-  Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [_CurrentCarResultView(currentCar), _BestCarOptionView(options)],
-  );
+  Widget build(final BuildContext context) {
+    // NOTE(erolley): ListView doesn't work here
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: DsfrSpacings.s4w,
+        children: [_CurrentCarResultView(currentCar), _BestCarOptionView(carOptions)],
+      ),
+    );
+  }
 }
 
 class _BestCarOptionView extends StatelessWidget {
@@ -47,66 +63,37 @@ class _BestCarOptionView extends StatelessWidget {
   final List<CarSimulatorOption>? options;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-    // NOTE(erolley): couldn't we have DsfrPadding with the correct padding?
-    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline2()),
-              WidgetSpan(
-                alignment: PlaceholderAlignment.baseline,
-                baseline: TextBaseline.alphabetic,
-                child: FnvDropdown<CarSize>(
-                  items: const {
-                    CarSize.small: 'citadine',
-                    CarSize.medium: 'monospace',
-                    CarSize.sedan: 'berline',
-                    CarSize.suv: 'SUV',
-                    CarSize.utilityVehicle: 'VUL',
-                  },
-                  value: CarSize.small,
-                  onChanged: (final value) => value,
-                  // TODO: implement
-                ),
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      Text.rich(
+        TextSpan(
+          children: [
+            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline2()),
+            WidgetSpan(
+              alignment: PlaceholderAlignment.baseline,
+              baseline: TextBaseline.alphabetic,
+              child: FnvDropdown<CarSize>(
+                items: const {
+                  CarSize.small: 'citadine',
+                  CarSize.medium: 'monospace',
+                  CarSize.sedan: 'berline',
+                  CarSize.suv: 'SUV',
+                  CarSize.utilityVehicle: 'VUL',
+                },
+                value: CarSize.small,
+                onChanged: (final value) => value,
+                // TODO: implement
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        if (options == null) const Center(child: CircularProgressIndicator()) else Text(options!.length.toString()),
-      ],
-    ),
+      ),
+      if (options == null) const Center(child: CircularProgressIndicator()) else Text(options!.length.toString()),
+    ],
   );
 }
-
-// class _TargetCarSize extends StatelessWidget {
-//   const _TargetCarSize();
-//
-//   @override
-//   Widget build(final context) => DsfrRadioButtonSet(
-//     title: Localisation.etatDuVelo,
-//     values: const {
-//       CarSize.small: 'citadine',
-//       CarSize.medium: 'monospace',
-//       CarSize.sedan: 'berline',
-//       CarSize.suv: 'SUV',
-//       CarSize.utilityVehicle: 'VUL',
-//     },
-//     onCallback: (final size) {
-//       if (size == null) {
-//         return;
-//       }
-//       // TODO: implement
-//       // context.read<CarSimulatorBloc>().add(CarSimulatorSetTargetCarSize(size));
-//     },
-//     // FIXME: should be the current car size?
-//     initialValue: CarSize.small,
-//   );
-// }
 
 class _CurrentCarResultView extends StatelessWidget {
   const _CurrentCarResultView(this.currentCar);
@@ -114,38 +101,30 @@ class _CurrentCarResultView extends StatelessWidget {
   final CarInfos currentCar;
 
   @override
-  Widget build(final BuildContext context) {
-    context.read<CarSimulatorBloc>().add(CarSimulatorGetOptions(currentCar));
-
-    return Padding(
-      // NOTE(erolley): couldn't we have DsfrPadding with the correct padding?
-      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: DsfrSpacings.s2w,
-        children: [
-          const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2()),
-          FnvCard(
-            child: Padding(
-              padding: const EdgeInsets.all(DsfrSpacings.s2w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
-                  _NumberWithUnit(num: currentCar.cost, unit: Localisation.euroSymbol),
-                  const SizedBox(height: DsfrSpacings.s2w),
-                  const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
-                  _NumberWithUnit(num: currentCar.emissions, unit: Localisation.kgCO2e),
-                  const SizedBox(height: DsfrSpacings.s2w),
-                  _ContextInfosView(currentCar: currentCar),
-                ],
-              ),
-            ),
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2()),
+      FnvCard(
+        child: Padding(
+          padding: const EdgeInsets.all(DsfrSpacings.s2w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+              _NumberWithUnit(num: currentCar.cost, unit: Localisation.euroSymbol),
+              const SizedBox(height: DsfrSpacings.s2w),
+              const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+              _NumberWithUnit(num: currentCar.emissions, unit: Localisation.kgCO2e),
+              const SizedBox(height: DsfrSpacings.s2w),
+              _ContextInfosView(currentCar: currentCar),
+            ],
           ),
-        ],
+        ),
       ),
-    );
-  }
+    ],
+  );
 }
 
 class _NumberWithUnit extends StatelessWidget {

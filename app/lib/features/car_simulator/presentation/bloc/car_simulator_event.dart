@@ -16,8 +16,8 @@ final class CarSimulatorGetCurrentCarResult extends CarSimulatorEvent {
 }
 
 @immutable
-final class CarSimulatorGetOptions extends CarSimulatorEvent {
-  const CarSimulatorGetOptions(this.currentCar);
+final class CarSimulatorGetCarOptions extends CarSimulatorEvent {
+  const CarSimulatorGetCarOptions(this.currentCar);
 
   final CarInfos currentCar;
 

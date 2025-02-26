@@ -12,7 +12,19 @@ class CarSimulatorRepository {
   const CarSimulatorRepository({required final DioHttpClient client}) : _client = client;
 
   final DioHttpClient _client;
-  Future<Either<Exception, CurrentCar>> computeCurrentCar(
+  Future<Either<Exception, CarInfos>> computeCurrentCar() async {
+    final response = await _client.get(Endpoints.carSimulatorComputeCurrentCar);
+
+    if (response.statusCode! >= HttpStatus.badRequest) {
+      return Left(Exception('Erreur lors de la simulation de la voiture actuelle: $response'));
+    }
+
+    final json = response.data as Map<String, dynamic>;
+
+    return Right(CarInfosMapper.fromJson(json));
+  }
+
+  Future<Either<Exception, List<CarSimulatorOption>>> computeCarSimulatorOptions(
     // TODO(erolley): Handle the target car size and the electric status in the
     // same way that we handle the "état du vélo" in the AideVeloRepository.
     // Need to add the payload in the API -> Therefore, we no longer need the
@@ -23,14 +35,14 @@ class CarSimulatorRepository {
     //   // required final boolean isElectric,
     // }
   ) async {
-    final response = await _client.get(Endpoints.carSimulatorComputeCurrentCar);
+    final response = await _client.get(Endpoints.carSimulatorComputeOptions);
 
     if (response.statusCode! >= HttpStatus.badRequest) {
-      return Left(Exception('Erreur lors de la simulation de la voiture actuelle: $response'));
+      return Left(Exception('Erreur lors de la simulation des options: $response'));
     }
 
-    final json = response.data as Map<String, dynamic>;
+    final json = response.data as List<dynamic>;
 
-    return Right(CurrentCarMapper.fromJson(json));
+    return Right(json.map(CarSimulatorOptionMapper.fromJson).toList());
   }
 }

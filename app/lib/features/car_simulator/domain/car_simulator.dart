@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class CurrentCar extends Equatable {
-  const CurrentCar({
+class CarInfos extends Equatable {
+  const CarInfos({
     required this.cost,
     required this.emissions,
     required this.size,
@@ -18,6 +18,22 @@ class CurrentCar extends Equatable {
   @override
   List<Object?> get props => [cost, emissions, size, motorisation, fuel];
 }
+
+/// NOTE: For now, there is only car alternatives, however, we should be
+class CarSimulatorOption extends CarInfos {
+  const CarSimulatorOption({
+    required super.cost,
+    required super.emissions,
+    required super.size,
+    required super.motorisation,
+    required super.fuel,
+    required this.type,
+  });
+
+  final CarOptionType type;
+}
+
+enum CarOptionType { car }
 
 enum CarSize {
   /// Petite voiture

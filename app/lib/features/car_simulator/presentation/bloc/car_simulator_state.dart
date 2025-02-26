@@ -16,15 +16,24 @@ final class CarSimulatorLoading extends CarSimulatorState {
 }
 
 @immutable
-final class CarSimulatorSuccess extends CarSimulatorState {
-  const CarSimulatorSuccess({required this.currentCar, this.options});
+final class CarSimulatorGetCurrentCarSuccess extends CarSimulatorState {
+  const CarSimulatorGetCurrentCarSuccess({required this.currentCar});
 
   final CarInfos currentCar;
-  final List<CarSimulatorOption>? options;
 
-  /// TODO(erolley): how to handle [options] here?
   @override
-  List<Object?> get props => [currentCar, options];
+  List<Object?> get props => [currentCar];
+}
+
+@immutable
+final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorState {
+  const CarSimulatorGetCarOptionsSuccess({required this.currentCar, required this.carOptions});
+
+  final List<CarSimulatorOption> carOptions;
+  final CarInfos currentCar;
+
+  @override
+  List<Object?> get props => [currentCar, carOptions];
 }
 
 @immutable

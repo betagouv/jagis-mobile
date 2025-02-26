@@ -10,7 +10,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
   CarSimulatorBloc({required final CarSimulatorRepository repository})
     : _carSimulatorRepository = repository,
       super(const CarSimulatorLoading()) {
-    on<CarSimulatorGetOptions>(_onGetOptions);
+    on<CarSimulatorGetCarOptions>(_onGetOptions);
     on<CarSimulatorGetCurrentCarResult>(_onGetCurrentCarResult);
   }
 
@@ -22,18 +22,18 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     if (result.isRight()) {
       final currentCar = result.getRight().getOrElse(() => throw Exception());
 
-      emit(CarSimulatorSuccess(currentCar: currentCar));
+      emit(CarSimulatorGetCurrentCarSuccess(currentCar: currentCar));
     } else {
       emit(CarSimulatorLoadFailure(result.getLeft().toString()));
     }
   }
 
-  Future<void> _onGetOptions(final CarSimulatorGetOptions event, final Emitter<CarSimulatorState> emit) async {
+  Future<void> _onGetOptions(final CarSimulatorGetCarOptions event, final Emitter<CarSimulatorState> emit) async {
     final result = await _carSimulatorRepository.computeCarSimulatorOptions();
     if (result.isRight()) {
-      final options = result.getRight().getOrElse(() => throw Exception());
+      final carOptions = result.getRight().getOrElse(() => throw Exception());
 
-      emit(CarSimulatorSuccess(currentCar: event.currentCar, options: options));
+      emit(CarSimulatorGetCarOptionsSuccess(currentCar: event.currentCar, carOptions: carOptions));
     } else {
       emit(CarSimulatorLoadFailure(result.getLeft().toString()));
     }

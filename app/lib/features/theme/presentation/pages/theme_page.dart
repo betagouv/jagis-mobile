@@ -2,7 +2,7 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
 import 'package:app/features/challenges/section/presentation/widgets/challenges_section.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
@@ -76,8 +76,8 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final context) => ListView(
-    padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
+      const ActionsRecommandedSection(),
       const _ImageEtTitre(),
       const SizedBox(height: DsfrSpacings.s5w),
       const _Missions(),

@@ -27,7 +27,7 @@ class RecipeCard extends StatelessWidget {
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async => context.pushNamed(RecipePage.name, pathParameters: {'id': id}),
     child: SizedBox(
-      width: 173,
+      width: 175,
       child: Padding(
         padding: const EdgeInsets.only(
           left: DsfrSpacings.s1w,

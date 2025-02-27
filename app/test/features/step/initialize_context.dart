@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,11 +8,13 @@ import '../../environmental_performance/summary/environmental_performance_data.d
 import '../../helpers/dio_mock.dart';
 import '../../old/mocks/flutter_secure_storage_fake.dart';
 import '../helper/feature_context.dart';
+import '../helper/http_override.dart';
 import '../helper/package_info_fake.dart';
 
 /// Usage: initialize context
 Future<void> initializeContext(final WidgetTester tester) async {
   FeatureContext.reset();
+  HttpOverrides.global = HttpOverridesMock();
   FeatureContext.instance.secureStorage = FlutterSecureStorageFake();
   FeatureContext.instance.packageInfo = const PackageInfoFake(version: '1.2.3', buildNumber: '4');
   FeatureContext.instance.dioMock = DioMock();

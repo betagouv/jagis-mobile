@@ -21,6 +21,11 @@ class FranceConnectPage extends StatelessWidget {
 
       return FranceConnectPage(openId: OpenId(code: queryParameters['code']!, state: queryParameters['state']!));
     },
+    redirect: (final context, final state) {
+      final queryParameters = state.uri.queryParameters;
+
+      return queryParameters['code'] == null || queryParameters['state'] == null ? '/' : null;
+    },
   );
 
   @override

@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
+import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_le_quiz_suivant.dart';
 import 'steps/iel_a_les_recommandations_suivantes.dart';
 import 'steps/iel_appuie_sur.dart';
@@ -172,8 +173,7 @@ Future<void> _init(final WidgetTester tester, final String titre) async {
   ielEstConnecte();
   ScenarioContext().dioMock!.postM(Endpoints.events);
   await ielLanceLapplication(tester);
-  await tester.tap(find.text('🍛 Me nourrir').last);
-  await tester.pumpAndSettle();
+  await iTapOn(tester, '🍛 Me nourrir');
   await ielScrolle(tester, titre);
   await ielAppuieSur(tester, titre);
 }

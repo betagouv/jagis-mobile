@@ -16,7 +16,7 @@ import './step/i_see.dart';
 import './step/i_dont_see.dart';
 import './step/i_have_lvao_services_in_my_library.dart';
 import './step/i_have_recipe_services_in_my_library.dart';
-import './step/i_scroll_down.dart';
+import './step/i_scroll_down_to.dart';
 
 void main() {
   group('''Actions''', () {
@@ -122,7 +122,7 @@ void main() {
       await bddSetUp(tester);
       await iHaveRecipeServicesInMyLibrary(tester);
       await iTapOn(tester, 'Actions');
-      await iScrollDown(tester);
+      await iScrollDownTo(tester, 'Tester une nouvelle recette végétarienne');
       await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
       await iSee(tester, 'Salade de pâtes complètes et lentilles');
     });

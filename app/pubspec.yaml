@@ -11,7 +11,7 @@ dependencies:
   clock: 1.1.2
   collection: 1.19.1
   cupertino_icons: 1.0.8
-  device_info_plus: 11.3.0
+  device_info_plus: 11.3.2
   dio: 5.8.0+1
   dsfr:
     path: ../packages/dsfr.dart

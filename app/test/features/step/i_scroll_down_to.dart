@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Iel scrolle.
-Future<void> ielScrolle(final WidgetTester tester, final String text) async {
+import '../helper/finders.dart';
+
+/// Usage: I scroll down to {'Rénover son logement'}
+Future<void> iScrollDownTo(final WidgetTester tester, final String text) async {
   await tester.scrollUntilVisible(
-    find.textContaining(text, findRichText: true),
+    findText(text).first,
     300,
     scrollable:
         find.byWidgetPredicate((final widget) => widget is Scrollable && widget.axisDirection == AxisDirection.down).first,

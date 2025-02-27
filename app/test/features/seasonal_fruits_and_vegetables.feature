@@ -5,6 +5,8 @@ Feature: Seasonal fruits and vegetables service
     Given The application is launched
     When I tap on {'🍛 Me nourrir'}
     When I scroll down
+    When I scroll down
+    When I scroll down to {'Fruits et légumes de saison'}
     When I tap on {'Fruits et légumes de saison'}
 
   Scenario: See seasonal fruits and vegetables

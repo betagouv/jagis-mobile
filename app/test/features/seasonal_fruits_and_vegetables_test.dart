@@ -9,6 +9,7 @@ import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on.dart';
 import './step/i_scroll_down.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';
 
@@ -20,6 +21,8 @@ void main() {
       await theApplicationIsLaunched(tester);
       await iTapOn(tester, '🍛 Me nourrir');
       await iScrollDown(tester);
+      await iScrollDown(tester);
+      await iScrollDownTo(tester, 'Fruits et légumes de saison');
       await iTapOn(tester, 'Fruits et légumes de saison');
     }
 
@@ -30,9 +33,7 @@ void main() {
       await iSee(tester, 'Poire');
       await iDontSee(tester, 'Fraise');
     });
-    testWidgets(
-        '''Change the month to view different seasonal fruits and vegetables''',
-        (tester) async {
+    testWidgets('''Change the month to view different seasonal fruits and vegetables''', (tester) async {
       await bddSetUp(tester);
       await iTapOn(tester, 'janvier');
       await iTapOn(tester, 'juin');

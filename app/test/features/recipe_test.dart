@@ -14,7 +14,7 @@ import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
 import './step/i_have_recipe_services_in_my_library.dart';
 import './step/i_have_recipe_detail_in_my_library.dart';
-import './step/i_scroll_down.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_see.dart';
 
 void main() {
@@ -77,7 +77,7 @@ void main() {
             ['1', 'Salade de pâtes complètes et lentilles', 5]
           ]));
       await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
-      await iScrollDown(tester);
+      await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
       await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
       await iSee(tester, 'Temps de préparation : 5 min');
     });

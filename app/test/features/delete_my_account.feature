@@ -5,9 +5,9 @@ Feature: Delete my account
     Given The application is launched
     When I tap on the menu button
     When I tap on {'Mon profil'}
-    When I scroll down
+    When I scroll down to {'Options avancées'}
     When I tap on {'Options avancées'}
-    When I scroll down
+    When I scroll down to {'Supprimer mon compte'}
     When I tap on {'Supprimer mon compte'}
 
   Scenario: Confirm account deletion

@@ -5,7 +5,7 @@ Feature: Change password
     Given The application is launched
     When I tap on the menu button
     When I tap on {'Mon profil'}
-    When I scroll down
+    When I scroll down to {'Options avancées'}
     When I tap on {'Options avancées'}
 
   Scenario: Change my password Successfully

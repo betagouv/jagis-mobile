@@ -73,6 +73,8 @@ Dans le dossier `app` :
    flutter test --test-randomize-ordering-seed random
    ```
 
+[Plus de détails](docs/tests.md)
+
 ## Liens
 
 L'application est branché au [backend](https://github.com/betagouv/agir-back)

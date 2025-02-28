@@ -13,6 +13,7 @@ on:
       - .github/workflows/continuous-integration.yml
       - app/**
       - packages/**
+    types: [synchronize, opened, reopened, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -20,6 +21,7 @@ concurrency:
 
 jobs:
   continuous-integration:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout

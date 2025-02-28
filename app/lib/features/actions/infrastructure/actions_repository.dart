@@ -20,10 +20,10 @@ class ActionsRepository {
       return Left(Exception('Erreur lors de la récupération des actions'));
     }
 
-    final json = response.data! as List<dynamic>;
+    final json = response.data! as Map<String, dynamic>;
 
     return Right(
-      json
+      (json['actions'] as List<dynamic>)
           .cast<Map<String, dynamic>>()
           .map(ActionSummaryMapper.fromJson)
           .where((final e) => e.type == ActionType.classic || e.type == ActionType.simulator)

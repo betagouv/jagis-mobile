@@ -1,6 +1,5 @@
 Feature: Create a account
   Background:
-    Given initialize context
     Given The application is launched
     When I tap on {'Je crée mon compte'}
 

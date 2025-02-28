@@ -1,6 +1,5 @@
 Feature: Login to my account
   Background:
-    Given initialize context
 
   Scenario: Login to my account is successful
     Given The application is launched

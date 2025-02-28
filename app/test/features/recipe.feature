@@ -1,6 +1,5 @@
 Feature: Recipe
     Background:
-        Given initialize context
         Given I have actions in my library
             | 'type'      | 'code' | 'title'                                        | 'nb_actions_completed' | 'nb_aids_available' |
             | 'classique' | '3'    | 'Tester une **nouvelle recette végétarienne**' | 1                      | 1                   |

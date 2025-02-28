@@ -5,7 +5,7 @@ import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import './step/initialize_context.dart';
+import '../features/bdd_hooks/hooks.dart';
 import './step/i_have_actions_in_my_library.dart';
 import './step/i_have_action_detail_in_my_library.dart';
 import './step/i_am_logged_in.dart';
@@ -19,9 +19,15 @@ import './step/i_have_recipe_services_in_my_library.dart';
 import './step/i_scroll_down_to.dart';
 
 void main() {
+  setUpAll(() async {
+    await Hooks.beforeAll();
+  });
+  tearDownAll(() async {
+    await Hooks.afterAll();
+  });
+
   group('''Actions''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
-      await initializeContext(tester);
       await iHaveActionsInMyLibrary(
           tester,
           const bdd.DataTable([
@@ -88,43 +94,97 @@ void main() {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
+      await iTapOn(tester, 'Actions');
+    }
+
+    Future<void> beforeEach(String title, [List<String>? tags]) async {
+      await Hooks.beforeEach(title, tags);
+    }
+
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
+      await Hooks.afterEach(title, success, tags);
     }
 
     testWidgets('''See all actions''', (tester) async {
-      await bddSetUp(tester);
-      await iTapOn(tester, 'Actions');
-      await iSee(tester, 'Contribuer à la bonne santé de son sol');
-      await iSee(tester, 'Tester une nouvelle recette végétarienne');
-      await iSee(tester, 'Faire réparer une paire de chaussures');
-      await iDontSee(tester, '0 action');
-      await iSee(tester, '1 action');
-      await iSee(tester, '2 actions');
-      await iDontSee(tester, '0 aide');
-      await iSee(tester, '1 aide');
-      await iSee(tester, '2 aides');
+      var success = true;
+      try {
+        await beforeEach('''See all actions''');
+        await bddSetUp(tester);
+        await iSee(tester, 'Contribuer à la bonne santé de son sol');
+        await iSee(tester, 'Tester une nouvelle recette végétarienne');
+        await iSee(tester, 'Faire réparer une paire de chaussures');
+        await iDontSee(tester, '0 action');
+        await iSee(tester, '1 action');
+        await iSee(tester, '2 actions');
+        await iDontSee(tester, '0 aide');
+        await iSee(tester, '1 aide');
+        await iSee(tester, '2 aides');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''See all actions''',
+          success,
+        );
+      }
     });
     testWidgets('''See details classic action''', (tester) async {
-      await bddSetUp(tester);
-      await iHaveLvaoServicesInMyLibrary(tester);
-      await iTapOn(tester, 'Actions');
-      await iTapOn(tester, 'Faire réparer une paire de chaussures');
-      await iSee(tester,
-          'Faites des économies en donnant une seconde vie à vos paires de chaussures');
+      var success = true;
+      try {
+        await beforeEach('''See details classic action''');
+        await bddSetUp(tester);
+        await iHaveLvaoServicesInMyLibrary(tester);
+        await iTapOn(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester,
+            'Faites des économies en donnant une seconde vie à vos paires de chaussures');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''See details classic action''',
+          success,
+        );
+      }
     });
     testWidgets('''See Longues vies aux objets service''', (tester) async {
-      await bddSetUp(tester);
-      await iHaveLvaoServicesInMyLibrary(tester);
-      await iTapOn(tester, 'Actions');
-      await iTapOn(tester, 'Faire réparer une paire de chaussures');
-      await iSee(tester, 'Octavent');
+      var success = true;
+      try {
+        await beforeEach('''See Longues vies aux objets service''');
+        await bddSetUp(tester);
+        await iHaveLvaoServicesInMyLibrary(tester);
+        await iTapOn(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester, 'Octavent');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''See Longues vies aux objets service''',
+          success,
+        );
+      }
     });
     testWidgets('''See recipe service''', (tester) async {
-      await bddSetUp(tester);
-      await iHaveRecipeServicesInMyLibrary(tester);
-      await iTapOn(tester, 'Actions');
-      await iScrollDownTo(tester, 'Tester une nouvelle recette végétarienne');
-      await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
-      await iSee(tester, 'Salade de pâtes complètes et lentilles');
+      var success = true;
+      try {
+        await beforeEach('''See recipe service''');
+        await bddSetUp(tester);
+        await iHaveRecipeServicesInMyLibrary(tester);
+        await iScrollDownTo(tester, 'Tester une nouvelle recette végétarienne');
+        await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
+        await iSee(tester, 'Salade de pâtes complètes et lentilles');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''See recipe service''',
+          success,
+        );
+      }
     });
   });
 }

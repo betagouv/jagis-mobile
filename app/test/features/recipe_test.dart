@@ -5,7 +5,7 @@ import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import './step/initialize_context.dart';
+import '../features/bdd_hooks/hooks.dart';
 import './step/i_have_actions_in_my_library.dart';
 import './step/i_have_action_detail_in_my_library.dart';
 import './step/i_am_logged_in.dart';
@@ -18,9 +18,15 @@ import './step/i_scroll_down_to.dart';
 import './step/i_see.dart';
 
 void main() {
+  setUpAll(() async {
+    await Hooks.beforeAll();
+  });
+  tearDownAll(() async {
+    await Hooks.afterAll();
+  });
+
   group('''Recipe''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
-      await initializeContext(tester);
       await iHaveActionsInMyLibrary(
           tester,
           const bdd.DataTable([
@@ -66,20 +72,41 @@ void main() {
       await iTapOnTheMenuButton(tester);
     }
 
+    Future<void> beforeEach(String title, [List<String>? tags]) async {
+      await Hooks.beforeEach(title, tags);
+    }
+
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
+      await Hooks.afterEach(title, success, tags);
+    }
+
     testWidgets('''See recipe detail''', (tester) async {
-      await bddSetUp(tester);
-      await iTapOn(tester, 'Actions');
-      await iHaveRecipeServicesInMyLibrary(tester);
-      await iHaveRecipeDetailInMyLibrary(
-          tester,
-          const bdd.DataTable([
-            ['id', 'title', 'preparation_time'],
-            ['1', 'Salade de pâtes complètes et lentilles', 5]
-          ]));
-      await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
-      await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
-      await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
-      await iSee(tester, 'Temps de préparation : 5 min');
+      var success = true;
+      try {
+        await beforeEach('''See recipe detail''');
+        await bddSetUp(tester);
+        await iTapOn(tester, 'Actions');
+        await iHaveRecipeServicesInMyLibrary(tester);
+        await iHaveRecipeDetailInMyLibrary(
+            tester,
+            const bdd.DataTable([
+              ['id', 'title', 'preparation_time'],
+              ['1', 'Salade de pâtes complètes et lentilles', 5]
+            ]));
+        await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
+        await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
+        await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
+        await iSee(tester, 'Temps de préparation : 5 min');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''See recipe detail''',
+          success,
+        );
+      }
     });
   });
 }

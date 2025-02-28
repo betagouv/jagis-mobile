@@ -1,6 +1,5 @@
 Feature: Change password
   Background:
-    Given initialize context
     Given I am logged in
     Given The application is launched
     When I tap on the menu button

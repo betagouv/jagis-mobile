@@ -17,13 +17,10 @@ Pour les tests on utilse [bdd_widget_test](https://pub.dev/packages/bdd_widget_t
 
 Créez un fichier `my_feature.feature` dans le dossier `test/features`.
 
-⚠️ Ne pas oublié `Given initialize context` ça permet de réinitialiser les mocks/fakes.
+⚠️ Ne pas oublié `initializeContext()` ça permet de réinitialiser les mocks/fakes. Il est appelé avant chaque test.
 
 ```gherkin
 Feature: France Connect
-    Background:
-        Given initialize context
-
     Scenario: Login with FranceConnect is successful
         Given The application is launched
         When I tap on {"J’ai déjà un compte"}

@@ -1,6 +1,5 @@
 Feature: Article library
   Background:
-    Given initialize context
     Given I am logged in
     Given The application is launched
     When I tap on the menu button

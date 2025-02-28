@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
-import 'package:app/features/actions/domain/action_summary.dart';
-import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/actions/infrastructure/action_summary_mapper.dart';
+import 'package:app/features/actions/domain/action_catalog.dart';
+import 'package:app/features/actions/infrastructure/action_catalog_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ActionsRepository {
@@ -13,8 +12,20 @@ class ActionsRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, List<ActionSummary>>> fetch() async {
-    final response = await _client.get(Endpoints.actions);
+  Future<Either<Exception, ActionCatalog>> fetch({
+    final List<String> themes = const [],
+    final String title = '',
+    final bool alreadyConsulted = false,
+  }) async {
+    final queryParameters = <String, dynamic>{
+      if (title.isNotEmpty) 'titre': title,
+      if (themes.isNotEmpty) 'thematique': themes,
+      if (alreadyConsulted) 'consultation': 'vu',
+    };
+
+    final url = Uri(path: Endpoints.actions, queryParameters: queryParameters.isEmpty ? null : queryParameters).toString();
+
+    final response = await _client.get(url);
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération des actions'));
@@ -22,12 +33,6 @@ class ActionsRepository {
 
     final json = response.data! as Map<String, dynamic>;
 
-    return Right(
-      (json['actions'] as List<dynamic>)
-          .cast<Map<String, dynamic>>()
-          .map(ActionSummaryMapper.fromJson)
-          .where((final e) => e.type == ActionType.classic || e.type == ActionType.simulator)
-          .toList(),
-    );
+    return Right(ActionCatalogMapper.fromJson(json));
   }
 }

@@ -30,18 +30,11 @@ void main() {
       await iHaveActionsInMyLibrary(
           tester,
           const bdd.DataTable([
-            [
-              'type',
-              'code',
-              'title',
-              'nb_actions_completed',
-              'nb_aids_available'
-            ],
+            ['type', 'code', 'title', 'nb_aids_available'],
             [
               'classique',
               '3',
               'Tester une **nouvelle recette végétarienne**',
-              1,
               1
             ]
           ]));

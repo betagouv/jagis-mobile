@@ -106,7 +106,7 @@ class _SliverListe extends StatelessWidget {
         ? SliverFillRemaining(
           hasScrollBody: false,
           child: Column(
-            spacing: DsfrSpacings.s2w,
+            spacing: DsfrSpacings.s3w,
             children: [
               FnvSvg.asset(AssetImages.bibliothequeEmpty),
               const Text(Localisation.bibliothequeAucunArticle, style: DsfrTextStyle.headline4()),

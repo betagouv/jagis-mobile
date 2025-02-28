@@ -1,29 +1,25 @@
 import 'package:app/core/infrastructure/endpoints.dart';
-import 'package:bdd_widget_test/data_table.dart' as bdd;
+import 'package:app/l10n/l10n.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
+import 'i_enter_in_the_field.dart';
 
-/// Usage: I have actions in my library
-Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTable dataTable) async {
-  final actions =
-      dataTable
-          .asMaps()
-          .map(
-            (final e) => {
-              'type': e['type'],
-              'code': e['code'],
-              'titre': e['title'],
-              'sous_titre': Faker().lorem.sentence(),
-              'nombre_aides_disponibles': e['nb_aids_available'],
-            },
-          )
-          .toList();
+/// Usage: I enter {'végétarienne'} in the search by title field actions
+Future<void> iEnterInTheSearchByTitleFieldActions(final WidgetTester tester, final String text) async {
   FeatureContext.instance.dioMock.getM(
-    Uri(path: Endpoints.actions).toString(),
+    Uri(path: Endpoints.actions, queryParameters: {'titre': text}).toString(),
     responseData: {
-      'actions': actions,
+      'actions': [
+        {
+          'type': 'classique',
+          'code': '3',
+          'titre': 'Tester une nouvelle recette végétarienne',
+          'sous_titre': Faker().lorem.sentence(),
+          'nombre_aides_disponibles': 1,
+        },
+      ],
       'filtres': [
         {'code': 'alimentation', 'label': '🥦 Alimentation', 'selected': false},
         {'code': 'transport', 'label': '🚗 Transports', 'selected': false},
@@ -36,4 +32,6 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
       'consultation': 'tout',
     },
   );
+  await iEnterInTheField(tester, text, Localisation.rechercherParTitre);
+  await tester.pumpAndSettle(const Duration(milliseconds: 500));
 }

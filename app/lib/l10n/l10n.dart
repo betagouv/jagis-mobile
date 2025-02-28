@@ -7,7 +7,6 @@ abstract final class Localisation {
   const Localisation._();
 
   static const actions = 'Actions';
-  static const action = 'action';
   static const aide = 'aide';
 
   static const catalogueActions = 'Catalogue d’actions';
@@ -34,6 +33,7 @@ abstract final class Localisation {
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
+  static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const besoinDInspiration = 'Besoin **d’inspiration** ?';
   static const bibliotheque = 'Ma bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
@@ -62,6 +62,7 @@ abstract final class Localisation {
   static const creerMonCompteApp = 'Créez votre compte J’agis';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
+  static const dejaConsultees = 'Déjà consultées';
   static const etapes = 'Étapes';
   static const fruits = 'Fruits';
   static const legumes = 'Légumes';
@@ -299,6 +300,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String euro(final int value) => '$value €';
 
   static String nombreArticle(final int value) => value <= 1 ? '$value article' : '$value articles';
+
+  static String nombreAction(final int value) => value <= 1 ? '$value action' : '$value actions';
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
 

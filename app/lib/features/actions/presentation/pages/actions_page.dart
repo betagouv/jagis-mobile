@@ -1,3 +1,5 @@
+import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -40,11 +42,40 @@ class _View extends StatelessWidget {
       children: [
         const Text(Localisation.catalogueActions, style: DsfrTextStyle.headline2()),
         const SizedBox(height: DsfrSpacings.s3w),
-        const _ThemesFilter(),
+        BlocBuilder<ActionsBloc, ActionsState>(
+          builder:
+              (final context, final state) => _ThemesFilter(
+                activeThemes: switch (state) {
+                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => const [],
+                  ActionsLoadSuccess(:final themeFilters) => themeFilters,
+                },
+              ),
+        ),
         const SizedBox(height: DsfrSpacings.s2w),
-        DsfrSearchBar(onChanged: (final value) {}),
+        BlocBuilder<ActionsBloc, ActionsState>(
+          builder:
+              (final context, final state) => DsfrSearchBar(
+                initialValue: switch (state) {
+                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => null,
+                  ActionsLoadSuccess(:final titleFilter) => titleFilter,
+                },
+                onChanged: (final value) {
+                  context.read<ActionsBloc>().add(ActionsFilterByTitleRequested(value));
+                },
+              ),
+        ),
         const SizedBox(height: DsfrSpacings.s2w),
-        DsfrToggleSwitch(label: 'Déjà consultées', value: false, onChanged: (final value) {}),
+        BlocBuilder<ActionsBloc, ActionsState>(
+          builder:
+              (final context, final state) => DsfrToggleSwitch(
+                label: Localisation.dejaConsultees,
+                value: switch (state) {
+                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => false,
+                  ActionsLoadSuccess(:final alreadyConsulted) => alreadyConsulted,
+                },
+                onChanged: (final value) => context.read<ActionsBloc>().add(ActionsFilterByConsultedRequested(value)),
+              ),
+        ),
         const SizedBox(height: DsfrSpacings.s3w),
         BlocBuilder<ActionsBloc, ActionsState>(
           builder:
@@ -60,25 +91,27 @@ class _View extends StatelessWidget {
 }
 
 class _ThemesFilter extends StatelessWidget {
-  const _ThemesFilter();
+  const _ThemesFilter({required this.activeThemes});
+
+  final List<ActionFilter> activeThemes;
 
   @override
   Widget build(final context) {
-    const spacing = DsfrSpacings.s1w - 2;
-
-    final filters = [
-      const ActionFilter(code: 'all', titre: 'Tout', choisi: true),
-      const ActionFilter(code: 'alimentation', titre: '🍛 Me nourrir', choisi: false),
-      const ActionFilter(code: 'transport', titre: '🚲 Transports', choisi: false),
-      const ActionFilter(code: 'consommation', titre: '🛒 Consommation', choisi: false),
-      const ActionFilter(code: 'logment', titre: '🏠 Logement', choisi: false),
-    ];
+    const spacing = DsfrSpacings.s1w;
 
     return Wrap(
       spacing: spacing,
       runSpacing: spacing,
       children:
-          filters.map((final thematique) => FnvTag(label: thematique.titre, selected: thematique.choisi, onTap: () {})).toList(),
+          activeThemes
+              .map(
+                (final thematique) => FnvTag(
+                  label: thematique.label,
+                  selected: thematique.selected,
+                  onTap: () => context.read<ActionsBloc>().add(ActionsFilterByThemeRequested(thematique.code)),
+                ),
+              )
+              .toList(),
     );
   }
 }
@@ -92,13 +125,29 @@ class _Success extends StatelessWidget {
   Widget build(final BuildContext context) {
     final actions = state.actions;
 
-    return ListView.separated(
-      primary: false,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (final context, final index) => _Element(action: actions[index]),
-      separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
-      itemCount: actions.length,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (actions.isEmpty) ...[
+          const SizedBox(height: DsfrSpacings.s2w),
+          FnvSvg.asset(AssetImages.bibliothequeEmpty),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const Center(child: Text(Localisation.aucuneActionTrouvee, style: DsfrTextStyle.headline4())),
+        ] else ...[
+          Text(Localisation.nombreAction(actions.length), style: const DsfrTextStyle.bodyLgBold()),
+          const SizedBox(height: DsfrSpacings.s2w),
+          ListView.separated(
+            primary: false,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemBuilder: (final context, final index) => _Element(action: actions[index]),
+            separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
+            itemCount: actions.length,
+          ),
+        ],
+        const SafeArea(child: SizedBox(height: paddingVerticalPage)),
+      ],
     );
   }
 }
@@ -131,16 +180,10 @@ class _Element extends StatelessWidget {
           children: [
             MarkdownBody(data: action.title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyLg())),
             const SizedBox(height: DsfrSpacings.s1v),
-            Wrap(
-              spacing: DsfrSpacings.s1w,
-              children: [
-                _Information(icon: DsfrIcons.userTeamLine, value: action.numberOfActionsCompleted, suffix: Localisation.action),
-                _Information(
-                  icon: DsfrIcons.financeMoneyEuroCircleLine,
-                  value: action.numberOfAidsAvailable,
-                  suffix: Localisation.aide,
-                ),
-              ],
+            _Information(
+              icon: DsfrIcons.financeMoneyEuroCircleLine,
+              value: action.numberOfAidsAvailable,
+              suffix: Localisation.aide,
             ),
             Align(
               alignment: Alignment.centerRight,

@@ -1,29 +1,23 @@
-import 'package:app/core/infrastructure/endpoints.dart';
-import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
+import 'i_tap_on.dart';
 
-/// Usage: I have actions in my library
-Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTable dataTable) async {
-  final actions =
-      dataTable
-          .asMaps()
-          .map(
-            (final e) => {
-              'type': e['type'],
-              'code': e['code'],
-              'titre': e['title'],
-              'sous_titre': Faker().lorem.sentence(),
-              'nombre_aides_disponibles': e['nb_aids_available'],
-            },
-          )
-          .toList();
+/// Usage: I filter by {'Déjà consultées'} action
+Future<void> iFilterByAction(final WidgetTester tester, final String theme) async {
   FeatureContext.instance.dioMock.getM(
-    Uri(path: Endpoints.actions).toString(),
+    '/utilisateurs/%7BuserId%7D/actions?consultation=vu',
     responseData: {
-      'actions': actions,
+      'actions': [
+        {
+          'type': 'classique',
+          'code': '3',
+          'titre': 'Tester une nouvelle recette végétarienne',
+          'sous_titre': Faker().lorem.sentence(),
+          'nombre_aides_disponibles': 1,
+        },
+      ],
       'filtres': [
         {'code': 'alimentation', 'label': '🥦 Alimentation', 'selected': false},
         {'code': 'transport', 'label': '🚗 Transports', 'selected': false},
@@ -33,7 +27,8 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
         {'code': 'dechet', 'label': '🗑️ Déchets', 'selected': false},
         {'code': 'loisir', 'label': '⚽ Loisirs', 'selected': false},
       ],
-      'consultation': 'tout',
+      'consultation': 'vu',
     },
   );
+  await iTapOn(tester, theme);
 }

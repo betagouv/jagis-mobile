@@ -21,5 +21,5 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
             },
           )
           .toList();
-  FeatureContext.instance.dioMock.getM(Endpoints.actions, responseData: list);
+  FeatureContext.instance.dioMock.getM(Endpoints.actions, responseData: {'actions': list});
 }

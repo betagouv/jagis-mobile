@@ -1,6 +1,5 @@
 Feature: Actions
     Background:
-        Given initialize context
         Given I have actions in my library
             | 'type'      | 'code' | 'title'                                        | 'nb_actions_completed' | 'nb_aids_available' |
             | 'classique' | '1'    | 'Faire réparer une **paire de chaussures**'    | 2                      | 2                   |
@@ -13,9 +12,9 @@ Feature: Actions
         Given I am logged in
         Given The application is launched
         When I tap on the menu button
+        When I tap on {'Actions'}
 
     Scenario: See all actions
-        When I tap on {'Actions'}
         Then I see {'Contribuer à la bonne santé de son sol'}
         Then I see {'Tester une nouvelle recette végétarienne'}
         Then I see {'Faire réparer une paire de chaussures'}
@@ -28,19 +27,16 @@ Feature: Actions
 
     Scenario: See details classic action
         Given I have lvao services in my library
-        When I tap on {'Actions'}
         When I tap on {'Faire réparer une paire de chaussures'}
         Then I see {'Faites des économies en donnant une seconde vie à vos paires de chaussures'}
 
     Scenario: See Longues vies aux objets service
         Given I have lvao services in my library
-        When I tap on {'Actions'}
         When I tap on {'Faire réparer une paire de chaussures'}
         Then I see {'Octavent'}
 
     Scenario: See recipe service
         Given I have recipe services in my library
-        When I tap on {'Actions'}
         When I scroll down to {'Tester une nouvelle recette végétarienne'}
         When I tap on {'Tester une nouvelle recette végétarienne'}
         Then I see {'Salade de pâtes complètes et lentilles'}

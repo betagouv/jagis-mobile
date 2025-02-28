@@ -1,6 +1,5 @@
 Feature: Version
   Background:
-    Given initialize context
 
   Scenario: User launches app and sees version number
     Given The application is launched

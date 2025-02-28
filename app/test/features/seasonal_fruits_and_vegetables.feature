@@ -1,6 +1,5 @@
 Feature: Seasonal fruits and vegetables service
   Background:
-    Given initialize context
     Given I am logged in
     Given The application is launched
     When I tap on {'🍛 Me nourrir'}

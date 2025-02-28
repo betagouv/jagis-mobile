@@ -1,6 +1,5 @@
 Feature: Forgot password
   Background:
-    Given initialize context
     Given The application is launched
     When I tap on {"J’ai déjà un compte"}
     When I scroll down

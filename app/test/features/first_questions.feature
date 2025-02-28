@@ -1,6 +1,5 @@
 Feature: First questions
   Background:
-    Given initialize context
     Given The application is launched
     Given the email don't exists
     When I tap on {'Je crée mon compte'}

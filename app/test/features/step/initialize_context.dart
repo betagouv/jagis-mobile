@@ -12,7 +12,7 @@ import '../helper/http_override.dart';
 import '../helper/package_info_fake.dart';
 
 /// Usage: initialize context
-Future<void> initializeContext(final WidgetTester tester) async {
+Future<void> initializeContext() async {
   FeatureContext.reset();
   HttpOverrides.global = HttpOverridesMock();
   FeatureContext.instance.secureStorage = FlutterSecureStorageFake();

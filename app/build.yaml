@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      bdd_widget_test|featureBuilder:
+        options:
+          addHooks: true
+          hookFolderName: features/bdd_hooks
+        generate_for:
+          - test/features/**

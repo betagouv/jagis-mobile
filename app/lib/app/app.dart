@@ -210,6 +210,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => CarSimulatorRepository(client: widget.dioHttpClient)),
             ],
             child: MultiBlocProvider(
               providers: [
@@ -267,9 +268,6 @@ class _AppState extends State<App> {
                           EnvironmentalPerformanceSummaryRepository(client: widget.dioHttpClient),
                         ),
                       ),
-                ),
-                BlocProvider(
-                  create: (final context) => CarSimulatorBloc(repository: CarSimulatorRepository(client: widget.dioHttpClient)),
                 ),
               ],
               child: MaterialApp.router(

@@ -33,6 +33,20 @@ class CarSimulatorOption extends CarInfos {
   final CarOptionType type;
 }
 
+class BestCostCarSimulatorOption {
+  const BestCostCarSimulatorOption({required this.carOption, required this.diffWithCurrentCar});
+
+  final CarSimulatorOption carOption;
+  final double diffWithCurrentCar;
+}
+
+class BestEmissionCarSimulatorOption {
+  const BestEmissionCarSimulatorOption({required this.carOption, required this.percentDiffWithCurrentCar});
+
+  final CarSimulatorOption carOption;
+  final double percentDiffWithCurrentCar;
+}
+
 enum CarOptionType { car }
 
 enum CarSize {
@@ -73,8 +87,6 @@ enum CarFuel {
 /// ```dart
 /// ComputedValue<CarSize>(value: CarSize.small, label: 'Petite voiture');
 /// ```
-///
-/// NOTE(erolley): is the [value] really useful?
 class ComputedValue<V> extends Equatable {
   const ComputedValue({required this.value, required this.label});
 

@@ -106,6 +106,11 @@ class _BestCarOptionView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
+      DsfrToggleSwitch(
+        label: Localisation.rechargeElectriqueQuestion,
+        value: hasChargingStation,
+        onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorToggleChargingStation(value)),
+      ),
       Text.rich(
         TextSpan(
           children: [
@@ -127,11 +132,6 @@ class _BestCarOptionView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      DsfrCheckbox.md(
-        label: Localisation.rechargeElectriqueQuestion,
-        value: hasChargingStation,
-        onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorToggleChargingStation(value)),
       ),
       if (bestEmissionsOption == null || bestCostOption == null)
         const Center(child: CircularProgressIndicator())

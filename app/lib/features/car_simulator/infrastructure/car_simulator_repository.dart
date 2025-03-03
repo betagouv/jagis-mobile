@@ -25,14 +25,9 @@ class CarSimulatorRepository {
   }
 
   Future<Either<Exception, List<CarSimulatorOption>>> computeCarSimulatorOptions(
-    // TODO(erolley): Handle the target car size and the electric status in the
-    // same way that we handle the "état du vélo" in the AideVeloRepository.
-    // Need to add the payload in the API -> Therefore, we no longer need the
-    // `/utilisateurs/{utilisateurId}/simulateur_voiture/resultat/voiture_cible`
-    // endpoint.
     // {
-    //   // required final CarSize carSize,
-    //   // required final boolean isElectric,
+    //   required final CarSize carSize,
+    //   //   // required final boolean isElectric,
     // }
   ) async {
     final response = await _client.get(Endpoints.carSimulatorComputeOptions);

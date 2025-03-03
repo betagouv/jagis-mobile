@@ -2,6 +2,7 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
+import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_bloc.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_event.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_state.dart';
@@ -14,34 +15,50 @@ class CarSimulatorResult extends StatelessWidget {
   const CarSimulatorResult({super.key});
 
   @override
-  Widget build(final context) {
-    final state = context.watch<CarSimulatorBloc>().state;
+  Widget build(final context) => BlocProvider(
+    create:
+        (final context) =>
+            CarSimulatorBloc(repository: context.read<CarSimulatorRepository>())..add(const CarSimulatorGetCurrentCarResult()),
+    child: const _View(),
+  );
+}
 
-    // NOTE(erolley): do we need an FnvScaffold here?
-    switch (state) {
-      case CarSimulatorLoading():
-        {
-          context.read<CarSimulatorBloc>().add(const CarSimulatorGetCurrentCarResult());
-          return const Center(child: CircularProgressIndicator());
-        }
-      case CarSimulatorGetCurrentCarSuccess():
-        {
-          context.read<CarSimulatorBloc>().add(CarSimulatorGetCarOptions(state.currentCar));
-          return _CarSimulatorResultView(currentCar: state.currentCar);
-        }
-      case CarSimulatorGetCarOptionsSuccess():
-        return _CarSimulatorResultView(currentCar: state.currentCar, carOptions: state.carOptions);
-      case CarSimulatorLoadFailure(:final errorMessage):
-        return Center(child: Text(errorMessage));
-    }
+class _View extends StatelessWidget {
+  const _View();
+
+  @override
+  Widget build(final BuildContext context) {
+    final blocState = context.watch<CarSimulatorBloc>().state;
+
+    return switch (blocState) {
+      CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
+      CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
+        currentCar: blocState.currentCar,
+        selectedSize: blocState.currentCar.size.value,
+      ),
+      CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
+        currentCar: blocState.currentCar,
+        selectedSize: blocState.selectedSize,
+        bestCostOption: blocState.bestCostOption,
+        bestEmissionsOption: blocState.bestEmissionOption,
+      ),
+      CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
+    };
   }
 }
 
 class _CarSimulatorResultView extends StatelessWidget {
-  const _CarSimulatorResultView({required this.currentCar, this.carOptions});
+  const _CarSimulatorResultView({
+    required this.currentCar,
+    required this.selectedSize,
+    this.bestCostOption,
+    this.bestEmissionsOption,
+  });
 
   final CarInfos currentCar;
-  final List<CarSimulatorOption>? carOptions;
+  final CarSize selectedSize;
+  final BestCostCarSimulatorOption? bestCostOption;
+  final BestEmissionCarSimulatorOption? bestEmissionsOption;
 
   @override
   Widget build(final BuildContext context) {
@@ -51,16 +68,25 @@ class _CarSimulatorResultView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: DsfrSpacings.s4w,
-        children: [_CurrentCarResultView(currentCar), _BestCarOptionView(carOptions)],
+        children: [
+          _BestCarOptionView(
+            selectedSize: selectedSize,
+            bestCostOption: bestCostOption,
+            bestEmissionsOption: bestEmissionsOption,
+          ),
+          _CurrentCarResultView(currentCar),
+        ],
       ),
     );
   }
 }
 
 class _BestCarOptionView extends StatelessWidget {
-  const _BestCarOptionView(this.options);
+  const _BestCarOptionView({required this.selectedSize, required this.bestCostOption, required this.bestEmissionsOption});
 
-  final List<CarSimulatorOption>? options;
+  final CarSize selectedSize;
+  final BestCostCarSimulatorOption? bestCostOption;
+  final BestEmissionCarSimulatorOption? bestEmissionsOption;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -82,15 +108,22 @@ class _BestCarOptionView extends StatelessWidget {
                   CarSize.suv: 'SUV',
                   CarSize.utilityVehicle: 'VUL',
                 },
-                value: CarSize.small,
-                onChanged: (final value) => value,
-                // TODO: implement
+                value: selectedSize,
+                onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorNewSelectedCarSize(value)),
               ),
             ),
           ],
         ),
       ),
-      if (options == null) const Center(child: CircularProgressIndicator()) else Text(options!.length.toString()),
+      if (bestCostOption == null)
+        const Center(child: CircularProgressIndicator())
+      else
+        Text(bestCostOption!.diffWithCurrentCar.toString()),
+
+      if (bestEmissionsOption == null)
+        const Center(child: CircularProgressIndicator())
+      else
+        Text(bestEmissionsOption!.percentDiffWithCurrentCar.toString()),
     ],
   );
 }
@@ -134,14 +167,12 @@ class _NumberWithUnit extends StatelessWidget {
   final String unit;
 
   @override
-  Widget build(final BuildContext context) => Row(
-    spacing: DsfrSpacings.s1w,
-    // NOTE(erolley): baseline crashes here
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Text(FnvNumberFormat.formatNumber(num), style: const DsfrTextStyle.body2XlBold()),
-      Text(unit, style: const DsfrTextStyle.bodyLg()),
-    ],
+  Widget build(final BuildContext context) => Text.rich(
+    TextSpan(
+      text: FnvNumberFormat.formatNumber(num),
+      style: const DsfrTextStyle.body2XlBold(),
+      children: [const TextSpan(text: ' '), TextSpan(text: unit, style: const DsfrTextStyle.bodyLg())],
+    ),
   );
 }
 

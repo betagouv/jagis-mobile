@@ -10,19 +10,19 @@ enum ThemeType {
   ),
   transport(
     routeCode: 'me-deplacer',
-    displayName: '🚲 Me déplacer',
+    displayName: '🚅 Me déplacer',
     backgroundColor: Color(0xFFD2E9FF),
     foregroundColor: Color(0xFF021952),
   ),
   logement(
     routeCode: 'me-loger',
-    displayName: '🧱 Me loger',
+    displayName: '🏠 Me loger',
     backgroundColor: Color(0xFFFFE2E0),
     foregroundColor: Color(0xFF52022E),
   ),
   consommation(
     routeCode: 'consommer',
-    displayName: '📺 Mes achats',
+    displayName: '👕 Mes achats',
     backgroundColor: Color(0xFFFFE8D7),
     foregroundColor: Color(0xFF522E02),
   ),

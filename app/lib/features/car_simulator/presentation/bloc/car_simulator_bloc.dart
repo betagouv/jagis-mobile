@@ -40,7 +40,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
   }
 
   /// PERF(erolley): Shouldn't call the repository here, but should have the options in the state.
-  Future<void> _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorState> emit) async {
+  void _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorState> emit) {
     final blocState = state;
 
     if (blocState is CarSimulatorGetCarOptionsSuccess) {
@@ -50,10 +50,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     }
   }
 
-  Future<void> _onToggleChargingStation(
-    final CarSimulatorToggleChargingStation event,
-    final Emitter<CarSimulatorState> emit,
-  ) async {
+  void _onToggleChargingStation(final CarSimulatorToggleChargingStation event, final Emitter<CarSimulatorState> emit) {
     final blocState = state;
 
     if (blocState is CarSimulatorGetCarOptionsSuccess) {
@@ -61,8 +58,8 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
         _getCarOptionsSuccessState(
           currentCar: blocState.currentCar,
           carOptions: blocState.carOptions,
-          hasChargingStation: event.hasChargingStation,
           carSize: blocState.selectedSize,
+          hasChargingStation: event.hasChargingStation,
         ),
       );
     }
@@ -80,8 +77,8 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
 
     return CarSimulatorGetCarOptionsSuccess(
       currentCar: currentCar,
-      selectedSize: selectedSize,
       carOptions: carOptions,
+      selectedSize: selectedSize,
       hasChargingStation: hasChargingStation,
       bestCostOption: bestCostOption,
       bestEmissionOption: bestEmissionOption,
@@ -100,5 +97,6 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
                 option.size.value == selectedSize &&
                 (hasChargingStation || option.motorisation.value != CarMotorisation.electric),
           )
-          .sorted((final a, final b) => comparator(a).compareTo(comparator(b)))[0];
+          .sorted((final a, final b) => comparator(a).compareTo(comparator(b)))
+          .first;
 }

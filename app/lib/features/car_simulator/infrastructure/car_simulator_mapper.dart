@@ -16,15 +16,17 @@ abstract final class CarInfosMapper {
 abstract final class CarSimulatorOptionMapper {
   static CarSimulatorOption fromJson(final dynamic json) {
     final carInfos = CarInfosMapper.fromJson(json as Map<String, dynamic>);
+
     return CarSimulatorOption(
-      /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
-      type: CarOptionType.car,
-      title: json['titre'] as String,
       cost: carInfos.cost,
       emissions: carInfos.emissions,
       size: carInfos.size,
       motorisation: carInfos.motorisation,
       fuel: carInfos.fuel,
+
+      /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
+      type: CarOptionType.car,
+      title: json['titre'] as String,
     );
   }
 }

@@ -89,10 +89,10 @@ class _Success extends StatelessWidget {
 class _TitleWithSubTitleView extends StatelessWidget {
   const _TitleWithSubTitleView({required this.title, required this.subTitle});
 
-  final String title;
-  final String subTitle;
-
   static const padding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
+  final String title;
+
+  final String subTitle;
 
   @override
   Widget build(final BuildContext context) => Padding(
@@ -123,7 +123,7 @@ class _WhySectionView extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
+        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
         child: Column(
           children: [
             const Row(

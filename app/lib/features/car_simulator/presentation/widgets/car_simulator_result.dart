@@ -2,7 +2,6 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
-import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_bloc.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_event.dart';
 import 'package:app/features/car_simulator/presentation/bloc/car_simulator_state.dart';
@@ -16,9 +15,7 @@ class CarSimulatorResult extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create:
-        (final context) =>
-            CarSimulatorBloc(repository: context.read<CarSimulatorRepository>())..add(const CarSimulatorGetCurrentCarResult()),
+    create: (final context) => CarSimulatorBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
     child: const _View(),
   );
 }
@@ -68,7 +65,7 @@ class _CarSimulatorResultView extends StatelessWidget {
   Widget build(final BuildContext context) =>
   // NOTE(erolley): ListView doesn't work here
   Padding(
-    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
+    padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s4w,
@@ -144,10 +141,10 @@ class _BestCarOptionView extends StatelessWidget {
             child: Row(
               spacing: DsfrSpacings.s2w,
               children: [
-                _CarSimulatorOptionView(option: bestCostOption!, currentCar: currentCar, kind: CarSimulatorOptionKind.bestCost),
+                _CarSimulatorOptionView(currentCar: currentCar, option: bestCostOption!, kind: CarSimulatorOptionKind.bestCost),
                 _CarSimulatorOptionView(
-                  option: bestEmissionsOption!,
                   currentCar: currentCar,
+                  option: bestEmissionsOption!,
                   kind: CarSimulatorOptionKind.bestEmission,
                 ),
               ],
@@ -179,7 +176,7 @@ class _CarSimulatorOptionView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DsfrSpacings.s2w,
             children: [
-              getCarSimulatorKindTag(),
+              _KindTagView(kind),
               if (currentCarIsBest)
                 Text(switch (kind) {
                   CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
@@ -227,19 +224,26 @@ class _CarSimulatorOptionView extends StatelessWidget {
       ),
     );
   }
+}
 
-  DsfrTag getCarSimulatorKindTag() => switch (kind) {
+class _KindTagView extends StatelessWidget {
+  const _KindTagView(this.kind);
+
+  final CarSimulatorOptionKind kind;
+
+  @override
+  Widget build(final BuildContext context) => switch (kind) {
     CarSimulatorOptionKind.bestCost => DsfrTag.md(
-      icon: DsfrIcons.financeMoneyEuroCircleFill,
       label: const TextSpan(text: Localisation.laPlusEconomique),
       backgroundColor: Colors.amber[100]!,
       foregroundColor: Colors.amber[700]!,
+      icon: DsfrIcons.financeMoneyEuroCircleFill,
     ),
     CarSimulatorOptionKind.bestEmission => DsfrTag.md(
-      icon: DsfrIcons.othersLeafFill,
       label: const TextSpan(text: Localisation.laPlusEcologique),
       backgroundColor: Colors.green[100]!,
       foregroundColor: Colors.green[700]!,
+      icon: DsfrIcons.othersLeafFill,
     ),
   };
 }
@@ -262,8 +266,8 @@ class _DiffInTag extends StatelessWidget {
         : DsfrTag.md(
           label: TextSpan(
             text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
-            children: [TextSpan(text: ' $unit')],
             style: DsfrTextStyle.bodyMdBold(color: color[800]!),
+            children: [TextSpan(text: ' $unit')],
           ),
           backgroundColor: color[50]!,
           foregroundColor: color[800]!,
@@ -326,9 +330,9 @@ class _ContextInfosView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Container(
+    padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
     decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
     width: 250,
-    padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
     child: Wrap(
       spacing: DsfrSpacings.s1w,
       runSpacing: DsfrSpacings.s1w,

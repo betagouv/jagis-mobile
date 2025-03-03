@@ -54,25 +54,25 @@ enum CarOptionType { car }
 
 enum CarSize {
   /// Petite voiture
-  small(),
+  small,
 
   /// Moyenne voiture
-  medium(),
+  medium,
 
   /// Berline
-  sedan(),
+  sedan,
 
   /// Sport Utility Vehicle (SUV)
-  suv(),
+  suv,
 
   /// Véhicule Utilitaire Léger (VUL)
-  utilityVehicle();
+  utilityVehicle;
 
   CarSize get smaller => switch (this) {
-    CarSize.utilityVehicle => CarSize.suv,
-    CarSize.suv => CarSize.sedan,
-    CarSize.sedan => CarSize.medium,
-    CarSize.medium || CarSize.small => CarSize.small,
+    utilityVehicle => suv,
+    suv => sedan,
+    sedan => medium,
+    medium || small => small,
   };
 }
 

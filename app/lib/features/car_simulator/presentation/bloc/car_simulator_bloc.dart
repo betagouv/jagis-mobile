@@ -36,14 +36,8 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
           CarSimulatorGetCarOptionsSuccess(
             currentCar: currentCar,
             selectedSize: selectedSize,
-            bestCostOption: BestCostCarSimulatorOption(
-              carOption: bestCostOption,
-              diffWithCurrentCar: bestCostOption.cost - currentCar.cost,
-            ),
-            bestEmissionOption: BestEmissionCarSimulatorOption(
-              carOption: bestEmissionOption,
-              percentDiffWithCurrentCar: (bestEmissionOption.emissions - currentCar.emissions) / currentCar.emissions,
-            ),
+            bestCostOption: bestCostOption,
+            bestEmissionOption: bestEmissionOption,
           ),
         );
       } else {
@@ -69,14 +63,8 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
         CarSimulatorGetCarOptionsSuccess(
           currentCar: currentCar,
           selectedSize: selectedSize,
-          bestCostOption: BestCostCarSimulatorOption(
-            carOption: bestCostOption,
-            diffWithCurrentCar: bestCostOption.cost - currentCar.cost,
-          ),
-          bestEmissionOption: BestEmissionCarSimulatorOption(
-            carOption: bestEmissionOption,
-            percentDiffWithCurrentCar: (bestEmissionOption.emissions - currentCar.emissions) / currentCar.emissions,
-          ),
+          bestCostOption: bestCostOption,
+          bestEmissionOption: bestEmissionOption,
         ),
       );
     } else {

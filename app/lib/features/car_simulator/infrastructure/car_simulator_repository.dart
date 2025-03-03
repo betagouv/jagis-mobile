@@ -24,12 +24,7 @@ class CarSimulatorRepository {
     return Right(CarInfosMapper.fromJson(json));
   }
 
-  Future<Either<Exception, List<CarSimulatorOption>>> computeCarSimulatorOptions(
-    // {
-    //   required final CarSize carSize,
-    //   //   // required final boolean isElectric,
-    // }
-  ) async {
+  Future<Either<Exception, List<CarSimulatorOption>>> computeCarSimulatorOptions() async {
     final response = await _client.get(Endpoints.carSimulatorComputeOptions);
 
     if (response.statusCode! >= HttpStatus.badRequest) {

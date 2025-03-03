@@ -35,10 +35,12 @@ class _View extends StatelessWidget {
       CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
         currentCar: blocState.currentCar,
         selectedSize: blocState.currentCar.size.value.smaller,
+        hasChargingStation: true,
       ),
       CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
         currentCar: blocState.currentCar,
         selectedSize: blocState.selectedSize,
+        hasChargingStation: blocState.hasChargingStation,
         bestCostOption: blocState.bestCostOption,
         bestEmissionsOption: blocState.bestEmissionOption,
       ),
@@ -51,12 +53,14 @@ class _CarSimulatorResultView extends StatelessWidget {
   const _CarSimulatorResultView({
     required this.currentCar,
     required this.selectedSize,
+    required this.hasChargingStation,
     this.bestCostOption,
     this.bestEmissionsOption,
   });
 
   final CarInfos currentCar;
   final CarSize selectedSize;
+  final bool hasChargingStation;
   final CarSimulatorOption? bestCostOption;
   final CarSimulatorOption? bestEmissionsOption;
 
@@ -72,6 +76,7 @@ class _CarSimulatorResultView extends StatelessWidget {
         _BestCarOptionView(
           currentCar: currentCar,
           selectedSize: selectedSize,
+          hasChargingStation: hasChargingStation,
           bestCostOption: bestCostOption,
           bestEmissionsOption: bestEmissionsOption,
         ),
@@ -85,12 +90,14 @@ class _BestCarOptionView extends StatelessWidget {
   const _BestCarOptionView({
     required this.currentCar,
     required this.selectedSize,
+    required this.hasChargingStation,
     required this.bestCostOption,
     required this.bestEmissionsOption,
   });
 
   final CarInfos currentCar;
   final CarSize selectedSize;
+  final bool hasChargingStation;
   final CarSimulatorOption? bestCostOption;
   final CarSimulatorOption? bestEmissionsOption;
 
@@ -102,7 +109,7 @@ class _BestCarOptionView extends StatelessWidget {
       Text.rich(
         TextSpan(
           children: [
-            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline3()),
+            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline2()),
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
@@ -120,6 +127,11 @@ class _BestCarOptionView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      DsfrCheckbox.md(
+        label: Localisation.rechargeElectriqueQuestion,
+        value: hasChargingStation,
+        onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorToggleChargingStation(value)),
       ),
       if (bestEmissionsOption == null || bestCostOption == null)
         const Center(child: CircularProgressIndicator())

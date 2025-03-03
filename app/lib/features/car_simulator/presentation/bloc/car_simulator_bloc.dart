@@ -14,6 +14,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
       super(const CarSimulatorLoading()) {
     on<CarSimulatorGetCurrentCarResult>(_onGetCurrentCarResult);
     on<CarSimulatorNewSelectedCarSize>(_onNewSelectedCarSize);
+    on<CarSimulatorToggleChargingStation>(_onToggleChargingStation);
   }
 
   final CarSimulatorRepository _carSimulatorRepository;
@@ -38,18 +39,32 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     }
   }
 
+  /// PERF(erolley): Shouldn't call the repository here, but should have the options in the state.
   Future<void> _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorState> emit) async {
-    final result = await _carSimulatorRepository.computeCarSimulatorOptions();
-    final stateWithCurrentCar = state;
+    final blocState = state;
 
-    if (result.isRight() && stateWithCurrentCar is CarSimulatorGetCarOptionsSuccess) {
-      final carOptions = result.getRight().getOrElse(() => throw Exception());
-
+    if (blocState is CarSimulatorGetCarOptionsSuccess) {
       emit(
-        _getCarOptionsSuccessState(currentCar: stateWithCurrentCar.currentCar, carOptions: carOptions, carSize: event.carSize),
+        _getCarOptionsSuccessState(currentCar: blocState.currentCar, carOptions: blocState.carOptions, carSize: event.carSize),
       );
-    } else {
-      emit(CarSimulatorLoadFailure(result.getLeft().toString()));
+    }
+  }
+
+  Future<void> _onToggleChargingStation(
+    final CarSimulatorToggleChargingStation event,
+    final Emitter<CarSimulatorState> emit,
+  ) async {
+    final blocState = state;
+
+    if (blocState is CarSimulatorGetCarOptionsSuccess) {
+      emit(
+        _getCarOptionsSuccessState(
+          currentCar: blocState.currentCar,
+          carOptions: blocState.carOptions,
+          hasChargingStation: event.hasChargingStation,
+          carSize: blocState.selectedSize,
+        ),
+      );
     }
   }
 
@@ -57,14 +72,17 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     required final CarInfos currentCar,
     required final List<CarSimulatorOption> carOptions,
     final CarSize? carSize,
+    final bool hasChargingStation = true,
   }) {
     final selectedSize = carSize ?? currentCar.size.value.smaller;
-    final bestCostOption = _getBestOption(carOptions, selectedSize, (final option) => option.cost);
-    final bestEmissionOption = _getBestOption(carOptions, selectedSize, (final option) => option.emissions);
+    final bestCostOption = _getBestOption(carOptions, selectedSize, hasChargingStation, (final option) => option.cost);
+    final bestEmissionOption = _getBestOption(carOptions, selectedSize, hasChargingStation, (final option) => option.emissions);
 
     return CarSimulatorGetCarOptionsSuccess(
       currentCar: currentCar,
       selectedSize: selectedSize,
+      carOptions: carOptions,
+      hasChargingStation: hasChargingStation,
       bestCostOption: bestCostOption,
       bestEmissionOption: bestEmissionOption,
     );
@@ -73,15 +91,14 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
   CarSimulatorOption _getBestOption(
     final List<CarSimulatorOption> carOptions,
     final CarSize selectedSize,
+    final bool hasChargingStation,
     final double Function(CarSimulatorOption) comparator,
   ) =>
-      carOptions.sorted((final a, final b) {
-        if (a.size.value != selectedSize && b.size.value == selectedSize) {
-          return 1;
-        }
-        if (a.size.value == selectedSize && b.size.value != selectedSize) {
-          return -1;
-        }
-        return comparator(a).compareTo(comparator(b));
-      })[0];
+      carOptions
+          .filter(
+            (final option) =>
+                option.size.value == selectedSize &&
+                (hasChargingStation || option.motorisation.value != CarMotorisation.electric),
+          )
+          .sorted((final a, final b) => comparator(a).compareTo(comparator(b)))[0];
 }

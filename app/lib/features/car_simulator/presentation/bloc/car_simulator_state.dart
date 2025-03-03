@@ -29,18 +29,22 @@ final class CarSimulatorGetCurrentCarSuccess extends CarSimulatorState {
 final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorState {
   const CarSimulatorGetCarOptionsSuccess({
     required this.currentCar,
+    required this.carOptions,
     required this.selectedSize,
+    required this.hasChargingStation,
     required this.bestCostOption,
     required this.bestEmissionOption,
   });
 
   final CarInfos currentCar;
+  final List<CarSimulatorOption> carOptions;
   final CarSize selectedSize;
+  final bool hasChargingStation;
   final CarSimulatorOption bestCostOption;
   final CarSimulatorOption bestEmissionOption;
 
   @override
-  List<Object?> get props => [currentCar, selectedSize, bestCostOption, bestEmissionOption];
+  List<Object?> get props => [currentCar, carOptions, selectedSize, hasChargingStation, bestCostOption, bestEmissionOption];
 }
 
 @immutable

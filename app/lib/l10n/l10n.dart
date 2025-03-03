@@ -278,6 +278,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const laPlusEcologique = 'La plus écologique';
   static const vousAvezDejaLOptionLaPlusEconomique = 'Vous avez déjà l’option la plus économique !';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
+  static const rechargeElectriqueQuestion = "J'ai la possibilité de recharger un véhicule électrique au quotidien.";
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

@@ -34,3 +34,13 @@ final class CarSimulatorNewSelectedCarSize extends CarSimulatorEvent {
   @override
   List<Object> get props => [carSize];
 }
+
+@immutable
+final class CarSimulatorToggleChargingStation extends CarSimulatorEvent {
+  const CarSimulatorToggleChargingStation(this.hasChargingStation);
+
+  final bool hasChargingStation;
+
+  @override
+  List<Object> get props => [hasChargingStation];
+}

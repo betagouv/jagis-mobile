@@ -125,6 +125,7 @@ class _WhySectionView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
         child: Column(
+          spacing: DsfrSpacings.s1w,
           children: [
             const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +135,6 @@ class _WhySectionView extends StatelessWidget {
                 Text(Localisation.enQuelquesMots, style: DsfrTextStyle.headline2()),
               ],
             ),
-            const SizedBox(height: DsfrSpacings.s1w),
             _Markdown(data: sanitizedWhy),
           ],
         ),

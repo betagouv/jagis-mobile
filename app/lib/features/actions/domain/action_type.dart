@@ -1,4 +1,11 @@
-enum ActionType { classic, quiz, performance, simulator }
+enum ActionType {
+  classic,
+  quiz,
+
+  /// Bilan environnemental
+  performance,
+  simulator,
+}
 
 ActionType actionTypeFromAPIString(final String value) => switch (value) {
   'classique' => ActionType.classic,

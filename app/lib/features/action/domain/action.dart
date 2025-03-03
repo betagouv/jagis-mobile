@@ -7,7 +7,7 @@ sealed class Action extends Equatable {
 
   final String id;
   final String title;
-  final String subTitle;
+  final String? subTitle;
   final String why;
 
   @override

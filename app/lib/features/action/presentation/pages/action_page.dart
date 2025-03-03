@@ -75,7 +75,10 @@ class _Success extends StatelessWidget {
 
     return ListView(
       children: [
-        _TitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+          child: _TitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
+        ),
         _WhySectionView(action.why),
         switch (action) {
           ActionClassic() => _ActionClassicView(action: action),
@@ -89,24 +92,18 @@ class _Success extends StatelessWidget {
 class _TitleWithSubTitleView extends StatelessWidget {
   const _TitleWithSubTitleView({required this.title, required this.subTitle});
 
-  static const padding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
   final String title;
 
-  final String subTitle;
+  final String? subTitle;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
-    child: Column(
-      spacing: DsfrSpacings.s2w,
-      children: [
-        Padding(
-          padding: padding,
-          child: MarkdownBody(data: title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 28))),
-        ),
-        Padding(padding: padding, child: Text(subTitle, style: const DsfrTextStyle.bodyLg())),
-      ],
-    ),
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      MarkdownBody(data: title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 28))),
+      if (subTitle != null) Text(subTitle!, style: const DsfrTextStyle.bodyLg()),
+    ],
   );
 }
 
@@ -146,8 +143,6 @@ class _WhySectionView extends StatelessWidget {
 class _ActionClassicView extends StatelessWidget {
   const _ActionClassicView({required this.action});
 
-  static const pagePadding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
-
   final ActionClassic action;
 
   @override
@@ -164,7 +159,7 @@ class _ActionClassicView extends StatelessWidget {
           RecipeHorizontalList(category: action.recipesService.category),
         ],
         const SizedBox(height: DsfrSpacings.s4w),
-        Padding(padding: pagePadding, child: _Markdown(data: action.how)),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Markdown(data: action.how)),
         const SizedBox(height: DsfrSpacings.s2w),
       ],
     ),

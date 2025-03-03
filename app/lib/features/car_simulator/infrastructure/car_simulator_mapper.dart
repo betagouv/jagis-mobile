@@ -19,6 +19,7 @@ abstract final class CarSimulatorOptionMapper {
     return CarSimulatorOption(
       /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
       type: CarOptionType.car,
+      title: json['titre'] as String,
       cost: carInfos.cost,
       emissions: carInfos.emissions,
       size: carInfos.size,

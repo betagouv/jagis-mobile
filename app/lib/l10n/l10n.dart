@@ -274,6 +274,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const euroSymbol = '€';
   static const kgCO2e = 'kgCO2e';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
+  static const laPlusEconomique = 'La plus économique';
+  static const laPlusEcologique = 'La plus écologique';
+  static const vousAvezDejaLOptionLaPlusEconomique = 'Vous avez déjà l’option la plus économique !';
+  static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

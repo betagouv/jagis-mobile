@@ -19,7 +19,8 @@ class CarInfos extends Equatable {
   List<Object?> get props => [cost, emissions, size, motorisation, fuel];
 }
 
-/// NOTE: For now, there is only car alternatives, however, we should be
+/// NOTE(erolley): For now, there is only car alternatives, however, we should be
+/// able to add other types of alternatives in the future.
 class CarSimulatorOption extends CarInfos {
   const CarSimulatorOption({
     required super.cost,
@@ -28,9 +29,11 @@ class CarSimulatorOption extends CarInfos {
     required super.motorisation,
     required super.fuel,
     required this.type,
+    required this.title,
   });
 
   final CarOptionType type;
+  final String title;
 }
 
 class BestCostCarSimulatorOption {
@@ -96,3 +99,5 @@ class ComputedValue<V> extends Equatable {
   @override
   List<Object?> get props => [value, label];
 }
+
+enum CarSimulatorOptionKind { bestCost, bestEmission }

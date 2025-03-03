@@ -11,6 +11,7 @@ class DsfrTag extends StatelessWidget {
     required this.foregroundColor,
     required this.padding,
     this.icon,
+    this.iconSize = 12,
     this.onTap,
   });
 
@@ -38,6 +39,7 @@ class DsfrTag extends StatelessWidget {
     required final Color backgroundColor,
     required final Color foregroundColor,
     final IconData? icon,
+    final double iconSize = 18,
     final TextStyle textStyle = const DsfrTextStyle.bodyMd(),
     final GestureTapCallback? onTap,
     final Key? key,
@@ -49,10 +51,12 @@ class DsfrTag extends StatelessWidget {
          foregroundColor: foregroundColor,
          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
          icon: icon,
+         iconSize: iconSize,
          onTap: onTap,
        );
 
   final IconData? icon;
+  final double iconSize;
   final InlineSpan label;
   final GestureTapCallback? onTap;
 
@@ -63,7 +67,10 @@ class DsfrTag extends StatelessWidget {
 
   @override
   Widget build(final context) => DecoratedBox(
-    decoration: ShapeDecoration(color: backgroundColor, shape: const StadiumBorder()),
+    decoration: ShapeDecoration(
+      color: backgroundColor,
+      shape: const StadiumBorder(),
+    ),
     child: GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
@@ -76,7 +83,7 @@ class DsfrTag extends StatelessWidget {
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   baseline: TextBaseline.alphabetic,
-                  child: Icon(icon, size: 12, color: foregroundColor),
+                  child: Icon(icon, size: iconSize, color: foregroundColor),
                 ),
                 const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1v)),
               ],

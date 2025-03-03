@@ -57,36 +57,42 @@ class _CarSimulatorResultView extends StatelessWidget {
 
   final CarInfos currentCar;
   final CarSize selectedSize;
-  final BestCostCarSimulatorOption? bestCostOption;
-  final BestEmissionCarSimulatorOption? bestEmissionsOption;
+  final CarSimulatorOption? bestCostOption;
+  final CarSimulatorOption? bestEmissionsOption;
 
   @override
-  Widget build(final BuildContext context) {
-    // NOTE(erolley): ListView doesn't work here
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: DsfrSpacings.s4w,
-        children: [
-          _BestCarOptionView(
-            selectedSize: selectedSize,
-            bestCostOption: bestCostOption,
-            bestEmissionsOption: bestEmissionsOption,
-          ),
-          _CurrentCarResultView(currentCar),
-        ],
-      ),
-    );
-  }
+  Widget build(final BuildContext context) =>
+  // NOTE(erolley): ListView doesn't work here
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s4w),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s4w,
+      children: [
+        _CurrentCarResultView(currentCar),
+        _BestCarOptionView(
+          currentCar: currentCar,
+          selectedSize: selectedSize,
+          bestCostOption: bestCostOption,
+          bestEmissionsOption: bestEmissionsOption,
+        ),
+      ],
+    ),
+  );
 }
 
 class _BestCarOptionView extends StatelessWidget {
-  const _BestCarOptionView({required this.selectedSize, required this.bestCostOption, required this.bestEmissionsOption});
+  const _BestCarOptionView({
+    required this.currentCar,
+    required this.selectedSize,
+    required this.bestCostOption,
+    required this.bestEmissionsOption,
+  });
 
+  final CarInfos currentCar;
   final CarSize selectedSize;
-  final BestCostCarSimulatorOption? bestCostOption;
-  final BestEmissionCarSimulatorOption? bestEmissionsOption;
+  final CarSimulatorOption? bestCostOption;
+  final CarSimulatorOption? bestEmissionsOption;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -96,7 +102,7 @@ class _BestCarOptionView extends StatelessWidget {
       Text.rich(
         TextSpan(
           children: [
-            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline2()),
+            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline3()),
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
@@ -115,17 +121,142 @@ class _BestCarOptionView extends StatelessWidget {
           ],
         ),
       ),
-      if (bestCostOption == null)
+      if (bestEmissionsOption == null || bestCostOption == null)
         const Center(child: CircularProgressIndicator())
       else
-        Text(bestCostOption!.diffWithCurrentCar.toString()),
-
-      if (bestEmissionsOption == null)
-        const Center(child: CircularProgressIndicator())
-      else
-        Text(bestEmissionsOption!.percentDiffWithCurrentCar.toString()),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.zero,
+          clipBehavior: Clip.none,
+          child: IntrinsicHeight(
+            child: Row(
+              spacing: DsfrSpacings.s2w,
+              children: [
+                _CarSimulatorOptionView(option: bestCostOption!, currentCar: currentCar, kind: CarSimulatorOptionKind.bestCost),
+                _CarSimulatorOptionView(
+                  option: bestEmissionsOption!,
+                  currentCar: currentCar,
+                  kind: CarSimulatorOptionKind.bestEmission,
+                ),
+              ],
+            ),
+          ),
+        ),
     ],
   );
+}
+
+class _CarSimulatorOptionView extends StatelessWidget {
+  const _CarSimulatorOptionView({required this.currentCar, required this.option, required this.kind});
+
+  final CarInfos currentCar;
+  final CarSimulatorOption option;
+  final CarSimulatorOptionKind kind;
+
+  @override
+  Widget build(final BuildContext context) {
+    final currentCarIsBest =
+        kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
+
+    return FnvCard(
+      child: Padding(
+        padding: const EdgeInsets.all(DsfrSpacings.s2w),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 250),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s2w,
+            children: [
+              getCarSimulatorKindTag(),
+              if (currentCarIsBest)
+                Text(switch (kind) {
+                  CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
+                  CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
+                }, style: const DsfrTextStyle.headline5())
+              else
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: DsfrSpacings.s2w,
+                  children: [
+                    Text(option.title, style: const DsfrTextStyle.headline4()),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+                        Row(
+                          spacing: DsfrSpacings.s1w,
+                          children: [
+                            _NumberWithUnit(num: option.cost, unit: Localisation.euroSymbol),
+                            _DiffInTag(from: currentCar.cost, to: option.cost, unit: Localisation.euroSymbol),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+                        Row(
+                          spacing: DsfrSpacings.s1w,
+                          children: [
+                            _NumberWithUnit(num: option.emissions, unit: Localisation.kgCO2e),
+                            _DiffInTag(from: currentCar.emissions, to: option.emissions, unit: '%'),
+                          ],
+                        ),
+                        const SizedBox(height: DsfrSpacings.s2w),
+                        _ContextInfosView(carInfos: option),
+                      ],
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  DsfrTag getCarSimulatorKindTag() => switch (kind) {
+    CarSimulatorOptionKind.bestCost => DsfrTag.md(
+      icon: DsfrIcons.financeMoneyEuroCircleFill,
+      label: const TextSpan(text: Localisation.laPlusEconomique),
+      backgroundColor: Colors.amber[100]!,
+      foregroundColor: Colors.amber[700]!,
+    ),
+    CarSimulatorOptionKind.bestEmission => DsfrTag.md(
+      icon: DsfrIcons.othersLeafFill,
+      label: const TextSpan(text: Localisation.laPlusEcologique),
+      backgroundColor: Colors.green[100]!,
+      foregroundColor: Colors.green[700]!,
+    ),
+  };
+}
+
+class _DiffInTag extends StatelessWidget {
+  const _DiffInTag({required this.from, required this.to, required this.unit});
+
+  final double from;
+  final double to;
+  final String unit;
+
+  @override
+  Widget build(final BuildContext context) {
+    final diff = unit == '%' ? (to - from) / from * 100 : to - from;
+    final color = diff > 0 ? Colors.red : Colors.lightGreen;
+    final sign = diff > 0 ? '+' : '-';
+
+    return diff == 0
+        ? const SizedBox()
+        : DsfrTag.md(
+          label: TextSpan(
+            text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
+            children: [TextSpan(text: ' $unit')],
+            style: DsfrTextStyle.bodyMdBold(color: color[800]!),
+          ),
+          backgroundColor: color[50]!,
+          foregroundColor: color[800]!,
+        );
+  }
 }
 
 class _CurrentCarResultView extends StatelessWidget {
@@ -151,7 +282,7 @@ class _CurrentCarResultView extends StatelessWidget {
               const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
               _NumberWithUnit(num: currentCar.emissions, unit: Localisation.kgCO2e),
               const SizedBox(height: DsfrSpacings.s2w),
-              _ContextInfosView(currentCar: currentCar),
+              _ContextInfosView(carInfos: currentCar),
             ],
           ),
         ),
@@ -177,21 +308,22 @@ class _NumberWithUnit extends StatelessWidget {
 }
 
 class _ContextInfosView extends StatelessWidget {
-  const _ContextInfosView({required this.currentCar});
+  const _ContextInfosView({required this.carInfos});
 
-  final CarInfos currentCar;
+  final CarInfos carInfos;
 
   @override
   Widget build(final BuildContext context) => Container(
-    width: double.infinity,
     decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
+    width: 250,
     padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
-    child: Row(
+    child: Wrap(
       spacing: DsfrSpacings.s1w,
+      runSpacing: DsfrSpacings.s1w,
       children: [
-        _ContextInfo(label: currentCar.size.label),
-        _ContextInfo(label: currentCar.motorisation.label),
-        if (currentCar.fuel == null) const SizedBox() else _ContextInfo(label: currentCar.fuel!.label),
+        _ContextInfo(label: carInfos.size.label),
+        _ContextInfo(label: carInfos.motorisation.label),
+        if (carInfos.fuel == null) const SizedBox() else _ContextInfo(label: carInfos.fuel!.label),
       ],
     ),
   );

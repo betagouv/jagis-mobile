@@ -36,8 +36,8 @@ final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorState {
 
   final CarInfos currentCar;
   final CarSize selectedSize;
-  final BestCostCarSimulatorOption bestCostOption;
-  final BestEmissionCarSimulatorOption bestEmissionOption;
+  final CarSimulatorOption bestCostOption;
+  final CarSimulatorOption bestEmissionOption;
 
   @override
   List<Object?> get props => [currentCar, selectedSize, bestCostOption, bestEmissionOption];

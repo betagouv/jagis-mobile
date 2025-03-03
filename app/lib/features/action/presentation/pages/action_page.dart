@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
@@ -187,6 +188,11 @@ class _Markdown extends StatelessWidget {
   Widget build(final BuildContext context) => MarkdownBody(
     data: data,
     styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 16), h1: const DsfrTextStyle(fontSize: 22)),
+    onTapLink: (final text, final href, final title) async {
+      if (href != null) {
+        await FnvUrlLauncher.launch(href);
+      }
+    },
     imageBuilder: (final uri, final title, final alt) => FnvImage.network(uri.toString(), semanticLabel: alt),
   );
 }

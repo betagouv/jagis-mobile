@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-typedefs-for-callbacks
+
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 
 abstract final class CarInfosMapper {
@@ -17,72 +19,49 @@ abstract final class CarSimulatorOptionMapper {
   static CarSimulatorOption fromJson(final dynamic json) {
     final carInfos = CarInfosMapper.fromJson(json as Map<String, dynamic>);
 
+    /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
     return CarSimulatorOption(
       cost: carInfos.cost,
       emissions: carInfos.emissions,
       size: carInfos.size,
       motorisation: carInfos.motorisation,
       fuel: carInfos.fuel,
-
-      /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
-      type: CarOptionType.car,
       title: json['titre'] as String,
     );
   }
 }
 
 abstract final class ComputedValueMapper {
-  static ComputedValue<V> fromJson<V>(final Map<String, dynamic> json, final V Function(String) valueToJson) =>
+  static ComputedValue<V> fromJson<V>(final Map<String, dynamic> json, final V Function(String value) valueToJson) =>
       ComputedValue(value: valueToJson(json['valeur'] as String), label: json['label'] as String);
 }
 
 abstract final class CarSizeMapper {
-  static CarSize fromJson(final String json) {
-    switch (json) {
-      case 'petite':
-        return CarSize.small;
-      case 'moyenne':
-        return CarSize.medium;
-      case 'berline':
-        return CarSize.sedan;
-      case 'SUV':
-        return CarSize.suv;
-      case 'VUL':
-        return CarSize.utilityVehicle;
-      default:
-        throw Exception('Unknown CarSize: $json');
-    }
-  }
+  static CarSize fromJson(final String json) => switch (json) {
+    'petite' => CarSize.small,
+    'moyenne' => CarSize.medium,
+    'berline' => CarSize.sedan,
+    'SUV' => CarSize.suv,
+    'VUL' => CarSize.utilityVehicle,
+    _ => throw Exception('Unknown CarSize: $json'),
+  };
 }
 
 abstract final class CarMotorisationMapper {
-  static CarMotorisation fromJson(final String json) {
-    switch (json) {
-      case 'thermique':
-        return CarMotorisation.thermal;
-      case 'hybride':
-        return CarMotorisation.hybrid;
-      case 'électrique':
-        return CarMotorisation.electric;
-      default:
-        throw Exception('Unknown CarMotorisation: $json');
-    }
-  }
+  static CarMotorisation fromJson(final String json) => switch (json) {
+    'thermique' => CarMotorisation.thermal,
+    'hybride' => CarMotorisation.hybrid,
+    'électrique' => CarMotorisation.electric,
+    _ => throw Exception('Unknown CarMotorisation: $json'),
+  };
 }
 
 abstract final class CarFuelMapper {
-  static CarFuel fromJson(final String json) {
-    switch (json) {
-      case 'essence E5 ou E10':
-        return CarFuel.gasoline;
-      case 'essence E85':
-        return CarFuel.gasolineE85;
-      case 'gazole B7 ou B10':
-        return CarFuel.diesel;
-      case 'GPL':
-        return CarFuel.lpg;
-      default:
-        throw Exception('Unknown CarFuel: $json');
-    }
-  }
+  static CarFuel fromJson(final String json) => switch (json) {
+    'essence E5 ou E10' => CarFuel.gasoline,
+    'essence E85' => CarFuel.gasolineE85,
+    'gazole B7 ou B10' => CarFuel.diesel,
+    'GPL' => CarFuel.lpg,
+    _ => throw Exception('Unknown CarFuel: $json'),
+  };
 }

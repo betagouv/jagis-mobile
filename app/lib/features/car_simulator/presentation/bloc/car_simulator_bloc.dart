@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-typedefs-for-callbacks
+
 import 'dart:async';
 
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
@@ -89,7 +91,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     final List<CarSimulatorOption> carOptions,
     final CarSize selectedSize,
     final bool hasChargingStation,
-    final double Function(CarSimulatorOption) comparator,
+    final double Function(CarSimulatorOption option) comparator,
   ) =>
       carOptions
           .filter(

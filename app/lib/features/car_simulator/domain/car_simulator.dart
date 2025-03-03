@@ -28,29 +28,11 @@ class CarSimulatorOption extends CarInfos {
     required super.size,
     required super.motorisation,
     required super.fuel,
-    required this.type,
     required this.title,
   });
 
-  final CarOptionType type;
   final String title;
 }
-
-class BestCostCarSimulatorOption {
-  const BestCostCarSimulatorOption({required this.carOption, required this.diffWithCurrentCar});
-
-  final CarSimulatorOption carOption;
-  final double diffWithCurrentCar;
-}
-
-class BestEmissionCarSimulatorOption {
-  const BestEmissionCarSimulatorOption({required this.carOption, required this.percentDiffWithCurrentCar});
-
-  final CarSimulatorOption carOption;
-  final double percentDiffWithCurrentCar;
-}
-
-enum CarOptionType { car }
 
 enum CarSize {
   /// Petite voiture

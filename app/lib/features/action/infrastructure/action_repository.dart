@@ -18,7 +18,6 @@ class ActionRepository {
     final response = await _client.get(Endpoints.action(type: actionTypeAPI, code: id));
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      // TODO(erolley): specify a better error message?
       return Left(Exception("Type: $actionTypeAPI,\nID: $id,\nError: Erreur lors de la récupération de l'action: $response"));
     }
 

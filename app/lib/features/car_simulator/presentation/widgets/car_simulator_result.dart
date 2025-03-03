@@ -34,7 +34,7 @@ class _View extends StatelessWidget {
       CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
       CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
         currentCar: blocState.currentCar,
-        selectedSize: blocState.currentCar.size.value,
+        selectedSize: blocState.currentCar.size.value.smaller,
       ),
       CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
         currentCar: blocState.currentCar,
@@ -69,13 +69,13 @@ class _CarSimulatorResultView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s4w,
       children: [
-        _CurrentCarResultView(currentCar),
         _BestCarOptionView(
           currentCar: currentCar,
           selectedSize: selectedSize,
           bestCostOption: bestCostOption,
           bestEmissionsOption: bestEmissionsOption,
         ),
+        _CurrentCarResultView(currentCar),
       ],
     ),
   );

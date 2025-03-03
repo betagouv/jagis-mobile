@@ -22,24 +22,14 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     final result = await _carSimulatorRepository.computeCurrentCar();
     if (result.isRight()) {
       final currentCar = result.getRight().getOrElse(() => throw Exception());
-      final selectedSize = currentCar.size.value;
 
       emit(CarSimulatorGetCurrentCarSuccess(currentCar: currentCar));
 
       final result2 = await _carSimulatorRepository.computeCarSimulatorOptions();
       if (result2.isRight()) {
         final carOptions = result2.getRight().getOrElse(() => throw Exception());
-        final bestCostOption = _getBestOption(carOptions, selectedSize, (final option) => option.cost);
-        final bestEmissionOption = _getBestOption(carOptions, selectedSize, (final option) => option.emissions);
 
-        emit(
-          CarSimulatorGetCarOptionsSuccess(
-            currentCar: currentCar,
-            selectedSize: selectedSize,
-            bestCostOption: bestCostOption,
-            bestEmissionOption: bestEmissionOption,
-          ),
-        );
+        emit(_getCarOptionsSuccessState(currentCar: currentCar, carOptions: carOptions));
       } else {
         emit(CarSimulatorLoadFailure(result2.getLeft().toString()));
       }
@@ -51,25 +41,33 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
   Future<void> _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorState> emit) async {
     final result = await _carSimulatorRepository.computeCarSimulatorOptions();
     final stateWithCurrentCar = state;
-    final selectedSize = event.carSize;
 
     if (result.isRight() && stateWithCurrentCar is CarSimulatorGetCarOptionsSuccess) {
-      final currentCar = stateWithCurrentCar.currentCar;
       final carOptions = result.getRight().getOrElse(() => throw Exception());
-      final bestCostOption = _getBestOption(carOptions, selectedSize, (final option) => option.cost);
-      final bestEmissionOption = _getBestOption(carOptions, selectedSize, (final option) => option.emissions);
 
       emit(
-        CarSimulatorGetCarOptionsSuccess(
-          currentCar: currentCar,
-          selectedSize: selectedSize,
-          bestCostOption: bestCostOption,
-          bestEmissionOption: bestEmissionOption,
-        ),
+        _getCarOptionsSuccessState(currentCar: stateWithCurrentCar.currentCar, carOptions: carOptions, carSize: event.carSize),
       );
     } else {
       emit(CarSimulatorLoadFailure(result.getLeft().toString()));
     }
+  }
+
+  CarSimulatorGetCarOptionsSuccess _getCarOptionsSuccessState({
+    required final CarInfos currentCar,
+    required final List<CarSimulatorOption> carOptions,
+    final CarSize? carSize,
+  }) {
+    final selectedSize = carSize ?? currentCar.size.value.smaller;
+    final bestCostOption = _getBestOption(carOptions, selectedSize, (final option) => option.cost);
+    final bestEmissionOption = _getBestOption(carOptions, selectedSize, (final option) => option.emissions);
+
+    return CarSimulatorGetCarOptionsSuccess(
+      currentCar: currentCar,
+      selectedSize: selectedSize,
+      bestCostOption: bestCostOption,
+      bestEmissionOption: bestEmissionOption,
+    );
   }
 
   CarSimulatorOption _getBestOption(

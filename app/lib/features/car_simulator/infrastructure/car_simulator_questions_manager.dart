@@ -7,6 +7,7 @@ import 'package:app/features/know_your_customer/core/infrastructure/question_map
 import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/features/questions_manager/domain/cursor_manager.dart';
 
+/// NOTE(erolley): This could be abstracted to be used for all list based manager.
 class CarSimulatorQuestionsManager extends CursorManager<Question> {
   const CarSimulatorQuestionsManager({required final DioHttpClient client}) : _client = client;
 
@@ -16,7 +17,9 @@ class CarSimulatorQuestionsManager extends CursorManager<Question> {
   Future<Cursor<Question>> first() async {
     final list = await _getList();
 
-    return Cursor(current: list.first, index: 0, total: list.length);
+    return list.isEmpty
+        ? const Cursor(element: null, index: 0, total: 0)
+        : Cursor(element: list.first, index: 0, total: list.length);
   }
 
   @override
@@ -25,8 +28,8 @@ class CarSimulatorQuestionsManager extends CursorManager<Question> {
     final newIndex = current.index - 1;
 
     return newIndex < 0
-        ? Cursor(current: list.first, index: 0, total: list.length)
-        : Cursor(current: list[newIndex], index: newIndex, total: list.length);
+        ? Cursor(element: list.first, index: 0, total: list.length)
+        : Cursor(element: list[newIndex], index: newIndex, total: list.length);
   }
 
   @override
@@ -34,9 +37,9 @@ class CarSimulatorQuestionsManager extends CursorManager<Question> {
     final list = await _getList();
     final newIndex = current.index + 1;
 
-    return newIndex == list.length
-        ? Cursor(current: null, index: current.index, total: list.length)
-        : Cursor(current: list[newIndex], index: newIndex, total: list.length);
+    return newIndex >= list.length
+        ? Cursor(element: null, index: current.index, total: list.length)
+        : Cursor(element: list[newIndex], index: newIndex, total: list.length);
   }
 
   Future<List<Question>> _getList() async {

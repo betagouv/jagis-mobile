@@ -32,7 +32,7 @@ class _MissionKycPageState extends State<MissionKycPage> {
     padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
       MieuxVousConnaitreForm(
-        id: widget.value.contentId.value,
+        questionId: widget.value.contentId.value,
         controller: _mieuxVousConnaitreController,
         onSaved: () => context.read<MissionBloc>().add(const MissionNextRequested()),
       ),

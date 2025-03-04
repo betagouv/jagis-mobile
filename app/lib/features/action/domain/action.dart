@@ -56,3 +56,7 @@ final class ActionSimulator extends Action {
 }
 
 enum ActionSimulatorId { carSimulator }
+
+String actionSimulatorIdToAPIString(final ActionSimulatorId id) => switch (id) {
+  ActionSimulatorId.carSimulator => 'action_simulateur_voiture',
+};

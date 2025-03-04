@@ -9,7 +9,7 @@ import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/car_simulator/presentation/widgets/car_simulator_result.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_questions/widgets/car_simulator_widget.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
 import 'package:app/l10n/l10n.dart';
@@ -172,10 +172,9 @@ class _ActionSimulatorView extends StatelessWidget {
 
   final ActionSimulator action;
 
-  // TODO(erolley): implement the questions repository on top of the new backend routes.
   @override
   Widget build(final BuildContext context) => switch (action.getId()) {
-    ActionSimulatorId.carSimulator => const CarSimulatorResult(key: Key('car_simulator_result')),
+    ActionSimulatorId.carSimulator => const CarSimulatorWidget(),
   };
 }
 

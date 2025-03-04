@@ -19,9 +19,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 typedef OnSavedCallback = void Function();
 
 class MieuxVousConnaitreForm extends StatelessWidget {
-  const MieuxVousConnaitreForm({super.key, required this.id, required this.controller, this.onSaved});
+  const MieuxVousConnaitreForm({super.key, required this.questionId, required this.controller, this.onSaved});
 
-  final String id;
+  final String questionId;
   final MieuxVousConnaitreController controller;
   final OnSavedCallback? onSaved;
 
@@ -30,7 +30,7 @@ class MieuxVousConnaitreForm extends StatelessWidget {
     create:
         (final context) =>
             MieuxVousConnaitreEditBloc(mieuxVousConnaitreRepository: context.read())
-              ..add(MieuxVousConnaitreEditRecuperationDemandee(id)),
+              ..add(MieuxVousConnaitreEditRecuperationDemandee(questionId)),
     lazy: false,
     child: _Content(controller: controller, onSaved: onSaved),
   );

@@ -2,9 +2,9 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_bloc.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_event.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_state.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_state.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class CarSimulatorResult extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => CarSimulatorBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
+    create: (final context) => CarSimulatorResultBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
     child: const _View(),
   );
 }
@@ -25,7 +25,7 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final blocState = context.watch<CarSimulatorBloc>().state;
+    final blocState = context.watch<CarSimulatorResultBloc>().state;
 
     return switch (blocState) {
       CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
@@ -106,7 +106,7 @@ class _BestCarOptionView extends StatelessWidget {
       DsfrToggleSwitch(
         label: Localisation.rechargeElectriqueQuestion,
         value: hasChargingStation,
-        onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorToggleChargingStation(value)),
+        onChanged: (final value) => context.read<CarSimulatorResultBloc>().add(CarSimulatorToggleChargingStation(value)),
       ),
       Text.rich(
         TextSpan(
@@ -124,7 +124,7 @@ class _BestCarOptionView extends StatelessWidget {
                   CarSize.utilityVehicle: 'VUL',
                 },
                 value: selectedSize,
-                onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorNewSelectedCarSize(value)),
+                onChanged: (final value) => context.read<CarSimulatorResultBloc>().add(CarSimulatorNewSelectedCarSize(value)),
               ),
             ),
           ],

@@ -51,7 +51,7 @@ class _ViewState extends State<_View> {
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       child: MieuxVousConnaitreForm(
-        id: widget.id,
+        questionId: widget.id,
         controller: _mieuxVousConnaitreController,
         onSaved: () {
           ScaffoldMessenger.of(context)

@@ -30,15 +30,15 @@ class _View extends StatelessWidget {
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
-          QuestionsManagerLoadSuccess() => _Success(aState: state),
+          QuestionsManagerLoadSuccess() => _Success(questionManager: state),
         },
   );
 }
 
 class _Success extends StatefulWidget {
-  const _Success({required this.aState});
+  const _Success({required this.questionManager});
 
-  final QuestionsManagerLoadSuccess aState;
+  final QuestionsManagerLoadSuccess questionManager;
 
   @override
   State<_Success> createState() => _SuccessState();
@@ -55,12 +55,12 @@ class _SuccessState extends State<_Success> {
 
   @override
   Widget build(final context) =>
-      widget.aState.cursor.allQuestionsAreAnswered
+      widget.questionManager.cursor.allQuestionsAreAnswered
           ? const CarSimulatorResult()
           : Column(
             children: [
               MieuxVousConnaitreForm(
-                questionId: widget.aState.cursor.current!.id.value,
+                questionId: widget.questionManager.cursor.element!.id.value,
                 controller: _controller,
                 onSaved: () {
                   context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());

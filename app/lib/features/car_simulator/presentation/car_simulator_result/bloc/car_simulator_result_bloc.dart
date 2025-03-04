@@ -4,14 +4,14 @@ import 'dart:async';
 
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_event.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_state.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_state.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 
-class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
-  CarSimulatorBloc({required final CarSimulatorRepository repository})
+class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorResultState> {
+  CarSimulatorResultBloc({required final CarSimulatorRepository repository})
     : _carSimulatorRepository = repository,
       super(const CarSimulatorLoading()) {
     on<CarSimulatorGetCurrentCarResult>(_onGetCurrentCarResult);
@@ -21,7 +21,10 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
 
   final CarSimulatorRepository _carSimulatorRepository;
 
-  Future<void> _onGetCurrentCarResult(final CarSimulatorGetCurrentCarResult event, final Emitter<CarSimulatorState> emit) async {
+  Future<void> _onGetCurrentCarResult(
+    final CarSimulatorGetCurrentCarResult event,
+    final Emitter<CarSimulatorResultState> emit,
+  ) async {
     final result = await _carSimulatorRepository.computeCurrentCar();
     if (result.isRight()) {
       final currentCar = result.getRight().getOrElse(() => throw Exception());
@@ -42,7 +45,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
   }
 
   /// PERF(erolley): Shouldn't call the repository here, but should have the options in the state.
-  void _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorState> emit) {
+  void _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorResultState> emit) {
     final blocState = state;
 
     if (blocState is CarSimulatorGetCarOptionsSuccess) {
@@ -52,7 +55,7 @@ class CarSimulatorBloc extends Bloc<CarSimulatorEvent, CarSimulatorState> {
     }
   }
 
-  void _onToggleChargingStation(final CarSimulatorToggleChargingStation event, final Emitter<CarSimulatorState> emit) {
+  void _onToggleChargingStation(final CarSimulatorToggleChargingStation event, final Emitter<CarSimulatorResultState> emit) {
     final blocState = state;
 
     if (blocState is CarSimulatorGetCarOptionsSuccess) {

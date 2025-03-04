@@ -3,20 +3,20 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-sealed class CarSimulatorEvent extends Equatable {
-  const CarSimulatorEvent();
+sealed class CarSimulatorResultEvent extends Equatable {
+  const CarSimulatorResultEvent();
 
   @override
   List<Object> get props => [];
 }
 
 @immutable
-final class CarSimulatorGetCurrentCarResult extends CarSimulatorEvent {
+final class CarSimulatorGetCurrentCarResult extends CarSimulatorResultEvent {
   const CarSimulatorGetCurrentCarResult();
 }
 
 @immutable
-final class CarSimulatorNewSelectedCarSize extends CarSimulatorEvent {
+final class CarSimulatorNewSelectedCarSize extends CarSimulatorResultEvent {
   const CarSimulatorNewSelectedCarSize(this.carSize);
 
   final CarSize carSize;
@@ -26,7 +26,7 @@ final class CarSimulatorNewSelectedCarSize extends CarSimulatorEvent {
 }
 
 @immutable
-final class CarSimulatorToggleChargingStation extends CarSimulatorEvent {
+final class CarSimulatorToggleChargingStation extends CarSimulatorResultEvent {
   const CarSimulatorToggleChargingStation(this.hasChargingStation);
 
   final bool hasChargingStation;

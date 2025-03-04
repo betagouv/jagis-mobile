@@ -166,6 +166,7 @@ class _AppState extends State<App> {
         child: AuthenticationRedirection(
           child: MultiRepositoryProvider(
             providers: [
+              RepositoryProvider.value(value: widget.dioHttpClient),
               RepositoryProvider.value(value: widget.notificationService),
               RepositoryProvider.value(value: widget.tracker),
               RepositoryProvider.value(value: widget.clock),

@@ -3,20 +3,20 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-sealed class CarSimulatorState extends Equatable {
-  const CarSimulatorState();
+sealed class CarSimulatorResultState extends Equatable {
+  const CarSimulatorResultState();
 
   @override
   List<Object?> get props => [];
 }
 
 @immutable
-final class CarSimulatorLoading extends CarSimulatorState {
+final class CarSimulatorLoading extends CarSimulatorResultState {
   const CarSimulatorLoading();
 }
 
 @immutable
-final class CarSimulatorGetCurrentCarSuccess extends CarSimulatorState {
+final class CarSimulatorGetCurrentCarSuccess extends CarSimulatorResultState {
   const CarSimulatorGetCurrentCarSuccess({required this.currentCar});
 
   final CarInfos currentCar;
@@ -26,7 +26,7 @@ final class CarSimulatorGetCurrentCarSuccess extends CarSimulatorState {
 }
 
 @immutable
-final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorState {
+final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorResultState {
   const CarSimulatorGetCarOptionsSuccess({
     required this.currentCar,
     required this.carOptions,
@@ -48,7 +48,7 @@ final class CarSimulatorGetCarOptionsSuccess extends CarSimulatorState {
 }
 
 @immutable
-final class CarSimulatorLoadFailure extends CarSimulatorState {
+final class CarSimulatorLoadFailure extends CarSimulatorResultState {
   const CarSimulatorLoadFailure(this.errorMessage);
 
   final String errorMessage;

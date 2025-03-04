@@ -2,9 +2,9 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_bloc.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_event.dart';
-import 'package:app/features/car_simulator/presentation/bloc/car_simulator_state.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_state.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class CarSimulatorResult extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => CarSimulatorBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
+    create: (final context) => CarSimulatorResultBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
     child: const _View(),
   );
 }
@@ -25,7 +25,7 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final blocState = context.watch<CarSimulatorBloc>().state;
+    final blocState = context.watch<CarSimulatorResultBloc>().state;
 
     return switch (blocState) {
       CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
@@ -106,7 +106,7 @@ class _BestCarOptionView extends StatelessWidget {
       DsfrToggleSwitch(
         label: Localisation.rechargeElectriqueQuestion,
         value: hasChargingStation,
-        onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorToggleChargingStation(value)),
+        onChanged: (final value) => context.read<CarSimulatorResultBloc>().add(CarSimulatorToggleChargingStation(value)),
       ),
       Text.rich(
         TextSpan(
@@ -124,7 +124,7 @@ class _BestCarOptionView extends StatelessWidget {
                   CarSize.utilityVehicle: 'VUL',
                 },
                 value: selectedSize,
-                onChanged: (final value) => context.read<CarSimulatorBloc>().add(CarSimulatorNewSelectedCarSize(value)),
+                onChanged: (final value) => context.read<CarSimulatorResultBloc>().add(CarSimulatorNewSelectedCarSize(value)),
               ),
             ),
           ],
@@ -168,51 +168,53 @@ class _CarSimulatorOptionView extends StatelessWidget {
         kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
 
     return FnvCard(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        constraints: const BoxConstraints(maxWidth: 250),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: DsfrSpacings.s2w,
-          children: [
-            _KindTagView(kind),
-            if (currentCarIsBest)
-              Text(switch (kind) {
-                CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
-                CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
-              }, style: const DsfrTextStyle.headline5())
-            else ...[
-              Text(option.title, style: const DsfrTextStyle.headline4()),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
-                  Row(
-                    spacing: DsfrSpacings.s1w,
-                    children: [
-                      _NumberWithUnit(num: option.cost, unit: Localisation.euroSymbol),
-                      _DiffInTag(from: currentCar.cost, to: option.cost, unit: Localisation.euroSymbol),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
-                  Row(
-                    spacing: DsfrSpacings.s1w,
-                    children: [
-                      _NumberWithUnit(num: option.emissions, unit: Localisation.kgCO2e),
-                      _DiffInTag(from: currentCar.emissions, to: option.emissions, unit: '%'),
-                    ],
-                  ),
-                  const SizedBox(height: DsfrSpacings.s2w),
-                  _ContextInfosView(carInfos: option),
-                ],
-              ),
+        child: SizedBox(
+          width: 270,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s2w,
+            children: [
+              _KindTagView(kind),
+              if (currentCarIsBest)
+                Text(switch (kind) {
+                  CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
+                  CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
+                }, style: const DsfrTextStyle.headline5())
+              else ...[
+                Text(option.title, style: const DsfrTextStyle.headline4()),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+                    Row(
+                      spacing: DsfrSpacings.s1w,
+                      children: [
+                        _NumberWithUnit(num: option.cost, unit: Localisation.euroSymbol),
+                        _DiffInTag(from: currentCar.cost, to: option.cost, unit: Localisation.euroSymbol),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+                    Row(
+                      spacing: DsfrSpacings.s1w,
+                      children: [
+                        _NumberWithUnit(num: option.emissions, unit: Localisation.kgCO2e),
+                        _DiffInTag(from: currentCar.emissions, to: option.emissions, unit: '%'),
+                      ],
+                    ),
+                    const SizedBox(height: DsfrSpacings.s2w),
+                    _ContextInfosView(carInfos: option),
+                  ],
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -325,7 +327,7 @@ class _ContextInfosView extends StatelessWidget {
   Widget build(final BuildContext context) => Container(
     padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
     decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
-    width: 250,
+    width: 270,
     child: Wrap(
       spacing: DsfrSpacings.s1w,
       runSpacing: DsfrSpacings.s1w,

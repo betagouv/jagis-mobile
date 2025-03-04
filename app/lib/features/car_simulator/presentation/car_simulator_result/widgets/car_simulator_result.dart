@@ -168,51 +168,53 @@ class _CarSimulatorOptionView extends StatelessWidget {
         kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
 
     return FnvCard(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        constraints: const BoxConstraints(maxWidth: 250),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: DsfrSpacings.s2w,
-          children: [
-            _KindTagView(kind),
-            if (currentCarIsBest)
-              Text(switch (kind) {
-                CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
-                CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
-              }, style: const DsfrTextStyle.headline5())
-            else ...[
-              Text(option.title, style: const DsfrTextStyle.headline4()),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
-                  Row(
-                    spacing: DsfrSpacings.s1w,
-                    children: [
-                      _NumberWithUnit(num: option.cost, unit: Localisation.euroSymbol),
-                      _DiffInTag(from: currentCar.cost, to: option.cost, unit: Localisation.euroSymbol),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
-                  Row(
-                    spacing: DsfrSpacings.s1w,
-                    children: [
-                      _NumberWithUnit(num: option.emissions, unit: Localisation.kgCO2e),
-                      _DiffInTag(from: currentCar.emissions, to: option.emissions, unit: '%'),
-                    ],
-                  ),
-                  const SizedBox(height: DsfrSpacings.s2w),
-                  _ContextInfosView(carInfos: option),
-                ],
-              ),
+        child: SizedBox(
+          width: 270,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s2w,
+            children: [
+              _KindTagView(kind),
+              if (currentCarIsBest)
+                Text(switch (kind) {
+                  CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
+                  CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
+                }, style: const DsfrTextStyle.headline5())
+              else ...[
+                Text(option.title, style: const DsfrTextStyle.headline4()),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+                    Row(
+                      spacing: DsfrSpacings.s1w,
+                      children: [
+                        _NumberWithUnit(num: option.cost, unit: Localisation.euroSymbol),
+                        _DiffInTag(from: currentCar.cost, to: option.cost, unit: Localisation.euroSymbol),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+                    Row(
+                      spacing: DsfrSpacings.s1w,
+                      children: [
+                        _NumberWithUnit(num: option.emissions, unit: Localisation.kgCO2e),
+                        _DiffInTag(from: currentCar.emissions, to: option.emissions, unit: '%'),
+                      ],
+                    ),
+                    const SizedBox(height: DsfrSpacings.s2w),
+                    _ContextInfosView(carInfos: option),
+                  ],
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -325,7 +327,7 @@ class _ContextInfosView extends StatelessWidget {
   Widget build(final BuildContext context) => Container(
     padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
     decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
-    width: 250,
+    width: 270,
     child: Wrap(
       spacing: DsfrSpacings.s1w,
       runSpacing: DsfrSpacings.s1w,

@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
@@ -14,7 +15,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionsPage extends StatelessWidget {
@@ -178,7 +178,7 @@ class _Element extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MarkdownBody(data: action.title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyLg())),
+            FnvMarkdown(data: action.title, p: const DsfrTextStyle.bodyLg()),
             const SizedBox(height: DsfrSpacings.s1v),
             _Information(
               icon: DsfrIcons.financeMoneyEuroCircleLine,
@@ -219,9 +219,9 @@ class _Information extends StatelessWidget {
               spacing: DsfrSpacings.s1w,
               children: [
                 ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
-                MarkdownBody(
+                FnvMarkdown(
                   data: '**$value** $suffix${value > 1 ? 's' : ''}',
-                  styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d))),
+                  p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
                 ),
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -15,7 +16,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionPage extends StatelessWidget {
@@ -102,7 +102,7 @@ class _TitleWithSubTitleView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      MarkdownBody(data: title, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 28))),
+      FnvMarkdown(data: title, p: const DsfrTextStyle(fontSize: 28)),
       if (subTitle != null) Text(subTitle!, style: const DsfrTextStyle.bodyLg()),
     ],
   );
@@ -185,14 +185,15 @@ class _Markdown extends StatelessWidget {
   final String data;
 
   @override
-  Widget build(final BuildContext context) => MarkdownBody(
+  Widget build(final BuildContext context) => FnvMarkdown(
     data: data,
-    styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 16), h1: const DsfrTextStyle(fontSize: 22)),
-    onTapLink: (final text, final href, final title) async {
+    h1: const DsfrTextStyle(fontSize: 22),
+    p: const DsfrTextStyle(fontSize: 16),
+    onTapLink: (final href) async {
       if (href != null) {
         await FnvUrlLauncher.launch(href);
       }
     },
-    imageBuilder: (final uri, final title, final alt) => FnvImage.network(uri.toString(), semanticLabel: alt),
+    imageBuilder: (final uri, final alt) => FnvImage.network(uri.toString(), semanticLabel: alt),
   );
 }

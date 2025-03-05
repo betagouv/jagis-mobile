@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/mission/challenges/presentation/bloc/mission_challenges_bloc.dart';
 import 'package:app/features/mission/challenges/presentation/bloc/mission_challenges_event.dart';
@@ -10,7 +11,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class MissionChallengesPage extends StatelessWidget {
   const MissionChallengesPage({super.key, required this.code});
@@ -35,18 +35,13 @@ class _View extends StatelessWidget {
         (final context, final state) => ListView(
           padding: const EdgeInsets.all(paddingVerticalPage),
           children: [
-            MarkdownBody(
+            const FnvMarkdown(
               data: Localisation.missionDefisTitle,
-              styleSheet: MarkdownStyleSheet(
-                p: const DsfrTextStyle.headline2(),
-                strong: const DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
-              ),
+              p: DsfrTextStyle.headline2(),
+              strong: DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
             ),
             const SizedBox(height: DsfrSpacings.s1w),
-            MarkdownBody(
-              data: Localisation.missionDefisSubTitle,
-              styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd()),
-            ),
+            const FnvMarkdown(data: Localisation.missionDefisSubTitle, p: DsfrTextStyle.bodyMd()),
             const SizedBox(height: DsfrSpacings.s3w),
             ...state.challenges.values
                 .map(

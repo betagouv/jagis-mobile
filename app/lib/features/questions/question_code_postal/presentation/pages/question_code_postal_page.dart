@@ -1,5 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/helpers/text_scaler.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
@@ -13,7 +14,6 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionCodePostalPage extends StatelessWidget {
@@ -44,9 +44,9 @@ class _View extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
-        MarkdownBody(
+        FnvMarkdown(
           data: Localisation.questionCourantSurMax(2, 3),
-          styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113)),
+          p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3v),
         const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration2)),

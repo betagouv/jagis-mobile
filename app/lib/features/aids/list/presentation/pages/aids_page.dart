@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
@@ -19,7 +20,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 class AidsPage extends StatelessWidget {
@@ -86,12 +86,10 @@ class _List extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MarkdownBody(
+        const FnvMarkdown(
           data: Localisation.aidListTitle,
-          styleSheet: MarkdownStyleSheet(
-            p: const DsfrTextStyle.headline2(),
-            strong: const DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
-          ),
+          p: DsfrTextStyle.headline2(),
+          strong: DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3w),
         Wrap(

@@ -1,13 +1,13 @@
 import 'dart:ui';
 
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class ActionsRecommandedSection extends StatelessWidget {
   const ActionsRecommandedSection({super.key});
@@ -59,9 +59,9 @@ class _GetStarted extends StatelessWidget {
         children: [
           const Text('Envie d’avoir un vrai impact ?', style: DsfrTextStyle.headline5()),
           const SizedBox(height: DsfrSpacings.s1v),
-          MarkdownBody(
+          const FnvMarkdown(
             data: 'Laissez-vous guider par nos recommandations d’actions **choisies pour vous !**',
-            styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd()),
+            p: DsfrTextStyle.bodyMd(),
           ),
           const SizedBox(height: DsfrSpacings.s2w),
           AnimationShake(

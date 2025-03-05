@@ -1,5 +1,6 @@
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/helpers/text_scaler.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
@@ -17,7 +18,6 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 const _inputWidth = 97.0;
@@ -382,20 +382,14 @@ class _Questions extends StatelessWidget {
     values: [
       DsfrAccordion(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.ouTrouverCesInformations),
-        body: _AccordionBody(
-          child: MarkdownBody(
-            data: Localisation.ouTrouverCesInformationsReponse,
-            styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 15)),
-          ),
+        body: const _AccordionBody(
+          child: FnvMarkdown(data: Localisation.ouTrouverCesInformationsReponse, p: DsfrTextStyle(fontSize: 15)),
         ),
       ),
       DsfrAccordion(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.pourquoiCesQuestions),
-        body: _AccordionBody(
-          child: MarkdownBody(
-            data: Localisation.pourquoiCesQuestionsReponse,
-            styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 15)),
-          ),
+        body: const _AccordionBody(
+          child: FnvMarkdown(data: Localisation.pourquoiCesQuestionsReponse, p: DsfrTextStyle(fontSize: 15)),
         ),
       ),
     ],

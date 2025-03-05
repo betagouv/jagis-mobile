@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class LvaoHorizontalList extends StatelessWidget {
   const LvaoHorizontalList({super.key, required this.category});
@@ -45,16 +45,16 @@ class _Success extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1w,
     children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MarkdownBody(
+            FnvMarkdown(
               data: 'Où faire **réparer** ?', // TODO(lsaudon): Ajouter la ville
-              styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 22)),
+              p: DsfrTextStyle(fontSize: 22),
             ),
-            const Text(
+            Text(
               'Trouvez les cordonniers et réparateurs agréés près de chez vous pour bénéficier d’une aide d’État', // TODO(lsaudon): Texte pour réparation
               style: DsfrTextStyle(fontSize: 16),
             ),

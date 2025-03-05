@@ -1,9 +1,9 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/environmental_performance/summary/environmental_performance_summary_l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class QuestionSection extends StatelessWidget {
   const QuestionSection({super.key});
@@ -21,24 +21,19 @@ class QuestionSection extends StatelessWidget {
         values: [
           DsfrAccordion(
             headerBuilder: (final isExpanded) => const _AccordionHeader(text: EnvironmentalPerformanceSummaryL10n.quEstCeQuUn),
-            body: _AccordionBody(
-              child: MarkdownBody(
-                data: EnvironmentalPerformanceSummaryL10n.quEstCeQuUnContenu,
-                styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 15)),
-              ),
+            body: const _AccordionBody(
+              child: FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.quEstCeQuUnContenu, p: DsfrTextStyle(fontSize: 15)),
             ),
           ),
           DsfrAccordion(
             headerBuilder:
                 (final isExpanded) => const _AccordionHeader(text: EnvironmentalPerformanceSummaryL10n.commentEstCalcule),
             body: _AccordionBody(
-              child: MarkdownBody(
+              child: FnvMarkdown(
                 data: EnvironmentalPerformanceSummaryL10n.commentEstCalculeContenu,
-                styleSheet: MarkdownStyleSheet(
-                  a: const DsfrTextStyle(fontSize: 15, color: DsfrColors.blueFranceSun113),
-                  p: const DsfrTextStyle(fontSize: 15),
-                ),
-                onTapLink: (final text, final href, final title) async {
+                p: const DsfrTextStyle(fontSize: 15),
+                a: const DsfrTextStyle(fontSize: 15, color: DsfrColors.blueFranceSun113),
+                onTapLink: (final href) async {
                   if (href == null) {
                     return;
                   }

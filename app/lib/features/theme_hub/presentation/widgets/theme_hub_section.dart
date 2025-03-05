@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme_hub/domain/theme_hub_model.dart';
@@ -8,7 +9,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class ThemeHubSection extends StatelessWidget {
   const ThemeHubSection({super.key});
@@ -54,16 +54,14 @@ class _Success extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-            child: MarkdownBody(
+            child: FnvMarkdown(
               data: Localisation.parOuSouhaitezVousCommencerDescription(value.model.city),
-              styleSheet: MarkdownStyleSheet(
-                p: const DsfrTextStyle.bodyMd(),
-                strong: const DsfrTextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: DsfrColors.blueFranceSun113,
-                  fontStyle: FontStyle.italic,
-                ),
+              p: const DsfrTextStyle.bodyMd(),
+              strong: const DsfrTextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: DsfrColors.blueFranceSun113,
+                fontStyle: FontStyle.italic,
               ),
             ),
           ),
@@ -157,7 +155,7 @@ class _Details extends StatelessWidget {
           ThemeHubDetailType.simulator => 'simulateurs',
         };
 
-        return MarkdownBody(data: '- **${e.value}** $s', styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodySm()));
+        return FnvMarkdown(data: '- **${e.value}** $s', p: const DsfrTextStyle.bodySm());
       }),
     ],
   );

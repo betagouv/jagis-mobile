@@ -1,6 +1,6 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class FnvTitle extends StatelessWidget {
   const FnvTitle({super.key, required this.title, this.subtitle});
@@ -12,12 +12,10 @@ class FnvTitle extends StatelessWidget {
   Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      MarkdownBody(
+      FnvMarkdown(
         data: title,
-        styleSheet: MarkdownStyleSheet(
-          p: const DsfrTextStyle.headline2(),
-          strong: const DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
-        ),
+        p: const DsfrTextStyle.headline2(),
+        strong: const DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
       ),
       if (subtitle != null) ...[const SizedBox(height: DsfrSpacings.s1v5), Text(subtitle!, style: const DsfrTextStyle.bodyMd())],
     ],

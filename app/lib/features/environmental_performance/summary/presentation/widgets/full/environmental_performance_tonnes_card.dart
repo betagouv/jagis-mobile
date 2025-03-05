@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/environmental_performance/summary/domain/footprint.dart';
@@ -5,7 +6,6 @@ import 'package:app/features/environmental_performance/summary/environmental_per
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/compare_bar.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
   const EnvironmentalPerformanceTonnesCard({super.key, required this.footprint});
@@ -44,10 +44,7 @@ class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
             ],
           ),
           CompareBar(value: footprint.percentageOfMaxFootprint),
-          MarkdownBody(
-            data: EnvironmentalPerformanceSummaryL10n.aTitreDeComparaison,
-            styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd()),
-          ),
+          const FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.aTitreDeComparaison, p: DsfrTextStyle.bodyMd()),
         ],
       ),
     ),

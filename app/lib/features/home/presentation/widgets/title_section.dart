@@ -1,6 +1,6 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class TitleSection extends StatelessWidget {
   const TitleSection({super.key, required this.title, required this.subTitle});
@@ -13,14 +13,12 @@ class TitleSection extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1v5,
     children: [
-      MarkdownBody(
+      FnvMarkdown(
         data: title,
-        styleSheet: MarkdownStyleSheet(
-          p: const DsfrTextStyle.headline4(),
-          strong: const DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113),
-        ),
+        p: const DsfrTextStyle.headline4(),
+        strong: const DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113),
       ),
-      MarkdownBody(data: subTitle, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd())),
+      FnvMarkdown(data: subTitle, p: const DsfrTextStyle.bodyMd()),
     ],
   );
 }

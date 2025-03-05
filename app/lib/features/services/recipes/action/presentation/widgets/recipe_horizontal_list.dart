@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/features/services/recipes/action/presentation/bloc/action_recipes_bloc.dart';
 import 'package:app/features/services/recipes/action/presentation/bloc/action_recipes_event.dart';
 import 'package:app/features/services/recipes/action/presentation/bloc/action_recipes_state.dart';
@@ -6,7 +7,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class RecipeHorizontalList extends StatelessWidget {
   const RecipeHorizontalList({super.key, required this.category});
@@ -43,13 +43,11 @@ class _Success extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1w,
     children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: MarkdownBody(
-          data: Localisation.besoinDInspiration,
-          styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 22)),
-        ),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+        child: FnvMarkdown(data: Localisation.besoinDInspiration, p: DsfrTextStyle(fontSize: 22)),
       ),
+
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),

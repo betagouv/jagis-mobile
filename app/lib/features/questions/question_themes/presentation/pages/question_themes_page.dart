@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/checkbox_set.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
@@ -13,7 +14,6 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionThemesPage extends StatelessWidget {
@@ -43,9 +43,9 @@ class _View extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
-        MarkdownBody(
+        FnvMarkdown(
           data: Localisation.questionCourantSurMax(3, 3),
-          styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113)),
+          p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3v),
         const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration4)),

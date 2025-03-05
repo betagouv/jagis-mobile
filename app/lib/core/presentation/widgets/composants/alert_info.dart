@@ -1,6 +1,6 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class FnvAlertInfo extends StatelessWidget {
   const FnvAlertInfo({super.key, required this.label, this.content});
@@ -14,7 +14,7 @@ class FnvAlertInfo extends StatelessWidget {
       spacing: DsfrSpacings.s1w,
       children: [
         const Icon(DsfrIcons.systemQuestionLine, color: DsfrColors.blueFranceSun113),
-        Expanded(child: MarkdownBody(data: label, styleSheet: MarkdownStyleSheet(p: const DsfrTextStyle(fontSize: 15)))),
+        Expanded(child: FnvMarkdown(data: label, p: const DsfrTextStyle(fontSize: 15))),
       ],
     );
     if (content != null) {

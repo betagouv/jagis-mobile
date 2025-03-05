@@ -5,6 +5,7 @@ import 'package:app/features/know_your_customer/detail/presentation/form/mieux_v
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,28 +58,56 @@ class _SuccessState extends State<_Success> {
   Widget build(final context) =>
       widget.questionManager.cursor.allQuestionsAreAnswered
           ? const CarSimulatorResult()
-          : Column(
-            children: [
-              MieuxVousConnaitreForm(
-                questionId: widget.questionManager.cursor.element!.id.value,
-                controller: _controller,
-                onSaved: () {
-                  context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
-                },
-              ),
-              const SizedBox(height: 16),
-              DsfrButton(
-                label: 'Suivant',
-                variant: DsfrButtonVariant.primary,
-                size: DsfrButtonSize.lg,
-                onPressed: _controller.save,
-              ),
-              DsfrButton(
-                label: 'Précédent',
-                variant: DsfrButtonVariant.primary,
-                size: DsfrButtonSize.lg,
-                onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
-              ),
-            ],
+          : Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              spacing: DsfrSpacings.s1w,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // TODO(erolley): to factorize and extract in its own widget
+                Text.rich(
+                  TextSpan(
+                    text: 'Question ',
+                    style: const DsfrTextStyle.bodyLg(color: DsfrColors.blueFranceSun113),
+                    children: [
+                      TextSpan(
+                        text: (widget.questionManager.cursor.index + 1).toString(),
+                        style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),
+                      ),
+                      const TextSpan(text: ' sur ', style: DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113)),
+                      TextSpan(
+                        text: widget.questionManager.cursor.total.toString(),
+                        style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),
+                      ),
+                    ],
+                  ),
+                ),
+                MieuxVousConnaitreForm(
+                  questionId: widget.questionManager.cursor.element!.id.value,
+                  controller: _controller,
+                  onSaved: () {
+                    context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
+                  },
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  spacing: DsfrSpacings.s1w,
+                  children: [
+                    DsfrButtonIcon(
+                      variant: DsfrButtonVariant.secondary,
+                      icon: DsfrIcons.systemArrowLeftLine,
+                      size: DsfrButtonSize.lg,
+                      onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+                    ),
+                    DsfrButton(
+                      label: Localisation.questionSuivante,
+                      variant: DsfrButtonVariant.primary,
+                      size: DsfrButtonSize.lg,
+                      onPressed: _controller.save,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
 }

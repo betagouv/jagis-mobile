@@ -5,6 +5,7 @@ import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
+import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class ActionsRecommandedSection extends StatelessWidget {
               const Center(child: Padding(padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w), child: _GetStarted())),
             ],
           ),
+          const FnvLoader(),
         ],
       ),
     ),

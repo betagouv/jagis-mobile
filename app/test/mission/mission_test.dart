@@ -135,7 +135,7 @@ void main() {
         final dio =
             DioMock()
               ..getM(Endpoints.mission('compost'), responseData: missionMap)
-              ..getM(Endpoints.questionKyc('KYC_compost_pratique'), responseData: kyc);
+              ..getM(Endpoints.question('KYC_compost_pratique'), responseData: kyc);
         await pumpForMissionPage(tester, dio: dio);
         await tester.tap(find.text('Valoriser ses restes avec un compost'));
         await tester.pumpAndSettle();
@@ -150,7 +150,7 @@ void main() {
         final dio =
             DioMock()
               ..getM(Endpoints.mission('compost'), responseData: missionPartiallyAnswered)
-              ..getM(Endpoints.questionKyc('KYC_compost_motivation'), responseData: kyc2);
+              ..getM(Endpoints.question('KYC_compost_motivation'), responseData: kyc2);
         await pumpForMissionPage(tester, dio: dio);
         await tester.tap(find.text('Valoriser ses restes avec un compost'));
         await tester.pumpAndSettle();

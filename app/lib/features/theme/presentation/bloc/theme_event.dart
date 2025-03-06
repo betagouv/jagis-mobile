@@ -11,8 +11,8 @@ sealed class ThemeEvent extends Equatable {
 }
 
 @immutable
-final class ThemeRecuperationDemandee extends ThemeEvent {
-  const ThemeRecuperationDemandee(this.themeType);
+final class ThemeFetchRequested extends ThemeEvent {
+  const ThemeFetchRequested(this.themeType);
 
   final ThemeType themeType;
 

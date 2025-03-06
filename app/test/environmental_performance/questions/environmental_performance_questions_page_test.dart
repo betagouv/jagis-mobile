@@ -61,10 +61,10 @@ void main() {
           DioMock()
             ..getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData)
             ..getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilanQuestions)
-            ..getM(Endpoints.questionKyc('KYC_transport_voiture_km'), responseData: miniBilanQuestions.first)
-            ..putM(Endpoints.questionKyc('KYC_transport_voiture_km'))
-            ..getM(Endpoints.questionKyc('KYC_transport_avion_3_annees'), responseData: miniBilanQuestions[1])
-            ..putM(Endpoints.questionKyc('KYC_transport_avion_3_annees'));
+            ..getM(Endpoints.question('KYC_transport_voiture_km'), responseData: miniBilanQuestions.first)
+            ..putM(Endpoints.question('KYC_transport_voiture_km'))
+            ..getM(Endpoints.question('KYC_transport_avion_3_annees'), responseData: miniBilanQuestions[1])
+            ..putM(Endpoints.question('KYC_transport_avion_3_annees'));
       await pumpEnvironmentalPerformancePage(tester, dio: dio);
       await tester.pumpAndSettle();
       await tester.tap(find.text(EnvironmentalPerformanceSummaryL10n.commencerMonMiniBilan));

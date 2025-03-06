@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/core/infrastructure/endpoints.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../environmental_performance/summary/environmental_performance_data.dart';
@@ -38,20 +39,91 @@ Future<void> initializeContext() async {
   setServices();
   setBicycleSimulator();
   setThemes();
+  setEnchainements();
 }
 
-void setThemes() => FeatureContext.instance.dioMock.getM(
-  Endpoints.themes,
-  responseData: {
-    'nom_commune': 'Dole',
-    'liste_thematiques': [
-      {'thematique': 'alimentation', 'nombre_actions': 5, 'nombre_aides': 0, 'nombre_recettes': 1150, 'nombre_simulateurs': 0},
-      {'thematique': 'logement', 'nombre_actions': 4, 'nombre_aides': 6, 'nombre_simulateurs': 0},
-      {'thematique': 'transport', 'nombre_actions': 2, 'nombre_aides': 2, 'nombre_simulateurs': 0},
-      {'thematique': 'consommation', 'nombre_actions': 3, 'nombre_aides': 2, 'nombre_simulateurs': 0},
-    ],
-  },
-);
+void setThemes() =>
+    FeatureContext.instance.dioMock
+      ..getM(
+        Endpoints.themes,
+        responseData: {
+          'nom_commune': 'Dole',
+          'liste_thematiques': [
+            {
+              'thematique': 'alimentation',
+              'nombre_actions': 5,
+              'nombre_aides': 0,
+              'nombre_recettes': 1150,
+              'nombre_simulateurs': 0,
+            },
+            {'thematique': 'logement', 'nombre_actions': 4, 'nombre_aides': 6, 'nombre_simulateurs': 0},
+            {'thematique': 'transport', 'nombre_actions': 2, 'nombre_aides': 2, 'nombre_simulateurs': 0},
+            {'thematique': 'consommation', 'nombre_actions': 3, 'nombre_aides': 2, 'nombre_simulateurs': 0},
+          ],
+        },
+      )
+      ..getM(
+        Endpoints.theme(ThemeType.alimentation.name),
+        responseData: {
+          'thematique': 'alimentation',
+          'est_personnalisation_necessaire': true,
+          'enchainement_questions_personnalisation': 'ENCHAINEMENT_KYC_personnalisation_alimentation',
+          'liste_actions_recommandees': <dynamic>[],
+          'nombre_actions': 5,
+          'nombre_aides': 0,
+          'nombre_simulateurs': 0,
+          'nom_commune': 'Dole',
+        },
+      )
+      ..getM(
+        Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_alimentation'),
+        responseData: [
+          {
+            'code': 'KYC003',
+            'question': 'Êtes-vous équipé(e) d’un vélo ?',
+            'reponse_multiple': [
+              {'code': 'oui', 'label': 'Oui', 'selected': false},
+              {'code': 'non', 'label': 'Non', 'selected': false},
+            ],
+            'is_answered': false,
+            'categorie': 'mission',
+            'points': 5,
+            'type': 'choix_unique',
+            'is_NGC': false,
+            'thematique': 'transport',
+          },
+        ],
+      )
+      ..getM(
+        Endpoints.question('KYC003'),
+        responseData: {
+          'code': 'KYC003',
+          'question': 'Êtes-vous équipé(e) d’un vélo ?',
+          'reponse_multiple': [
+            {'code': 'oui', 'label': 'Oui', 'selected': false},
+            {'code': 'non', 'label': 'Non', 'selected': false},
+          ],
+          'is_answered': false,
+          'categorie': 'mission',
+          'points': 5,
+          'type': 'choix_unique',
+          'is_NGC': false,
+          'thematique': 'transport',
+        },
+      )
+      ..getM(
+        Endpoints.theme(ThemeType.transport.name),
+        responseData: {
+          'thematique': 'transport',
+          'est_personnalisation_necessaire': true,
+          'enchainement_questions_personnalisation': 'ENCHAINEMENT_KYC_personnalisation_transport',
+          'liste_actions_recommandees': <dynamic>[],
+          'nombre_actions': 2,
+          'nombre_aides': 2,
+          'nombre_simulateurs': 0,
+          'nom_commune': 'Dijon',
+        },
+      );
 
 void setLogout() => FeatureContext.instance.dioMock.postM(Endpoints.logout);
 
@@ -87,10 +159,54 @@ void setBilanEmpty() => FeatureContext.instance.dioMock.getM(Endpoints.bilan, re
 void setMiniBilan() =>
     FeatureContext.instance.dioMock.getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilan);
 
+void setEnchainements() {
+  final questionOne = {
+    'code': 'KYC_transport_avion_3_annees',
+    'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
+    'reponse_multiple': [
+      {'code': 'oui', 'label': 'Oui', 'selected': false},
+      {'code': 'non', 'label': 'Non', 'selected': true},
+      {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
+    ],
+    'is_answered': true,
+    'categorie': 'mission',
+    'points': 5,
+    'type': 'choix_unique',
+    'is_NGC': true,
+    'thematique': 'transport',
+  };
+
+  FeatureContext.instance.dioMock
+    ..getM(
+      Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_transport'),
+      responseData: [
+        questionOne,
+        {
+          'code': 'KYC003',
+          'question': 'Êtes-vous équipé(e) d’un vélo ?',
+          'reponse_multiple': [
+            {'code': 'oui', 'label': 'Oui', 'selected': false},
+            {'code': 'non', 'label': 'Non', 'selected': false},
+          ],
+          'is_answered': false,
+          'categorie': 'mission',
+          'points': 5,
+          'type': 'choix_unique',
+          'is_NGC': false,
+          'thematique': 'transport',
+        },
+      ],
+    )
+    ..getM(Endpoints.question(questionOne['code']! as String), responseData: questionOne);
+}
+
 void setMissionRecommanded() => FeatureContext.instance.dioMock.getM(Endpoints.missionsRecommandees, responseData: <dynamic>[]);
 
-void setMissionRecommandedByThematique() =>
-    FeatureContext.instance.dioMock.getM(Endpoints.missionsRecommandeesParThematique('alimentation'), responseData: <dynamic>[]);
+void setMissionRecommandedByThematique() {
+  FeatureContext.instance.dioMock
+    ..getM(Endpoints.missionsRecommandeesParThematique(ThemeType.alimentation.name), responseData: <dynamic>[])
+    ..getM(Endpoints.missionsRecommandeesParThematique(ThemeType.transport.name), responseData: <dynamic>[]);
+}
 
 void setAssistances() => FeatureContext.instance.dioMock.getM(
   Endpoints.aids,
@@ -129,7 +245,7 @@ void setPoints() => FeatureContext.instance.dioMock.getM(Endpoints.gamification,
 void setPreferences() =>
     FeatureContext.instance.dioMock
       ..getM(
-        Endpoints.questionKyc('KYC_preference'),
+        Endpoints.question('KYC_preference'),
         responseData: {
           'code': 'KYC_preference',
           'question': 'Sur quels thèmes recherchez-vous en priorité des aides et conseils ?',
@@ -148,7 +264,7 @@ void setPreferences() =>
           'thematique': 'climat',
         },
       )
-      ..putM(Endpoints.questionKyc('KYC_preference'));
+      ..putM(Endpoints.question('KYC_preference'));
 
 void setDeleteAccount() => FeatureContext.instance.dioMock.deleteM(Endpoints.utilisateur);
 
@@ -181,15 +297,19 @@ void setCommunes() => FeatureContext.instance.dioMock.getM(
 void setChallenges() =>
     FeatureContext.instance.dioMock
       ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
-      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[]);
+      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[])
+      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=transport', responseData: <dynamic>[]);
 
 void setRecommandations() =>
-    FeatureContext.instance.dioMock..getM(Endpoints.recommandationsParThematique('alimentation'), responseData: <dynamic>[]);
+    FeatureContext.instance.dioMock
+      ..getM(Endpoints.recommandationsParThematique(ThemeType.alimentation.name), responseData: <dynamic>[])
+      ..getM(Endpoints.recommandationsParThematique(ThemeType.transport.name), responseData: <dynamic>[]);
 
 void setServices() =>
     FeatureContext.instance.dioMock
+      ..getM(Endpoints.servicesParThematique(ThemeType.transport.name), responseData: <dynamic>[])
       ..getM(
-        Endpoints.servicesParThematique('alimentation'),
+        Endpoints.servicesParThematique(ThemeType.alimentation.name),
         responseData: jsonDecode('''
 [
  {

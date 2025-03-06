@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-high-cyclomatic-complexity
+
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/mieux_vous_connaitre_repository.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_event.dart';

@@ -3,15 +3,25 @@ import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/features/theme/core/domain/mission_liste.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
+import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/core/infrastructure/mission_liste_mapper.dart';
 import 'package:app/features/theme/core/infrastructure/service_item_mapper.dart';
+import 'package:app/features/theme/core/infrastructure/theme_data_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ThemeRepository {
   const ThemeRepository({required final DioHttpClient client}) : _client = client;
 
   final DioHttpClient _client;
+
+  Future<Either<Exception, ThemeInfo>> fetchTheme({required final ThemeType themeType}) async {
+    final response = await _client.get(Endpoints.theme(themeType.name));
+
+    return isResponseSuccessful(response.statusCode)
+        ? Right(ThemeDataMapper.fromJson(response.data as Map<String, dynamic>))
+        : Left(Exception('Erreur lors de la récupération du thème'));
+  }
 
   Future<Either<Exception, List<MissionListe>>> getMissions(final ThemeType themeType) async {
     final response = await _client.get(Endpoints.missionsRecommandeesParThematique(themeType.name));

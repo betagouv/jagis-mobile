@@ -11,6 +11,7 @@ import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
+import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/service_card.dart';
 import 'package:app/features/theme/presentation/widgets/theme_card.dart';
 import 'package:app/l10n/l10n.dart';
@@ -43,7 +44,7 @@ class _Page extends StatefulWidget {
 class _PageState extends State<_Page> with RouteAware {
   void _handleMission() {
     if (mounted) {
-      context.read<ThemeBloc>().add(ThemeRecuperationDemandee(widget.themeType));
+      context.read<ThemeBloc>().add(ThemeFetchRequested(widget.themeType));
     }
   }
 
@@ -66,88 +67,105 @@ class _PageState extends State<_Page> with RouteAware {
   }
 
   @override
-  Widget build(final context) => _View(widget.themeType);
+  Widget build(final context) => BlocBuilder<ThemeBloc, ThemeState>(
+    builder:
+        (final context, final state) => switch (state) {
+          ThemeInitial() => const SizedBox.shrink(),
+          ThemeLoadInProgress() => const Center(child: CircularProgressIndicator()),
+          ThemeLoadSuccess() => _Success(data: state),
+          ThemeLoadFailure() => const Center(child: Text('Erreur')),
+        },
+  );
 }
 
-class _View extends StatelessWidget {
-  const _View(this.themeType);
+class _Success extends StatelessWidget {
+  const _Success({required this.data});
+
+  final ThemeLoadSuccess data;
+
+  @override
+  Widget build(final BuildContext context) {
+    final theme = data.theme;
+    final themeType = theme.themeType;
+
+    return ListView(
+      children: [
+        const SizedBox(height: DsfrSpacings.s4w),
+        _ImageEtTitre(themeType: themeType),
+        const SizedBox(height: DsfrSpacings.s4w),
+        ActionsRecommandedSection(theme: theme),
+        const SizedBox(height: DsfrSpacings.s4w),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Missions(missions: data.missions)),
+        const SizedBox(height: DsfrSpacings.s4w),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: ChallengesSection(themeType: themeType),
+        ),
+        const SizedBox(height: DsfrSpacings.s4w),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services(services: data.services)),
+        const SizedBox(height: DsfrSpacings.s4w),
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+            child: _Recommandations(themeType: themeType),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ImageEtTitre extends StatelessWidget {
+  const _ImageEtTitre({required this.themeType});
 
   final ThemeType themeType;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final context) => Column(
+    spacing: DsfrSpacings.s1w,
     children: [
-      const SizedBox(height: DsfrSpacings.s4w),
-      const _ImageEtTitre(),
-      const SizedBox(height: DsfrSpacings.s4w),
-      const ActionsRecommandedSection(),
-      const SizedBox(height: DsfrSpacings.s4w),
-      const Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Missions()),
-      const SizedBox(height: DsfrSpacings.s4w),
-      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: ChallengesSection(themeType: themeType)),
-      const SizedBox(height: DsfrSpacings.s4w),
-      const Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services()),
-      const SizedBox(height: DsfrSpacings.s4w),
-      const SafeArea(child: Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Recommandations())),
+      ClipOval(
+        child: SizedBox.square(
+          dimension: 80,
+          child: FnvSvg.asset(
+            switch (themeType) {
+              ThemeType.alimentation => AssetImages.alimentation,
+              ThemeType.transport => AssetImages.transport,
+              ThemeType.logement => AssetImages.logement,
+              ThemeType.consommation => AssetImages.consommation,
+              ThemeType.decouverte => throw UnimplementedError(),
+            },
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline2()),
     ],
   );
 }
 
-class _ImageEtTitre extends StatelessWidget {
-  const _ImageEtTitre();
-
-  @override
-  Widget build(final context) {
-    final themeType = context.select<ThemeBloc, ThemeType>((final bloc) => bloc.state.themeType);
-
-    return Column(
-      spacing: DsfrSpacings.s1w,
-      children: [
-        ClipOval(
-          child: SizedBox.square(
-            dimension: 80,
-            child: FnvSvg.asset(
-              switch (themeType) {
-                ThemeType.alimentation => AssetImages.alimentation,
-                ThemeType.transport => AssetImages.transport,
-                ThemeType.logement => AssetImages.logement,
-                ThemeType.consommation => AssetImages.consommation,
-                ThemeType.decouverte => throw UnimplementedError(),
-              },
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline2()),
-      ],
-    );
-  }
-}
-
 class _Missions extends StatelessWidget {
-  const _Missions();
+  const _Missions({required this.missions});
+
+  final List<MissionListe> missions;
 
   @override
-  Widget build(final context) {
-    final thematiques = context.select<ThemeBloc, List<MissionListe>>((final bloc) => bloc.state.missions);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        const Text(Localisation.mesMissions, style: DsfrTextStyle.headline4()),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          child: IntrinsicHeight(
-            child: Row(spacing: DsfrSpacings.s2w, children: thematiques.map((final e) => _Mission(mission: e)).toList()),
-          ),
+  Widget build(final context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      const Text(Localisation.mesMissions, style: DsfrTextStyle.headline4()),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        child: IntrinsicHeight(
+          child: Row(spacing: DsfrSpacings.s2w, children: missions.map((final e) => _Mission(mission: e)).toList()),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 }
 
 class _Mission extends StatelessWidget {
@@ -201,36 +219,32 @@ class _Mission extends StatelessWidget {
 }
 
 class _Services extends StatelessWidget {
-  const _Services();
+  const _Services({required this.services});
+
+  final List<ServiceItem> services;
 
   @override
-  Widget build(final context) {
-    final services = context.select<ThemeBloc, List<ServiceItem>>((final bloc) => bloc.state.services);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        const Text(Localisation.mesServices, style: DsfrTextStyle.headline4()),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          child: IntrinsicHeight(
-            child: Row(spacing: DsfrSpacings.s2w, children: services.map((final e) => ServiceCard(service: e)).toList()),
-          ),
+  Widget build(final context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      const Text(Localisation.mesServices, style: DsfrTextStyle.headline4()),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        child: IntrinsicHeight(
+          child: Row(spacing: DsfrSpacings.s2w, children: services.map((final e) => ServiceCard(service: e)).toList()),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 }
 
 class _Recommandations extends StatelessWidget {
-  const _Recommandations();
+  const _Recommandations({required this.themeType});
+
+  final ThemeType themeType;
 
   @override
-  Widget build(final context) {
-    final type = context.select<ThemeBloc, ThemeType>((final bloc) => bloc.state.themeType);
-
-    return MesRecommandations(theme: type);
-  }
+  Widget build(final context) => MesRecommandations(theme: themeType);
 }

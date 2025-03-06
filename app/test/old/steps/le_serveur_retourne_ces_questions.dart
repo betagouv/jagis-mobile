@@ -10,6 +10,6 @@ void leServeurRetourneCesQuestions(final List<Map<String, dynamic>> questions) {
 
 void leServeurRetourneCetteQuestion(final Map<String, dynamic> question) {
   final id = question['code'] as String;
-  ScenarioContext().dioMock!.getM(Endpoints.questionKyc(id), responseData: question);
-  ScenarioContext().dioMock!.putM(Endpoints.questionKyc(id));
+  ScenarioContext().dioMock!.getM(Endpoints.question(id), responseData: question);
+  ScenarioContext().dioMock!.putM(Endpoints.question(id));
 }

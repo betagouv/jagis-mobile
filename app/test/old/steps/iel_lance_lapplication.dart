@@ -6,6 +6,7 @@ import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/tracker.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,21 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
           {'thematique': 'consommation', 'nombre_actions': 5},
         ],
       },
-    );
+    )
+    ..getM(
+      Endpoints.theme(ThemeType.alimentation.name),
+      responseData: {
+        'thematique': 'alimentation',
+        'est_personnalisation_necessaire': true,
+        'enchainement_questions_personnalisation': 'ENCHAINEMENT_KYC_personnalisation_alimentation',
+        'liste_actions_recommandees': <dynamic>[],
+        'nombre_actions': 5,
+        'nombre_aides': 0,
+        'nombre_simulateurs': 0,
+        'nom_commune': 'Dole',
+      },
+    )
+    ..getM(Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_alimentation'), responseData: <dynamic>[]);
 
   await mockNetworkImages(() async {
     await tester.pumpFrames(

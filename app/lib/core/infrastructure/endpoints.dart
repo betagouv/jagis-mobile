@@ -40,10 +40,11 @@ abstract final class Endpoints {
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
 
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
+  static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
   static String recommandationsParThematique(final String thematique) =>
       '/utilisateurs/{userId}/thematiques/$thematique/recommandations';
-  static String questionKyc(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
-  static String questions(final String enchainementId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$enchainementId';
+  static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';
+  static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
   static String servicesParThematique(final String codeThematique) =>
       '/utilisateurs/{userId}/thematiques/$codeThematique/recherche_services';
   static String recipe(final String recipeId) => '/utilisateurs/{userId}/recherche_services/recettes/last_results/$recipeId';

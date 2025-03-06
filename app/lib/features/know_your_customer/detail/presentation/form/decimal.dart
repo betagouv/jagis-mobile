@@ -24,7 +24,7 @@ class Decimal extends StatelessWidget {
         if (double.tryParse(value) == null) {
           return;
         }
-        context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditEntierChangee(value));
+        context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditDecimalChangee(value));
       },
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,.]'))],

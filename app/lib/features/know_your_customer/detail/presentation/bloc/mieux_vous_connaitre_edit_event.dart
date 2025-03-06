@@ -71,6 +71,16 @@ final class MieuxVousConnaitreEditEntierChangee extends MieuxVousConnaitreEditEv
 }
 
 @immutable
+final class MieuxVousConnaitreEditDecimalChangee extends MieuxVousConnaitreEditEvent {
+  const MieuxVousConnaitreEditDecimalChangee(this.value);
+
+  final String value;
+
+  @override
+  List<Object> get props => [value];
+}
+
+@immutable
 final class MieuxVousConnaitreEditMisAJourDemandee extends MieuxVousConnaitreEditEvent {
   const MieuxVousConnaitreEditMisAJourDemandee(this.id);
 

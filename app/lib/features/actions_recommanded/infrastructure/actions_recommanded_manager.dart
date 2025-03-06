@@ -26,21 +26,21 @@ class ActionsRecommandedQuestionsManager extends CursorManager<Question> {
   @override
   Future<Cursor<Question>> previous(final Cursor<Question> current) async {
     final list = await _getList();
-    final newIndex = current.index - 1;
+    final previousIndex = current.index - 1;
 
-    return newIndex < 0
+    return previousIndex < 0
         ? Cursor(element: list.first, index: 0, total: list.length)
-        : Cursor(element: list[newIndex], index: newIndex, total: list.length);
+        : Cursor(element: list[previousIndex], index: previousIndex, total: list.length);
   }
 
   @override
   Future<Cursor<Question>> next(final Cursor<Question> current) async {
     final list = await _getList();
-    final newIndex = current.index + 1;
+    final nextIndex = current.index + 1;
 
-    return newIndex >= list.length
+    return nextIndex >= list.length
         ? Cursor(element: null, index: current.index, total: list.length)
-        : Cursor(element: list[newIndex], index: newIndex, total: list.length);
+        : Cursor(element: list[nextIndex], index: nextIndex, total: list.length);
   }
 
   Future<List<Question>> _getList() async {

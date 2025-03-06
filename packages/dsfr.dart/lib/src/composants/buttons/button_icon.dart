@@ -12,6 +12,7 @@ class DsfrButtonIcon extends StatelessWidget {
   const DsfrButtonIcon({
     super.key,
     required this.icon,
+    this.semanticLabel,
     this.iconColor,
     required this.variant,
     this.foregroundColor,
@@ -20,6 +21,7 @@ class DsfrButtonIcon extends StatelessWidget {
   });
 
   final IconData icon;
+  final String? semanticLabel;
   final Color? iconColor;
   final DsfrButtonVariant variant;
   final Color? foregroundColor;
@@ -38,7 +40,7 @@ class DsfrButtonIcon extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    Widget child = Icon(icon, size: _getIconSize(size));
+    Widget child = Icon(icon, size: _getIconSize(size), semanticLabel: semanticLabel);
     if (iconColor != null) {
       child = IconTheme(data: IconThemeData(color: iconColor), child: child);
     }

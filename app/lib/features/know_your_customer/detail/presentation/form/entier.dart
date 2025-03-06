@@ -19,6 +19,7 @@ class Entier extends StatelessWidget {
     return DsfrInputHeadless(
       key: const ValueKey(Localisation.maReponse),
       controller: controller,
+      suffixText: question.response.unit?.abreviation,
       onChanged: (final value) {
         if (int.tryParse(value) == null) {
           return;

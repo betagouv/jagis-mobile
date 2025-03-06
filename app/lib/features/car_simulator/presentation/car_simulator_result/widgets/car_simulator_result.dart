@@ -117,8 +117,8 @@ class _BestCarOptionView extends StatelessWidget {
               baseline: TextBaseline.alphabetic,
               child: FnvDropdown<CarSize>(
                 items: const {
-                  CarSize.small: 'citadine',
-                  CarSize.medium: 'monospace',
+                  CarSize.small: 'petite',
+                  CarSize.medium: 'moyenne',
                   CarSize.sedan: 'berline',
                   CarSize.suv: 'SUV',
                   CarSize.utilityVehicle: 'VUL',

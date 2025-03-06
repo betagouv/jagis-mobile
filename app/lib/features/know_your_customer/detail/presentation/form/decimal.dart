@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// NOTE: Seems to have equivalent implementation in the DSFR input used for the RFR.
 class Decimal extends StatelessWidget {
   const Decimal({super.key, required this.question});
 
@@ -20,6 +19,7 @@ class Decimal extends StatelessWidget {
     return DsfrInputHeadless(
       key: const ValueKey(Localisation.maReponse),
       controller: controller,
+      suffixText: question.response.unit?.abreviation,
       onChanged: (final value) {
         if (double.tryParse(value) == null) {
           return;

@@ -109,19 +109,30 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
           context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
         },
       ),
-      Row(
-        spacing: DsfrSpacings.s1w,
+      Column(
         children: [
-          DsfrButtonIcon(
-            icon: DsfrIcons.systemArrowLeftLine,
-            variant: DsfrButtonVariant.secondary,
-            size: DsfrButtonSize.lg,
-            onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+          Row(
+            children: [
+              DsfrButtonIcon(
+                icon: DsfrIcons.systemArrowLeftLine,
+                variant: DsfrButtonVariant.secondary,
+                size: DsfrButtonSize.lg,
+                onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+              ),
+              Expanded(
+                child: DsfrButton(
+                  label: Localisation.questionSuivante,
+                  variant: DsfrButtonVariant.primary,
+                  size: DsfrButtonSize.lg,
+                  onPressed: _controller.save,
+                ),
+              ),
+            ],
           ),
           DsfrButton(
-            label: Localisation.questionSuivante,
-            variant: DsfrButtonVariant.primary,
-            size: DsfrButtonSize.lg,
+            label: Localisation.passerLaQuestion,
+            variant: DsfrButtonVariant.tertiaryWithoutBorder,
+            size: DsfrButtonSize.md,
             onPressed: _controller.save,
           ),
         ],

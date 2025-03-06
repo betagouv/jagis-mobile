@@ -28,7 +28,7 @@ class DsfrButtonBackgroundColor extends WidgetStateColor {
         );
       case DsfrButtonVariant.secondary:
       case DsfrButtonVariant.tertiary:
-      case DsfrButtonVariant.tertiaryWithouBorder:
+      case DsfrButtonVariant.tertiaryWithoutBorder:
         return DsfrButtonBackgroundColor(
           $default: Colors.transparent,
           active: const Color(0x0A000000),

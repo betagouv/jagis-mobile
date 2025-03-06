@@ -16,7 +16,8 @@ class ChallengesRepository {
     if (themeType != null) {
       queryParameters.putIfAbsent('thematique', () => themeType.name);
     }
-    final response = await _client.get(Uri(path: Endpoints.challenges, queryParameters: queryParameters).toString());
+    final uri = Uri(path: Endpoints.challenges, queryParameters: queryParameters);
+    final response = await _client.get(uri.toString());
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération des défis'));

@@ -17,7 +17,7 @@ class MieuxVousConnaitreRepository {
   final MessageBus _messageBus;
 
   Future<Either<Exception, Question>> recupererQuestion({required final String id}) async {
-    final response = await _client.get(Endpoints.questionKyc(id));
+    final response = await _client.get(Endpoints.question(id));
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération de la question'));
@@ -37,7 +37,7 @@ class MieuxVousConnaitreRepository {
       QuestionMosaicBoolean() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
     };
 
-    final response = await _client.put(Endpoints.questionKyc(question.code.value), data: jsonEncode(object));
+    final response = await _client.put(Endpoints.question(question.code.value), data: jsonEncode(object));
 
     if (isResponseSuccessful(response.statusCode)) {
       _messageBus.publish(kycTopic);

@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
-import './step/i_tap_on.dart';
 import './step/i_see.dart';
 
 void main() {
@@ -18,39 +17,31 @@ void main() {
     await Hooks.afterAll();
   });
 
-  group('''Mes actions recommandées''', () {
+  group('''Par où souhaitez-vous commencer ?''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
-      await iTapOn(tester, '🍛 Me nourrir');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets(
-        '''La première fois que j'arrive sur la page Me nourrir alors la popup s'affiche''',
-        (tester) async {
+    testWidgets('''See proposals by theme''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''La première fois que j'arrive sur la page Me nourrir alors la popup s'affiche''');
+        await beforeEach('''See proposals by theme''');
         await bddSetUp(tester);
-        await iSee(tester, "Envie d’avoir un vrai impact ?");
+        await iSee(tester, 'D’après nos calculs, à Dole, voici ce que nous pouvons vous proposer :');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''La première fois que j'arrive sur la page Me nourrir alors la popup s'affiche''',
-          success,
-        );
+        await afterEach('''See proposals by theme''', success);
       }
     });
   });

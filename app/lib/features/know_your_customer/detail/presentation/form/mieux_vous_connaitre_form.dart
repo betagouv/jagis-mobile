@@ -19,9 +19,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 typedef OnSavedCallback = void Function();
 
 class MieuxVousConnaitreForm extends StatelessWidget {
-  const MieuxVousConnaitreForm({super.key, required this.questionId, required this.controller, this.onSaved});
+  const MieuxVousConnaitreForm({
+    super.key,
+    required this.questionId,
+    this.withoutTitle = false,
+    required this.controller,
+    this.onSaved,
+  });
 
   final String questionId;
+  final bool withoutTitle;
   final MieuxVousConnaitreController controller;
   final OnSavedCallback? onSaved;
 
@@ -32,13 +39,14 @@ class MieuxVousConnaitreForm extends StatelessWidget {
             MieuxVousConnaitreEditBloc(mieuxVousConnaitreRepository: context.read())
               ..add(MieuxVousConnaitreEditRecuperationDemandee(questionId)),
     lazy: false,
-    child: _Content(controller: controller, onSaved: onSaved),
+    child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved),
   );
 }
 
 class _Content extends StatelessWidget {
-  const _Content({required this.controller, required this.onSaved});
+  const _Content({required this.withoutTitle, required this.controller, required this.onSaved});
 
+  final bool withoutTitle;
   final MieuxVousConnaitreController controller;
   final OnSavedCallback? onSaved;
 
@@ -54,7 +62,7 @@ class _Content extends StatelessWidget {
       builder:
           (final context, final state) => switch (state) {
             MieuxVousConnaitreEditInitial() => const SizedBox(height: 550),
-            MieuxVousConnaitreEditLoaded() => _LoadedContent(controller: controller, state: state),
+            MieuxVousConnaitreEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: controller, state: state),
             MieuxVousConnaitreEditError() => FnvFailureWidget(
               onPressed:
                   () => context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditRecuperationDemandee(state.id)),
@@ -69,8 +77,9 @@ class _Content extends StatelessWidget {
 }
 
 class _LoadedContent extends StatefulWidget {
-  const _LoadedContent({required this.controller, required this.state});
+  const _LoadedContent({required this.withoutTitle, required this.controller, required this.state});
 
+  final bool withoutTitle;
   final MieuxVousConnaitreEditLoaded state;
   final MieuxVousConnaitreController controller;
 
@@ -98,81 +107,26 @@ class _LoadedContentState extends State<_LoadedContent> {
   Widget build(final context) {
     final question = widget.state.question;
 
-    return switch (question) {
-      QuestionSingleChoice() => _ChoixUniqueContent(question: question),
-      QuestionMultipleChoice() => _ChoixMultipleContent(question: question),
-      QuestionInteger() => _EntierContent(question: question),
-      QuestionDecimal() => _DecimalContent(question: question),
-      QuestionOpen() => _LibreContent(question: question),
-      QuestionMosaicBoolean() => _MosaicContent(question: question),
-    };
+    return Column(
+      spacing: DsfrSpacings.s3w,
+      children: [
+        if (!widget.withoutTitle)
+          FnvTitle(
+            title: question.label,
+            subtitle: switch (question) {
+              QuestionMultipleChoice() || QuestionMosaicBoolean() => Localisation.plusieursReponsesPossibles,
+              QuestionSingleChoice() || QuestionInteger() || QuestionDecimal() || QuestionOpen() => null,
+            },
+          ),
+        switch (question) {
+          QuestionSingleChoice() => ChoixUnique(question: question),
+          QuestionMultipleChoice() => ChoixMultiple(question: question),
+          QuestionInteger() => Entier(question: question),
+          QuestionDecimal() => Decimal(question: question),
+          QuestionOpen() => Libre(question: question),
+          QuestionMosaicBoolean() => Mosaic(question: question),
+        },
+      ],
+    );
   }
-}
-
-class _ChoixMultipleContent extends StatelessWidget {
-  const _ChoixMultipleContent({required this.question});
-
-  final QuestionMultipleChoice question;
-
-  @override
-  Widget build(final context) => Column(
-    spacing: DsfrSpacings.s3w,
-    children: [
-      FnvTitle(title: question.label, subtitle: Localisation.plusieursReponsesPossibles),
-      ChoixMultiple(question: question),
-    ],
-  );
-}
-
-class _ChoixUniqueContent extends StatelessWidget {
-  const _ChoixUniqueContent({required this.question});
-
-  final QuestionSingleChoice question;
-
-  @override
-  Widget build(final context) =>
-      Column(spacing: DsfrSpacings.s3w, children: [FnvTitle(title: question.label), ChoixUnique(question: question)]);
-}
-
-class _LibreContent extends StatelessWidget {
-  const _LibreContent({required this.question});
-
-  final QuestionOpen question;
-
-  @override
-  Widget build(final context) =>
-      Column(spacing: DsfrSpacings.s3w, children: [FnvTitle(title: question.label), Libre(question: question)]);
-}
-
-class _EntierContent extends StatelessWidget {
-  const _EntierContent({required this.question});
-
-  final QuestionInteger question;
-
-  @override
-  Widget build(final context) =>
-      Column(spacing: DsfrSpacings.s3w, children: [FnvTitle(title: question.label), Entier(question: question)]);
-}
-
-class _DecimalContent extends StatelessWidget {
-  const _DecimalContent({required this.question});
-
-  final QuestionDecimal question;
-
-  @override
-  Widget build(final context) =>
-      Column(spacing: DsfrSpacings.s3w, children: [FnvTitle(title: question.label), Decimal(question: question)]);
-}
-
-class _MosaicContent extends StatelessWidget {
-  const _MosaicContent({required this.question});
-
-  final QuestionMosaicBoolean question;
-
-  @override
-  Widget build(final context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: DsfrSpacings.s3w,
-    children: [FnvTitle(title: question.label, subtitle: Localisation.plusieursReponsesPossibles), Mosaic(question: question)],
-  );
 }

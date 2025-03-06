@@ -103,6 +103,9 @@ abstract final class Localisation {
   static const entre35et70m2 = 'Entre 35 et 70 m²';
   static const entre70et100m2 = 'Entre 70 et 100 m²';
   static const entrezLeCodeRecuParMail = 'Entrez le code reçu par e-mail !';
+  static const envieDAvoirUnVraiImpact = 'Envie d’avoir un vrai impact ?';
+  static const envieDAvoirUnVraiImpactDescription =
+      'Laissez-vous guider par nos recommandations d’actions **choisies pour vous !**';
   static const codeDeVerification = 'Code de vérification';
   static const erreurRoutePageTitre = 'Page non trouvée';
   static const erreurRoutePageDescription = 'La page est introuvable. Excusez-nous pour la gêne occasionnée.';

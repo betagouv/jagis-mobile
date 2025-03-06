@@ -5,6 +5,7 @@ import 'package:app/features/know_your_customer/core/domain/response_choice.dart
 import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 
 sealed class Question extends Entity<QuestionCode> {
   const Question({required super.code, required this.theme, required this.label, required this.isAnswered, required this.points});

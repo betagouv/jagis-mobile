@@ -27,6 +27,7 @@ class Entier extends StatelessWidget {
       },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      suffixText: question.response.unit?.abreviation,
     );
   }
 }

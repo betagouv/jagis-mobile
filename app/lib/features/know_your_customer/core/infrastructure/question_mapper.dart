@@ -78,8 +78,11 @@ abstract final class QuestionMapper {
 
   static Response _response(final Map<String, dynamic> json) => Response(
     value: json.containsKey('value') ? json['value'] as String : '',
-    unit: json.containsKey('unite') ? json['unite'] as String : null,
+    unit: json.containsKey('unite') ? _unit(json['unite'] as Map<String, dynamic>) : null,
   );
+
+  static Unit _unit(final Map<String, dynamic> json) =>
+      Unit(abreviation: json['abreviation'] as String, long: json.containsKey('long') ? json['long'] as String : null);
 
   static QuestionMosaicBoolean _questionMosaicBoolean(final Map<String, dynamic> json) => QuestionMosaicBoolean(
     code: QuestionCode(json['code'] as String),

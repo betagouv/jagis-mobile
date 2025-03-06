@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// NOTE: Seems to have equivalent implementation in the DSFR input used for the RFR.
 class Decimal extends StatelessWidget {
   const Decimal({super.key, required this.question});
 
@@ -28,6 +27,7 @@ class Decimal extends StatelessWidget {
       },
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,.]'))],
+      suffixText: question.response.unit?.abreviation,
     );
   }
 }

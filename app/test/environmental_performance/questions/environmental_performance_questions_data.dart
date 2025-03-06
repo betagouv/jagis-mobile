@@ -2,7 +2,10 @@ const miniBilanQuestions = [
   {
     'code': 'KYC_transport_voiture_km',
     'question': "Quelle distance parcourez-vous à l'année en voiture ? (en km)",
-    'reponse_unique': {'value': '13000', 'unite': 'km'},
+    'reponse_unique': {
+      'value': '13000',
+      'unite': {'abreviation': 'km'},
+    },
     'is_answered': true,
     'categorie': 'mission',
     'points': 5,

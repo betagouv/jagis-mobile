@@ -52,10 +52,9 @@ class _Success extends StatelessWidget {
           padding: const EdgeInsets.all(DsfrSpacings.s2w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: DsfrSpacings.s1w,
+            spacing: DsfrSpacings.s1v,
             children: [
               _QuestionStepper(current: cursor.index + 1, total: cursor.total),
-              const SizedBox(height: 4),
               _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code),
             ],
           ),

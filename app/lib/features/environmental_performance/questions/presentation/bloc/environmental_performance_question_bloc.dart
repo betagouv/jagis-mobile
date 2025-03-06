@@ -17,7 +17,7 @@ class EnvironmentalPerformanceQuestionBloc
 
       return result.fold(
         (final l) => emit(EnvironmentalPerformanceQuestionLoadFailure(message: l.toString())),
-        (final r) => emit(EnvironmentalPerformanceQuestionLoadSuccess(questionIdList: r.map((final e) => e.id).toList())),
+        (final r) => emit(EnvironmentalPerformanceQuestionLoadSuccess(questionIdList: r.map((final e) => e.code).toList())),
       );
     });
   }

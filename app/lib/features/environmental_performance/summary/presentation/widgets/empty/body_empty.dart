@@ -50,7 +50,7 @@ class BodyEmpty extends StatelessWidget {
               size: DsfrButtonSize.lg,
               onPressed: () async {
                 context.read<EnvironmentalPerformanceQuestionBloc>().add(
-                  EnvironmentalPerformanceQuestionIdListGiven(data.questions.map((final e) => e.id).toList()),
+                  EnvironmentalPerformanceQuestionIdListGiven(data.questions.map((final e) => e.code).toList()),
                 );
                 await GoRouter.of(context).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'number': '1'});
 

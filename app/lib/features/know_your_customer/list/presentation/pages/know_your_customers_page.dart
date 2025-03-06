@@ -154,7 +154,7 @@ class _Item extends StatelessWidget {
     onTap: () async {
       final result = await GoRouter.of(
         context,
-      ).pushNamed<bool>(MieuxVousConnaitreEditPage.name, pathParameters: {'id': question.id.value});
+      ).pushNamed<bool>(MieuxVousConnaitreEditPage.name, pathParameters: {'id': question.code.value});
 
       if (result != true || !context.mounted) {
         return;

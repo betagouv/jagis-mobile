@@ -67,7 +67,7 @@ class _Empty extends StatelessWidget {
           child: InkWell(
             onTap: () async {
               context.read<EnvironmentalPerformanceQuestionBloc>().add(
-                EnvironmentalPerformanceQuestionIdListGiven(data.questions.map((final e) => e.id).toList()),
+                EnvironmentalPerformanceQuestionIdListGiven(data.questions.map((final e) => e.code).toList()),
               );
               final result = await GoRouter.of(
                 context,

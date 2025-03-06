@@ -108,7 +108,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         case MieuxVousConnaitreEditLoaded():
           final newQuestion = aState.newQuestion;
           final result = await mieuxVousConnaitreRepository.mettreAJour(newQuestion);
-          result.fold((final l) => emit(MieuxVousConnaitreEditError(id: aState.question.id.value, error: l.toString())), (
+          result.fold((final l) => emit(MieuxVousConnaitreEditError(id: aState.question.code.value, error: l.toString())), (
             final r,
           ) {
             emit(MieuxVousConnaitreEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));

@@ -53,7 +53,7 @@ class _Content extends StatelessWidget {
     child: BlocBuilder<MieuxVousConnaitreEditBloc, MieuxVousConnaitreEditState>(
       builder:
           (final context, final state) => switch (state) {
-            MieuxVousConnaitreEditInitial() => const SizedBox.shrink(),
+            MieuxVousConnaitreEditInitial() => const SizedBox(height: 550),
             MieuxVousConnaitreEditLoaded() => _LoadedContent(controller: controller, state: state),
             MieuxVousConnaitreEditError() => FnvFailureWidget(
               onPressed:

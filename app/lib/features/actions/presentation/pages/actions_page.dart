@@ -189,7 +189,7 @@ class _Element extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: DsfrButtonIcon(
                 icon: DsfrIcons.systemArrowRightLine,
-                variant: DsfrButtonVariant.tertiaryWithouBorder,
+                variant: DsfrButtonVariant.tertiaryWithoutBorder,
                 size: DsfrButtonSize.md,
                 onPressed: onTap,
               ),

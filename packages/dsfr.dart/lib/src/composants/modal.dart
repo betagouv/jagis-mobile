@@ -45,7 +45,7 @@ class DsfrModal extends StatelessWidget {
                     label: 'Fermer',
                     icon: DsfrIcons.systemCloseLine,
                     iconLocation: DsfrButtonIconLocation.right,
-                    variant: DsfrButtonVariant.tertiaryWithouBorder,
+                    variant: DsfrButtonVariant.tertiaryWithoutBorder,
                     size: DsfrButtonSize.sm,
                     onPressed: () => Navigator.of(context).pop(),
                   ),

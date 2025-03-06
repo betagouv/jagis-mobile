@@ -19,6 +19,7 @@ class Decimal extends StatelessWidget {
     return DsfrInputHeadless(
       key: const ValueKey(Localisation.maReponse),
       controller: controller,
+      suffixText: question.response.unit?.abreviation,
       onChanged: (final value) {
         if (double.tryParse(value) == null) {
           return;
@@ -27,7 +28,6 @@ class Decimal extends StatelessWidget {
       },
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,.]'))],
-      suffixText: question.response.unit?.abreviation,
     );
   }
 }

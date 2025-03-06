@@ -35,7 +35,7 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
       if (result2.isRight()) {
         final carOptions = result2.getRight().getOrElse(() => throw Exception());
 
-        emit(_getCarOptionsSuccessState(currentCar: currentCar, carOptions: carOptions));
+        emit(_getCarOptionsSuccessState(currentCar: currentCar, carOptions: carOptions, hasChargingStation: true));
       } else {
         emit(CarSimulatorLoadFailure(result2.getLeft().toString()));
       }
@@ -44,13 +44,17 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
     }
   }
 
-  /// PERF(erolley): Shouldn't call the repository here, but should have the options in the state.
   void _onNewSelectedCarSize(final CarSimulatorNewSelectedCarSize event, final Emitter<CarSimulatorResultState> emit) {
     final blocState = state;
 
     if (blocState is CarSimulatorGetCarOptionsSuccess) {
       emit(
-        _getCarOptionsSuccessState(currentCar: blocState.currentCar, carOptions: blocState.carOptions, carSize: event.carSize),
+        _getCarOptionsSuccessState(
+          currentCar: blocState.currentCar,
+          carOptions: blocState.carOptions,
+          hasChargingStation: blocState.hasChargingStation,
+          carSize: event.carSize,
+        ),
       );
     }
   }
@@ -63,8 +67,8 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
         _getCarOptionsSuccessState(
           currentCar: blocState.currentCar,
           carOptions: blocState.carOptions,
-          carSize: blocState.selectedSize,
           hasChargingStation: event.hasChargingStation,
+          carSize: blocState.selectedSize,
         ),
       );
     }
@@ -73,8 +77,8 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
   CarSimulatorGetCarOptionsSuccess _getCarOptionsSuccessState({
     required final CarInfos currentCar,
     required final List<CarSimulatorOption> carOptions,
+    required final bool hasChargingStation,
     final CarSize? carSize,
-    final bool hasChargingStation = true,
   }) {
     final selectedSize = carSize ?? currentCar.size.value.smaller;
     final bestCostOption = _getBestOption(carOptions, selectedSize, hasChargingStation, (final option) => option.cost);

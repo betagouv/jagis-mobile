@@ -162,6 +162,7 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
         children: [
           DsfrButtonIcon(
             icon: DsfrIcons.systemArrowLeftLine,
+            semanticLabel: Localisation.questionPrecedente,
             variant: DsfrButtonVariant.secondary,
             size: DsfrButtonSize.lg,
             onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),

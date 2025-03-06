@@ -86,7 +86,7 @@ class _LoadedContentState extends State<_LoadedContent> {
   }
 
   void _listener() =>
-      context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditMisAJourDemandee(widget.state.question.id.value));
+      context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditMisAJourDemandee(widget.state.question.code.value));
 
   @override
   void dispose() {

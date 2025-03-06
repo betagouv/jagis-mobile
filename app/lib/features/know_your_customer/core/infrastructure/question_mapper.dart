@@ -23,7 +23,7 @@ abstract final class QuestionMapper {
   }
 
   static QuestionMultipleChoice _questionMultipleChoice(final Map<String, dynamic> json) => QuestionMultipleChoice(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
@@ -32,7 +32,7 @@ abstract final class QuestionMapper {
   );
 
   static QuestionSingleChoice _questionSingleChoice(final Map<String, dynamic> json) => QuestionSingleChoice(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
@@ -50,7 +50,7 @@ abstract final class QuestionMapper {
           .toList();
 
   static QuestionOpen _questionOpen(final Map<String, dynamic> json) => QuestionOpen(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
@@ -59,7 +59,7 @@ abstract final class QuestionMapper {
   );
 
   static QuestionInteger _questionInteger(final Map<String, dynamic> json) => QuestionInteger(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
@@ -68,7 +68,7 @@ abstract final class QuestionMapper {
   );
 
   static QuestionDecimal _questionDecimal(final Map<String, dynamic> json) => QuestionDecimal(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,
@@ -82,7 +82,7 @@ abstract final class QuestionMapper {
   );
 
   static QuestionMosaicBoolean _questionMosaicBoolean(final Map<String, dynamic> json) => QuestionMosaicBoolean(
-    id: QuestionCode(json['code'] as String),
+    code: QuestionCode(json['code'] as String),
     theme: ThemeTypeMapper.convert(json['thematique'] as String),
     label: json['question'] as String,
     isAnswered: json['is_answered'] as bool,

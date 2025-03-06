@@ -37,7 +37,7 @@ class MieuxVousConnaitreRepository {
       QuestionMosaicBoolean() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
     };
 
-    final response = await _client.put(Endpoints.questionKyc(question.id.value), data: jsonEncode(object));
+    final response = await _client.put(Endpoints.questionKyc(question.code.value), data: jsonEncode(object));
 
     if (isResponseSuccessful(response.statusCode)) {
       _messageBus.publish(kycTopic);

@@ -16,6 +16,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         (final r) => emit(MieuxVousConnaitreEditLoaded(question: r, newQuestion: r, updated: false)),
       );
     });
+
     on<MieuxVousConnaitreEditChoixMultipleChangee>((final event, final emit) async {
       final aState = state;
       if (aState is MieuxVousConnaitreEditLoaded) {
@@ -33,6 +34,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         }
       }
     });
+
     on<MieuxVousConnaitreEditChoixUniqueChangee>((final event, final emit) async {
       final aState = state;
       if (aState is MieuxVousConnaitreEditLoaded) {
@@ -50,6 +52,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         }
       }
     });
+
     on<MieuxVousConnaitreEditLibreChangee>((final event, final emit) async {
       final aState = state;
       if (aState is MieuxVousConnaitreEditLoaded) {
@@ -67,6 +70,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         }
       }
     });
+
     on<MieuxVousConnaitreEditEntierChangee>((final event, final emit) async {
       final aState = state;
       if (aState is MieuxVousConnaitreEditLoaded) {
@@ -83,6 +87,24 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         }
       }
     });
+
+    on<MieuxVousConnaitreEditDecimalChangee>((final event, final emit) async {
+      final aState = state;
+      if (aState is MieuxVousConnaitreEditLoaded) {
+        final question = aState.question;
+        final newQuestion = aState.newQuestion;
+        if (question is QuestionDecimal && newQuestion is QuestionDecimal) {
+          emit(
+            MieuxVousConnaitreEditLoaded(
+              question: question,
+              newQuestion: newQuestion.changeResponse(event.value),
+              updated: false,
+            ),
+          );
+        }
+      }
+    });
+
     on<MieuxVousConnaitreEditMosaicChangee>((final event, final emit) async {
       final aState = state;
       if (aState is MieuxVousConnaitreEditLoaded) {
@@ -102,6 +124,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
         }
       }
     });
+
     on<MieuxVousConnaitreEditMisAJourDemandee>((final event, final emit) async {
       final aState = state;
       switch (aState) {

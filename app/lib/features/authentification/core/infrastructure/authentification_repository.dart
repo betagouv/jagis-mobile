@@ -131,8 +131,10 @@ class AuthentificationRepository {
       unawaited(FnvUrlLauncher.launch('${_client.baseUrl}/login_france_connect', mode: LaunchMode.externalApplication));
 
   Future<Either<ApiErreur, Unit>> franceConnectStep2({required final OpenId openId}) async {
-    final uri = Uri(path: Endpoints.franceConnectStep2, queryParameters: {'oidc_code': openId.code, 'oidc_state': openId.state});
-    final response = await _client.get(uri.toString());
+    final response = await _client.post(
+      Endpoints.franceConnectStep2,
+      data: {'oidc_code': openId.code, 'oidc_state': openId.state},
+    );
     if (isResponseSuccessful(response.statusCode)) {
       _connexionDemandee = false;
       final json = response.data as Map<String, dynamic>;

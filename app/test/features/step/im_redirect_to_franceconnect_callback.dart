@@ -12,10 +12,10 @@ Future<void> imRedirectToFranceconnectCallback(final WidgetTester tester) async 
   const user = 'user123';
   const code = 'aCode';
   const state = 'aState';
-  final uri = Uri(path: Endpoints.franceConnectStep2, queryParameters: {'oidc_code': code, 'oidc_state': state});
   FeatureContext.instance.dioMock
-    ..getM(
-      uri.toString(),
+    ..postM(
+      Endpoints.franceConnectStep2,
+      requestData: {'oidc_code': code, 'oidc_state': state},
       responseData: jsonDecode('''
 {
   "token": "${"header.${base64Encode(jsonEncode({'exp': 1727698718, 'utilisateurId': user}).codeUnits)}.signature"}",

@@ -10,7 +10,7 @@ import 'package:app/features/environmental_performance/summary/infrastructure/en
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/mieux_vous_connaitre_repository.dart';
+import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,11 +27,11 @@ import 'environmental_performance_questions_data.dart';
 Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, {required final Dio dio}) async {
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
   final environmentalPerformanceRepository = EnvironmentalPerformanceSummaryRepository(client: client);
-  final mieuxVousConnaitreRepository = MieuxVousConnaitreRepository(client: client, messageBus: MessageBus());
+  final questionRepository = QuestionRepository(client: client, messageBus: MessageBus());
   await pumpPage(
     tester: tester,
     repositoryProviders: [
-      RepositoryProvider<MieuxVousConnaitreRepository>.value(value: mieuxVousConnaitreRepository),
+      RepositoryProvider<QuestionRepository>.value(value: questionRepository),
       RepositoryProvider<EnvironmentalPerformanceSummaryRepository>.value(value: environmentalPerformanceRepository),
     ],
     blocProviders: [

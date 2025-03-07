@@ -22,7 +22,7 @@ class GamificationRepository {
   late final StreamSubscription<String> _subscription;
   late final StreamSubscription<String> _subscription2;
 
-  Future<Either<Exception, void>> refresh() async {
+  Future<Either<Exception, Unit>> refresh() async {
     final response = await _client.get(Endpoints.gamification);
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération des points'));
@@ -34,7 +34,7 @@ class GamificationRepository {
 
     _gamificationSubject.add(gamification);
 
-    return const Right(null);
+    return const Right(unit);
   }
 
   final _gamificationSubject = BehaviorSubject<Gamification>();

@@ -29,7 +29,7 @@ class QuestionThemesPage extends StatelessWidget {
   Widget build(final context) => BlocProvider(
     create:
         (final context) =>
-            QuestionThemesBloc(mieuxVousConnaitreRepository: context.read())..add(const QuestionThemesRecuperationDemandee()),
+            QuestionThemesBloc(questionRepository: context.read())..add(const QuestionThemesRecuperationDemandee()),
     child: const _View(),
   );
 }

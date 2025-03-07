@@ -36,7 +36,7 @@ class ProfilRepository {
     );
   }
 
-  Future<Either<Exception, void>> mettreAJour({
+  Future<Either<Exception, Unit>> mettreAJour({
     required final String? prenom,
     required final String? nom,
     required final int? anneeDeNaissance,
@@ -55,7 +55,7 @@ class ProfilRepository {
     );
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du profil'));
   }
 
@@ -71,38 +71,38 @@ class ProfilRepository {
     return Right(LogementMapper.mapLogementFromJson(json));
   }
 
-  Future<Either<Exception, void>> mettreAJourLogement({required final Logement logement}) async {
+  Future<Either<Exception, Unit>> mettreAJourLogement({required final Logement logement}) async {
     final response = await _client.patch(Endpoints.logement, data: jsonEncode(LogementMapper.mapLogementToJson(logement)));
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du logement'));
   }
 
-  Future<Either<Exception, void>> supprimerLeCompte() async {
+  Future<Either<Exception, Unit>> supprimerLeCompte() async {
     final response = await _client.delete(Endpoints.utilisateur);
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la suppression du compte'));
   }
 
-  Future<Either<Exception, void>> changerMotDePasse({required final String motDePasse}) async {
+  Future<Either<Exception, Unit>> changerMotDePasse({required final String motDePasse}) async {
     final response = await _client.patch(Endpoints.profile, data: jsonEncode({'mot_de_passe': motDePasse}));
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du mot de passe'));
   }
 
-  Future<Either<Exception, void>> mettreAJourCodePostalEtCommune({
+  Future<Either<Exception, Unit>> mettreAJourCodePostalEtCommune({
     required final String codePostal,
     required final String commune,
   }) async {
     final response = await _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'commune': commune}));
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du code postal et de la commune'));
   }
 }

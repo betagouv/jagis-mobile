@@ -24,14 +24,14 @@ class QuizRepository {
     return Right(QuizMapper.fromJson(json: json));
   }
 
-  Future<Either<Exception, void>> terminerQuiz({required final String id, required final bool estExacte}) async {
+  Future<Either<Exception, Unit>> terminerQuiz({required final String id, required final bool estExacte}) async {
     final response = await _client.post(
       Endpoints.events,
       data: jsonEncode({'content_id': id, 'number_value': estExacte ? 100 : 0, 'type': 'quizz_score'}),
     );
 
     return isResponseSuccessful(response.statusCode)
-        ? const Right(null)
+        ? const Right(unit)
         : Left(Exception('Erreur lors de la validation du quiz'));
   }
 }

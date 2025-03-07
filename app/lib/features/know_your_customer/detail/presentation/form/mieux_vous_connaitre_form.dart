@@ -36,7 +36,7 @@ class MieuxVousConnaitreForm extends StatelessWidget {
   Widget build(final context) => BlocProvider(
     create:
         (final context) =>
-            MieuxVousConnaitreEditBloc(mieuxVousConnaitreRepository: context.read())
+            MieuxVousConnaitreEditBloc(questionRepository: context.read())
               ..add(MieuxVousConnaitreEditRecuperationDemandee(questionId)),
     lazy: false,
     child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved),

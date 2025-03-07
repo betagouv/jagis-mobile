@@ -12,16 +12,16 @@ class NotificationRepository {
   final DioHttpClient _client;
   final NotificationService _notificationService;
 
-  Future<Either<Exception, void>> saveToken() async {
+  Future<Either<Exception, Unit>> saveToken() async {
     final token = await _notificationService.getToken();
     final response = await _client.put(Endpoints.notificationToken, data: {'token': token});
 
     return isResponseUnsuccessful(response.statusCode)
         ? Left(Exception('Erreur lors de la sauvegarde du token de notification'))
-        : const Right(null);
+        : const Right(unit);
   }
 
-  Future<Either<Exception, void>> deleteNotificationToken() async {
+  Future<Either<Exception, Unit>> deleteNotificationToken() async {
     final response = await _client.delete(Endpoints.notificationToken);
 
     if (isResponseUnsuccessful(response.statusCode)) {
@@ -30,6 +30,6 @@ class NotificationRepository {
 
     await _notificationService.deleteToken();
 
-    return const Right(null);
+    return const Right(unit);
   }
 }

@@ -23,9 +23,9 @@ class MissionRepository {
     return Right(MissionMapper.fromJson(json));
   }
 
-  Future<Either<Exception, void>> complete(final MissionCode code) async {
+  Future<Either<Exception, Unit>> complete(final MissionCode code) async {
     final response = await _client.post(Endpoints.missionTerminer(code.value));
 
-    return isResponseSuccessful(response.statusCode) ? const Right(null) : Left(Exception('Erreur lors de la fin de la mission'));
+    return isResponseSuccessful(response.statusCode) ? const Right(unit) : Left(Exception('Erreur lors de la fin de la mission'));
   }
 }

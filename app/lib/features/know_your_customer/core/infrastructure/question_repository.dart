@@ -8,15 +8,15 @@ import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
-class MieuxVousConnaitreRepository {
-  const MieuxVousConnaitreRepository({required final DioHttpClient client, required final MessageBus messageBus})
+class QuestionRepository {
+  const QuestionRepository({required final DioHttpClient client, required final MessageBus messageBus})
     : _client = client,
       _messageBus = messageBus;
 
   final DioHttpClient _client;
   final MessageBus _messageBus;
 
-  Future<Either<Exception, Question>> recupererQuestion({required final String id}) async {
+  Future<Either<Exception, Question>> fetchQuestion({required final String id}) async {
     final response = await _client.get(Endpoints.question(id));
 
     if (isResponseUnsuccessful(response.statusCode)) {
@@ -28,7 +28,7 @@ class MieuxVousConnaitreRepository {
     return fromJson == null ? Left(Exception('Erreur lors de la récupération de la question')) : Right(fromJson);
   }
 
-  Future<Either<Exception, Unit>> mettreAJour(final Question question) async {
+  Future<Either<Exception, Unit>> update(final Question question) async {
     final object = switch (question) {
       QuestionMultiple() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
       QuestionUnique() => [

@@ -1,17 +1,17 @@
 // ignore_for_file: avoid-high-cyclomatic-complexity
 
 import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/mieux_vous_connaitre_repository.dart';
+import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_event.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, MieuxVousConnaitreEditState> {
-  MieuxVousConnaitreEditBloc({required final MieuxVousConnaitreRepository mieuxVousConnaitreRepository})
+  MieuxVousConnaitreEditBloc({required final QuestionRepository questionRepository})
     : super(const MieuxVousConnaitreEditInitial()) {
     on<MieuxVousConnaitreEditRecuperationDemandee>((final event, final emit) async {
       emit(const MieuxVousConnaitreEditInitial());
-      final result = await mieuxVousConnaitreRepository.recupererQuestion(id: event.id);
+      final result = await questionRepository.fetchQuestion(id: event.id);
 
       result.fold(
         (final l) => emit(MieuxVousConnaitreEditError(id: event.id, error: l.toString())),
@@ -132,7 +132,7 @@ class MieuxVousConnaitreEditBloc extends Bloc<MieuxVousConnaitreEditEvent, Mieux
       switch (aState) {
         case MieuxVousConnaitreEditLoaded():
           final newQuestion = aState.newQuestion;
-          final result = await mieuxVousConnaitreRepository.mettreAJour(newQuestion);
+          final result = await questionRepository.update(newQuestion);
           result.fold((final l) => emit(MieuxVousConnaitreEditError(id: aState.question.code.value, error: l.toString())), (
             final r,
           ) {

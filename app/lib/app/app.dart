@@ -37,7 +37,7 @@ import 'package:app/features/gamification/infrastructure/gamification_repository
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/mieux_vous_connaitre_repository.dart';
+import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
 import 'package:app/features/mission/challenges/infrastructure/mission_challenges_repository.dart';
 import 'package:app/features/mission/home/infrastructure/mission_home_repository.dart';
@@ -176,8 +176,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => QuizRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => aidsRepository),
               RepositoryProvider(
-                create:
-                    (final context) => MieuxVousConnaitreRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
+                create: (final context) => QuestionRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
               ),
               RepositoryProvider(create: (final context) => KnowYourCustomersRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => FirstNameRepository(client: widget.dioHttpClient)),

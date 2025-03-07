@@ -52,7 +52,7 @@ class AideVeloRepository {
     VeloEtat.occasion => 'occasion',
   };
 
-  Future<Either<Exception, void>> _mettreAJourProfilEtLogement({
+  Future<Either<Exception, Unit>> _mettreAJourProfilEtLogement({
     required final double nombreDePartsFiscales,
     required final int revenuFiscal,
     required final String codePostal,
@@ -66,15 +66,8 @@ class AideVeloRepository {
       _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'commune': commune})),
     ]);
 
-    if (isResponseUnsuccessful(profileResponse.statusCode)) {
-      return Left(Exception('Erreur lors de la mise à jour du profil'));
-    }
-
-    if (isResponseUnsuccessful(logementResponse.statusCode)) {
-      return Left(Exception('Erreur lors de la mise à jour du profil'));
-    }
-
-    // ignore: prefer-returning-conditional-expressions
-    return const Right(null);
+    return isResponseUnsuccessful(profileResponse.statusCode) || isResponseUnsuccessful(logementResponse.statusCode)
+        ? Left(Exception('Erreur lors de la mise à jour du profil'))
+        : const Right(unit);
   }
 }

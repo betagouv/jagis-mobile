@@ -14,7 +14,7 @@ import 'package:app/features/environmental_performance/summary/presentation/bloc
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/mieux_vous_connaitre_repository.dart';
+import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/mission/home/infrastructure/mission_home_repository.dart';
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
@@ -67,8 +67,8 @@ Future<void> pumpForMissionPage(final WidgetTester tester, {required final DioMo
     repositoryProviders: [
       RepositoryProvider(create: (final context) => EnvironmentalPerformanceSummaryRepository(client: client)),
       RepositoryProvider<MissionRepository>(create: (final context) => MissionRepository(client: client)),
-      RepositoryProvider<MieuxVousConnaitreRepository>(
-        create: (final context) => MieuxVousConnaitreRepository(client: client, messageBus: MessageBus()),
+      RepositoryProvider<QuestionRepository>(
+        create: (final context) => QuestionRepository(client: client, messageBus: MessageBus()),
       ),
       RepositoryProvider<NotificationService>(
         create: (final context) => const NotificationServiceFake(AuthorizationStatus.denied),

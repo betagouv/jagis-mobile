@@ -5,7 +5,7 @@ import 'package:app/features/know_your_customer/core/infrastructure/question_map
 import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/features/questions_manager/domain/cursor_manager.dart';
 
-/// NOTE(erolley): This could be abstracted to be used for all list based manager.
+// TODO(erolley): This could be abstracted to be used for all list based manager.
 class ActionsRecommandedQuestionsManager extends CursorManager<Question> {
   const ActionsRecommandedQuestionsManager({required final DioHttpClient client, required final String sequenceId})
     : _client = client,

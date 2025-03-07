@@ -90,5 +90,29 @@ void main() {
         );
       }
     });
+    testWidgets('''Répondre à toutes les questions''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Répondre à toutes les questions''');
+        await bddSetUp(tester);
+        await iScrollDownTo(tester, 'Commencer');
+        await iTapOn(tester, 'Commencer');
+        await iSee(tester,
+            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
+        await iTapOn(tester, "Oui");
+        await iTapOn(tester, "Question suivante");
+        await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
+        await iTapOn(tester, "Non");
+        await iTapOn(tester, "Question suivante");
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Répondre à toutes les questions''',
+          success,
+        );
+      }
+    });
   });
 }

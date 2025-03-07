@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
@@ -22,5 +24,37 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         ),
       );
     });
+    on<ThemeRefreshRequested>((final event, final emit) async {
+      final blocState = state;
+      if (blocState is ThemeLoadSuccess) {
+        final themeType = blocState.theme.themeType;
+        await themeRepository.confirmCustomization(themeType: themeType);
+        final themeDataResult = await themeRepository.fetchTheme(themeType: themeType);
+
+        await _waitingRoom();
+
+        themeDataResult.fold(
+          (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
+          (final theme) => emit(blocState.copyWith(theme: theme)),
+        );
+      }
+    });
+  }
+
+  /// Fausse attente pour simuler la personnalisation
+  Future<void> _waitingRoom() async {
+    _refreshTimer?.cancel();
+    final completer = Completer<void>();
+    _refreshTimer = Timer(const Duration(seconds: 1), completer.complete);
+    await completer.future;
+  }
+
+  Timer? _refreshTimer;
+
+  @override
+  Future<void> close() {
+    _refreshTimer?.cancel();
+
+    return super.close();
   }
 }

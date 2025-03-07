@@ -30,6 +30,9 @@ final class ThemeLoadSuccess extends ThemeState {
   final List<MissionListe> missions;
   final List<ServiceItem> services;
 
+  ThemeLoadSuccess copyWith({final ThemeInfo? theme, final List<MissionListe>? missions, final List<ServiceItem>? services}) =>
+      ThemeLoadSuccess(theme: theme ?? this.theme, missions: missions ?? this.missions, services: services ?? this.services);
+
   @override
   List<Object> get props => [theme, missions, services];
 }

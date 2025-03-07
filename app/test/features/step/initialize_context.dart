@@ -123,7 +123,8 @@ void setThemes() =>
           'nombre_simulateurs': 0,
           'nom_commune': 'Dijon',
         },
-      );
+      )
+      ..postM(Endpoints.confirmCustomization(ThemeType.transport.name));
 
 void setLogout() => FeatureContext.instance.dioMock.postM(Endpoints.logout);
 
@@ -160,44 +161,47 @@ void setMiniBilan() =>
     FeatureContext.instance.dioMock.getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilan);
 
 void setEnchainements() {
-  final questionOne = {
-    'code': 'KYC_transport_avion_3_annees',
-    'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
-    'reponse_multiple': [
-      {'code': 'oui', 'label': 'Oui', 'selected': false},
-      {'code': 'non', 'label': 'Non', 'selected': true},
-      {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
-    ],
-    'is_answered': true,
-    'categorie': 'mission',
-    'points': 5,
-    'type': 'choix_unique',
-    'is_NGC': true,
-    'thematique': 'transport',
-  };
-
-  FeatureContext.instance.dioMock
-    ..getM(
-      Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_transport'),
-      responseData: [
-        questionOne,
-        {
-          'code': 'KYC003',
-          'question': 'Êtes-vous équipé(e) d’un vélo ?',
-          'reponse_multiple': [
-            {'code': 'oui', 'label': 'Oui', 'selected': false},
-            {'code': 'non', 'label': 'Non', 'selected': false},
-          ],
-          'is_answered': false,
-          'categorie': 'mission',
-          'points': 5,
-          'type': 'choix_unique',
-          'is_NGC': false,
-          'thematique': 'transport',
-        },
+  final questions = [
+    {
+      'code': 'KYC_transport_avion_3_annees',
+      'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
+      'reponse_multiple': [
+        {'code': 'oui', 'label': 'Oui', 'selected': false},
+        {'code': 'non', 'label': 'Non', 'selected': true},
+        {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
       ],
-    )
-    ..getM(Endpoints.question(questionOne['code']! as String), responseData: questionOne);
+      'is_answered': true,
+      'categorie': 'mission',
+      'points': 5,
+      'type': 'choix_unique',
+      'is_NGC': true,
+      'thematique': 'transport',
+    },
+    {
+      'code': 'KYC003',
+      'question': 'Êtes-vous équipé(e) d’un vélo ?',
+      'reponse_multiple': [
+        {'code': 'oui', 'label': 'Oui', 'selected': false},
+        {'code': 'non', 'label': 'Non', 'selected': false},
+      ],
+      'is_answered': false,
+      'categorie': 'mission',
+      'points': 5,
+      'type': 'choix_unique',
+      'is_NGC': false,
+      'thematique': 'transport',
+    },
+  ];
+  FeatureContext.instance.dioMock.getM(
+    Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_transport'),
+    responseData: questions,
+  );
+
+  for (final q in questions) {
+    FeatureContext.instance.dioMock
+      ..getM(Endpoints.question(q['code']! as String), responseData: q)
+      ..putM(Endpoints.question(q['code']! as String));
+  }
 }
 
 void setMissionRecommanded() => FeatureContext.instance.dioMock.getM(Endpoints.missionsRecommandees, responseData: <dynamic>[]);

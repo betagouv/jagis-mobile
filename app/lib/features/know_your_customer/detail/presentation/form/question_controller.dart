@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MieuxVousConnaitreController extends ChangeNotifier {
+class QuestionController extends ChangeNotifier {
   void save() {
     notifyListeners();
   }

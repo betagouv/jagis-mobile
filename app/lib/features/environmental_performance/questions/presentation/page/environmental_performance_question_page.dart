@@ -5,8 +5,8 @@ import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_state.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_form.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +63,7 @@ class _LoadSuccess extends StatefulWidget {
 }
 
 class _LoadSuccessState extends State<_LoadSuccess> {
-  final _mieuxVousConnaitreController = MieuxVousConnaitreController();
+  final _mieuxVousConnaitreController = QuestionController();
 
   @override
   void dispose() {
@@ -79,7 +79,7 @@ class _LoadSuccessState extends State<_LoadSuccess> {
         child: ListView(
           padding: const EdgeInsets.all(paddingVerticalPage),
           children: [
-            MieuxVousConnaitreForm(
+            QuestionForm(
               questionId: widget.state.questionIdList[widget.number - 1].value,
               controller: _mieuxVousConnaitreController,
               onSaved: () async {

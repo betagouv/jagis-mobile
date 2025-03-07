@@ -1,8 +1,8 @@
 import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_form.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
@@ -90,7 +90,7 @@ class _QuestionWidget extends StatefulWidget {
 }
 
 class _QuestionWidgetState extends State<_QuestionWidget> {
-  final _controller = MieuxVousConnaitreController();
+  final _controller = QuestionController();
 
   @override
   void dispose() {
@@ -102,7 +102,7 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
   Widget build(final context) => Column(
     spacing: DsfrSpacings.s3w,
     children: [
-      MieuxVousConnaitreForm(
+      QuestionForm(
         questionId: widget.code.value,
         controller: _controller,
         onSaved: () {

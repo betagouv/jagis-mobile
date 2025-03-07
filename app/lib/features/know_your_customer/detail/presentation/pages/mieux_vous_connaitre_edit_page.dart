@@ -2,8 +2,8 @@ import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_form.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class _View extends StatefulWidget {
 }
 
 class _ViewState extends State<_View> {
-  final _mieuxVousConnaitreController = MieuxVousConnaitreController();
+  final _mieuxVousConnaitreController = QuestionController();
 
   @override
   void dispose() {
@@ -50,7 +50,7 @@ class _ViewState extends State<_View> {
     appBar: FnvAppBar(),
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(paddingVerticalPage),
-      child: MieuxVousConnaitreForm(
+      child: QuestionForm(
         questionId: widget.id,
         controller: _mieuxVousConnaitreController,
         onSaved: () {

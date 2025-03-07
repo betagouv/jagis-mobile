@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_form.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/mission/mission/domain/mission_kyc.dart';
 import 'package:app/features/mission/mission/presentation/bloc/mission_bloc.dart';
 import 'package:app/features/mission/mission/presentation/bloc/mission_event.dart';
@@ -19,7 +19,7 @@ class MissionKycPage extends StatefulWidget {
 }
 
 class _MissionKycPageState extends State<MissionKycPage> {
-  final _mieuxVousConnaitreController = MieuxVousConnaitreController();
+  final _mieuxVousConnaitreController = QuestionController();
 
   @override
   void dispose() {
@@ -31,7 +31,7 @@ class _MissionKycPageState extends State<MissionKycPage> {
   Widget build(final context) => ListView(
     padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
-      MieuxVousConnaitreForm(
+      QuestionForm(
         questionId: widget.value.contentId.value,
         controller: _mieuxVousConnaitreController,
         onSaved: () => context.read<MissionBloc>().add(const MissionNextRequested()),

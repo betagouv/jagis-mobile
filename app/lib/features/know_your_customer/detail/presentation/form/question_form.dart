@@ -1,15 +1,15 @@
 import 'package:app/core/presentation/widgets/composants/failure_widget.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_bloc.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_event.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_state.dart';
+import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
+import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
+import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_state.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/choix_multiple.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/choix_unique.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/decimal.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/entier.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/libre.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/mieux_vous_connaitre_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/mosaic.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
@@ -18,26 +18,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 typedef OnSavedCallback = void Function();
 
-class MieuxVousConnaitreForm extends StatelessWidget {
-  const MieuxVousConnaitreForm({
-    super.key,
-    required this.questionId,
-    this.withoutTitle = false,
-    required this.controller,
-    this.onSaved,
-  });
+class QuestionForm extends StatelessWidget {
+  const QuestionForm({super.key, required this.questionId, this.withoutTitle = false, required this.controller, this.onSaved});
 
   final String questionId;
   final bool withoutTitle;
-  final MieuxVousConnaitreController controller;
+  final QuestionController controller;
   final OnSavedCallback? onSaved;
 
   @override
   Widget build(final context) => BlocProvider(
     create:
         (final context) =>
-            MieuxVousConnaitreEditBloc(questionRepository: context.read())
-              ..add(MieuxVousConnaitreEditRecuperationDemandee(questionId)),
+            QuestionEditBloc(questionRepository: context.read())..add(QuestionEditRecuperationDemandee(questionId)),
     lazy: false,
     child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved),
   );
@@ -47,31 +40,29 @@ class _Content extends StatelessWidget {
   const _Content({required this.withoutTitle, required this.controller, required this.onSaved});
 
   final bool withoutTitle;
-  final MieuxVousConnaitreController controller;
+  final QuestionController controller;
   final OnSavedCallback? onSaved;
 
   @override
-  Widget build(final context) => BlocListener<MieuxVousConnaitreEditBloc, MieuxVousConnaitreEditState>(
+  Widget build(final context) => BlocListener<QuestionEditBloc, QuestionEditState>(
     listener: (final context, final state) {
       final aState = state;
-      if (aState is MieuxVousConnaitreEditLoaded && aState.updated) {
+      if (aState is QuestionEditLoaded && aState.updated) {
         onSaved?.call();
       }
     },
-    child: BlocBuilder<MieuxVousConnaitreEditBloc, MieuxVousConnaitreEditState>(
+    child: BlocBuilder<QuestionEditBloc, QuestionEditState>(
       builder:
           (final context, final state) => switch (state) {
-            MieuxVousConnaitreEditInitial() => const SizedBox(height: 550),
-            MieuxVousConnaitreEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: controller, state: state),
-            MieuxVousConnaitreEditError() => FnvFailureWidget(
-              onPressed:
-                  () => context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditRecuperationDemandee(state.id)),
+            QuestionEditInitial() => const SizedBox(height: 550),
+            QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: controller, state: state),
+            QuestionEditError() => FnvFailureWidget(
+              onPressed: () => context.read<QuestionEditBloc>().add(QuestionEditRecuperationDemandee(state.id)),
             ),
           },
       buildWhen:
           (final oldState, final newState) =>
-              (oldState is! MieuxVousConnaitreEditLoaded || newState is! MieuxVousConnaitreEditLoaded) ||
-              oldState.question != newState.question,
+              (oldState is! QuestionEditLoaded || newState is! QuestionEditLoaded) || oldState.question != newState.question,
     ),
   );
 }
@@ -80,8 +71,8 @@ class _LoadedContent extends StatefulWidget {
   const _LoadedContent({required this.withoutTitle, required this.controller, required this.state});
 
   final bool withoutTitle;
-  final MieuxVousConnaitreEditLoaded state;
-  final MieuxVousConnaitreController controller;
+  final QuestionEditLoaded state;
+  final QuestionController controller;
 
   @override
   State<_LoadedContent> createState() => _LoadedContentState();
@@ -94,8 +85,7 @@ class _LoadedContentState extends State<_LoadedContent> {
     widget.controller.addListener(_listener);
   }
 
-  void _listener() =>
-      context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditMisAJourDemandee(widget.state.question.code.value));
+  void _listener() => context.read<QuestionEditBloc>().add(QuestionEditMisAJourDemandee(widget.state.question.code.value));
 
   @override
   void dispose() {

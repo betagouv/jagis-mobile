@@ -1,6 +1,6 @@
 import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_bloc.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/mieux_vous_connaitre_edit_event.dart';
+import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
+import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class Entier extends StatelessWidget {
         if (int.tryParse(value) == null) {
           return;
         }
-        context.read<MieuxVousConnaitreEditBloc>().add(MieuxVousConnaitreEditEntierChangee(value));
+        context.read<QuestionEditBloc>().add(QuestionEditEntierChangee(value));
       },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],

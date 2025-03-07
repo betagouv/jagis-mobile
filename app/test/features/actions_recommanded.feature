@@ -15,3 +15,13 @@ Feature: Mes actions recommandées
         When I scroll down to {'Commencer'}
         When I tap on {'Commencer'}
         Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
+
+    Scenario: Répondre à toutes les questions
+        When I scroll down to {'Commencer'}
+        When I tap on {'Commencer'}
+        Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
+        When I tap on {"Oui"}
+        When I tap on {"Question suivante"}
+        Then I see {"Êtes-vous équipé(e) d’un vélo ?"}
+        When I tap on {"Non"}
+        When I tap on {"Question suivante"}

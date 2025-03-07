@@ -19,7 +19,7 @@ abstract final class CarSimulatorOptionMapper {
   static CarSimulatorOption fromJson(final dynamic json) {
     final carInfos = CarInfosMapper.fromJson(json as Map<String, dynamic>);
 
-    /// NOTE(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
+    // TODO(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
     return CarSimulatorOption(
       cost: carInfos.cost,
       emissions: carInfos.emissions,

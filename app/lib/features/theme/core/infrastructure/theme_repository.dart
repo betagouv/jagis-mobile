@@ -41,4 +41,12 @@ class ThemeRepository {
         ? Right((response.data as List<dynamic>).cast<Map<String, dynamic>>().map(ServiceItemMapper.fromJson).toList())
         : Left(Exception('Erreur lors de la récupération des services'));
   }
+
+  Future<Either<Exception, Unit>> confirmCustomization({required final ThemeType themeType}) async {
+    final response = await _client.post(Endpoints.confirmCustomization(themeType.name));
+
+    return isResponseSuccessful(response.statusCode)
+        ? const Right(unit)
+        : Left(Exception('Erreur lors de la confirmation de la personnalisation'));
+  }
 }

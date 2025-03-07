@@ -19,3 +19,8 @@ final class ThemeFetchRequested extends ThemeEvent {
   @override
   List<Object> get props => [themeType];
 }
+
+@immutable
+final class ThemeRefreshRequested extends ThemeEvent {
+  const ThemeRefreshRequested();
+}

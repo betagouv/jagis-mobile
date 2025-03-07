@@ -63,7 +63,7 @@ class _CarSimulatorResultView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) =>
-  // NOTE(erolley): ListView doesn't work here
+  // TODO(erolley): ListView doesn't work here
   Padding(
     padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
     child: Column(

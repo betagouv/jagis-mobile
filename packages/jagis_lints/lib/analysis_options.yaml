@@ -122,6 +122,7 @@ dart_code_metrics:
     - prefer-correct-switch-length: false
     - prefer-correct-throws: false
     - prefer-correct-type-name: false
+    - prefer-early-return: false 
     - prefer-extracting-callbacks: false
     - prefer-explicit-type-arguments: false
     - prefer-extracting-function-callbacks: false

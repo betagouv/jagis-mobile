@@ -18,9 +18,6 @@ abstract final class Endpoints {
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
   static const missionsRecommandees = '/utilisateurs/{userId}/tuiles_missions';
-  static const themes = '/utilisateurs/{userId}/thematiques';
-  static String missionsRecommandeesParThematique(final String codeThematique) =>
-      '/utilisateurs/{userId}/thematiques/$codeThematique/tuiles_missions';
   static String mission(final String codeMission) => '/utilisateurs/{userId}/missions/$codeMission';
   static String missionTerminer(final String codeMission) => '/utilisateurs/{userId}/missions/$codeMission/terminer';
   static const modifierMotDePasse = '/utilisateurs/modifier_mot_de_passe';
@@ -38,19 +35,19 @@ abstract final class Endpoints {
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
-
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
+  static const themes = '/utilisateurs/{userId}/thematiques';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
-  static String recommandationsParThematique(final String thematique) =>
-      '/utilisateurs/{userId}/thematiques/$thematique/recommandations';
+  static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
+  static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
+  static String recommandationsParThematique(final String themeCode) => '${theme(themeCode)}/recommandations';
+  static String servicesParThematique(final String themeCode) => '${theme(themeCode)}/recherche_services';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';
   static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
-  static String servicesParThematique(final String codeThematique) =>
-      '/utilisateurs/{userId}/thematiques/$codeThematique/recherche_services';
   static String recipe(final String recipeId) => '/utilisateurs/{userId}/recherche_services/recettes/last_results/$recipeId';
 
   // Car Simulator Endpoints
-  // NOTE(erolley): Should we have sub classes for each endpoint type (eg: Endpoints.CarSimulator.getCurrentCarResult)?
+  // FIXME(erolley): Should we have sub classes for each endpoint type (eg: Endpoints.CarSimulator.getCurrentCarResult)?
 
   static const carSimulatorComputeCurrentCar = '/utilisateurs/{userId}/simulateur_voiture/resultat/voiture_actuelle';
   static const carSimulatorComputeOptions = '/utilisateurs/{userId}/simulateur_voiture/resultat/alternatives';

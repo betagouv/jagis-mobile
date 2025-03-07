@@ -1,3 +1,4 @@
+import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
@@ -16,7 +17,7 @@ class ThemeInfo extends Equatable {
   final ThemeType themeType;
   final bool isQuestionsNeeded;
   final String sequenceId;
-  final List<dynamic> actionsRecommanded;
+  final List<ActionSummary> actionsRecommanded;
   final int actionCount;
   final int aidCount;
   final int simulatorCount;

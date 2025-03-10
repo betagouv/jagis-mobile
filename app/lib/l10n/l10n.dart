@@ -262,6 +262,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const valider = 'Valider';
   static const voirLesDemarches = 'Voir les démarches';
   static const homeDefisLink = 'Voir tous mes défis';
+  static const voirPlusActions = 'Voir plus d’actions';
   static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
   static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';

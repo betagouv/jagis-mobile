@@ -4,7 +4,6 @@ import 'package:dsfr/src/atoms/focus_widget.dart';
 import 'package:dsfr/src/composants/link_icon_position.dart';
 import 'package:dsfr/src/fondamentaux/colors.g.dart';
 import 'package:dsfr/src/fondamentaux/fonts.dart';
-import 'package:dsfr/src/fondamentaux/spacing.g.dart';
 import 'package:flutter/material.dart';
 
 class DsfrLink extends StatefulWidget {
@@ -20,11 +19,11 @@ class DsfrLink extends StatefulWidget {
   });
 
   const DsfrLink.sm({
+    final Key? key,
     required final String label,
     final IconData? icon,
     final DsfrLinkIconPosition iconPosition = DsfrLinkIconPosition.start,
     final VoidCallback? onTap,
-    final Key? key,
   }) : this._(
          key: key,
          label: label,
@@ -37,11 +36,11 @@ class DsfrLink extends StatefulWidget {
        );
 
   const DsfrLink.md({
+    final Key? key,
     required final String label,
     final IconData? icon,
     final DsfrLinkIconPosition iconPosition = DsfrLinkIconPosition.start,
     final VoidCallback? onTap,
-    final Key? key,
   }) : this._(
          key: key,
          label: label,
@@ -100,7 +99,7 @@ class _DsfrLinkState extends State<DsfrLink> with MaterialStateMixin<DsfrLink> {
           alignment: PlaceholderAlignment.middle,
           child: Icon(widget.icon, size: widget.iconSize, color: resolveForegroundColor),
         ),
-        const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
+        const TextSpan(text: ' '),
       ],
       TextSpan(text: widget.label),
     ];

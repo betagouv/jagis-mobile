@@ -12,6 +12,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../helper/feature_context.dart';
 import '../helper/notification_service_fake.dart';
+import '../helper/timed_delay_fake.dart';
 
 class _TrackerMock extends Mock implements Tracker {}
 
@@ -36,6 +37,7 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
       packageInfo: FeatureContext.instance.packageInfo,
       notificationService: const NotificationServiceFake(AuthorizationStatus.authorized),
       authenticationService: authenticationService,
+      timedDelay: const TimedDelayFake(),
     ),
     Durations.short1,
   );

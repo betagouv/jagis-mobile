@@ -17,6 +17,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import '../../environmental_performance/summary/environmental_performance_data.dart';
 import '../../features/helper/notification_service_fake.dart';
 import '../../features/helper/package_info_fake.dart';
+import '../../features/helper/timed_delay_fake.dart';
 import '../../mission/mission_test.dart';
 import '../api/constants.dart';
 import '../mocks/flutter_secure_storage_fake.dart';
@@ -100,6 +101,7 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
         packageInfo: const PackageInfoFake(version: '1.2.3', buildNumber: '4'),
         notificationService: const NotificationServiceFake(AuthorizationStatus.denied),
         authenticationService: authenticationService,
+        timedDelay: const TimedDelayFake(),
       ),
       Durations.short1,
     );

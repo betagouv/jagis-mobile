@@ -24,4 +24,6 @@ Feature: Mes actions recommandées
         When I tap on {"Question suivante"}
         Then I see {"Êtes-vous équipé(e) d’un vélo ?"}
         When I tap on {"Non"}
+        Then I have theme with actions
         When I tap on {"Question suivante"}
+        When I see {'Trouver le type de voiture qui vous convient le mieux'}

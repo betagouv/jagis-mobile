@@ -56,14 +56,37 @@ class ActionsRecommandedSection extends StatelessWidget {
   );
 }
 
-class _Actions extends StatelessWidget {
+class _Actions extends StatefulWidget {
   const _Actions({required this.actions});
 
   final List<ActionSummary> actions;
 
   @override
-  Widget build(final BuildContext context) =>
-      Column(spacing: DsfrSpacings.s3v, children: actions.map((final e) => _Element(action: e)).toList());
+  State<_Actions> createState() => _ActionsState();
+}
+
+class _ActionsState extends State<_Actions> {
+  static const _initialItemsToShow = 3;
+  var _showAllItems = false;
+
+  @override
+  Widget build(final BuildContext context) {
+    final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
+
+    return Column(
+      spacing: DsfrSpacings.s2w,
+      children: [
+        ...visibleActions.map((final e) => _Element(action: e)),
+        if (widget.actions.length > _initialItemsToShow && !_showAllItems)
+          DsfrButton(
+            label: Localisation.voirPlusActions,
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrButtonSize.md,
+            onPressed: () => setState(() => _showAllItems = true),
+          ),
+      ],
+    );
+  }
 }
 
 class _Element extends StatelessWidget {

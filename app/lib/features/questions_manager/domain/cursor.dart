@@ -1,14 +1,20 @@
 import 'package:equatable/equatable.dart';
 
 class Cursor<T> extends Equatable {
-  const Cursor({required this.element, required this.index, required this.total});
+  const Cursor({required this.elements, required this.index});
 
-  final T? element;
+  final List<T> elements;
   final int index;
-  final int total;
 
-  bool get allQuestionsAreAnswered => element == null;
+  T? get element =>
+      this.elements.isEmpty || this.index >= this.elements.length
+          ? null
+          : this.index < 0
+          ? this.elements.first
+          : this.elements[this.index];
+
+  int get total => this.elements.length;
 
   @override
-  List<Object?> get props => [element, index, total];
+  List<Object?> get props => [elements, index, total];
 }

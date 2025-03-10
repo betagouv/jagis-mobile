@@ -1,6 +1,8 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
+import 'package:app/features/actions/domain/action_summary.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/theme/core/domain/mission_liste.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
@@ -48,5 +50,19 @@ class ThemeRepository {
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)
         : Left(Exception('Erreur lors de la confirmation de la personnalisation'));
+  }
+
+  Future<Either<Exception, Unit>> replaceAction({
+    required final ThemeType themeType,
+    required final ActionSummary actionSummary,
+  }) async {
+    final actionTypeAPI = actionTypeToAPIString(actionSummary.type);
+    final response = await _client.delete(
+      Endpoints.replaceAction(themeCode: themeType.name, type: actionTypeAPI, code: actionSummary.id),
+    );
+
+    return isResponseUnsuccessful(response.statusCode)
+        ? Left(Exception("Erreur lors de la remplacement de l'action"))
+        : const Right(unit);
   }
 }

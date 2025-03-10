@@ -38,6 +38,8 @@ abstract final class Endpoints {
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
   static const themes = '/utilisateurs/{userId}/thematiques';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
+  static String replaceAction({required final String themeCode, required final String type, required final String code}) =>
+      '/${theme(themeCode)}/actions/$type/$code';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
   static String recommandationsParThematique(final String themeCode) => '${theme(themeCode)}/recommandations';
@@ -48,7 +50,6 @@ abstract final class Endpoints {
 
   // Car Simulator Endpoints
   // FIXME(erolley): Should we have sub classes for each endpoint type (eg: Endpoints.CarSimulator.getCurrentCarResult)?
-
   static const carSimulatorComputeCurrentCar = '/utilisateurs/{userId}/simulateur_voiture/resultat/voiture_actuelle';
   static const carSimulatorComputeOptions = '/utilisateurs/{userId}/simulateur_voiture/resultat/alternatives';
 }

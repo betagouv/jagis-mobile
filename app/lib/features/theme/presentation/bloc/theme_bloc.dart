@@ -39,6 +39,18 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         );
       }
     });
+    on<ThemeReplaceActionRequested>((final event, final emit) async {
+      final blocState = state;
+      if (blocState is ThemeLoadSuccess) {
+        final themeType = blocState.theme.themeType;
+        await themeRepository.replaceAction(themeType: themeType, actionSummary: event.action);
+        final themeDataResult = await themeRepository.fetchTheme(themeType: themeType);
+        themeDataResult.fold(
+          (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
+          (final theme) => emit(blocState.copyWith(theme: theme)),
+        );
+      }
+    });
   }
 
   /// Fausse attente pour simuler la personnalisation

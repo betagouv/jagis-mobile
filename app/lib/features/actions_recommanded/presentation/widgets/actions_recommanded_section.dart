@@ -81,31 +81,54 @@ class _Element extends StatelessWidget {
     }
 
     return FnvCard(
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: DsfrSpacings.s2w,
-          top: DsfrSpacings.s3w,
-          right: DsfrSpacings.s2w,
-          bottom: DsfrSpacings.s1w,
-        ),
-        child: Column(
+      child: IntrinsicHeight(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: DsfrSpacings.s1v,
           children: [
-            FnvMarkdown(data: action.title, p: const DsfrTextStyle.bodyLg()),
-            const SizedBox(height: DsfrSpacings.s1v),
-            _Information(
-              icon: DsfrIcons.financeMoneyEuroCircleLine,
-              value: action.numberOfAidsAvailable,
-              suffix: Localisation.aide,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: DsfrButtonIcon(
-                icon: DsfrIcons.systemArrowRightLine,
-                variant: DsfrButtonVariant.primary,
-                size: DsfrButtonSize.md,
-                onPressed: onTap,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: DsfrSpacings.s2w, top: DsfrSpacings.s2w, bottom: DsfrSpacings.s2w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: DsfrSpacings.s1v,
+                  children: [
+                    FnvMarkdown(data: action.title, p: const DsfrTextStyle.bodyLg()),
+                    _Information(
+                      icon: DsfrIcons.financeMoneyEuroCircleLine,
+                      value: action.numberOfAidsAvailable,
+                      suffix: Localisation.aide,
+                    ),
+                  ],
+                ),
               ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: DsfrSpacings.s1v,
+              children: [
+                InkWell(
+                  onTap: () => context.read<ThemeBloc>().add(ThemeReplaceActionRequested(action)),
+                  child: const SizedBox.square(
+                    dimension: DsfrSpacings.s6w,
+                    child: Icon(
+                      DsfrIcons.systemRefreshLine,
+                      size: 22,
+                      color: DsfrColors.blueFranceSun113,
+                      semanticLabel: Localisation.proposezMoiAutreChose,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: DsfrSpacings.s1w, bottom: DsfrSpacings.s1w),
+                  child: DsfrButtonIcon(
+                    icon: DsfrIcons.systemArrowRightLine,
+                    variant: DsfrButtonVariant.primary,
+                    size: DsfrButtonSize.md,
+                    onPressed: onTap,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

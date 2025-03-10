@@ -224,6 +224,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const etatDuVelo = 'État du vélo';
   static const proposePar = 'Proposé par';
   static const propulsePar = 'Propulsé par ';
+  static const proposezMoiAutreChose = 'Proposez-moi autre chose';
   static const quelleEstLaSuperficie = 'Quelle est la superficie ?';
   static const quiz = 'Quiz';
   static const rafraichir = 'Rafraichir';

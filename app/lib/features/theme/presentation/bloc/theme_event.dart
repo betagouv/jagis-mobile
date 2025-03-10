@@ -1,3 +1,4 @@
+import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -23,4 +24,14 @@ final class ThemeFetchRequested extends ThemeEvent {
 @immutable
 final class ThemeRefreshRequested extends ThemeEvent {
   const ThemeRefreshRequested();
+}
+
+@immutable
+final class ThemeReplaceActionRequested extends ThemeEvent {
+  const ThemeReplaceActionRequested(this.action);
+
+  final ActionSummary action;
+
+  @override
+  List<Object> get props => [action];
 }

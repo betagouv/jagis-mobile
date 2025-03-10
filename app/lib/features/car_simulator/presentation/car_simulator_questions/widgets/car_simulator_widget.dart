@@ -46,7 +46,7 @@ class _Success extends StatelessWidget {
   Widget build(final context) {
     final cursor = questionManager.cursor;
 
-    return cursor.allQuestionsAreAnswered
+    return cursor.isEnd
         ? const CarSimulatorResult()
         : Padding(
           padding: const EdgeInsets.all(DsfrSpacings.s2w),

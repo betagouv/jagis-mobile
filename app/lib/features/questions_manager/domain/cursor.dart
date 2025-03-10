@@ -6,6 +6,8 @@ class Cursor<T> extends Equatable {
   final List<T> elements;
   final int index;
 
+  bool get isEnd => this.index >= this.elements.length;
+
   T? get element =>
       this.elements.isEmpty || this.index >= this.elements.length
           ? null

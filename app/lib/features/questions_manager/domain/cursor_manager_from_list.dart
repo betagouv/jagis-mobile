@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-typedefs-for-callbacks, prefer-correct-callback-field-name
+
 import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/features/questions_manager/domain/cursor_manager.dart';
 

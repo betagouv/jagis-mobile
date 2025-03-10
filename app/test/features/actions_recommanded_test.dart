@@ -12,6 +12,8 @@ import './step/i_tap_on_text.dart';
 import './step/i_see.dart';
 import './step/i_tap_on.dart';
 import './step/i_have_theme_with_actions.dart';
+import './step/i_have_theme_with_no_action.dart';
+import './step/i_have_theme_with_customization_needed.dart';
 
 void main() {
   setUpAll(() async {
@@ -26,7 +28,6 @@ void main() {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
       await iScrollDownTo(tester, 'Découvrir');
-      await iTapOnText(tester, 1, 'Découvrir');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {
@@ -43,6 +44,7 @@ void main() {
       try {
         await beforeEach('''Voir les actions recommandées''');
         await bddSetUp(tester);
+        await iTapOnText(tester, 1, 'Découvrir');
         await iSee(tester, 'Mes actions recommandées');
       } on TestFailure {
         success = false;
@@ -61,6 +63,7 @@ void main() {
         await beforeEach(
             '''Voir la popup si la personnalisation n'a pas été faite''');
         await bddSetUp(tester);
+        await iTapOnText(tester, 1, 'Découvrir');
         await iSee(tester, 'Envie d’avoir un vrai impact ?');
       } on TestFailure {
         success = false;
@@ -77,6 +80,7 @@ void main() {
       try {
         await beforeEach('''Commencer les questions''');
         await bddSetUp(tester);
+        await iTapOnText(tester, 1, 'Découvrir');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
@@ -96,6 +100,7 @@ void main() {
       try {
         await beforeEach('''Répondre à toutes les questions''');
         await bddSetUp(tester);
+        await iTapOnText(tester, 1, 'Découvrir');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
@@ -114,6 +119,27 @@ void main() {
       } finally {
         await afterEach(
           '''Répondre à toutes les questions''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Refaire le questionnaire''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Refaire le questionnaire''');
+        await bddSetUp(tester);
+        await iHaveThemeWithNoAction(tester);
+        await iTapOnText(tester, 1, 'Découvrir');
+        await iHaveThemeWithCustomizationNeeded(tester);
+        await iScrollDownTo(tester, 'Refaire');
+        await iTapOn(tester, 'Refaire');
+        await iSee(tester, 'Envie d’avoir un vrai impact ?');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Refaire le questionnaire''',
           success,
         );
       }

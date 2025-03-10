@@ -94,7 +94,7 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
     return _isExpanded
         ? Stack(
           children: [
-            ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), child: question),
+            ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), child: IgnorePointer(child: question)),
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),

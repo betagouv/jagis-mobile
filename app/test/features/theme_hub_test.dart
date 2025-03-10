@@ -27,7 +27,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -36,12 +37,16 @@ void main() {
       try {
         await beforeEach('''See proposals by theme''');
         await bddSetUp(tester);
-        await iSee(tester, 'D’après nos calculs, à Dole, voici ce que nous pouvons vous proposer :');
+        await iSee(tester,
+            'D’après nos calculs, à Dole, voici ce que nous pouvons vous proposer :');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''See proposals by theme''', success);
+        await afterEach(
+          '''See proposals by theme''',
+          success,
+        );
       }
     });
   });

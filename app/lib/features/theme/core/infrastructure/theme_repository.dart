@@ -52,6 +52,14 @@ class ThemeRepository {
         : Left(Exception('Erreur lors de la confirmation de la personnalisation'));
   }
 
+  Future<Either<Exception, Unit>> resetCustomization({required final ThemeType themeType}) async {
+    final response = await _client.post(Endpoints.resetCustomization(themeType.name));
+
+    return isResponseSuccessful(response.statusCode)
+        ? const Right(unit)
+        : Left(Exception('Erreur lors de la confirmation de la personnalisation'));
+  }
+
   Future<Either<Exception, Unit>> replaceAction({
     required final ThemeType themeType,
     required final ActionSummary actionSummary,

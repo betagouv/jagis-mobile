@@ -61,10 +61,10 @@ packages:
     dependency: "direct dev"
     description:
       name: bdd_widget_test
-      sha256: e99afb33b2d11c6259b302ec649c5291fc526ef1617707948e95ab852c10693b
+      sha256: "7908b933db8abaac5dedf99388b9c7a326fcd05f39a10c109bdff3c1d59c2192"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   bloc:
     dependency: transitive
     description:
@@ -1314,4 +1314,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: "3.7.0"
-  flutter: ">=3.29.0"
+  flutter: ">=3.29.1"

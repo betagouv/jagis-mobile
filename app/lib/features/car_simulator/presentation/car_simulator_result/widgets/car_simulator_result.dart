@@ -141,12 +141,12 @@ class _BestCarOptionView extends StatelessWidget {
             child: Row(
               spacing: DsfrSpacings.s2w,
               children: [
-                _CarSimulatorOptionView(currentCar: currentCar, option: bestCostOption!, kind: CarSimulatorOptionKind.bestCost),
                 _CarSimulatorOptionView(
                   currentCar: currentCar,
                   option: bestEmissionsOption!,
                   kind: CarSimulatorOptionKind.bestEmission,
                 ),
+                _CarSimulatorOptionView(currentCar: currentCar, option: bestCostOption!, kind: CarSimulatorOptionKind.bestCost),
               ],
             ),
           ),
@@ -228,16 +228,22 @@ class _KindTagView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (kind) {
-    CarSimulatorOptionKind.bestCost => DsfrTag.md(
-      label: const TextSpan(text: Localisation.laPlusEconomique),
-      backgroundColor: Colors.amber[100]!,
-      foregroundColor: Colors.amber[700]!,
+    CarSimulatorOptionKind.bestCost => const DsfrTag.md(
+      label: TextSpan(
+        text: Localisation.laPlusEconomique,
+        style: DsfrTextStyle.bodyMdMedium(color: DsfrColors.textActionHighYellowTournesol),
+      ),
+      backgroundColor: DsfrColors.backgroundContrastYellowTournesol,
+      foregroundColor: DsfrColors.textActionHighYellowTournesol,
       icon: DsfrIcons.financeMoneyEuroCircleFill,
     ),
-    CarSimulatorOptionKind.bestEmission => DsfrTag.md(
-      label: const TextSpan(text: Localisation.laPlusEcologique),
-      backgroundColor: Colors.green[100]!,
-      foregroundColor: Colors.green[700]!,
+    CarSimulatorOptionKind.bestEmission => const DsfrTag.md(
+      label: TextSpan(
+        text: Localisation.laPlusEcologique,
+        style: DsfrTextStyle.bodyMdMedium(color: DsfrColors.textActionHighGreenBourgeon),
+      ),
+      backgroundColor: DsfrColors.backgroundContrastGreenBourgeon,
+      foregroundColor: DsfrColors.textActionHighGreenBourgeon,
       icon: DsfrIcons.othersLeafFill,
     ),
   };
@@ -253,7 +259,10 @@ class _DiffInTag extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final diff = unit == '%' ? (to - from) / from * 100 : to - from;
-    final color = diff > 0 ? Colors.red : Colors.lightGreen;
+    final colors =
+        diff > 0
+            ? (fg: DsfrColors.textDefaultError, bg: DsfrColors.backgroundConstrastError)
+            : (fg: DsfrColors.textDefaultSuccess, bg: DsfrColors.backgroundConstrastSuccess);
     final sign = diff > 0 ? '+' : '-';
 
     return diff == 0
@@ -261,11 +270,11 @@ class _DiffInTag extends StatelessWidget {
         : DsfrTag.md(
           label: TextSpan(
             text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
-            style: DsfrTextStyle.bodyMdBold(color: color[800]!),
+            style: DsfrTextStyle.bodyMdBold(color: colors.fg),
             children: [TextSpan(text: ' $unit')],
           ),
-          backgroundColor: color[50]!,
-          foregroundColor: color[800]!,
+          backgroundColor: colors.bg,
+          foregroundColor: colors.fg,
         );
   }
 }

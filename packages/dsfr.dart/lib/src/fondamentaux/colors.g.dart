@@ -407,4 +407,14 @@ class DsfrColors {
   static const warning950 = Color(0xFFFFE9E6);
   static const warning950Active = Color(0xFFFFB1A3);
   static const warning950Hover = Color(0xFFFFC6BD);
+  static const textActionHighYellowTournesol = Color(0xFF716043);
+  static const backgroundContrastYellowTournesol = Color(0xFFFEECC2);
+  static const textActionHighYellowMoutarde = Color(0xFF695240);
+  static const backgroundContrastYellowMoutarde = Color(0xFFFEEBD0);
+  static const textActionHighGreenBourgeon = Color(0xFF447049);
+  static const backgroundContrastGreenBourgeon = Color(0xFFC9FCAC);
+  static const textDefaultSuccess = Color(0xFF27A658);
+  static const backgroundConstrastSuccess = Color(0xFFB8FEC9);
+  static const textDefaultError = Color(0xFFCE0500);
+  static const backgroundConstrastError = Color(0xFFFFE9E9);
 }

@@ -23,3 +23,8 @@ final class QuestionsManagerPreviousRequested extends QuestionsManagerEvent {
 final class QuestionsManagerNextRequested extends QuestionsManagerEvent {
   const QuestionsManagerNextRequested();
 }
+
+@immutable
+final class QuestionsManagerLastQuestionRequested extends QuestionsManagerEvent {
+  const QuestionsManagerLastQuestionRequested();
+}

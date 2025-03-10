@@ -288,6 +288,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const questionSuivante = 'Question suivante';
   static const questionPrecedente = 'Question précédente';
   static const passerLaQuestion = 'Passer la question';
+  static const allerDirectementAuxResultats = 'Aller directement aux résultats';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

@@ -311,7 +311,7 @@ class _NumberWithUnit extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Text.rich(
     TextSpan(
-      text: FnvNumberFormat.formatNumber(num),
+      text: FnvNumberFormat.formatNumberAfterRounding(num),
       style: const DsfrTextStyle.body2XlBold(),
       children: [const TextSpan(text: ' '), TextSpan(text: unit, style: const DsfrTextStyle.bodyLg())],
     ),

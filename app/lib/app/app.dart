@@ -6,6 +6,7 @@ import 'package:app/core/authentication/infrastructure/authentication_injection.
 import 'package:app/core/authentication/infrastructure/authentication_redirection.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/message_bus.dart';
+import 'package:app/core/infrastructure/timed_delay.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/notifications/domain/notification_data.dart';
 import 'package:app/core/notifications/domain/notification_page_type.dart';
@@ -85,6 +86,7 @@ class App extends StatefulWidget {
     required this.packageInfo,
     required this.notificationService,
     required this.authenticationService,
+    required this.timedDelay,
   });
 
   final Clock clock;
@@ -94,6 +96,7 @@ class App extends StatefulWidget {
   final PackageInfo packageInfo;
   final NotificationService notificationService;
   final AuthenticationService authenticationService;
+  final TimedDelay timedDelay;
 
   @override
   State<App> createState() => _AppState();
@@ -166,6 +169,7 @@ class _AppState extends State<App> {
         child: AuthenticationRedirection(
           child: MultiRepositoryProvider(
             providers: [
+              RepositoryProvider.value(value: widget.timedDelay),
               RepositoryProvider.value(value: widget.dioHttpClient),
               RepositoryProvider.value(value: widget.notificationService),
               RepositoryProvider.value(value: widget.tracker),

@@ -10,6 +10,7 @@ import 'package:app/core/error/infrastructure/error_handler.dart';
 import 'package:app/core/error/infrastructure/missing_environment_key_exception.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/message_bus.dart';
+import 'package:app/core/infrastructure/timed_delay.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
 import 'package:app/core/presentation/pages/error_page.dart';
@@ -131,6 +132,7 @@ class _AppSetupState extends State<AppSetup> {
         packageInfo: _packageInfo,
         notificationService: _notificationService,
         authenticationService: _authenticationService,
+        timedDelay: TimedDelay(),
       );
     },
   );

@@ -11,6 +11,7 @@ import './step/i_scroll_down_to.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_see.dart';
 import './step/i_tap_on.dart';
+import './step/i_have_theme_with_actions.dart';
 
 void main() {
   setUpAll(() async {
@@ -103,7 +104,10 @@ void main() {
         await iTapOn(tester, "Question suivante");
         await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
         await iTapOn(tester, "Non");
+        await iHaveThemeWithActions(tester);
         await iTapOn(tester, "Question suivante");
+        await iSee(
+            tester, 'Trouver le type de voiture qui vous convient le mieux');
       } on TestFailure {
         success = false;
         rethrow;

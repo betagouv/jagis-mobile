@@ -13,7 +13,7 @@ class ActionRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, Action>> fetch(final String id, final ActionType type) async {
+  Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {
     final actionTypeAPI = actionTypeToAPIString(type);
     final response = await _client.get(Endpoints.action(type: actionTypeAPI, code: id));
 

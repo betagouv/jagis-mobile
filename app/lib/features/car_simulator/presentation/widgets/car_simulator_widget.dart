@@ -155,7 +155,7 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
             label: Localisation.passerLaQuestion,
             variant: DsfrButtonVariant.tertiaryWithoutBorder,
             size: DsfrButtonSize.md,
-            onPressed: _controller.save,
+            onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
           ),
         ],
       ),

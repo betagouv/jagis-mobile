@@ -7,6 +7,7 @@ import 'package:app/features/theme/presentation/pages/theme_page.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 
+// FIXME(lsaudon): Trouver un moyen d'avoir TabBar avec go_router
 class HomeTabView extends StatelessWidget {
   const HomeTabView({super.key});
 

@@ -124,7 +124,8 @@ void setThemes() =>
           'nom_commune': 'Dijon',
         },
       )
-      ..postM(Endpoints.confirmCustomization(ThemeType.transport.name));
+      ..postM(Endpoints.confirmCustomization(ThemeType.transport.name))
+      ..postM(Endpoints.resetCustomization(ThemeType.transport.name));
 
 void setLogout() => FeatureContext.instance.dioMock.postM(Endpoints.logout);
 

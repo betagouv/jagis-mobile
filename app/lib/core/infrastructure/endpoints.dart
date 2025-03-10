@@ -41,6 +41,7 @@ abstract final class Endpoints {
   static String replaceAction({required final String themeCode, required final String type, required final String code}) =>
       '/${theme(themeCode)}/actions/$type/$code';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
+  static String resetCustomization(final String themeCode) => '${theme(themeCode)}/reset_personnalisation';
   static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
   static String recommandationsParThematique(final String themeCode) => '${theme(themeCode)}/recommandations';
   static String servicesParThematique(final String themeCode) => '${theme(themeCode)}/recherche_services';

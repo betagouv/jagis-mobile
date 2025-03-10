@@ -23,6 +23,9 @@ class ThemeInfo extends Equatable {
   final int simulatorCount;
   final String communeName;
 
+  bool get isActionsRecommandedNotEmpty => !isQuestionsNeeded && actionsRecommanded.isNotEmpty;
+  bool get isActionsRecommandedEmpty => !isQuestionsNeeded && actionsRecommanded.isEmpty;
+
   @override
   List<Object> get props => [
     themeType,

@@ -1,15 +1,8 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/tracker.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
-import 'package:app/features/aids/core/presentation/widgets/aid_card.dart';
-import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart';
-import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_event.dart';
-import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
+import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
 import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_disclaimer_cubit.dart';
 import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_disclaimer_state.dart';
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_bloc.dart';

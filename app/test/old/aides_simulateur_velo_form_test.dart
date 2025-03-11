@@ -23,13 +23,13 @@ void main() {
   group('Aides Simulateur vélo formulaire', () {
     const aide2 = Aid(
       id: '2',
-      themeType: ThemeType.transport,
       title: 'Acheter un vélo',
-      content: '<p>Contenu</p>',
       maxAmount: 3500,
       isFree: false,
-      simulatorUrl: '/aides/velo',
       partner: null,
+      themeType: ThemeType.transport,
+      content: '<p>Contenu</p>',
+      simulatorUrl: '/aides/velo',
     );
 
     const codePostal = '39100';

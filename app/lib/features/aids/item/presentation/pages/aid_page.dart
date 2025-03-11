@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/failure_widget.dart';
@@ -49,17 +47,8 @@ class _View extends StatelessWidget {
   @override
   Widget build(final context) => FnvScaffold(
     appBar: FnvAppBar(),
-    body:
-    // FIXME(erolley): problem with tests
-    // FutureBuilder<void>(
-    //   future: Future.delayed(const Duration(milliseconds: 500)),
-    //   builder:
-    //       (final context, final snapshot) =>
-    switch (context.watch<AidBloc>().state) {
-      AidStateLoading() =>
-        // (snapshot.connectionState == ConnectionState.done)
-        //     ? const Center(child: CircularProgressIndicator()) :
-        const SizedBox(),
+    body: switch (context.watch<AidBloc>().state) {
+      AidStateLoading() => const Center(child: CircularProgressIndicator()),
       AidStateSuccess(:final aid) => _AidPageContent(aid),
       AidStateErrorLoading() => const Center(
         child: Padding(padding: EdgeInsets.all(DsfrSpacings.s4w), child: FnvFailureWidget()),

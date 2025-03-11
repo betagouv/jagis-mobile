@@ -1,4 +1,3 @@
-import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -8,15 +7,6 @@ sealed class AidEvent extends Equatable {
 
   @override
   List<Object> get props => [];
-}
-
-@immutable
-final class AidSelected extends AidEvent {
-  const AidSelected(this.value);
-
-  final Aid value;
-  @override
-  List<Object> get props => [value];
 }
 
 @immutable

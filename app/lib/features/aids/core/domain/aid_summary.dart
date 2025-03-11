@@ -24,7 +24,7 @@ class AidSummary extends Equatable {
   List<Object?> get props => [id, title, scale, maxAmount, isFree, partner, hasSimulator];
 }
 
-// NOTE(erolley): should we move this to a separate file?
+// TODO(erolley): should we move this to a separate file?
 enum GeographicalScale {
   country(label: 'National'),
   region(label: 'Région'),

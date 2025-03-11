@@ -16,7 +16,7 @@ abstract final class AidSummaryMapper {
               url: json['partenaire_url'] as String?,
               logo: json['partenaire_logo_url'] as String? ?? '',
             ),
-    // NOTE(erolley): not used for now.
+    // TODO(erolley): not used for now.
     scale: json['echelle'] == null ? null : geographicalScaleFromAPIString(json['echelle'] as String),
     maxAmount: json['montant_max'] as int?,
     // TODO(erolley): add simulator information in the payload.

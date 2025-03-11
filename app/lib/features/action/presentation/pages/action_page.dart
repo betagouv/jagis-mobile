@@ -162,21 +162,7 @@ class _ActionAidsView extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           padding: EdgeInsets.zero,
-          itemBuilder:
-              (final context, final index) => AidCard2(
-                aid:
-                // TODO: fetch the aid from the API
-                Aid(
-                  id: aidSummaries[index].id,
-                  amountMax: aidSummaries[index].maxAmount,
-                  isFree: aidSummaries[index].isFree,
-                  themeType: ThemeType.decouverte,
-                  title: aidSummaries[index].title,
-                  content: '',
-                  simulatorUrl: '',
-                  partner: aidSummaries[index].partner,
-                ),
-              ),
+          itemBuilder: (final context, final index) => AidSummaryCard(aidSummary: aidSummaries[index]),
           separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
           itemCount: aidSummaries.length,
         ),

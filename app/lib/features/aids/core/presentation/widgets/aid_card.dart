@@ -1,10 +1,9 @@
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart';
 import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_event.dart';
 import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/theme/presentation/widgets/theme_type_tag.dart';
 import 'package:app/l10n/l10n.dart';
@@ -21,9 +20,8 @@ class AidCard extends StatelessWidget {
   @override
   Widget build(final context) => FnvCard(
     onTap: () async {
-      context.read<AidBloc>().add(AidSelected(aid));
       context.read<Tracker>().trackClick('Aides', aid.title);
-      await GoRouter.of(context).pushNamed(AidPage.name);
+      await GoRouter.of(context).pushNamed(AidPage.name, pathParameters: {'id': aid.id, 'titre': aid.title});
     },
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
@@ -45,17 +43,16 @@ class AidCard extends StatelessWidget {
   );
 }
 
-class AidCard2 extends StatelessWidget {
-  const AidCard2({super.key, required this.aid});
+class AidSummaryCard extends StatelessWidget {
+  const AidSummaryCard({super.key, required this.aidSummary});
 
-  final Aid aid;
+  final AidSummary aidSummary;
 
   @override
   Widget build(final context) => FnvCard(
     onTap: () async {
-      context.read<AidBloc>().add(AidSelected(aid));
-      context.read<Tracker>().trackClick('Aides', aid.title);
-      await GoRouter.of(context).pushNamed(AidPage.name);
+      context.read<Tracker>().trackClick('Aides', aidSummary.title);
+      await GoRouter.of(context).pushNamed(AidPage.name, pathParameters: {'id': aidSummary.id, 'titre': aidSummary.title});
     },
     child: Column(
       children: [
@@ -68,10 +65,13 @@ class AidCard2 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (aid.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
-                    Text(aid.title, style: const DsfrTextStyle.bodyMd()),
-                    if (aid.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
-                    if (aid.amountMax != null) ...[const SizedBox(height: DsfrSpacings.s1w), _AmountMax(value: aid.amountMax!)],
+                    if (aidSummary.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
+                    Text(aidSummary.title, style: const DsfrTextStyle.bodyMd()),
+                    if (aidSummary.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
+                    if (aidSummary.maxAmount != null) ...[
+                      const SizedBox(height: DsfrSpacings.s1w),
+                      _AmountMax(value: aidSummary.maxAmount!),
+                    ],
                   ],
                 ),
               ),
@@ -79,7 +79,7 @@ class AidCard2 extends StatelessWidget {
             ],
           ),
         ),
-        if (aid.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aid.partner!)),
+        if (aidSummary.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aidSummary.partner!)),
       ],
     ),
   );

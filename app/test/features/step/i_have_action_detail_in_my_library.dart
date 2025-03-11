@@ -1,4 +1,5 @@
 import 'package:app/core/infrastructure/endpoints.dart';
+import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -19,6 +20,7 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
           'services': [
             {'recherche_service_id': e['service_id'], 'categorie': e['service_category']},
           ],
+          'aides': <Aid>[],
         },
       )
       .forEach((final e) {

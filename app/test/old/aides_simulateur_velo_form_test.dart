@@ -22,10 +22,11 @@ import 'steps/set_up_widgets.dart';
 void main() {
   group('Aides Simulateur vélo formulaire', () {
     const aide2 = Aid(
+      id: '2',
       themeType: ThemeType.transport,
       title: 'Acheter un vélo',
       content: '<p>Contenu</p>',
-      amountMax: 3500,
+      maxAmount: 3500,
       isFree: false,
       simulatorUrl: '/aides/velo',
       partner: null,

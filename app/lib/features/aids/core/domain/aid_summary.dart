@@ -5,21 +5,23 @@ class AidSummary extends Equatable {
   const AidSummary({
     required this.id,
     required this.title,
-    required this.scale,
-    required this.maxAmount,
     required this.isFree,
     required this.partner,
+    this.scale,
+    this.maxAmount,
+    this.hasSimulator = false,
   });
 
   final String id;
   final String title;
-  final GeographicalScale scale;
-  final int maxAmount;
+  final GeographicalScale? scale;
+  final int? maxAmount;
   final bool isFree;
-  final Partner partner;
+  final Partner? partner;
+  final bool hasSimulator;
 
   @override
-  List<Object?> get props => [id, title, scale, maxAmount, isFree, partner];
+  List<Object?> get props => [id, title, scale, maxAmount, isFree, partner, hasSimulator];
 }
 
 // NOTE(erolley): should we move this to a separate file?

@@ -18,3 +18,13 @@ final class AidSelected extends AidEvent {
   @override
   List<Object> get props => [value];
 }
+
+@immutable
+final class AidSelectedById extends AidEvent {
+  const AidSelectedById(this.aidId);
+
+  final String aidId;
+
+  @override
+  List<Object> get props => [aidId];
+}

@@ -190,7 +190,7 @@ class _ThemeSection extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
-        itemBuilder: (final context, final index) => AidCard2(aid: aids[index]),
+        itemBuilder: (final context, final index) => AidSummaryCard(aidSummary: aids[index]),
         separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
         itemCount: aids.length,
       ),

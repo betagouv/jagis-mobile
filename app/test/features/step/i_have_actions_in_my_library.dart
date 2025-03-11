@@ -1,4 +1,5 @@
 import 'package:app/core/infrastructure/endpoints.dart';
+import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,6 +18,7 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
               'titre': e['title'],
               'sous_titre': Faker().lorem.sentence(),
               'nombre_aides_disponibles': e['nb_aids_available'],
+              'aides': <Aid>[],
             },
           )
           .toList();

@@ -228,7 +228,6 @@ class _AppState extends State<App> {
                 BlocProvider(
                   create: (final context) => ChallengesBloc(repository: ChallengesRepository(client: widget.dioHttpClient)),
                 ),
-                BlocProvider(create: (final context) => AidBloc()),
                 BlocProvider(
                   create:
                       (final context) =>

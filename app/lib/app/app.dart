@@ -45,7 +45,7 @@ import 'package:app/features/mission/home/infrastructure/mission_home_repository
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
-import 'package:app/features/onboarding/first_name/infrastructure/first_name_repository.dart';
+import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
@@ -179,7 +179,7 @@ class _AppState extends State<App> {
                 create: (final context) => QuestionRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
               ),
               RepositoryProvider(create: (final context) => KnowYourCustomersRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => FirstNameRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
                 create:
                     (final context) => AuthentificationRepository(

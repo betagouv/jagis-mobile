@@ -116,8 +116,8 @@ abstract final class Localisation {
   static const facultatif = 'facultatif';
   static const fermer = 'Fermer';
   static const finalementPasPourMoi = 'Finalement, pas pour moi';
-  static const firstNameEmpty = 'Le prénom ne peut pas être vide.';
-  static const firstNameInvalid = 'Le prénom n’est pas valide.';
+  static const pseudonymEmpty = 'Le pseudonyme ne peut pas être vide.';
+  static const pseudonymInvalid = 'Le pseudonyme n’est pas valide.';
   static const franceConnectPrefix = 'S’identifier avec';
   static const franceConnect = 'FranceConnect';
   static const franceConnectEnSavoirPlus = 'Qu’est-ce que FranceConnect ?';
@@ -171,7 +171,7 @@ abstract final class Localisation {
   static const monLogement = 'Mon logement';
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';
   static const monMotDePasseDoitContenir = 'Mon mot de passe doit contenir :';
-  static const monPrenom = 'Mon prénom';
+  static const monPseudonyme = 'Mon pseudonyme';
   static const monProfil = 'Mon profil';
   static const motDePasse = 'Mot de passe';
   static const motDePasse12CaractresMinimum = '12 caractères minimum';

@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
 
-/// Usage: the API will return an error
-Future<void> theApiWillReturnAnError(final WidgetTester tester, final bdd.DataTable dataTable) async {
+/// Usage: the API will return
+Future<void> theApiWillReturn(final WidgetTester tester, final bdd.DataTable dataTable) async {
   dataTable.asMaps().forEach((final e) {
     if (e['method'] == 'PATCH') {
       FeatureContext.instance.dioMock.patchM(

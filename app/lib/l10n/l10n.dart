@@ -218,6 +218,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const preOnboardingTitre = 'Ensemble,\naméliorons\nnos habitudes\nau jour le jour';
   static const premiereFoisSur = 'Première fois sur J’agis ?';
   static const prenom = 'Prénom';
+  static const pseudonyme = 'Pseudonyme';
   static const prixDuVelo = 'Prix du vélo';
   static const prixDuVeloExplications = 'À titre indicatif, voici quelques prix moyens';
   static const prixDuVeloObligatoire = 'Le prix du vélo ne peux pas être vide';
@@ -328,7 +329,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
 
-  static String prenomExclamation(final String value) => '$value !';
+  static String pseudonymExclamation(final String value) => '$value !';
 
   static String questionCourantSurMax(final int actuel, final int max) => '**Question $actuel** sur $max';
 

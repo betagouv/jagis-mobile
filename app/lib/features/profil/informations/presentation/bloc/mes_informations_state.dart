@@ -7,6 +7,8 @@ enum MesInformationsStatut { initial, chargement, succes }
 final class MesInformationsState extends Equatable {
   const MesInformationsState({
     required this.email,
+    required this.pseudnoym,
+    required this.isNomPrenomModifiable,
     required this.prenom,
     required this.nom,
     required this.anneeDeNaissance,
@@ -18,6 +20,8 @@ final class MesInformationsState extends Equatable {
   const MesInformationsState.empty()
     : this(
         email: '',
+        pseudnoym: '',
+        isNomPrenomModifiable: false,
         prenom: '',
         nom: '',
         anneeDeNaissance: null,
@@ -26,6 +30,8 @@ final class MesInformationsState extends Equatable {
         statut: MesInformationsStatut.initial,
       );
 
+  final String? pseudnoym;
+  final bool isNomPrenomModifiable;
   final String? prenom;
   final String? nom;
   final int? anneeDeNaissance;
@@ -36,6 +42,8 @@ final class MesInformationsState extends Equatable {
 
   MesInformationsState copyWith({
     final String? email,
+    final String? pseudnoym,
+    final bool? isNomPrenomModifiable,
     final String? prenom,
     final String? nom,
     final int? anneeDeNaissance,
@@ -44,6 +52,8 @@ final class MesInformationsState extends Equatable {
     final MesInformationsStatut? statut,
   }) => MesInformationsState(
     email: email ?? this.email,
+    pseudnoym: pseudnoym ?? this.pseudnoym,
+    isNomPrenomModifiable: isNomPrenomModifiable ?? this.isNomPrenomModifiable,
     prenom: prenom ?? this.prenom,
     nom: nom ?? this.nom,
     anneeDeNaissance: anneeDeNaissance ?? this.anneeDeNaissance,
@@ -53,5 +63,15 @@ final class MesInformationsState extends Equatable {
   );
 
   @override
-  List<Object?> get props => [email, prenom, nom, anneeDeNaissance, nombreDePartsFiscales, revenuFiscal, statut];
+  List<Object?> get props => [
+    pseudnoym,
+    prenom,
+    nom,
+    anneeDeNaissance,
+    email,
+    nombreDePartsFiscales,
+    revenuFiscal,
+    statut,
+    isNomPrenomModifiable,
+  ];
 }

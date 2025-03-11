@@ -27,10 +27,11 @@ void main() {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''I see my name on the home page''', (tester) async {
+    testWidgets('''On voit le pseudonyme sur la page d'accueil''',
+        (tester) async {
       var success = true;
       try {
-        await beforeEach('''I see my name on the home page''');
+        await beforeEach('''On voit le pseudonyme sur la page d'accueil''');
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iSee(tester, 'Bonjour,\nJoe !');
@@ -39,7 +40,7 @@ void main() {
         rethrow;
       } finally {
         await afterEach(
-          '''I see my name on the home page''',
+          '''On voit le pseudonyme sur la page d'accueil''',
           success,
         );
       }

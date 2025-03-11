@@ -4,6 +4,7 @@ import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/presentation/widgets/aid_card.dart';
 import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart';
 import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
 import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
@@ -155,7 +156,7 @@ class _Elements extends StatelessWidget {
     if (entries.length == 1) {
       final a = entries.first;
 
-      return _ThemeSection(themeType: a.key, assistances: a.value);
+      return _ThemeSection(themeType: a.key, aids: a.value);
     }
 
     return ListView.separated(
@@ -165,7 +166,7 @@ class _Elements extends StatelessWidget {
       itemBuilder: (final context, final index) {
         final a = entries.elementAt(index);
 
-        return _ThemeSection(themeType: a.key, assistances: a.value);
+        return _ThemeSection(themeType: a.key, aids: a.value);
       },
       separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s3w),
       itemCount: entries.length,
@@ -174,10 +175,10 @@ class _Elements extends StatelessWidget {
 }
 
 class _ThemeSection extends StatelessWidget {
-  const _ThemeSection({required this.themeType, required this.assistances});
+  const _ThemeSection({required this.themeType, required this.aids});
 
   final ThemeType themeType;
-  final List<Aid> assistances;
+  final List<Aid> aids;
 
   @override
   Widget build(final context) => Column(
@@ -189,94 +190,10 @@ class _ThemeSection extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
-        itemBuilder: (final context, final index) => _AssitanceCard(assistance: assistances[index]),
+        itemBuilder: (final context, final index) => AidCard2(aid: aids[index]),
         separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
-        itemCount: assistances.length,
+        itemCount: aids.length,
       ),
     ],
-  );
-}
-
-class _AssitanceCard extends StatelessWidget {
-  const _AssitanceCard({required this.assistance});
-
-  final Aid assistance;
-
-  @override
-  Widget build(final context) => FnvCard(
-    onTap: () async {
-      context.read<AidBloc>().add(AidSelected(assistance));
-      context.read<Tracker>().trackClick('Aides', assistance.title);
-      await GoRouter.of(context).pushNamed(AidPage.name);
-    },
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(DsfrSpacings.s2w),
-          child: Row(
-            spacing: DsfrSpacings.s2w,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (assistance.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
-                    Text(assistance.title, style: const DsfrTextStyle.bodyMd()),
-                    if (assistance.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
-                    if (assistance.amountMax != null) ...[
-                      const SizedBox(height: DsfrSpacings.s1w),
-                      _AmountMax(value: assistance.amountMax!),
-                    ],
-                  ],
-                ),
-              ),
-              const Icon(DsfrIcons.systemArrowRightSLine, color: DsfrColors.blueFranceSun113),
-            ],
-          ),
-        ),
-        if (assistance.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: assistance.partner!)),
-      ],
-    ),
-  );
-}
-
-class _AmountMax extends StatelessWidget {
-  const _AmountMax({required this.value});
-
-  final int value;
-
-  @override
-  Widget build(final context) => Text.rich(
-    TextSpan(
-      children: [
-        const WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
-          child: Icon(DsfrIcons.financeMoneyEuroCircleLine, color: DsfrColors.blueFranceSun113),
-        ),
-        const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
-        const TextSpan(text: Localisation.jusqua),
-        TextSpan(text: Localisation.euro(value), style: const DsfrTextStyle.bodySmBold()),
-      ],
-    ),
-    style: const DsfrTextStyle.bodySm(),
-  );
-}
-
-class _IsFree extends StatelessWidget {
-  const _IsFree();
-
-  @override
-  Widget build(final context) => const Text.rich(
-    TextSpan(
-      children: [
-        WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
-          child: Icon(DsfrIcons.financeMoneyEuroCircleLine, color: DsfrColors.blueFranceSun113),
-        ),
-        WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
-        TextSpan(text: Localisation.gratuit, style: DsfrTextStyle.bodySmBold()),
-      ],
-    ),
-    style: DsfrTextStyle.bodySm(),
   );
 }

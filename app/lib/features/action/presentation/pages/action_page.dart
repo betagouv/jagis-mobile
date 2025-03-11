@@ -1,17 +1,28 @@
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
+import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/domain/action_aid.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/actions/domain/action_type.dart';
+import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/presentation/widgets/aid_card.dart';
+import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart';
+import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
+import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
+import 'package:app/features/aids/item/presentation/bloc/aid_event.dart';
+import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +96,7 @@ class _Success extends StatelessWidget {
           ActionClassic() => _ActionClassicView(action: action),
           ActionSimulator() => _ActionSimulatorView(action: action),
         },
+        _ActionAidsView(actionAids: action.aids),
       ],
     );
   }
@@ -138,6 +150,46 @@ class _WhySectionView extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ActionAidsView extends StatelessWidget {
+  const _ActionAidsView({required this.actionAids});
+
+  final List<ActionAid> actionAids;
+
+  @override
+  Widget build(final BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s2w,
+      children: [
+        const Text(Localisation.lesAidesAssociees, style: DsfrTextStyle.headline2()),
+        ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          itemBuilder:
+              (final context, final index) => AidCard2(
+                aid:
+                // TODO: fetch the aid from the API
+                Aid(
+                  amountMax: actionAids[index].maxAmount,
+                  isFree: actionAids[index].isFree,
+                  themeType: ThemeType.decouverte,
+                  title: actionAids[index].title,
+                  content: '',
+                  simulatorUrl: '',
+                  partner: actionAids[index].partner,
+                ),
+              ),
+          separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
+          itemCount: actionAids.length,
+        ),
+        const SizedBox(height: DsfrSpacings.s4w),
+      ],
+    ),
+  );
 }
 
 class _ActionClassicView extends StatelessWidget {

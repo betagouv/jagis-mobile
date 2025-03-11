@@ -293,6 +293,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const mesActionsRecommandeesEpuiseeDescription =
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const refaire = 'Refaire';
+  static const lesAidesAssociees = 'Les aides associées';
+
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;
 

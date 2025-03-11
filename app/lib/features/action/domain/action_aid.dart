@@ -1,3 +1,4 @@
+import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:equatable/equatable.dart';
 

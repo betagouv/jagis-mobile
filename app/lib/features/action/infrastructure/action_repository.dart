@@ -23,15 +23,12 @@ class ActionRepository {
 
     final json = response.data! as Map<String, dynamic>;
 
-    switch (type) {
-      case ActionType.simulator:
-        return Right(ActionSimulatorMapper.fromJson(json));
-      case ActionType.classic:
-        return Right(ActionClassicMapper.fromJson(json));
-      case ActionType.quiz:
-      case ActionType.performance:
+    return switch (type) {
+      ActionType.simulator => Right(ActionSimulatorMapper.fromJson(json)),
+      ActionType.classic => Right(ActionClassicMapper.fromJson(json)),
+      ActionType.quiz || ActionType.performance =>
         // TODO(erolley): Handle this case.
-        throw UnimplementedError();
-    }
+        throw UnimplementedError(),
+    };
   }
 }

@@ -1,24 +1,17 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
-import 'package:app/features/action/domain/action_aid.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/presentation/widgets/aid_card.dart';
-import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart';
-import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_event.dart';
-import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
@@ -96,7 +89,7 @@ class _Success extends StatelessWidget {
           ActionClassic() => _ActionClassicView(action: action),
           ActionSimulator() => _ActionSimulatorView(action: action),
         },
-        _ActionAidsView(actionAids: action.aids),
+        _ActionAidsView(aidSummaries: action.aidSummaries),
       ],
     );
   }
@@ -153,9 +146,9 @@ class _WhySectionView extends StatelessWidget {
 }
 
 class _ActionAidsView extends StatelessWidget {
-  const _ActionAidsView({required this.actionAids});
+  const _ActionAidsView({required this.aidSummaries});
 
-  final List<ActionAid> actionAids;
+  final List<AidSummary> aidSummaries;
 
   @override
   Widget build(final BuildContext context) => Padding(
@@ -174,17 +167,18 @@ class _ActionAidsView extends StatelessWidget {
                 aid:
                 // TODO: fetch the aid from the API
                 Aid(
-                  amountMax: actionAids[index].maxAmount,
-                  isFree: actionAids[index].isFree,
+                  id: aidSummaries[index].id,
+                  amountMax: aidSummaries[index].maxAmount,
+                  isFree: aidSummaries[index].isFree,
                   themeType: ThemeType.decouverte,
-                  title: actionAids[index].title,
+                  title: aidSummaries[index].title,
                   content: '',
                   simulatorUrl: '',
-                  partner: actionAids[index].partner,
+                  partner: aidSummaries[index].partner,
                 ),
               ),
           separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
-          itemCount: actionAids.length,
+          itemCount: aidSummaries.length,
         ),
         const SizedBox(height: DsfrSpacings.s4w),
       ],

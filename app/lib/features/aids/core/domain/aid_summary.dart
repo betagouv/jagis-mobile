@@ -1,9 +1,9 @@
-import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:equatable/equatable.dart';
 
-class ActionAid extends Equatable {
-  const ActionAid({
+class AidSummary extends Equatable {
+  const AidSummary({
+    required this.id,
     required this.title,
     required this.scale,
     required this.maxAmount,
@@ -11,6 +11,7 @@ class ActionAid extends Equatable {
     required this.partner,
   });
 
+  final String id;
   final String title;
   final GeographicalScale scale;
   final int maxAmount;
@@ -18,7 +19,7 @@ class ActionAid extends Equatable {
   final Partner partner;
 
   @override
-  List<Object?> get props => [title, scale, maxAmount, isFree, partner];
+  List<Object?> get props => [id, title, scale, maxAmount, isFree, partner];
 }
 
 // NOTE(erolley): should we move this to a separate file?

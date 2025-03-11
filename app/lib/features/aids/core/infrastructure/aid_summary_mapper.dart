@@ -1,11 +1,13 @@
-import 'package:app/features/action/domain/action_aid.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/articles/domain/partner.dart';
 
-abstract final class ActionAidMapper {
-  const ActionAidMapper._();
+abstract final class AidSummaryMapper {
+  const AidSummaryMapper._();
 
-  static ActionAid fromJson(final Map<String, dynamic> json) => ActionAid(
+  static AidSummary fromJson(final Map<String, dynamic> json) => AidSummary(
+    id: json['content_id'] as String,
     title: json['titre'] as String,
+    // NOTE(erolley): not used for now.
     scale: geographicalScaleFromAPIString(json['echelle'] as String),
     maxAmount: json['montant_max'] as int,
     isFree: json['est_gratuit'] as bool,

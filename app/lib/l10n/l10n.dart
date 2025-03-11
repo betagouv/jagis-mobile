@@ -23,7 +23,7 @@ abstract final class Localisation {
   static const allerAuDefi = 'Aller au défi';
   static const anneeDeNaissance = 'Année de naissance';
   static const annuler = 'Annuler';
-  static const appEstEnConstruction = 'J’agis est en construction !';
+  static const appEstEnConstruction = 'J’agis est un nouveau service !';
   static const appEstEnConstructionDescription =
       'Cette version est encore très incomplète et de nombreuses évolutions et nouvelles fonctionnalités sont mises en ligne chaque semaine.';
   static const appEstEncoreEnExperimentation = 'J’agis est encore en expérimentation !';

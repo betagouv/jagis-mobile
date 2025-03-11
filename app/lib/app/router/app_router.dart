@@ -22,9 +22,9 @@ import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
-import 'package:app/features/onboarding/first_name/presentation/pages/first_name_page.dart';
 import 'package:app/features/onboarding/presentation/pages/app_est_encore_en_experimentation_page.dart';
 import 'package:app/features/onboarding/presentation/pages/tout_est_pret_page.dart';
+import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';
 import 'package:app/features/onboarding/question_code_postal/presentation/pages/question_code_postal_page.dart';
 import 'package:app/features/onboarding/question_themes/presentation/pages/question_themes_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
@@ -65,7 +65,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
     FranceConnectPage.route,
     HomePage.route(
       routes: [
-        FirstNamePage.route,
+        OnboardingPseudonymPage.route,
         QuestionCodePostalPage.route,
         AppEstEncoreEnExperimentationPage.route,
         QuestionThemesPage.route,

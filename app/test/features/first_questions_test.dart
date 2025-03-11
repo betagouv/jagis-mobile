@@ -16,7 +16,7 @@ import './step/i_enter_in_the_pin_field.dart';
 import './step/i_see.dart';
 import './step/i_select_in_the_field.dart';
 import './step/i_see_the_home_page.dart';
-import './step/the_api_will_return_an_error.dart';
+import './step/the_api_will_return.dart';
 import './step/i_see_semantics.dart';
 
 void main() {
@@ -53,7 +53,7 @@ void main() {
       try {
         await beforeEach('''Répondre aux premieres questions''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, 'Joe', 'Mon prénom');
+        await iEnterInTheField(tester, 'Joe', 'Mon pseudonyme');
         await iSee(tester,
             'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.');
         await iEnterInTheField(tester, '39100', 'Code postal');
@@ -77,31 +77,32 @@ void main() {
         );
       }
     });
-    testWidgets('''Saisir un prénom invalide''', (tester) async {
+    testWidgets('''Saisir un pseudonyme invalide''', (tester) async {
       var success = true;
       try {
-        await beforeEach('''Saisir un prénom invalide''');
+        await beforeEach('''Saisir un pseudonyme invalide''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, '123', 'Mon prénom');
-        await iSee(tester, 'Le prénom n’est pas valide.');
+        await iEnterInTheField(tester, '123', 'Mon pseudonyme');
+        await iSee(tester, 'Le pseudonyme n’est pas valide.');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Saisir un prénom invalide''',
+          '''Saisir un pseudonyme invalide''',
           success,
         );
       }
     });
-    testWidgets('''Saisir un prénom valide et recevoir une erreur de l'API''',
+    testWidgets(
+        '''Saisir un pseudonyme valide et recevoir une erreur de l'API''',
         (tester) async {
       var success = true;
       try {
         await beforeEach(
-            '''Saisir un prénom valide et recevoir une erreur de l'API''');
+            '''Saisir un pseudonyme valide et recevoir une erreur de l'API''');
         await bddSetUp(tester);
-        await theApiWillReturnAnError(
+        await theApiWillReturn(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'responseData'],
@@ -112,37 +113,38 @@ void main() {
                 {"message": "Une erreur est survenue."}
               ]
             ]));
-        await iEnterInTheField(tester, 'Lucas', 'Mon prénom');
+        await iEnterInTheField(tester, 'Lucas', 'Mon pseudonyme');
         await iSee(tester, 'Une erreur est survenue.');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Saisir un prénom valide et recevoir une erreur de l'API''',
+          '''Saisir un pseudonyme valide et recevoir une erreur de l'API''',
           success,
         );
       }
     });
-    testWidgets('''Vérifier l'accessibilité sur la page du prénom''',
+    testWidgets('''Vérifier l'accessibilité sur la page du pseudonyme''',
         (tester) async {
       var success = true;
       try {
-        await beforeEach('''Vérifier l'accessibilité sur la page du prénom''');
+        await beforeEach(
+            '''Vérifier l'accessibilité sur la page du pseudonyme''');
         await bddSetUp(tester);
         await iSeeSemantics(tester, 'Question 1 sur 3');
         await iSeeSemantics(
             tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
         await iSeeSemantics(tester,
             'Nous avons quelques questions à vous poser pour personnaliser votre expérience !');
-        await iSeeSemantics(tester, 'Mon prénom');
+        await iSeeSemantics(tester, 'Mon pseudonyme');
         await iSeeSemantics(tester, 'Continuer');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Vérifier l'accessibilité sur la page du prénom''',
+          '''Vérifier l'accessibilité sur la page du pseudonyme''',
           success,
         );
       }

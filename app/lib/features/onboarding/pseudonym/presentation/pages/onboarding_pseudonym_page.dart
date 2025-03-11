@@ -5,9 +5,9 @@ import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/onboarding/first_name/presentation/bloc/first_name_bloc.dart';
-import 'package:app/features/onboarding/first_name/presentation/bloc/first_name_event.dart';
-import 'package:app/features/onboarding/first_name/presentation/bloc/first_name_state.dart';
+import 'package:app/features/onboarding/pseudonym/presentation/bloc/onboarding_pseudonym_bloc.dart';
+import 'package:app/features/onboarding/pseudonym/presentation/bloc/onboarding_pseudonym_event.dart';
+import 'package:app/features/onboarding/pseudonym/presentation/bloc/onboarding_pseudonym_state.dart';
 import 'package:app/features/onboarding/question_code_postal/presentation/pages/question_code_postal_page.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
@@ -17,30 +17,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
-class FirstNamePage extends StatelessWidget {
-  const FirstNamePage({super.key});
+class OnboardingPseudonymPage extends StatelessWidget {
+  const OnboardingPseudonymPage({super.key});
 
-  static const name = 'question-prenom';
+  static const name = 'question-pseudonyme';
   static const path = name;
 
-  static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const FirstNamePage());
+  static GoRoute get route =>
+      GoRoute(path: path, name: name, builder: (final context, final state) => const OnboardingPseudonymPage());
 
   @override
   Widget build(final context) =>
-      BlocProvider(create: (final context) => FirstNameBloc(repository: context.read()), child: const _Content());
+      BlocProvider(create: (final context) => OnboardingPseudonymBloc(repository: context.read()), child: const _Content());
 }
 
 class _Content extends StatelessWidget {
   const _Content();
 
   void _handleSubmitted(final BuildContext context) {
-    context.read<FirstNameBloc>().add(const FirstNameSubmitted());
+    context.read<OnboardingPseudonymBloc>().add(const OnboardingPseudonymSubmitted());
   }
 
   @override
-  Widget build(final BuildContext context) => BlocListener<FirstNameBloc, FirstNameState>(
+  Widget build(final BuildContext context) => BlocListener<OnboardingPseudonymBloc, OnboardingPseudonymState>(
     listener: (final context, final state) async {
-      if (state is FirstNameSuccess) {
+      if (state is OnboardingPseudonymSuccess) {
         await GoRouter.of(context).pushNamed(QuestionCodePostalPage.name);
       }
     },
@@ -64,21 +65,20 @@ class _Content extends StatelessWidget {
           const Text(Localisation.bienvenueSurDetails, style: DsfrTextStyle.bodyLg()),
           const SizedBox(height: DsfrSpacings.s3w),
           DsfrInput(
-            label: Localisation.monPrenom,
+            label: Localisation.monPseudonyme,
             onChanged: (final value) {
-              context.read<FirstNameBloc>().add(FirstNameChanged(value));
+              context.read<OnboardingPseudonymBloc>().add(OnboardingPseudonymChanged(value));
             },
             onFieldSubmitted: (final value) => _handleSubmitted(context),
             autofocus: true,
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.done,
-            autofillHints: const [AutofillHints.givenName],
           ),
-          BlocSelector<FirstNameBloc, FirstNameState, Option<String>>(
+          BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, Option<String>>(
             selector:
                 (final state) => switch (state) {
-                  FirstNameFailure() => Some(state.errorMessage),
+                  OnboardingPseudonymFailure() => Some(state.errorMessage),
                   _ => const None(),
                 },
             builder:
@@ -89,11 +89,11 @@ class _Content extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BlocSelector<FirstNameBloc, FirstNameState, bool>(
+      bottomNavigationBar: BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, bool>(
         selector:
             (final state) => switch (state) {
-              FirstNameEntered() => state.isValid,
-              FirstNameSuccess() => true,
+              OnboardingPseudonymEntered() => state.isValid,
+              OnboardingPseudonymSuccess() => true,
               _ => false,
             },
         builder:

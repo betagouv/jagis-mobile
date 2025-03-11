@@ -1,4 +1,4 @@
-Feature: First questions
+Feature: Onboarding
   Background:
     Given The application is launched
     Given the email don't exists
@@ -9,7 +9,7 @@ Feature: First questions
     When I tap on create my account button
     When I enter {'999999'} in the pin field
 
-  Scenario: Answer the first questions.
+  Scenario: Répondre aux premieres questions
     When I enter {'Joe'} in the {'Mon prénom'} field
     Then I see {'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.'}
 
@@ -27,3 +27,21 @@ Feature: First questions
 
     When I tap on {'C’est parti !'}
     Then I see the home page
+
+  Scenario: Saisir un prénom invalide
+    When I enter {'123'} in the {'Mon prénom'} field
+    Then I see {'Le prénom n’est pas valide.'}
+
+  Scenario: Saisir un prénom valide et recevoir une erreur de l'API
+    Given the API will return an error
+      | 'method' | 'path'                           | 'statusCode' | 'responseData'                            |
+      | "PATCH"  | "/utilisateurs/{userId}/profile" | 400          | { "message": "Une erreur est survenue." } |
+    When I enter {'Lucas'} in the {'Mon prénom'} field
+    Then I see {'Une erreur est survenue.'}
+
+  Scenario: Vérifier l'accessibilité sur la page du prénom
+    Then I see {'Question 1 sur 3'} semantics
+    Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'} semantics
+    Then I see {'Nous avons quelques questions à vous poser pour personnaliser votre expérience !'} semantics
+    Then I see {'Mon prénom'} semantics
+    Then I see {'Continuer'} semantics

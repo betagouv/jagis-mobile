@@ -38,7 +38,7 @@ abstract final class Localisation {
   static const bibliotheque = 'Ma bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
-  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance...';
+  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Mon bilan environnemental';
   static const bonjour = 'Bonjour,\n';
@@ -140,7 +140,7 @@ abstract final class Localisation {
   static const lesCguMenu = 'CGU';
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
   static const maReponse = 'Ma réponse';
-  static const maResidencePrincipaleEst = 'Ma résidence principale est ...';
+  static const maResidencePrincipaleEst = 'Ma résidence principale est …';
   static const meConnecter = 'Me connecter';
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';

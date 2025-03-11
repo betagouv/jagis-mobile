@@ -5,20 +5,24 @@ import 'package:fpdart/fpdart.dart';
 const _firstNameRegex =
     r'''^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžæÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$''';
 
-class FirstName extends Equatable {
-  const FirstName._(this.value);
-  const FirstName.create(final String value) : this._(value);
+final class FirstName extends Equatable {
+  const FirstName._({required this.value});
+  const FirstName.unsafe(this.value);
+  static Either<String, FirstName> create(final String input) {
+    final inputTrimmed = input.trim();
+
+    if (inputTrimmed.isEmpty) {
+      return left(Localisation.firstNameEmpty);
+    }
+    if (!RegExp(_firstNameRegex).hasMatch(inputTrimmed)) {
+      return left(Localisation.firstNameInvalid);
+    }
+
+    return right(FirstName._(value: inputTrimmed));
+  }
 
   final String value;
 
-  Option<String> get validate {
-    if (value.isEmpty) {
-      return const Some(Localisation.firstNameEmpty);
-    }
-
-    return RegExp(_firstNameRegex).hasMatch(value) ? const None() : const Some(Localisation.firstNameInvalid);
-  }
-
   @override
-  List<Object?> get props => [value];
+  List<Object> get props => [value];
 }

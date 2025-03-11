@@ -137,6 +137,7 @@ dart_code_metrics:
     - prefer-named-boolean-parameters: false
     - prefer-named-parameters: false
     - prefer-prefixed-global-constants: false
+    - prefer-returning-conditional-expressions: false
     - prefer-single-declaration-per-file: false
     - prefer-single-widget-per-file:
         ignore-private-widgets: true

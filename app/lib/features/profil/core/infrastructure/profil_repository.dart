@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-long-parameter-list
+
 import 'dart:convert';
 
 import 'package:app/core/infrastructure/dio_http_client.dart';
@@ -25,6 +27,8 @@ class ProfilRepository {
     return Right(
       Informations(
         email: json['email'] as String,
+        pseudonym: json['pseudo'] as String?,
+        isNomPrenomModifiable: json['is_nom_prenom_modifiable'] as bool,
         prenom: json['prenom'] as String?,
         nom: json['nom'] as String?,
         anneeDeNaissance: json['annee_naissance'] as int?,
@@ -37,6 +41,7 @@ class ProfilRepository {
   }
 
   Future<Either<Exception, Unit>> mettreAJour({
+    required final String? pseudonym,
     required final String? prenom,
     required final String? nom,
     required final int? anneeDeNaissance,
@@ -45,13 +50,14 @@ class ProfilRepository {
   }) async {
     final response = await _client.patch(
       Endpoints.profile,
-      data: jsonEncode({
-        'annee_naissance': anneeDeNaissance,
-        'nom': nom,
-        'nombre_de_parts_fiscales': nombreDePartsFiscales,
+      data: {
+        'pseudo': pseudonym,
         'prenom': prenom,
+        'nom': nom,
+        'annee_naissance': anneeDeNaissance,
+        'nombre_de_parts_fiscales': nombreDePartsFiscales,
         'revenu_fiscal': revenuFiscal,
-      }),
+      },
     );
 
     return isResponseSuccessful(response.statusCode)

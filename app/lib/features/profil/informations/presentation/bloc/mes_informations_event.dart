@@ -15,6 +15,16 @@ final class MesInformationsRecuperationDemandee extends MesInformationsEvent {
 }
 
 @immutable
+final class MesInformationsPseudonymChange extends MesInformationsEvent {
+  const MesInformationsPseudonymChange(this.valeur);
+
+  final String valeur;
+
+  @override
+  List<Object> get props => [valeur];
+}
+
+@immutable
 final class MesInformationsPrenomChange extends MesInformationsEvent {
   const MesInformationsPrenomChange(this.valeur);
 

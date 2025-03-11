@@ -23,6 +23,7 @@ class DsfrInputHeadless extends StatefulWidget {
     this.autocorrect,
     this.fillColor = DsfrColors.grey950,
     this.radius = DsfrSpacings.s1v,
+    this.enabled,
     this.maxLines = 1,
     this.minLines = 1,
     this.textAlign = TextAlign.start,
@@ -52,6 +53,7 @@ class DsfrInputHeadless extends StatefulWidget {
   final bool isPasswordMode;
   final bool passwordVisibility;
   final bool? autocorrect;
+  final bool? enabled;
   final int? maxLines;
   final int? minLines;
   final TextInputType? keyboardType;
@@ -151,6 +153,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
             onFieldSubmitted: widget.onFieldSubmitted,
             validator: widget.validator,
             inputFormatters: widget.inputFormatters,
+            enabled: widget.enabled,
             scrollPadding: widget.scrollPadding,
             autofillHints: widget.autofillHints,
           ),

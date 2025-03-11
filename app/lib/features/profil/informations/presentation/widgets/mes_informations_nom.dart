@@ -11,12 +11,14 @@ class MesInformationsNom extends StatelessWidget {
   @override
   Widget build(final context) {
     final nom = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.nom);
+    final canBeUpdated = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isNomPrenomModifiable);
 
     return DsfrInput(
       label: Localisation.nom,
       hintText: Localisation.facultatif,
       initialValue: nom,
       onChanged: (final value) => context.read<MesInformationsBloc>().add(MesInformationsNomChange(value)),
+      enabled: canBeUpdated,
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,
       autofillHints: const [AutofillHints.familyName],

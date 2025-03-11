@@ -23,3 +23,13 @@ class FnvMarkdown extends StatelessWidget {
     imageBuilder: imageBuilder == null ? null : (final uri, final title, final alt) => imageBuilder!(uri, alt),
   );
 }
+
+({String content, String heading}) parseFirstHeadingInMardown(final String markdownString) {
+  final titleRegex = RegExp(r'^#+\s+(.+)\s*\n');
+  final titleMatch = titleRegex.firstMatch(markdownString);
+  final heading = titleMatch == null ? '' : titleMatch.group(1)!.trim();
+
+  final content = markdownString.trim().replaceAll(RegExp(r'^#+\s+(.+)\s*\n'), '').trim();
+
+  return (heading: heading, content: content);
+}

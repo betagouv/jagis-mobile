@@ -115,8 +115,7 @@ class _WhySectionView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // FIXME(erolley): Should remove the text from the CMS directly.
-    final sanitizedWhy = why.replaceAll(RegExp(r'En quelques mots|En \*\*quelques mots\*\*'), '');
+    final (heading: whyFirstHeading, content: whyContent) = parseFirstHeadingInMardown(why);
 
     return DecoratedBox(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
@@ -125,15 +124,15 @@ class _WhySectionView extends StatelessWidget {
         child: Column(
           spacing: DsfrSpacings.s1w,
           children: [
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: DsfrSpacings.s2w,
+              spacing: DsfrSpacings.s1w,
               children: [
-                Icon(DsfrIcons.editorFrQuoteLine, size: 32, color: DsfrColors.blueFranceSun113),
-                Text(Localisation.enQuelquesMots, style: DsfrTextStyle.headline2()),
+                const Icon(DsfrIcons.editorFrQuoteLine, size: 32, color: DsfrColors.blueFranceSun113),
+                Text(whyFirstHeading, style: const DsfrTextStyle.headline3()),
               ],
             ),
-            _Markdown(data: sanitizedWhy),
+            _Markdown(data: whyContent),
           ],
         ),
       ),

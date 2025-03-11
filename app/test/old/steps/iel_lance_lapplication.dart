@@ -38,6 +38,16 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
 
   final tracker = _TrackerMock();
   when(() => tracker.navigatorObserver).thenAnswer((final _) => RouteObserver<ModalRoute<void>>());
+  final aid = {
+    'content_id': '1',
+    'titre': 'Acheter un vélo',
+    'contenu':
+        "<p>Vous souhaitez acheter un vélo neuf ou d'occasion, qu'il soit électrique ou classique ? Cette aide est faite pour vous !</p><p></p><h3><strong>Votre éligibilité</strong></h3><p><strong>1 aide nationale disponible</strong> pour les <strong>majeurs, domiciliés en France</strong></p><p><strong>Plusieurs aides sous conditions</strong></p><p></p><h3><strong>Types de vélo</strong></h3><ul><li><p>Mécanique / Électrique</p></li><li><p>Classique / Pliant / Cargo</p></li></ul><p></p><h3><strong>En quoi cela a de l'impact ?</strong></h3><p>Le vélo est un des moyens de transport les moins carbonés.</p><p>Il peut remplacer la voiture dans de nombreux cas et c'est bon pour la santé !</p>",
+    'url_simulateur': '/aides/velo',
+    'thematiques': ['transport'],
+    'montant_max': 1500,
+    'est_gratuit': false,
+  };
   ScenarioContext().dioMock!
     ..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData)
     ..getM(Endpoints.utilisateur, responseData: {'prenom': 'Lucas', 'is_onboarding_done': true})
@@ -49,19 +59,10 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
       Endpoints.aids,
       responseData: {
         'couverture_aides_ok': true,
-        'liste_aides': <Map<String, dynamic>>[
-          {
-            'titre': 'Acheter un vélo',
-            'contenu':
-                "<p>Vous souhaitez acheter un vélo neuf ou d'occasion, qu'il soit électrique ou classique ? Cette aide est faite pour vous !</p><p></p><h3><strong>Votre éligibilité</strong></h3><p><strong>1 aide nationale disponible</strong> pour les <strong>majeurs, domiciliés en France</strong></p><p><strong>Plusieurs aides sous conditions</strong></p><p></p><h3><strong>Types de vélo</strong></h3><ul><li><p>Mécanique / Électrique</p></li><li><p>Classique / Pliant / Cargo</p></li></ul><p></p><h3><strong>En quoi cela a de l'impact ?</strong></h3><p>Le vélo est un des moyens de transport les moins carbonés.</p><p>Il peut remplacer la voiture dans de nombreux cas et c'est bon pour la santé !</p>",
-            'url_simulateur': '/aides/velo',
-            'thematiques': ['transport'],
-            'montant_max': 1500,
-            'est_gratuit': false,
-          },
-        ],
+        'liste_aides': <Map<String, dynamic>>[aid],
       },
     )
+    ..getM(Endpoints.aid(aid['content_id']! as String), responseData: aid)
     ..getM(Endpoints.missionsRecommandeesParThematique('alimentation'), responseData: <dynamic>[])
     ..getM(Endpoints.servicesParThematique('alimentation'), responseData: <dynamic>[])
     ..getM(

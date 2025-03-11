@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
-import 'package:app/features/questions/first_name/domain/first_name.dart';
-import 'package:app/features/questions/first_name/infrastructure/first_name_repository.dart';
-import 'package:app/features/questions/first_name/presentation/pages/first_name_page.dart';
-import 'package:app/features/questions/question_code_postal/presentation/pages/question_code_postal_page.dart';
+import 'package:app/features/onboarding/first_name/domain/first_name.dart';
+import 'package:app/features/onboarding/first_name/infrastructure/first_name_repository.dart';
+import 'package:app/features/onboarding/first_name/presentation/pages/first_name_page.dart';
+import 'package:app/features/onboarding/question_code_postal/presentation/pages/question_code_postal_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:clock/clock.dart';
 import 'package:dsfr/dsfr.dart';

@@ -1,7 +1,7 @@
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
+import 'package:app/features/onboarding/question_code_postal/presentation/bloc/question_code_postal_event.dart';
+import 'package:app/features/onboarding/question_code_postal/presentation/bloc/question_code_postal_state.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
-import 'package:app/features/questions/question_code_postal/presentation/bloc/question_code_postal_event.dart';
-import 'package:app/features/questions/question_code_postal/presentation/bloc/question_code_postal_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 

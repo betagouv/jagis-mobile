@@ -1,4 +1,4 @@
-import 'package:app/features/questions/first_name/domain/first_name.dart';
+import 'package:app/features/onboarding/first_name/domain/first_name.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

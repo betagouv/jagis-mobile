@@ -1,7 +1,7 @@
 import 'package:app/core/error/domain/api_erreur.dart';
-import 'package:app/features/questions/first_name/infrastructure/first_name_repository.dart';
-import 'package:app/features/questions/first_name/presentation/bloc/first_name_event.dart';
-import 'package:app/features/questions/first_name/presentation/bloc/first_name_state.dart';
+import 'package:app/features/onboarding/first_name/infrastructure/first_name_repository.dart';
+import 'package:app/features/onboarding/first_name/presentation/bloc/first_name_event.dart';
+import 'package:app/features/onboarding/first_name/presentation/bloc/first_name_state.dart';
 import 'package:clock/clock.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,7 @@
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
-import 'package:app/features/questions/question_themes/presentation/bloc/question_themes_event.dart';
-import 'package:app/features/questions/question_themes/presentation/bloc/question_themes_state.dart';
+import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_event.dart';
+import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 

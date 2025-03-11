@@ -45,8 +45,8 @@ import 'package:app/features/mission/home/infrastructure/mission_home_repository
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
+import 'package:app/features/onboarding/first_name/infrastructure/first_name_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
-import 'package:app/features/questions/first_name/infrastructure/first_name_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';

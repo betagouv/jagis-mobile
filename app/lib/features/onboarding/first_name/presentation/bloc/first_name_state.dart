@@ -1,4 +1,3 @@
-import 'package:app/features/onboarding/first_name/domain/first_name.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -17,35 +16,32 @@ final class FirstNameInitial extends FirstNameState {
 
 @immutable
 final class FirstNameEntered extends FirstNameState {
-  const FirstNameEntered(this.firstName);
+  const FirstNameEntered({required this.firstName, required this.isValid});
 
-  final FirstName firstName;
+  final String firstName;
+  final bool isValid;
+
+  @override
+  List<Object> get props => [firstName, isValid];
+}
+
+@immutable
+final class FirstNameSuccess extends FirstNameState {
+  const FirstNameSuccess(this.firstName);
+
+  final String firstName;
 
   @override
   List<Object> get props => [firstName];
 }
 
 @immutable
-final class FirstNameLoading extends FirstNameState {
-  const FirstNameLoading();
-}
-
-@immutable
-final class FirstNameSuccess extends FirstNameState {
-  const FirstNameSuccess(this.dateTime);
-
-  final DateTime dateTime;
-
-  @override
-  List<Object> get props => [dateTime];
-}
-
-@immutable
 final class FirstNameFailure extends FirstNameState {
-  const FirstNameFailure({required this.errorMessage});
+  const FirstNameFailure({required this.firstName, required this.errorMessage});
 
+  final String firstName;
   final String errorMessage;
 
   @override
-  List<Object> get props => [errorMessage];
+  List<Object> get props => [firstName, errorMessage];
 }

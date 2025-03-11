@@ -14,7 +14,7 @@ Feature: Create a account
     Then I see {'Entrez le code reçu par e-mail !'}
 
     When I enter {'999999'} in the pin field
-    Then I see {'Bienvenue sur J’agis ! Faisons connaissance...'}
+    Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'}
 
   Scenario: See the error message when the email already exists
     Given the email already exists

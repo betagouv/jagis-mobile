@@ -1,4 +1,3 @@
-import 'package:app/features/onboarding/first_name/domain/first_name.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -14,7 +13,7 @@ sealed class FirstNameEvent extends Equatable {
 final class FirstNameChanged extends FirstNameEvent {
   const FirstNameChanged(this.value);
 
-  final FirstName value;
+  final String value;
 
   @override
   List<Object> get props => [value];

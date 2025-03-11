@@ -1,18 +1,15 @@
 import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
-import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart' as fpdart;
 
 class CarSimulatorWidget extends StatelessWidget {
   const CarSimulatorWidget({super.key, this.alreadySeen = false});
@@ -79,9 +76,6 @@ class _Success extends StatelessWidget {
         );
   }
 }
-
-bool allQuestionsAreAnswered(final Cursor<Question> current) =>
-    current.index >= current.elements.length || current.elements.all((final q) => q.isAnswered);
 
 class _QuestionStepper extends StatelessWidget {
   const _QuestionStepper({required this.current, required this.total});

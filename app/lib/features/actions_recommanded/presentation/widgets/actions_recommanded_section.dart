@@ -2,8 +2,10 @@ import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/action_card.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_questions.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
+import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,7 @@ class ActionsRecommandedSection extends StatelessWidget {
           ],
           const SizedBox(height: DsfrSpacings.s3w),
           if (theme.isQuestionsNeeded) ActionsRecommandedQuestions(sequenceId: theme.sequenceId),
-          if (theme.isActionsRecommandedEmpty) const _ActionsEmpty(),
+          if (theme.isActionsRecommandedEmpty) _ActionsEmpty(themeType: theme.themeType),
           if (theme.isActionsRecommandedNotEmpty) _Actions(actions: theme.actionsRecommanded),
         ],
       ),
@@ -43,7 +45,9 @@ class ActionsRecommandedSection extends StatelessWidget {
 }
 
 class _ActionsEmpty extends StatelessWidget {
-  const _ActionsEmpty();
+  const _ActionsEmpty({required this.themeType});
+
+  final ThemeType themeType;
 
   @override
   Widget build(final context) => Column(
@@ -68,20 +72,36 @@ class _ActionsEmpty extends StatelessWidget {
               context.read<ThemeBloc>().add(const ThemeResetRequested());
             },
           ),
-          Expanded(
-            child: DsfrButton(
-              label: 'Explorer “Me déplacer”',
-              variant: DsfrButtonVariant.primary,
-              size: DsfrButtonSize.lg,
-              onPressed: () {
-                print('Explorer “Me déplacer”');
-              },
-            ),
-          ),
+          Expanded(child: _ExploreAnotherTheme(themeType: themeType)),
         ],
       ),
     ],
   );
+}
+
+class _ExploreAnotherTheme extends StatelessWidget {
+  const _ExploreAnotherTheme({required this.themeType});
+
+  final ThemeType themeType;
+
+  @override
+  Widget build(final BuildContext context) {
+    final themeExplored = switch (themeType) {
+      ThemeType.alimentation => ThemeType.transport,
+      ThemeType.transport => ThemeType.logement,
+      ThemeType.logement => ThemeType.consommation,
+      ThemeType.consommation || ThemeType.decouverte => ThemeType.alimentation,
+    };
+
+    return DsfrButton(
+      label: 'Explorer “${themeExplored.displayNameWithoutEmoji}”',
+      variant: DsfrButtonVariant.primary,
+      size: DsfrButtonSize.lg,
+      onPressed: () {
+        navigateToTheme(context, themeExplored);
+      },
+    );
+  }
 }
 
 class _Actions extends StatefulWidget {

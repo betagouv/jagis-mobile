@@ -1,10 +1,10 @@
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme_hub/domain/theme_hub_model.dart';
 import 'package:app/features/theme_hub/presentation/bloc/theme_hub_bloc.dart';
 import 'package:app/features/theme_hub/presentation/bloc/theme_hub_event.dart';
 import 'package:app/features/theme_hub/presentation/bloc/theme_hub_state.dart';
+import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -113,20 +113,7 @@ class _Item extends StatelessWidget {
                   label: Localisation.decouvrir,
                   variant: DsfrButtonVariant.primary,
                   size: DsfrButtonSize.lg,
-                  onPressed: () {
-                    switch (item.themeType) {
-                      case ThemeType.alimentation:
-                        DefaultTabController.of(context).animateTo(1);
-                      case ThemeType.transport:
-                        DefaultTabController.of(context).animateTo(2);
-                      case ThemeType.logement:
-                        DefaultTabController.of(context).animateTo(3);
-                      case ThemeType.consommation:
-                        DefaultTabController.of(context).animateTo(4);
-                      case ThemeType.decouverte:
-                        throw UnimplementedError();
-                    }
-                  },
+                  onPressed: () => navigateToTheme(context, item.themeType),
                 ),
               ),
             ),

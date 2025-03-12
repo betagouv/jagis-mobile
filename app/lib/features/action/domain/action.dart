@@ -23,7 +23,7 @@ sealed class Action extends Equatable {
   final List<AidSummary> aidSummaries;
 
   @override
-  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries];
+  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries, isDone];
 }
 
 final class ActionClassic extends Action {

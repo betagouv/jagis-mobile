@@ -22,8 +22,8 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
        super(const CarSimulatorInit()) {
     on<CarSimulatorActionMarkAsDone>((final event, final emit) async {
       await _actionRepository.markAsDone(
-        id: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator),
         type: ActionType.simulator,
+        id: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator),
       );
     });
     on<CarSimulatorGetCurrentCarResult>(_onGetCurrentCarResult);

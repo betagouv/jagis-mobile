@@ -16,15 +16,23 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-typedef OnSavedCallback = void Function();
+typedef Callback = void Function();
 
 class QuestionForm extends StatelessWidget {
-  const QuestionForm({super.key, required this.questionId, this.withoutTitle = false, required this.controller, this.onSaved});
+  const QuestionForm({
+    super.key,
+    required this.questionId,
+    this.withoutTitle = false,
+    required this.controller,
+    this.onSaved,
+    this.onEdit,
+  });
 
   final String questionId;
   final bool withoutTitle;
   final QuestionController controller;
-  final OnSavedCallback? onSaved;
+  final Callback? onSaved;
+  final Callback? onEdit;
 
   @override
   Widget build(final context) => BlocProvider(
@@ -32,21 +40,30 @@ class QuestionForm extends StatelessWidget {
         (final context) =>
             QuestionEditBloc(questionRepository: context.read())..add(QuestionEditRecuperationDemandee(questionId)),
     lazy: false,
-    child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved),
+    child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved, onEdit: onEdit),
   );
 }
 
 class _Content extends StatelessWidget {
-  const _Content({required this.withoutTitle, required this.controller, required this.onSaved});
+  const _Content({required this.withoutTitle, required this.controller, required this.onSaved, required this.onEdit});
 
   final bool withoutTitle;
   final QuestionController controller;
-  final OnSavedCallback? onSaved;
+  final Callback? onSaved;
+  final Callback? onEdit;
 
   @override
   Widget build(final context) => BlocListener<QuestionEditBloc, QuestionEditState>(
     listener: (final context, final state) {
       final aState = state;
+
+      if (aState is QuestionEditLoaded) {
+        print('aState: ${aState.question.responsesDisplay()}');
+        print('newState: ${aState.newQuestion.responsesDisplay()}');
+      }
+      if (aState is QuestionEditLoaded && aState.newQuestion.responsesDisplay().isNotEmpty) {
+        onEdit?.call();
+      }
       if (aState is QuestionEditLoaded && aState.updated) {
         onSaved?.call();
       }

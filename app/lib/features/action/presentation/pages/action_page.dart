@@ -12,7 +12,6 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
-import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

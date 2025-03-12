@@ -15,7 +15,6 @@ import 'package:app/core/notifications/infrastructure/notification_service.dart'
 import 'package:app/features/action/infrastructure/action_repository.dart';
 import 'package:app/features/actions/infrastructure/actions_repository.dart';
 import 'package:app/features/aids/core/presentation/bloc/aids_home_bloc.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
 import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_disclaimer_cubit.dart';
 import 'package:app/features/articles/infrastructure/articles_repository.dart';
@@ -224,7 +223,6 @@ class _AppState extends State<App> {
                 BlocProvider(
                   create: (final context) => ChallengesBloc(repository: ChallengesRepository(client: widget.dioHttpClient)),
                 ),
-                BlocProvider(create: (final context) => AidBloc()),
                 BlocProvider(
                   create:
                       (final context) =>

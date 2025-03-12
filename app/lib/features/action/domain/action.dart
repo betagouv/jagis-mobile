@@ -1,18 +1,27 @@
 import 'package:app/features/action/domain/action_service.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:equatable/equatable.dart';
 
 sealed class Action extends Equatable {
-  const Action({required this.id, required this.title, required this.subTitle, required this.why, required this.alreadySeen});
+  const Action({
+    required this.id,
+    required this.title,
+    required this.subTitle,
+    required this.why,
+    required this.alreadySeen,
+    required this.aidSummaries,
+  });
 
   final String id;
   final String title;
   final String? subTitle;
   final String why;
   final bool alreadySeen;
+  final List<AidSummary> aidSummaries;
 
   @override
-  List<Object?> get props => [id, title, subTitle, why, alreadySeen];
+  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries];
 }
 
 final class ActionClassic extends Action {
@@ -22,6 +31,7 @@ final class ActionClassic extends Action {
     required super.subTitle,
     required super.alreadySeen,
     required super.why,
+    required super.aidSummaries,
     required this.how,
     required this.services,
   });
@@ -44,6 +54,7 @@ final class ActionSimulator extends Action {
     required super.subTitle,
     required super.alreadySeen,
     required super.why,
+    required super.aidSummaries,
     required this.questions,
   });
 

@@ -22,13 +22,14 @@ import 'steps/set_up_widgets.dart';
 void main() {
   group('Aides Simulateur vélo formulaire', () {
     const aide2 = Aid(
-      themeType: ThemeType.transport,
+      id: '2',
       title: 'Acheter un vélo',
-      content: '<p>Contenu</p>',
-      amountMax: 3500,
+      maxAmount: 3500,
       isFree: false,
-      simulatorUrl: '/aides/velo',
       partner: null,
+      themeType: ThemeType.transport,
+      content: '<p>Contenu</p>',
+      simulatorUrl: '/aides/velo',
     );
 
     const codePostal = '39100';

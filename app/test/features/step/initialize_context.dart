@@ -31,7 +31,7 @@ Future<void> initializeContext() async {
   setMiniBilan();
   setMissionRecommanded();
   setMissionRecommandedByThematique();
-  setAssistances();
+  setAids();
   setPoints();
   setChallenges();
   setRecommandations();
@@ -213,37 +213,39 @@ void setMissionRecommandedByThematique() {
     ..getM(Endpoints.missionsRecommandeesParThematique(ThemeType.transport.name), responseData: <dynamic>[]);
 }
 
-void setAssistances() => FeatureContext.instance.dioMock.getM(
-  Endpoints.aids,
-  responseData: {
-    'couverture_aides_ok': false,
-    'liste_aides': [
-      {
-        'id': 'renover_son_logement',
-        'titre': 'Rénover son logement',
-        'thematiques': ['logement'],
-        'contenu': '',
-        'est_gratuit': false,
-      },
-      {
-        'titre': 'Acheter un vélo',
-        'contenu':
-            "<p>Vous souhaitez acheter un vélo neuf ou d'occasion, qu'il soit électrique ou classique ? Cette aide est faite pour vous !</p><p></p><h3><strong>Votre éligibilité</strong></h3><p><strong>1 aide nationale disponible</strong> pour les <strong>majeurs, domiciliés en France</strong></p><p><strong>Plusieurs aides sous conditions</strong></p><p></p><h3><strong>Types de vélo</strong></h3><ul><li><p>Mécanique / Électrique</p></li><li><p>Classique / Pliant / Cargo</p></li></ul><p></p><h3><strong>En quoi cela a de l'impact ?</strong></h3><p>Le vélo est un des moyens de transport les moins carbonés.</p><p>Il peut remplacer la voiture dans de nombreux cas et c'est bon pour la santé !</p>",
-        'url_simulateur': '/aides/velo',
-        'thematiques': ['transport'],
-        'montant_max': 1500,
-        'est_gratuit': false,
-      },
-      {
-        'id': 'composter_ses_dechets',
-        'titre': 'Composter ses déchets',
-        'thematiques': ['alimentation'],
-        'contenu': '',
-        'est_gratuit': true,
-      },
-    ],
-  },
-);
+void setAids() {
+  final aids = [
+    {
+      'content_id': 'renover_son_logement',
+      'titre': 'Rénover son logement',
+      'thematiques': ['logement'],
+      'contenu': '',
+      'est_gratuit': false,
+    },
+    {
+      'content_id': 'acheter_un_velo',
+      'titre': 'Acheter un vélo',
+      'contenu':
+          "<p>Vous souhaitez acheter un vélo neuf ou d'occasion, qu'il soit électrique ou classique ? Cette aide est faite pour vous !</p><p></p><h3><strong>Votre éligibilité</strong></h3><p><strong>1 aide nationale disponible</strong> pour les <strong>majeurs, domiciliés en France</strong></p><p><strong>Plusieurs aides sous conditions</strong></p><p></p><h3><strong>Types de vélo</strong></h3><ul><li><p>Mécanique / Électrique</p></li><li><p>Classique / Pliant / Cargo</p></li></ul><p></p><h3><strong>En quoi cela a de l'impact ?</strong></h3><p>Le vélo est un des moyens de transport les moins carbonés.</p><p>Il peut remplacer la voiture dans de nombreux cas et c'est bon pour la santé !</p>",
+      'url_simulateur': '/aides/velo',
+      'thematiques': ['transport'],
+      'montant_max': 1500,
+      'est_gratuit': false,
+    },
+    {
+      'content_id': 'composter_ses_dechets',
+      'titre': 'Composter ses déchets',
+      'thematiques': ['alimentation'],
+      'contenu': '',
+      'est_gratuit': true,
+    },
+  ];
+
+  FeatureContext.instance.dioMock.getM(Endpoints.aids, responseData: {'couverture_aides_ok': false, 'liste_aides': aids});
+  for (final aid in aids) {
+    FeatureContext.instance.dioMock.getM(Endpoints.aid(aid['content_id']! as String), responseData: aid);
+  }
+}
 
 void setPoints() => FeatureContext.instance.dioMock.getM(Endpoints.gamification, responseData: {'points': 650});
 

@@ -1,4 +1,5 @@
 import 'package:app/core/infrastructure/endpoints.dart';
+import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +19,7 @@ Future<void> iEnterInTheSearchByTitleFieldActions(final WidgetTester tester, fin
           'titre': 'Tester une nouvelle recette végétarienne',
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': 1,
+          'aides': <Aid>[],
         },
       ],
       'filtres': [

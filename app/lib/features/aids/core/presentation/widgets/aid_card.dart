@@ -2,8 +2,6 @@ import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_bloc.dart';
-import 'package:app/features/aids/item/presentation/bloc/aid_event.dart';
 import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/theme/presentation/widgets/theme_type_tag.dart';
 import 'package:dsfr/dsfr.dart';
@@ -19,9 +17,8 @@ class AidCard extends StatelessWidget {
   @override
   Widget build(final context) => FnvCard(
     onTap: () async {
-      context.read<AidBloc>().add(AidSelected(aid));
       context.read<Tracker>().trackClick('Aides', aid.title);
-      await GoRouter.of(context).pushNamed(AidPage.name);
+      await GoRouter.of(context).pushNamed(AidPage.name, pathParameters: AidPage.pathParameters(title: aid.title, id: aid.id));
     },
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),

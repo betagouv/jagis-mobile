@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/core/authentication/domain/authentication_service.dart';
@@ -47,11 +46,7 @@ void main() {
     // Arrange.
     final dio =
         DioMock()
-          ..postM(
-            Endpoints.login,
-            statusCode: HttpStatus.badRequest,
-            responseData: jsonDecode('{"message":"Utilisateur non actif"}'),
-          )
+          ..postM(Endpoints.login, statusCode: HttpStatus.badRequest, responseData: {'message': 'Utilisateur non actif'})
           ..postM(Endpoints.renvoyerCode);
 
     final repository = AuthentificationRepository(
@@ -75,13 +70,10 @@ void main() {
             ..postM(
               Endpoints.loginCode,
               statusCode: HttpStatus.created,
-              responseData: jsonDecode('''
-{
-  "token": "$token",
-  "utilisateur": {
-    "id": "user123"
-  }
-}'''),
+              responseData: {
+                'token': token,
+                'utilisateur': {'id': 'user123'},
+              },
             );
 
       final flutterSecureStorage = FlutterSecureStorageFake();
@@ -161,13 +153,10 @@ void main() {
         DioMock()..postM(
           Endpoints.validerCode,
           statusCode: HttpStatus.created,
-          responseData: jsonDecode('''
-{
-  "token": "$token",
-  "utilisateur": {
-    "id": "$utilisateurId"
-  }
-}'''),
+          responseData: {
+            'token': token,
+            'utilisateur': {'id': utilisateurId},
+          },
         );
 
     final flutterSecureStorageMock = FlutterSecureStorageFake();
@@ -203,14 +192,7 @@ void main() {
 
   test('oubliMotDePasse', () async {
     final dio =
-        DioMock()..postM(
-          Endpoints.oubliMotDePasse,
-          statusCode: HttpStatus.created,
-          responseData: jsonDecode('''
-{
-  "email": "test@example.com"
-}'''),
-        );
+        DioMock()..postM(Endpoints.oubliMotDePasse, statusCode: HttpStatus.created, responseData: {'email': 'test@example.com'});
 
     final repository = AuthentificationRepository(
       client: DioHttpClient(dio: dio, authenticationService: authenticationService),

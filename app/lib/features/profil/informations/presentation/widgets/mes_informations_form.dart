@@ -5,6 +5,7 @@ import 'package:app/features/profil/informations/presentation/widgets/mes_inform
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_nom.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_nombre_de_parts_fiscales.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_prenom.dart';
+import 'package:app/features/profil/informations/presentation/widgets/mes_informations_pseudonyme.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_revenu_fiscal.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/profil/profil/presentation/widgets/profil_titre_partie.dart';
@@ -25,6 +26,8 @@ class MesInformationsForm extends StatelessWidget {
       SizedBox(height: DsfrSpacings.s2w),
       MesInformationsEmail(),
       SizedBox(height: DsfrSpacings.s4w),
+      MesInformationsPseudonyme(),
+      SizedBox(height: DsfrSpacings.s2w),
       MesInformationsPrenom(),
       SizedBox(height: DsfrSpacings.s2w),
       MesInformationsNom(),

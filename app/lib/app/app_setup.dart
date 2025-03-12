@@ -32,7 +32,6 @@ class AppSetup extends StatefulWidget {
 }
 
 class _AppSetupState extends State<AppSetup> {
-  final _clock = const Clock();
   late final PackageInfo _packageInfo;
   late final Tracker _tracker;
   late final NotificationService _notificationService;
@@ -82,7 +81,7 @@ class _AppSetupState extends State<AppSetup> {
     );
     await authenticationStorage.init();
 
-    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: _clock);
+    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: const Clock());
     await authenticationService.checkAuthenticationStatus();
 
     return authenticationService;
@@ -125,7 +124,6 @@ class _AppSetupState extends State<AppSetup> {
       final messageBus = MessageBus();
 
       return App(
-        clock: _clock,
         tracker: _tracker,
         messageBus: messageBus,
         dioHttpClient: client,

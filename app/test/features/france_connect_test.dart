@@ -37,7 +37,7 @@ void main() {
         await iTapOn(tester, "J’ai déjà un compte");
         await iTapOn(tester, "FranceConnect");
         await imRedirectToFranceconnectCallback(tester);
-        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance...');
+        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
       } on TestFailure {
         success = false;
         rethrow;

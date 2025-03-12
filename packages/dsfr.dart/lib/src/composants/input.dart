@@ -28,6 +28,7 @@ class DsfrInput extends StatefulWidget {
     this.autofocus = false,
     this.isPasswordMode = false,
     this.autocorrect,
+    this.enabled,
     this.keyboardType,
     this.textCapitalization = TextCapitalization.none,
     this.textInputAction,
@@ -54,6 +55,7 @@ class DsfrInput extends StatefulWidget {
   final bool autofocus;
   final bool isPasswordMode;
   final bool? autocorrect;
+  final bool? enabled;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
   final TextInputAction? textInputAction;
@@ -123,6 +125,7 @@ class _DsfrInputState extends State<DsfrInput> {
                   isPasswordMode: widget.isPasswordMode,
                   passwordVisibility: _passwordVisibility,
                   autocorrect: widget.autocorrect,
+                  enabled: widget.enabled,
                   textAlign: widget.textAlign,
                   autofocus: widget.autofocus,
                   inputFormatters: widget.inputFormatters,

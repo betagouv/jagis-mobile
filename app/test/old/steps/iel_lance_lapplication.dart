@@ -27,10 +27,9 @@ class _TrackerMock extends Mock implements Tracker {}
 
 /// Iel lance l'application.
 Future<void> ielLanceLapplication(final WidgetTester tester) async {
-  final clock = Clock.fixed(DateTime(1992));
   final authenticationService = AuthenticationService(
     authenticationStorage: AuthenticationStorage(FlutterSecureStorageFake()),
-    clock: clock,
+    clock: Clock.fixed(DateTime(1992)),
   );
   if (ScenarioContext().authentificationStatut is Authenticated) {
     await authenticationService.login(token);
@@ -95,7 +94,6 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
   await mockNetworkImages(() async {
     await tester.pumpFrames(
       App(
-        clock: clock,
         tracker: tracker,
         messageBus: MessageBus(),
         dioHttpClient: DioHttpClient(dio: ScenarioContext().dioMock!, authenticationService: authenticationService),

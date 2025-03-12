@@ -20,8 +20,9 @@ void ielACesInformationsDeProfil({
     Endpoints.profile,
     responseData: {
       'email': email,
-      'nom': nom,
+      'is_nom_prenom_modifiable': true,
       'prenom': prenom,
+      'nom': nom,
       'code_postal': codePostal,
       'commune': commune,
       'revenu_fiscal': revenuFiscal,

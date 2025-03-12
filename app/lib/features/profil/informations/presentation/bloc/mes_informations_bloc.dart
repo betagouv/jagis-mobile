@@ -14,6 +14,8 @@ class MesInformationsBloc extends Bloc<MesInformationsEvent, MesInformationsStat
         emit(
           MesInformationsState(
             email: profil.email,
+            pseudnoym: profil.pseudonym,
+            isNomPrenomModifiable: profil.isNomPrenomModifiable,
             prenom: profil.prenom,
             nom: profil.nom,
             anneeDeNaissance: profil.anneeDeNaissance,
@@ -24,6 +26,7 @@ class MesInformationsBloc extends Bloc<MesInformationsEvent, MesInformationsStat
         );
       }
     });
+    on<MesInformationsPseudonymChange>((final event, final emit) => emit(state.copyWith(pseudnoym: event.valeur)));
     on<MesInformationsPrenomChange>((final event, final emit) => emit(state.copyWith(prenom: event.valeur)));
     on<MesInformationsNomChange>((final event, final emit) => emit(state.copyWith(nom: event.valeur)));
     on<MesInformationsAnneeChange>((final event, final emit) => emit(state.copyWith(anneeDeNaissance: event.valeur)));
@@ -33,6 +36,7 @@ class MesInformationsBloc extends Bloc<MesInformationsEvent, MesInformationsStat
     on<MesInformationsRevenuFiscalChange>((final event, final emit) => emit(state.copyWith(revenuFiscal: event.valeur)));
     on<MesInformationsMiseAJourDemandee>(
       (final event, final emit) async => profilRepository.mettreAJour(
+        pseudonym: state.pseudnoym,
         prenom: state.prenom,
         nom: state.nom,
         anneeDeNaissance: state.anneeDeNaissance,

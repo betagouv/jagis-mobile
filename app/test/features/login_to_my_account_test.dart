@@ -47,7 +47,7 @@ void main() {
         await iTapOnLoginButton(tester);
         await iSee(tester, 'Entrez le code reçu par e-mail !');
         await iEnterInThePinField(tester, '999999');
-        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance...');
+        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
       } on TestFailure {
         success = false;
         rethrow;

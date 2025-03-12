@@ -99,6 +99,7 @@ dart_code_metrics:
     - map-keys-ordering: false
     - match-getter-setter-field-names: false
     - member-ordering:
+        alphabetize: false # Passer à true pour trier l10n.dart
         order:
           - constructors
           - public-fields

@@ -136,6 +136,9 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
               enabledBorder: underlineInputBorder,
               border: underlineInputBorder,
               constraints: widget.inputConstraints,
+              // NOTE(erolley): needed to show the [suffixText] even when the
+              // field is empty or unfocused.
+              floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
             keyboardType: widget.keyboardType,
             textCapitalization: widget.textCapitalization,

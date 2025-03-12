@@ -3,6 +3,8 @@ import 'package:equatable/equatable.dart';
 class Informations extends Equatable {
   const Informations({
     required this.email,
+    required this.pseudonym,
+    required this.isNomPrenomModifiable,
     required this.prenom,
     required this.nom,
     required this.anneeDeNaissance,
@@ -13,6 +15,8 @@ class Informations extends Equatable {
   });
 
   final String email;
+  final String? pseudonym;
+  final bool isNomPrenomModifiable;
   final String? prenom;
   final String? nom;
   final int? anneeDeNaissance;
@@ -22,5 +26,16 @@ class Informations extends Equatable {
   final int? revenuFiscal;
 
   @override
-  List<Object?> get props => [email, prenom, nom, anneeDeNaissance, codePostal, commune, nombreDePartsFiscales, revenuFiscal];
+  List<Object?> get props => [
+    email,
+    pseudonym,
+    isNomPrenomModifiable,
+    prenom,
+    nom,
+    anneeDeNaissance,
+    codePostal,
+    commune,
+    nombreDePartsFiscales,
+    revenuFiscal,
+  ];
 }

@@ -38,7 +38,7 @@ abstract final class Localisation {
   static const bibliotheque = 'Ma bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
-  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance...';
+  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Mon bilan environnemental';
   static const bonjour = 'Bonjour,\n';
@@ -116,8 +116,8 @@ abstract final class Localisation {
   static const facultatif = 'facultatif';
   static const fermer = 'Fermer';
   static const finalementPasPourMoi = 'Finalement, pas pour moi';
-  static const firstNameEmpty = 'Le prénom ne peut pas être vide.';
-  static const firstNameInvalid = 'Le prénom n’est pas valide.';
+  static const pseudonymEmpty = 'Le pseudonyme ne peut pas être vide.';
+  static const pseudonymInvalid = 'Le pseudonyme n’est pas valide.';
   static const franceConnectPrefix = 'S’identifier avec';
   static const franceConnect = 'FranceConnect';
   static const franceConnectEnSavoirPlus = 'Qu’est-ce que FranceConnect ?';
@@ -140,7 +140,7 @@ abstract final class Localisation {
   static const lesCguMenu = 'CGU';
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
   static const maReponse = 'Ma réponse';
-  static const maResidencePrincipaleEst = 'Ma résidence principale est ...';
+  static const maResidencePrincipaleEst = 'Ma résidence principale est …';
   static const meConnecter = 'Me connecter';
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
@@ -171,7 +171,7 @@ abstract final class Localisation {
   static const monLogement = 'Mon logement';
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';
   static const monMotDePasseDoitContenir = 'Mon mot de passe doit contenir :';
-  static const monPrenom = 'Mon prénom';
+  static const monPseudonyme = 'Mon pseudonyme';
   static const monProfil = 'Mon profil';
   static const motDePasse = 'Mot de passe';
   static const motDePasse12CaractresMinimum = '12 caractères minimum';
@@ -218,6 +218,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const preOnboardingTitre = 'Ensemble,\naméliorons\nnos habitudes\nau jour le jour';
   static const premiereFoisSur = 'Première fois sur J’agis ?';
   static const prenom = 'Prénom';
+  static const pseudonyme = 'Pseudonyme';
   static const prixDuVelo = 'Prix du vélo';
   static const prixDuVeloExplications = 'À titre indicatif, voici quelques prix moyens';
   static const prixDuVeloObligatoire = 'Le prix du vélo ne peux pas être vide';
@@ -330,7 +331,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
 
-  static String prenomExclamation(final String value) => '$value !';
+  static String pseudonymExclamation(final String value) => '$value !';
 
   static String questionCourantSurMax(final int actuel, final int max) => '**Question $actuel** sur $max';
 

@@ -44,8 +44,8 @@ import 'package:app/features/mission/home/infrastructure/mission_home_repository
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
 import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
+import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
-import 'package:app/features/questions/first_name/infrastructure/first_name_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
@@ -67,7 +67,6 @@ import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/features/version/infrastructure/version_repository.dart';
 import 'package:app/features/version/presentation/bloc/version_bloc.dart';
 import 'package:app/features/version/presentation/bloc/version_event.dart';
-import 'package:clock/clock.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,7 +77,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 class App extends StatefulWidget {
   const App({
     super.key,
-    required this.clock,
     required this.tracker,
     required this.messageBus,
     required this.dioHttpClient,
@@ -88,7 +86,6 @@ class App extends StatefulWidget {
     required this.timedDelay,
   });
 
-  final Clock clock;
   final Tracker tracker;
   final MessageBus messageBus;
   final DioHttpClient dioHttpClient;
@@ -172,7 +169,6 @@ class _AppState extends State<App> {
               RepositoryProvider.value(value: widget.dioHttpClient),
               RepositoryProvider.value(value: widget.notificationService),
               RepositoryProvider.value(value: widget.tracker),
-              RepositoryProvider.value(value: widget.clock),
               RepositoryProvider.value(value: communesRepository),
               RepositoryProvider.value(value: gamificationRepository),
               RepositoryProvider.value(value: profilRepository),
@@ -182,7 +178,7 @@ class _AppState extends State<App> {
                 create: (final context) => QuestionRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
               ),
               RepositoryProvider(create: (final context) => KnowYourCustomersRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => FirstNameRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
                 create:
                     (final context) => AuthentificationRepository(

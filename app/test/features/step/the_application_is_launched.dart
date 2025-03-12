@@ -18,10 +18,12 @@ class _TrackerMock extends Mock implements Tracker {}
 
 /// Usage: The application is launched
 Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
-  final clock = Clock.fixed(DateTime(1992, 9));
   final authenticationStorage = AuthenticationStorage(FeatureContext.instance.secureStorage);
   await authenticationStorage.init();
-  final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: clock);
+  final authenticationService = AuthenticationService(
+    authenticationStorage: authenticationStorage,
+    clock: Clock.fixed(DateTime(1992, 9)),
+  );
   await authenticationService.checkAuthenticationStatus();
   final dioHttpClient = DioHttpClient(dio: FeatureContext.instance.dioMock, authenticationService: authenticationService);
   final tracker = _TrackerMock();
@@ -30,7 +32,6 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
 
   await tester.pumpFrames(
     App(
-      clock: clock,
       tracker: tracker,
       messageBus: messageBus,
       dioHttpClient: dioHttpClient,

@@ -3,7 +3,7 @@ import 'package:app/core/notifications/infrastructure/notification_service.dart'
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_event.dart';
 import 'package:app/features/home/presentation/widgets/home_content_layout.dart';
-import 'package:app/features/questions/first_name/presentation/pages/first_name_page.dart';
+import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_event.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_state.dart';
@@ -38,7 +38,7 @@ class _HomeContentState extends State<HomeContent> {
     }
 
     if (!estIntegrationTerminee) {
-      await GoRouter.of(context).pushReplacementNamed(FirstNamePage.name);
+      await GoRouter.of(context).pushReplacementNamed(OnboardingPseudonymPage.name);
 
       return;
     }

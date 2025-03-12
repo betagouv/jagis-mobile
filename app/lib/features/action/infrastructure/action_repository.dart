@@ -23,6 +23,8 @@ class ActionRepository {
 
     final json = response.data! as Map<String, dynamic>;
 
+    print("isDone: ${json['deja_faite']}");
+
     return switch (type) {
       ActionType.simulator => Right(ActionSimulatorMapper.fromJson(json)),
       ActionType.classic => Right(ActionClassicMapper.fromJson(json)),
@@ -30,5 +32,13 @@ class ActionRepository {
         // TODO(erolley): Handle this case.
         throw UnimplementedError(),
     };
+  }
+
+  Future<void> markAsDone({required final ActionType type, required final String id}) async {
+    final actionTypeAPI = actionTypeToAPIString(type);
+    print("Type: $actionTypeAPI,\nID: $id,\nInfo: Marquer l'action comme faite");
+    // NOTE(erolley): we may want to handle the response here.
+    final result = await _client.post(Endpoints.actionFaite(type: actionTypeAPI, code: id));
+    print("Result: $result");
   }
 }

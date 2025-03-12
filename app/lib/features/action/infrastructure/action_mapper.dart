@@ -12,6 +12,7 @@ abstract final class ActionClassicMapper {
     title: json['titre'] as String,
     subTitle: json['sous_titre'] as String?,
     alreadySeen: json['deja_vue'] as bool,
+    isDone: json['deja_faite'] as bool,
     why: json['pourquoi'] as String,
     aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
     how: json['comment'] as String,
@@ -27,6 +28,7 @@ abstract final class ActionSimulatorMapper {
     title: json['titre'] as String,
     subTitle: json['sous_titre'] as String?,
     alreadySeen: json['deja_vue'] as bool,
+    isDone: json['deja_faite'] as bool,
     why: json['pourquoi'] as String,
     aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
     questions:

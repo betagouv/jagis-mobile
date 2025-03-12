@@ -23,6 +23,7 @@ import 'package:app/features/authentification/core/infrastructure/authentificati
 import 'package:app/features/bibliotheque/infrastructure/bibliotheque_repository.dart';
 import 'package:app/features/bibliotheque/presentation/bloc/bibliotheque_bloc.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/challenges/detail/infrastructure/challenge_repository.dart';
 import 'package:app/features/challenges/list/infrastructure/challenge_list_repository.dart';
 import 'package:app/features/challenges/section/infrastructure/challenges_repository.dart';
@@ -156,6 +157,8 @@ class _AppState extends State<App> {
 
     final communesRepository = CommunesRepository(client: widget.dioHttpClient);
 
+    final actionRepository = ActionRepository(client: widget.dioHttpClient);
+
     final profilRepository = ProfilRepository(client: widget.dioHttpClient);
 
     return InheritedGoRouter(
@@ -188,7 +191,7 @@ class _AppState extends State<App> {
               ),
               RepositoryProvider(create: (final context) => ThemeRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => ActionRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => actionRepository),
               RepositoryProvider(create: (final context) => LvaoRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionRecipesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => RecipesRepository(client: widget.dioHttpClient)),
@@ -208,7 +211,6 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => CarSimulatorRepository(client: widget.dioHttpClient)),
             ],
             child: MultiBlocProvider(
               providers: [
@@ -264,6 +266,13 @@ class _AppState extends State<App> {
                         useCase: FetchEnvironmentalPerformance(
                           EnvironmentalPerformanceSummaryRepository(client: widget.dioHttpClient),
                         ),
+                      ),
+                ),
+                BlocProvider(
+                  create:
+                      (final context) => CarSimulatorResultBloc(
+                        carSimulatorRepository: CarSimulatorRepository(client: widget.dioHttpClient),
+                        actionRepository: actionRepository,
                       ),
                 ),
               ],

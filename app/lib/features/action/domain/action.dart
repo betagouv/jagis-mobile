@@ -10,6 +10,7 @@ sealed class Action extends Equatable {
     required this.subTitle,
     required this.why,
     required this.alreadySeen,
+    required this.isDone,
     required this.aidSummaries,
   });
 
@@ -18,6 +19,7 @@ sealed class Action extends Equatable {
   final String? subTitle;
   final String why;
   final bool alreadySeen;
+  final bool isDone;
   final List<AidSummary> aidSummaries;
 
   @override
@@ -30,6 +32,7 @@ final class ActionClassic extends Action {
     required super.title,
     required super.subTitle,
     required super.alreadySeen,
+    required super.isDone,
     required super.why,
     required super.aidSummaries,
     required this.how,
@@ -53,6 +56,7 @@ final class ActionSimulator extends Action {
     required super.title,
     required super.subTitle,
     required super.alreadySeen,
+    required super.isDone,
     required super.why,
     required super.aidSummaries,
     required this.questions,

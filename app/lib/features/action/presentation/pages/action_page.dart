@@ -213,7 +213,7 @@ class _ActionSimulatorView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (action.getId()) {
-    ActionSimulatorId.carSimulator => CarSimulatorWidget(alreadySeen: action.alreadySeen),
+    ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
   };
 }
 

@@ -2,6 +2,9 @@
 
 import 'dart:async';
 
+import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/infrastructure/action_repository.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
@@ -11,15 +14,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 
 class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorResultState> {
-  CarSimulatorResultBloc({required final CarSimulatorRepository repository})
-    : _carSimulatorRepository = repository,
-      super(const CarSimulatorLoading()) {
+  CarSimulatorResultBloc({
+    required final CarSimulatorRepository carSimulatorRepository,
+    required final ActionRepository actionRepository,
+  }) : _carSimulatorRepository = carSimulatorRepository,
+       _actionRepository = actionRepository,
+       super(const CarSimulatorInit()) {
+    on<CarSimulatorActionMarkAsDone>((final event, final emit) async {
+      await _actionRepository.markAsDone(
+        id: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator),
+        type: ActionType.simulator,
+      );
+    });
     on<CarSimulatorGetCurrentCarResult>(_onGetCurrentCarResult);
     on<CarSimulatorNewSelectedCarSize>(_onNewSelectedCarSize);
     on<CarSimulatorToggleChargingStation>(_onToggleChargingStation);
   }
 
   final CarSimulatorRepository _carSimulatorRepository;
+  final ActionRepository _actionRepository;
 
   Future<void> _onGetCurrentCarResult(
     final CarSimulatorGetCurrentCarResult event,

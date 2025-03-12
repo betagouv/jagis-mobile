@@ -14,36 +14,32 @@ class CarSimulatorResult extends StatelessWidget {
   const CarSimulatorResult({super.key});
 
   @override
-  Widget build(final context) => BlocProvider(
-    create: (final context) => CarSimulatorResultBloc(repository: context.read())..add(const CarSimulatorGetCurrentCarResult()),
-    child: const _View(),
-  );
+  Widget build(final context) => const _View();
 }
 
 class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final BuildContext context) {
-    final blocState = context.watch<CarSimulatorResultBloc>().state;
-
-    return switch (blocState) {
-      CarSimulatorLoading() => const Center(child: CircularProgressIndicator()),
-      CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
-        currentCar: blocState.currentCar,
-        selectedSize: blocState.currentCar.size.value.smaller,
-        hasChargingStation: true,
-      ),
-      CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
-        currentCar: blocState.currentCar,
-        selectedSize: blocState.selectedSize,
-        hasChargingStation: blocState.hasChargingStation,
-        bestCostOption: blocState.bestCostOption,
-        bestEmissionsOption: blocState.bestEmissionOption,
-      ),
-      CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-    };
-  }
+  Widget build(final BuildContext context) => BlocBuilder<CarSimulatorResultBloc, CarSimulatorResultState>(
+    builder:
+        (final context, final state) => switch (state) {
+          CarSimulatorInit() => const Center(child: CircularProgressIndicator()),
+          CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
+            currentCar: state.currentCar,
+            selectedSize: state.currentCar.size.value.smaller,
+            hasChargingStation: true,
+          ),
+          CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
+            currentCar: state.currentCar,
+            selectedSize: state.selectedSize,
+            hasChargingStation: state.hasChargingStation,
+            bestCostOption: state.bestCostOption,
+            bestEmissionsOption: state.bestEmissionOption,
+          ),
+          CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
+        },
+  );
 }
 
 class _CarSimulatorResultView extends StatelessWidget {

@@ -11,6 +11,11 @@ sealed class CarSimulatorResultEvent extends Equatable {
 }
 
 @immutable
+final class CarSimulatorActionMarkAsDone extends CarSimulatorResultEvent {
+  const CarSimulatorActionMarkAsDone();
+}
+
+@immutable
 final class CarSimulatorGetCurrentCarResult extends CarSimulatorResultEvent {
   const CarSimulatorGetCurrentCarResult();
 }

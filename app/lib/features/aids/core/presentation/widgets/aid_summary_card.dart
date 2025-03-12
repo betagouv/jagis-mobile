@@ -11,9 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AidSummaryCard extends StatelessWidget {
-  const AidSummaryCard({super.key, required this.aidSummary});
+  const AidSummaryCard({super.key, required this.aidSummary, this.width});
 
   final AidSummary aidSummary;
+  final double? width;
 
   @override
   Widget build(final context) => FnvCard(
@@ -23,33 +24,38 @@ class AidSummaryCard extends StatelessWidget {
         context,
       ).pushNamed(AidPage.name, pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id));
     },
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(DsfrSpacings.s2w),
-          child: Row(
-            spacing: DsfrSpacings.s2w,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (aidSummary.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
-                    Text(aidSummary.title, style: const DsfrTextStyle.bodyMd()),
-                    if (aidSummary.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
-                    if (aidSummary.maxAmount != null) ...[
-                      const SizedBox(height: DsfrSpacings.s1w),
-                      _AmountMax(value: aidSummary.maxAmount!),
+    child: SizedBox(
+      width: width ?? double.infinity,
+      child: Column(
+        // fill height
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Row(
+              spacing: DsfrSpacings.s2w,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (aidSummary.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
+                      Text(aidSummary.title, style: const DsfrTextStyle.bodyMd()),
+                      if (aidSummary.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
+                      if (aidSummary.maxAmount != null) ...[
+                        const SizedBox(height: DsfrSpacings.s1w),
+                        _AmountMax(value: aidSummary.maxAmount!),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-              const Icon(DsfrIcons.systemArrowRightSLine, color: DsfrColors.blueFranceSun113),
-            ],
+                const Icon(DsfrIcons.systemArrowRightSLine, color: DsfrColors.blueFranceSun113),
+              ],
+            ),
           ),
-        ),
-        if (aidSummary.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aidSummary.partner!)),
-      ],
+          if (aidSummary.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aidSummary.partner!)),
+        ],
+      ),
     ),
   );
 }

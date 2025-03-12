@@ -25,7 +25,7 @@ abstract final class ActionSimulatorMapper {
   static ActionSimulator fromJson(final Map<String, dynamic> json) => ActionSimulator(
     id: json['code'] as String,
     title: json['titre'] as String,
-    subTitle: json['sous_titre'] as String,
+    subTitle: json['sous_titre'] as String?,
     alreadySeen: json['deja_vue'] as bool,
     why: json['pourquoi'] as String,
     aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),

@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/width.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
@@ -15,6 +16,7 @@ import 'package:app/features/car_simulator/presentation/widgets/car_simulator_wi
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:collection/collection.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,12 +84,19 @@ class _Success extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
           child: _TitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
         ),
-        _WhySectionView(action.why),
-        switch (action) {
-          ActionClassic() => _ActionClassicView(action: action),
-          ActionSimulator() => _ActionSimulatorView(action: action),
-        },
-        _ActionAidsView(aidSummaries: action.aidSummaries),
+        DecoratedBox(
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+          child: Column(
+            children: [
+              _WhySectionView(action.why),
+              switch (action) {
+                ActionClassic() => _ActionClassicView(action: action),
+                ActionSimulator() => _ActionSimulatorView(action: action),
+              },
+              if (action.aidSummaries.isNotEmpty) _ActionAidsView(aidSummaries: action.aidSummaries),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -120,24 +129,21 @@ class _WhySectionView extends StatelessWidget {
   Widget build(final BuildContext context) {
     final (heading: whyFirstHeading, content: whyContent) = parseFirstHeadingInMardown(why);
 
-    return DecoratedBox(
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-        child: Column(
-          spacing: DsfrSpacings.s1w,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: DsfrSpacings.s1w,
-              children: [
-                const Icon(DsfrIcons.editorFrQuoteLine, size: 32, color: DsfrColors.blueFranceSun113),
-                Text(whyFirstHeading, style: const DsfrTextStyle.headline3()),
-              ],
-            ),
-            _Markdown(data: whyContent),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+      child: Column(
+        spacing: DsfrSpacings.s1w,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s1w,
+            children: [
+              const Icon(DsfrIcons.editorFrQuoteLine, size: 32, color: DsfrColors.blueFranceSun113),
+              Text(whyFirstHeading, style: const DsfrTextStyle.headline3()),
+            ],
+          ),
+          _Markdown(data: whyContent),
+        ],
       ),
     );
   }
@@ -150,19 +156,26 @@ class _ActionAidsView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+    padding: const EdgeInsets.all(DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s2w,
       children: [
-        const Text(Localisation.lesAidesAssociees, style: DsfrTextStyle.headline2()),
-        ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
+        const Text(Localisation.aidesEtBonsPlans, style: DsfrTextStyle.headline3()),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           padding: EdgeInsets.zero,
-          itemBuilder: (final context, final index) => AidSummaryCard(aidSummary: aidSummaries[index]),
-          separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s1w),
-          itemCount: aidSummaries.length,
+          clipBehavior: Clip.none,
+          child: IntrinsicHeight(
+            child: Row(
+              spacing: DsfrSpacings.s2w,
+              children:
+                  aidSummaries
+                      .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
+                      .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, 0.8)))
+                      .toList(),
+            ),
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s4w),
       ],
@@ -176,23 +189,20 @@ class _ActionClassicView extends StatelessWidget {
   final ActionClassic action;
 
   @override
-  Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-    child: Column(
-      children: [
-        if (action.hasLvaoService) ...[
-          const SizedBox(height: DsfrSpacings.s4w),
-          LvaoHorizontalList(category: action.lvaoService.category),
-        ],
-        if (action.hasRecipesService) ...[
-          const SizedBox(height: DsfrSpacings.s4w),
-          RecipeHorizontalList(category: action.recipesService.category),
-        ],
+  Widget build(final BuildContext context) => Column(
+    children: [
+      if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Markdown(data: action.how)),
-        const SizedBox(height: DsfrSpacings.s2w),
+        LvaoHorizontalList(category: action.lvaoService.category),
       ],
-    ),
+      if (action.hasRecipesService) ...[
+        const SizedBox(height: DsfrSpacings.s4w),
+        RecipeHorizontalList(category: action.recipesService.category),
+      ],
+      const SizedBox(height: DsfrSpacings.s4w),
+      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Markdown(data: action.how)),
+      const SizedBox(height: DsfrSpacings.s2w),
+    ],
   );
 }
 

@@ -420,4 +420,5 @@ class DsfrColors {
   static const textDefaultError = Color(0xFFCE0500);
   static const backgroundConstrastError = Color(0xFFFFE9E9);
   static const borderPlainInfo = Color(0xFF0063CB);
+  static const backgroundFlatInfo = Color(0xFF0063CB);
 }

@@ -2,6 +2,7 @@ import 'package:app/core/helpers/width.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
+import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
@@ -13,12 +14,13 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
+import 'package:app/features/gamification/presentation/widgets/points.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:collection/collection.dart';
 import 'package:dsfr/dsfr.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -87,7 +89,6 @@ class _Success extends StatelessWidget {
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
           child: Column(
-            spacing: DsfrSpacings.s2w,
             children: [
               _WhySectionView(action.why),
               switch (action) {
@@ -98,9 +99,64 @@ class _Success extends StatelessWidget {
             ],
           ),
         ),
+        _ScoreInstructionView(action: action),
       ],
     );
   }
+}
+
+class _ScoreInstructionView extends StatelessWidget {
+  const _ScoreInstructionView({required this.action});
+
+  final Action action;
+
+  @override
+  Widget build(final BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+    child: FnvCard(
+      child: Padding(
+        padding: const EdgeInsets.all(DsfrSpacings.s2w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: DsfrSpacings.s1w,
+          children: [
+            if (action.isDone) ...[
+              const Text('Bravo !', style: DsfrTextStyle.headline3()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Tu as déjà réalisé cette action', style: const DsfrTextStyle.bodyMd()),
+                  Points(points: action.score),
+                ],
+              ),
+            ] else ...[
+              const Text('On se lance le défi ?', style: DsfrTextStyle.headline3()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text(action.instruction, style: const DsfrTextStyle.bodyMd()), Points(points: action.score)],
+              ),
+            ],
+            DecoratedBox(
+              decoration: const BoxDecoration(border: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w),
+                child:
+                    action.nbActionsDone > 1
+                        ? Text.rich(
+                          TextSpan(
+                            text: '${action.nbActionsDone} ${action.scoreLabel}',
+                            children: const [TextSpan(text: ' faites par la communautées', style: DsfrTextStyle.bodyMdItalic())],
+                            style: const DsfrTextStyle.bodyMdBold(),
+                          ),
+                        )
+                        : const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class _TitleWithSubTitleView extends StatelessWidget {

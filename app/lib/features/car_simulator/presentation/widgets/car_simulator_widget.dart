@@ -146,16 +146,11 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
 }
 
 class _ButtonsControllerWidget extends StatefulWidget {
-  const _ButtonsControllerWidget({
-    required this.cursor,
-    required final QuestionController questionController,
-    required final InputController inputController,
-  }) : _questionController = questionController,
-       _inputController = inputController;
+  const _ButtonsControllerWidget({required this.cursor, required this.questionController, required this.inputController});
 
   final Cursor<Question> cursor;
-  final QuestionController _questionController;
-  final InputController _inputController;
+  final QuestionController questionController;
+  final InputController inputController;
 
   @override
   State<_ButtonsControllerWidget> createState() => _ButtonsControllerWidgetState();
@@ -167,16 +162,16 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
   @override
   void initState() {
     super.initState();
-    widget._inputController.addListener(_listener);
+    widget.inputController.addListener(_listener);
   }
 
   void _listener() => setState(() {
-    inputIsEmpty = widget._inputController.isEmpty;
+    inputIsEmpty = widget.inputController.isEmpty;
   });
 
   @override
   void dispose() {
-    widget._inputController.removeListener(_listener);
+    widget.inputController.removeListener(_listener);
     super.dispose();
   }
 
@@ -199,7 +194,7 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
                 label: Localisation.questionSuivante,
                 variant: DsfrButtonVariant.primary,
                 size: DsfrButtonSize.lg,
-                onPressed: widget._questionController.save,
+                onPressed: widget.questionController.save,
               ),
             )
           else

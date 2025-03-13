@@ -17,6 +17,7 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
           'comment': e['how'],
           'pourquoi': e['why'],
           'deja_vue': false,
+          'deja_faite': false,
           'services': [
             {'recherche_service_id': e['service_id'], 'categorie': e['service_category']},
           ],

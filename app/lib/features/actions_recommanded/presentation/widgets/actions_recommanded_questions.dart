@@ -176,7 +176,7 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
       QuestionForm(
         questionId: widget.code.value,
         withoutTitle: true,
-        controller: _controller,
+        questionController: _controller,
         onSaved: () {
           context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
         },

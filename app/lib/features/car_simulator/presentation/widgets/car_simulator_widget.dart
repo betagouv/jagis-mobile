@@ -1,20 +1,25 @@
 import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
+import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
+import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
+import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarSimulatorWidget extends StatelessWidget {
-  const CarSimulatorWidget({super.key, this.alreadySeen = false});
+  const CarSimulatorWidget({super.key, this.isDone = false});
 
-  final bool alreadySeen;
+  final bool isDone;
 
   @override
   Widget build(final context) => BlocProvider(
@@ -22,58 +27,72 @@ class CarSimulatorWidget extends StatelessWidget {
         (final context) =>
             QuestionsManagerBloc(application: CarSimulatorQuestionsManager(client: context.read()))
               ..add(const QuestionsManagerFirstQuestionRequested()),
-    child: _View(alreadySeen: alreadySeen),
+    child: _View(isDone: isDone),
   );
 }
 
 class _View extends StatelessWidget {
-  const _View({required this.alreadySeen});
+  const _View({required this.isDone});
 
-  final bool alreadySeen;
+  final bool isDone;
 
   @override
   Widget build(final context) => BlocBuilder<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
-          QuestionsManagerLoadSuccess() => _Success(questionManager: state, alreadySeen: alreadySeen),
+          QuestionsManagerLoadSuccess() => _Success(questionManager: state, isDone: isDone),
         },
   );
 }
 
 class _Success extends StatelessWidget {
-  const _Success({required this.questionManager, required this.alreadySeen});
+  const _Success({required this.questionManager, required this.isDone});
 
   final QuestionsManagerLoadSuccess questionManager;
-  final bool alreadySeen;
+  final bool isDone;
 
   @override
   Widget build(final context) {
     final cursor = questionManager.cursor;
 
-    return cursor.isEnd
-        ? const CarSimulatorResult()
-        : Padding(
-          padding: const EdgeInsets.all(DsfrSpacings.s2w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: DsfrSpacings.s1v,
-            children: [
-              if (alreadySeen)
-                DsfrButton(
-                  label: Localisation.allerDirectementAuxResultats,
-                  icon: DsfrIcons.systemArrowRightLine,
-                  iconLocation: DsfrButtonIconLocation.right,
-                  variant: DsfrButtonVariant.secondary,
-                  size: DsfrButtonSize.md,
-                  onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
+    if (cursor.isEnd) {
+      if (!isDone) {
+        context.read<CarSimulatorResultBloc>().add(const CarSimulatorActionMarkAsDone());
+      }
+      context.read<CarSimulatorResultBloc>().add(const CarSimulatorGetCurrentCarResult());
+
+      return const CarSimulatorResult();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: DsfrSpacings.s1v,
+        children: [
+          if (isDone)
+            Padding(
+              padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w),
+              child: DsfrAlert(
+                severity: DsfrAlertSeverity.info,
+                description: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Vous avez déjà fait ce simulateur', style: DsfrTextStyle.bodyMd()),
+                    DsfrLink.md(
+                      label: 'Voir mes résultats',
+                      onTap: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
+                    ),
+                  ],
                 ),
-              const SizedBox(height: DsfrSpacings.s2w),
-              _QuestionStepper(current: cursor.index + 1, total: cursor.total),
-              _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code),
-            ],
-          ),
-        );
+              ),
+            ),
+          _QuestionStepper(current: cursor.index + 1, total: cursor.total),
+          _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code, cursor: cursor),
+        ],
+      ),
+    );
   }
 }
 
@@ -96,20 +115,23 @@ class _QuestionStepper extends StatelessWidget {
 }
 
 class _QuestionWidget extends StatefulWidget {
-  const _QuestionWidget({super.key, required this.code});
+  const _QuestionWidget({super.key, required this.code, required this.cursor});
 
   final QuestionCode code;
+  final Cursor<Question> cursor;
 
   @override
   State<_QuestionWidget> createState() => _QuestionWidgetState();
 }
 
 class _QuestionWidgetState extends State<_QuestionWidget> {
-  final _controller = QuestionController();
+  final _questionController = QuestionController();
+  final _inputController = InputController();
 
   @override
   void dispose() {
-    _controller.dispose();
+    _questionController.dispose();
+    _inputController.dispose();
     super.dispose();
   }
 
@@ -119,38 +141,74 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
     children: [
       QuestionForm(
         questionId: widget.code.value,
-        controller: _controller,
+        questionController: _questionController,
+        inputController: _inputController,
         onSaved: () {
           context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
         },
       ),
-      Column(
+      _ButtonsControllerWidget(cursor: widget.cursor, questionController: _questionController, inputController: _inputController),
+    ],
+  );
+}
+
+class _ButtonsControllerWidget extends StatefulWidget {
+  const _ButtonsControllerWidget({required this.cursor, required this.questionController, required this.inputController});
+
+  final Cursor<Question> cursor;
+  final QuestionController questionController;
+  final InputController inputController;
+
+  @override
+  State<_ButtonsControllerWidget> createState() => _ButtonsControllerWidgetState();
+}
+
+class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
+  var inputIsEmpty = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.inputController.addListener(_listener);
+  }
+
+  void _listener() => setState(() {
+    inputIsEmpty = widget.inputController.isEmpty;
+  });
+
+  @override
+  void dispose() {
+    widget.inputController.removeListener(_listener);
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) => Column(
+    children: [
+      Row(
         children: [
-          Row(
-            children: [
-              DsfrButtonIcon(
-                icon: DsfrIcons.systemArrowLeftLine,
-                semanticLabel: Localisation.questionPrecedente,
-                variant: DsfrButtonVariant.secondary,
-                size: DsfrButtonSize.lg,
-                onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
-              ),
-              Expanded(
-                child: DsfrButton(
-                  label: Localisation.questionSuivante,
-                  variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.lg,
-                  onPressed: _controller.save,
-                ),
-              ),
-            ],
-          ),
-          DsfrButton(
-            label: Localisation.passerLaQuestion,
-            variant: DsfrButtonVariant.tertiaryWithoutBorder,
-            size: DsfrButtonSize.md,
-            onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
-          ),
+          if (!widget.cursor.isStart)
+            DsfrButtonIcon(
+              icon: DsfrIcons.systemArrowLeftLine,
+              semanticLabel: Localisation.questionPrecedente,
+              variant: DsfrButtonVariant.tertiaryWithoutBorder,
+              size: DsfrButtonSize.lg,
+              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+            ),
+          if (!inputIsEmpty)
+            DsfrButton(
+              label: Localisation.questionSuivante,
+              variant: DsfrButtonVariant.primary,
+              size: DsfrButtonSize.lg,
+              onPressed: widget.questionController.save,
+            )
+          else
+            DsfrButton(
+              label: Localisation.passerLaQuestion,
+              variant: DsfrButtonVariant.secondary,
+              size: DsfrButtonSize.lg,
+              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
+            ),
         ],
       ),
     ],

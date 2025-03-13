@@ -31,4 +31,10 @@ class ActionRepository {
         throw UnimplementedError(),
     };
   }
+
+  Future<void> markAsDone({required final ActionType type, required final String id}) async {
+    final actionTypeAPI = actionTypeToAPIString(type);
+    // NOTE(erolley): we may want to handle the response here.
+    await _client.post(Endpoints.actionFaite(type: actionTypeAPI, code: id));
+  }
 }

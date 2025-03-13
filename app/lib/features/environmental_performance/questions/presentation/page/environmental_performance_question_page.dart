@@ -81,7 +81,7 @@ class _LoadSuccessState extends State<_LoadSuccess> {
           children: [
             QuestionForm(
               questionId: widget.state.questionIdList[widget.number - 1].value,
-              controller: _mieuxVousConnaitreController,
+              questionController: _mieuxVousConnaitreController,
               onSaved: () async {
                 if (widget.number == widget.state.questionIdList.length) {
                   GoRouter.of(context).popUntilNumber(widget.state.questionIdList.length + 1, result: true);

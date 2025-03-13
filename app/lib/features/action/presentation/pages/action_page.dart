@@ -87,6 +87,7 @@ class _Success extends StatelessWidget {
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
           child: Column(
+            spacing: DsfrSpacings.s2w,
             children: [
               _WhySectionView(action.why),
               switch (action) {
@@ -213,7 +214,7 @@ class _ActionSimulatorView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (action.getId()) {
-    ActionSimulatorId.carSimulator => CarSimulatorWidget(alreadySeen: action.alreadySeen),
+    ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
   };
 }
 

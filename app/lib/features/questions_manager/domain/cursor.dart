@@ -1,17 +1,18 @@
 import 'package:equatable/equatable.dart';
 
 class Cursor<T> extends Equatable {
-  const Cursor({required this.elements, required this.index});
+  const Cursor({required this.elements, required final int index}) : index = index < 0 ? 0 : index;
 
   final List<T> elements;
   final int index;
 
   bool get isEnd => this.index >= this.elements.length;
+  bool get isStart => this.index <= 0;
 
   T? get element =>
-      this.elements.isEmpty || this.index >= this.elements.length
+      this.elements.isEmpty || isEnd
           ? null
-          : this.index < 0
+          : isStart
           ? this.elements.first
           : this.elements[this.index];
 

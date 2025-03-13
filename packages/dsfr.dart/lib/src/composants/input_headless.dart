@@ -136,6 +136,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
               enabledBorder: underlineInputBorder,
               border: underlineInputBorder,
               constraints: widget.inputConstraints,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
             keyboardType: widget.keyboardType,
             textCapitalization: widget.textCapitalization,

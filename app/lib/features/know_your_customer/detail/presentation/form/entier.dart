@@ -21,9 +21,6 @@ class Entier extends StatelessWidget {
       controller: controller,
       suffixText: question.response.unit?.abreviation,
       onChanged: (final value) {
-        if (int.tryParse(value) == null) {
-          return;
-        }
         context.read<QuestionEditBloc>().add(QuestionEditEntierChangee(value));
       },
       keyboardType: TextInputType.number,

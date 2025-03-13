@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Cursor<T> extends Equatable {
-  const Cursor({required this.elements, required this.index});
+  const Cursor({required this.elements, required final int index}) : index = index < 0 ? 0 : index;
 
   final List<T> elements;
   final int index;

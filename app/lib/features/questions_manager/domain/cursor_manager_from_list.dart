@@ -18,9 +18,8 @@ class CursorManagerFromList<T> extends CursorManager<T> {
   @override
   Future<Cursor<T>> previous(final Cursor<T> current) async {
     final list = await this.getList();
-    final newIndex = current.index <= 0 ? 0 : current.index - 1;
 
-    return Cursor(elements: list, index: newIndex);
+    return Cursor(elements: list, index: current.index - 1);
   }
 
   @override

@@ -21,9 +21,6 @@ class Decimal extends StatelessWidget {
       controller: controller,
       suffixText: question.response.unit?.abreviation,
       onChanged: (final value) {
-        if (double.tryParse(value) == null) {
-          return;
-        }
         context.read<QuestionEditBloc>().add(QuestionEditDecimalChangee(value));
       },
       keyboardType: const TextInputType.numberWithOptions(decimal: true),

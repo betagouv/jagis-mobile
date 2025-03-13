@@ -101,6 +101,17 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
       switch (aState) {
         case QuestionEditLoaded():
           final newQuestion = aState.newQuestion;
+
+          // TODO(erolley): what should be the behavior here?
+          // Context: I force the update of the question even if the responses
+          // are empty for entier and decimal. This allow to have the 'question
+          // suivante' to be 'passer la question' when the user empty the input
+          // even for already answered questions.
+          if (newQuestion.responsesDisplay().isEmpty) {
+            emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));
+            emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
+            return;
+          }
           final result = await questionRepository.update(newQuestion);
           result.fold((final l) => emit(QuestionEditError(id: aState.question.code.value, error: l.toString())), (final r) {
             emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));

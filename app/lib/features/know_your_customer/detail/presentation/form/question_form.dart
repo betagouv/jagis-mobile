@@ -69,12 +69,7 @@ class _Content extends StatelessWidget {
       final aState = state;
 
       if (aState is QuestionEditLoaded) {
-        print('aState: ${aState.question.responsesDisplay()}');
-        print('newState: ${aState.newQuestion.responsesDisplay()}');
-      }
-
-      if (aState is QuestionEditLoaded && aState.newQuestion.responsesDisplay().isNotEmpty) {
-        inputController?.edited();
+        inputController?.updateValue(aState.newQuestion.responsesDisplay());
       }
 
       if (aState is QuestionEditLoaded && aState.updated) {
@@ -126,8 +121,6 @@ class _LoadedContentState extends State<_LoadedContent> {
   @override
   Widget build(final context) {
     final question = widget.state.question;
-
-    print('input build newQuestion: ${widget.state.newQuestion.responsesDisplay()}');
 
     return Column(
       spacing: DsfrSpacings.s3w,

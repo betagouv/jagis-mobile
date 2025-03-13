@@ -162,7 +162,7 @@ class _ButtonsControllerWidget extends StatefulWidget {
 }
 
 class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
-  var questionHasBeenEdited = false;
+  var inputIsEmpty = false;
 
   @override
   void initState() {
@@ -170,10 +170,8 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
     widget._inputController.addListener(_listener);
   }
 
-  /// FIXME(erolley): we may want to have a way to watch changes in the input
-  /// field instead to be able to now if the input is empty or not.
   void _listener() => setState(() {
-    questionHasBeenEdited = true;
+    inputIsEmpty = widget._inputController.isEmpty;
   });
 
   @override
@@ -195,7 +193,7 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
               size: DsfrButtonSize.lg,
               onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
             ),
-          if (questionHasBeenEdited || widget.cursor.element!.responsesDisplay().isNotEmpty)
+          if (!inputIsEmpty)
             Expanded(
               child: DsfrButton(
                 label: Localisation.questionSuivante,

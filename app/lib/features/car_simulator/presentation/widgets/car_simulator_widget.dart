@@ -4,6 +4,7 @@ import 'package:app/features/car_simulator/presentation/car_simulator_result/blo
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
@@ -117,13 +118,13 @@ class _QuestionWidget extends StatefulWidget {
 }
 
 class _QuestionWidgetState extends State<_QuestionWidget> {
-  final _controller = QuestionController();
-
-  var questionHasBeenEdited = false;
+  final _questionController = QuestionController();
+  final _inputController = InputController();
 
   @override
   void dispose() {
-    _controller.dispose();
+    _questionController.dispose();
+    _inputController.dispose();
     super.dispose();
   }
 
@@ -133,46 +134,83 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
     children: [
       QuestionForm(
         questionId: widget.code.value,
-        controller: _controller,
+        questionController: _questionController,
+        inputController: _inputController,
         onSaved: () {
           context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
         },
-        onEdit: () {
-          print('onEdit');
-          // FIXME: the input is refreshed when the question is edited
-          setState(() => questionHasBeenEdited = true);
-        },
       ),
-      Column(
+      _ButtonsControllerWidget(cursor: widget.cursor, questionController: _questionController, inputController: _inputController),
+    ],
+  );
+}
+
+class _ButtonsControllerWidget extends StatefulWidget {
+  const _ButtonsControllerWidget({
+    required this.cursor,
+    required final QuestionController questionController,
+    required final InputController inputController,
+  }) : _questionController = questionController,
+       _inputController = inputController;
+
+  final Cursor<Question> cursor;
+  final QuestionController _questionController;
+  final InputController _inputController;
+
+  @override
+  State<_ButtonsControllerWidget> createState() => _ButtonsControllerWidgetState();
+}
+
+class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
+  var questionHasBeenEdited = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget._inputController.addListener(_listener);
+  }
+
+  /// FIXME(erolley): we may want to have a way to watch changes in the input
+  /// field instead to be able to now if the input is empty or not.
+  void _listener() => setState(() {
+    questionHasBeenEdited = true;
+  });
+
+  @override
+  void dispose() {
+    widget._inputController.removeListener(_listener);
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) => Column(
+    children: [
+      Row(
         children: [
-          Row(
-            children: [
-              if (!widget.cursor.isStart)
-                DsfrButtonIcon(
-                  icon: DsfrIcons.systemArrowLeftLine,
-                  semanticLabel: Localisation.questionPrecedente,
-                  variant: DsfrButtonVariant.tertiaryWithoutBorder,
-                  size: DsfrButtonSize.lg,
-                  onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
-                ),
-              if (questionHasBeenEdited || widget.cursor.element!.responsesDisplay().isNotEmpty)
-                Expanded(
-                  child: DsfrButton(
-                    label: Localisation.questionSuivante,
-                    variant: DsfrButtonVariant.primary,
-                    size: DsfrButtonSize.lg,
-                    onPressed: _controller.save,
-                  ),
-                )
-              else
-                DsfrButton(
-                  label: Localisation.passerLaQuestion,
-                  variant: DsfrButtonVariant.secondary,
-                  size: DsfrButtonSize.lg,
-                  onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
-                ),
-            ],
-          ),
+          if (!widget.cursor.isStart)
+            DsfrButtonIcon(
+              icon: DsfrIcons.systemArrowLeftLine,
+              semanticLabel: Localisation.questionPrecedente,
+              variant: DsfrButtonVariant.tertiaryWithoutBorder,
+              size: DsfrButtonSize.lg,
+              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+            ),
+          if (questionHasBeenEdited || widget.cursor.element!.responsesDisplay().isNotEmpty)
+            Expanded(
+              child: DsfrButton(
+                label: Localisation.questionSuivante,
+                variant: DsfrButtonVariant.primary,
+                size: DsfrButtonSize.lg,
+                onPressed: widget._questionController.save,
+              ),
+            )
+          else
+            DsfrButton(
+              label: Localisation.passerLaQuestion,
+              variant: DsfrButtonVariant.secondary,
+              size: DsfrButtonSize.lg,
+              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
+            ),
         ],
       ),
     ],

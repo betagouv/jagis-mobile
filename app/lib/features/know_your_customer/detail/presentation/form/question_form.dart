@@ -7,6 +7,7 @@ import 'package:app/features/know_your_customer/detail/presentation/form/choix_m
 import 'package:app/features/know_your_customer/detail/presentation/form/choix_unique.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/decimal.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/entier.dart';
+import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/libre.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/mosaic.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
@@ -23,16 +24,16 @@ class QuestionForm extends StatelessWidget {
     super.key,
     required this.questionId,
     this.withoutTitle = false,
-    required this.controller,
+    required this.questionController,
+    this.inputController,
     this.onSaved,
-    this.onEdit,
   });
 
   final String questionId;
   final bool withoutTitle;
-  final QuestionController controller;
+  final QuestionController questionController;
+  final InputController? inputController;
   final Callback? onSaved;
-  final Callback? onEdit;
 
   @override
   Widget build(final context) => BlocProvider(
@@ -40,17 +41,27 @@ class QuestionForm extends StatelessWidget {
         (final context) =>
             QuestionEditBloc(questionRepository: context.read())..add(QuestionEditRecuperationDemandee(questionId)),
     lazy: false,
-    child: _Content(withoutTitle: withoutTitle, controller: controller, onSaved: onSaved, onEdit: onEdit),
+    child: _Content(
+      withoutTitle: withoutTitle,
+      questionController: questionController,
+      inputController: inputController,
+      onSaved: onSaved,
+    ),
   );
 }
 
 class _Content extends StatelessWidget {
-  const _Content({required this.withoutTitle, required this.controller, required this.onSaved, required this.onEdit});
+  const _Content({
+    required this.withoutTitle,
+    required this.questionController,
+    required this.inputController,
+    required this.onSaved,
+  });
 
   final bool withoutTitle;
-  final QuestionController controller;
+  final QuestionController questionController;
+  final InputController? inputController;
   final Callback? onSaved;
-  final Callback? onEdit;
 
   @override
   Widget build(final context) => BlocListener<QuestionEditBloc, QuestionEditState>(
@@ -61,9 +72,11 @@ class _Content extends StatelessWidget {
         print('aState: ${aState.question.responsesDisplay()}');
         print('newState: ${aState.newQuestion.responsesDisplay()}');
       }
+
       if (aState is QuestionEditLoaded && aState.newQuestion.responsesDisplay().isNotEmpty) {
-        onEdit?.call();
+        inputController?.edited();
       }
+
       if (aState is QuestionEditLoaded && aState.updated) {
         onSaved?.call();
       }
@@ -72,7 +85,7 @@ class _Content extends StatelessWidget {
       builder:
           (final context, final state) => switch (state) {
             QuestionEditInitial() => const SizedBox(height: 550),
-            QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: controller, state: state),
+            QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: questionController, state: state),
             QuestionEditError() => FnvFailureWidget(
               onPressed: () => context.read<QuestionEditBloc>().add(QuestionEditRecuperationDemandee(state.id)),
             ),
@@ -113,6 +126,8 @@ class _LoadedContentState extends State<_LoadedContent> {
   @override
   Widget build(final context) {
     final question = widget.state.question;
+
+    print('input build newQuestion: ${widget.state.newQuestion.responsesDisplay()}');
 
     return Column(
       spacing: DsfrSpacings.s3w,

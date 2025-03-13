@@ -33,7 +33,7 @@ class _MissionKycPageState extends State<MissionKycPage> {
     children: [
       QuestionForm(
         questionId: widget.value.contentId.value,
-        controller: _mieuxVousConnaitreController,
+        questionController: _mieuxVousConnaitreController,
         onSaved: () => context.read<MissionBloc>().add(const MissionNextRequested()),
       ),
       const SizedBox(height: DsfrSpacings.s3w),

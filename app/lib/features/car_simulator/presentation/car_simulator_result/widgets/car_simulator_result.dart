@@ -1,6 +1,7 @@
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
+import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
@@ -127,7 +128,7 @@ class _BestCarOptionView extends StatelessWidget {
         ),
       ),
       if (bestEmissionsOption == null || bestCostOption == null)
-        const Center(child: CircularProgressIndicator())
+        const Center(child: Padding(padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w), child: FnvLoader()))
       else
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

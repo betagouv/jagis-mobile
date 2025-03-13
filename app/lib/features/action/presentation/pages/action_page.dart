@@ -87,6 +87,7 @@ class _Success extends StatelessWidget {
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
           child: Column(
+            spacing: DsfrSpacings.s2w,
             children: [
               _WhySectionView(action.why),
               switch (action) {

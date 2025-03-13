@@ -25,7 +25,9 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => BlocBuilder<CarSimulatorResultBloc, CarSimulatorResultState>(
     builder:
         (final context, final state) => switch (state) {
-          CarSimulatorInit() => const Center(child: CircularProgressIndicator()),
+          CarSimulatorInit() => const Center(
+            child: Padding(padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w), child: FnvLoader()),
+          ),
           CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
             currentCar: state.currentCar,
             selectedSize: state.currentCar.size.value.smaller,
@@ -62,7 +64,7 @@ class _CarSimulatorResultView extends StatelessWidget {
   Widget build(final BuildContext context) =>
   // TODO(erolley): ListView doesn't work here
   Padding(
-    padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s4w,

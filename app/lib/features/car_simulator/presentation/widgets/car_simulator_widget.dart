@@ -66,21 +66,28 @@ class _Success extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(DsfrSpacings.s2w),
+      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: DsfrSpacings.s1v,
         children: [
           if (isDone)
-            DsfrButton(
-              label: Localisation.allerDirectementAuxResultats,
-              icon: DsfrIcons.systemArrowRightLine,
-              iconLocation: DsfrButtonIconLocation.right,
-              variant: DsfrButtonVariant.secondary,
-              size: DsfrButtonSize.md,
-              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
+            Padding(
+              padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w),
+              child: DsfrAlert(
+                severity: DsfrAlertSeverity.info,
+                description: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Vous avez déjà fait ce simulateur', style: DsfrTextStyle.bodyMd()),
+                    DsfrLink.md(
+                      label: 'Voir mes résultats',
+                      onTap: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          const SizedBox(height: DsfrSpacings.s2w),
           _QuestionStepper(current: cursor.index + 1, total: cursor.total),
           _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code, cursor: cursor),
         ],

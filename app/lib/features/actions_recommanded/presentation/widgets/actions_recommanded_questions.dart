@@ -73,9 +73,7 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
     final cursor = widget.data.cursor;
     final element = cursor.element;
     if (element == null) {
-      return const Column(
-        children: [FnvLoader(), Text(Localisation.nousPreparonsVosRecommandationsPersonnalisees, style: DsfrTextStyle.bodyLg())],
-      );
+      return const _Loader();
     }
     final question = ColoredBox(
       color: Colors.white,
@@ -104,6 +102,31 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
           ],
         )
         : question;
+  }
+}
+
+class _Loader extends StatelessWidget {
+  const _Loader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: DsfrSpacings.s1w,
+          children: [
+            FnvLoader(),
+            Text(
+              Localisation.nousPreparonsVosRecommandationsPersonnalisees,
+              style: DsfrTextStyle.bodyLg(),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

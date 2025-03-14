@@ -1,7 +1,10 @@
-import 'package:dsfr/dsfr.dart';
+import 'package:dsfr/src/fondamentaux/colors.g.dart';
+import 'package:dsfr/src/fondamentaux/fonts.dart';
+import 'package:dsfr/src/fondamentaux/icons.g.dart';
+import 'package:dsfr/src/fondamentaux/spacing.g.dart';
 import 'package:flutter/material.dart';
 
-enum DsfrAlertSeverity { info /* , warning, error, success */ }
+enum DsfrAlertSeverity { info, warning, error, success }
 
 class DsfrAlert extends StatelessWidget {
   const DsfrAlert({super.key, required this.severity, this.title, this.description});
@@ -12,15 +15,15 @@ class DsfrAlert extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(border: Border.all(color: _color, strokeAlign: BorderSide.strokeAlignOutside), color: _color),
+    decoration: BoxDecoration(color: _color, border: Border.all(color: _color, strokeAlign: BorderSide.strokeAlignOutside)),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //expend in height
+        // TODO(erolley): expend in height
         DecoratedBox(
           decoration: BoxDecoration(color: _color),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s1w, vertical: DsfrSpacings.s2w),
+            padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s2w, horizontal: DsfrSpacings.s1w),
             child: Icon(_icon, size: 24, color: Colors.white),
           ),
         ),
@@ -30,8 +33,8 @@ class DsfrAlert extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
               child: Column(
-                spacing: DsfrSpacings.s1w,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: DsfrSpacings.s1w,
                 children: [
                   if (title != null) Text(title!, style: const DsfrTextStyle.headline3()),
                   if (description != null) description!,
@@ -46,21 +49,15 @@ class DsfrAlert extends StatelessWidget {
 
   IconData get _icon => switch (severity) {
     DsfrAlertSeverity.info => DsfrIcons.systemFrInfoFill,
-    // case DsfrAlertSeverity.warning:
-    //   return Icons.warning;
-    // case DsfrAlertSeverity.error:
-    //   return Icons.error;
-    // case DsfrAlertSeverity.success:
-    //   return Icons.check;
+    DsfrAlertSeverity.warning => DsfrIcons.systemFrWarningFill,
+    DsfrAlertSeverity.error => DsfrIcons.systemFrErrorFill,
+    DsfrAlertSeverity.success => DsfrIcons.systemFrSuccessFill,
   };
 
   Color get _color => switch (severity) {
     DsfrAlertSeverity.info => DsfrColors.backgroundFlatInfo,
-    // case DsfrAlertSeverity.warning:
-    //   return Colors.orange.shade100;
-    // case DsfrAlertSeverity.error:
-    //   return Colors.red.shade100;
-    // case DsfrAlertSeverity.success:
-    //   return Colors.green.shade100;
+    DsfrAlertSeverity.warning => DsfrColors.warning425,
+    DsfrAlertSeverity.error => DsfrColors.error425,
+    DsfrAlertSeverity.success => DsfrColors.success425,
   };
 }

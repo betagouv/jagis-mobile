@@ -141,7 +141,7 @@ void main() {
       });
     });
 
-    testWidgets('Voir le contenu de Mon bilan environnemental', (final tester) async {
+    testWidgets('Voir le contenu de Bilan environnemental', (final tester) async {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await mockNetworkImages(() async {
         await pumpEnvironmentalPerformancePage(tester, dio);

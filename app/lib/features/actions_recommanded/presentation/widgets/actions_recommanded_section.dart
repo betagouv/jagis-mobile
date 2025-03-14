@@ -55,8 +55,6 @@ class _ActionsEmpty extends StatelessWidget {
   @override
   Widget build(final context) => Column(
     children: [
-      const Placeholder(child: SizedBox(width: 133, height: 64)),
-      const SizedBox(height: DsfrSpacings.s2w),
       const Text(Localisation.mesActionsRecommandeesEpuiseeTitre, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
       const SizedBox(height: DsfrSpacings.s1v),
       const Text(

@@ -173,7 +173,7 @@ class _ActionAidsView extends StatelessWidget {
               children:
                   aidSummaries
                       .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
-                      .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, 0.8)))
+                      .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
                       .toList(),
             ),
           ),

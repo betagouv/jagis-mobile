@@ -1,6 +1,7 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
+import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -46,6 +47,7 @@ class FnvHtmlWidget extends StatelessWidget {
           return false;
         }
       },
+      textStyle: const DsfrTextStyle.bodyMd(),
     ),
   );
 }

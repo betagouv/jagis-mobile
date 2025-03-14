@@ -36,10 +36,7 @@ class _View extends StatelessWidget {
   Widget build(final context) => ListView(
     padding: const EdgeInsets.symmetric(vertical: paddingVerticalPage),
     children: [
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: FnvTitle(title: Localisation.mesDefis),
-      ),
+      const Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: FnvTitle(title: Localisation.defis)),
       const SizedBox(height: DsfrSpacings.s3w),
       BlocBuilder<ChallengeListBloc, ChallengeListState>(
         builder:

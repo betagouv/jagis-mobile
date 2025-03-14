@@ -30,7 +30,7 @@ void main() {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
-      await iTapOn(tester, 'Mes aides');
+      await iTapOn(tester, 'Aides');
       await iTapOn(tester, 'Acheter un vélo');
     }
 

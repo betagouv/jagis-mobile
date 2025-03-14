@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
@@ -75,33 +73,22 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
     if (element == null) {
       return const _Loader();
     }
-    final question = ColoredBox(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        child: Column(
-          spacing: DsfrSpacings.s4w,
-          children: [
-            DsfrStepper(title: element.label, current: cursor.index + 1, total: cursor.total),
-            _QuestionWidget(key: ValueKey(element), code: element.code),
-          ],
-        ),
-      ),
-    );
 
     return _isExpanded
-        ? Stack(
-          children: [
-            ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), child: IgnorePointer(child: question)),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
-                child: _GetStarted(onPressed: () => setState(() => _isExpanded = false)),
-              ),
+        ? _GetStarted(onPressed: () => setState(() => _isExpanded = false))
+        : ColoredBox(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              spacing: DsfrSpacings.s4w,
+              children: [
+                DsfrStepper(title: element.label, current: cursor.index + 1, total: cursor.total),
+                _QuestionWidget(key: ValueKey(element), code: element.code),
+              ],
             ),
-          ],
-        )
-        : question;
+          ),
+        );
   }
 }
 

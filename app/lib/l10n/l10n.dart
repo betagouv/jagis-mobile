@@ -12,6 +12,7 @@ abstract final class Localisation {
   static const adultes = 'Adulte(s)';
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aide = 'aide';
+  static const aides = 'Aides';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
@@ -29,12 +30,12 @@ abstract final class Localisation {
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
   static const besoinDInspiration = 'Besoin **d’inspiration** ?';
-  static const bibliotheque = 'Ma bibliothèque';
+  static const bibliotheque = 'Bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
-  static const bilanEnvironnemental = 'Mon bilan environnemental';
+  static const bilanEnvironnemental = 'Bilan environnemental';
   static const bonjour = 'Bonjour,\n';
   static const bonnesAstucesPourRealiserCeDefi = 'Bonnes astuces pour réaliser ce défi';
   static const bravo = 'BRAVO !';
@@ -162,10 +163,10 @@ abstract final class Localisation {
   static const mesActionsRecommandeesEpuiseeDescription =
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
-  static const mesAides = 'Mes aides';
+
   static const mesAidesDisponibles = 'Mes aides disponibles';
   static const mesAidesLien = 'Voir toutes les aides';
-  static const mesDefis = 'Mes défis';
+  static const defis = 'Défis';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';

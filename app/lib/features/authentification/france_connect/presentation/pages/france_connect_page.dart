@@ -29,7 +29,7 @@ class FranceConnectPage extends StatelessWidget {
   );
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => FranceConnectBloc(repository: context.read())..add(FranceConnectCallbackReceived(openId)),
     child: const _Body(),
   );
@@ -39,7 +39,7 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final BuildContext context) => FnvScaffold(
+  Widget build(final context) => FnvScaffold(
     body: BlocBuilder<FranceConnectBloc, FranceConnectState>(
       builder:
           (final context, final state) => switch (state) {

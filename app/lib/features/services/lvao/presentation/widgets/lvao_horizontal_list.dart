@@ -16,7 +16,7 @@ class LvaoHorizontalList extends StatelessWidget {
   final String category;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => LvaoBloc(repository: context.read())..add(LvaoLoadRequested(category)),
     child: const _Part(),
   );
@@ -26,7 +26,7 @@ class _Part extends StatelessWidget {
   const _Part();
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<LvaoBloc, LvaoState>(
+  Widget build(final context) => BlocBuilder<LvaoBloc, LvaoState>(
     builder:
         (final context, final state) => switch (state) {
           LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox(),
@@ -41,7 +41,7 @@ class _Success extends StatelessWidget {
   final LvaoLoadSuccess state;
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1w,
     children: [

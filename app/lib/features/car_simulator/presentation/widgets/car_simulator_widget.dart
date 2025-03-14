@@ -183,7 +183,7 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
   }
 
   @override
-  Widget build(final BuildContext context) => Row(
+  Widget build(final context) => Row(
     children: [
       if (!widget.cursor.isStart)
         DsfrButtonIcon(

@@ -9,7 +9,7 @@ class LogoutWidget extends StatelessWidget {
   const LogoutWidget({super.key});
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => LogoutBloc(notificationRepository: context.read(), authentificationRepository: context.read()),
     child: const _Part(),
   );

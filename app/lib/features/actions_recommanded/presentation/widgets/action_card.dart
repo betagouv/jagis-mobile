@@ -17,7 +17,7 @@ class ActionCard extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final BuildContext context) => FnvCard(
+  Widget build(final context) => FnvCard(
     child: IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

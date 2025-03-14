@@ -26,7 +26,7 @@ class ActionsRecommandedQuestions extends StatelessWidget {
   final String sequenceId;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create:
         (final context) =>
             QuestionsManagerBloc(application: ActionsRecommandedQuestionsManager(client: context.read(), sequenceId: sequenceId))
@@ -39,7 +39,7 @@ class _Questions extends StatelessWidget {
   const _Questions();
 
   @override
-  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
@@ -69,7 +69,7 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   var _isExpanded = true;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final cursor = widget.data.cursor;
     final element = cursor.element;
     if (element == null) {
@@ -109,7 +109,7 @@ class _Loader extends StatelessWidget {
   const _Loader();
 
   @override
-  Widget build(final BuildContext context) => const SizedBox(
+  Widget build(final context) => const SizedBox(
     height: 200,
     child: Center(
       child: Column(

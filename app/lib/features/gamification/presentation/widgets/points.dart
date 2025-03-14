@@ -28,7 +28,7 @@ class _Content extends StatelessWidget {
   const _Content();
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final points = context.select<GamificationBloc, int>((final value) => value.state.points);
 
     return Text('$points', style: const DsfrTextStyle.bodySmBold(), semanticsLabel: Localisation.nombrePoints(points));

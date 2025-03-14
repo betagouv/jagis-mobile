@@ -13,7 +13,7 @@ class HomeContentLayout extends StatelessWidget {
   const HomeContentLayout({super.key});
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     const spacing = SizedBox(height: DsfrSpacings.s4w);
 
     return ListView(

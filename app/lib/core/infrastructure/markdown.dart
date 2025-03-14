@@ -16,7 +16,7 @@ class FnvMarkdown extends StatelessWidget {
   final FnvMarkdownImageBuilder? imageBuilder;
 
   @override
-  Widget build(final BuildContext context) => MarkdownBody(
+  Widget build(final context) => MarkdownBody(
     data: data,
     styleSheet: MarkdownStyleSheet(a: a, p: p, h1: h1, strong: strong),
     onTapLink: onTapLink == null ? null : (final text, final href, final title) => onTapLink!(href),

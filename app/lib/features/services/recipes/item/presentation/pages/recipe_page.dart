@@ -35,7 +35,7 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<RecipeBloc, RecipeState>(
+  Widget build(final context) => BlocBuilder<RecipeBloc, RecipeState>(
     builder:
         (final context, final state) => switch (state) {
           RecipeInitial() || RecipeLoadInProgress() => const Center(child: CircularProgressIndicator()),
@@ -51,7 +51,7 @@ class _Success extends StatelessWidget {
   final RecipeLoadSuccess state;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final recipe = state.recipe;
 
     return ListView(

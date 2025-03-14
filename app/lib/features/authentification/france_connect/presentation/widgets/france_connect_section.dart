@@ -12,7 +12,7 @@ class FranceConnectSection extends StatelessWidget {
   const FranceConnectSection({super.key});
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const Text(Localisation.franceConnectTitle, style: DsfrTextStyle.headline2()),
@@ -30,7 +30,7 @@ class _FranceConnectButton extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s3v,
     children: [

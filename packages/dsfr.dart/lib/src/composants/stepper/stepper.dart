@@ -15,7 +15,7 @@ class DsfrStepper extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text('Étape $current sur $total', style: const DsfrTextStyle.bodySm(color: DsfrColors.grey200)),
+      Text('Question $current sur $total', style: const DsfrTextStyle.bodySm(color: DsfrColors.grey200)),
       const SizedBox(height: DsfrSpacings.s1v),
       Text(title, style: const DsfrTextStyle.headline6()),
       const SizedBox(height: DsfrSpacings.s3v),

@@ -106,28 +106,26 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
 }
 
 class _Loader extends StatelessWidget {
-  const _Loader({super.key});
+  const _Loader();
 
   @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 200,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: DsfrSpacings.s1w,
-          children: [
-            FnvLoader(),
-            Text(
-              Localisation.nousPreparonsVosRecommandationsPersonnalisees,
-              style: DsfrTextStyle.bodyLg(),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+  Widget build(final BuildContext context) => const SizedBox(
+    height: 200,
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: DsfrSpacings.s1w,
+        children: [
+          FnvLoader(),
+          Text(
+            Localisation.nousPreparonsVosRecommandationsPersonnalisees,
+            style: DsfrTextStyle.bodyLg(),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 class _GetStarted extends StatelessWidget {

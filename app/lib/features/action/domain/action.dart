@@ -9,21 +9,28 @@ sealed class Action extends Equatable {
     required this.title,
     required this.subTitle,
     required this.why,
+    required this.nbActionsDone,
     required this.alreadySeen,
     required this.isDone,
     required this.aidSummaries,
+    required this.score,
   });
 
   final String id;
   final String title;
   final String? subTitle;
   final String why;
+  final int nbActionsDone;
+  final int score;
   final bool alreadySeen;
   final bool isDone;
   final List<AidSummary> aidSummaries;
 
   @override
   List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries, isDone];
+
+  String get instruction;
+  String get scoreLabel;
 }
 
 final class ActionClassic extends Action {
@@ -35,12 +42,23 @@ final class ActionClassic extends Action {
     required super.isDone,
     required super.why,
     required super.aidSummaries,
+    required super.nbActionsDone,
+    required super.score,
+    required this.instruction,
+    required this.scoreLabel,
     required this.how,
     required this.services,
   });
 
   final String how;
   final List<ActionService> services;
+
+  @override
+  final String scoreLabel;
+
+  @override
+  final String instruction;
+
   ActionService get lvaoService => services.firstWhere((final service) => service.id == ServiceId.lvao);
   bool get hasLvaoService => services.any((final service) => service.id == ServiceId.lvao);
   ActionService get recipesService => services.firstWhere((final service) => service.id == ServiceId.recipes);
@@ -58,7 +76,9 @@ final class ActionSimulator extends Action {
     required super.alreadySeen,
     required super.isDone,
     required super.why,
+    required super.nbActionsDone,
     required super.aidSummaries,
+    required super.score,
     required this.questions,
   });
 
@@ -71,6 +91,12 @@ final class ActionSimulator extends Action {
     'action_simulateur_voiture' => ActionSimulatorId.carSimulator,
     _ => throw UnimplementedError(),
   };
+
+  @override
+  String get instruction => 'Terminez ce simulateur et gagnez';
+
+  @override
+  String get scoreLabel => 'simulations';
 }
 
 enum ActionSimulatorId { carSimulator }

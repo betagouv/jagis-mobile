@@ -12,9 +12,9 @@ abstract final class AidSummaryMapper {
         json['partenaire_nom'] == null
             ? null
             : Partner(
-              nom: json['partenaire_nom'] as String,
-              url: json['partenaire_url'] as String?,
+              name: json['partenaire_nom'] as String,
               logo: json['partenaire_logo_url'] as String? ?? '',
+              url: json['partenaire_url'] as String?,
             ),
     // TODO(erolley): not used for now.
     scale: json['echelle'] == null ? null : geographicalScaleFromAPIString(json['echelle'] as String),

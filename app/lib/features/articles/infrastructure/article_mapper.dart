@@ -16,9 +16,9 @@ abstract final class ArticleMapper {
         json['partenaire_nom'] == null
             ? null
             : Partner(
-              nom: json['partenaire_nom'] as String,
-              url: json['partenaire_url'] as String,
+              name: json['partenaire_nom'] as String,
               logo: json['partenaire_logo_url'] as String,
+              url: json['partenaire_url'] as String,
             ),
     sources:
         (json['sources'] as List<dynamic>)

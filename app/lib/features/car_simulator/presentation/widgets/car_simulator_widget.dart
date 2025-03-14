@@ -164,7 +164,7 @@ class _ButtonsControllerWidget extends StatefulWidget {
 }
 
 class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
-  var inputIsEmpty = false;
+  var _inputIsEmpty = false;
 
   @override
   void initState() {
@@ -173,7 +173,7 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
   }
 
   void _listener() => setState(() {
-    inputIsEmpty = widget.inputController.isEmpty;
+    _inputIsEmpty = widget.inputController.isEmpty;
   });
 
   @override
@@ -183,34 +183,30 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
   }
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final BuildContext context) => Row(
     children: [
-      Row(
-        children: [
-          if (!widget.cursor.isStart)
-            DsfrButtonIcon(
-              icon: DsfrIcons.systemArrowLeftLine,
-              semanticLabel: Localisation.questionPrecedente,
-              variant: DsfrButtonVariant.tertiaryWithoutBorder,
-              size: DsfrButtonSize.lg,
-              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
-            ),
-          if (!inputIsEmpty)
-            DsfrButton(
-              label: Localisation.questionSuivante,
-              variant: DsfrButtonVariant.primary,
-              size: DsfrButtonSize.lg,
-              onPressed: widget.questionController.save,
-            )
-          else
-            DsfrButton(
-              label: Localisation.passerLaQuestion,
-              variant: DsfrButtonVariant.secondary,
-              size: DsfrButtonSize.lg,
-              onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
-            ),
-        ],
-      ),
+      if (!widget.cursor.isStart)
+        DsfrButtonIcon(
+          icon: DsfrIcons.systemArrowLeftLine,
+          semanticLabel: Localisation.questionPrecedente,
+          variant: DsfrButtonVariant.tertiaryWithoutBorder,
+          size: DsfrButtonSize.lg,
+          onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+        ),
+      if (_inputIsEmpty)
+        DsfrButton(
+          label: Localisation.passerLaQuestion,
+          variant: DsfrButtonVariant.secondary,
+          size: DsfrButtonSize.lg,
+          onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
+        )
+      else
+        DsfrButton(
+          label: Localisation.questionSuivante,
+          variant: DsfrButtonVariant.primary,
+          size: DsfrButtonSize.lg,
+          onPressed: widget.questionController.save,
+        ),
     ],
   );
 }

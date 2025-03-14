@@ -110,6 +110,7 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
           if (newQuestion.responsesDisplay().isEmpty) {
             emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));
             emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
+
             return;
           }
           final result = await questionRepository.update(newQuestion);

@@ -17,7 +17,7 @@ class ActionsRecommandedSection extends StatelessWidget {
   final ThemeInfo theme;
 
   @override
-  Widget build(final BuildContext context) => ColoredBox(
+  Widget build(final context) => ColoredBox(
     color: const Color(0xFFF3EDE5),
     child: Padding(
       padding: const EdgeInsets.only(
@@ -86,7 +86,7 @@ class _ExploreAnotherTheme extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final themeExplored = switch (themeType) {
       ThemeType.alimentation => ThemeType.transport,
       ThemeType.transport => ThemeType.logement,
@@ -119,7 +119,7 @@ class _ActionsState extends State<_Actions> {
   var _showAllItems = false;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
 
     return Column(

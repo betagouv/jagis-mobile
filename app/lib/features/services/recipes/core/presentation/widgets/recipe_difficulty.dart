@@ -7,7 +7,7 @@ class RecipeDifficulty extends StatelessWidget {
   final String value;
 
   @override
-  Widget build(final BuildContext context) => DsfrTag.sm(
+  Widget build(final context) => DsfrTag.sm(
     label: TextSpan(text: value),
     backgroundColor: const Color(0xffEAEAEA),
     foregroundColor: const Color(0xff3F3F3F),

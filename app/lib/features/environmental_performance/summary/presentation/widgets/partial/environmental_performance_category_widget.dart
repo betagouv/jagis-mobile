@@ -76,7 +76,7 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   static const _imageHeight = 126.0;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
 
     return DsfrFocusWidget(

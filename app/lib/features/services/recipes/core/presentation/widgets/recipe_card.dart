@@ -24,7 +24,7 @@ class RecipeCard extends StatelessWidget {
   final int preparationTime;
 
   @override
-  Widget build(final BuildContext context) => FnvCard(
+  Widget build(final context) => FnvCard(
     onTap: () async => context.pushNamed(RecipePage.name, pathParameters: {'id': id}),
     child: SizedBox(
       width: 175,

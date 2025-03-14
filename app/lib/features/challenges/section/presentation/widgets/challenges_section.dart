@@ -21,7 +21,7 @@ class ChallengesSection extends StatelessWidget {
   final ThemeType? themeType;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     context.read<ChallengesBloc>().add(ChallengesLoadRequested(themeType));
 
     return BlocBuilder<ChallengesBloc, ChallengesState>(
@@ -63,7 +63,7 @@ class _Challenges extends StatelessWidget {
   final List<ChallengeItem> value;
 
   @override
-  Widget build(final BuildContext context) =>
+  Widget build(final context) =>
       value.isEmpty
           ? const Text(Localisation.defisSectionListEmpty, style: DsfrTextStyle.bodySm())
           : SingleChildScrollView(

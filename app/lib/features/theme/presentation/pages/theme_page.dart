@@ -85,7 +85,7 @@ class _Success extends StatelessWidget {
   final ThemeLoadSuccess data;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final theme = data.theme;
     final themeType = theme.themeType;
 

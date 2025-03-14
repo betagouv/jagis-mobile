@@ -26,7 +26,7 @@ class ActionsPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const ActionsPage());
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => ActionsBloc(repository: context.read())..add(const ActionsLoadRequested()),
     child: const _View(),
   );
@@ -36,7 +36,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final BuildContext context) => RootPage(
+  Widget build(final context) => RootPage(
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
@@ -122,7 +122,7 @@ class _Success extends StatelessWidget {
   final ActionsLoadSuccess state;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final actions = state.actions;
 
     return Column(
@@ -158,7 +158,7 @@ class _Element extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     Future<void> onTap() async {
       await GoRouter.of(context).pushNamed(
         ActionPage.name,
@@ -209,7 +209,7 @@ class _Information extends StatelessWidget {
   final String suffix;
 
   @override
-  Widget build(final BuildContext context) =>
+  Widget build(final context) =>
       value == 0
           ? const SizedBox()
           : ConstrainedBox(

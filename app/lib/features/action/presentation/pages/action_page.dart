@@ -46,7 +46,7 @@ class ActionPage extends StatelessWidget {
   );
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id, type)),
     child: const _View(),
   );
@@ -56,7 +56,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final BuildContext context) => FnvScaffold(
+  Widget build(final context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<ActionBloc, ActionState>(
       builder:
@@ -75,7 +75,7 @@ class _Success extends StatelessWidget {
   final ActionLoadSuccess state;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final action = state.action;
 
     return ListView(
@@ -111,7 +111,7 @@ class _TitleWithSubTitleView extends StatelessWidget {
   final String? subTitle;
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
@@ -127,7 +127,7 @@ class _WhySectionView extends StatelessWidget {
   final String why;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final (heading: whyFirstHeading, content: whyContent) = parseFirstHeadingInMardown(why);
 
     return Padding(
@@ -156,7 +156,7 @@ class _ActionAidsView extends StatelessWidget {
   final List<AidSummary> aidSummaries;
 
   @override
-  Widget build(final BuildContext context) => Padding(
+  Widget build(final context) => Padding(
     padding: const EdgeInsets.all(DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +190,7 @@ class _ActionClassicView extends StatelessWidget {
   final ActionClassic action;
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     children: [
       if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
@@ -213,7 +213,7 @@ class _ActionSimulatorView extends StatelessWidget {
   final ActionSimulator action;
 
   @override
-  Widget build(final BuildContext context) => switch (action.getId()) {
+  Widget build(final context) => switch (action.getId()) {
     ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
   };
 }
@@ -224,7 +224,7 @@ class _Markdown extends StatelessWidget {
   final String data;
 
   @override
-  Widget build(final BuildContext context) => FnvMarkdown(
+  Widget build(final context) => FnvMarkdown(
     data: data,
     h1: const DsfrTextStyle(fontSize: 22),
     p: const DsfrTextStyle(fontSize: 16),

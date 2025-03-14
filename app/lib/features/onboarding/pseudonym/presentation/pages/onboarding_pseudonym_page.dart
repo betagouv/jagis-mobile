@@ -39,7 +39,7 @@ class _Content extends StatelessWidget {
   }
 
   @override
-  Widget build(final BuildContext context) => BlocListener<OnboardingPseudonymBloc, OnboardingPseudonymState>(
+  Widget build(final context) => BlocListener<OnboardingPseudonymBloc, OnboardingPseudonymState>(
     listener: (final context, final state) async {
       if (state is OnboardingPseudonymSuccess) {
         await GoRouter.of(context).pushNamed(QuestionCodePostalPage.name);

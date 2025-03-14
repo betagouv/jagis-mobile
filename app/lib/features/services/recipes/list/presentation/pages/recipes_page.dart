@@ -32,7 +32,7 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<RecipesBloc, RecipesState>(
+  Widget build(final context) => BlocBuilder<RecipesBloc, RecipesState>(
     builder:
         (final context, final state) => switch (state) {
           RecipesInitial() || RecipesLoadInProgress() || RecipesLoadFailure() => const SizedBox(),
@@ -47,7 +47,7 @@ class _Success extends StatelessWidget {
   final RecipesLoadSuccess value;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final items = [
       _Header(value: value),
       ...value.recipes.map(
@@ -83,7 +83,7 @@ class _Header extends StatelessWidget {
   final RecipesLoadSuccess value;
 
   @override
-  Widget build(final BuildContext context) => Text.rich(
+  Widget build(final context) => Text.rich(
     TextSpan(
       style: const DsfrTextStyle(fontSize: 28, fontWeight: FontWeight.w500),
       children: [

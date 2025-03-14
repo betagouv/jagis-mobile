@@ -9,7 +9,7 @@ class HomeDisclaimer extends StatelessWidget {
   const HomeDisclaimer({super.key});
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<HomeDisclaimerCubit, HomeDisclaimerState>(
+  Widget build(final context) => BlocBuilder<HomeDisclaimerCubit, HomeDisclaimerState>(
     builder:
         (final context, final state) => switch (state) {
           HomeDisclaimerVisible() => DsfrNotice(

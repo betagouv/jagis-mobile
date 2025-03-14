@@ -12,5 +12,5 @@ class HomePage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const HomePage(), routes: routes);
 
   @override
-  Widget build(final BuildContext context) => const HomeTabView();
+  Widget build(final context) => const HomeTabView();
 }

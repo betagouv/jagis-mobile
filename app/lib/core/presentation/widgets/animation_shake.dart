@@ -42,7 +42,7 @@ class _AnimationShakeState extends State<AnimationShake> with SingleTickerProvid
   }
 
   @override
-  Widget build(final BuildContext context) => AnimatedBuilder(
+  Widget build(final context) => AnimatedBuilder(
     animation: _animation,
     builder:
         (final context, final child) =>

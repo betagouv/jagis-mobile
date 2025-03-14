@@ -63,17 +63,17 @@ class _ActionsEmpty extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       const SizedBox(height: DsfrSpacings.s3w),
-      Row(
+      Column(
         spacing: DsfrSpacings.s1v5,
         children: [
-          DsfrLink.md(
+          _ExploreAnotherTheme(themeType: themeType),
+          DsfrButton(
             label: Localisation.refaire,
             icon: DsfrIcons.systemRefreshLine,
-            onTap: () {
-              context.read<ThemeBloc>().add(const ThemeResetRequested());
-            },
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrButtonSize.lg,
+            onPressed: () => context.read<ThemeBloc>().add(const ThemeResetRequested()),
           ),
-          Expanded(child: _ExploreAnotherTheme(themeType: themeType)),
         ],
       ),
     ],

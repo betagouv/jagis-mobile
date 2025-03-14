@@ -128,6 +128,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
             initialValue: widget.initialValue,
             focusNode: _focusNode,
             decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixText: widget.suffixText,
               suffixStyle: widget.inputStyle,
               filled: true,
@@ -136,7 +137,6 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
               enabledBorder: underlineInputBorder,
               border: underlineInputBorder,
               constraints: widget.inputConstraints,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
             keyboardType: widget.keyboardType,
             textCapitalization: widget.textCapitalization,

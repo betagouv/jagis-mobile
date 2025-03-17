@@ -17,8 +17,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     });
     on<QuizReponseSelectionnee>((final event, final emit) => emit(state.copyWith(reponse: Some(event.valeur))));
     on<QuizValidationDemandee>((final event, final emit) async {
-      final estExacte = state.quiz.reponses.any((final e) => e.reponse == state.reponse.getOrElse(() => '') && e.exact);
-      await quizRepository.terminerQuiz(id: state.quiz.id, estExacte: estExacte);
+      final estExacte = state.quiz.responses.any((final e) => e.response == state.reponse.getOrElse(() => '') && e.exact);
+      await quizRepository.submitResponse(id: state.quiz.id, isCorrect: estExacte);
       await gamificationRepository.refresh();
       emit(state.copyWith(estExacte: Some(estExacte)));
     });

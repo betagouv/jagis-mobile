@@ -6,7 +6,13 @@ import '../helper/feature_context.dart';
 /// Usage: the API will return
 Future<void> theApiWillReturn(final WidgetTester tester, final bdd.DataTable dataTable) async {
   dataTable.asMaps().forEach((final e) {
-    if (e['method'] == 'PATCH') {
+    if (e['method'] == 'GET') {
+      FeatureContext.instance.dioMock.getM(
+        e['path'] as String,
+        statusCode: e['statusCode'] as int,
+        responseData: e['responseData'],
+      );
+    } else if (e['method'] == 'PATCH') {
       FeatureContext.instance.dioMock.patchM(
         e['path'] as String,
         statusCode: e['statusCode'] as int,

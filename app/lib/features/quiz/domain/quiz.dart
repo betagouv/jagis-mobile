@@ -1,3 +1,4 @@
+import 'package:app/features/articles/domain/source.dart';
 import 'package:equatable/equatable.dart';
 
 final class Quiz extends Equatable {
@@ -5,32 +6,34 @@ final class Quiz extends Equatable {
     required this.id,
     required this.thematique,
     required this.question,
-    required this.reponses,
+    required this.responses,
     required this.points,
     required this.explicationOk,
     required this.explicationKo,
     required this.article,
+    required this.sources,
   });
 
   final String id;
   final String thematique;
   final String question;
-  final List<QuizReponse> reponses;
+  final List<QuizResponse> responses;
   final int points;
   final String? explicationOk;
   final String? explicationKo;
   final String? article;
+  final List<Source> sources;
 
   @override
-  List<Object?> get props => [id, thematique, question, reponses, points, explicationOk, explicationKo, article];
+  List<Object?> get props => [id, thematique, question, responses, points, explicationOk, explicationKo, article, sources];
 }
 
-final class QuizReponse extends Equatable {
-  const QuizReponse({required this.reponse, required this.exact});
+final class QuizResponse extends Equatable {
+  const QuizResponse({required this.response, required this.exact});
 
-  final String reponse;
+  final String response;
   final bool exact;
 
   @override
-  List<Object> get props => [reponse, exact];
+  List<Object> get props => [response, exact];
 }

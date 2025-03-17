@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -21,14 +19,11 @@ class QuizRepository {
 
     final json = response.data as Map<String, dynamic>;
 
-    return Right(QuizMapper.fromJson(json: json));
+    return Right(QuizMapper.fromJson(json));
   }
 
-  Future<Either<Exception, Unit>> terminerQuiz({required final String id, required final bool estExacte}) async {
-    final response = await _client.post(
-      Endpoints.events,
-      data: jsonEncode({'content_id': id, 'number_value': estExacte ? 100 : 0, 'type': 'quizz_score'}),
-    );
+  Future<Either<Exception, Unit>> submitResponse({required final String id, required final bool isCorrect}) async {
+    final response = await _client.patch(Endpoints.quiz(id), data: {'pourcent': isCorrect ? 100 : 0});
 
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)

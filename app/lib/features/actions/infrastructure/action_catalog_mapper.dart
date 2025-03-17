@@ -11,7 +11,7 @@ abstract final class ActionCatalogMapper {
         (json['actions'] as List<dynamic>)
             .cast<Map<String, dynamic>>()
             .map(ActionSummaryMapper.fromJson)
-            .where((final e) => e.type == ActionType.classic || e.type == ActionType.simulator)
+            .where((final e) => e.type == ActionType.classic || e.type == ActionType.simulator || e.type == ActionType.quiz)
             .toList(),
     themes:
         (json['filtres'] as List<dynamic>)

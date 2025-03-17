@@ -26,7 +26,8 @@ class ActionRepository {
     return switch (type) {
       ActionType.simulator => Right(ActionSimulatorMapper.fromJson(json)),
       ActionType.classic => Right(ActionClassicMapper.fromJson(json)),
-      ActionType.quiz || ActionType.performance =>
+      ActionType.quiz => Right(ActionQuizMapper.fromJson(json)),
+      ActionType.performance =>
         // TODO(erolley): Handle this case.
         throw UnimplementedError(),
     };

@@ -7,9 +7,9 @@ import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
+import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
-import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -83,10 +83,10 @@ class _Success extends StatelessWidget {
           child: Column(
             spacing: DsfrSpacings.s2w,
             children: [
-              ActionWhySectionView(why: action.why),
               switch (action) {
                 ActionClassic() => ActionClassicView(action: action),
                 ActionSimulator() => ActionSimulatorView(action: action),
+                ActionQuiz() => ActionQuizView(action: action),
               },
               if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
             ],

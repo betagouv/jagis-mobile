@@ -20,12 +20,14 @@ abstract final class ArticleMapper {
               logo: json['partenaire_logo_url'] as String,
               url: json['partenaire_url'] as String,
             ),
-    sources:
-        (json['sources'] as List<dynamic>)
-            .cast<Map<String, dynamic>>()
-            .map((final e) => Source(label: e['label'] as String, url: e['url'] as String))
-            .toList(),
+    sources: (json['sources'] as List<dynamic>).cast<Map<String, dynamic>>().map(SourceMapper.fromJson).toList(),
     isFavorite: json['favoris'] as bool,
     isRead: json['read_date'] != null,
   );
+}
+
+abstract final class SourceMapper {
+  const SourceMapper._();
+
+  static Source fromJson(final Map<String, dynamic> json) => Source(label: json['label'] as String, url: json['url'] as String);
 }

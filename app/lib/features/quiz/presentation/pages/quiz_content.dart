@@ -42,7 +42,7 @@ class _Choices extends StatelessWidget {
       return null;
     }
 
-    final reponseExacte = state.quiz.reponses.firstWhereOrNull((final r) => r.exact)?.reponse;
+    final reponseExacte = state.quiz.responses.firstWhereOrNull((final r) => r.exact)?.response;
     if (reponse == reponseExacte) {
       return DsfrColors.success950;
     }
@@ -57,8 +57,8 @@ class _Choices extends StatelessWidget {
   @override
   Widget build(final context) => DsfrRadioButtonSetHeadless(
     values: Map.fromEntries(
-      state.quiz.reponses
-          .map((final e) => e.reponse)
+      state.quiz.responses
+          .map((final e) => e.response)
           .map((final e) => MapEntry(e, DsfrRadioButtonItem(e, backgroundColor: _getColor(state, e)))),
     ),
     onCallback: (final value) => context.read<QuizBloc>().add(QuizReponseSelectionnee(value ?? '')),

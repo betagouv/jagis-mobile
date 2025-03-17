@@ -281,6 +281,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const unAppartement = 'Un appartement';
   static const uneMaison = 'Une maison';
   static const valider = 'Valider';
+  static const voirLaReponse = 'Voir la réponse';
   static const voirLesDemarches = 'Voir les démarches';
   static const voirPlusActions = 'Voir plus d’actions';
   static const votreVehiculeActuel = 'Votre véhicule actuel';

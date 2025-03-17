@@ -1,5 +1,6 @@
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown.dart';
+import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
 import 'package:dsfr/dsfr.dart';
@@ -13,6 +14,7 @@ class ActionClassicView extends StatelessWidget {
   @override
   Widget build(final context) => Column(
     children: [
+      ActionWhySectionView(why: action.why),
       if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
         LvaoHorizontalList(category: action.lvaoService.category),

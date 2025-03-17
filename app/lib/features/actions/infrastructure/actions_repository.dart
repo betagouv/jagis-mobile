@@ -24,7 +24,6 @@ class ActionsRepository {
     };
 
     final url = Uri(path: Endpoints.actions, queryParameters: queryParameters.isEmpty ? null : queryParameters).toString();
-
     final response = await _client.get(url);
 
     if (isResponseUnsuccessful(response.statusCode)) {

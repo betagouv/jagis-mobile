@@ -69,9 +69,9 @@ class _DsfrRawButtonState extends State<DsfrRawButton> with MaterialStateMixin<D
   };
 
   TextStyle _getTextStyle(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => const DsfrTextStyle.bodyLgMedium(),
-    DsfrButtonSize.md => const DsfrTextStyle.bodyMdMedium(),
-    DsfrButtonSize.sm => const DsfrTextStyle.bodySmMedium(),
+    DsfrButtonSize.lg => const DsfrTextStyle.bodyLgMedium(height: 1),
+    DsfrButtonSize.md => const DsfrTextStyle.bodyMdMedium(height: 1),
+    DsfrButtonSize.sm => const DsfrTextStyle.bodySmMedium(height: 1),
   };
 
   double _getMinHeight(final DsfrButtonSize size) => switch (size) {

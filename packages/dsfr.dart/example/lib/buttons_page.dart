@@ -11,7 +11,7 @@ class ButtonsPage extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    const label = 'Bouton';
+    const label = 'JQgjpqy';
 
     final children = <Widget>[];
     for (final variant in DsfrButtonVariant.values) {

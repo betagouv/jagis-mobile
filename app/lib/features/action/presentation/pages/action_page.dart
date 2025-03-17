@@ -1,22 +1,16 @@
-import 'package:app/core/helpers/width.dart';
-import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
-import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
+import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
+import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
+import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
+import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
+import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/aids/core/domain/aid_summary.dart';
-import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
-import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
-import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
-import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
-import 'package:app/l10n/l10n.dart';
-import 'package:collection/collection.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,157 +76,23 @@ class _Success extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-          child: _TitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
+          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
         ),
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
           child: Column(
             spacing: DsfrSpacings.s2w,
             children: [
-              _WhySectionView(action.why),
+              ActionWhySectionView(why: action.why),
               switch (action) {
-                ActionClassic() => _ActionClassicView(action: action),
-                ActionSimulator() => _ActionSimulatorView(action: action),
+                ActionClassic() => ActionClassicView(action: action),
+                ActionSimulator() => ActionSimulatorView(action: action),
               },
-              if (action.aidSummaries.isNotEmpty) _ActionAidsView(aidSummaries: action.aidSummaries),
+              if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
             ],
           ),
         ),
       ],
     );
   }
-}
-
-class _TitleWithSubTitleView extends StatelessWidget {
-  const _TitleWithSubTitleView({required this.title, required this.subTitle});
-
-  final String title;
-
-  final String? subTitle;
-
-  @override
-  Widget build(final context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: DsfrSpacings.s2w,
-    children: [
-      FnvMarkdown(data: title, p: const DsfrTextStyle(fontSize: 28)),
-      if (subTitle != null) Text(subTitle!, style: const DsfrTextStyle.bodyLg()),
-    ],
-  );
-}
-
-class _WhySectionView extends StatelessWidget {
-  const _WhySectionView(this.why);
-
-  final String why;
-
-  @override
-  Widget build(final context) {
-    final (heading: whyFirstHeading, content: whyContent) = parseFirstHeadingInMardown(why);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-      child: Column(
-        spacing: DsfrSpacings.s1w,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: DsfrSpacings.s1w,
-            children: [
-              const Icon(DsfrIcons.editorFrQuoteLine, size: 32, color: DsfrColors.blueFranceSun113),
-              Text(whyFirstHeading, style: const DsfrTextStyle.headline3()),
-            ],
-          ),
-          _Markdown(data: whyContent),
-        ],
-      ),
-    );
-  }
-}
-
-class _ActionAidsView extends StatelessWidget {
-  const _ActionAidsView({required this.aidSummaries});
-
-  final List<AidSummary> aidSummaries;
-
-  @override
-  Widget build(final context) => Padding(
-    padding: const EdgeInsets.all(DsfrSpacings.s2w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        const Text(Localisation.aidesEtBonsPlans, style: DsfrTextStyle.headline3()),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.zero,
-          clipBehavior: Clip.none,
-          child: IntrinsicHeight(
-            child: Row(
-              spacing: DsfrSpacings.s2w,
-              children:
-                  aidSummaries
-                      .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
-                      .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
-                      .toList(),
-            ),
-          ),
-        ),
-        const SizedBox(height: DsfrSpacings.s4w),
-      ],
-    ),
-  );
-}
-
-class _ActionClassicView extends StatelessWidget {
-  const _ActionClassicView({required this.action});
-
-  final ActionClassic action;
-
-  @override
-  Widget build(final context) => Column(
-    children: [
-      if (action.hasLvaoService) ...[
-        const SizedBox(height: DsfrSpacings.s4w),
-        LvaoHorizontalList(category: action.lvaoService.category),
-      ],
-      if (action.hasRecipesService) ...[
-        const SizedBox(height: DsfrSpacings.s4w),
-        RecipeHorizontalList(category: action.recipesService.category),
-      ],
-      const SizedBox(height: DsfrSpacings.s4w),
-      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Markdown(data: action.how)),
-      const SizedBox(height: DsfrSpacings.s2w),
-    ],
-  );
-}
-
-class _ActionSimulatorView extends StatelessWidget {
-  const _ActionSimulatorView({required this.action});
-
-  final ActionSimulator action;
-
-  @override
-  Widget build(final context) => switch (action.getId()) {
-    ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
-  };
-}
-
-class _Markdown extends StatelessWidget {
-  const _Markdown({required this.data});
-
-  final String data;
-
-  @override
-  Widget build(final context) => FnvMarkdown(
-    data: data,
-    h1: const DsfrTextStyle(fontSize: 22),
-    p: const DsfrTextStyle(fontSize: 16),
-    onTapLink: (final href) async {
-      if (href != null) {
-        await FnvUrlLauncher.launch(href);
-      }
-    },
-    imageBuilder: (final uri, final alt) => FnvImage.network(uri.toString(), semanticLabel: alt),
-  );
 }

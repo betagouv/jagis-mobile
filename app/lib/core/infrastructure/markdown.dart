@@ -5,10 +5,23 @@ typedef FnvMarkdownLinkTapCallback = void Function(String? href);
 typedef FnvMarkdownImageBuilder = Widget Function(Uri uri, String? alt);
 
 class FnvMarkdown extends StatelessWidget {
-  const FnvMarkdown({super.key, required this.data, this.h1, this.p, this.a, this.strong, this.onTapLink, this.imageBuilder});
+  const FnvMarkdown({
+    super.key,
+    required this.data,
+    this.h1,
+    this.h2,
+    this.h3,
+    this.p,
+    this.a,
+    this.strong,
+    this.onTapLink,
+    this.imageBuilder,
+  });
 
   final String data;
   final TextStyle? h1;
+  final TextStyle? h2;
+  final TextStyle? h3;
   final TextStyle? p;
   final TextStyle? a;
   final TextStyle? strong;
@@ -18,7 +31,7 @@ class FnvMarkdown extends StatelessWidget {
   @override
   Widget build(final context) => MarkdownBody(
     data: data,
-    styleSheet: MarkdownStyleSheet(a: a, p: p, h1: h1, strong: strong),
+    styleSheet: MarkdownStyleSheet(a: a, p: p, h1: h1, h2: h2, h3: h3, strong: strong),
     onTapLink: onTapLink == null ? null : (final text, final href, final title) => onTapLink!(href),
     imageBuilder: imageBuilder == null ? null : (final uri, final title, final alt) => imageBuilder!(uri, alt),
   );

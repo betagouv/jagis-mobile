@@ -160,7 +160,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iSee(tester, 'Question 1 sur 2');
@@ -301,7 +301,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iTapOn(tester, 'Faux');
@@ -457,7 +457,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iTapOn(tester, 'Vrai');
@@ -580,7 +580,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iTapOn(tester, "Poubelle jaune, l'aluminium se recycle");
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -702,7 +702,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iTapOn(tester, "Conteneur à verre, il sera trié par la suite");
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -861,7 +861,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, 'Quiz - Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iSee(tester, 'Question 1 sur 2');

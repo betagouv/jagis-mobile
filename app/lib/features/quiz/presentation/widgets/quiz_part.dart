@@ -13,15 +13,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizPart extends StatelessWidget {
-  const QuizPart({super.key, required this.name, required this.quizzes, required this.congratulatoryText});
+  const QuizPart({super.key, required this.id, required this.name, required this.quizzes, required this.congratulatoryText});
 
+  final String id;
   final String name;
   final List<Quiz> quizzes;
   final String congratulatoryText;
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => QuizzesBloc(quizzes: quizzes),
+    create: (final context) => QuizzesBloc(quizzes: quizzes, id: id, actionRepository: context.read()),
     child: _View(name: name, congratulatoryText: congratulatoryText),
   );
 }

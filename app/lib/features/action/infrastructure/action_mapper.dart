@@ -14,10 +14,10 @@ abstract final class ActionClassicMapper {
     subTitle: json['sous_titre'] as String?,
     alreadySeen: json['deja_vue'] as bool,
     isDone: json['deja_faite'] as bool,
-    why: json['pourquoi'] as String,
     aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
     nbActionsDone: json['nombre_actions_faites'] as int,
     score: json['points'] as int,
+    why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
     scoreLabel: json['label_compteur'] as String,
     how: json['comment'] as String,
@@ -35,10 +35,10 @@ abstract final class ActionQuizMapper {
     alreadySeen: json['deja_vue'] as bool,
     isDone: json['deja_faite'] as bool,
     aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
-    quizzes: (json['quizzes'] as List<dynamic>).cast<Map<String, dynamic>>().map(QuizMapper.fromJson).toList(),
-    congratulatoryText: json['quizz_felicitations'] as String,
     nbActionsDone: json['nombre_actions_faites'] as int,
     score: json['points'] as int,
+    quizzes: (json['quizzes'] as List<dynamic>).cast<Map<String, dynamic>>().map(QuizMapper.fromJson).toList(),
+    congratulatoryText: json['quizz_felicitations'] as String,
   );
 }
 

@@ -76,7 +76,7 @@ final class ActionClassic extends Action {
   bool get hasRecipesService => services.any((final service) => service.id == ServiceId.recipes);
 
   @override
-  List<Object?> get props => [...super.props, how, services, scoreLabel, instruction];
+  List<Object?> get props => [...super.props, how, services, scoreLabel, instruction, why];
 }
 
 final class ActionQuiz extends Action {
@@ -100,7 +100,7 @@ final class ActionQuiz extends Action {
   List<Object?> get props => [...super.props, quizzes, congratulatoryText];
 
   @override
-  String get instruction => 'Répondez à ce quiz et gagnez';
+  String get instruction => 'Répondez à suffisamment de bonnes réponses pour gagner';
 
   @override
   String get instructionWhenDone => 'Vous avez terminé ce quiz';

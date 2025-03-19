@@ -27,9 +27,10 @@ sealed class Action extends Equatable {
   final List<AidSummary> aidSummaries;
 
   @override
-  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries, isDone];
+  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries, isDone, nbActionsDone, score];
 
   String get instruction;
+  String get instructionWhenDone;
   String get scoreLabel;
 }
 
@@ -59,13 +60,16 @@ final class ActionClassic extends Action {
   @override
   final String instruction;
 
+  @override
+  String get instructionWhenDone => 'Vous avez réalisez cette action';
+
   ActionService get lvaoService => services.firstWhere((final service) => service.id == ServiceId.lvao);
   bool get hasLvaoService => services.any((final service) => service.id == ServiceId.lvao);
   ActionService get recipesService => services.firstWhere((final service) => service.id == ServiceId.recipes);
   bool get hasRecipesService => services.any((final service) => service.id == ServiceId.recipes);
 
   @override
-  List<Object?> get props => [...super.props, how, services];
+  List<Object?> get props => [...super.props, how, services, scoreLabel, instruction];
 }
 
 final class ActionSimulator extends Action {
@@ -94,6 +98,9 @@ final class ActionSimulator extends Action {
 
   @override
   String get instruction => 'Terminez ce simulateur et gagnez';
+
+  @override
+  String get instructionWhenDone => 'Vous avez terminé ce simulateur';
 
   @override
   String get scoreLabel => 'simulations';

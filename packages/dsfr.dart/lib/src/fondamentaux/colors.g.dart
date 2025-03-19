@@ -421,4 +421,6 @@ class DsfrColors {
   static const backgroundConstrastError = Color(0xFFFFE9E9);
   static const borderPlainInfo = Color(0xFF0063CB);
   static const backgroundFlatInfo = Color(0xFF0063CB);
+  static const backgroundContrastGrey = Color(0xFFEEEEEE);
+  static const textDefaultGrey = Color(0xFF3A3A3A);
 }

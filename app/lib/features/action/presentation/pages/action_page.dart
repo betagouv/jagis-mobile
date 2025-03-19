@@ -121,19 +121,22 @@ class _ScoreInstructionView extends StatelessWidget {
           spacing: DsfrSpacings.s1w,
           children: [
             if (action.isDone) ...[
-              const Text('Bravo !', style: DsfrTextStyle.headline3()),
+              const Text('Bravo ! 🎉', style: DsfrTextStyle.headline3()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Tu as déjà réalisé cette action', style: const DsfrTextStyle.bodyMd()),
-                  Points(points: action.score),
+                  Text(action.instructionWhenDone, style: const DsfrTextStyle.bodyMd()),
+                  Points(points: action.score, alreadyEarned: true),
                 ],
               ),
             ] else ...[
               const Text('On se lance le défi ?', style: DsfrTextStyle.headline3()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text(action.instruction, style: const DsfrTextStyle.bodyMd()), Points(points: action.score)],
+                children: [
+                  Flexible(child: Text(action.instruction, style: const DsfrTextStyle.bodyMd())),
+                  Points(points: action.score),
+                ],
               ),
             ],
             DecoratedBox(
@@ -142,13 +145,18 @@ class _ScoreInstructionView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w),
                 child:
                     action.nbActionsDone > 1
-                        ? Text.rich(
-                          TextSpan(
-                            text: '${action.nbActionsDone} ${action.scoreLabel}',
-                            children: const [TextSpan(text: ' faites par la communautées', style: DsfrTextStyle.bodyMdItalic())],
-                            style: const DsfrTextStyle.bodyMdBold(),
+                        ? switch (action) {
+                          ActionClassic() => FnvMarkdown(data: action.scoreLabel, p: const DsfrTextStyle.bodyMd()),
+                          ActionSimulator() => Text.rich(
+                            TextSpan(
+                              text: '${action.nbActionsDone} ${action.scoreLabel}',
+                              style: const DsfrTextStyle.bodyMdBold(),
+                              children: const [
+                                TextSpan(text: ' faites par la communautées', style: DsfrTextStyle.bodyMdItalic()),
+                              ],
+                            ),
                           ),
-                        )
+                        }
                         : const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
               ),
             ),

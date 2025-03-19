@@ -54,7 +54,7 @@ class FnvAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
             if (title == null) const Spacer() else ...[const SizedBox(width: DsfrSpacings.s1w), Expanded(child: title!)],
             const SizedBox(width: DsfrSpacings.s1w),
-            const Points(),
+            const GlobalPoints(),
           ],
         ),
       ),

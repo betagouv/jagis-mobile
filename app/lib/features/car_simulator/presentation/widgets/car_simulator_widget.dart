@@ -195,19 +195,19 @@ class _ButtonsControllerWidgetState extends State<_ButtonsControllerWidget> {
               size: DsfrButtonSize.lg,
               onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
             ),
-          if (!inputIsEmpty)
-            DsfrButton(
-              label: Localisation.questionSuivante,
-              variant: DsfrButtonVariant.primary,
-              size: DsfrButtonSize.lg,
-              onPressed: widget.questionController.save,
-            )
-          else
+          if (inputIsEmpty)
             DsfrButton(
               label: Localisation.passerLaQuestion,
               variant: DsfrButtonVariant.secondary,
               size: DsfrButtonSize.lg,
               onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
+            )
+          else
+            DsfrButton(
+              label: Localisation.questionSuivante,
+              variant: DsfrButtonVariant.primary,
+              size: DsfrButtonSize.lg,
+              onPressed: widget.questionController.save,
             ),
         ],
       ),

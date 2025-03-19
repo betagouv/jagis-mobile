@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
@@ -26,7 +24,7 @@ class ActionsRecommandedQuestions extends StatelessWidget {
   final String sequenceId;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create:
         (final context) =>
             QuestionsManagerBloc(application: ActionsRecommandedQuestionsManager(client: context.read(), sequenceId: sequenceId))
@@ -39,7 +37,7 @@ class _Questions extends StatelessWidget {
   const _Questions();
 
   @override
-  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
@@ -69,42 +67,52 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   var _isExpanded = true;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final cursor = widget.data.cursor;
     final element = cursor.element;
     if (element == null) {
-      return const Column(
-        children: [FnvLoader(), Text(Localisation.nousPreparonsVosRecommandationsPersonnalisees, style: DsfrTextStyle.bodyLg())],
-      );
+      return const _Loader();
     }
-    final question = ColoredBox(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        child: Column(
-          spacing: DsfrSpacings.s4w,
-          children: [
-            DsfrStepper(title: element.label, current: cursor.index + 1, total: cursor.total),
-            _QuestionWidget(key: ValueKey(element), code: element.code),
-          ],
-        ),
-      ),
-    );
 
     return _isExpanded
-        ? Stack(
-          children: [
-            ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), child: IgnorePointer(child: question)),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
-                child: _GetStarted(onPressed: () => setState(() => _isExpanded = false)),
-              ),
+        ? _GetStarted(onPressed: () => setState(() => _isExpanded = false))
+        : ColoredBox(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              spacing: DsfrSpacings.s4w,
+              children: [
+                DsfrStepper(title: element.label, current: cursor.index + 1, total: cursor.total),
+                _QuestionWidget(key: ValueKey(element), code: element.code),
+              ],
             ),
-          ],
-        )
-        : question;
+          ),
+        );
   }
+}
+
+class _Loader extends StatelessWidget {
+  const _Loader();
+
+  @override
+  Widget build(final context) => const SizedBox(
+    height: 200,
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: DsfrSpacings.s1w,
+        children: [
+          FnvLoader(),
+          Text(
+            Localisation.nousPreparonsVosRecommandationsPersonnalisees,
+            style: DsfrTextStyle.bodyLg(),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class _GetStarted extends StatelessWidget {

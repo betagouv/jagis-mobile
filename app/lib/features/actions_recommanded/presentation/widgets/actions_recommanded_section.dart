@@ -17,7 +17,7 @@ class ActionsRecommandedSection extends StatelessWidget {
   final ThemeInfo theme;
 
   @override
-  Widget build(final BuildContext context) => ColoredBox(
+  Widget build(final context) => ColoredBox(
     color: const Color(0xFFF3EDE5),
     child: Padding(
       padding: const EdgeInsets.only(
@@ -35,9 +35,12 @@ class ActionsRecommandedSection extends StatelessWidget {
             const Text(Localisation.mesActionsRecommandeesDescription, style: DsfrTextStyle.bodyMd()),
           ],
           const SizedBox(height: DsfrSpacings.s3w),
-          if (theme.isQuestionsNeeded) ActionsRecommandedQuestions(sequenceId: theme.sequenceId),
-          if (theme.isActionsRecommandedEmpty) _ActionsEmpty(themeType: theme.themeType),
-          if (theme.isActionsRecommandedNotEmpty) _Actions(actions: theme.actionsRecommanded),
+          switch (theme) {
+            ThemeInfo(:final sequenceId) when theme.isQuestionsNeeded => ActionsRecommandedQuestions(sequenceId: sequenceId),
+            ThemeInfo(:final actionsRecommanded) when theme.hasRecommandedActions => _Actions(actions: actionsRecommanded),
+            ThemeInfo(:final themeType) when theme.hasNoRecommandedActions => _ActionsEmpty(themeType: themeType),
+            ThemeInfo _ => const SizedBox.shrink(),
+          },
         ],
       ),
     ),
@@ -52,8 +55,6 @@ class _ActionsEmpty extends StatelessWidget {
   @override
   Widget build(final context) => Column(
     children: [
-      const Placeholder(child: SizedBox(width: 133, height: 64)),
-      const SizedBox(height: DsfrSpacings.s2w),
       const Text(Localisation.mesActionsRecommandeesEpuiseeTitre, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
       const SizedBox(height: DsfrSpacings.s1v),
       const Text(
@@ -62,17 +63,17 @@ class _ActionsEmpty extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       const SizedBox(height: DsfrSpacings.s3w),
-      Row(
+      Column(
         spacing: DsfrSpacings.s1v5,
         children: [
-          DsfrLink.md(
+          _ExploreAnotherTheme(themeType: themeType),
+          DsfrButton(
             label: Localisation.refaire,
             icon: DsfrIcons.systemRefreshLine,
-            onTap: () {
-              context.read<ThemeBloc>().add(const ThemeResetRequested());
-            },
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrButtonSize.lg,
+            onPressed: () => context.read<ThemeBloc>().add(const ThemeResetRequested()),
           ),
-          Expanded(child: _ExploreAnotherTheme(themeType: themeType)),
         ],
       ),
     ],
@@ -85,7 +86,7 @@ class _ExploreAnotherTheme extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final themeExplored = switch (themeType) {
       ThemeType.alimentation => ThemeType.transport,
       ThemeType.transport => ThemeType.logement,
@@ -118,7 +119,7 @@ class _ActionsState extends State<_Actions> {
   var _showAllItems = false;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
 
     return Column(

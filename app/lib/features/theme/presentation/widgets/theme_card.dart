@@ -32,7 +32,7 @@ class _Card extends StatefulWidget {
 
 class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
 
     return DsfrFocusWidget(

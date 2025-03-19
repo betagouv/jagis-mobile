@@ -5,7 +5,7 @@ class TimedDelay {
   Future<void> simulateDelay() async {
     _refreshTimer?.cancel();
     final completer = Completer<void>();
-    _refreshTimer = Timer(const Duration(seconds: 1), completer.complete);
+    _refreshTimer = Timer(const Duration(seconds: 3), completer.complete);
     await completer.future;
   }
 

@@ -109,7 +109,7 @@ Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
 }
 
 void main() {
-  group("Mon bilan environnemental sur la page d'accueil", () {
+  group("Bilan environnemental sur la page d'accueil", () {
     testWidgets('Voir le contenu de Estimer mon bilan environnemental avec un bilan vide', (final tester) async {
       final dio =
           DioMock()
@@ -156,7 +156,7 @@ void main() {
       });
     });
 
-    testWidgets('Voir le contenu de Mon bilan environnemental', (final tester) async {
+    testWidgets('Voir le contenu de Bilan environnemental', (final tester) async {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await mockNetworkImages(() async {
         await pumpHomePage(tester, dio);

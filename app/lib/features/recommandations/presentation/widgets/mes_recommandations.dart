@@ -46,7 +46,7 @@ class _List extends StatelessWidget {
   const _List();
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final recommandations = context.watch<RecommandationsBloc>().state.recommandations;
 
     return SingleChildScrollView(

@@ -38,6 +38,7 @@ enum GeographicalScale {
 
   const GeographicalScale({required this.label});
 
+  // ignore: unused-code
   final String label;
 
   int compareTo(final GeographicalScale? other) => other == null ? 1 : index.compareTo(other.index);

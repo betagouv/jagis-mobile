@@ -14,7 +14,7 @@ class RecipeHorizontalList extends StatelessWidget {
   final String category;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
+  Widget build(final context) => BlocProvider(
     create: (final context) => ActionRecipesBloc(repository: context.read())..add(ActionRecipesLoadRequested(category)),
     child: const _Part(),
   );
@@ -24,7 +24,7 @@ class _Part extends StatelessWidget {
   const _Part();
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<ActionRecipesBloc, ActionRecipesState>(
+  Widget build(final context) => BlocBuilder<ActionRecipesBloc, ActionRecipesState>(
     builder:
         (final context, final state) => switch (state) {
           ActionRecipesInitial() || ActionRecipesLoadInProgress() || ActionRecipesLoadFailure() => const SizedBox(),
@@ -39,7 +39,7 @@ class _Success extends StatelessWidget {
   final ActionRecipesLoadSuccess state;
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1w,
     children: [

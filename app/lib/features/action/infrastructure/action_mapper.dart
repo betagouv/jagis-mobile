@@ -3,6 +3,7 @@ import 'package:app/features/action/infrastructure/action_service_mapper.dart';
 import 'package:app/features/aids/core/infrastructure/aid_summary_mapper.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
+import 'package:app/features/quiz/infrastructure/quiz_mapper.dart';
 
 abstract final class ActionClassicMapper {
   const ActionClassicMapper._();
@@ -21,6 +22,23 @@ abstract final class ActionClassicMapper {
     scoreLabel: json['label_compteur'] as String,
     how: json['comment'] as String,
     services: (json['services'] as List<dynamic>).cast<Map<String, dynamic>>().map(ActionServiceMapper.fromJson).toList(),
+  );
+}
+
+abstract final class ActionQuizMapper {
+  const ActionQuizMapper._();
+
+  static ActionQuiz fromJson(final Map<String, dynamic> json) => ActionQuiz(
+    id: json['code'] as String,
+    title: json['titre'] as String,
+    subTitle: json['sous_titre'] as String?,
+    alreadySeen: json['deja_vue'] as bool,
+    isDone: json['deja_faite'] as bool,
+    aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
+    quizzes: (json['quizzes'] as List<dynamic>).cast<Map<String, dynamic>>().map(QuizMapper.fromJson).toList(),
+    congratulatoryText: json['quizz_felicitations'] as String,
+    nbActionsDone: json['nombre_actions_faites'] as int,
+    score: json['points'] as int,
   );
 }
 

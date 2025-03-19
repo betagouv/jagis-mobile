@@ -100,7 +100,7 @@ class _LogoWidget extends StatelessWidget {
 
     final partner = article.partner!;
     final logoUrl = partner.logo;
-    final logoName = partner.nom;
+    final logoName = partner.name;
 
     return FnvImage.network(logoUrl, semanticLabel: logoName);
   }

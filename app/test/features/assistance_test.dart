@@ -63,7 +63,7 @@ void main() {
         await beforeEach('''Show assistances on the assistance page''');
         await bddSetUp(tester);
         await iTapOnTheMenuButton(tester);
-        await iTapOn(tester, 'Mes aides');
+        await iTapOn(tester, 'Aides');
         await iSee(tester, 'Simulateur');
         await iSee(tester, 'Rénover son logement');
         await iSee(tester, 'Acheter un vélo');
@@ -84,7 +84,7 @@ void main() {
         await beforeEach('''Filter assistances by theme''');
         await bddSetUp(tester);
         await iTapOnTheMenuButton(tester);
-        await iTapOn(tester, 'Mes aides');
+        await iTapOn(tester, 'Aides');
         await iTapOn(tester, 'Me déplacer');
         await iSee(tester, 'Acheter un vélo');
         await iDontSee(tester, 'Rénover son logement');
@@ -105,7 +105,7 @@ void main() {
         await beforeEach('''Go on the assistance detail page''');
         await bddSetUp(tester);
         await iTapOnTheMenuButton(tester);
-        await iTapOn(tester, 'Mes aides');
+        await iTapOn(tester, 'Aides');
         await iTapOn(tester, 'Composter ses déchets');
         await iSee(tester, 'Composter ses déchets');
         await iDontSee(tester, 'Acheter un vélo');

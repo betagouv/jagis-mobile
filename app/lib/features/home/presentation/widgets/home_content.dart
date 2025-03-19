@@ -55,7 +55,7 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   @override
-  Widget build(final BuildContext context) => BlocListener<UserBloc, UserState>(
+  Widget build(final context) => BlocListener<UserBloc, UserState>(
     listener: _handleUserState,
     listenWhen: (final previous, final current) => previous.user.isIntegrationCompleted != current.user.isIntegrationCompleted,
     child: const HomeContentLayout(),

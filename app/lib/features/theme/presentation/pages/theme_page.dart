@@ -1,5 +1,3 @@
-import 'package:app/core/assets/images.dart';
-import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
@@ -14,6 +12,7 @@ import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/service_card.dart';
 import 'package:app/features/theme/presentation/widgets/theme_card.dart';
+import 'package:app/features/theme/presentation/widgets/theme_header.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -86,15 +85,13 @@ class _Success extends StatelessWidget {
   final ThemeLoadSuccess data;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(final context) {
     final theme = data.theme;
     final themeType = theme.themeType;
 
     return ListView(
       children: [
-        const SizedBox(height: DsfrSpacings.s4w),
-        _ImageEtTitre(themeType: themeType),
-        const SizedBox(height: DsfrSpacings.s4w),
+        ThemeHeader(themeType: themeType, themeSummary: data.summary),
         ActionsRecommandedSection(theme: theme),
         const SizedBox(height: DsfrSpacings.s4w),
         Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Missions(missions: data.missions)),
@@ -115,37 +112,6 @@ class _Success extends StatelessWidget {
       ],
     );
   }
-}
-
-class _ImageEtTitre extends StatelessWidget {
-  const _ImageEtTitre({required this.themeType});
-
-  final ThemeType themeType;
-
-  @override
-  Widget build(final context) => Column(
-    spacing: DsfrSpacings.s1w,
-    children: [
-      ClipOval(
-        child: SizedBox.square(
-          dimension: 80,
-          child: FnvSvg.asset(
-            switch (themeType) {
-              ThemeType.alimentation => AssetImages.alimentation,
-              ThemeType.transport => AssetImages.transport,
-              ThemeType.logement => AssetImages.logement,
-              ThemeType.consommation => AssetImages.consommation,
-              ThemeType.decouverte => throw UnimplementedError(),
-            },
-            width: 80,
-            height: 80,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline2()),
-    ],
-  );
 }
 
 class _Missions extends StatelessWidget {

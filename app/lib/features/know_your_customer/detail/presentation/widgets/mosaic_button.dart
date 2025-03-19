@@ -36,7 +36,6 @@ abstract final class _MosaicButtonStyles {
   static const selected = _MosaicButtonStyle.selected();
   static const unselected = _MosaicButtonStyle.unselected();
   static const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
-  static const minSize = 120.0;
 }
 
 class MosaicButton extends StatelessWidget {
@@ -50,7 +49,6 @@ class MosaicButton extends StatelessWidget {
   @override
   Widget build(final context) {
     final style = value ? _MosaicButtonStyles.selected : _MosaicButtonStyles.unselected;
-    final size = MediaQuery.textScalerOf(context).scale(_MosaicButtonStyles.minSize);
 
     return Stack(
       alignment: Alignment.topRight,
@@ -63,21 +61,18 @@ class MosaicButton extends StatelessWidget {
             borderRadius: _MosaicButtonStyles.borderRadius,
           ),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: _MosaicButtonStyles.minSize, minHeight: _MosaicButtonStyles.minSize),
-            child: SizedBox(
-              width: size,
-              child: Material(
-                color: FnvColors.transparent,
-                child: InkWell(
-                  onTap: () => onChanged(!value),
-                  borderRadius: _MosaicButtonStyles.borderRadius,
-                  child: Padding(
-                    padding: const EdgeInsets.all(DsfrSpacings.s1w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: DsfrSpacings.s1w,
-                      children: [emoji, Text(title, style: style.textStyle, textAlign: TextAlign.center)],
-                    ),
+            constraints: const BoxConstraints.expand(),
+            child: Material(
+              color: FnvColors.transparent,
+              child: InkWell(
+                onTap: () => onChanged(!value),
+                borderRadius: _MosaicButtonStyles.borderRadius,
+                child: Padding(
+                  padding: const EdgeInsets.all(DsfrSpacings.s1w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: DsfrSpacings.s1w,
+                    children: [emoji, Text(title, style: style.textStyle, textAlign: TextAlign.center)],
                   ),
                 ),
               ),

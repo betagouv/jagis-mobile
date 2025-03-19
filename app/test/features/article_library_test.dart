@@ -47,7 +47,7 @@ void main() {
         await beforeEach('''See 1 article''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 1);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '1 article');
       } on TestFailure {
         success = false;
@@ -65,7 +65,7 @@ void main() {
         await beforeEach('''See articles''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 2);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '2 articles');
       } on TestFailure {
         success = false;
@@ -83,7 +83,7 @@ void main() {
         await beforeEach('''See 0 article''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 0);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '0 article');
         await iSee(tester, 'Aucun article trouvé');
       } on TestFailure {
@@ -102,7 +102,7 @@ void main() {
         await beforeEach('''Filter articles by title''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 2);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iEnterInTheSearchByTitleField(tester, 'vêtements');
         await iSee(tester, '1 article');
         await iSee(tester, "Comment réduire l'impact de ses vêtements ?");
@@ -123,7 +123,7 @@ void main() {
         await beforeEach('''Filter articles by theme''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 2);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iFilterWithTheme(tester, '🥦 Alimentation');
         await iSee(tester, '1 article');
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
@@ -144,7 +144,7 @@ void main() {
         await beforeEach('''Filter articles by favorites''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 2);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iFilterByFavorites(tester);
         await iSee(tester, '1 article');
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
@@ -165,7 +165,7 @@ void main() {
         await beforeEach('''Go to an article''');
         await bddSetUp(tester);
         await iHaveArticlesInMyLibrary(tester, 2);
-        await iTapOn(tester, 'Ma bibliothèque');
+        await iTapOn(tester, 'Bibliothèque');
         await iTapOnTheFirstArticle(tester);
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester,

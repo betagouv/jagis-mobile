@@ -3,7 +3,7 @@ Feature: Assistance
     Given I am logged in
     Given The application is launched
     Given I tap on the menu button
-    Given I tap on {'Mes aides'}
+    Given I tap on {'Aides'}
     When I tap on {'Acheter un vélo'}
 
   Scenario: Show bicycle simulator

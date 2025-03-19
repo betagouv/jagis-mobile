@@ -7,6 +7,7 @@ abstract final class ThemeDataMapper {
 
   static ThemeInfo fromJson(final Map<String, dynamic> json) => ThemeInfo(
     themeType: ThemeTypeMapper.convert(json['thematique'] as String),
+    communeName: json['nom_commune'] as String,
     isQuestionsNeeded: json['est_personnalisation_necessaire'] as bool,
     sequenceId: json['enchainement_questions_personnalisation'] as String,
     actionsRecommanded:
@@ -17,6 +18,6 @@ abstract final class ThemeDataMapper {
     actionCount: json['nombre_actions'] as int,
     aidCount: json['nombre_aides'] as int,
     simulatorCount: json['nombre_simulateurs'] as int,
-    communeName: json['nom_commune'] as String,
+    recipeCount: json['nombre_recettes'] as int?,
   );
 }

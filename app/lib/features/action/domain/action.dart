@@ -1,6 +1,7 @@
 import 'package:app/features/action/domain/action_service.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:equatable/equatable.dart';
 
 sealed class Action extends Equatable {
@@ -8,7 +9,6 @@ sealed class Action extends Equatable {
     required this.id,
     required this.title,
     required this.subTitle,
-    required this.why,
     required this.nbActionsDone,
     required this.alreadySeen,
     required this.isDone,
@@ -19,15 +19,14 @@ sealed class Action extends Equatable {
   final String id;
   final String title;
   final String? subTitle;
-  final String why;
-  final int nbActionsDone;
-  final int score;
+  final List<AidSummary> aidSummaries;
   final bool alreadySeen;
   final bool isDone;
-  final List<AidSummary> aidSummaries;
+  final int nbActionsDone;
+  final int score;
 
   @override
-  List<Object?> get props => [id, title, subTitle, why, alreadySeen, aidSummaries, isDone, nbActionsDone, score];
+  List<Object?> get props => [id, title, subTitle,  alreadySeen, aidSummaries, isDone, nbActionsDone, score];
 
   String get instruction;
   String get instructionWhenDone;
@@ -41,16 +40,17 @@ final class ActionClassic extends Action {
     required super.subTitle,
     required super.alreadySeen,
     required super.isDone,
-    required super.why,
     required super.aidSummaries,
     required super.nbActionsDone,
     required super.score,
+    required this.why,
     required this.instruction,
     required this.scoreLabel,
     required this.how,
     required this.services,
   });
 
+  final String why;
   final String how;
   final List<ActionService> services;
 
@@ -72,6 +72,37 @@ final class ActionClassic extends Action {
   List<Object?> get props => [...super.props, how, services, scoreLabel, instruction];
 }
 
+final class ActionQuiz extends Action {
+  const ActionQuiz({
+    required super.id,
+    required super.title,
+    required super.subTitle,
+    required super.alreadySeen,
+    required super.isDone,
+    required super.aidSummaries,
+    required super.nbActionsDone,
+    required super.score,
+    required this.quizzes,
+    required this.congratulatoryText,
+  });
+
+  final List<Quiz> quizzes;
+  final String congratulatoryText;
+
+  @override
+  List<Object?> get props => [...super.props, quizzes, congratulatoryText];
+
+  @override
+  String get instruction => 'Répondez à ce quiz et gagnez';
+
+  @override
+  String get instructionWhenDone => 'Vous avez terminé ce quiz';
+
+  @override
+  String get scoreLabel => 'quizs';
+
+}
+
 final class ActionSimulator extends Action {
   const ActionSimulator({
     required super.id,
@@ -79,17 +110,18 @@ final class ActionSimulator extends Action {
     required super.subTitle,
     required super.alreadySeen,
     required super.isDone,
-    required super.why,
+    required this.why,
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
     required this.questions,
   });
 
+  final String? why;
   final List<Question> questions;
 
   @override
-  List<Object?> get props => [...super.props, questions];
+  List<Object?> get props => [...super.props, why, questions];
 
   ActionSimulatorId getId() => switch (id) {
     'action_simulateur_voiture' => ActionSimulatorId.carSimulator,

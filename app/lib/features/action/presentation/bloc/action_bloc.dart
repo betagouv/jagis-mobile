@@ -11,5 +11,10 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
 
       emit(result.fold((final l) => ActionLoadFailure(errorMessage: l.toString()), (final r) => ActionLoadSuccess(action: r)));
     });
+
+    on<ActionMarkAsDone>((final event, final emit) async {
+      await repository.markAsDone(type: event.action.type, id: event.action.id);
+      emit(ActionMarkedAsDone(event.action));
+    });
   }
 }

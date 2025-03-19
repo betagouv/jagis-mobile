@@ -39,3 +39,13 @@ final class ActionLoadFailure extends ActionState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+@immutable
+final class ActionMarkedAsDone extends ActionState {
+  const ActionMarkedAsDone(this.action);
+
+  final Action action;
+
+  @override
+  List<Object> get props => [action];
+}

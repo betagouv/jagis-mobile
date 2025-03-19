@@ -1,6 +1,4 @@
-import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
@@ -10,10 +8,10 @@ import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
 import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
+import 'package:app/features/action/presentation/widgets/action_score_instruction_view.dart';
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/gamification/presentation/widgets/points.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +42,7 @@ class ActionPage extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id, type)),
+    create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id: id, type: type)),
     child: const _View(),
   );
 }
@@ -59,27 +57,32 @@ class _View extends StatelessWidget {
       builder:
           (final context, final state) => switch (state) {
             ActionInitial() || ActionLoadInProgress() => const Center(child: CircularProgressIndicator()),
-            ActionLoadSuccess() => _Success(state),
+            ActionLoadSuccess(:final action) => _Success(action),
             ActionLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
+            // FIXME(erolley): find a way to only the score section when the action is done instead of reloading the whole page
+            ActionMarkedAsDone(:final action) => _Success(action, reload: true),
           },
     ),
   );
 }
 
 class _Success extends StatelessWidget {
-  const _Success(this.state);
+  const _Success(this.action, {this.reload = false});
 
-  final ActionLoadSuccess state;
+  final Action action;
+  final bool reload;
 
   @override
   Widget build(final context) {
-    final action = state.action;
+    if (reload) {
+      context.read<ActionBloc>().add(ActionLoadRequested(id: action.id, type: action.type));
+    }
 
     return ListView(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
+          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
         ),
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
@@ -87,79 +90,16 @@ class _Success extends StatelessWidget {
             spacing: DsfrSpacings.s2w,
             children: [
               switch (action) {
-                ActionClassic() => ActionClassicView(action: action),
-                ActionSimulator() => ActionSimulatorView(action: action),
-                ActionQuiz() => ActionQuizView(action: action),
+                ActionClassic() => ActionClassicView(action: action as ActionClassic),
+                ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
+                ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
               },
               if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
             ],
           ),
         ),
-        _ScoreInstructionView(action: action),
+        ActionScoreInstructionView(action: action),
       ],
     );
   }
 }
-
-class _ScoreInstructionView extends StatelessWidget {
-  const _ScoreInstructionView({required this.action});
-
-  final Action action;
-
-  @override
-  Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-    child: FnvCard(
-      child: Padding(
-        padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: DsfrSpacings.s1w,
-          children: [
-            if (action.isDone) ...[
-              const Text('Bravo ! 🎉', style: DsfrTextStyle.headline3()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(action.instructionWhenDone, style: const DsfrTextStyle.bodyMd()),
-                  Points(points: action.score, alreadyEarned: true),
-                ],
-              ),
-            ] else ...[
-              const Text('On se lance le défi ?', style: DsfrTextStyle.headline3()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(child: Text(action.instruction, style: const DsfrTextStyle.bodyMd())),
-                  Points(points: action.score),
-                ],
-              ),
-            ],
-            DecoratedBox(
-              decoration: const BoxDecoration(border: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w),
-                child:
-                    action.nbActionsDone > 1
-                        ? switch (action) {
-                          ActionClassic() => FnvMarkdown(data: action.scoreLabel, p: const DsfrTextStyle.bodyMd()),
-                          ActionSimulator() || ActionQuiz() => Text.rich(
-                            TextSpan(
-                              text: '${action.nbActionsDone} ${action.scoreLabel}',
-                              style: const DsfrTextStyle.bodyMdBold(),
-                              children: const [
-                                TextSpan(text: ' faites par la communautées', style: DsfrTextStyle.bodyMdItalic()),
-                              ],
-                            ),
-                          ),
-                        }
-                        : const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-

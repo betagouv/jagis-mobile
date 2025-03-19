@@ -1,4 +1,5 @@
 import 'package:app/features/action/domain/action_service.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
@@ -26,11 +27,17 @@ sealed class Action extends Equatable {
   final int score;
 
   @override
-  List<Object?> get props => [id, title, subTitle,  alreadySeen, aidSummaries, isDone, nbActionsDone, score];
+  List<Object?> get props => [id, title, subTitle, alreadySeen, aidSummaries, isDone, nbActionsDone, score];
 
   String get instruction;
   String get instructionWhenDone;
   String get scoreLabel;
+
+  ActionType get type => switch (this) {
+    ActionClassic() => ActionType.classic,
+    ActionQuiz() => ActionType.quiz,
+    ActionSimulator() => ActionType.simulator,
+  };
 }
 
 final class ActionClassic extends Action {
@@ -100,7 +107,6 @@ final class ActionQuiz extends Action {
 
   @override
   String get scoreLabel => 'quizs';
-
 }
 
 final class ActionSimulator extends Action {

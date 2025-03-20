@@ -8,11 +8,12 @@ import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
 import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
+import 'package:app/features/action/presentation/widgets/action_score_instruction_view.dart';
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:dsfr/dsfr.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,7 +42,7 @@ class ActionPage extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id, type)),
+    create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id: id, type: type)),
     child: const _View(),
   );
 }
@@ -54,45 +55,42 @@ class _View extends StatelessWidget {
     appBar: FnvAppBar(),
     body: BlocBuilder<ActionBloc, ActionState>(
       builder:
-          (final context, final state) => switch (state) {
-            ActionInitial() || ActionLoadInProgress() => const Center(child: CircularProgressIndicator()),
-            ActionLoadSuccess() => _Success(state),
-            ActionLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
+          (final context, final state) => switch (state.status) {
+            ActionStatus.initial || ActionStatus.inProgress => const Center(child: CircularProgressIndicator()),
+            ActionStatus.success => _Success(state.action!),
+            ActionStatus.failure => Center(child: Text(state.errorMessage!)),
           },
     ),
   );
 }
 
 class _Success extends StatelessWidget {
-  const _Success(this.state);
+  const _Success(this.action);
 
-  final ActionLoadSuccess state;
+  final Action action;
 
   @override
-  Widget build(final context) {
-    final action = state.action;
-
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle),
+  Widget build(final context) => ListView(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+        child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
+      ),
+      DecoratedBox(
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+        child: Column(
+          spacing: DsfrSpacings.s2w,
+          children: [
+            switch (action) {
+              ActionClassic() => ActionClassicView(action: action as ActionClassic),
+              ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
+              ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
+            },
+            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
+          ],
         ),
-        DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-          child: Column(
-            spacing: DsfrSpacings.s2w,
-            children: [
-              switch (action) {
-                ActionClassic() => ActionClassicView(action: action),
-                ActionSimulator() => ActionSimulatorView(action: action),
-                ActionQuiz() => ActionQuizView(action: action),
-              },
-              if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+      ),
+      ActionScoreInstructionView(action: action),
+    ],
+  );
 }

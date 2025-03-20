@@ -2,6 +2,10 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
+import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/presentation/bloc/action_bloc.dart';
+import 'package:app/features/action/presentation/bloc/action_event.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
@@ -22,7 +26,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => BlocBuilder<CarSimulatorResultBloc, CarSimulatorResultState>(
+  Widget build(final context) => BlocConsumer<CarSimulatorResultBloc, CarSimulatorResultState>(
     builder:
         (final context, final state) => switch (state) {
           CarSimulatorInit() => const Center(
@@ -42,6 +46,13 @@ class _View extends StatelessWidget {
           ),
           CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
         },
+    listener: (final context, final state) {
+      if (state is CarSimulatorGetCurrentCarSuccess) {
+        context.read<ActionBloc>().add(
+          ActionMarkAsDone(id: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator), type: ActionType.simulator),
+        );
+      }
+    },
   );
 }
 

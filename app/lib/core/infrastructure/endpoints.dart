@@ -29,6 +29,7 @@ abstract final class Endpoints {
   static const profile = '/utilisateurs/{userId}/profile';
   static const questionsKyc = '/utilisateurs/{userId}/questionsKYC_v2';
   static String quiz(final String contentId) => '/utilisateurs/{userId}/bibliotheque/quizz/$contentId';
+  static String quizScore(final String contentId) => '/utilisateurs/{userId}/actions/quizz/$contentId/score';
   static const renvoyerCode = '/utilisateurs/renvoyer_code';
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';

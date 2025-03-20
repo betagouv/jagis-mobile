@@ -1,4 +1,7 @@
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
+import 'package:app/features/action/presentation/bloc/action_bloc.dart';
+import 'package:app/features/action/presentation/bloc/action_event.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_bloc.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_event.dart';
@@ -13,27 +16,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizPart extends StatelessWidget {
-  const QuizPart({super.key, required this.name, required this.quizzes, required this.congratulatoryText});
+  const QuizPart({super.key, required this.id, required this.name, required this.quizzes, required this.congratulatoryText});
 
+  final String id;
   final String name;
   final List<Quiz> quizzes;
   final String congratulatoryText;
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => QuizzesBloc(quizzes: quizzes),
-    child: _View(name: name, congratulatoryText: congratulatoryText),
+    create: (final context) => QuizzesBloc(repository: context.read(), quizzes: quizzes, id: id),
+    child: _View(id: id, name: name, congratulatoryText: congratulatoryText),
   );
 }
 
 class _View extends StatelessWidget {
-  const _View({required this.name, required this.congratulatoryText});
+  const _View({required this.id, required this.name, required this.congratulatoryText});
 
+  final String id;
   final String name;
   final String congratulatoryText;
 
   @override
-  Widget build(final context) => BlocBuilder<QuizzesBloc, QuizzesState>(
+  Widget build(final context) => BlocConsumer<QuizzesBloc, QuizzesState>(
     builder:
         (final context, final state) => switch (state) {
           QuizzesInProgress() => Padding(
@@ -55,23 +60,45 @@ class _View extends StatelessWidget {
           QuizzesCompleted() => Column(
             children: [
               Text('Vous avez terminé le quiz “$name”'),
-              Text('👏 Vous avez obtenu un score de ${state.correctAnswerCount}/${state.totalQuestionsCount}'),
-              Text(congratulatoryText),
-              DsfrButton(
-                label: 'Retourner à la thématique',
-                variant: DsfrButtonVariant.primary,
-                size: DsfrButtonSize.lg,
-                onPressed: () => GoRouter.of(context).pop(),
-              ),
-              DsfrButton(
-                label: 'Recommencer le quiz',
-                variant: DsfrButtonVariant.secondary,
-                size: DsfrButtonSize.lg,
-                onPressed: () => GoRouter.of(context).pop(),
-              ),
+              if (state.isCompleted) ...[
+                Text('👏 Vous avez obtenu un score de ${state.correctAnswerCount}/${state.totalQuestionsCount}'),
+                Text(congratulatoryText),
+                DsfrButton(
+                  label: 'Retourner à la thématique',
+                  variant: DsfrButtonVariant.primary,
+                  size: DsfrButtonSize.lg,
+                  onPressed: () => GoRouter.of(context).pop(),
+                ),
+                DsfrButton(
+                  label: 'Recommencer le quiz',
+                  variant: DsfrButtonVariant.secondary,
+                  size: DsfrButtonSize.lg,
+                  onPressed: () => GoRouter.of(context).pop(),
+                ),
+              ] else ...[
+                Text('😬 Vous avez obtenu un score de ${state.correctAnswerCount}/${state.totalQuestionsCount}'),
+                const Text('Retentez votre chance pour valider cette action.'),
+                DsfrButton(
+                  label: 'Recommencer le quiz',
+                  variant: DsfrButtonVariant.primary,
+                  size: DsfrButtonSize.lg,
+                  onPressed: () => GoRouter.of(context).pop(),
+                ),
+                DsfrButton(
+                  label: 'Retourner à la thématique',
+                  variant: DsfrButtonVariant.secondary,
+                  size: DsfrButtonSize.lg,
+                  onPressed: () => GoRouter.of(context).pop(),
+                ),
+              ],
             ],
           ),
         },
+    listener: (final context, final state) {
+      if (state is QuizzesCompleted && state.isCompleted) {
+        context.read<ActionBloc>().add(ActionMarkAsDone(id: id, type: ActionType.quiz));
+      }
+    },
   );
 }
 

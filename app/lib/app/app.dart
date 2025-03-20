@@ -48,6 +48,7 @@ import 'package:app/features/mission/mission/presentation/pages/mission_page.dar
 import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
+import 'package:app/features/quiz/infrastructure/quizzes_repository.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/recommandations/presentation/bloc/recommandations_bloc.dart';
@@ -197,6 +198,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => RecipesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => RecipeRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ArticlesRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => QuizzesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ChallengeListRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
                 create: (final context) => ChallengeRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
@@ -270,10 +272,8 @@ class _AppState extends State<App> {
                 ),
                 BlocProvider(
                   create:
-                      (final context) => CarSimulatorResultBloc(
-                        carSimulatorRepository: CarSimulatorRepository(client: widget.dioHttpClient),
-                        actionRepository: actionRepository,
-                      ),
+                      (final context) =>
+                          CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(client: widget.dioHttpClient)),
                 ),
               ],
               child: MaterialApp.router(

@@ -18,6 +18,10 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
           'pourquoi': e['why'],
           'deja_vue': false,
           'deja_faite': false,
+          'nombre_actions_faites': 2,
+          'points': 10,
+          'consigne': e['instruction'] ?? '',
+          'label_compteur': e['scoreLabel'] ?? '',
           'services': [
             {'recherche_service_id': e['service_id'], 'categorie': e['service_category']},
           ],

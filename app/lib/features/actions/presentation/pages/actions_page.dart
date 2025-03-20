@@ -7,6 +7,7 @@ import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_bor
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions/presentation/bloc/actions_bloc.dart';
 import 'package:app/features/actions/presentation/bloc/actions_event.dart';
 import 'package:app/features/actions/presentation/bloc/actions_state.dart';
@@ -178,7 +179,16 @@ class _Element extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FnvMarkdown(data: action.title, p: const DsfrTextStyle.bodyLg()),
+            FnvMarkdown(
+              data:
+                  switch (action.type) {
+                    ActionType.quiz => 'Quiz - ',
+                    ActionType.simulator => 'Simulateur - ',
+                    ActionType.classic || ActionType.performance => '',
+                  } +
+                  action.title,
+              p: const DsfrTextStyle.bodyLg(),
+            ),
             const SizedBox(height: DsfrSpacings.s1v),
             _Information(
               icon: DsfrIcons.financeMoneyEuroCircleLine,

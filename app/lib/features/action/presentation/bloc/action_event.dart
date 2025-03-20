@@ -12,10 +12,21 @@ sealed class ActionEvent extends Equatable {
 
 @immutable
 final class ActionLoadRequested extends ActionEvent {
-  const ActionLoadRequested(this.id, this.type);
+  const ActionLoadRequested({required this.id, required this.type});
 
-  final ActionType type;
   final String id;
+  final ActionType type;
+
+  @override
+  List<Object> get props => [id, type];
+}
+
+@immutable
+final class ActionMarkAsDone extends ActionEvent {
+  const ActionMarkAsDone({required this.id, required this.type});
+
+  final String id;
+  final ActionType type;
 
   @override
   List<Object> get props => [id, type];

@@ -1,36 +1,20 @@
-import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
-import 'package:app/l10n/l10n.dart';
+import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Points extends StatelessWidget {
-  const Points({super.key});
+  const Points({super.key, required this.points, this.alreadyEarned = false});
+
+  final int points;
+  final bool alreadyEarned;
 
   @override
-  Widget build(final context) => const DecoratedBox(
-    decoration: BoxDecoration(color: Color(0xFFF1F6EC), borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w))),
-    child: Padding(
-      padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s1v5, horizontal: DsfrSpacings.s1w),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: DsfrSpacings.s1v,
-        children: [
-          _Content(),
-          ExcludeSemantics(child: Icon(DsfrIcons.othersLeafFill, size: DsfrSpacings.s2w, color: Color(0xFF3CD277))),
-        ],
-      ),
-    ),
-  );
-}
-
-class _Content extends StatelessWidget {
-  const _Content();
-
-  @override
-  Widget build(final context) {
-    final points = context.select<GamificationBloc, int>((final value) => value.state.points);
-
-    return Text('$points', style: const DsfrTextStyle.bodySmBold(), semanticsLabel: Localisation.nombrePoints(points));
-  }
+  Widget build(final context) =>
+      alreadyEarned
+          ? PointsWidget(
+            points: points,
+            backgroundColor: DsfrColors.backgroundContrastGrey,
+            textColor: DsfrColors.textDefaultGrey,
+          )
+          : PointsWidget(points: points);
 }

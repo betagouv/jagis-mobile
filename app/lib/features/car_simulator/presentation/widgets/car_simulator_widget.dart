@@ -56,10 +56,8 @@ class _Success extends StatelessWidget {
   Widget build(final context) {
     final cursor = questionManager.cursor;
 
+    // FIXME(lsaudon): ne devrait pas être ici
     if (cursor.isEnd) {
-      if (!isDone) {
-        context.read<CarSimulatorResultBloc>().add(const CarSimulatorActionMarkAsDone());
-      }
       context.read<CarSimulatorResultBloc>().add(const CarSimulatorGetCurrentCarResult());
 
       return const CarSimulatorResult();

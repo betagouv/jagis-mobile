@@ -33,9 +33,11 @@ class ActionRepository {
     };
   }
 
-  Future<void> markAsDone({required final ActionType type, required final String id}) async {
+  Future<Either<Exception, Action>> markAsDone({required final ActionType type, required final String id}) async {
     final actionTypeAPI = actionTypeToAPIString(type);
     // TODO(erolley): we may want to handle the response here.
     await _client.post(Endpoints.actionFaite(type: actionTypeAPI, code: id));
+
+    return fetch(type: type, id: id);
   }
 }

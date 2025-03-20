@@ -55,51 +55,42 @@ class _View extends StatelessWidget {
     appBar: FnvAppBar(),
     body: BlocBuilder<ActionBloc, ActionState>(
       builder:
-          (final context, final state) => switch (state) {
-            ActionInitial() || ActionLoadInProgress() => const Center(child: CircularProgressIndicator()),
-            ActionLoadSuccess(:final action) => _Success(action),
-            ActionLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-            // FIXME(erolley): find a way to only the score section when the action is done instead of reloading the whole page
-            ActionMarkedAsDone(:final action) => _Success(action, reload: true),
+          (final context, final state) => switch (state.status) {
+            ActionStatus.initial || ActionStatus.inProgress => const Center(child: CircularProgressIndicator()),
+            ActionStatus.success => _Success(state.action!),
+            ActionStatus.failure => Center(child: Text(state.errorMessage!)),
           },
     ),
   );
 }
 
 class _Success extends StatelessWidget {
-  const _Success(this.action, {this.reload = false});
+  const _Success(this.action);
 
   final Action action;
-  final bool reload;
 
   @override
-  Widget build(final context) {
-    if (reload) {
-      context.read<ActionBloc>().add(ActionLoadRequested(id: action.id, type: action.type));
-    }
-
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
+  Widget build(final context) => ListView(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+        child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
+      ),
+      DecoratedBox(
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+        child: Column(
+          spacing: DsfrSpacings.s2w,
+          children: [
+            switch (action) {
+              ActionClassic() => ActionClassicView(action: action as ActionClassic),
+              ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
+              ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
+            },
+            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
+          ],
         ),
-        DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-          child: Column(
-            spacing: DsfrSpacings.s2w,
-            children: [
-              switch (action) {
-                ActionClassic() => ActionClassicView(action: action as ActionClassic),
-                ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
-                ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
-              },
-              if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
-            ],
-          ),
-        ),
-        ActionScoreInstructionView(action: action),
-      ],
-    );
-  }
+      ),
+      ActionScoreInstructionView(action: action),
+    ],
+  );
 }

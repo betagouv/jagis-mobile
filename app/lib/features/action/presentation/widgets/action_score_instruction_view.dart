@@ -56,7 +56,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                           label: "J'ai relevé le défi ! +${action.score}",
                           variant: DsfrButtonVariant.primary,
                           size: DsfrButtonSize.lg,
-                          onPressed: () => context.read<ActionBloc>().add(ActionMarkAsDone(action)),
+                          onPressed: () => context.read<ActionBloc>().add(ActionMarkAsDone(id: action.id, type: action.type)),
                         ),
                         const SizedBox(height: DsfrSpacings.s1w),
                       ],
@@ -80,12 +80,12 @@ class ActionScoreInstructionView extends StatelessWidget {
                   TextSpan(
                     text: '${action.nbActionsDone} ${action.scoreLabel}',
                     style: const DsfrTextStyle.bodyMdBold(),
-                    children: const [TextSpan(text: ' faites par la communautées', style: DsfrTextStyle.bodyMdItalic())],
+                    children: const [TextSpan(text: ' faites par la communauté', style: DsfrTextStyle.bodyMdItalic())],
                   ),
                 ),
               }
             else
-              const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
+              const Text('Sois-le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
           ],
         ),
       ),

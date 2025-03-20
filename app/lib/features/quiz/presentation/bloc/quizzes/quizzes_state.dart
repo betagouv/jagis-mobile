@@ -31,6 +31,12 @@ final class QuizzesCompleted extends QuizzesState {
 
   final int correctAnswerCount;
   final int totalQuestionsCount;
+  bool get isCompleted {
+    final currentRatio = correctAnswerCount / totalQuestionsCount;
+    const successRatio = 4 / 6;
+
+    return currentRatio >= successRatio;
+  }
 
   @override
   List<Object> get props => [correctAnswerCount, totalQuestionsCount];

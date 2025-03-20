@@ -104,7 +104,7 @@ final class ActionQuiz extends Action {
   String get instructionWhenDone => 'Vous avez terminé ce quiz';
 
   @override
-  String get scoreLabel => 'quizs';
+  String get scoreLabel => 'quiz';
 
   @override
   ActionType get type => ActionType.quiz;

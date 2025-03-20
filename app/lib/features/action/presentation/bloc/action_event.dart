@@ -1,4 +1,3 @@
-import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -24,10 +23,11 @@ final class ActionLoadRequested extends ActionEvent {
 
 @immutable
 final class ActionMarkAsDone extends ActionEvent {
-  const ActionMarkAsDone(this.action);
+  const ActionMarkAsDone({required this.id, required this.type});
 
-  final Action action;
+  final String id;
+  final ActionType type;
 
   @override
-  List<Object> get props => [action];
+  List<Object> get props => [id, type];
 }

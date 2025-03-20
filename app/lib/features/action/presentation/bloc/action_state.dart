@@ -2,50 +2,21 @@ import 'package:app/features/action/domain/action.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+enum ActionStatus { initial, inProgress, success, failure }
+
 @immutable
-sealed class ActionState extends Equatable {
-  const ActionState();
+final class ActionState extends Equatable {
+  const ActionState({required this.status, this.action, this.errorMessage});
+  const ActionState.initial() : this(status: ActionStatus.initial);
+  const ActionState.inProgress() : this(status: ActionStatus.inProgress);
+  const ActionState.success({required final Action action}) : this(status: ActionStatus.success, action: action);
+  const ActionState.failure({required final String errorMessage})
+    : this(status: ActionStatus.failure, errorMessage: errorMessage);
+
+  final ActionStatus status;
+  final Action? action;
+  final String? errorMessage;
 
   @override
-  List<Object> get props => [];
-}
-
-@immutable
-final class ActionInitial extends ActionState {
-  const ActionInitial();
-}
-
-@immutable
-final class ActionLoadInProgress extends ActionState {
-  const ActionLoadInProgress();
-}
-
-@immutable
-final class ActionLoadSuccess extends ActionState {
-  const ActionLoadSuccess({required this.action});
-
-  final Action action;
-
-  @override
-  List<Object> get props => [action];
-}
-
-@immutable
-final class ActionLoadFailure extends ActionState {
-  const ActionLoadFailure({required this.errorMessage});
-
-  final String errorMessage;
-
-  @override
-  List<Object> get props => [errorMessage];
-}
-
-@immutable
-final class ActionMarkedAsDone extends ActionState {
-  const ActionMarkedAsDone(this.action);
-
-  final Action action;
-
-  @override
-  List<Object> get props => [action];
+  List<Object?> get props => [status, action, errorMessage];
 }

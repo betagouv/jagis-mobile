@@ -18,6 +18,12 @@ Future<void> theApiWillReturn(final WidgetTester tester, final bdd.DataTable dat
         statusCode: e['statusCode'] as int,
         responseData: e['responseData'],
       );
+    } else if (e['method'] == 'POST') {
+      FeatureContext.instance.dioMock.postM(
+        e['path'] as String,
+        statusCode: e['statusCode'] as int,
+        responseData: e['responseData'],
+      );
     }
   });
 }

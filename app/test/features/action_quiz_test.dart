@@ -49,7 +49,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -57,7 +57,7 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -184,7 +184,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -198,7 +198,7 @@ void main() {
               ],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -340,7 +340,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -354,7 +354,7 @@ void main() {
               ],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -495,7 +495,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -509,7 +509,7 @@ void main() {
               ],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -541,10 +541,8 @@ void main() {
                       "thematique_principale": "alimentation",
                       "questions": [
                         {
-                          "explicationKO":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
-                          "explicationOk":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
+                          "explicationKO": "explication KO",
+                          "explicationOk": "explication OK",
                           "libelle": "Où jeter une barquette en aluminium ?",
                           "reponses": [
                             {
@@ -586,6 +584,7 @@ void main() {
         await iTapOn(tester, 'Voir la réponse');
         await iSee(
             tester, "✅ Votre réponse : Poubelle jaune, l'aluminium se recycle");
+        await iSee(tester, "explication OK");
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -617,7 +616,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -631,7 +630,7 @@ void main() {
               ],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -663,10 +662,8 @@ void main() {
                       "thematique_principale": "alimentation",
                       "questions": [
                         {
-                          "explicationKO":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
-                          "explicationOk":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
+                          "explicationKO": "explication KO",
+                          "explicationOk": "explication OK",
                           "libelle": "Où jeter une barquette en aluminium ?",
                           "reponses": [
                             {
@@ -709,6 +706,7 @@ void main() {
         await iTapOn(tester, 'Voir la réponse');
         await iSee(tester,
             "❌ Votre réponse : Avec les ordures ménagères, l'aluminium ne se recycle pas");
+        await iSee(tester, "explication KO");
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -739,7 +737,7 @@ void main() {
             tester,
             const bdd.DataTable([
               ['type', 'code', 'title', 'nb_aids_available'],
-              ['quizz', '1', 'Bien trier les déchets', 5]
+              ['quizz', 'quiz_tri_dechets', 'Bien trier les déchets', 5]
             ]));
         await theApiWillReturn(
             tester,
@@ -759,7 +757,7 @@ void main() {
               ],
               [
                 "GET",
-                "/utilisateurs/{userId}/actions/quizz/1",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets",
                 200,
                 {
                   "nombre_actions_en_cours": 5,
@@ -859,6 +857,18 @@ void main() {
                   "faqs": [],
                   "points": 20
                 }
+              ],
+              [
+                "GET",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets/score",
+                200,
+                {"nombre_bonnes_reponses": 2, "nombre_quizz_done": 2}
+              ],
+              [
+                "POST",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets/faite",
+                200,
+                {}
               ]
             ]));
         await iTapOn(tester, 'Actions');
@@ -878,7 +888,9 @@ void main() {
         await iTapOn(tester, 'Voir la réponse');
         await iSee(
             tester, "✅ Votre réponse : Poubelle jaune, l'aluminium se recycle");
+        await iScrollDownTo(tester, 'Voir le résultat');
         await iTapOn(tester, 'Voir le résultat');
+        await iSee(tester, 'Recommencer le quiz');
       } on TestFailure {
         success = false;
         rethrow;

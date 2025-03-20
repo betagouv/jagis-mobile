@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-correct-callback-field-name
+
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
@@ -6,6 +8,7 @@ abstract final class Localisation {
 
   static const accederAuSimulateur = 'Accéder au simulateur';
   static const acheterUnVelo = 'Acheter un vélo';
+  static const actionBravo = 'Bravo ! 🎉';
   static const actions = 'Actions';
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
@@ -134,6 +137,7 @@ abstract final class Localisation {
   static const jaccepte = 'J’accepte ';
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
+  static const jaiReleveLeDefi = 'J’ai relevé le défi !';
   static const jeCreeMonCompte = 'Je crée mon compte';
   static const jeReleveLeDefi = 'Je relève le défi';
   static const jusqua = 'Jusqu’à ';
@@ -205,6 +209,7 @@ abstract final class Localisation {
   static const nouveau = 'NOUVEAU !';
   static const obligatoire = 'obligatoire';
   static const optionsAvancees = 'Options avancées';
+  static const onSeLanceLeDefi = 'On se lance le défi ?';
   static const ouHabitezVous = 'Où habitez-vous ?';
   static const ouTrouverCesInformations = 'Où trouver ces informations ?';
   static const ouTrouverCesInformationsReponse = '''
@@ -252,14 +257,18 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recettes = 'Recettes';
   static const rechargeElectriqueQuestion = "J'ai la possibilité de recharger un véhicule électrique au quotidien.";
   static const rechercherParTitre = 'Rechercher par titre';
+  static const recommencerLeQuiz = 'Recommencer le quiz';
   static const recommandationsTitre = 'Recommandé, pour vous';
   static const recommande = 'Recommandé';
   static const refaire = 'Refaire';
   static const renvoyerCode = 'Renvoyer le code';
   static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';
+  static const reponse = 'Réponse';
   static const reprendreLeDefi = 'Reprendre le défi';
   static const retirerDesFavoris = 'Retirer des favoris';
+  static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retour = 'Retour';
+  static const retournerALaThematique = 'Retourner à la thématique';
   static const revenirAuSimulateur = 'Revenir au simulateur';
   static const revenirEnArriere = 'Revenir en arrière';
   static const revenuFiscal = 'Revenu fiscal de référence de mon foyer';
@@ -282,6 +291,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const uneMaison = 'Une maison';
   static const valider = 'Valider';
   static const voirLaReponse = 'Voir la réponse';
+  static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
   static const voirPlusActions = 'Voir plus d’actions';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
@@ -289,7 +299,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousAvezDejaLOptionLaPlusEconomique = 'Vous avez déjà l’option la plus économique !';
   static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
-
+  static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
+  static const vousAvezObtenuUnScoreKoDe = '😬 Vous avez obtenu un score de';
+  static String votreReponse(final bool isCorrect) => '${isCorrect ? '✅' : '❌'} Votre réponse : ';
+  static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
   static String a(final String value) => 'à $value';
 
   static String cacherEmail(final String email) {

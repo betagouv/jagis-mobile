@@ -703,11 +703,12 @@ void main() {
             ]));
         await iTapOn(tester, 'Actions');
         await iTapOn(tester, 'Quiz - Bien trier les déchets');
-        await iTapOn(tester, "Conteneur à verre, il sera trié par la suite");
+        await iTapOn(tester,
+            "Avec les ordures ménagères, l'aluminium ne se recycle pas");
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
         await iSee(tester,
-            "❌ Votre réponse : Conteneur à verre, il sera trié par la suite");
+            "❌ Votre réponse : Avec les ordures ménagères, l'aluminium ne se recycle pas");
         await theApiReceives(
             tester,
             const bdd.DataTable([

@@ -3,7 +3,7 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
-import 'package:app/features/gamification/presentation/widgets/points.dart';
+import 'package:app/features/gamification/presentation/widgets/global_points.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';

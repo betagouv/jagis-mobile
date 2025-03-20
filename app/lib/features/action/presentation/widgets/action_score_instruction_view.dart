@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-spacing
+
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/action/domain/action.dart';
@@ -43,7 +45,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: DsfrSpacings.s1w,
                 children: [
-                  const Text('On se lance le défi ?', style: DsfrTextStyle.headline3()),
+                  const Text('On se lance le défi ?', style: DsfrTextStyle.headline3()),
                   switch (action) {
                     ActionClassic() => Column(
                       children: [
@@ -51,7 +53,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                         const SizedBox(height: DsfrSpacings.s2w),
                         // TODO(erolley): manage icons in the label
                         DsfrButton(
-                          label: "J'ai relevé le défi ! +${action.score}",
+                          label: "J'ai relevé le défi ! +${action.score}",
                           variant: DsfrButtonVariant.primary,
                           size: DsfrButtonSize.lg,
                           onPressed: () => context.read<ActionBloc>().add(ActionMarkAsDone(action)),
@@ -83,7 +85,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                 ),
               }
             else
-              const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
+              const Text('Sois le ou la première à relever ce défi !', style: DsfrTextStyle.bodyMdItalic()),
           ],
         ),
       ),

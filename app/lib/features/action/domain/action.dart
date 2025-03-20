@@ -32,12 +32,7 @@ sealed class Action extends Equatable {
   String get instruction;
   String get instructionWhenDone;
   String get scoreLabel;
-
-  ActionType get type => switch (this) {
-    ActionClassic() => ActionType.classic,
-    ActionQuiz() => ActionType.quiz,
-    ActionSimulator() => ActionType.simulator,
-  };
+  ActionType get type;
 }
 
 final class ActionClassic extends Action {
@@ -69,6 +64,9 @@ final class ActionClassic extends Action {
 
   @override
   String get instructionWhenDone => 'Vous avez réalisez cette action';
+
+  @override
+  ActionType get type => ActionType.classic;
 
   ActionService get lvaoService => services.firstWhere((final service) => service.id == ServiceId.lvao);
   bool get hasLvaoService => services.any((final service) => service.id == ServiceId.lvao);
@@ -107,6 +105,9 @@ final class ActionQuiz extends Action {
 
   @override
   String get scoreLabel => 'quizs';
+
+  @override
+  ActionType get type => ActionType.quiz;
 }
 
 final class ActionSimulator extends Action {
@@ -142,6 +143,9 @@ final class ActionSimulator extends Action {
 
   @override
   String get scoreLabel => 'simulations';
+
+  @override
+  ActionType get type => ActionType.simulator;
 }
 
 enum ActionSimulatorId { carSimulator }

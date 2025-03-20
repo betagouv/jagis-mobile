@@ -4,7 +4,6 @@ import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
@@ -185,7 +184,7 @@ class _Element extends StatelessWidget {
                   switch (action.type) {
                     ActionType.quiz => 'Quiz - ',
                     ActionType.simulator => 'Simulateur - ',
-                    _ => '',
+                    ActionType.classic || ActionType.performance => '',
                   } +
                   action.title,
               p: const DsfrTextStyle.bodyLg(),

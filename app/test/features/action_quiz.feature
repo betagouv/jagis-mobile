@@ -84,10 +84,10 @@ Feature: Action Quiz
       | "GET"    | "/utilisateurs/{userId}/actions/quizz/1"        |          200 | {"nombre_actions_en_cours":5,"nombre_actions_faites":5,"nombre_aides_disponibles":0,"code":"quiz_tri_dechets","titre":"Bien trier les déchets","sous_titre":"Testez vos connaissances sur le tri des déchets avec ce quiz !","consigne":"Réalisez cette action dans les prochaines semaines et partagez vos retours","label_compteur":"**453 actions** réalisées par la communauté","besoins":[],"comment":null,"pourquoi":null,"type":"quizz","thematique":"consommation","kycs":[],"quizzes":[{"content_id":"216","article_id":null,"difficulty":1,"duree":"⏱️ 2 minutes","points":5,"sousTitre":null,"titre":"Où jeter une barquette en aluminium ?","thematique_principale":"alimentation","questions":[{"explicationKO":"<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>","explicationOk":"<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>","libelle":"Où jeter une barquette en aluminium ?","reponses":[{"exact":false,"reponse":"Avec les ordures ménagères, l'aluminium ne se recycle pas"},{"exact":true,"reponse":"Poubelle jaune, l'aluminium se recycle"},{"exact":false,"reponse":"Conteneur à verre, il sera trié par la suite"}]}]}],"aides":[],"services":[],"nom_commune":"Asnières-sur-Seine","quizz_felicitations":"Alors, le tri n'a plus de secret pour vous ? En cas de doute, rendez-vous sur le site Que faire de mes déchets","deja_vue":true,"deja_faite":true,"faqs":[],"points":20} |
     When I tap on {'Actions'}
     When I tap on {'Quiz - Bien trier les déchets'}
-    When I tap on {"Conteneur à verre, il sera trié par la suite"}
+    When I tap on {"Avec les ordures ménagères, l'aluminium ne se recycle pas"}
     When I scroll down to {'Voir la réponse'}
     When I tap on {'Voir la réponse'}
-    Then I see {"❌ Votre réponse : Conteneur à verre, il sera trié par la suite"}
+    Then I see {"❌ Votre réponse : Avec les ordures ménagères, l'aluminium ne se recycle pas"}
     Then the API receives
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'  |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/216" |          200 | {"pourcent":0} |
@@ -117,4 +117,3 @@ Feature: Action Quiz
     When I tap on {'Voir la réponse'}
     Then I see {"✅ Votre réponse : Poubelle jaune, l'aluminium se recycle"}
     When I tap on {'Voir le résultat'}
-

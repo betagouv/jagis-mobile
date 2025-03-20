@@ -14,7 +14,7 @@ abstract final class Localisation {
   static const aide = 'aide';
   static const aides = 'Aides';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
-  static const aidesEtBonsPlans = 'Aides et bons plans !';
+  static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
   static const allerAuDefi = 'Aller au défi';
   static const anneeDeNaissance = 'Année de naissance';
@@ -75,7 +75,7 @@ abstract final class Localisation {
   static const dpeC = 'C';
   static const dpeD = 'D';
   static const dpeE = 'E';
-  static const dpeExplication = '**Qu’est-ce qu’un DPE ?**';
+  static const dpeExplication = '**Qu’est-ce qu’un DPE ?**';
   static const dpeF = 'F';
   static const dpeG = 'G';
   static const dpeJeNeSaisPas = 'Je ne sais pas';
@@ -275,7 +275,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
   static const termine = 'TERMINÉ !';
   static const termine2 = 'Terminé !';
-  static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
+  static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';

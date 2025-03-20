@@ -2,7 +2,7 @@ import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
-// FIXME: Faire un dto
+// FIXME(lsaudon): Faire un dto
 class ThemeInfo extends Equatable {
   const ThemeInfo({
     required this.themeType,

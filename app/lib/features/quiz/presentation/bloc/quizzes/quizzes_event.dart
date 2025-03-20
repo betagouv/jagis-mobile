@@ -10,6 +10,11 @@ sealed class QuizzesEvent extends Equatable {
 }
 
 @immutable
+final class QuizzesRepeatRequested extends QuizzesEvent {
+  const QuizzesRepeatRequested();
+}
+
+@immutable
 final class QuizzesNextQuestion extends QuizzesEvent {
   const QuizzesNextQuestion();
 }

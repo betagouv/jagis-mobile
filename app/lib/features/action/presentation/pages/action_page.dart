@@ -72,14 +72,16 @@ class _Success extends StatelessWidget {
   @override
   Widget build(final context) => ListView(
     children: [
+      const SizedBox(height: DsfrSpacings.s3w),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
       ),
+      const SizedBox(height: DsfrSpacings.s3w),
       DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
         child: Column(
-          spacing: DsfrSpacings.s2w,
+          spacing: DsfrSpacings.s3w,
           children: [
             switch (action) {
               ActionClassic() => ActionClassicView(action: action as ActionClassic),
@@ -90,7 +92,12 @@ class _Success extends StatelessWidget {
           ],
         ),
       ),
-      ActionScoreInstructionView(action: action),
+      const SizedBox(height: DsfrSpacings.s3w),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+        child: ActionScoreInstructionView(action: action),
+      ),
+      const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
     ],
   );
 }

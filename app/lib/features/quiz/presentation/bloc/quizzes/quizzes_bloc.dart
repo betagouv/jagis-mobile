@@ -7,6 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class QuizzesBloc extends Bloc<QuizzesEvent, QuizzesState> {
   QuizzesBloc({required final QuizzesRepository repository, required final List<Quiz> quizzes, required final String id})
     : super(QuizzesInProgress(quizzes: quizzes, currentIndex: 0)) {
+    on<QuizzesRepeatRequested>((final event, final emit) {
+      emit(QuizzesInProgress(quizzes: quizzes, currentIndex: 0));
+    });
     on<QuizzesNextQuestion>((final event, final emit) async {
       if (state is QuizzesInProgress) {
         final currentState = state as QuizzesInProgress;

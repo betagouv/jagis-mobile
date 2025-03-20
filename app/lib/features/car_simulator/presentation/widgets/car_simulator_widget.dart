@@ -1,3 +1,4 @@
+import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
@@ -86,30 +87,12 @@ class _Success extends StatelessWidget {
                 ),
               ),
             ),
-          _QuestionStepper(current: cursor.index + 1, total: cursor.total),
+          QuestionStepper(current: cursor.index + 1, total: cursor.total),
           _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code, cursor: cursor),
         ],
       ),
     );
   }
-}
-
-class _QuestionStepper extends StatelessWidget {
-  const _QuestionStepper({required this.current, required this.total});
-
-  final int current;
-  final int total;
-
-  @override
-  Widget build(final context) => Text.rich(
-    TextSpan(
-      text: 'Question ',
-      style: const DsfrTextStyle.bodyLg(color: DsfrColors.blueFranceSun113),
-      children: [
-        TextSpan(text: '$current sur $total', style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113)),
-      ],
-    ),
-  );
 }
 
 class _QuestionWidget extends StatefulWidget {

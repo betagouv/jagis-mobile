@@ -110,7 +110,38 @@ final class ActionQuiz extends Action {
   ActionType get type => ActionType.quiz;
 }
 
-final class ActionSimulator extends Action {
+final class ActionPerformance extends Action {
+  const ActionPerformance({
+    required super.id,
+    required super.title,
+    required super.subTitle,
+    required super.alreadySeen,
+    required super.isDone,
+    required super.nbActionsDone,
+    required super.aidSummaries,
+    required super.score,
+    required this.questions,
+  });
+
+  final List<Question> questions;
+
+  @override
+  List<Object?> get props => [...super.props, questions];
+
+  @override
+  String get instruction => 'Terminez ce bilan et gagnez';
+
+  @override
+  String get instructionWhenDone => 'Vous avez terminé ce bilan';
+
+  @override
+  String get scoreLabel => 'bilans';
+
+  @override
+  ActionType get type => ActionType.performance;
+}
+
+final class ActionSimulator extends ActionPerformance {
   const ActionSimulator({
     required super.id,
     required super.title,
@@ -121,11 +152,10 @@ final class ActionSimulator extends Action {
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
-    required this.questions,
+    required super.questions,
   });
 
   final String? why;
-  final List<Question> questions;
 
   @override
   List<Object?> get props => [...super.props, why, questions];

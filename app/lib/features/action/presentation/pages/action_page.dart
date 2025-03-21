@@ -7,6 +7,7 @@ import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
+import 'package:app/features/action/presentation/widgets/action_performance_view.dart';
 import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
 import 'package:app/features/action/presentation/widgets/action_score_instruction_view.dart';
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
@@ -84,9 +85,10 @@ class _Success extends StatelessWidget {
           spacing: DsfrSpacings.s3w,
           children: [
             switch (action) {
-              ActionClassic() => ActionClassicView(action: action as ActionClassic),
-              ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
-              ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
+              final ActionClassic a => ActionClassicView(action: a),
+              final ActionSimulator a => ActionSimulatorView(action: a),
+              final ActionQuiz a => ActionQuizView(action: a),
+              final ActionPerformance a => ActionPerformanceView(action: a),
             },
             if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
           ],

@@ -1,12 +1,12 @@
 // ignore_for_file: avoid-slow-collection-methods
 
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/features/environmental_performance/core/presentation/widgets/performance_detail_body.dart';
 import 'package:app/features/environmental_performance/summary/domain/environmental_performance_data.dart';
 import 'package:app/features/environmental_performance/summary/environmental_performance_summary_l10n.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/environmental_performance_partner_card.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/accordion.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/environmental_performance_tonnes_card.dart';
-import 'package:app/features/environmental_performance/summary/presentation/widgets/full/progress_bar.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/top_emission_source_item.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_categories.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
@@ -77,7 +77,7 @@ class BodyFull extends StatelessWidget {
                         children:
                             e.subItems
                                 .map(
-                                  (final f) => _DetailBody(
+                                  (final f) => PerformanceDetailBody(
                                     emoji: f.emoji,
                                     label: f.label,
                                     value: f.footprintInKgOfCO2ePerYear.kilogramsRepresentation,
@@ -140,55 +140,19 @@ class _DetailHeader extends StatelessWidget {
     return Row(
       spacing: DsfrSpacings.s1w,
       children: [
-        Text(emoji, style: const DsfrTextStyle.bodySmMedium()),
-        Expanded(child: Text(label, style: const DsfrTextStyle.bodySmMedium())),
+        Text(emoji, style: const DsfrTextStyle.bodyMdMedium()),
+        Expanded(child: Text(label, style: const DsfrTextStyle.bodyMdMedium())),
         Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: value, style: const DsfrTextStyle.bodySmBold(color: color)),
+              TextSpan(text: value, style: const DsfrTextStyle.bodyMdBold(color: color)),
               const TextSpan(text: ' '),
               const TextSpan(text: EnvironmentalPerformanceSummaryL10n.tonnes),
             ],
           ),
-          style: const DsfrTextStyle.bodySm(color: color),
+          style: const DsfrTextStyle.bodyMd(color: color),
         ),
       ],
     );
   }
-}
-
-class _DetailBody extends StatelessWidget {
-  const _DetailBody({required this.emoji, required this.label, required this.value, required this.progress});
-
-  final String emoji;
-  final String label;
-  final String value;
-  final double progress;
-
-  @override
-  Widget build(final context) => Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(emoji, style: const DsfrTextStyle.bodySmMedium()),
-      const SizedBox(width: DsfrSpacings.s1w),
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: DsfrSpacings.s1v5,
-          children: [Text(label, style: const DsfrTextStyle.bodySmMedium()), ProgressBar(value: progress)],
-        ),
-      ),
-      const SizedBox(width: DsfrSpacings.s2w),
-      Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(text: value, style: const DsfrTextStyle.bodySmBold(color: Color(0xff3636A1))),
-            const TextSpan(text: ' '),
-            const TextSpan(text: EnvironmentalPerformanceSummaryL10n.kg),
-          ],
-        ),
-        style: const DsfrTextStyle.bodySm(color: Color(0xff3636A1)),
-      ),
-    ],
-  );
 }

@@ -184,7 +184,8 @@ class _Element extends StatelessWidget {
                   switch (action.type) {
                     ActionType.quiz => 'Quiz - ',
                     ActionType.simulator => 'Simulateur - ',
-                    ActionType.classic || ActionType.performance => '',
+                    ActionType.performance => 'Bilan - ',
+                    ActionType.classic => '',
                   } +
                   action.title,
               p: const DsfrTextStyle.bodyLg(),

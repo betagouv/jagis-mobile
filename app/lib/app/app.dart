@@ -29,6 +29,7 @@ import 'package:app/features/challenges/list/infrastructure/challenge_list_repos
 import 'package:app/features/challenges/section/infrastructure/challenges_repository.dart';
 import 'package:app/features/challenges/section/presentation/bloc/challenges_bloc.dart';
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
+import 'package:app/features/environmental_performance/action/infrastructure/action_performance_repository.dart';
 import 'package:app/features/environmental_performance/questions/infrastructure/environment_performance_question_repository.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/summary/application/fetch_environmental_performance.dart';
@@ -212,6 +213,7 @@ class _AppState extends State<App> {
               ),
               RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => ActionPerformanceRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
             ],
             child: MultiBlocProvider(

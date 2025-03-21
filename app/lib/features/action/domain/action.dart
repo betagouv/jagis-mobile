@@ -3,10 +3,12 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
 sealed class Action extends Equatable {
   const Action({
+    required this.themeType,
     required this.id,
     required this.title,
     required this.subTitle,
@@ -17,6 +19,7 @@ sealed class Action extends Equatable {
     required this.score,
   });
 
+  final ThemeType themeType;
   final String id;
   final String title;
   final String? subTitle;
@@ -27,7 +30,7 @@ sealed class Action extends Equatable {
   final int score;
 
   @override
-  List<Object?> get props => [id, title, subTitle, alreadySeen, aidSummaries, isDone, nbActionsDone, score];
+  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score];
 
   String get instruction;
   String get instructionWhenDone;
@@ -37,6 +40,7 @@ sealed class Action extends Equatable {
 
 final class ActionClassic extends Action {
   const ActionClassic({
+    required super.themeType,
     required super.id,
     required super.title,
     required super.subTitle,
@@ -79,6 +83,7 @@ final class ActionClassic extends Action {
 
 final class ActionQuiz extends Action {
   const ActionQuiz({
+    required super.themeType,
     required super.id,
     required super.title,
     required super.subTitle,
@@ -110,8 +115,41 @@ final class ActionQuiz extends Action {
   ActionType get type => ActionType.quiz;
 }
 
-final class ActionSimulator extends Action {
+final class ActionPerformance extends Action {
+  const ActionPerformance({
+    required super.themeType,
+    required super.id,
+    required super.title,
+    required super.subTitle,
+    required super.alreadySeen,
+    required super.isDone,
+    required super.nbActionsDone,
+    required super.aidSummaries,
+    required super.score,
+    required this.questions,
+  });
+
+  final List<Question> questions;
+
+  @override
+  List<Object?> get props => [...super.props, questions];
+
+  @override
+  String get instruction => 'Terminez ce bilan et gagnez';
+
+  @override
+  String get instructionWhenDone => 'Vous avez terminé ce bilan';
+
+  @override
+  String get scoreLabel => 'bilans';
+
+  @override
+  ActionType get type => ActionType.performance;
+}
+
+final class ActionSimulator extends ActionPerformance {
   const ActionSimulator({
+    required super.themeType,
     required super.id,
     required super.title,
     required super.subTitle,
@@ -121,11 +159,10 @@ final class ActionSimulator extends Action {
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
-    required this.questions,
+    required super.questions,
   });
 
   final String? why;
-  final List<Question> questions;
 
   @override
   List<Object?> get props => [...super.props, why, questions];

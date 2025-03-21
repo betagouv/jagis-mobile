@@ -42,13 +42,11 @@ class _Questions extends StatelessWidget {
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
           QuestionsManagerLoadSuccess() => _QuestionsSuccess(data: state),
+          QuestionManagerFinished() => const _Loader(),
         },
     listener: (final context, final state) {
-      if (state is QuestionsManagerLoadSuccess) {
-        final cursor = state.cursor;
-        if (cursor.element == null && cursor.total > 0) {
-          context.read<ThemeBloc>().add(const ThemeRefreshRequested());
-        }
+      if (state is QuestionManagerFinished) {
+        context.read<ThemeBloc>().add(const ThemeRefreshRequested());
       }
     },
   );

@@ -1,5 +1,6 @@
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -11,6 +12,7 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
       .asMaps()
       .map(
         (final e) => {
+          'thematique': ThemeType.alimentation.name,
           'code': e['id'],
           'titre': e['title'],
           'sous_titre': e['subTitle'],

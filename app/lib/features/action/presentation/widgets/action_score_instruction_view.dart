@@ -48,7 +48,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                 const Text(Localisation.onSeLanceLeDefi, style: DsfrTextStyle.headline3()),
                 switch (action) {
                   ActionClassic() => _Classic(action: action),
-                  ActionSimulator() || ActionQuiz() => Row(
+                  ActionSimulator() || ActionQuiz() || ActionPerformance() => Row(
                     spacing: DsfrSpacings.s1v,
                     children: [
                       Expanded(child: Text(action.instruction, style: const DsfrTextStyle.bodyMd())),
@@ -64,7 +64,7 @@ class ActionScoreInstructionView extends StatelessWidget {
             const SizedBox(height: DsfrSpacings.s3w),
             switch (action) {
               ActionClassic() => FnvMarkdown(data: action.scoreLabel, p: const DsfrTextStyle.bodyMd()),
-              ActionSimulator() || ActionQuiz() => FnvMarkdown(
+              ActionSimulator() || ActionQuiz() || ActionPerformance() => FnvMarkdown(
                 data: '**${action.nbActionsDone} ${action.scoreLabel}** faites par la communauté',
                 p: const DsfrTextStyle.bodyMd(),
               ),

@@ -31,10 +31,10 @@ class DioMock extends Mock implements Dio {
     );
   }
 
-  void putM(final String path, {final int statusCode = HttpStatus.ok, final dynamic requestData}) {
-    when(
-      () => put<dynamic>(path, data: requestData ?? any(named: 'data')),
-    ).thenAnswer((final _) async => Response(requestOptions: RequestOptions(path: path), statusCode: statusCode));
+  void putM(final String path, {final int statusCode = HttpStatus.ok, final dynamic requestData, final dynamic responseData}) {
+    when(() => put<dynamic>(path, data: requestData ?? any(named: 'data'))).thenAnswer(
+      (final _) async => Response(data: responseData, requestOptions: RequestOptions(path: path), statusCode: statusCode),
+    );
   }
 
   void deleteM(final String path, {final int statusCode = HttpStatus.ok, final dynamic requestData}) {

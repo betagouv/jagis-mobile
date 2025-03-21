@@ -4,14 +4,14 @@ Pour les tests on utilse [bdd_widget_test](https://pub.dev/packages/bdd_widget_t
 
 ## Structure des fichiers
 
-    ```sh
-    test
-    └── features
-        ├── my_feature.feature
-        ├── my_feature_test.dart
-        └── step
-            └── i_tap_on.dart
-    ```
+```sh
+test
+└── features
+    ├── my_feature.feature
+    ├── my_feature_test.dart
+    └── step
+        └── i_tap_on.dart
+```
 
 ## Création d'un fichier .feature
 
@@ -35,10 +35,10 @@ Exécutez la commande suivante pour générer les tests flutter:
 
 ```sh
 # une fois
-dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build -d
 
 # ou lorsqu'un fichier est modifié
-dart run build_runner watch --delete-conflicting-outputs
+dart run build_runner watch -d
 ```
 
 ### Nouvelle step

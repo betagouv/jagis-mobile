@@ -1,8 +1,4 @@
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
-import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
-import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
-import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
-import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
@@ -17,79 +13,22 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CarSimulatorWidget extends StatelessWidget {
-  const CarSimulatorWidget({super.key, this.isDone = false});
-
-  final bool isDone;
-
-  @override
-  Widget build(final context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionsManagerBloc(application: CarSimulatorQuestionsManager(client: context.read()))
-              ..add(const QuestionsManagerFirstQuestionRequested()),
-    child: _View(isDone: isDone),
-  );
-}
-
-class _View extends StatelessWidget {
-  const _View({required this.isDone});
-
-  final bool isDone;
-
-  @override
-  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
-    builder:
-        (final context, final state) => switch (state) {
-          QuestionsManagerInitial() => const SizedBox.shrink(),
-          QuestionsManagerLoadSuccess() => _Success(questionManager: state, isDone: isDone),
-          QuestionManagerFinished() => const CarSimulatorResult(),
-        },
-    listener: (final context, final state) {
-      if (state is QuestionManagerFinished) {
-        context.read<CarSimulatorResultBloc>().add(const CarSimulatorGetCurrentCarResult());
-      }
-    },
-  );
-}
-
-class _Success extends StatelessWidget {
-  const _Success({required this.questionManager, required this.isDone});
+class ActionPerformanceSuccess extends StatelessWidget {
+  const ActionPerformanceSuccess({super.key, required this.questionManager});
 
   final QuestionsManagerLoadSuccess questionManager;
-  final bool isDone;
 
   @override
   Widget build(final context) {
     final cursor = questionManager.cursor;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: DsfrSpacings.s1v,
-        children: [
-          if (isDone)
-            Padding(
-              padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w),
-              child: DsfrAlert(
-                severity: DsfrAlertSeverity.info,
-                description: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Vous avez déjà fait ce simulateur', style: DsfrTextStyle.bodyMd()),
-                    DsfrLink.md(
-                      label: 'Voir mes résultats',
-                      onTap: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          QuestionStepper(current: cursor.index + 1, total: cursor.total),
-          _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code, cursor: cursor),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s1v,
+      children: [
+        QuestionStepper(current: cursor.index + 1, total: cursor.total),
+        _QuestionWidget(key: ValueKey(cursor.element), code: cursor.element!.code, cursor: cursor),
+      ],
     );
   }
 }

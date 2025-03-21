@@ -728,10 +728,10 @@ void main() {
         );
       }
     });
-    testWidgets('''Réponse à toutes les questions''', (tester) async {
+    testWidgets('''Répond à toutes les questions''', (tester) async {
       var success = true;
       try {
-        await beforeEach('''Réponse à toutes les questions''');
+        await beforeEach('''Répond à toutes les questions''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
             tester,
@@ -883,6 +883,7 @@ void main() {
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
         await iSee(tester, 'Question 2 sur 2');
+        await iScrollDownTo(tester, "Poubelle jaune, l'aluminium se recycle");
         await iTapOn(tester, "Poubelle jaune, l'aluminium se recycle");
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -890,13 +891,24 @@ void main() {
             tester, "✅ Votre réponse : Poubelle jaune, l'aluminium se recycle");
         await iScrollDownTo(tester, 'Voir le résultat');
         await iTapOn(tester, 'Voir le résultat');
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                "POST",
+                "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets/faite",
+                200,
+                null
+              ]
+            ]));
         await iSee(tester, 'Recommencer le quiz');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Réponse à toutes les questions''',
+          '''Répond à toutes les questions''',
           success,
         );
       }

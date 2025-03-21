@@ -6,4 +6,5 @@ targets:
           addHooks: true
           hookFolderName: features/bdd_hooks
         generate_for:
-          - test/features/**
+          include:
+            - "test/features/**.feature"

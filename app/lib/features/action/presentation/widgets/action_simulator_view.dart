@@ -15,7 +15,7 @@ class ActionSimulatorView extends StatelessWidget {
       if (action.why != null) ActionWhySectionView(why: action.why!),
       switch (action.getId()) {
         ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
-        ActionSimulatorId.mesAidesReno => MesAidesRenoWidget(isDone: action.isDone),
+        ActionSimulatorId.mesAidesReno => const MesAidesRenoWidget(),
       },
     ],
   );

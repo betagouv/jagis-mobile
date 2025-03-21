@@ -25,3 +25,8 @@ final class QuestionsManagerLoadSuccess extends QuestionsManagerState {
   @override
   List<Object> get props => [cursor];
 }
+
+@immutable
+final class QuestionManagerFinished extends QuestionsManagerState {
+  const QuestionManagerFinished();
+}

@@ -10,6 +10,10 @@ abstract final class Localisation {
   static const acheterUnVelo = 'Acheter un vélo';
   static const actionBravo = 'Bravo ! 🎉';
   static const actions = 'Actions';
+  static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
+  static const actionPerformanceTerminePart1 = 'Vous avez terminé votre bilan ! Il est de ';
+  static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
+  static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';
@@ -258,6 +262,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const rechargeElectriqueQuestion = "J'ai la possibilité de recharger un véhicule électrique au quotidien.";
   static const rechercherParTitre = 'Rechercher par titre';
   static const recommencerLeQuiz = 'Recommencer le quiz';
+  static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommandationsTitre = 'Recommandé, pour vous';
   static const recommande = 'Recommandé';
   static const refaire = 'Refaire';
@@ -269,6 +274,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retour = 'Retour';
   static const retournerALaThematique = 'Retourner à la thématique';
+  static const retournerEnArriere = 'Retourner en arrière';
   static const revenirAuSimulateur = 'Revenir au simulateur';
   static const revenirEnArriere = 'Revenir en arrière';
   static const revenuFiscal = 'Revenu fiscal de référence de mon foyer';

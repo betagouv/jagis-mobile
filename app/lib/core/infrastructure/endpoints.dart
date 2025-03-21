@@ -10,6 +10,7 @@ abstract final class Endpoints {
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';
   static const bibliotheque = '/utilisateurs/{userId}/bibliotheque';
   static const bilan = '/utilisateurs/{userId}/bilans/last_v3';
+  static String bilanByTheme(final String type) => '/utilisateurs/{userId}/bilans/last_v3/$type';
   static const challenges = '/utilisateurs/{userId}/defis_v2';
   static String challenge(final String defiId) => '/utilisateurs/{userId}/defis/$defiId';
   static const creationCompte = '/utilisateurs_v2';

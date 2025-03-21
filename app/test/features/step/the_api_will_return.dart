@@ -6,24 +6,21 @@ import '../helper/feature_context.dart';
 /// Usage: the API will return
 Future<void> theApiWillReturn(final WidgetTester tester, final bdd.DataTable dataTable) async {
   dataTable.asMaps().forEach((final e) {
-    if (e['method'] == 'GET') {
-      FeatureContext.instance.dioMock.getM(
-        e['path'] as String,
-        statusCode: e['statusCode'] as int,
-        responseData: e['responseData'],
-      );
-    } else if (e['method'] == 'PATCH') {
-      FeatureContext.instance.dioMock.patchM(
-        e['path'] as String,
-        statusCode: e['statusCode'] as int,
-        responseData: e['responseData'],
-      );
-    } else if (e['method'] == 'POST') {
-      FeatureContext.instance.dioMock.postM(
-        e['path'] as String,
-        statusCode: e['statusCode'] as int,
-        responseData: e['responseData'],
-      );
+    final path = e['path'] as String;
+    final statusCode = e['statusCode'] as int;
+    final responseData = e['responseData'];
+    final methodHandlers = {
+      'GET': () => FeatureContext.instance.dioMock.getM(path, statusCode: statusCode, responseData: responseData),
+      'PATCH': () => FeatureContext.instance.dioMock.patchM(path, statusCode: statusCode, responseData: responseData),
+      'POST': () => FeatureContext.instance.dioMock.postM(path, statusCode: statusCode, responseData: responseData),
+      'PUT': () => FeatureContext.instance.dioMock.putM(path, statusCode: statusCode),
+    };
+
+    final method = e['method'] as String;
+    final handler = methodHandlers[method];
+    if (handler == null) {
+      throw Exception('Method $method not supported');
     }
+    handler();
   });
 }

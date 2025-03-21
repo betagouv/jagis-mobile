@@ -5,10 +5,9 @@ import 'package:app/features/environmental_performance/summary/domain/environmen
 import 'package:app/features/environmental_performance/summary/domain/environmental_performance_level.dart';
 import 'package:app/features/environmental_performance/summary/domain/environmental_performance_top_item.dart';
 import 'package:app/features/environmental_performance/summary/domain/footprint.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 
-abstract final class EnvironmentalPerformanceSummaryMapperyMapper {
-  const EnvironmentalPerformanceSummaryMapperyMapper._();
+abstract final class EnvironmentalPerformanceSummaryMapper {
+  const EnvironmentalPerformanceSummaryMapper._();
 
   static EnvironmentalPerformanceData fromJson(final Map<String, dynamic> json) {
     if (json.containsKey('bilan_complet')) {
@@ -19,6 +18,8 @@ abstract final class EnvironmentalPerformanceSummaryMapperyMapper {
 
     return EnvironmentalPerformanceEmpty(questions: const []);
   }
+
+  static EnvironmentalPerformanceDetailItem detailItemFromJson(final Map<String, dynamic> json) => _detailItemFromJson(json);
 
   static EnvironmentalPerformancePartial _fromPartialJson(final Map<String, dynamic> json) {
     final partial = json['bilan_approximatif'] as Map<String, dynamic>;
@@ -89,11 +90,11 @@ abstract final class EnvironmentalPerformanceSummaryMapperyMapper {
   );
 
   static String _mapThematique(final String? type) => switch (type) {
-    'alimentation' => ThemeType.alimentation.displayNameWithoutEmoji,
-    'transport' => ThemeType.transport.displayNameWithoutEmoji,
-    'consommation' => ThemeType.consommation.displayNameWithoutEmoji,
-    'logement' => ThemeType.logement.displayNameWithoutEmoji,
-    'climat' => 'Environnement',
+    'alimentation' => 'Alimentation',
+    'transport' => 'Transport',
+    'consommation' => 'Consommation',
+    'logement' => 'Logement',
+    'climat' => 'Climat',
     'dechet' => 'Déchets',
     'loisir' => 'Loisir',
     'services_societaux' => 'Services sociétaux',

@@ -12,6 +12,7 @@ import 'package:app/features/action/presentation/widgets/action_score_instructio
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
+import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,14 +82,19 @@ class _Success extends StatelessWidget {
       DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
         child: Column(
-          spacing: DsfrSpacings.s3w,
           children: [
+            const SizedBox(height: DsfrSpacings.s3w),
             switch (action) {
-              ActionClassic() => ActionClassicView(action: action as ActionClassic),
-              ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
-              ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
+              final ActionClassic a => ActionClassicView(action: a),
+              final ActionSimulator a => ActionSimulatorView(action: a),
+              final ActionQuiz a => ActionQuizView(action: a),
+              final ActionPerformance a => ActionPerformanceView(action: a),
             },
-            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
+            if (action.aidSummaries.isNotEmpty) ...[
+              const SizedBox(height: DsfrSpacings.s3w),
+              ActionAidsView(aidSummaries: action.aidSummaries),
+            ],
+            const SizedBox(height: DsfrSpacings.s3w),
           ],
         ),
       ),

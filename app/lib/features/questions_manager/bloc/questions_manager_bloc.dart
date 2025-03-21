@@ -27,6 +27,11 @@ class QuestionsManagerBloc extends Bloc<QuestionsManagerEvent, QuestionsManagerS
         return;
       }
       final result = await application.next(blocState.cursor);
+      if (result.isEnd) {
+        emit(const QuestionManagerFinished());
+
+        return;
+      }
       emit(QuestionsManagerLoadSuccess(cursor: result));
     });
 
@@ -36,6 +41,11 @@ class QuestionsManagerBloc extends Bloc<QuestionsManagerEvent, QuestionsManagerS
         return;
       }
       final result = await application.next(blocState.cursor);
+      if (result.isEnd) {
+        emit(const QuestionManagerFinished());
+
+        return;
+      }
       emit(QuestionsManagerLoadSuccess(cursor: Cursor(elements: result.elements, index: result.elements.length)));
     });
   }

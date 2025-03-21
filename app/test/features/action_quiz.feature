@@ -94,7 +94,7 @@ Feature: Action Quiz
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'  |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/216" |          200 | {"pourcent":0} |
 
-  Scenario: Réponse à toutes les questions
+  Scenario: Répond à toutes les questions
     Given I have actions in my library
       | 'type'  | 'code'             | 'title'                  | 'nb_aids_available' |
       | 'quizz' | 'quiz_tri_dechets' | 'Bien trier les déchets' |                   5 |
@@ -116,10 +116,14 @@ Feature: Action Quiz
     When I scroll down to {'Question suivante'}
     When I tap on {'Question suivante'}
     Then I see {'Question 2 sur 2'}
+    When I scroll down to {"Poubelle jaune, l'aluminium se recycle"}
     When I tap on {"Poubelle jaune, l'aluminium se recycle"}
     When I scroll down to {'Voir la réponse'}
     When I tap on {'Voir la réponse'}
     Then I see {"✅ Votre réponse : Poubelle jaune, l'aluminium se recycle"}
     When I scroll down to {'Voir le résultat'}
     When I tap on {'Voir le résultat'}
+    Then the API receives
+      | 'method' | 'path'                                                        | 'statusCode' | 'requestData' |
+      | "POST"   | "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets/faite" |          200 | null          |
     When I see {'Recommencer le quiz'}

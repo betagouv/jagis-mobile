@@ -9,4 +9,5 @@ Future<void> iTapOn(final WidgetTester tester, final String text) async {
   await tester.pump();
   await tester.pump(Durations.medium3);
   await tester.pump();
+  await tester.pump();
 }

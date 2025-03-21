@@ -116,7 +116,7 @@ void main() {
         expect(find.text('Fort'), findsOneWidget);
         expect(find.text('Très fort'), findsNothing);
         expect(find.text('✨ Estimation complète à 23%'), findsOneWidget);
-        expect(find.text('Me déplacer'), findsOneWidget);
+        expect(find.text('Transport'), findsOneWidget);
       });
     });
 
@@ -182,7 +182,7 @@ void main() {
       });
     });
 
-    testWidgets('Voir le contenu de "Activer le mode développeur"', (final tester) async {
+    testWidgets("Voir le contenu respect l'accessiblité", (final tester) async {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await pumpEnvironmentalPerformancePage(tester, dio);
       await expectLater(tester, meetsGuideline(androidTapTargetGuideline));

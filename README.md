@@ -64,7 +64,7 @@ Dans le dossier `app` :
 1. Regénérer les tests gherkin :
 
    ```sh
-   dart run build_runner build --delete-conflicting-outputs
+   dart run build_runner build -d
    ```
 
 1. Lancer les tests :

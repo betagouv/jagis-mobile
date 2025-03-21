@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class MesAidesRenoWidget extends StatefulWidget {
-  const MesAidesRenoWidget({super.key, required this.isDone});
-
-  final bool isDone;
+  const MesAidesRenoWidget({super.key});
 
   @override
   State<MesAidesRenoWidget> createState() => _MesAidesRenoWidgetState();

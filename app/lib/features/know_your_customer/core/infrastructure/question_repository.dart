@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -29,7 +27,7 @@ class QuestionRepository {
   }
 
   Future<Either<Exception, Unit>> update(final Question question) async {
-    final object = switch (question) {
+    final data = switch (question) {
       QuestionMultiple() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
       QuestionUnique() => [
         {'value': question.response.value},
@@ -37,7 +35,7 @@ class QuestionRepository {
       QuestionMosaicBoolean() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
     };
 
-    final response = await _client.put(Endpoints.question(question.code.value), data: jsonEncode(object));
+    final response = await _client.put(Endpoints.question(question.code.value), data: data);
 
     if (isResponseSuccessful(response.statusCode)) {
       _messageBus.publish(kycTopic);

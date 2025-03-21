@@ -20,7 +20,7 @@ class EnvironmentalPerformanceSummaryRepository {
 
     final data = response.data! as Map<String, dynamic>;
 
-    return Right(EnvironmentalPerformanceSummaryMapperyMapper.fromJson(data));
+    return Right(EnvironmentalPerformanceSummaryMapper.fromJson(data));
   }
 
   Future<Either<Exception, List<Question>>> fetchMiniBilan() async {

@@ -12,6 +12,16 @@ Future<void> theApiReceives(final WidgetTester tester, final bdd.DataTable dataT
 
       return;
     }
+    if (e['method'] == 'PUT') {
+      verify(() => FeatureContext.instance.dioMock.put<dynamic>(e['path'] as String, data: e['requestData']));
+
+      return;
+    }
+    if (e['method'] == 'POST') {
+      verify(() => FeatureContext.instance.dioMock.post<dynamic>(e['path'] as String, data: e['requestData']));
+
+      return;
+    }
     throw Exception('Method ${e['method']} not supported');
   });
 }

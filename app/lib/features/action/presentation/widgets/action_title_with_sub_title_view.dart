@@ -16,7 +16,8 @@ class ActionTitleWithSubTitleView extends StatelessWidget {
         switch (type) {
           ActionType.quiz => 'Quiz - ',
           ActionType.simulator => 'Simulateur - ',
-          ActionType.classic || ActionType.performance => '',
+          ActionType.performance => 'Bilan - ',
+          ActionType.classic => '',
         } +
         title;
 

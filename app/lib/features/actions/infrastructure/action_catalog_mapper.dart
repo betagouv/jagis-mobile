@@ -1,18 +1,12 @@
 import 'package:app/features/actions/domain/action_catalog.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
-import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions/infrastructure/action_summary_mapper.dart';
 
 abstract final class ActionCatalogMapper {
   const ActionCatalogMapper._();
 
   static ActionCatalog fromJson(final Map<String, dynamic> json) => ActionCatalog(
-    actions:
-        (json['actions'] as List<dynamic>)
-            .cast<Map<String, dynamic>>()
-            .map(ActionSummaryMapper.fromJson)
-            .where((final e) => e.type == ActionType.classic || e.type == ActionType.simulator || e.type == ActionType.quiz)
-            .toList(),
+    actions: (json['actions'] as List<dynamic>).cast<Map<String, dynamic>>().map(ActionSummaryMapper.fromJson).toList(),
     themes:
         (json['filtres'] as List<dynamic>)
             .cast<Map<String, dynamic>>()

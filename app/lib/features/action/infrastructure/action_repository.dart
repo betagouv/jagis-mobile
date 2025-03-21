@@ -23,14 +23,14 @@ class ActionRepository {
 
     final json = response.data! as Map<String, dynamic>;
 
-    return switch (type) {
-      ActionType.simulator => Right(ActionSimulatorMapper.fromJson(json)),
-      ActionType.classic => Right(ActionClassicMapper.fromJson(json)),
-      ActionType.quiz => Right(ActionQuizMapper.fromJson(json)),
-      ActionType.performance =>
-        // TODO(erolley): Handle this case.
-        throw UnimplementedError(),
+    final value = switch (type) {
+      ActionType.simulator => ActionSimulatorMapper.fromJson(json),
+      ActionType.classic => ActionClassicMapper.fromJson(json),
+      ActionType.quiz => ActionQuizMapper.fromJson(json),
+      ActionType.performance => ActionPerformanceMapper.fromJson(json),
     };
+
+    return Right(value);
   }
 
   Future<Either<Exception, Action>> markAsDone({required final ActionType type, required final String id}) async {

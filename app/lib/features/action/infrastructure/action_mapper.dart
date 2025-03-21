@@ -59,3 +59,20 @@ abstract final class ActionSimulatorMapper {
         (json['kycs'] as List<dynamic>).cast<Map<String, dynamic>>().map(QuestionMapper.fromJson).whereType<Question>().toList(),
   );
 }
+
+abstract final class ActionPerformanceMapper {
+  const ActionPerformanceMapper._();
+
+  static ActionPerformance fromJson(final Map<String, dynamic> json) => ActionPerformance(
+    id: json['code'] as String,
+    title: json['titre'] as String,
+    subTitle: json['sous_titre'] as String?,
+    alreadySeen: json['deja_vue'] as bool,
+    isDone: json['deja_faite'] as bool,
+    nbActionsDone: json['nombre_actions_faites'] as int,
+    aidSummaries: (json['aides'] as List<dynamic>).cast<Map<String, dynamic>>().map(AidSummaryMapper.fromJson).toList(),
+    score: json['points'] as int,
+    questions:
+        (json['kycs'] as List<dynamic>).cast<Map<String, dynamic>>().map(QuestionMapper.fromJson).whereType<Question>().toList(),
+  );
+}

@@ -1,6 +1,7 @@
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
+import 'package:app/features/mes_aides_reno/presentation/mes_aides_reno_widget.dart';
 import 'package:flutter/material.dart';
 
 class ActionSimulatorView extends StatelessWidget {
@@ -14,6 +15,7 @@ class ActionSimulatorView extends StatelessWidget {
       if (action.why != null) ActionWhySectionView(why: action.why!),
       switch (action.getId()) {
         ActionSimulatorId.carSimulator => CarSimulatorWidget(isDone: action.isDone),
+        ActionSimulatorId.mesAidesReno => MesAidesRenoWidget(isDone: action.isDone),
       },
     ],
   );

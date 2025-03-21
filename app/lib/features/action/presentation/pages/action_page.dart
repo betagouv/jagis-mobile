@@ -70,34 +70,38 @@ class _Success extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final context) => ListView(
-    children: [
-      const SizedBox(height: DsfrSpacings.s3w),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
-      ),
-      const SizedBox(height: DsfrSpacings.s3w),
-      DecoratedBox(
-        decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-        child: Column(
-          spacing: DsfrSpacings.s3w,
-          children: [
-            switch (action) {
-              ActionClassic() => ActionClassicView(action: action as ActionClassic),
-              ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
-              ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
-            },
-            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
-          ],
+  Widget build(final context) {
+    print('========== [DEBUG] ============\n\naction: $action');
+
+    return ListView(
+      children: [
+        const SizedBox(height: DsfrSpacings.s3w),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
         ),
-      ),
-      const SizedBox(height: DsfrSpacings.s3w),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: ActionScoreInstructionView(action: action),
-      ),
-      const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
-    ],
-  );
+        const SizedBox(height: DsfrSpacings.s3w),
+        DecoratedBox(
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+          child: Column(
+            spacing: DsfrSpacings.s3w,
+            children: [
+              switch (action) {
+                ActionClassic() => ActionClassicView(action: action as ActionClassic),
+                ActionSimulator() => ActionSimulatorView(action: action as ActionSimulator),
+                ActionQuiz() => ActionQuizView(action: action as ActionQuiz),
+              },
+              if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
+            ],
+          ),
+        ),
+        const SizedBox(height: DsfrSpacings.s3w),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: ActionScoreInstructionView(action: action),
+        ),
+        const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
+      ],
+    );
+  }
 }

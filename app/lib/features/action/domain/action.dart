@@ -130,10 +130,7 @@ final class ActionSimulator extends Action {
   @override
   List<Object?> get props => [...super.props, why, questions];
 
-  ActionSimulatorId getId() => switch (id) {
-    'action_simulateur_voiture' => ActionSimulatorId.carSimulator,
-    _ => throw UnimplementedError(),
-  };
+  ActionSimulatorId getId() => actionSimulatorIdFromAPIString(id);
 
   @override
   String get instruction => 'Terminez ce simulateur et gagnez';
@@ -148,8 +145,16 @@ final class ActionSimulator extends Action {
   ActionType get type => ActionType.simulator;
 }
 
-enum ActionSimulatorId { carSimulator }
+enum ActionSimulatorId { carSimulator, mesAidesReno }
 
+// FIXME(erolley): refactor with enum, see velo_etat
 String actionSimulatorIdToAPIString(final ActionSimulatorId id) => switch (id) {
   ActionSimulatorId.carSimulator => 'action_simulateur_voiture',
+  ActionSimulatorId.mesAidesReno => 'simu_aides_reno',
+};
+
+ActionSimulatorId actionSimulatorIdFromAPIString(final String id) => switch (id) {
+  'action_simulateur_voiture' => ActionSimulatorId.carSimulator,
+  'simu_aides_reno' => ActionSimulatorId.mesAidesReno,
+  _ => throw UnimplementedError('Trying to get an unknown id: $id'),
 };

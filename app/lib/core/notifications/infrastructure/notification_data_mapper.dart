@@ -10,7 +10,6 @@ abstract final class NotificationDataMapper {
   static NotificationPageType _pageTypefromJson(final String json) => switch (json) {
     'quiz' => NotificationPageType.quiz,
     'article' => NotificationPageType.article,
-    'mission' => NotificationPageType.mission,
     _ => throw UnimplementedError(),
   };
 }

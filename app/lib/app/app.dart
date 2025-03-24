@@ -37,10 +37,6 @@ import 'package:app/features/gamification/presentation/bloc/gamification_event.d
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
-import 'package:app/features/mission/home/infrastructure/mission_home_repository.dart';
-import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
-import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
-import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
@@ -117,8 +113,6 @@ class _AppState extends State<App> {
         await _handleQuizNotification(goRouter: goRouter, pageId: data.pageId);
       case NotificationPageType.article:
         await _handleArticleNotification(goRouter: goRouter, pageId: data.pageId);
-      case NotificationPageType.mission:
-        await _handleMissionNotification(goRouter: goRouter, pageId: data.pageId);
     }
   }
 
@@ -128,10 +122,6 @@ class _AppState extends State<App> {
 
   Future<void> _handleArticleNotification({required final GoRouter goRouter, required final String pageId}) async {
     await goRouter.pushNamed(ArticlePage.name, pathParameters: {'titre': 'titre', 'id': pageId});
-  }
-
-  Future<void> _handleMissionNotification({required final GoRouter goRouter, required final String pageId}) async {
-    await goRouter.pushNamed(MissionPage.name, pathParameters: {'mission': pageId, 'thematique': 'thematique'});
   }
 
   @override
@@ -195,7 +185,6 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => RecipeRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ArticlesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => QuizzesRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => MissionRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
                 create:
                     (final context) =>
@@ -213,9 +202,7 @@ class _AppState extends State<App> {
                 BlocProvider(create: (final context) => AidsDisclaimerCubit()),
                 BlocProvider(create: (final context) => UserBloc(repository: UserRepository(client: widget.dioHttpClient))),
                 BlocProvider(create: (final context) => AidsHomeBloc(aidsRepository: aidsRepository)),
-                BlocProvider(
-                  create: (final context) => MissionHomeBloc(repository: MissionHomeRepository(client: widget.dioHttpClient)),
-                ),
+
                 BlocProvider(
                   create:
                       (final context) =>

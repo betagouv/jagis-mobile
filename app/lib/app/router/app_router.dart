@@ -19,7 +19,6 @@ import 'package:app/features/environmental_performance/summary/presentation/page
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
-import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/onboarding/presentation/pages/app_est_encore_en_experimentation_page.dart';
 import 'package:app/features/onboarding/presentation/pages/tout_est_pret_page.dart';
 import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';
@@ -70,7 +69,6 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         ToutEstPretPage.route,
         EnvironmentalPerformanceSummaryPage.route,
         EnvironmentalPerformanceQuestionPage.route,
-        MissionPage.route,
         AidsPage.route,
         AidPage.route,
         AideSimulateurVeloPage.route(routes: [AideSimulateurVeloDisponiblePage.route]),

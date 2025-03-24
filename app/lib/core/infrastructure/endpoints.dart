@@ -20,8 +20,6 @@ abstract final class Endpoints {
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
   static const missionsRecommandees = '/utilisateurs/{userId}/tuiles_missions';
-  static String mission(final String codeMission) => '/utilisateurs/{userId}/missions/$codeMission';
-  static String missionTerminer(final String codeMission) => '/utilisateurs/{userId}/missions/$codeMission/terminer';
   static const modifierMotDePasse = '/utilisateurs/modifier_mot_de_passe';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
   static const oubliMotDePasse = '/utilisateurs/oubli_mot_de_passe';

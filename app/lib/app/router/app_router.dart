@@ -14,8 +14,6 @@ import 'package:app/features/authentification/mot_de_passe_oublie_code/pages/mot
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/features/bibliotheque/presentation/pages/bibliotheque_page.dart';
-import 'package:app/features/challenges/detail/presentation/pages/challenge_detail_page.dart';
-import 'package:app/features/challenges/list/presentation/pages/challenge_list_page.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
@@ -88,8 +86,6 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         MonLogementPage.route,
         KnowYourCustomersPage.route,
         MieuxVousConnaitreEditPage.route,
-        ChallengeListPage.route,
-        ChallengeDetailPage.route,
         SeasonalFruitsAndVegetablesPage.route,
         OptionsAvanceesPage.route,
       ],

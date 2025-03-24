@@ -1,6 +1,5 @@
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/aids/core/presentation/widgets/aids_section.dart';
-import 'package:app/features/challenges/section/presentation/widgets/challenges_section.dart';
 import 'package:app/features/environmental_performance/home/presentation/widgets/environmental_performance_section.dart';
 import 'package:app/features/home/presentation/widgets/home_disclaimer.dart';
 import 'package:app/features/mission/home/presentation/widgets/mission_section.dart';
@@ -27,8 +26,6 @@ class HomeContentLayout extends StatelessWidget {
         Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: MissionSection()),
         spacing,
         Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: AidsSection()),
-        spacing,
-        Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: ChallengesSection()),
         spacing,
         SurveySection(),
       ],

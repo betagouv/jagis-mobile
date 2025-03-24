@@ -4,7 +4,6 @@ import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/authentification/logout/presentation/widgets/logout_widget.dart';
 import 'package:app/features/bibliotheque/presentation/pages/bibliotheque_page.dart';
-import 'package:app/features/challenges/list/presentation/pages/challenge_list_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
@@ -69,7 +68,6 @@ class _MenuItems extends StatelessWidget {
           HomePage.name: Localisation.home,
           AidsPage.name: Localisation.aides,
           ActionsPage.name: Localisation.actions,
-          ChallengeListPage.name: Localisation.defis,
           BibliothequePage.name: Localisation.bibliotheque,
           EnvironmentalPerformanceSummaryPage.name: Localisation.bilanEnvironnemental,
         }.entries.map((final e) => _MenuItem(label: e.value, value: e.key, groupValue: groupValue)),

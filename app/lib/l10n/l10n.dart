@@ -23,7 +23,6 @@ abstract final class Localisation {
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
-  static const allerAuDefi = 'Aller au défi';
   static const anneeDeNaissance = 'Année de naissance';
   static const annuler = 'Annuler';
   static const appEstEnConstruction = 'J’agis est un nouveau service !';
@@ -44,12 +43,8 @@ abstract final class Localisation {
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Bilan environnemental';
   static const bonjour = 'Bonjour,\n';
-  static const bonnesAstucesPourRealiserCeDefi = 'Bonnes astuces pour réaliser ce défi';
   static const bravo = 'BRAVO !';
   static const catalogueActions = 'Catalogue d’actions';
-  static const ceDefiNeVousConvientPas = 'Ce défi ne vous convient pas ?';
-  static const ceDefiNeVousConvientPasDetails =
-      'On ne vise pas toujours juste ! Dites-nous pourquoi en quelques mots et nous affinerons nos recommandations à l’avenir. (facultatif)';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
   static const changerMonMotDePasse = 'Changer mon mot de passe';
@@ -68,10 +63,6 @@ abstract final class Localisation {
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const decouvrir = 'Découvrir';
-  static const defiRealise = 'Défi réalisé';
-  static const defisSectionListEmpty =
-      'Vous n’avez aucun défi à réaliser en ce moment. Débloquez-en de nouveaux dans les missions.';
-  static const defisSectionSubTitle = 'Gagner des feuilles chaque semaine avec de nouveaux défis';
   static const dejaConsultees = 'Déjà consultées';
   static const donneesPersonnelles = 'Données personnelles';
   static const donneesUtiliseesPart1 = 'Données utilisées : code postal ';
@@ -89,7 +80,6 @@ abstract final class Localisation {
   static const elementsNecessaireAuCalcul = 'Éléments nécessaires au calcul';
   static const emailDeConnexionRenvoye = 'Email de connexion renvoyé';
   static const emissionsAnnuelles = 'Émissions annuelles';
-  static const enCours = 'En cours !';
   static const enchante = 'Enchanté, ';
   static const enchanteDetails =
       'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.';
@@ -113,7 +103,6 @@ abstract final class Localisation {
   static const euroSymbol = '€';
   static const facultatif = 'facultatif';
   static const fermer = 'Fermer';
-  static const finalementPasPourMoi = 'Finalement, pas pour moi';
   static const franceConnect = 'FranceConnect';
   static const franceConnectDescription =
       'FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.';
@@ -133,7 +122,6 @@ abstract final class Localisation {
   static const home = 'Accueil';
   static const homeAssistanceSubTitle = 'Toutes les aides **locales** et **nationales** pour vous aider à passer à l’action';
   static const homeAssistanceTitle = '**Aides financières** et bons plans';
-  static const homeDefisLink = 'Voir tous mes défis';
   static const impactCo2 = 'Impact CO₂';
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
   static const impactCo2Url = 'https://impactco2.fr/';
@@ -143,7 +131,6 @@ abstract final class Localisation {
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
   static const jeCreeMonCompte = 'Je crée mon compte';
-  static const jeReleveLeDefi = 'Je relève le défi';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
   static const laPlusEcologique = 'La plus écologique';
@@ -174,7 +161,6 @@ abstract final class Localisation {
 
   static const mesAidesDisponibles = 'Mes aides disponibles';
   static const mesAidesLien = 'Voir toutes les aides';
-  static const defis = 'Défis';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
@@ -184,8 +170,6 @@ abstract final class Localisation {
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
-  static const missionDefisSubTitle = 'Pour réduire votre impact, voici une liste de défis recommandés **pour vous !**';
-  static const missionDefisTitle = 'Choisir au moins **un défi** que vous pourriez réaliser';
   static const missionSubTitle = 'Des solutions **adaptées à votre situation** et les clés pour comprendre';
   static const missionTitle = 'Recommandés **pour vous**';
   static const modifier = 'Modifier';
@@ -229,7 +213,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const oui = 'Oui';
   static const pageConnexionTitre = 'Accédez à mon compte J’agis';
   static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';
-  static const pasPourMoi = 'Pas pour moi';
   static const passerLaQuestion = 'Passer la question';
   static const plusDe150m2 = 'Plus de 150 m²';
   static const plusieursReponsesPossibles = 'Plusieurs réponses possibles';
@@ -237,7 +220,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const politiqueDeConfidentialite = 'Politique de confidentialité';
   static const politiqueDeConfidentialiteSite = 'https://jagis.beta.gouv.fr/politique-de-confidentialite';
   static const pourquoi = 'Pourquoi ?';
-  static const pourquoiCeDefi = 'Pourquoi ce défi ?';
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
@@ -264,12 +246,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommandationsTitre = 'Recommandé, pour vous';
-  static const recommande = 'Recommandé';
   static const refaire = 'Refaire';
   static const renvoyerCode = 'Renvoyer le code';
   static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';
   static const reponse = 'Réponse';
-  static const reprendreLeDefi = 'Reprendre le défi';
   static const retirerDesFavoris = 'Retirer des favoris';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retour = 'Retour';
@@ -289,7 +269,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
   static const termine = 'TERMINÉ !';
-  static const termine2 = 'Terminé !';
   static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';

@@ -1,5 +1,9 @@
 # Titre
 
+## Date de décision
+
+Quel est la date de la décision ?
+
 ## Statut
 
 Quel est le statut : proposé, accepté, rejeté, obsolète, remplacé, etc. ?

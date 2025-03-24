@@ -11,10 +11,7 @@ class CarSimulatorQuestionsManager extends CursorManagerFromList<Question> {
     : super(
         getList: () async {
           final response = await client.get(
-            Endpoints.action(
-              type: actionTypeToAPIString(ActionType.simulator),
-              code: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator),
-            ),
+            Endpoints.action(type: actionTypeToAPIString(ActionType.simulator), code: ActionSimulatorId.carSimulator.apiString),
           );
 
           final data = response.data as Map<String, dynamic>;

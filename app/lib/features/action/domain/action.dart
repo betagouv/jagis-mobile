@@ -167,7 +167,7 @@ final class ActionSimulator extends ActionPerformance {
   @override
   List<Object?> get props => [...super.props, why, questions];
 
-  ActionSimulatorId getId() => actionSimulatorIdFromAPIString(id);
+  ActionSimulatorId getId() => ActionSimulatorId.fromApiString(id);
 
   @override
   String get instruction => 'Terminez ce simulateur et gagnez';
@@ -182,16 +182,15 @@ final class ActionSimulator extends ActionPerformance {
   ActionType get type => ActionType.simulator;
 }
 
-enum ActionSimulatorId { carSimulator, mesAidesReno }
+enum ActionSimulatorId {
+  carSimulator('action_simulateur_voiture'),
+  mesAidesReno('simu_aides_reno');
 
-// FIXME(erolley): refactor with enum, see velo_etat
-String actionSimulatorIdToAPIString(final ActionSimulatorId id) => switch (id) {
-  ActionSimulatorId.carSimulator => 'action_simulateur_voiture',
-  ActionSimulatorId.mesAidesReno => 'simu_aides_reno',
-};
+  const ActionSimulatorId(this.apiString);
+  final String apiString;
 
-ActionSimulatorId actionSimulatorIdFromAPIString(final String id) => switch (id) {
-  'action_simulateur_voiture' => ActionSimulatorId.carSimulator,
-  'simu_aides_reno' => ActionSimulatorId.mesAidesReno,
-  _ => throw UnimplementedError('Trying to get an unknown id: $id'),
-};
+  static ActionSimulatorId fromApiString(final String id) => values.firstWhere(
+    (final element) => element.apiString == id,
+    orElse: () => throw UnimplementedError('Unknown simulator id: $id'),
+  );
+}

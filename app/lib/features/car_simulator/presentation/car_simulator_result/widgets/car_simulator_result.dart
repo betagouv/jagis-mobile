@@ -49,7 +49,7 @@ class _View extends StatelessWidget {
     listener: (final context, final state) {
       if (state is CarSimulatorGetCurrentCarSuccess) {
         context.read<ActionBloc>().add(
-          ActionMarkAsDone(id: actionSimulatorIdToAPIString(ActionSimulatorId.carSimulator), type: ActionType.simulator),
+          ActionMarkAsDone(id: ActionSimulatorId.carSimulator.apiString, type: ActionType.simulator),
         );
       }
     },

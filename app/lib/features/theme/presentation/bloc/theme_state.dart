@@ -1,4 +1,3 @@
-import 'package:app/features/theme/core/domain/mission_liste.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
@@ -25,27 +24,17 @@ final class ThemeLoadInProgress extends ThemeState {
 
 @immutable
 final class ThemeLoadSuccess extends ThemeState {
-  const ThemeLoadSuccess({required this.theme, required this.summary, required this.missions, required this.services});
+  const ThemeLoadSuccess({required this.theme, required this.summary, required this.services});
 
   final ThemeInfo theme;
   final ThemeSummary summary;
-  final List<MissionListe> missions;
   final List<ServiceItem> services;
 
-  ThemeLoadSuccess copyWith({
-    final ThemeInfo? theme,
-    final ThemeSummary? summary,
-    final List<MissionListe>? missions,
-    final List<ServiceItem>? services,
-  }) => ThemeLoadSuccess(
-    theme: theme ?? this.theme,
-    summary: summary ?? this.summary,
-    missions: missions ?? this.missions,
-    services: services ?? this.services,
-  );
+  ThemeLoadSuccess copyWith({final ThemeInfo? theme, final ThemeSummary? summary, final List<ServiceItem>? services}) =>
+      ThemeLoadSuccess(theme: theme ?? this.theme, summary: summary ?? this.summary, services: services ?? this.services);
 
   @override
-  List<Object> get props => [theme, summary, missions, services];
+  List<Object> get props => [theme, summary, services];
 }
 
 @immutable

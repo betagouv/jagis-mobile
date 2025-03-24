@@ -1,22 +1,16 @@
-import 'package:app/core/presentation/widgets/composants/badge.dart';
-import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
-import 'package:app/features/mission/mission/presentation/pages/mission_page.dart';
 import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
-import 'package:app/features/theme/core/domain/mission_liste.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/service_card.dart';
-import 'package:app/features/theme/presentation/widgets/theme_card.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 final themeRouteObserver = RouteObserver<ModalRoute<dynamic>>();
 
@@ -93,8 +87,6 @@ class _Success extends StatelessWidget {
         ThemeHeader(themeType: themeType, themeSummary: data.summary),
         ActionsRecommandedSection(theme: theme),
         const SizedBox(height: DsfrSpacings.s4w),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Missions(missions: data.missions)),
-        const SizedBox(height: DsfrSpacings.s4w),
         Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services(services: data.services)),
         const SizedBox(height: DsfrSpacings.s4w),
         SafeArea(
@@ -104,78 +96,6 @@ class _Success extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _Missions extends StatelessWidget {
-  const _Missions({required this.missions});
-
-  final List<MissionListe> missions;
-
-  @override
-  Widget build(final context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: DsfrSpacings.s2w,
-    children: [
-      const Text(Localisation.mesMissions, style: DsfrTextStyle.headline4()),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        clipBehavior: Clip.none,
-        child: IntrinsicHeight(
-          child: Row(spacing: DsfrSpacings.s2w, children: missions.map((final e) => _Mission(mission: e)).toList()),
-        ),
-      ),
-    ],
-  );
-}
-
-class _Mission extends StatelessWidget {
-  const _Mission({required this.mission});
-
-  final MissionListe mission;
-
-  @override
-  Widget build(final context) {
-    const width = 160.0;
-    const color = DsfrColors.blueFranceSun113;
-    const success = DsfrColors.success425;
-    final progression = mission.progression / mission.progressionCible;
-
-    return ThemeCard(
-      badge:
-          mission.estNouvelle
-              ? const FnvBadge(label: Localisation.nouveau, backgroundColor: DsfrColors.info425)
-              : progression == 1
-              ? const FnvBadge(label: Localisation.termine, backgroundColor: success)
-              : null,
-      onTap:
-          () async => GoRouter.of(
-            context,
-          ).pushNamed(MissionPage.name, pathParameters: {'mission': mission.code, 'thematique': mission.themeType.routeCode}),
-      child: SizedBox(
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
-              child: FnvImage.network(mission.imageUrl, width: width, height: 130, fit: BoxFit.cover),
-            ),
-            const SizedBox(height: DsfrSpacings.s3v),
-            LinearProgressIndicator(
-              value: progression,
-              backgroundColor: const Color(0xFFDDDDFF),
-              color: progression == 1 ? success : color,
-              minHeight: 7,
-              semanticsLabel: '${mission.progression}/${mission.progressionCible} terminée',
-              borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
-            ),
-            const SizedBox(height: DsfrSpacings.s1w),
-            Text(mission.titre, style: const DsfrTextStyle.bodyLg()),
-          ],
-        ),
-      ),
     );
   }
 }

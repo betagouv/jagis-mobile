@@ -31,21 +31,16 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     emit(const ThemeLoadInProgress());
     final themeType = event.themeType;
     final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
-    final missionsResult = await _themeRepository.getMissions(themeType);
     final servicesResult = await _themeRepository.getServices(themeType);
     themeDataResult.fold(
       (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-      (final theme) => missionsResult.fold(
+      (final theme) => servicesResult.fold(
         (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-        (final missions) => servicesResult.fold(
-          (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-          (final services) => emit(
-            ThemeLoadSuccess(
-              theme: theme,
-              summary: ThemeSummary(commune: theme.communeName, links: _buildThemeLinks(theme)),
-              missions: missions,
-              services: services,
-            ),
+        (final services) => emit(
+          ThemeLoadSuccess(
+            theme: theme,
+            summary: ThemeSummary(commune: theme.communeName, links: _buildThemeLinks(theme)),
+            services: services,
           ),
         ),
       ),

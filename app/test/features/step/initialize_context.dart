@@ -33,7 +33,6 @@ Future<void> initializeContext() async {
   setMissionRecommandedByThematique();
   setAids();
   setPoints();
-  setChallenges();
   setRecommandations();
   setServices();
   setBicycleSimulator();
@@ -85,7 +84,7 @@ void setThemes() =>
               {'code': 'non', 'label': 'Non', 'selected': false},
             ],
             'is_answered': false,
-            'categorie': 'mission',
+            'categorie': 'recommandation',
             'points': 5,
             'type': 'choix_unique',
             'is_NGC': false,
@@ -103,7 +102,7 @@ void setThemes() =>
             {'code': 'non', 'label': 'Non', 'selected': false},
           ],
           'is_answered': false,
-          'categorie': 'mission',
+          'categorie': 'recommandation',
           'points': 5,
           'type': 'choix_unique',
           'is_NGC': false,
@@ -172,7 +171,7 @@ void setEnchainements() {
         {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
       ],
       'is_answered': true,
-      'categorie': 'mission',
+      'categorie': 'recommandation',
       'points': 5,
       'type': 'choix_unique',
       'is_NGC': true,
@@ -186,7 +185,7 @@ void setEnchainements() {
         {'code': 'non', 'label': 'Non', 'selected': false},
       ],
       'is_answered': false,
-      'categorie': 'mission',
+      'categorie': 'recommandation',
       'points': 5,
       'type': 'choix_unique',
       'is_NGC': false,
@@ -299,12 +298,6 @@ void setCommunes() => FeatureContext.instance.dioMock.getM(
     'VILLETTE LES DOLE',
   ],
 );
-
-void setChallenges() =>
-    FeatureContext.instance.dioMock
-      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
-      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[])
-      ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=transport', responseData: <dynamic>[]);
 
 void setRecommandations() =>
     FeatureContext.instance.dioMock

@@ -43,7 +43,6 @@ abstract final class Localisation {
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Bilan environnemental';
   static const bonjour = 'Bonjour,\n';
-  static const bravo = 'BRAVO !';
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
@@ -164,14 +163,11 @@ abstract final class Localisation {
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
-  static const mesMissions = 'Mes missions';
   static const mesServices = 'Mes services';
   static const mettreAJour = 'Mettre à jour';
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
-  static const missionSubTitle = 'Des solutions **adaptées à votre situation** et les clés pour comprendre';
-  static const missionTitle = 'Recommandés **pour vous**';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
   static const monIdentite = 'Mon identité';
@@ -194,7 +190,6 @@ abstract final class Localisation {
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
-  static const nouveau = 'NOUVEAU !';
   static const obligatoire = 'obligatoire';
   static const optionsAvancees = 'Options avancées';
   static const onSeLanceLeDefi = 'On se lance le défi ?';
@@ -268,7 +263,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
-  static const termine = 'TERMINÉ !';
   static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
@@ -339,6 +333,4 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String tempsDePreparation(final int value) => 'Temps de préparation : $value min';
 
   static String veloLabel(final String text) => '$text : ';
-
-  static String vousAvezTermineLaMission(final String text) => 'Vous avez terminé la mission\n“$text”';
 }

@@ -39,6 +39,7 @@ class _AppSetupState extends State<AppSetup> {
 
   // HACK(lsaudon): Pour que la FutureBuilder soit appelée une seule fois
   late final _initializeDependenciesFuture = _initializeApp();
+  final _messageBus = MessageBus();
 
   Future<void> _initializeApp() async {
     _packageInfo = await PackageInfo.fromPlatform();
@@ -91,6 +92,7 @@ class _AppSetupState extends State<AppSetup> {
   Future<void> dispose() async {
     _tracker.dispose();
     await _authenticationService.dispose();
+    await _messageBus.close();
     await CrashReporting.dispose();
     super.dispose();
   }
@@ -121,11 +123,9 @@ class _AppSetupState extends State<AppSetup> {
             ..addSentry();
       final client = DioHttpClient(dio: dio, authenticationService: _authenticationService);
 
-      final messageBus = MessageBus();
-
       return App(
         tracker: _tracker,
-        messageBus: messageBus,
+        messageBus: _messageBus,
         dioHttpClient: client,
         packageInfo: _packageInfo,
         notificationService: _notificationService,

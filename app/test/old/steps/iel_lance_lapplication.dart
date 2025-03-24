@@ -18,7 +18,6 @@ import '../../environmental_performance/summary/environmental_performance_data.d
 import '../../features/helper/notification_service_fake.dart';
 import '../../features/helper/package_info_fake.dart';
 import '../../features/helper/timed_delay_fake.dart';
-import '../../mission/mission_test.dart';
 import '../api/constants.dart';
 import '../mocks/flutter_secure_storage_fake.dart';
 import 'scenario_context.dart';
@@ -53,7 +52,6 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[])
     ..getM(Endpoints.gamification, responseData: {'points': 650})
-    ..getM(Endpoints.missionsRecommandees, responseData: missionThematiques)
     ..getM(
       Endpoints.aids,
       responseData: {

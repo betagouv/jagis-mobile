@@ -13,8 +13,6 @@ import 'package:app/features/environmental_performance/summary/presentation/bloc
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
-import 'package:app/features/mission/home/infrastructure/mission_home_repository.dart';
-import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/recommandations/presentation/bloc/recommandations_bloc.dart';
 import 'package:app/features/theme_hub/infrastructure/theme_hub_repository.dart';
@@ -31,14 +29,12 @@ import '../../features/helper/notification_service_fake.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
 import '../../helpers/pump_page.dart';
-import '../../mission/mission_test.dart';
 import '../../old/mocks/gamification_bloc_fake.dart';
 import '../summary/environmental_performance_data.dart';
 
 Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
   dio
     ..getM(Endpoints.utilisateur, responseData: {'prenom': 'Lucas', 'is_onboarding_done': true})
-    ..getM(Endpoints.missionsRecommandees, responseData: missionThematiques)
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
     ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]})
     ..getM(
@@ -75,7 +71,6 @@ Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
       ),
       BlocProvider<GamificationBloc>(create: (final context) => GamificationBlocFake()),
       BlocProvider(create: (final context) => UserBloc(repository: UserRepository(client: client))),
-      BlocProvider(create: (final context) => MissionHomeBloc(repository: MissionHomeRepository(client: client))),
       BlocProvider(
         create:
             (final context) => EnvironmentalPerformanceBloc(

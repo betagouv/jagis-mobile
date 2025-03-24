@@ -24,10 +24,6 @@ import 'package:app/features/bibliotheque/infrastructure/bibliotheque_repository
 import 'package:app/features/bibliotheque/presentation/bloc/bibliotheque_bloc.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
-import 'package:app/features/challenges/detail/infrastructure/challenge_repository.dart';
-import 'package:app/features/challenges/list/infrastructure/challenge_list_repository.dart';
-import 'package:app/features/challenges/section/infrastructure/challenges_repository.dart';
-import 'package:app/features/challenges/section/presentation/bloc/challenges_bloc.dart';
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:app/features/environmental_performance/action/infrastructure/action_performance_repository.dart';
 import 'package:app/features/environmental_performance/questions/infrastructure/environment_performance_question_repository.dart';
@@ -41,7 +37,6 @@ import 'package:app/features/gamification/presentation/bloc/gamification_event.d
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
-import 'package:app/features/mission/challenges/infrastructure/mission_challenges_repository.dart';
 import 'package:app/features/mission/home/infrastructure/mission_home_repository.dart';
 import 'package:app/features/mission/home/presentation/bloc/mission_home_bloc.dart';
 import 'package:app/features/mission/mission/infrastructure/mission_repository.dart';
@@ -200,12 +195,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => RecipeRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ArticlesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => QuizzesRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => ChallengeListRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(
-                create: (final context) => ChallengeRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
-              ),
               RepositoryProvider(create: (final context) => MissionRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => MissionChallengesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
                 create:
                     (final context) =>
@@ -225,9 +215,6 @@ class _AppState extends State<App> {
                 BlocProvider(create: (final context) => AidsHomeBloc(aidsRepository: aidsRepository)),
                 BlocProvider(
                   create: (final context) => MissionHomeBloc(repository: MissionHomeRepository(client: widget.dioHttpClient)),
-                ),
-                BlocProvider(
-                  create: (final context) => ChallengesBloc(repository: ChallengesRepository(client: widget.dioHttpClient)),
                 ),
                 BlocProvider(
                   create:

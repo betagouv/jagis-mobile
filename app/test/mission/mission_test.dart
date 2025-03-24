@@ -4,8 +4,6 @@ import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
 import 'package:app/features/aids/core/presentation/bloc/aids_home_bloc.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
-import 'package:app/features/challenges/section/infrastructure/challenges_repository.dart';
-import 'package:app/features/challenges/section/presentation/bloc/challenges_bloc.dart';
 import 'package:app/features/environmental_performance/questions/infrastructure/environment_performance_question_repository.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/summary/application/fetch_environmental_performance.dart';
@@ -95,7 +93,6 @@ Future<void> pumpForMissionPage(final WidgetTester tester, {required final DioMo
                 EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(client: client)),
       ),
       BlocProvider(create: (final context) => MissionHomeBloc(repository: MissionHomeRepository(client: client))),
-      BlocProvider(create: (final context) => ChallengesBloc(repository: ChallengesRepository(client: client))),
     ],
     router: GoRouter(
       routes: [

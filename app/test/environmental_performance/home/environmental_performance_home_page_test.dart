@@ -3,8 +3,6 @@ import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
 import 'package:app/features/aids/core/presentation/bloc/aids_home_bloc.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
-import 'package:app/features/challenges/section/infrastructure/challenges_repository.dart';
-import 'package:app/features/challenges/section/presentation/bloc/challenges_bloc.dart';
 import 'package:app/features/environmental_performance/questions/infrastructure/environment_performance_question_repository.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
@@ -76,7 +74,6 @@ Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
         create: (final context) => RecommandationsBloc(recommandationsRepository: RecommandationsRepository(client: client)),
       ),
       BlocProvider<GamificationBloc>(create: (final context) => GamificationBlocFake()),
-      BlocProvider<ChallengesBloc>(create: (final context) => ChallengesBloc(repository: ChallengesRepository(client: client))),
       BlocProvider(create: (final context) => UserBloc(repository: UserRepository(client: client))),
       BlocProvider(create: (final context) => MissionHomeBloc(repository: MissionHomeRepository(client: client))),
       BlocProvider(

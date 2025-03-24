@@ -2,7 +2,6 @@ import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/progress_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/mission/challenges/presentation/pages/mission_challenges_page.dart';
 import 'package:app/features/mission/mission/domain/mission_article.dart';
 import 'package:app/features/mission/mission/domain/mission_code.dart';
 import 'package:app/features/mission/mission/domain/mission_kyc.dart';
@@ -127,7 +126,7 @@ class _SuccessState extends State<_Success> {
                             final MissionQuiz a => MissionQuizPage(value: a),
                             _ => throw UnimplementedError(),
                           },
-                          MissionStepChallenges _ => MissionChallengesPage(code: widget.state.code),
+                          MissionStepChallenges _ => const SizedBox(),
                           final MissionStepFin s => MissionFinPage(step: s),
                         }
                         : const SizedBox(),

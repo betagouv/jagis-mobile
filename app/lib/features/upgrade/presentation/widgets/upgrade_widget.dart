@@ -22,7 +22,7 @@ class UpgradeWidget extends StatelessWidget {
         return;
       }
 
-      await DsfrModal.showModal<void>(
+      await DsfrModal.showModalBottom<void>(
         context: navigatorKey.currentContext!,
         builder: (final context) => const _UpgradeModal(),
         name: 'upgrade-modal',

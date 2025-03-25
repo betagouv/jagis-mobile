@@ -51,7 +51,7 @@ class SupprimerCompte extends StatelessWidget {
           size: DsfrButtonSize.lg,
           onPressed: () async {
             final bloc = SupprimerCompteBloc(authentificationRepository: context.read(), profilRepository: context.read());
-            final result = await DsfrModal.showModal<bool>(
+            final result = await DsfrModal.showModalBottom<bool>(
               context: context,
               builder: (final context) => const SupprimerCompteModal(),
               name: 'supprimer-compte',

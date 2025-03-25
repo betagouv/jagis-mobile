@@ -9,15 +9,20 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off"
   },
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.dcm.fixAll": "always"
-  },
   "dcm.showUnusedCode": true,
   "dcm.showUnusedFiles": true,
   "dcm.showNewVersionUpdate": true,
   "dart.flutterTestAdditionalArgs": [
     "--test-randomize-ordering-seed",
     "random"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.dcm.fixAll": "always"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.feature": "${capture}_test.dart"
+  }
 }

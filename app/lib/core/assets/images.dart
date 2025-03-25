@@ -32,4 +32,7 @@ abstract final class AssetImages {
   static const logement = 'assets/images/logement.svg';
   static const transport = 'assets/images/transport.svg';
   static const flags = 'assets/images/flags.svg';
+  static const resetPointsIllustrations1 = 'assets/images/reset_points_1.webp';
+  static const resetPointsIllustrations2 = 'assets/images/reset_points_2.webp';
+  static const badgePionner = 'assets/images/badge_pioneer.webp';
 }

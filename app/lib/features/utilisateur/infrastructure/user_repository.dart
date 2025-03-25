@@ -18,6 +18,12 @@ class UserRepository {
 
     final json = response.data as Map<String, dynamic>;
 
-    return Right(User(pseudonym: json['pseudo'] as String? ?? '', isIntegrationCompleted: json['is_onboarding_done'] as bool));
+    return Right(
+      User(
+        pseudonym: json['pseudo'] as String? ?? '',
+        isIntegrationCompleted: json['is_onboarding_done'] as bool?,
+        shouldShowResetPopup: json['popup_reset_est_vue'] as bool?,
+      ),
+    );
   }
 }

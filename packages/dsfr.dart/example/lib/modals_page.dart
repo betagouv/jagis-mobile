@@ -16,7 +16,7 @@ class ModalsPage extends StatelessWidget {
         variant: DsfrButtonVariant.primary,
         size: DsfrButtonSize.lg,
         onPressed: () async {
-          await DsfrModal.showModal<void>(
+          await DsfrModal.showModalBottom<void>(
             context: context,
             builder:
                 (final context) => Column(

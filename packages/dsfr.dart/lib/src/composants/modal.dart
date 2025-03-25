@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class DsfrModal extends StatelessWidget {
   const DsfrModal({super.key, required this.isDismissible, required this.child});
 
-  static Future<T?> showModal<T>({
+  static Future<T?> showModalBottom<T>({
     required final BuildContext context,
     required final WidgetBuilder builder,
     required final String name,
@@ -21,6 +21,23 @@ class DsfrModal extends StatelessWidget {
     barrierColor: DsfrColors.grey50.withAlpha(163),
     isScrollControlled: true,
     isDismissible: isDismissible,
+    routeSettings: RouteSettings(name: name),
+  );
+
+  static Future<T?> showFullModal<T>({
+    required final BuildContext context,
+    required final WidgetBuilder builder,
+    required final String name,
+    final bool isDismissible = true,
+  }) async => showDialog(
+    context: context,
+    builder:
+        (final context) => Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          child: DsfrModal(isDismissible: isDismissible, child: builder(context)),
+        ),
+    barrierDismissible: isDismissible,
+    barrierColor: DsfrColors.grey50.withAlpha(163),
     routeSettings: RouteSettings(name: name),
   );
 
@@ -38,10 +55,10 @@ class DsfrModal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (isDismissible) ...[
-              Row(
-                children: [
-                  const Spacer(),
-                  DsfrButton(
+              Align(
+                alignment: Alignment.topRight,
+                child: FittedBox(
+                  child: DsfrButton(
                     label: 'Fermer',
                     icon: DsfrIcons.systemCloseLine,
                     iconLocation: DsfrButtonIconLocation.right,
@@ -49,11 +66,11 @@ class DsfrModal extends StatelessWidget {
                     size: DsfrButtonSize.sm,
                     onPressed: () => Navigator.of(context).pop(),
                   ),
-                ],
+                ),
               ),
               const SizedBox(height: DsfrSpacings.s1w),
             ],
-            child,
+            Flexible(child: child),
           ],
         ),
       ),

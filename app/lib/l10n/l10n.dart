@@ -125,6 +125,11 @@ abstract final class Localisation {
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
   static const impactCo2Url = 'https://impactco2.fr/';
   static const ingredients = 'Ingrédients';
+  static const ilYADuNouveauSurApp = 'Il y a du nouveau sur J’agis !';
+  static const ilYADuNouveauSurAppDescription = '''
+Nous avons écouté vos retours et concocté une toute **nouvelle version** du service.
+
+**Personnalisez votre expérience** en quelques questions et obtenez des **idées d’actions** concrètes, avec tous les **outils**, **adresses** et **aides financières** pour y arriver !''';
   static const jaccepte = 'J’accepte ';
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
@@ -151,6 +156,11 @@ abstract final class Localisation {
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
   static const menu = 'Menu';
+  static const merciPourVotreSoutien = 'Merci pour votre soutien !';
+  static const merciPourVotreSoutienDescription = '''
+Vous avez fait partie des **premiers utilisateurs** à tester ce nouveau service, à nous faire vos retours, et nous permettre de nous améliorer.
+
+Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour commencer cette **nouvelle aventure…**''';
   static const mesActionsRecommandees = 'Mes actions recommandées';
   static const mesActionsRecommandeesDescription =
       'Afin d’obtenir vos actions personnalisées, pouvez-vous nous en dire un peu plus sur vous ?';
@@ -209,6 +219,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const pageConnexionTitre = 'Accédez à mon compte J’agis';
   static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';
   static const passerLaQuestion = 'Passer la question';
+  static const pionnier = 'Pionnier';
+  static const pionnierDescription = 'Présent depuis les premiers jours';
   static const plusDe150m2 = 'Plus de 150 m²';
   static const plusieursReponsesPossibles = 'Plusieurs réponses possibles';
   static const point = '.';
@@ -241,6 +253,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommandationsTitre = 'Recommandé, pour vous';
+  static const recolter = 'Récolter';
   static const refaire = 'Refaire';
   static const renvoyerCode = 'Renvoyer le code';
   static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';

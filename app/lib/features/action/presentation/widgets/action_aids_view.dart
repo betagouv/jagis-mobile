@@ -1,4 +1,4 @@
-import 'package:app/core/helpers/width.dart';
+import 'package:app/core/helpers/size.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
 import 'package:app/l10n/l10n.dart';

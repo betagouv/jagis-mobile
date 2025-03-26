@@ -13,7 +13,7 @@ class ActionWhySectionView extends StatelessWidget {
     final (heading: whyFirstHeading, content: whyContent) = parseFirstHeadingInMardown(why);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+      padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Column(
         spacing: DsfrSpacings.s1w,
         children: [

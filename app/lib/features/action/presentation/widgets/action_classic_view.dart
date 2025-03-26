@@ -13,19 +13,15 @@ class ActionClassicView extends StatelessWidget {
 
   @override
   Widget build(final context) => Column(
+    spacing: DsfrSpacings.s4w,
     children: [
       ActionWhySectionView(why: action.why),
       if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
         LvaoHorizontalList(category: action.lvaoService.category),
       ],
-      if (action.hasRecipesService) ...[
-        const SizedBox(height: DsfrSpacings.s4w),
-        RecipeHorizontalList(category: action.recipesService.category),
-      ],
-      const SizedBox(height: DsfrSpacings.s4w),
+      if (action.hasRecipesService) RecipeHorizontalList(category: action.recipesService.category),
       Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: ActionMarkdown(data: action.how)),
-      const SizedBox(height: DsfrSpacings.s2w),
     ],
   );
 }

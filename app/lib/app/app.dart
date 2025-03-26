@@ -35,6 +35,7 @@ import 'package:app/features/gamification/infrastructure/gamification_repository
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
+import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
@@ -153,10 +154,10 @@ class _AppState extends State<App> {
     widget.dioHttpClient.add(UpgradeInterceptor(upgradeBloc));
 
     final aidsRepository = AidsRepository(client: widget.dioHttpClient);
-
     final communesRepository = CommunesRepository(client: widget.dioHttpClient);
-
     final profilRepository = ProfilRepository(client: widget.dioHttpClient);
+    final actionsRepository = ActionsRepository(client: widget.dioHttpClient);
+    final environmentalPerformanceSummaryRepository = EnvironmentalPerformanceSummaryRepository(client: widget.dioHttpClient);
 
     return InheritedGoRouter(
       goRouter: _goRouter,
@@ -187,7 +188,7 @@ class _AppState extends State<App> {
                     ),
               ),
               RepositoryProvider(create: (final context) => ThemeRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => actionsRepository),
               RepositoryProvider(create: (final context) => ActionRepository(widget.dioHttpClient, widget.messageBus)),
               RepositoryProvider(create: (final context) => LvaoRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionRecipesRepository(client: widget.dioHttpClient)),
@@ -201,10 +202,11 @@ class _AppState extends State<App> {
                         NotificationRepository(client: widget.dioHttpClient, notificationService: widget.notificationService),
               ),
               RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => actionsRepository),
               RepositoryProvider(create: (final context) => ActionPerformanceRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ResetRepository(widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => environmentalPerformanceSummaryRepository),
             ],
             child: MultiBlocProvider(
               providers: [
@@ -251,9 +253,7 @@ class _AppState extends State<App> {
                 BlocProvider(
                   create:
                       (final context) => EnvironmentalPerformanceBloc(
-                        useCase: FetchEnvironmentalPerformance(
-                          EnvironmentalPerformanceSummaryRepository(client: widget.dioHttpClient),
-                        ),
+                        useCase: FetchEnvironmentalPerformance(environmentalPerformanceSummaryRepository),
                       ),
                 ),
                 BlocProvider(

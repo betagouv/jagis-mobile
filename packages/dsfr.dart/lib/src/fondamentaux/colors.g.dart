@@ -413,8 +413,8 @@ class DsfrColors {
   static const backgroundContrastYellowTournesol = Color(0xFFFEECC2);
   static const textActionHighYellowMoutarde = Color(0xFF695240);
   static const backgroundContrastYellowMoutarde = Color(0xFFFEEBD0);
-  static const backgroundContrastGrey = Color(0xFFEEEEEE);
-  static const textDefaultGrey = Color(0xFF3A3A3A);
+  static const backgroundContrastGrey = grey950;
+  static const textDefaultGrey = grey200;
   static const textActionHighGreenBourgeon = greenBourgeonSun425;
   static const backgroundContrastGreenBourgeon = greenBourgeon950;
   static const textDefaultSuccess = success425;

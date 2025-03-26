@@ -146,7 +146,7 @@ class _GetStarted extends StatelessWidget {
                   const Flexible(child: Text(Localisation.commencer)),
                   const SizedBox(width: DsfrSpacings.s1w),
                   FnvSvg.asset(AssetImages.leaf),
-                  const Text('+90'),
+                  const Text('+25'),
                 ],
               ),
             ),

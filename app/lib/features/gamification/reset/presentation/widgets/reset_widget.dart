@@ -1,5 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
@@ -31,6 +32,7 @@ class _ResetModalState extends State<ResetModal> {
             onResetPressed: () async {
               await context.read<ResetRepository>().reset();
               if (context.mounted) {
+                context.read<MessageBus>().publish(resetPointsTopic);
                 Navigator.of(context).pop();
               }
             },

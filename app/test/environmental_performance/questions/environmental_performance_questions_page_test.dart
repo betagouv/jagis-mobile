@@ -1,6 +1,5 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
-import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/features/environmental_performance/questions/infrastructure/environment_performance_question_repository.dart';
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
@@ -27,7 +26,7 @@ import 'environmental_performance_questions_data.dart';
 Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, {required final Dio dio}) async {
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
   final environmentalPerformanceRepository = EnvironmentalPerformanceSummaryRepository(client: client);
-  final questionRepository = QuestionRepository(client: client, messageBus: MessageBus());
+  final questionRepository = QuestionRepository(client);
   await pumpPage(
     tester: tester,
     repositoryProviders: [

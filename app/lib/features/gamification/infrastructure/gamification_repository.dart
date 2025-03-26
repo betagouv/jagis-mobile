@@ -6,13 +6,12 @@ import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/features/gamification/domain/gamification.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:rxdart/subjects.dart';
+import 'package:rxdart/rxdart.dart';
 
 class GamificationRepository {
   GamificationRepository({required final DioHttpClient client, required final MessageBus messageBus}) : _client = client {
-    _subscription = messageBus.subscribe(kycTopic).listen((final event) async {
-      await refresh();
-    });
+    final topics = [resetPointsTopic, startFirstTimeQuestionsToPersonalizeActionsTopic, actionDoneTopic];
+    _subscription = MergeStream(topics.map(messageBus.subscribe)).listen((final event) async => refresh());
   }
 
   final DioHttpClient _client;

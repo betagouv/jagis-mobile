@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/size.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/services/recipes/core/presentation/widgets/estimaded_timed_info.dart';
@@ -27,29 +28,36 @@ class RecipeCard extends StatelessWidget {
   Widget build(final context) => FnvCard(
     onTap: () async => context.pushNamed(RecipePage.name, pathParameters: {'id': id}),
     child: SizedBox(
-      width: 175,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: DsfrSpacings.s1w,
-          top: DsfrSpacings.s1w,
-          right: DsfrSpacings.s1w,
-          bottom: DsfrSpacings.s2w,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DecoratedBox(
+      width: screenWidth(context, percentage: 0.65),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 150,
+            child: DecoratedBox(
               decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w))),
-              child: FnvImage.network(imageUrl),
+              child: FnvImage.network(imageUrl, fit: BoxFit.fitWidth),
             ),
-            Text(title, style: const DsfrTextStyle.bodyMdBold(), maxLines: 3),
-            const SizedBox(height: DsfrSpacings.s1w),
-            Row(
-              spacing: DsfrSpacings.s1v,
-              children: [Flexible(child: RecipeDifficulty(value: difficulty)), EstimadedTimedInfo(text: '$preparationTime min')],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title, style: const DsfrTextStyle.bodyLgBold(), maxLines: 3),
+                const SizedBox(height: DsfrSpacings.s1w),
+                Row(
+                  spacing: DsfrSpacings.s1w,
+                  children: [
+                    Flexible(child: RecipeDifficulty(value: difficulty)),
+                    EstimadedTimedInfo(text: '$preparationTime min'),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ),
   );

@@ -13,8 +13,9 @@ class EstimadedTimedInfo extends StatelessWidget {
     return Text.rich(
       TextSpan(
         children: [
-          const WidgetSpan(child: Icon(DsfrIcons.systemTimerLine, size: 15, color: color)),
-          TextSpan(text: text, style: const DsfrTextStyle.bodyXsMedium(color: color)),
+          const WidgetSpan(child: Icon(DsfrIcons.systemTimerLine, size: 16, color: color)),
+          const WidgetSpan(child: SizedBox(width: DsfrSpacings.s0v5)),
+          TextSpan(text: text, style: const DsfrTextStyle.bodySmMedium(color: color)),
         ],
       ),
     );

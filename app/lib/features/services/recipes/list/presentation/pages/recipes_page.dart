@@ -71,7 +71,7 @@ class _Success extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
       itemBuilder: (final context, final index) => items[index],
-      separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s4w),
+      separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s3w),
       itemCount: items.length,
     );
   }

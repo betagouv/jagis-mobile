@@ -1,5 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
@@ -73,7 +74,12 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
     }
 
     return _isExpanded
-        ? _GetStarted(onPressed: () => setState(() => _isExpanded = false))
+        ? _GetStarted(
+          onPressed: () {
+            context.read<MessageBus>().publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
+            setState(() => _isExpanded = false);
+          },
+        )
         : ColoredBox(
           color: Colors.white,
           child: Padding(

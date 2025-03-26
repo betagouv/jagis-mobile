@@ -1,6 +1,8 @@
 import 'dart:async';
 
-const kycTopic = 'kyc_completed';
+const resetPointsTopic = 'reset_points';
+const startFirstTimeQuestionsToPersonalizeActionsTopic = 'start_first_time_questions_to_personalize_actions';
+const actionDoneTopic = 'action_done';
 
 class MessageBus {
   MessageBus({final bool sync = false}) : _controller = StreamController<String>.broadcast(sync: sync);

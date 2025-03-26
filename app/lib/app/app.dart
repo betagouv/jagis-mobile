@@ -139,13 +139,9 @@ class _AppState extends State<App> {
     final upgradeBloc = UpgradeBloc();
     widget.dioHttpClient.add(UpgradeInterceptor(upgradeBloc));
 
-    final gamificationRepository = GamificationRepository(client: widget.dioHttpClient, messageBus: widget.messageBus);
-
     final aidsRepository = AidsRepository(client: widget.dioHttpClient);
 
     final communesRepository = CommunesRepository(client: widget.dioHttpClient);
-
-    final actionRepository = ActionRepository(client: widget.dioHttpClient);
 
     final profilRepository = ProfilRepository(client: widget.dioHttpClient);
 
@@ -157,17 +153,15 @@ class _AppState extends State<App> {
           child: MultiRepositoryProvider(
             providers: [
               RepositoryProvider.value(value: widget.timedDelay),
+              RepositoryProvider.value(value: widget.messageBus),
               RepositoryProvider.value(value: widget.dioHttpClient),
               RepositoryProvider.value(value: widget.notificationService),
               RepositoryProvider.value(value: widget.tracker),
               RepositoryProvider.value(value: communesRepository),
-              RepositoryProvider.value(value: gamificationRepository),
               RepositoryProvider.value(value: profilRepository),
               RepositoryProvider(create: (final context) => QuizRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => aidsRepository),
-              RepositoryProvider(
-                create: (final context) => QuestionRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
-              ),
+              RepositoryProvider(create: (final context) => QuestionRepository(widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => KnowYourCustomersRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(client: widget.dioHttpClient)),
               RepositoryProvider(
@@ -179,7 +173,7 @@ class _AppState extends State<App> {
               ),
               RepositoryProvider(create: (final context) => ThemeRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionsRepository(client: widget.dioHttpClient)),
-              RepositoryProvider(create: (final context) => actionRepository),
+              RepositoryProvider(create: (final context) => ActionRepository(widget.dioHttpClient, widget.messageBus)),
               RepositoryProvider(create: (final context) => LvaoRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ActionRecipesRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => RecipesRepository(client: widget.dioHttpClient)),
@@ -226,9 +220,9 @@ class _AppState extends State<App> {
                 BlocProvider(
                   create:
                       (final context) => GamificationBloc(
-                        repository: gamificationRepository,
-                        authenticationService: widget.authenticationService,
-                      )..add(const GamificationAbonnementDemande()),
+                        GamificationRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
+                        widget.authenticationService,
+                      )..add(const GamificationSubscriptionRequested()),
                 ),
                 BlocProvider(
                   create: (final context) => BibliothequeBloc(repository: BibliothequeRepository(client: widget.dioHttpClient)),

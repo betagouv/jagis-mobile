@@ -1,18 +1,14 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
-import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class QuestionRepository {
-  const QuestionRepository({required final DioHttpClient client, required final MessageBus messageBus})
-    : _client = client,
-      _messageBus = messageBus;
+  const QuestionRepository(this._client);
 
   final DioHttpClient _client;
-  final MessageBus _messageBus;
 
   Future<Either<Exception, Question>> fetchQuestion({required final String id}) async {
     final response = await _client.get(Endpoints.question(id));
@@ -38,8 +34,6 @@ class QuestionRepository {
     final response = await _client.put(Endpoints.question(question.code.value), data: data);
 
     if (isResponseSuccessful(response.statusCode)) {
-      _messageBus.publish(kycTopic);
-
       return const Right(unit);
     }
 

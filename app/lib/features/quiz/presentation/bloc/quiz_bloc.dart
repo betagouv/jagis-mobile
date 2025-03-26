@@ -1,4 +1,3 @@
-import 'package:app/features/gamification/infrastructure/gamification_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_event.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_state.dart';
@@ -6,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  QuizBloc({required final QuizRepository quizRepository, required final GamificationRepository gamificationRepository})
-    : super(const QuizState.empty()) {
+  QuizBloc({required final QuizRepository quizRepository}) : super(const QuizState.empty()) {
     on<QuizRecuperationDemandee>((final event, final emit) async {
       final result = await quizRepository.recupererQuiz(event.id);
       if (result.isRight()) {
@@ -19,7 +17,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<QuizValidationDemandee>((final event, final emit) async {
       final estExacte = state.quiz.responses.any((final e) => e.response == state.reponse.getOrElse(() => '') && e.exact);
       await quizRepository.submitResponse(id: state.quiz.id, isCorrect: estExacte);
-      await gamificationRepository.refresh();
       emit(state.copyWith(estExacte: Some(estExacte)));
     });
   }

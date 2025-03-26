@@ -11,8 +11,8 @@ sealed class GamificationEvent extends Equatable {
 }
 
 @immutable
-final class GamificationAuthentificationAChange extends GamificationEvent {
-  const GamificationAuthentificationAChange(this.status);
+final class GamificationAuthenticationChanged extends GamificationEvent {
+  const GamificationAuthenticationChanged(this.status);
 
   final AuthenticationStatus status;
 
@@ -21,6 +21,6 @@ final class GamificationAuthentificationAChange extends GamificationEvent {
 }
 
 @immutable
-final class GamificationAbonnementDemande extends GamificationEvent {
-  const GamificationAbonnementDemande();
+final class GamificationSubscriptionRequested extends GamificationEvent {
+  const GamificationSubscriptionRequested();
 }

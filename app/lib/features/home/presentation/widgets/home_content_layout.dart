@@ -1,7 +1,4 @@
 import 'package:app/core/helpers/size.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/aids/core/presentation/widgets/aids_section.dart';
-import 'package:app/features/environmental_performance/home/presentation/widgets/environmental_performance_section.dart';
 import 'package:app/features/home/home_dashboard/widget/home_dashboard.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/survey/survey_section.dart';
@@ -17,6 +14,7 @@ class HomeContentLayout extends StatelessWidget {
   @override
   Widget build(final context) {
     const spacing = SizedBox(height: DsfrSpacings.s4w);
+    const spacingSmall = SizedBox(height: DsfrSpacings.s2w);
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -25,16 +23,27 @@ class HomeContentLayout extends StatelessWidget {
         }
         await GoRouter.of(context).pushNamed(HomePage.name);
       },
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: const [
-          HomeDashboard(),
-          // ThemeHubSection(),
-          spacing,
-          _WhichDomainButtonsSection(),
-          spacing,
-          SurveySection(),
-        ],
+      child: DecoratedBox(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const [
+            HomeDashboard(),
+            // ThemeHubSection(),
+            spacingSmall,
+            _WhichDomainButtonsSection(),
+            spacing,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [Text('Quoi de neuf ?', style: DsfrTextStyle.headline2())],
+              ),
+            ),
+            spacing,
+            SurveySection(),
+          ],
+        ),
       ),
     );
   }

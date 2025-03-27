@@ -12,9 +12,24 @@ class RecommandationsRepository {
   final DioHttpClient _client;
 
   Future<Either<Exception, List<Recommandation>>> recuperer(final ThemeType thematique) async {
-    final recommandationsParThematique = Endpoints.recommandationsParThematique(thematique.name);
+    final response = await _client.get(Endpoints.recommandationsParThematique(thematique.name));
 
-    final response = await _client.get(recommandationsParThematique);
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception('Erreur lors de la récupération des recommandations'));
+    }
+
+    final json = response.data as List<dynamic>;
+
+    return Right(json.map((final e) => RecommandationMapper.fromJson(e as Map<String, dynamic>)).toList());
+  }
+
+  Future<Either<Exception, List<Recommandation>>> recupererV3({final int? maxItem, final TypeDuContenu? type}) async {
+    final parameters = <String, String>{
+      if (maxItem != null) 'max_item': maxItem.toString(),
+      if (type != null) 'type': RecommandationMapper.mapContentTypeToJson(type),
+    };
+    final uri = Uri(path: Endpoints.recommandationsV3, queryParameters: parameters.isNotEmpty ? parameters : null);
+    final response = await _client.get(uri.toString());
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception('Erreur lors de la récupération des recommandations'));

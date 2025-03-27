@@ -36,7 +36,7 @@ import 'package:app/features/gamification/presentation/bloc/gamification_bloc.da
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
 import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
-import 'package:app/features/home/home_dashboard/infrastucture/home_dashboard_repository.dart';
+import 'package:app/features/home/home_dashboard/infrastructure/home_dashboard_repository.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
@@ -159,6 +159,7 @@ class _AppState extends State<App> {
     final profilRepository = ProfilRepository(client: widget.dioHttpClient);
     final actionsRepository = ActionsRepository(client: widget.dioHttpClient);
     final environmentalPerformanceSummaryRepository = EnvironmentalPerformanceSummaryRepository(client: widget.dioHttpClient);
+    final recommandationsRepository = RecommandationsRepository(client: widget.dioHttpClient);
 
     return InheritedGoRouter(
       goRouter: _goRouter,
@@ -209,6 +210,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => ResetRepository(widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => environmentalPerformanceSummaryRepository),
               RepositoryProvider(create: (final context) => HomeDashboardRepository(client: widget.dioHttpClient)),
+              RepositoryProvider(create: (final context) => recommandationsRepository),
             ],
             child: MultiBlocProvider(
               providers: [
@@ -232,9 +234,7 @@ class _AppState extends State<App> {
                       ),
                 ),
                 BlocProvider(
-                  create:
-                      (final context) =>
-                          RecommandationsBloc(recommandationsRepository: RecommandationsRepository(client: widget.dioHttpClient)),
+                  create: (final context) => RecommandationsBloc(recommandationsRepository: recommandationsRepository),
                 ),
                 BlocProvider(
                   create:

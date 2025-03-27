@@ -8,6 +8,7 @@ class SupprimerCompteModal extends StatelessWidget {
 
   @override
   Widget build(final context) => Column(
+    mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       const Text(Localisation.supprimerVotreCompteConfirmation, style: DsfrTextStyle.headline4()),

@@ -4,19 +4,14 @@ import 'package:app/features/home/home_dashboard/infrastructure/home_dashboard_r
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
-  HomeDashboardBloc({required final HomeDashboardRepository repository}) : super(const HomeDashboardInitial()) {
+  HomeDashboardBloc({required final HomeDashboardRepository repository}) : super(const HomeDashboardState.init()) {
     on<HomeDashboardLoadRequested>((final event, final emit) async {
-      emit(const HomeDashboardLoadInProgress());
+      emit(const HomeDashboardState.loading());
 
       final result = await repository.fetch();
 
-      result.fold((final l) => emit(HomeDashboardLoadFailure(errorMessage: l.toString())), (final r) {
-        emit(
-          HomeDashboardLoadSuccess(
-            nbActionsDone: r.nbActionsDoneUser,
-            bilanCarbonePercentageCompletion: r.environmentalImpactPercentageCompletion,
-          ),
-        );
+      result.fold((final l) => emit(HomeDashboardState.failure(l.toString())), (final r) {
+        emit(HomeDashboardState.success(r));
       });
     });
   }

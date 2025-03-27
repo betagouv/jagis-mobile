@@ -1,53 +1,20 @@
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_event.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_state.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeDashboard extends StatelessWidget {
-  const HomeDashboard({super.key});
-
-  @override
-  Widget build(final context) => BlocProvider(
-    create: (final context) => HomeDashboardBloc(repository: context.read())..add(const HomeDashboardLoadRequested()),
-    child: const _View(),
-  );
-}
-
-class _View extends StatelessWidget {
-  const _View();
-
-  @override
-  Widget build(final BuildContext context) => BlocBuilder<HomeDashboardBloc, HomeDashboardState>(
-    builder:
-        (final context, final state) => switch (state) {
-          HomeDashboardInitial() ||
-          HomeDashboardLoadInProgress() => const _Success(nbActionsDone: 0, bilanCarbonePercentageCompletion: 0),
-          HomeDashboardLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-          HomeDashboardLoadSuccess(:final nbActionsDone, :final bilanCarbonePercentageCompletion) => _AnimatedSuccess(
-            nbActionsDone: nbActionsDone,
-            bilanCarbonePercentageCompletion: bilanCarbonePercentageCompletion,
-          ),
-        },
-  );
-}
-
-// Animated success class wich display the number of actions done and the percentage of the environmental performance completion from 0 to the provided values once the data is loaded.
-class _AnimatedSuccess extends StatefulWidget {
-  const _AnimatedSuccess({required this.nbActionsDone, required this.bilanCarbonePercentageCompletion});
+class HomeDashboardCounter extends StatefulWidget {
+  const HomeDashboardCounter({super.key, required this.nbActionsDone, required this.bilanCarbonePercentageCompletion});
 
   final int nbActionsDone;
   final int bilanCarbonePercentageCompletion;
 
   @override
-  State createState() => _AnimatedSuccessState();
+  State createState() => _HomeDashboardCounterState();
 }
 
-class _AnimatedSuccessState extends State<_AnimatedSuccess> {
+class _HomeDashboardCounterState extends State<HomeDashboardCounter> {
   late int nbActionsDone;
   late int bilanCarbonePercentageCompletion;
 
@@ -184,8 +151,8 @@ class _Success extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        SizedBox(
-                          child: const Text(
+                        const SizedBox(
+                          child: Text(
                             Localisation.monBilanEnvironnemental,
                             style: DsfrTextStyle.bodySm(),
                             textAlign: TextAlign.center,

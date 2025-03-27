@@ -130,8 +130,8 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
               context.read<QuestionCodePostalBloc>().add(QuestionCodePostalAChange(value));
               _textEditingController.clear();
             },
-            autofocus: true,
             keyboardType: TextInputType.number,
+            autofocus: true,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(5)],
             autofillHints: const [AutofillHints.postalCode],
           ),

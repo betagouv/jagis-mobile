@@ -13,9 +13,9 @@ import 'package:clock/clock.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../features/helper/flutter_secure_storage_fake.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
-import '../mocks/flutter_secure_storage_fake.dart';
 import 'constants.dart';
 
 void main() {

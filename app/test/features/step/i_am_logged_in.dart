@@ -11,5 +11,8 @@ Future<void> iAmLoggedIn(final WidgetTester tester) async {
     key: 'token',
     value: 'header.${base64Encode(jsonEncode({'exp': 715341600, 'utilisateurId': 'user123'}).codeUnits)}.signature',
   );
-  FeatureContext.instance.dioMock.getM(Endpoints.utilisateur, responseData: {'pseudo': 'Joe', 'is_onboarding_done': true});
+  FeatureContext.instance.dioMock.getM(
+    Endpoints.utilisateur,
+    responseData: {'pseudo': 'Joe', 'is_onboarding_done': true, 'is_nom_prenom_modifiable': true, 'popup_reset_est_vue': true},
+  );
 }

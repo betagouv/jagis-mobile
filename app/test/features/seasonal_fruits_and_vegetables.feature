@@ -1,4 +1,5 @@
 Feature: Seasonal fruits and vegetables service
+
   Background:
     Given I am logged in
     Given The application is launched
@@ -6,7 +7,6 @@ Feature: Seasonal fruits and vegetables service
     When I scroll down
     When I scroll down
     When I scroll down
-    When I scroll down to {'Fruits et légumes de saison'}
     When I tap on {'Fruits et légumes de saison'}
 
   Scenario: See seasonal fruits and vegetables

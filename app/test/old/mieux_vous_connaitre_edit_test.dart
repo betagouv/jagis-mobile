@@ -2,7 +2,7 @@ import 'package:app/l10n/l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
-import 'steps/iel_appuie_sur.dart';
+import '../features/step/i_tap_on.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
@@ -28,7 +28,7 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
+    await iTapOn(tester, question);
     ielVoitLeTexte(question);
     ielVoitLeTexte(reponse);
   });
@@ -49,7 +49,7 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
+    await iTapOn(tester, question);
     const nouvelleReponse = "Je n'ai pas d'emploi";
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
@@ -63,7 +63,7 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(nouvelleReponse);
   });
@@ -84,7 +84,7 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
+    await iTapOn(tester, question);
     const nouvelleReponse = '1000';
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
@@ -98,7 +98,7 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(nouvelleReponse);
   });
@@ -119,10 +119,10 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
+    await iTapOn(tester, question);
     const nouvelleReponse = 'Michel';
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(reponse);
     ielNeVoitPasLeTexte(nouvelleReponse);
@@ -144,8 +144,8 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, question);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(reponse);
   });
@@ -170,8 +170,8 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
-    await ielAppuieSur(tester, nouvelleReponse);
+    await iTapOn(tester, question);
+    await iTapOn(tester, nouvelleReponse);
     leServeurRetourneCesQuestions([
       {
         'type': 'choix_unique',
@@ -186,7 +186,7 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(nouvelleReponse);
   });
@@ -214,8 +214,8 @@ void main() {
       },
     ]);
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
-    await ielAppuieSur(tester, reponseEnPlus);
+    await iTapOn(tester, question);
+    await iTapOn(tester, reponseEnPlus);
     leServeurRetourneCesQuestions([
       {
         'type': 'choix_multiple',
@@ -232,7 +232,7 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte([...reponses, reponseEnPlus].join(' - '));
   });
@@ -270,7 +270,7 @@ void main() {
     ]);
 
     await _allerSurMieuxVousConnaitre(tester);
-    await ielAppuieSur(tester, question);
+    await iTapOn(tester, question);
     const nouvelleReponse = "Je n'ai pas d'emploi";
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
@@ -296,11 +296,11 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(nouvelleReponse);
-    await ielAppuieSur(tester, question2);
-    await ielAppuieSur(tester, nouvelleReponse2);
+    await iTapOn(tester, question2);
+    await iTapOn(tester, nouvelleReponse2);
     leServeurRetourneCesQuestions([
       {
         'type': 'libre',
@@ -324,7 +324,7 @@ void main() {
         'points': 5,
       },
     ]);
-    await ielAppuieSur(tester, Localisation.mettreAJour);
+    await iTapOn(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(nouvelleReponse2);
   });
@@ -335,6 +335,6 @@ Future<void> _allerSurMieuxVousConnaitre(final WidgetTester tester) async {
 
   await ielLanceLapplication(tester);
   await ielAppuieSurAccessibilite(tester, Localisation.menu);
-  await ielAppuieSur(tester, Localisation.monProfil);
-  await ielAppuieSur(tester, Localisation.mieuxVousConnaitre);
+  await iTapOn(tester, Localisation.monProfil);
+  await iTapOn(tester, Localisation.mieuxVousConnaitre);
 }

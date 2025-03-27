@@ -93,8 +93,8 @@ class _PriceState extends State<_Price> {
             width: 114,
             child: DsfrInput(
               label: Localisation.prixDuVelo,
-              suffixText: '€',
               controller: _prixVeloController,
+              suffixText: '€',
               onChanged: (final value) {
                 final parse = int.tryParse(value);
                 if (parse == null) {
@@ -103,9 +103,9 @@ class _PriceState extends State<_Price> {
                 context.read<AideVeloBloc>().add(AideVeloPrixChange(parse));
               },
               validator: (final value) => value == null || value.isEmpty ? Localisation.prixDuVeloObligatoire : null,
-              textAlign: TextAlign.end,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
+              textAlign: TextAlign.end,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
           ),
@@ -332,9 +332,9 @@ class _NombreDePartsFiscales extends StatelessWidget {
         }
         context.read<AideVeloBloc>().add(AideVeloNombreDePartsFiscalesChange(parse));
       },
-      width: adjustTextSize(context, _inputWidth),
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       textInputAction: TextInputAction.next,
+      width: adjustTextSize(context, _inputWidth),
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,.]'))],
     );
   }

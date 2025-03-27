@@ -18,7 +18,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
 import '../../helpers/pump_page.dart';
-import '../../old/mocks/gamification_bloc_fake.dart';
+import '../mocks/gamification_bloc_fake.dart';
 import 'environmental_performance_data.dart';
 
 Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final Dio dio) async {

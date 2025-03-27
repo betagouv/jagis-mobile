@@ -31,6 +31,7 @@ final class MesInformationsState extends Equatable {
       );
 
   final bool isUserFranceConnect;
+  bool get isNotUserFranceConnect => !isUserFranceConnect;
   final String email;
   final String? pseudonym;
   final String? prenom;

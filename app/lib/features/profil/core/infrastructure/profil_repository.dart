@@ -28,7 +28,7 @@ class ProfilRepository {
       Informations(
         email: json['email'] as String,
         pseudonym: json['pseudo'] as String?,
-        isNomPrenomModifiable: json['is_nom_prenom_modifiable'] as bool,
+        isUserFranceConnect: !(json['is_nom_prenom_modifiable'] as bool),
         prenom: json['prenom'] as String?,
         nom: json['nom'] as String?,
         anneeDeNaissance: json['annee_naissance'] as int?,

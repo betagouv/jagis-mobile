@@ -5,9 +5,12 @@ import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
+import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
+import 'package:app/features/utilisateur/presentation/bloc/user_event.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ToutEstPretPage extends StatelessWidget {
@@ -63,7 +66,10 @@ class ToutEstPretPage extends StatelessWidget {
           label: Localisation.cestParti,
           variant: DsfrButtonVariant.primary,
           size: DsfrButtonSize.lg,
-          onPressed: () => GoRouter.of(context).goNamed(HomePage.name),
+          onPressed: () {
+            context.read<UserBloc>().add(const UserFetchRequested());
+            GoRouter.of(context).goNamed(HomePage.name);
+          },
         ),
       ),
     );

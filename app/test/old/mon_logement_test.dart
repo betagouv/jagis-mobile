@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_tap_on.dart' show iTapOn;
 import 'steps/iel_a_ces_informations_de_profile.dart';
-import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_appuie_sur_la_liste_deroulante.dart';
 import 'steps/iel_est_connecte.dart';
@@ -89,20 +89,20 @@ void main() {
     await _allerSurMonLogement(tester);
     await iEnterInTheField(tester, codePostal, Localisation.codePostal);
     await ielAppuieSurLaListeDeroulante(tester);
-    await ielAppuieSur(tester, commune);
+    await iTapOn(tester, commune);
     await iEnterInTheField(tester, nombreAdultes.toString(), Localisation.adultes);
     await iEnterInTheField(tester, nombreEnfants.toString(), Localisation.enfants);
     await ielScrolle(tester, Localisation.maResidencePrincipaleEst);
-    await ielAppuieSur(tester, Localisation.unAppartement);
-    await ielAppuieSur(tester, Localisation.oui);
-    await ielAppuieSur(tester, Localisation.moinsDe35m2);
+    await iTapOn(tester, Localisation.unAppartement);
+    await iTapOn(tester, Localisation.oui);
+    await iTapOn(tester, Localisation.moinsDe35m2);
 
     await ielScrolle(tester, Localisation.monLogementPlusDe15Ans);
-    await ielAppuieSur(tester, Localisation.oui);
+    await iTapOn(tester, Localisation.oui);
     await ielScrolle(tester, Localisation.consommationsEnergetiques);
-    await ielAppuieSur(tester, Localisation.dpeC);
+    await iTapOn(tester, Localisation.dpeC);
 
-    await ielAppuieSur(tester, Localisation.mettreAJourMesInformations);
+    await iTapOn(tester, Localisation.mettreAJourMesInformations);
 
     verify(
       () => ScenarioContext().dioMock?.patch<dynamic>(
@@ -132,6 +132,6 @@ Future<void> _allerSurMonLogement(final WidgetTester tester) async {
   ielEstConnecte();
   await ielLanceLapplication(tester);
   await ielAppuieSurAccessibilite(tester, Localisation.menu);
-  await ielAppuieSur(tester, Localisation.monProfil);
-  await ielAppuieSur(tester, Localisation.monLogement);
+  await iTapOn(tester, Localisation.monProfil);
+  await iTapOn(tester, Localisation.monLogement);
 }

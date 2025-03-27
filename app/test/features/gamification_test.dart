@@ -73,7 +73,8 @@ void main() {
                 {
                   "pseudo": "Lucas",
                   "is_onboarding_done": true,
-                  "popup_reset_est_vue": false
+                  "popup_reset_est_vue": false,
+                  "is_nom_prenom_modifiable": true
                 }
               ],
               [

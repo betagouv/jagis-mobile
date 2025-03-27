@@ -13,26 +13,27 @@ class DsfrInput extends StatefulWidget {
     super.key,
     required this.label,
     this.hintText,
-    this.suffixText,
-    this.controller,
     this.initialValue,
+    this.focusNode,
+    this.controller,
+    this.suffixText,
     this.onChanged,
     this.onTap,
     this.onFieldSubmitted,
     this.validator,
+    this.keyboardType,
+    this.textCapitalization = TextCapitalization.none,
+    this.textInputAction,
     this.width,
+    this.isPasswordMode = false,
+    this.autocorrect,
     this.labelStyle = const DsfrTextStyle.bodyMd(),
     this.labelColor = DsfrColors.grey50,
     this.hintStyle = const DsfrTextStyle.bodyXs(),
     this.hintColor = DsfrColors.grey425,
     this.textAlign = TextAlign.start,
     this.autofocus = false,
-    this.isPasswordMode = false,
-    this.autocorrect,
     this.enabled,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none,
-    this.textInputAction,
     this.inputFormatters,
     this.scrollPadding = const EdgeInsets.all(20),
     this.autofillHints,
@@ -43,6 +44,7 @@ class DsfrInput extends StatefulWidget {
   final String? suffixText;
   final TextEditingController? controller;
   final String? initialValue;
+  final FocusNode? focusNode;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
   final ValueChanged<String>? onFieldSubmitted;
@@ -115,6 +117,7 @@ class _DsfrInputState extends State<DsfrInput> {
                 child: DsfrInputHeadless(
                   key: ValueKey(labelText),
                   initialValue: widget.initialValue,
+                  focusNode: widget.focusNode,
                   controller: widget.controller,
                   suffixText: widget.suffixText,
                   onChanged: widget.onChanged,

@@ -41,4 +41,5 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
     ),
     Durations.short1,
   );
+  await tester.pumpAndSettle();
 }

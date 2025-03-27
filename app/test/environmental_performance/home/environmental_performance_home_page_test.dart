@@ -29,12 +29,20 @@ import '../../features/helper/notification_service_fake.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
 import '../../helpers/pump_page.dart';
-import '../../old/mocks/gamification_bloc_fake.dart';
+import '../mocks/gamification_bloc_fake.dart';
 import '../summary/environmental_performance_data.dart';
 
 Future<void> pumpHomePage(final WidgetTester tester, final DioMock dio) async {
   dio
-    ..getM(Endpoints.utilisateur, responseData: {'prenom': 'Lucas', 'is_onboarding_done': true})
+    ..getM(
+      Endpoints.utilisateur,
+      responseData: {
+        'prenom': 'Lucas',
+        'is_onboarding_done': true,
+        'is_nom_prenom_modifiable': true,
+        'popup_reset_est_vue': true,
+      },
+    )
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
     ..getM(Endpoints.aids, responseData: {'couverture_aides_ok': true, 'liste_aides': <dynamic>[]})
     ..getM(

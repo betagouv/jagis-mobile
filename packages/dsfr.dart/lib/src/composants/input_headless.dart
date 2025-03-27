@@ -9,6 +9,7 @@ class DsfrInputHeadless extends StatefulWidget {
   const DsfrInputHeadless({
     super.key,
     this.initialValue,
+    this.focusNode,
     this.controller,
     this.suffixText,
     this.onChanged,
@@ -42,6 +43,7 @@ class DsfrInputHeadless extends StatefulWidget {
   });
 
   final String? initialValue;
+  final FocusNode? focusNode;
   final TextEditingController? controller;
   final String? suffixText;
   final ValueChanged<String>? onChanged;
@@ -79,11 +81,12 @@ class DsfrInputHeadless extends StatefulWidget {
 
 class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
   var _isFocused = false;
-  final _focusNode = FocusNode();
+  late final FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
+    _focusNode = widget.focusNode ?? FocusNode();
     _focusNode.addListener(_listener);
   }
 
@@ -93,9 +96,10 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
 
   @override
   void dispose() {
-    _focusNode
-      ..removeListener(_listener)
-      ..dispose();
+    _focusNode.removeListener(_listener);
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
     super.dispose();
   }
 

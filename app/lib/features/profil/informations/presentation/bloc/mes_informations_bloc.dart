@@ -17,7 +17,7 @@ class MesInformationsBloc extends Bloc<MesInformationsEvent, MesInformationsStat
                 : null;
         emit(
           MesInformationsState(
-            isUserFranceConnect: profil.isNomPrenomModifiable,
+            isUserFranceConnect: profil.isUserFranceConnect,
             email: profil.email,
             pseudonym: profil.pseudonym,
             prenom: profil.prenom,

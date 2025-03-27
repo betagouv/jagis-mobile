@@ -20,6 +20,16 @@ final class OnboardingPseudonymChanged extends OnboardingPseudonymEvent {
 }
 
 @immutable
+final class OnboardingBirthdateChanged extends OnboardingPseudonymEvent {
+  const OnboardingBirthdateChanged(this.value);
+
+  final DateTime value;
+
+  @override
+  List<Object> get props => [value];
+}
+
+@immutable
 final class OnboardingPseudonymSubmitted extends OnboardingPseudonymEvent {
   const OnboardingPseudonymSubmitted();
 }

@@ -4,7 +4,6 @@ import 'package:app/core/error/infrastructure/api_erreur_helpers.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
-import 'package:app/features/onboarding/pseudonym/domain/pseudonym.dart';
 import 'package:fpdart/fpdart.dart';
 
 final class OnboardingPseudonymRepository {
@@ -12,8 +11,18 @@ final class OnboardingPseudonymRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, Unit>> addPseudonym(final Pseudonym pseudonym) async {
-    final response = await _client.patch(Endpoints.profile, data: jsonEncode({'pseudo': pseudonym.value}));
+  Future<Either<Exception, Unit>> savePseudonymAndBirthdate(final String pseudonym, final DateTime? birthdate) async {
+    final response = await _client.patch(
+      Endpoints.profile,
+      data: jsonEncode({
+        'pseudo': pseudonym,
+        if (birthdate != null) ...{
+          'annee_naissance': birthdate.year,
+          'mois_naissance': birthdate.month,
+          'jour_naissance': birthdate.day,
+        },
+      }),
+    );
 
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)

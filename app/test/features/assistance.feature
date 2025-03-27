@@ -1,4 +1,5 @@
 Feature: Assistance
+
   Background:
     Given I am logged in
     Given The application is launched

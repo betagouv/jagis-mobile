@@ -27,10 +27,10 @@ class _View extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocBuilder<HomeRecommendationsBloc, HomeRecommendationsState>(
     builder:
-        (final context, final state) => switch (state) {
-          HomeRecommendationsLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-          HomeRecommendationsInitial() || HomeRecommendationsLoadInProgress() => const _Success([]),
-          HomeRecommendationsLoadSuccess(:final recommendations) => _Success(recommendations),
+        (final context, final state) => switch (state.statut) {
+          HomeRecommendationsStatut.init || HomeRecommendationsStatut.loading => const Center(child: CircularProgressIndicator()),
+          HomeRecommendationsStatut.failure => Center(child: Text(state.errorMessage!)),
+          HomeRecommendationsStatut.success => _Success(state.recommendations!),
         },
   );
 }
@@ -42,7 +42,7 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+    padding: const EdgeInsets.all(DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s2w,

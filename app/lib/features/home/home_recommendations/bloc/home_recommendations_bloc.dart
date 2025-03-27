@@ -5,14 +5,14 @@ import 'package:app/features/recommandations/infrastructure/recommandations_repo
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeRecommendationsBloc extends Bloc<HomeRecommendationsEvent, HomeRecommendationsState> {
-  HomeRecommendationsBloc({required final RecommandationsRepository repository}) : super(const HomeRecommendationsInitial()) {
+  HomeRecommendationsBloc({required final RecommandationsRepository repository}) : super(const HomeRecommendationsState.init()) {
     on<HomeRecommendationsLoadRequested>((final event, final emit) async {
-      emit(const HomeRecommendationsLoadInProgress());
+      emit(const HomeRecommendationsState.loading());
 
       final result = await repository.recupererV3(maxItem: 4, type: TypeDuContenu.article);
 
-      result.fold((final l) => emit(HomeRecommendationsLoadFailure(errorMessage: l.toString())), (final r) {
-        emit(HomeRecommendationsLoadSuccess(r));
+      result.fold((final l) => emit(HomeRecommendationsState.failure(l.toString())), (final r) {
+        emit(HomeRecommendationsState.success(r));
       });
     });
   }

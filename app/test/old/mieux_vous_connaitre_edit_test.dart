@@ -1,9 +1,9 @@
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../features/step/i_enter_in_the_field.dart';
 import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
-import 'steps/iel_ecrit_dans_le_champ.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
 import 'steps/iel_ne_voit_pas_le_texte.dart';
@@ -51,7 +51,7 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await ielAppuieSur(tester, question);
     const nouvelleReponse = "Je n'ai pas d'emploi";
-    await ielEcritDansLeChamp(tester, label: Localisation.maReponse, enterText: nouvelleReponse);
+    await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
       {
         'type': 'libre',
@@ -86,7 +86,7 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await ielAppuieSur(tester, question);
     const nouvelleReponse = '1000';
-    await ielEcritDansLeChamp(tester, label: Localisation.maReponse, enterText: nouvelleReponse);
+    await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
       {
         'type': 'entier',
@@ -121,7 +121,7 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await ielAppuieSur(tester, question);
     const nouvelleReponse = 'Michel';
-    await ielEcritDansLeChamp(tester, label: Localisation.maReponse, enterText: nouvelleReponse);
+    await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     await ielAppuieSur(tester, Localisation.mettreAJour);
     ielVoitLeTexte(Localisation.mieuxVousConnaitre);
     ielVoitLeTexte(reponse);
@@ -272,7 +272,7 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await ielAppuieSur(tester, question);
     const nouvelleReponse = "Je n'ai pas d'emploi";
-    await ielEcritDansLeChamp(tester, label: Localisation.maReponse, enterText: nouvelleReponse);
+    await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     leServeurRetourneCesQuestions([
       {
         'type': 'libre',

@@ -23,7 +23,6 @@ abstract final class Localisation {
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
-  static const anneeDeNaissance = 'Année de naissance';
   static const annuler = 'Annuler';
   static const appEstEnConstruction = 'J’agis est un nouveau service !';
   static const appEstEnConstructionDescription =
@@ -59,6 +58,7 @@ abstract final class Localisation {
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
   static const creerMonCompteApp = 'Créez votre compte J’agis';
+  static const dateDeNaissance = 'Date de naissance';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const decouvrir = 'Découvrir';

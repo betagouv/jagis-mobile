@@ -1,4 +1,4 @@
-// ignore_for_file: avoid-long-parameter-list
+// ignore_for_file: avoid-long-parameter-list, avoid-nullable-interpolation
 
 import 'dart:convert';
 
@@ -32,6 +32,8 @@ class ProfilRepository {
         prenom: json['prenom'] as String?,
         nom: json['nom'] as String?,
         anneeDeNaissance: json['annee_naissance'] as int?,
+        moisDeNaissance: json['mois_naissance'] as int?,
+        jourDeNaissance: json['jour_naissance'] as int?,
         codePostal: json['code_postal'] as String?,
         commune: json['commune'] as String?,
         nombreDePartsFiscales: (json['nombre_de_parts_fiscales'] as num).toDouble(),
@@ -40,11 +42,13 @@ class ProfilRepository {
     );
   }
 
-  Future<Either<Exception, Unit>> mettreAJour({
+  Future<Either<Exception, Unit>> updateInformation({
     required final String? pseudonym,
     required final String? prenom,
     required final String? nom,
     required final int? anneeDeNaissance,
+    required final int? moisDeNaissance,
+    required final int? jourDeNaissance,
     required final double nombreDePartsFiscales,
     required final int? revenuFiscal,
   }) async {
@@ -55,6 +59,8 @@ class ProfilRepository {
         'prenom': prenom,
         'nom': nom,
         'annee_naissance': anneeDeNaissance,
+        'mois_naissance': moisDeNaissance,
+        'jour_naissance': jourDeNaissance,
         'nombre_de_parts_fiscales': nombreDePartsFiscales,
         'revenu_fiscal': revenuFiscal,
       },

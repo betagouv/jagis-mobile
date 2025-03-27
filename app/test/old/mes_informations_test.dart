@@ -2,13 +2,16 @@ import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
 import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
-import 'steps/iel_ecrit_dans_le_champ.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
 import 'steps/iel_scrolle.dart';
@@ -26,6 +29,7 @@ void main() {
     ielVoitLeTexte(Localisation.monIdentite);
     ielVoitLeTexte(Localisation.pseudonyme);
     ielVoitLeTexte(Localisation.prenom);
+    ielVoitLeTexte(Localisation.nom);
     ielVoitLeTexte(Localisation.nom);
     await ielScrolle(tester, Localisation.donneesPersonnelles);
     ielVoitLeTexte(Localisation.donneesPersonnelles);
@@ -51,14 +55,14 @@ void main() {
     setUpWidgets(tester);
     await _allerSurMesInformations(tester);
     ScenarioContext().dioMock!.patchM(Endpoints.profile);
-    await ielEcritDansLeChamp(tester, label: Localisation.pseudonyme, enterText: 'Nouveau pseudo');
-    await ielEcritDansLeChamp(tester, label: Localisation.prenom, enterText: 'Nouveau prenom');
-    await ielEcritDansLeChamp(tester, label: Localisation.nom, enterText: 'Nouveau nom');
-    await ielEcritDansLeChamp(tester, label: Localisation.anneeDeNaissance, enterText: 1992.toString());
-
+    await iEnterInTheField(tester, 'Nouveau pseudo', Localisation.pseudonyme);
+    await iEnterInTheField(tester, 'Nouveau prenom', Localisation.prenom);
+    await iEnterInTheField(tester, 'Nouveau nom', Localisation.nom);
+    final year = ScenarioContext().clock!.now().year - 18;
+    await _iSelectADate(tester, '15/01/$year', Localisation.dateDeNaissance);
     await ielScrolle(tester, Localisation.revenuFiscal);
-    await ielEcritDansLeChamp(tester, label: Localisation.nombreDePartsFiscales, enterText: 2.5.toString());
-    await ielEcritDansLeChamp(tester, label: Localisation.revenuFiscal, enterText: 35000.toString());
+    await iEnterInTheField(tester, 2.5.toString(), Localisation.nombreDePartsFiscales);
+    await iEnterInTheField(tester, 35000.toString(), Localisation.revenuFiscal);
 
     await ielAppuieSur(tester, Localisation.mettreAJourMesInformations);
 
@@ -69,13 +73,21 @@ void main() {
           'pseudo': 'Nouveau pseudo',
           'prenom': 'Nouveau prenom',
           'nom': 'Nouveau nom',
-          'annee_naissance': 1992,
+          'annee_naissance': year,
+          'mois_naissance': 1,
+          'jour_naissance': 15,
           'nombre_de_parts_fiscales': 2.5,
           'revenu_fiscal': 35000,
         },
       ),
     );
   });
+}
+
+Future<void> _iSelectADate(final WidgetTester tester, final String dateTime, final String label) async {
+  await iTapOn(tester, label);
+  await tester.tap(find.byKey(ValueKey(DateFormat('dd/MM/yyyy', 'fr_FR').parse(dateTime))));
+  await iTapOn(tester, 'OK');
 }
 
 Future<void> _allerSurMesInformations(final WidgetTester tester) async {

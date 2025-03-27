@@ -5,11 +5,11 @@ import 'package:app/l10n/l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../features/step/i_enter_in_the_field.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
 import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_appuie_sur_la_liste_deroulante.dart';
-import 'steps/iel_ecrit_dans_le_champ.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
 import 'steps/iel_scrolle.dart';
@@ -87,11 +87,11 @@ void main() {
     leServeurRetourneCetteListeDeCommunes(['AUTHUME', _commune, commune]);
     ScenarioContext().dioMock!.patchM(Endpoints.logement);
     await _allerSurMonLogement(tester);
-    await ielEcritDansLeChamp(tester, label: Localisation.codePostal, enterText: codePostal);
+    await iEnterInTheField(tester, codePostal, Localisation.codePostal);
     await ielAppuieSurLaListeDeroulante(tester);
     await ielAppuieSur(tester, commune);
-    await ielEcritDansLeChamp(tester, label: Localisation.adultes, enterText: nombreAdultes.toString());
-    await ielEcritDansLeChamp(tester, label: Localisation.enfants, enterText: nombreEnfants.toString());
+    await iEnterInTheField(tester, nombreAdultes.toString(), Localisation.adultes);
+    await iEnterInTheField(tester, nombreEnfants.toString(), Localisation.enfants);
     await ielScrolle(tester, Localisation.maResidencePrincipaleEst);
     await ielAppuieSur(tester, Localisation.unAppartement);
     await ielAppuieSur(tester, Localisation.oui);

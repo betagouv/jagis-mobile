@@ -32,6 +32,7 @@ class AppSetup extends StatefulWidget {
 }
 
 class _AppSetupState extends State<AppSetup> {
+  static const _clock = Clock();
   late final PackageInfo _packageInfo;
   late final Tracker _tracker;
   late final NotificationService _notificationService;
@@ -82,7 +83,7 @@ class _AppSetupState extends State<AppSetup> {
     );
     await authenticationStorage.init();
 
-    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: const Clock());
+    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: _clock);
     await authenticationService.checkAuthenticationStatus();
 
     return authenticationService;
@@ -124,6 +125,7 @@ class _AppSetupState extends State<AppSetup> {
       final client = DioHttpClient(dio: dio, authenticationService: _authenticationService);
 
       return App(
+        clock: _clock,
         tracker: _tracker,
         messageBus: _messageBus,
         dioHttpClient: client,

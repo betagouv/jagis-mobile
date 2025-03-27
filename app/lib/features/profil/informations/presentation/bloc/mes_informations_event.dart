@@ -45,10 +45,10 @@ final class MesInformationsNomChange extends MesInformationsEvent {
 }
 
 @immutable
-final class MesInformationsAnneeChange extends MesInformationsEvent {
-  const MesInformationsAnneeChange(this.valeur);
+final class MesInformationsBirthdateChanged extends MesInformationsEvent {
+  const MesInformationsBirthdateChanged(this.valeur);
 
-  final int valeur;
+  final DateTime valeur;
 
   @override
   List<Object> get props => [valeur];

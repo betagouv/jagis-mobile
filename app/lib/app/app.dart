@@ -62,6 +62,7 @@ import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/features/version/infrastructure/version_repository.dart';
 import 'package:app/features/version/presentation/bloc/version_bloc.dart';
 import 'package:app/features/version/presentation/bloc/version_event.dart';
+import 'package:clock/clock.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,6 +73,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 class App extends StatefulWidget {
   const App({
     super.key,
+    required this.clock,
     required this.tracker,
     required this.messageBus,
     required this.dioHttpClient,
@@ -81,6 +83,7 @@ class App extends StatefulWidget {
     required this.timedDelay,
   });
 
+  final Clock clock;
   final Tracker tracker;
   final MessageBus messageBus;
   final DioHttpClient dioHttpClient;
@@ -152,6 +155,7 @@ class _AppState extends State<App> {
         child: AuthenticationRedirection(
           child: MultiRepositoryProvider(
             providers: [
+              RepositoryProvider.value(value: widget.clock),
               RepositoryProvider.value(value: widget.timedDelay),
               RepositoryProvider.value(value: widget.messageBus),
               RepositoryProvider.value(value: widget.dioHttpClient),

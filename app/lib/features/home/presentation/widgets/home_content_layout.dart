@@ -1,5 +1,6 @@
 import 'package:app/core/helpers/size.dart';
 import 'package:app/features/home/home_dashboard/widget/home_dashboard.dart';
+import 'package:app/features/home/home_recommendations/widget/home_recommendations.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/survey/survey_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -33,13 +34,7 @@ class HomeContentLayout extends StatelessWidget {
             spacingSmall,
             _WhichDomainButtonsSection(),
             spacing,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text('Quoi de neuf ?', style: DsfrTextStyle.headline2())],
-              ),
-            ),
+            HomeRecommendations(),
             spacing,
             SurveySection(),
           ],

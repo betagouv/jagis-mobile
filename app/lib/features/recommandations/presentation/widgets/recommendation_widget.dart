@@ -19,7 +19,7 @@ class RecommendationWidget extends StatefulWidget {
     required this.imageUrl,
     required this.themeTag,
     required this.titre,
-    required this.onPop,
+    this.onPop,
   });
 
   final String id;
@@ -28,7 +28,7 @@ class RecommendationWidget extends StatefulWidget {
   final String imageUrl;
   final Widget themeTag;
   final String titre;
-  final VoidCallback onPop;
+  final VoidCallback? onPop;
 
   @override
   State<RecommendationWidget> createState() => _RecommendationWidgetState();
@@ -69,7 +69,7 @@ class _RecommendationWidgetState extends State<RecommendationWidget> with Materi
                 case TypeDuContenu.quiz:
                   await GoRouter.of(context).pushNamed(QuizPage.name, pathParameters: {'id': widget.id});
               }
-              widget.onPop();
+              widget.onPop?.call();
             },
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),

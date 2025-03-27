@@ -104,85 +104,106 @@ class _Success extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: DsfrColors.grey850,
-        image: DecorationImage(image: AssetImage('assets/images/home_dashboard_bg.png'), fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage('assets/images/home_dashboard_bg.webp'), fit: BoxFit.fill),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(DsfrSpacings.s4w),
+        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Column(
-                spacing: DsfrSpacings.s1w,
-                children: [
-                  // FIXME: tweaks to align the text, maybe there is a clever way to do it or at least we could factorized this.
-                  Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      const Center(
-                        child: SizedBox(
-                          height: progressSize,
-                          width: progressSize,
-                          child: CircularProgressIndicator(
-                            value: 100,
-                            backgroundColor: Color.fromARGB(0, 0, 0, 0),
-                            strokeWidth: 0,
-                            strokeCap: StrokeCap.round,
-                            valueColor: AlwaysStoppedAnimation(Color.fromARGB(0, 0, 0, 0)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+                child: Column(
+                  spacing: DsfrSpacings.s1w,
+                  children: [
+                    // FIXME: tweaks to align the text, maybe there is a clever way to do it or at least we could factorized this.
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        const Center(
+                          child: SizedBox(
+                            height: progressSize,
+                            width: progressSize,
+                            child: CircularProgressIndicator(
+                              value: 100,
+                              backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                              strokeWidth: 0,
+                              strokeCap: StrokeCap.round,
+                              valueColor: AlwaysStoppedAnimation(Color.fromARGB(0, 0, 0, 0)),
+                            ),
                           ),
                         ),
-                      ),
-                      Center(child: Text(nbActionsDone.toString(), style: const DsfrTextStyle(fontSize: 37))),
-                    ],
-                  ),
-                  Text(nbActionsDone > 1 ? 'Actions terminées' : 'Action terminée', style: const DsfrTextStyle(fontSize: 13)),
-                ],
+                        Center(
+                          child: Text(
+                            nbActionsDone.toString(),
+                            style: const DsfrTextStyle(fontSize: 37, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      Localisation.actionsTerminees(nbActionsDone),
+                      style: const DsfrTextStyle.bodySm(),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
-            const DsfrDivider(width: 1, height: 100),
+            const DsfrDivider(width: 1, height: 150),
             Expanded(
-              child: Column(
-                spacing: DsfrSpacings.s1w,
-                children: [
-                  Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          height: progressSize,
-                          width: progressSize,
-                          child: CircularProgressIndicator(
-                            value: bilanCarbonePercentageCompletion / 100,
-                            backgroundColor: const Color(0xFFE7E3DC),
-                            strokeWidth: 4,
-                            strokeCap: StrokeCap.round,
-                            valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+                child: Column(
+                  spacing: DsfrSpacings.s1w,
+                  children: [
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            height: progressSize,
+                            width: progressSize,
+                            child: CircularProgressIndicator(
+                              value: bilanCarbonePercentageCompletion / 100,
+                              backgroundColor: const Color(0xFFE7E3DC),
+                              strokeWidth: 4,
+                              strokeCap: StrokeCap.round,
+                              valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
+                            ),
                           ),
                         ),
-                      ),
-                      Center(
-                        child: Text.rich(
-                          TextSpan(
-                            text: bilanCarbonePercentageCompletion.toString(),
-                            children: const [TextSpan(text: '%', style: DsfrTextStyle(fontSize: 12))],
+                        Center(
+                          child: Text.rich(
+                            TextSpan(
+                              text: bilanCarbonePercentageCompletion.toString(),
+                              children: const [TextSpan(text: '%', style: DsfrTextStyle(fontSize: 12))],
+                            ),
+                            style: const DsfrTextStyle(fontSize: 37, fontWeight: FontWeight.bold),
                           ),
-                          style: const DsfrTextStyle(fontSize: 37),
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const Text(Localisation.bilanEnvironnemental, style: DsfrTextStyle(fontSize: 13)),
-                      DsfrLink.sm(
-                        label: bilanCarbonePercentageCompletion == 100 ? 'Voir' : 'Compléter',
-                        icon: DsfrIcons.systemArrowRightLine,
-                        iconPosition: DsfrLinkIconPosition.end,
-                        onTap: () => GoRouter.of(context).pushReplacementNamed(EnvironmentalPerformanceSummaryPage.name),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          child: const Text(
+                            Localisation.monBilanEnvironnemental,
+                            style: DsfrTextStyle.bodySm(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        DsfrLink.sm(
+                          label: bilanCarbonePercentageCompletion == 100 ? 'Voir' : 'Compléter',
+                          icon: DsfrIcons.systemArrowRightLine,
+                          iconPosition: DsfrLinkIconPosition.end,
+                          onTap: () => GoRouter.of(context).pushReplacementNamed(EnvironmentalPerformanceSummaryPage.name),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

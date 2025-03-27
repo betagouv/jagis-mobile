@@ -43,6 +43,7 @@ abstract final class Localisation {
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Bilan environnemental';
+  static const monBilanEnvironnemental = 'Mon bilan environnemental';
   static const bonjour = 'Bonjour,\n';
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
@@ -299,6 +300,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String votreReponse(final bool isCorrect) => '${isCorrect ? '✅' : '❌'} Votre réponse : ';
   static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
   static String a(final String value) => 'à $value';
+  static String actionsTerminees(final int nbActions) => nbActions > 1 ? 'Actions terminées' : 'Action terminée';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

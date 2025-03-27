@@ -11,7 +11,7 @@ class MesInformationsNom extends StatelessWidget {
   @override
   Widget build(final context) {
     final nom = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.nom);
-    final canBeUpdated = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isNomPrenomModifiable);
+    final canBeUpdated = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isUserFranceConnect);
 
     return DsfrInput(
       label: Localisation.nom,

@@ -10,12 +10,12 @@ class MesInformationsPseudonyme extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    final pseudnoym = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.pseudnoym);
+    final pseudonym = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.pseudonym);
 
     return DsfrInput(
       label: Localisation.pseudonyme,
       hintText: Localisation.obligatoire,
-      initialValue: pseudnoym,
+      initialValue: pseudonym,
       onChanged: (final value) => context.read<MesInformationsBloc>().add(MesInformationsPseudonymChange(value)),
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,

@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/alert_info.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/profil/informations/presentation/widgets/mes_informations_annee.dart';
+import 'package:app/features/profil/informations/presentation/widgets/mes_informations_birthdate.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_email.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_nom.dart';
 import 'package:app/features/profil/informations/presentation/widgets/mes_informations_nombre_de_parts_fiscales.dart';
@@ -32,7 +32,7 @@ class MesInformationsForm extends StatelessWidget {
       SizedBox(height: DsfrSpacings.s2w),
       MesInformationsNom(),
       SizedBox(height: DsfrSpacings.s2w),
-      MesInformationsAnnee(),
+      MesInformationsBirthdate(),
       SizedBox(height: DsfrSpacings.s5w),
       ProfilTitrePartie(titre: Localisation.donneesPersonnelles),
       SizedBox(height: DsfrSpacings.s2w),

@@ -6,12 +6,12 @@ enum MesInformationsStatut { initial, chargement, succes }
 @immutable
 final class MesInformationsState extends Equatable {
   const MesInformationsState({
+    required this.isUserFranceConnect,
     required this.email,
-    required this.pseudnoym,
-    required this.isNomPrenomModifiable,
+    required this.pseudonym,
     required this.prenom,
     required this.nom,
-    required this.anneeDeNaissance,
+    required this.birthdate,
     required this.nombreDePartsFiscales,
     required this.revenuFiscal,
     required this.statut,
@@ -19,44 +19,44 @@ final class MesInformationsState extends Equatable {
 
   const MesInformationsState.empty()
     : this(
+        isUserFranceConnect: false,
         email: '',
-        pseudnoym: '',
-        isNomPrenomModifiable: false,
+        pseudonym: '',
         prenom: '',
         nom: '',
-        anneeDeNaissance: null,
+        birthdate: null,
         nombreDePartsFiscales: 0,
         revenuFiscal: null,
         statut: MesInformationsStatut.initial,
       );
 
-  final String? pseudnoym;
-  final bool isNomPrenomModifiable;
+  final bool isUserFranceConnect;
+  final String email;
+  final String? pseudonym;
   final String? prenom;
   final String? nom;
-  final int? anneeDeNaissance;
-  final String email;
+  final DateTime? birthdate;
   final double nombreDePartsFiscales;
   final int? revenuFiscal;
   final MesInformationsStatut statut;
 
   MesInformationsState copyWith({
     final String? email,
-    final String? pseudnoym,
-    final bool? isNomPrenomModifiable,
+    final String? pseudonym,
+    final bool? isUserFranceConnect,
     final String? prenom,
     final String? nom,
-    final int? anneeDeNaissance,
+    final DateTime? birthdate,
     final double? nombreDePartsFiscales,
     final int? revenuFiscal,
     final MesInformationsStatut? statut,
   }) => MesInformationsState(
+    isUserFranceConnect: isUserFranceConnect ?? this.isUserFranceConnect,
     email: email ?? this.email,
-    pseudnoym: pseudnoym ?? this.pseudnoym,
-    isNomPrenomModifiable: isNomPrenomModifiable ?? this.isNomPrenomModifiable,
+    pseudonym: pseudonym ?? this.pseudonym,
     prenom: prenom ?? this.prenom,
     nom: nom ?? this.nom,
-    anneeDeNaissance: anneeDeNaissance ?? this.anneeDeNaissance,
+    birthdate: birthdate ?? this.birthdate,
     nombreDePartsFiscales: nombreDePartsFiscales ?? this.nombreDePartsFiscales,
     revenuFiscal: revenuFiscal ?? this.revenuFiscal,
     statut: statut ?? this.statut,
@@ -64,14 +64,14 @@ final class MesInformationsState extends Equatable {
 
   @override
   List<Object?> get props => [
-    pseudnoym,
+    isUserFranceConnect,
+    email,
+    pseudonym,
     prenom,
     nom,
-    anneeDeNaissance,
-    email,
+    birthdate,
     nombreDePartsFiscales,
     revenuFiscal,
     statut,
-    isNomPrenomModifiable,
   ];
 }

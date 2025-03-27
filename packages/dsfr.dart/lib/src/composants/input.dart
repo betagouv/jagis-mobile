@@ -16,7 +16,8 @@ class DsfrInput extends StatefulWidget {
     this.suffixText,
     this.controller,
     this.initialValue,
-    required this.onChanged,
+    this.onChanged,
+    this.onTap,
     this.onFieldSubmitted,
     this.validator,
     this.width,
@@ -42,7 +43,8 @@ class DsfrInput extends StatefulWidget {
   final String? suffixText;
   final TextEditingController? controller;
   final String? initialValue;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
+  final GestureTapCallback? onTap;
   final ValueChanged<String>? onFieldSubmitted;
   final FormFieldValidator<String>? validator;
 
@@ -116,6 +118,7 @@ class _DsfrInputState extends State<DsfrInput> {
                   controller: widget.controller,
                   suffixText: widget.suffixText,
                   onChanged: widget.onChanged,
+                  onTap: widget.onTap,
                   onFieldSubmitted: widget.onFieldSubmitted,
                   validator: widget.validator,
                   keyboardType: widget.keyboardType,

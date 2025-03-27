@@ -11,7 +11,8 @@ class DsfrInputHeadless extends StatefulWidget {
     this.initialValue,
     this.controller,
     this.suffixText,
-    required this.onChanged,
+    this.onChanged,
+    this.onTap,
     this.onFieldSubmitted,
     this.validator,
     this.keyboardType,
@@ -43,7 +44,8 @@ class DsfrInputHeadless extends StatefulWidget {
   final String? initialValue;
   final TextEditingController? controller;
   final String? suffixText;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
+  final GestureTapCallback? onTap;
   final ValueChanged<String>? onFieldSubmitted;
   final FormFieldValidator<String>? validator;
   final double? width;
@@ -150,6 +152,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
             maxLines: widget.maxLines,
             minLines: widget.minLines,
             onChanged: widget.onChanged,
+            onTap: widget.onTap,
             onTapOutside: (final event) => FocusManager.instance.primaryFocus?.unfocus(),
             onFieldSubmitted: widget.onFieldSubmitted,
             validator: widget.validator,

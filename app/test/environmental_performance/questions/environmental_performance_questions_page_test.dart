@@ -15,11 +15,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../features/step/i_enter_in_the_field.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
 import '../../helpers/pump_page.dart';
 import '../../old/mocks/gamification_bloc_fake.dart';
-import '../../old/steps/iel_ecrit_dans_le_champ.dart';
 import '../summary/environmental_performance_data.dart';
 import 'environmental_performance_questions_data.dart';
 
@@ -69,7 +69,7 @@ void main() {
       await tester.tap(find.text(EnvironmentalPerformanceSummaryL10n.commencerMonMiniBilan));
       await tester.pumpAndSettle();
       expect(find.bySemanticsLabel('Question 1 sur 2'), findsOneWidget);
-      await ielEcritDansLeChamp(tester, label: Localisation.maReponse, enterText: '42');
+      await iEnterInTheField(tester, '42', Localisation.maReponse);
       await tester.tap(find.text(Localisation.continuer));
       await tester.pumpAndSettle();
       expect(find.bySemanticsLabel('Question 2 sur 2'), findsOneWidget);

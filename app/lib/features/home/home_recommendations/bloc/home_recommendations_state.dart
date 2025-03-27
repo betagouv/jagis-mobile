@@ -1,42 +1,21 @@
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
-// TODO(erolley): seems there is something to factorize here with all other bloc of the same kind
-@immutable
-sealed class HomeRecommendationsState extends Equatable {
-  const HomeRecommendationsState();
+enum HomeRecommendationsStatut { init, loading, success, failure }
 
-  @override
-  List<Object?> get props => [];
-}
+class HomeRecommendationsState extends Equatable {
+  const HomeRecommendationsState({required this.statut, this.recommendations, this.errorMessage});
+  const HomeRecommendationsState.init() : this(statut: HomeRecommendationsStatut.init);
+  const HomeRecommendationsState.loading() : this(statut: HomeRecommendationsStatut.loading);
+  const HomeRecommendationsState.success(final List<Recommandation> recommendations)
+    : this(statut: HomeRecommendationsStatut.success, recommendations: recommendations);
+  const HomeRecommendationsState.failure(final String errorMessage)
+    : this(statut: HomeRecommendationsStatut.failure, errorMessage: errorMessage);
 
-@immutable
-final class HomeRecommendationsInitial extends HomeRecommendationsState {
-  const HomeRecommendationsInitial();
-}
-
-@immutable
-final class HomeRecommendationsLoadInProgress extends HomeRecommendationsState {
-  const HomeRecommendationsLoadInProgress();
-}
-
-@immutable
-final class HomeRecommendationsLoadSuccess extends HomeRecommendationsState {
-  const HomeRecommendationsLoadSuccess(this.recommendations);
-
-  final List<Recommandation> recommendations;
+  final HomeRecommendationsStatut statut;
+  final List<Recommandation>? recommendations;
+  final String? errorMessage;
 
   @override
-  List<Object?> get props => [recommendations];
-}
-
-@immutable
-final class HomeRecommendationsLoadFailure extends HomeRecommendationsState {
-  const HomeRecommendationsLoadFailure({required this.errorMessage});
-
-  final String errorMessage;
-
-  @override
-  List<Object> get props => [errorMessage];
+  List<Object?> get props => [statut, recommendations, errorMessage];
 }

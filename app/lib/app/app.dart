@@ -36,6 +36,7 @@ import 'package:app/features/gamification/presentation/bloc/gamification_bloc.da
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
 import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
+import 'package:app/features/home/home_dashboard/infrastucture/home_dashboard_repository.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
@@ -207,6 +208,7 @@ class _AppState extends State<App> {
               RepositoryProvider(create: (final context) => ThemeHubRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => ResetRepository(widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => environmentalPerformanceSummaryRepository),
+              RepositoryProvider(create: (final context) => HomeDashboardRepository(client: widget.dioHttpClient)),
             ],
             child: MultiBlocProvider(
               providers: [

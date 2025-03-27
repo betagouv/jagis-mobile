@@ -38,6 +38,7 @@ abstract final class Endpoints {
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
   static const gamificationReset = '/utilisateurs/{userId}/gamification/popup_reset_vue';
+  static const homeBoard = '/utilisateurs/{userId}/home_board';
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
   static const themes = '/utilisateurs/{userId}/thematiques';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';

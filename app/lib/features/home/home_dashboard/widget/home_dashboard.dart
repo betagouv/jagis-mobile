@@ -13,10 +13,7 @@ class HomeDashboard extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create:
-        (final context) =>
-            HomeDashboardBloc(actionRepository: context.read(), environmentalPerformanceSummaryRepository: context.read())
-              ..add(const HomeDashboardLoadRequested()),
+    create: (final context) => HomeDashboardBloc(repository: context.read())..add(const HomeDashboardLoadRequested()),
     child: const _View(),
   );
 }

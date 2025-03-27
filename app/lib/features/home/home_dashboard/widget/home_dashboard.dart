@@ -1,10 +1,12 @@
-import 'package:app/core/presentation/widgets/composants/loader.dart';
+import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
 import 'package:app/features/home/home_dashboard/bloc/home_dashboard_event.dart';
 import 'package:app/features/home/home_dashboard/bloc/home_dashboard_state.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -26,14 +28,67 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => BlocBuilder<HomeDashboardBloc, HomeDashboardState>(
     builder:
         (final context, final state) => switch (state) {
-          HomeDashboardInitial() || HomeDashboardLoadInProgress() => const Center(child: FnvLoader()),
+          HomeDashboardInitial() ||
+          HomeDashboardLoadInProgress() => const _Success(nbActionsDone: 0, bilanCarbonePercentageCompletion: 0),
           HomeDashboardLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-          HomeDashboardLoadSuccess(:final nbActionsDone, :final bilanCarbonePercentageCompletion) => _Success(
+          HomeDashboardLoadSuccess(:final nbActionsDone, :final bilanCarbonePercentageCompletion) => _AnimatedSuccess(
             nbActionsDone: nbActionsDone,
             bilanCarbonePercentageCompletion: bilanCarbonePercentageCompletion,
           ),
         },
   );
+}
+
+// Animated success class wich display the number of actions done and the percentage of the environmental performance completion from 0 to the provided values once the data is loaded.
+class _AnimatedSuccess extends StatefulWidget {
+  const _AnimatedSuccess({required this.nbActionsDone, required this.bilanCarbonePercentageCompletion});
+
+  final int nbActionsDone;
+  final int bilanCarbonePercentageCompletion;
+
+  @override
+  State createState() => _AnimatedSuccessState();
+}
+
+class _AnimatedSuccessState extends State<_AnimatedSuccess> {
+  late int nbActionsDone;
+  late int bilanCarbonePercentageCompletion;
+
+  @override
+  void initState() {
+    super.initState();
+    nbActionsDone = widget.nbActionsDone;
+    bilanCarbonePercentageCompletion = widget.bilanCarbonePercentageCompletion;
+  }
+
+  // increment the values from 0 to the provided values in 1 second.
+  var currentNbActionsDone = 0;
+  var currentBilanCarbonePercentageCompletion = 0;
+  var delay = 150;
+
+  @override
+  Widget build(final BuildContext context) {
+    Future.doWhile(() async {
+      await Future.delayed(Duration(milliseconds: delay));
+      setState(() {
+        if (delay > 10) {
+          delay = delay - 5;
+        }
+        if (currentNbActionsDone < nbActionsDone) {
+          currentNbActionsDone++;
+        }
+        if (currentBilanCarbonePercentageCompletion < bilanCarbonePercentageCompletion) {
+          currentBilanCarbonePercentageCompletion++;
+        }
+      });
+      return currentNbActionsDone < nbActionsDone || currentBilanCarbonePercentageCompletion < bilanCarbonePercentageCompletion;
+    });
+
+    return _Success(
+      nbActionsDone: currentNbActionsDone,
+      bilanCarbonePercentageCompletion: currentBilanCarbonePercentageCompletion,
+    );
+  }
 }
 
 class _Success extends StatelessWidget {
@@ -54,9 +109,11 @@ class _Success extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s4w),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
+                spacing: DsfrSpacings.s1w,
                 children: [
                   // FIXME: tweaks to align the text, maybe there is a clever way to do it or at least we could factorized this.
                   Stack(
@@ -85,6 +142,7 @@ class _Success extends StatelessWidget {
             const DsfrDivider(width: 1, height: 100),
             Expanded(
               child: Column(
+                spacing: DsfrSpacings.s1w,
                 children: [
                   Stack(
                     alignment: AlignmentDirectional.center,
@@ -113,7 +171,17 @@ class _Success extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Text('Mon bilan carbone', style: DsfrTextStyle(fontSize: 13)),
+                  Column(
+                    children: [
+                      const Text(Localisation.bilanEnvironnemental, style: DsfrTextStyle(fontSize: 13)),
+                      DsfrLink.sm(
+                        label: bilanCarbonePercentageCompletion == 100 ? 'Voir' : 'Compléter',
+                        icon: DsfrIcons.systemArrowRightLine,
+                        iconPosition: DsfrLinkIconPosition.end,
+                        onTap: () => GoRouter.of(context).pushReplacementNamed(EnvironmentalPerformanceSummaryPage.name),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

@@ -23,12 +23,11 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
       final bilanCarboneFetchResult = await environmentalPerformanceSummaryRepository.fetch();
 
       bilanCarboneFetchResult.fold((final l) => emit(HomeDashboardLoadFailure(errorMessage: l.toString())), (final r) {
-        // final bilanCarbonPercentageCompletion = (r is EnvironmentalPerformancePartial) ? r.percentageCompletion : 100;
+        final bilanCarbonPercentageCompletion = (r is EnvironmentalPerformancePartial) ? r.percentageCompletion : 100;
         emit(
           HomeDashboardLoadSuccess(
             nbActionsDone: nbActionsDone,
-            bilanCarbonePercentageCompletion: 67,
-            // bilanCarbonPercentageCompletion,
+            bilanCarbonePercentageCompletion: bilanCarbonPercentageCompletion,
           ),
         );
       });

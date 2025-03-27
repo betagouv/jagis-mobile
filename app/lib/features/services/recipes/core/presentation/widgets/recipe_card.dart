@@ -42,11 +42,11 @@ class RecipeCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(DsfrSpacings.s2w),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: DsfrSpacings.s1w,
               children: [
                 Text(title, style: const DsfrTextStyle.bodyLgBold(), maxLines: 3),
-                const SizedBox(height: DsfrSpacings.s1w),
                 Row(
                   spacing: DsfrSpacings.s1w,
                   children: [

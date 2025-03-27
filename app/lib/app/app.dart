@@ -35,8 +35,8 @@ import 'package:app/features/gamification/infrastructure/gamification_repository
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
-import 'package:app/features/home/home_dashboard/infrastructure/home_dashboard_repository.dart';
+import 'package:app/features/home/bloc/home_dashboard_bloc.dart';
+import 'package:app/features/home/infrastructure/home_dashboard_repository.dart';
 import 'package:app/features/home/presentation/cubit/home_disclaimer_cubit.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';

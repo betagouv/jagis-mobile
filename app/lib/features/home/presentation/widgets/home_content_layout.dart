@@ -1,11 +1,13 @@
 import 'package:app/core/helpers/size.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_event.dart';
-import 'package:app/features/home/home_dashboard/bloc/home_dashboard_state.dart';
-import 'package:app/features/home/home_dashboard/domain/home_dashboard.dart';
-import 'package:app/features/home/home_dashboard/widget/home_dashboard.dart';
-import 'package:app/features/home/home_recommendations/widget/home_recommendations.dart';
+import 'package:app/features/home/bloc/home_dashboard_bloc.dart';
+import 'package:app/features/home/bloc/home_dashboard_event.dart';
+import 'package:app/features/home/bloc/home_dashboard_state.dart';
+import 'package:app/features/home/domain/home_dashboard.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
+import 'package:app/features/home/presentation/widgets/home_dashboard_counter.dart';
+import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
+import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
+import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/survey/survey_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
@@ -19,7 +21,10 @@ class HomeContentLayout extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocProvider(
-    create: (final context) => HomeDashboardBloc(repository: context.read())..add(const HomeDashboardLoadRequested()),
+    create:
+        (final context) =>
+            HomeDashboardBloc(repository: context.read(), recommandationsRepository: context.read())
+              ..add(const HomeDashboardLoadRequested()),
     child: const _View(),
   );
 }
@@ -33,15 +38,19 @@ class _View extends StatelessWidget {
         (final context, final state) => switch (state.statut) {
           HomeDashboardStateStatus.init || HomeDashboardStateStatus.loading => const Center(child: CircularProgressIndicator()),
           HomeDashboardStateStatus.failure => Center(child: Text(state.errorMessage!)),
-          HomeDashboardStateStatus.success => _Success(state.homeDashboard!),
+          HomeDashboardStateStatus.success => _Success(
+            homeDashboard: state.homeDashboard!,
+            recommendations: state.recommendations!,
+          ),
         },
   );
 }
 
 class _Success extends StatelessWidget {
-  const _Success(this.homeDashboard);
+  const _Success({required this.homeDashboard, required this.recommendations});
 
   final HomeDashboard homeDashboard;
+  final List<Recommandation> recommendations;
 
   @override
   Widget build(final context) {
@@ -59,6 +68,7 @@ class _Success extends StatelessWidget {
         decoration: const BoxDecoration(color: Colors.white),
         child: ListView(
           padding: EdgeInsets.zero,
+          clipBehavior: Clip.none,
           children: [
             HomeDashboardCounter(
               nbActionsDone: homeDashboard.nbActionsDoneUser,
@@ -67,20 +77,9 @@ class _Success extends StatelessWidget {
             spacingSmall,
             const _WhichDomainButtonsSection(),
             spacing,
-            const HomeRecommendations(),
+            HomeRecommendations(recommendations),
             spacing,
-            const DecoratedBox(
-              decoration: BoxDecoration(color: Color(0xFFECEBE0)),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s6w),
-                child: Column(
-                  spacing: DsfrSpacings.s2w,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('Raccourcis', style: DsfrTextStyle.headline3())],
-                ),
-              ),
-            ),
-
+            HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
             spacing,
 
             const SurveySection(),

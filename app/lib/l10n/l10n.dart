@@ -147,6 +147,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCguMenu = 'CGU';
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
+  static const maDateDeNaissance = 'Ma date de naissance';
   static const maReponse = 'Ma réponse';
   static const maResidencePrincipaleEst = 'Ma résidence principale est …';
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';

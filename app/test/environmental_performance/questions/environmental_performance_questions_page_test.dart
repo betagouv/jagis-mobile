@@ -19,7 +19,7 @@ import '../../features/step/i_enter_in_the_field.dart';
 import '../../helpers/authentication_service_setup.dart';
 import '../../helpers/dio_mock.dart';
 import '../../helpers/pump_page.dart';
-import '../../old/mocks/gamification_bloc_fake.dart';
+import '../mocks/gamification_bloc_fake.dart';
 import '../summary/environmental_performance_data.dart';
 import 'environmental_performance_questions_data.dart';
 

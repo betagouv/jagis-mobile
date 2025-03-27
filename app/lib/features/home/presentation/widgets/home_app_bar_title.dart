@@ -9,11 +9,15 @@ class HomeAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    final prenom = context.select<UserBloc, String>((final bloc) => bloc.state.user.pseudonym);
+    final value = context.select<UserBloc, String?>((final bloc) => bloc.state.user?.pseudonym);
+
     const font = FnvTextStyles.appBarTitleStyle;
+    if (value == null || value.isEmpty) {
+      return Text(Localisation.bonjour, style: font.copyWith(fontWeight: FontWeight.bold));
+    }
 
     return Text.rich(
-      TextSpan(text: Localisation.bonjour, children: [TextSpan(text: Localisation.pseudonymExclamation(prenom), style: font)]),
+      TextSpan(text: Localisation.bonjour, children: [TextSpan(text: Localisation.pseudonymExclamation(value), style: font)]),
       style: font.copyWith(fontWeight: FontWeight.bold),
     );
   }

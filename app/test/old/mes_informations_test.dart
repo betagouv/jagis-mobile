@@ -2,15 +2,13 @@ import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intl/intl.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_select_date_in_the_field.dart';
 import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
-import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
@@ -59,12 +57,12 @@ void main() {
     await iEnterInTheField(tester, 'Nouveau prenom', Localisation.prenom);
     await iEnterInTheField(tester, 'Nouveau nom', Localisation.nom);
     final year = ScenarioContext().clock!.now().year - 18;
-    await _iSelectADate(tester, '15/01/$year', Localisation.dateDeNaissance);
+    await iSelectDateInTheField(tester, '15/01/$year', Localisation.dateDeNaissance);
     await ielScrolle(tester, Localisation.revenuFiscal);
     await iEnterInTheField(tester, 2.5.toString(), Localisation.nombreDePartsFiscales);
     await iEnterInTheField(tester, 35000.toString(), Localisation.revenuFiscal);
 
-    await ielAppuieSur(tester, Localisation.mettreAJourMesInformations);
+    await iTapOn(tester, Localisation.mettreAJourMesInformations);
 
     verify(
       () => ScenarioContext().dioMock!.patch<dynamic>(
@@ -84,12 +82,6 @@ void main() {
   });
 }
 
-Future<void> _iSelectADate(final WidgetTester tester, final String dateTime, final String label) async {
-  await iTapOn(tester, label);
-  await tester.tap(find.byKey(ValueKey(DateFormat('dd/MM/yyyy', 'fr_FR').parse(dateTime))));
-  await iTapOn(tester, 'OK');
-}
-
 Future<void> _allerSurMesInformations(final WidgetTester tester) async {
   ielACesInformationsDeProfil(
     email: 'michel@dupont.fr',
@@ -103,6 +95,6 @@ Future<void> _allerSurMesInformations(final WidgetTester tester) async {
   ielEstConnecte();
   await ielLanceLapplication(tester);
   await ielAppuieSurAccessibilite(tester, Localisation.menu);
-  await ielAppuieSur(tester, Localisation.monProfil);
-  await ielAppuieSur(tester, Localisation.mesInformations);
+  await iTapOn(tester, Localisation.monProfil);
+  await iTapOn(tester, Localisation.mesInformations);
 }

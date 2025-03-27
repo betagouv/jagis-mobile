@@ -13,6 +13,8 @@ import './step/i_enter_in_the_field.dart';
 import './step/i_accept_the_terms_of_use.dart';
 import './step/i_tap_on_create_my_account_button.dart';
 import './step/i_enter_in_the_pin_field.dart';
+import './step/i_scroll_down_to.dart';
+import './step/i_select_date_in_the_field.dart';
 import './step/i_see.dart';
 import './step/i_select_in_the_field.dart';
 import './step/i_see_the_home_page.dart';
@@ -54,6 +56,10 @@ void main() {
         await beforeEach('''Répondre aux premieres questions''');
         await bddSetUp(tester);
         await iEnterInTheField(tester, 'Joe', 'Mon pseudonyme');
+        await iScrollDownTo(tester, 'Ma date de naissance');
+        await iSelectDateInTheField(
+            tester, '15/01/1974', 'Ma date de naissance');
+        await iTapOn(tester, 'Continuer');
         await iSee(tester,
             'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.');
         await iEnterInTheField(tester, '39100', 'Code postal');
@@ -114,6 +120,10 @@ void main() {
               ]
             ]));
         await iEnterInTheField(tester, 'Lucas', 'Mon pseudonyme');
+        await iScrollDownTo(tester, 'Ma date de naissance');
+        await iSelectDateInTheField(
+            tester, '15/01/1974', 'Ma date de naissance');
+        await iTapOn(tester, 'Continuer');
         await iSee(tester, 'Une erreur est survenue.');
       } on TestFailure {
         success = false;

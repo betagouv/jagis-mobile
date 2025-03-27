@@ -7,8 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
-import 'steps/iel_appuie_sur.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_appuie_sur_texte_comportant.dart';
 import 'steps/iel_est_connecte.dart';
@@ -119,7 +119,7 @@ void main() {
           await ielScrolle(tester, Localisation.modifier);
           await ielAppuieSurTexteComportant(tester, Localisation.modifier);
           await ielAppuieSurAccessibilite(tester, Localisation.retour);
-          await ielAppuieSur(tester, Localisation.accederAuSimulateur);
+          await iTapOn(tester, Localisation.accederAuSimulateur);
           await ielScrolle(tester, Localisation.modifier);
           ielVoitLeTexteDansTexteRiche(Localisation.modifier);
         });
@@ -131,8 +131,9 @@ void main() {
 Future<void> _allerSurLeSimulateurVelo(final WidgetTester tester, final Aid aide) async {
   ielEstConnecte();
   await ielLanceLapplication(tester);
+  await tester.pumpAndSettle();
   await ielScrolle(tester, Localisation.mesAidesLien);
-  await ielAppuieSur(tester, Localisation.mesAidesLien);
-  await ielAppuieSur(tester, aide.title);
-  await ielAppuieSur(tester, Localisation.accederAuSimulateur);
+  await iTapOn(tester, Localisation.mesAidesLien);
+  await iTapOn(tester, aide.title);
+  await iTapOn(tester, Localisation.accederAuSimulateur);
 }

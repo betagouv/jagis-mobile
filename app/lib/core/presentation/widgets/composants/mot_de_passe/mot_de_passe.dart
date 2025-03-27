@@ -31,8 +31,8 @@ class _MotDePasse extends StatelessWidget {
             onChanged(value);
           }
         },
-        isPasswordMode: true,
         keyboardType: TextInputType.visiblePassword,
+        isPasswordMode: true,
         scrollPadding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom + 190),
         autofillHints: const [AutofillHints.password],
       ),

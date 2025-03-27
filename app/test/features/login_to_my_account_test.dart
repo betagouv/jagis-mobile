@@ -24,7 +24,6 @@ void main() {
   });
 
   group('''Login to my account''', () {
-    Future<void> bddSetUp(WidgetTester tester) async {}
     Future<void> beforeEach(String title, [List<String>? tags]) async {
       await Hooks.beforeEach(title, tags);
     }
@@ -38,7 +37,6 @@ void main() {
       var success = true;
       try {
         await beforeEach('''Login to my account is successful''');
-        await bddSetUp(tester);
         await theApplicationIsLaunched(tester);
         await iTapOn(tester, "J’ai déjà un compte");
         await iSee(tester, 'Accédez à mon compte J’agis');
@@ -62,7 +60,6 @@ void main() {
       var success = true;
       try {
         await beforeEach('''Already logged in''');
-        await bddSetUp(tester);
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iSeeTheHomePage(tester);
@@ -80,7 +77,6 @@ void main() {
       var success = true;
       try {
         await beforeEach('''Logout''');
-        await bddSetUp(tester);
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iTapOnTheMenuButton(tester);

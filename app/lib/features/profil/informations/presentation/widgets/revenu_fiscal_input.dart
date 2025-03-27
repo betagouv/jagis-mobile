@@ -13,8 +13,8 @@ class RevenuFiscalInput extends StatelessWidget {
   @override
   Widget build(final context) => DsfrInput(
     label: Localisation.revenuFiscal,
-    suffixText: '€',
     initialValue: initialValue == null ? null : formatCurrency(initialValue!),
+    suffixText: '€',
     onChanged: (final value) {
       final parsedValue = currencyFormat.tryParse(value);
       if (parsedValue == null) {

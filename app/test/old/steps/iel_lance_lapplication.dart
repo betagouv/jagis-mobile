@@ -15,11 +15,11 @@ import 'package:mocktail/mocktail.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../environmental_performance/summary/environmental_performance_data.dart';
+import '../../features/helper/flutter_secure_storage_fake.dart';
 import '../../features/helper/notification_service_fake.dart';
 import '../../features/helper/package_info_fake.dart';
 import '../../features/helper/timed_delay_fake.dart';
 import '../api/constants.dart';
-import '../mocks/flutter_secure_storage_fake.dart';
 import 'scenario_context.dart';
 
 class _TrackerMock extends Mock implements Tracker {}
@@ -50,7 +50,15 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
   };
   ScenarioContext().dioMock!
     ..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData)
-    ..getM(Endpoints.utilisateur, responseData: {'prenom': 'Lucas', 'is_onboarding_done': true})
+    ..getM(
+      Endpoints.utilisateur,
+      responseData: {
+        'prenom': 'Lucas',
+        'is_onboarding_done': true,
+        'is_nom_prenom_modifiable': true,
+        'popup_reset_est_vue': true,
+      },
+    )
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
     ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[])
     ..getM(Endpoints.gamification, responseData: {'points': 650})

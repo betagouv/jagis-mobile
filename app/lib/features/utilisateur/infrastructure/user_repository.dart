@@ -21,8 +21,9 @@ class UserRepository {
     return Right(
       User(
         pseudonym: json['pseudo'] as String? ?? '',
-        isIntegrationCompleted: json['is_onboarding_done'] as bool?,
-        shouldShowResetPopup: json['popup_reset_est_vue'] as bool?,
+        isUserFranceConnect: !(json['is_nom_prenom_modifiable'] as bool),
+        isIntegrationCompleted: json['is_onboarding_done'] as bool,
+        shouldShowResetPopup: json['popup_reset_est_vue'] as bool,
       ),
     );
   }

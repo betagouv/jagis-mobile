@@ -1,5 +1,4 @@
 Feature: Version
-  Background:
 
   Scenario: User launches app and sees version number
     Given The application is launched

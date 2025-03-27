@@ -19,7 +19,6 @@ void main() {
   });
 
   group('''Version''', () {
-    Future<void> bddSetUp(WidgetTester tester) async {}
     Future<void> beforeEach(String title, [List<String>? tags]) async {
       await Hooks.beforeEach(title, tags);
     }
@@ -34,7 +33,6 @@ void main() {
       var success = true;
       try {
         await beforeEach('''User launches app and sees version number''');
-        await bddSetUp(tester);
         await theApplicationIsLaunched(tester);
         await iSee(tester, '1.2.3+4');
       } on TestFailure {
@@ -51,7 +49,6 @@ void main() {
       var success = true;
       try {
         await beforeEach('''User views version number through menu''');
-        await bddSetUp(tester);
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iTapOnTheMenuButton(tester);

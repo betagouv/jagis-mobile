@@ -42,13 +42,21 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   @override
-  Widget build(final context) => BlocListener<UserBloc, UserState>(
+  Widget build(final context) => BlocConsumer<UserBloc, UserState>(
+    builder: (final context, final state) {
+      final user = state.user;
+      if (user == null || !user.isIntegrationCompleted) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      return const HomeContentLayout();
+    },
     listener: (final context, final state) async {
       final user = state.user;
-      final estIntegrationTerminee = user.isIntegrationCompleted;
-      if (estIntegrationTerminee == null) {
+      if (user == null) {
         return;
       }
+      final estIntegrationTerminee = user.isIntegrationCompleted;
 
       if (!estIntegrationTerminee) {
         await GoRouter.of(context).pushReplacementNamed(OnboardingPseudonymPage.name);
@@ -58,7 +66,7 @@ class _HomeContentState extends State<HomeContent> {
 
       await _handleNotifications(context);
 
-      if (context.mounted && user.shouldShowResetPopup != null && !user.shouldShowResetPopup!) {
+      if (context.mounted && !user.shouldShowResetPopup) {
         await DsfrModal.showFullModal<void>(
           context: context,
           builder: (final context) => const ResetModal(),
@@ -68,8 +76,7 @@ class _HomeContentState extends State<HomeContent> {
     },
     listenWhen:
         (final previous, final current) =>
-            previous.user.isIntegrationCompleted != current.user.isIntegrationCompleted ||
-            previous.user.shouldShowResetPopup != current.user.shouldShowResetPopup,
-    child: const HomeContentLayout(),
+            previous.user?.isIntegrationCompleted != current.user?.isIntegrationCompleted ||
+            previous.user?.shouldShowResetPopup != current.user?.shouldShowResetPopup,
   );
 }

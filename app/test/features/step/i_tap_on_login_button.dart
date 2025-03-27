@@ -20,7 +20,10 @@ Future<void> iTapOnLoginButton(final WidgetTester tester) async {
         'utilisateur': {'id': user},
       },
     )
-    ..getM(Endpoints.utilisateur, responseData: {'is_onboarding_done': false});
+    ..getM(
+      Endpoints.utilisateur,
+      responseData: {'is_onboarding_done': false, 'is_nom_prenom_modifiable': true, 'popup_reset_est_vue': true},
+    );
   await iScrollDown(tester);
   await iTapOn(tester, Localisation.meConnecter);
 }

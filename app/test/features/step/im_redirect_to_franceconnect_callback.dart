@@ -21,7 +21,10 @@ Future<void> imRedirectToFranceconnectCallback(final WidgetTester tester) async 
         'utilisateur': {'id': user},
       },
     )
-    ..getM(Endpoints.utilisateur, responseData: {'is_onboarding_done': false});
+    ..getM(
+      Endpoints.utilisateur,
+      responseData: {'is_onboarding_done': false, 'is_nom_prenom_modifiable': false, 'popup_reset_est_vue': true},
+    );
   GoRouter.of(navigatorKey.currentContext!).go('https://www.jagis.gouv.fr/fc-login-callback?code=$code&state=$state');
   await tester.pumpAndSettle();
 }

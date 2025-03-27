@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 
 @immutable
 final class UserState extends Equatable {
-  const UserState({required this.user});
+  const UserState({this.user});
 
-  final User user;
+  final User? user;
 
   @override
-  List<Object> get props => [user];
+  List<Object?> get props => [user];
 }

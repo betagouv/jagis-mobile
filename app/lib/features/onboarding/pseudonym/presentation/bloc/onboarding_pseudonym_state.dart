@@ -1,47 +1,44 @@
+import 'package:app/features/onboarding/pseudonym/domain/pseudonym.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-sealed class OnboardingPseudonymState extends Equatable {
-  const OnboardingPseudonymState();
+final class OnboardingPseudonymState extends Equatable {
+  const OnboardingPseudonymState._({
+    required this.isUserFranceConnect,
+    required this.pseudonym,
+    this.birthdate,
+    this.isSuccess = false,
+    this.errorMessage,
+  });
+  const OnboardingPseudonymState.initial(final bool isUserFranceConnect)
+    : this._(isUserFranceConnect: isUserFranceConnect, pseudonym: '');
 
-  @override
-  List<Object> get props => [];
-}
-
-@immutable
-final class OnboardingPseudonymInitial extends OnboardingPseudonymState {
-  const OnboardingPseudonymInitial();
-}
-
-@immutable
-final class OnboardingPseudonymEntered extends OnboardingPseudonymState {
-  const OnboardingPseudonymEntered({required this.pseudonym, required this.isValid});
-
+  final bool isUserFranceConnect;
   final String pseudonym;
-  final bool isValid;
+  final DateTime? birthdate;
+  bool get isValid => pseudonym.isNotEmpty && (isUserFranceConnect || birthdate != null) && errorMessage == null;
+  final bool isSuccess;
+  final String? errorMessage;
+
+  OnboardingPseudonymState setPseudonym(final String pseudonym) => Pseudonym.create(pseudonym).fold(
+    fail,
+    (final r) => OnboardingPseudonymState._(isUserFranceConnect: isUserFranceConnect, pseudonym: pseudonym, birthdate: birthdate),
+  );
+
+  OnboardingPseudonymState setBirthdate(final DateTime birthdate) =>
+      OnboardingPseudonymState._(isUserFranceConnect: isUserFranceConnect, pseudonym: pseudonym, birthdate: birthdate);
+
+  OnboardingPseudonymState submit() => OnboardingPseudonymState._(
+    isUserFranceConnect: isUserFranceConnect,
+    pseudonym: pseudonym,
+    birthdate: birthdate,
+    isSuccess: true,
+  );
+
+  OnboardingPseudonymState fail(final String errorMessage) =>
+      OnboardingPseudonymState._(isUserFranceConnect: isUserFranceConnect, pseudonym: pseudonym, errorMessage: errorMessage);
 
   @override
-  List<Object> get props => [pseudonym, isValid];
-}
-
-@immutable
-final class OnboardingPseudonymSuccess extends OnboardingPseudonymState {
-  const OnboardingPseudonymSuccess(this.pseudonym);
-
-  final String pseudonym;
-
-  @override
-  List<Object> get props => [pseudonym];
-}
-
-@immutable
-final class OnboardingPseudonymFailure extends OnboardingPseudonymState {
-  const OnboardingPseudonymFailure({required this.pseudonym, required this.errorMessage});
-
-  final String pseudonym;
-  final String errorMessage;
-
-  @override
-  List<Object> get props => [pseudonym, errorMessage];
+  List<Object?> get props => [isUserFranceConnect, pseudonym, birthdate, isSuccess, errorMessage];
 }

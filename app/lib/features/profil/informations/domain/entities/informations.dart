@@ -4,7 +4,7 @@ class Informations extends Equatable {
   const Informations({
     required this.email,
     required this.pseudonym,
-    required this.isNomPrenomModifiable,
+    required this.isUserFranceConnect,
     required this.prenom,
     required this.nom,
     required this.anneeDeNaissance,
@@ -18,7 +18,7 @@ class Informations extends Equatable {
 
   final String email;
   final String? pseudonym;
-  final bool isNomPrenomModifiable;
+  final bool isUserFranceConnect;
   final String? prenom;
   final String? nom;
   final int? anneeDeNaissance;
@@ -33,7 +33,7 @@ class Informations extends Equatable {
   List<Object?> get props => [
     email,
     pseudonym,
-    isNomPrenomModifiable,
+    isUserFranceConnect,
     prenom,
     nom,
     anneeDeNaissance,

@@ -1,41 +1,22 @@
+import 'package:app/features/home/home_dashboard/domain/home_dashboard.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
-@immutable
-sealed class HomeDashboardState extends Equatable {
-  const HomeDashboardState();
+// TODO(erolley): add an abstract class for each state using this status enum framework
+enum HomeDashboardStateStatus { init, loading, success, failure }
 
-  @override
-  List<Object?> get props => [];
-}
+class HomeDashboardState extends Equatable {
+  const HomeDashboardState({required this.statut, this.homeDashboard, this.errorMessage});
+  const HomeDashboardState.init() : this(statut: HomeDashboardStateStatus.init);
+  const HomeDashboardState.loading() : this(statut: HomeDashboardStateStatus.loading);
+  const HomeDashboardState.success(final HomeDashboard homeDashboard)
+    : this(statut: HomeDashboardStateStatus.success, homeDashboard: homeDashboard);
+  const HomeDashboardState.failure(final String errorMessage)
+    : this(statut: HomeDashboardStateStatus.failure, errorMessage: errorMessage);
 
-@immutable
-final class HomeDashboardInitial extends HomeDashboardState {
-  const HomeDashboardInitial();
-}
-
-@immutable
-final class HomeDashboardLoadInProgress extends HomeDashboardState {
-  const HomeDashboardLoadInProgress();
-}
-
-@immutable
-final class HomeDashboardLoadSuccess extends HomeDashboardState {
-  const HomeDashboardLoadSuccess({required this.nbActionsDone, required this.bilanCarbonePercentageCompletion});
-
-  final int nbActionsDone;
-  final int bilanCarbonePercentageCompletion;
+  final HomeDashboardStateStatus statut;
+  final String? errorMessage;
+  final HomeDashboard? homeDashboard;
 
   @override
-  List<Object?> get props => [nbActionsDone, bilanCarbonePercentageCompletion];
-}
-
-@immutable
-final class HomeDashboardLoadFailure extends HomeDashboardState {
-  const HomeDashboardLoadFailure({required this.errorMessage});
-
-  final String errorMessage;
-
-  @override
-  List<Object> get props => [errorMessage];
+  List<Object?> get props => [statut, errorMessage, homeDashboard];
 }

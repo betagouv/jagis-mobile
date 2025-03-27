@@ -1,4 +1,8 @@
 import 'package:app/core/helpers/size.dart';
+import 'package:app/features/home/home_dashboard/bloc/home_dashboard_bloc.dart';
+import 'package:app/features/home/home_dashboard/bloc/home_dashboard_event.dart';
+import 'package:app/features/home/home_dashboard/bloc/home_dashboard_state.dart';
+import 'package:app/features/home/home_dashboard/domain/home_dashboard.dart';
 import 'package:app/features/home/home_dashboard/widget/home_dashboard.dart';
 import 'package:app/features/home/home_recommendations/widget/home_recommendations.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
@@ -7,10 +11,37 @@ import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeContentLayout extends StatelessWidget {
   const HomeContentLayout({super.key});
+
+  @override
+  Widget build(final context) => BlocProvider(
+    create: (final context) => HomeDashboardBloc(repository: context.read())..add(const HomeDashboardLoadRequested()),
+    child: const _View(),
+  );
+}
+
+class _View extends StatelessWidget {
+  const _View();
+
+  @override
+  Widget build(final BuildContext context) => BlocBuilder<HomeDashboardBloc, HomeDashboardState>(
+    builder:
+        (final context, final state) => switch (state.statut) {
+          HomeDashboardStateStatus.init || HomeDashboardStateStatus.loading => const Center(child: CircularProgressIndicator()),
+          HomeDashboardStateStatus.failure => Center(child: Text(state.errorMessage!)),
+          HomeDashboardStateStatus.success => _Success(state.homeDashboard!),
+        },
+  );
+}
+
+class _Success extends StatelessWidget {
+  const _Success(this.homeDashboard);
+
+  final HomeDashboard homeDashboard;
 
   @override
   Widget build(final context) {
@@ -28,15 +59,31 @@ class HomeContentLayout extends StatelessWidget {
         decoration: const BoxDecoration(color: Colors.white),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
-            HomeDashboard(),
-            // ThemeHubSection(),
+          children: [
+            HomeDashboardCounter(
+              nbActionsDone: homeDashboard.nbActionsDoneUser,
+              bilanCarbonePercentageCompletion: homeDashboard.environmentalImpactPercentageCompletion,
+            ),
             spacingSmall,
-            _WhichDomainButtonsSection(),
+            const _WhichDomainButtonsSection(),
             spacing,
-            HomeRecommendations(),
+            const HomeRecommendations(),
             spacing,
-            SurveySection(),
+            const DecoratedBox(
+              decoration: BoxDecoration(color: Color(0xFFECEBE0)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s6w),
+                child: Column(
+                  spacing: DsfrSpacings.s2w,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text('Raccourcis', style: DsfrTextStyle.headline3())],
+                ),
+              ),
+            ),
+
+            spacing,
+
+            const SurveySection(),
           ],
         ),
       ),

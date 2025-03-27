@@ -20,6 +20,7 @@ class ModalsPage extends StatelessWidget {
             context: context,
             builder:
                 (final context) => Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text('Veuillez confirmer la suppression du compte', style: DsfrTextStyle.headline4()),

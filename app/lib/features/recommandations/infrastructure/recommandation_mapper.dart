@@ -22,4 +22,10 @@ abstract final class RecommandationMapper {
     'quizz' => TypeDuContenu.quiz,
     _ => TypeDuContenu.article,
   };
+
+  static String mapContentTypeToJson(final TypeDuContenu type) => switch (type) {
+    TypeDuContenu.article => 'article',
+    TypeDuContenu.kyc => 'kyc',
+    TypeDuContenu.quiz => 'quizz',
+  };
 }

@@ -47,7 +47,6 @@ abstract final class Endpoints {
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String resetCustomization(final String themeCode) => '${theme(themeCode)}/reset_personnalisation';
   static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
-  static String recommandationsParThematique(final String themeCode) => '${theme(themeCode)}/recommandations';
   static const recommandationsV3 = '/utilisateurs/{userId}/recommandations_v3';
   static String servicesParThematique(final String themeCode) => '${theme(themeCode)}/recherche_services';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';

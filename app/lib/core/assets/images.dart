@@ -25,7 +25,6 @@ abstract final class AssetImages {
   static const illustration5 = 'assets/images/illustration5.svg';
   static const leaf = 'assets/images/leaf.svg';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
-  static const miniBilan = 'assets/images/mini_bilan.svg';
   static const mangerBouger = 'assets/images/manger_bouger.webp';
   static const mangerBougerLogo = 'assets/images/logo_manger_bouger.svg';
   static const alimentation = 'assets/images/alimentation.svg';
@@ -37,4 +36,6 @@ abstract final class AssetImages {
   static const resetPointsIllustrations2 = 'assets/images/reset_points_2.webp';
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
+  static const homeIllustration = 'assets/images/home_illustration.webp';
+  static const homeDashboardBg = 'assets/images/home_dashboard_bg.webp';
 }

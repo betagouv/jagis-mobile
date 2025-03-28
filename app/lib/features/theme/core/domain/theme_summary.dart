@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-long-functions
+
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
@@ -20,51 +22,40 @@ final class ThemeSummary extends Equatable {
     required final int aidCount,
     required final int? recipeCount,
   }) {
-    List<ThemeSummaryLink> getThemeSpecificLinks() {
-      switch (themeType) {
-        case ThemeType.alimentation:
-          return [
-            if (recipeCount != null)
-              ThemeSummaryInternalLink(
-                label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
-                route: RecipesPage.name,
-              ),
-            const ThemeSummaryInternalLink(
-              label: '🍓 **1** calendrier de fruits et légumes de saison',
-              route: SeasonalFruitsAndVegetablesPage.name,
-            ),
-            ThemeSummaryExternalLink(
-              label: '🛒 Des adresses pour manger local',
-              url: 'https://presdecheznous.fr/map#/carte/$commune',
-            ),
-          ];
-        case ThemeType.logement:
-          return [
-            const ThemeSummaryExternalLink(
-              label: '🧱 **1** simulateur Mes aides Réno',
-              url: 'https://mesaidesreno.beta.gouv.fr/',
-            ),
-          ];
-        case ThemeType.transport:
-          return [
-            const ThemeSummaryExternalLink(
-              label: '🚙 **1** simulateur Dois-je changer de voiture ?',
-              url: 'https://jechangemavoiture.gouv.fr/jcmv/',
-            ),
-            const ThemeSummaryInternalLink(label: '🚲 **1** simulateur aides vélo', route: AideSimulateurVeloPage.name),
-          ];
-        case ThemeType.consommation:
-          return [
-            const ThemeSummaryExternalLink(
-              label: '🔧 Des adresses de réparateur près de chez vous',
-              url: 'https://longuevieauxobjets.ademe.fr/lacarte/',
-            ),
-          ];
-        case ThemeType.decouverte:
-          return [];
-        // throw UnimplementedError();
-      }
-    }
+    List<ThemeSummaryLink> getThemeSpecificLinks() => switch (themeType) {
+      ThemeType.alimentation => [
+        if (recipeCount != null)
+          ThemeSummaryInternalLink(
+            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
+            route: RecipesPage.name,
+          ),
+        const ThemeSummaryInternalLink(
+          label: '🍓 **1** calendrier de fruits et légumes de saison',
+          route: SeasonalFruitsAndVegetablesPage.name,
+        ),
+        ThemeSummaryExternalLink(
+          label: '🛒 Des adresses pour manger local',
+          url: 'https://presdecheznous.fr/map#/carte/$commune',
+        ),
+      ],
+      ThemeType.logement => [
+        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur Mes aides Réno', url: 'https://mesaidesreno.beta.gouv.fr/'),
+      ],
+      ThemeType.transport => [
+        const ThemeSummaryExternalLink(
+          label: '🚙 **1** simulateur Dois-je changer de voiture ?',
+          url: 'https://jechangemavoiture.gouv.fr/jcmv/',
+        ),
+        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur aides vélo', route: AideSimulateurVeloPage.name),
+      ],
+      ThemeType.consommation => [
+        const ThemeSummaryExternalLink(
+          label: '🔧 Des adresses de réparateur près de chez vous',
+          url: 'https://longuevieauxobjets.ademe.fr/lacarte/',
+        ),
+      ],
+      ThemeType.decouverte => [],
+    };
 
     List<ThemeSummaryLink> getAidLinks() =>
         aidCount > 0

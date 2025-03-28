@@ -132,8 +132,8 @@ Future<void> _allerSurLeSimulateurVelo(final WidgetTester tester, final Aid aide
   ielEstConnecte();
   await ielLanceLapplication(tester);
   await tester.pumpAndSettle();
-  await ielScrolle(tester, Localisation.mesAidesLien);
-  await iTapOn(tester, Localisation.mesAidesLien);
+  await ielAppuieSurAccessibilite(tester, Localisation.menu);
+  await iTapOn(tester, Localisation.aides);
   await iTapOn(tester, aide.title);
   await iTapOn(tester, Localisation.accederAuSimulateur);
 }

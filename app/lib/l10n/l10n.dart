@@ -26,13 +26,9 @@ abstract final class Localisation {
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
   static const annuler = 'Annuler';
-  static const appEstEnConstruction = 'J’agis est un nouveau service !';
-  static const appEstEnConstructionDescription =
-      'Cette version est encore très incomplète et de nombreuses évolutions et nouvelles fonctionnalités sont mises en ligne chaque semaine.';
   static const appEstEncoreEnExperimentation = 'J’agis est encore en expérimentation !';
   static const appEstEncoreEnExperimentationDetails = 'Nous ajoutons progressivement les aides et contenus locaux à ';
   static const appEstEncoreEnExperimentationDetails2 = '\nRevenez régulièrement pour profiter de nos dernières nouveautés';
-  static const article = 'Article';
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
@@ -55,6 +51,7 @@ abstract final class Localisation {
   static const combienEtesVousDansVotreLogement = 'Combien êtes-vous dans votre logement (vous inclus) ?';
   static const commencer = 'Commencer';
   static const commune = 'Commune';
+  static const completer = 'Compléter';
   static const confirmer = 'Confirmer';
   static const consommationsEnergetiques = 'Consommations énergétiques';
   static const continuer = 'Continuer';
@@ -62,9 +59,9 @@ abstract final class Localisation {
   static const creerMonCompte = 'Créer mon compte';
   static const creerMonCompteApp = 'Créez votre compte J’agis';
   static const dateDeNaissance = 'Date de naissance';
+  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine souhaitez-vous agir ?';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
-  static const decouvrir = 'Découvrir';
   static const dejaConsultees = 'Déjà consultées';
   static const donneesPersonnelles = 'Données personnelles';
   static const donneesUtiliseesPart1 = 'Données utilisées : code postal ';
@@ -122,8 +119,6 @@ abstract final class Localisation {
   static const fruitsEtLegumesTitre = 'Les fruits et légumes pour le mois de ';
   static const gratuit = 'Gratuit';
   static const home = 'Accueil';
-  static const homeAssistanceSubTitle = 'Toutes les aides **locales** et **nationales** pour vous aider à passer à l’action';
-  static const homeAssistanceTitle = '**Aides financières** et bons plans';
   static const impactCo2 = 'Impact CO₂';
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
   static const impactCo2Url = 'https://impactco2.fr/';
@@ -172,7 +167,6 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
   static const mesAidesDisponibles = 'Mes aides disponibles';
-  static const mesAidesLien = 'Voir toutes les aides';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
@@ -220,7 +214,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez 1 part pour
 Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme des revenus de toutes les personnes avec lequelles vous partagez vos déclarations d’impôts (pour toute l’année) pour vous faire une première idée.''';
   static const oui = 'Oui';
   static const pageConnexionTitre = 'Accédez à mon compte J’agis';
-  static const parOuSouhaitezVousCommencer = 'Par où souhaitez-vous commencer ?';
   static const passerLaQuestion = 'Passer la question';
   static const pionnier = 'Pionnier';
   static const pionnierDescription = 'Présent depuis les premiers jours';
@@ -248,7 +241,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const quelleEstLaSuperficie = 'Quelle est la superficie ?';
   static const questionPrecedente = 'Question précédente';
   static const questionSuivante = 'Question suivante';
-  static const quiz = 'Quiz';
+  static const raccourcis = 'Raccourcis';
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
@@ -256,7 +249,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const rechercherParTitre = 'Rechercher par titre';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const recommencerLeBilan = 'Recommmencer le bilan';
-  static const recommandationsTitre = 'Recommandé, pour vous';
   static const recolter = 'Récolter';
   static const refaire = 'Refaire';
   static const renvoyerCode = 'Renvoyer le code';
@@ -280,7 +272,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
-  static const themeRecommandationsSousTitre = 'Une sélection d’articles et de services, pour vous, selon vos préférences !';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';
@@ -344,9 +335,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
   static String nombreBadges(final int value) => value <= 1 ? '$value badge' : '$value badges';
-
-  static String parOuSouhaitezVousCommencerDescription(final String city) =>
-      'D’après nos calculs, à ***$city***, voici ce que nous pouvons vous proposer :';
 
   static String pseudonymExclamation(final String value) => '$value !';
 

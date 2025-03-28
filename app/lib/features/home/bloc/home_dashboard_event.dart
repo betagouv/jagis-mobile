@@ -13,3 +13,8 @@ sealed class HomeDashboardEvent extends Equatable {
 final class HomeDashboardLoadRequested extends HomeDashboardEvent {
   const HomeDashboardLoadRequested();
 }
+
+@immutable
+final class HomeDashboardRecommandationsUpdated extends HomeDashboardEvent {
+  const HomeDashboardRecommandationsUpdated();
+}

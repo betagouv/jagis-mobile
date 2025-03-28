@@ -2,7 +2,6 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
-import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
@@ -96,8 +95,6 @@ class _Success extends StatelessWidget {
         sizedBox,
         Padding(padding: padding, child: _Services(services: data.services)),
         sizedBox,
-        Padding(padding: padding, child: _Recommandations(themeType: themeType)),
-        sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),
       ],
@@ -146,13 +143,4 @@ class _ActionCatalog extends StatelessWidget {
       ),
     ],
   );
-}
-
-class _Recommandations extends StatelessWidget {
-  const _Recommandations({required this.themeType});
-
-  final ThemeType themeType;
-
-  @override
-  Widget build(final context) => MesRecommandations(theme: themeType);
 }

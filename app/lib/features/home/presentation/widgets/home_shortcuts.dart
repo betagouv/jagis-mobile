@@ -2,6 +2,7 @@ import 'package:app/core/helpers/size.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
@@ -20,15 +21,15 @@ class HomeShortcuts extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s6w, horizontal: DsfrSpacings.s2w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: DsfrSpacings.s2w,
+        spacing: DsfrSpacings.s3w,
         children: [
-          const Text('Raccourcis', style: DsfrTextStyle.headline3()),
+          const Text(Localisation.raccourcis, style: DsfrTextStyle.headline3()),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
             child: IntrinsicHeight(
               child: Row(
-                spacing: DsfrSpacings.s2w,
+                spacing: DsfrSpacings.s3v,
                 children:
                     ThemeType.values
                         .flatMap(

@@ -68,7 +68,10 @@ class _QuestionView extends StatelessWidget {
                           label: Localisation.voirLaReponse,
                           variant: DsfrButtonVariant.primary,
                           size: DsfrButtonSize.lg,
-                          onPressed: () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
+                          onPressed:
+                              state.selectedResponse == null
+                                  ? null
+                                  : () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
                         )
                         : DsfrButton(
                           label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,

@@ -99,14 +99,19 @@ final class ActionQuiz extends Action {
   final List<Quiz> quizzes;
   final String congratulatoryText;
 
+  /// Le nombre de bonnes réponses requises pour valider l'action.
+  ///
+  /// On est partie sur une base de 6 questions par quiz, et 4 bonnes réponses.
+  int get correctAnswersRequired => (quizzes.length * 4 / 6).ceil();
+
   @override
   List<Object?> get props => [...super.props, quizzes, congratulatoryText];
 
   @override
-  String get instruction => 'Répondez à suffisamment de bonnes réponses pour gagner';
+  String get instruction => 'Obtenez plus de $correctAnswersRequired bonnes réponses';
 
   @override
-  String get instructionWhenDone => 'Vous avez terminé ce quiz';
+  String get instructionWhenDone => 'Vous avez obtenu plus de $correctAnswersRequired bonnes réponses';
 
   @override
   String get scoreLabel => 'quiz';

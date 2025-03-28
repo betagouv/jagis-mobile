@@ -21,7 +21,7 @@ class GamificationBloc extends Bloc<GamificationEvent, GamificationState> {
 
       await emit.forEach<Gamification>(
         repository.gamification(),
-        onData: (final data) => state.copyWith(statut: GamificationStatut.succes, points: data.points),
+        onData: (final data) => state.copyWith(statut: GamificationStatut.succes, points: data.points, badges: data.badges),
         onError: (final _, final _) => state.copyWith(statut: GamificationStatut.erreur),
       );
     });

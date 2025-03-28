@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class GamificationBlocFake extends Fake implements GamificationBloc {
   @override
-  GamificationState get state => const GamificationState(statut: GamificationStatut.succes, points: 39);
+  GamificationState get state => const GamificationState(statut: GamificationStatut.succes, points: 39, badges: 1);
 
   @override
   Stream<GamificationState> get stream => Stream.value(state);

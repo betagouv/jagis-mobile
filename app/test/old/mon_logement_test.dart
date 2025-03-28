@@ -22,7 +22,7 @@ import 'steps/set_up_widgets.dart';
 const _codePostal = '39100';
 const _commune = 'DOLE';
 const _nombreAdultes = 2;
-const _nombreEnfants = 1;
+const _nombreEnfants = 3;
 
 void main() {
   testWidgets('Voir tous les textes', (final tester) async {
@@ -121,7 +121,7 @@ Future<void> _allerSurMonLogement(final WidgetTester tester) async {
       codePostal: _codePostal,
       commune: _commune,
       nombreAdultes: 2,
-      nombreEnfants: 1,
+      nombreEnfants: 3,
       typeDeLogement: TypeDeLogement.maison,
       estProprietaire: false,
       superficie: Superficie.s100,

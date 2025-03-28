@@ -337,6 +337,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String nombreArticle(final int value) => value <= 1 ? '$value article' : '$value articles';
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
+  static String nombreBadges(final int value) => value <= 1 ? '$value badge' : '$value badges';
 
   static String parOuSouhaitezVousCommencerDescription(final String city) =>
       'D’après nos calculs, à ***$city***, voici ce que nous pouvons vous proposer :';

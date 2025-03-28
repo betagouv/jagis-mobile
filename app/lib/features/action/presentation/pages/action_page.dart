@@ -22,13 +22,13 @@ class ActionPage extends StatelessWidget {
   const ActionPage({super.key, required this.id, required this.type});
 
   static const name = 'action';
-  static const path = 'action/:type/:titre/:id';
+  static const path = 'action/:type/:title/:id';
 
   static Map<String, String> pathParameters({
     required final ActionType type,
     required final String title,
     required final String id,
-  }) => {'type': actionTypeToAPIString(type), 'titre': title, 'id': id};
+  }) => {'type': actionTypeToAPIString(type), 'title': title, 'id': id};
 
   final String id;
   final ActionType type;

@@ -9,6 +9,7 @@
    - [Configuration iOS](https://firebase.google.com/docs/flutter/setup?platform=ios)
 
 2. Exécuter la commande FlutterFire pour configurer le projet :
+
 ```bash
 flutterfire configure --yes \
   --project=fnv-agir \
@@ -25,9 +26,11 @@ flutterfire configure --yes \
 ## Spécificités par plateforme
 
 ### Android
+
 ⚠️ **Limitation connue** : Les notifications ne sont pas affichées lorsque l'application est complètement fermée.
 
 ### iOS
+
 Les notifications fonctionnent que l'application soit ouverte ou fermée.
 
 ## Format des notifications
@@ -42,8 +45,9 @@ Les notifications fonctionnent que l'application soit ouverte ou fermée.
     "image": "https://example.com/image.jpg"  // Optionnelle
   },
   "data": {
-    "page_type": "quiz",  // Type de page à ouvrir (quiz, article, misison, examen...)
-    "page_id": "123"      // Identifiant de la page
+    "page_type": "quiz",  // Type de page à ouvrir (quiz, article, action)
+    "page_id": "123",      // Identifiant de la page
+    "action_type": "classique" // Pour le type action -> quizz, bilan, simulateur
   }
 }
 ```

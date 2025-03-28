@@ -1,15 +1,17 @@
 import 'package:app/core/notifications/domain/notification_data.dart';
-import 'package:app/core/notifications/domain/notification_page_type.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 
 abstract final class NotificationDataMapper {
   const NotificationDataMapper._();
 
-  static NotificationData fromJson(final Map<String, dynamic> json) =>
-      NotificationData(pageType: _pageTypefromJson(json['page_type'] as String), pageId: json['page_id'] as String);
+  static NotificationData fromJson(final Map<String, dynamic> json) {
+    final pageId = json['page_id'] as String;
 
-  static NotificationPageType _pageTypefromJson(final String json) => switch (json) {
-    'quiz' => NotificationPageType.quiz,
-    'article' => NotificationPageType.article,
-    _ => throw UnimplementedError(),
-  };
+    return switch (json['page_type'] as String) {
+      'quiz' => QuizNotificationData(pageId),
+      'article' => ArticleNotificationData(pageId),
+      'action' => ActionNotificationData(pageId, actionTypeFromAPIString(json['action_type'] as String)),
+      _ => throw UnimplementedError(),
+    };
+  }
 }

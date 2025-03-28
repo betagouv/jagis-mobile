@@ -9,10 +9,10 @@ import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/timed_delay.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/notifications/domain/notification_data.dart';
-import 'package:app/core/notifications/domain/notification_page_type.dart';
 import 'package:app/core/notifications/infrastructure/notification_repository.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
 import 'package:app/features/action/infrastructure/action_repository.dart';
+import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/infrastructure/actions_repository.dart';
 import 'package:app/features/aids/core/presentation/bloc/aids_home_bloc.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
@@ -105,27 +105,36 @@ class _AppState extends State<App> {
     super.initState();
     _goRouter = goRouter(tracker: widget.tracker);
     _messageOpenedSubscription = widget.notificationService.onMessageOpenedApp.listen((final event) async {
-      widget.tracker.trackNotificationOpened('${event.pageType} - ${event.pageId}');
+      widget.tracker.trackNotificationOpened('${event.runtimeType} - ${event.pageId}');
 
       return _handleNotification(goRouter: _goRouter, data: event);
     });
   }
 
   Future<void> _handleNotification({required final GoRouter goRouter, required final NotificationData data}) async {
-    switch (data.pageType) {
-      case NotificationPageType.quiz:
-        await _handleQuizNotification(goRouter: goRouter, pageId: data.pageId);
-      case NotificationPageType.article:
-        await _handleArticleNotification(goRouter: goRouter, pageId: data.pageId);
+    switch (data) {
+      case QuizNotificationData():
+        await _handleQuizNotification(goRouter, data);
+      case ArticleNotificationData():
+        await _handleArticleNotification(goRouter, data);
+      case ActionNotificationData():
+        await _handleActionNotification(goRouter, data);
     }
   }
 
-  Future<void> _handleQuizNotification({required final GoRouter goRouter, required final String pageId}) async {
-    await goRouter.pushNamed(QuizPage.name, pathParameters: {'id': pageId});
+  Future<void> _handleQuizNotification(final GoRouter goRouter, final QuizNotificationData data) async {
+    await goRouter.pushNamed(QuizPage.name, pathParameters: {'id': data.pageId});
   }
 
-  Future<void> _handleArticleNotification({required final GoRouter goRouter, required final String pageId}) async {
-    await goRouter.pushNamed(ArticlePage.name, pathParameters: {'titre': 'titre', 'id': pageId});
+  Future<void> _handleArticleNotification(final GoRouter goRouter, final ArticleNotificationData data) async {
+    await goRouter.pushNamed(ArticlePage.name, pathParameters: {'titre': 'titre', 'id': data.pageId});
+  }
+
+  Future<void> _handleActionNotification(final GoRouter goRouter, final ActionNotificationData data) async {
+    await goRouter.pushNamed(
+      ActionPage.name,
+      pathParameters: ActionPage.pathParameters(type: data.actionType, title: 'titre', id: data.pageId),
+    );
   }
 
   @override

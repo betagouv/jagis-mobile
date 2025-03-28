@@ -20,29 +20,43 @@ class QuizzesCompletedWidget extends StatelessWidget {
   void _pop(final BuildContext context) => GoRouter.of(context).pop();
   void _repeatQuiz(final BuildContext context) => context.read<QuizzesBloc>().add(const QuizzesRepeatRequested());
 
+  String _getBackText(final BuildContext context) {
+    final matches = GoRouter.of(context).routerDelegate.currentConfiguration.matches;
+
+    return matches.any((final element) => element.matchedLocation.contains('actions'))
+        ? Localisation.revenirAuCatalogue
+        : Localisation.revenirALaThematique;
+  }
+
   @override
-  Widget build(final context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      FnvSvg.asset(AssetImages.flags),
-      const SizedBox(height: DsfrSpacings.s1w),
-      _CompletedQuizTitle(name: name),
-      const SizedBox(height: DsfrSpacings.s4w),
-      if (completedState.isCompleted)
-        _SuccessContent(
-          completedState: completedState,
-          congratulatoryText: congratulatoryText,
-          onBackToTheme: () => _pop(context),
-          onRepeatQuiz: () => _repeatQuiz(context),
-        )
-      else
-        _FailureContent(
-          completedState: completedState,
-          onBackToTheme: () => _pop(context),
-          onRepeatQuiz: () => _repeatQuiz(context),
-        ),
-    ],
-  );
+  Widget build(final context) {
+    final goBackText = _getBackText(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        FnvSvg.asset(AssetImages.flags),
+        const SizedBox(height: DsfrSpacings.s1w),
+        _CompletedQuizTitle(name: name),
+        const SizedBox(height: DsfrSpacings.s4w),
+        if (completedState.isCompleted)
+          _SuccessContent(
+            completedState: completedState,
+            congratulatoryText: congratulatoryText,
+            goBackText: goBackText,
+            onGoBack: () => _pop(context),
+            onRepeatQuiz: () => _repeatQuiz(context),
+          )
+        else
+          _FailureContent(
+            completedState: completedState,
+            goBackText: goBackText,
+            onGoBack: () => _pop(context),
+            onRepeatQuiz: () => _repeatQuiz(context),
+          ),
+      ],
+    );
+  }
 }
 
 class _CompletedQuizTitle extends StatelessWidget {
@@ -64,13 +78,15 @@ class _SuccessContent extends StatelessWidget {
   const _SuccessContent({
     required this.completedState,
     required this.congratulatoryText,
-    required this.onBackToTheme,
+    required this.goBackText,
+    required this.onGoBack,
     required this.onRepeatQuiz,
   });
 
   final QuizzesCompleted completedState;
   final String congratulatoryText;
-  final VoidCallback onBackToTheme;
+  final String goBackText;
+  final VoidCallback onGoBack;
   final VoidCallback onRepeatQuiz;
 
   @override
@@ -87,17 +103,23 @@ class _SuccessContent extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s2w),
       _MessagePanel(message: congratulatoryText),
       const SizedBox(height: DsfrSpacings.s4w),
-      _PrimaryButton(label: Localisation.retournerALaThematique, onPressed: onBackToTheme),
+      _PrimaryButton(label: goBackText, onPressed: onGoBack),
       _SecondaryButton(label: Localisation.recommencerLeQuiz, onPressed: onRepeatQuiz),
     ],
   );
 }
 
 class _FailureContent extends StatelessWidget {
-  const _FailureContent({required this.completedState, required this.onBackToTheme, required this.onRepeatQuiz});
+  const _FailureContent({
+    required this.completedState,
+    required this.goBackText,
+    required this.onGoBack,
+    required this.onRepeatQuiz,
+  });
 
   final QuizzesCompleted completedState;
-  final VoidCallback onBackToTheme;
+  final String goBackText;
+  final VoidCallback onGoBack;
   final VoidCallback onRepeatQuiz;
 
   @override
@@ -115,7 +137,7 @@ class _FailureContent extends StatelessWidget {
       const _MessagePanel(message: Localisation.retentezVotreChancePourValiderCetteAction),
       const SizedBox(height: DsfrSpacings.s4w),
       _PrimaryButton(label: Localisation.recommencerLeQuiz, onPressed: onRepeatQuiz),
-      _SecondaryButton(label: Localisation.retournerALaThematique, onPressed: onBackToTheme),
+      _SecondaryButton(label: goBackText, onPressed: onGoBack),
     ],
   );
 }

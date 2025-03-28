@@ -263,8 +263,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const retirerDesFavoris = 'Retirer des favoris';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retour = 'Retour';
-  static const retournerALaThematique = 'Retourner à la thématique';
-  static const retournerEnArriere = 'Retourner en arrière';
+  static const revenirALaThematique = 'Revenir à la thématique';
+  static const revenirAuCatalogue = 'Revenir au catalogue';
   static const revenirAuSimulateur = 'Revenir au simulateur';
   static const revenirEnArriere = 'Revenir en arrière';
   static const revenuFiscal = 'Revenu fiscal de référence de mon foyer';

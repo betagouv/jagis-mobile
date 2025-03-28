@@ -44,6 +44,14 @@ class _Success extends StatelessWidget {
 
   final ActionPerformanceFinishedLoadSuccess data;
 
+  String _getBackText(final BuildContext context) {
+    final matches = GoRouter.of(context).routerDelegate.currentConfiguration.matches;
+
+    return matches.any((final element) => element.matchedLocation.contains('actions'))
+        ? Localisation.revenirAuCatalogue
+        : Localisation.revenirALaThematique;
+  }
+
   @override
   Widget build(final BuildContext context) {
     final performanceResult = data.data;
@@ -83,7 +91,7 @@ class _Success extends StatelessWidget {
             .separator(const SizedBox(height: DsfrSpacings.s2w)),
         const SizedBox(height: DsfrSpacings.s3w),
         DsfrButton(
-          label: Localisation.retournerEnArriere,
+          label: _getBackText(context),
           variant: DsfrButtonVariant.primary,
           size: DsfrButtonSize.lg,
           onPressed: () => GoRouter.of(context).pop(),

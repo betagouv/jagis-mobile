@@ -1,21 +1,10 @@
 {
-  "[dart]": {
-    "editor.bracketPairColorization.enabled": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.selectionHighlight": false,
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": "off"
-  },
-  "dcm.showUnusedCode": true,
-  "dcm.showUnusedFiles": true,
-  "dcm.showNewVersionUpdate": true,
   "dart.flutterTestAdditionalArgs": [
     "--test-randomize-ordering-seed",
     "random"
   ],
+  "dcm.showUnusedCode": true,
+  "dcm.showUnusedFiles": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
     "source.dcm.fixAll": "always"

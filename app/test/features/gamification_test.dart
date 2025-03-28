@@ -7,11 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
+import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_see_points.dart';
-import './step/the_api_will_return.dart';
+import './step/i_dont_see_badges.dart';
 import './step/i_see.dart';
 import './step/i_tap_on.dart';
+import './step/i_see_badges.dart';
 import './step/i_dont_see.dart';
 import './step/the_api_receives.dart';
 import './step/i_scroll_down_to.dart';
@@ -43,8 +45,20 @@ void main() {
       try {
         await beforeEach('''Voir le points au lancement de l'application''');
         await iAmLoggedIn(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/gamification',
+                200,
+                {"points": 2000}
+              ]
+            ]));
         await theApplicationIsLaunched(tester);
-        await iSeePoints(tester, '650');
+        await iSeePoints(tester, '2000');
+        await iDontSeeBadges(tester, '0');
       } on TestFailure {
         success = false;
         rethrow;
@@ -102,11 +116,22 @@ void main() {
                 'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
-                {"points": 200}
+                {
+                  "points": 200,
+                  "badges": [
+                    {
+                      "description": "Présent depuis les premiers jours",
+                      "image_url": "badge-pionnier.webp",
+                      "titre": "Pionnier",
+                      "type": "pionnier"
+                    }
+                  ]
+                }
               ]
             ]));
         await iTapOn(tester, 'Récolter');
         await iSeePoints(tester, '200');
+        await iSeeBadges(tester, '1');
         await iDontSee(tester, 'Merci pour votre soutien !');
         await theApiReceives(
             tester,

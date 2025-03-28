@@ -1,6 +1,6 @@
 import 'package:app/features/home/domain/home_dashboard.dart';
 
-class HomeDashboardMapper {
+abstract final class HomeDashboardMapper {
   const HomeDashboardMapper._();
 
   static HomeDashboard fromJson(final Map<String, dynamic> json) => HomeDashboard(

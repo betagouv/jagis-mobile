@@ -45,6 +45,7 @@ class _HomeDashboardCounterState extends State<HomeDashboardCounter> {
           currentBilanCarbonePercentageCompletion++;
         }
       });
+
       return currentNbActionsDone < nbActionsDone || currentBilanCarbonePercentageCompletion < bilanCarbonePercentageCompletion;
     });
 
@@ -63,7 +64,7 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    const progressSize = 88.00;
+    const progressSize = 88.0;
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -86,15 +87,14 @@ class _Success extends StatelessWidget {
                       alignment: AlignmentDirectional.center,
                       children: [
                         const Center(
-                          child: SizedBox(
-                            height: progressSize,
-                            width: progressSize,
+                          child: SizedBox.square(
+                            dimension: progressSize,
                             child: CircularProgressIndicator(
                               value: 100,
                               backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                              valueColor: AlwaysStoppedAnimation(Color.fromARGB(0, 0, 0, 0)),
                               strokeWidth: 0,
                               strokeCap: StrokeCap.round,
-                              valueColor: AlwaysStoppedAnimation(Color.fromARGB(0, 0, 0, 0)),
                             ),
                           ),
                         ),
@@ -126,15 +126,14 @@ class _Success extends StatelessWidget {
                       alignment: AlignmentDirectional.center,
                       children: [
                         Center(
-                          child: SizedBox(
-                            height: progressSize,
-                            width: progressSize,
+                          child: SizedBox.square(
+                            dimension: progressSize,
                             child: CircularProgressIndicator(
                               value: bilanCarbonePercentageCompletion / 100,
                               backgroundColor: const Color(0xFFE7E3DC),
+                              valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
                               strokeWidth: 4,
                               strokeCap: StrokeCap.round,
-                              valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
                             ),
                           ),
                         ),

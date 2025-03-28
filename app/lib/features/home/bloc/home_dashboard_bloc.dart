@@ -25,6 +25,7 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
                 .getOrElse(() => 'Une erreur est survenue lors de la récupération du tableau de bord'),
           ),
         );
+
         return;
       }
 

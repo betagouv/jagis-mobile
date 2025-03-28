@@ -4,6 +4,7 @@ import 'package:app/features/home/bloc/home_dashboard_event.dart';
 import 'package:app/features/home/bloc/home_dashboard_state.dart';
 import 'package:app/features/home/domain/home_dashboard.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
+import 'package:app/features/home/presentation/widgets/home_animated_counter.dart';
 import 'package:app/features/home/presentation/widgets/home_dashboard_counter.dart';
 import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
 import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
@@ -11,6 +12,7 @@ import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/survey/survey_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,13 +83,41 @@ class _Success extends StatelessWidget {
             spacing,
             HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
             spacing,
-
+            _HomeCounterSection(homeDashboard.nbActionsDoneNational),
             const SurveySection(),
           ],
         ),
       ),
     );
   }
+}
+
+class _HomeCounterSection extends StatelessWidget {
+  const _HomeCounterSection(this.nbActionsDoneNational);
+
+  final int nbActionsDoneNational;
+
+  @override
+  Widget build(final BuildContext context) => Column(
+    spacing: DsfrSpacings.s1w,
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+        child: Center(
+          child: Row(
+            spacing: DsfrSpacings.s2w,
+            children: [
+              HomeAnimatedCounter(nbActionsDone: nbActionsDoneNational),
+              const Expanded(
+                child: Text(Localisation.actionsRealiseesEnFrance, style: DsfrTextStyle.bodyLg(color: Color(0xFF006854))),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Image.asset('assets/images/home_illustration.webp', width: double.infinity, fit: BoxFit.cover),
+    ],
+  );
 }
 
 class _WhichDomainButtonsSection extends StatelessWidget {
@@ -108,14 +138,14 @@ class _WhichDomainButtonsSection extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: GridView(
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: DsfrSpacings.s1w,
             mainAxisSpacing: DsfrSpacings.s1w,
+            crossAxisSpacing: DsfrSpacings.s1w,
             childAspectRatio: 3,
           ),
-          physics: const NeverScrollableScrollPhysics(),
           children:
               [ThemeType.alimentation, ThemeType.logement, ThemeType.transport, ThemeType.consommation]
                   .map(

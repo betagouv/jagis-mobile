@@ -8,6 +8,7 @@ environment:
   flutter: 3.29.2
 
 dependencies:
+  animated_digit: ^3.2.3
   clock: 1.1.2
   collection: 1.19.1
   cupertino_icons: 1.0.8

@@ -17,10 +17,10 @@ class HomeShortcuts extends StatelessWidget {
   Widget build(final BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(color: Color(0xFFECEBE0)),
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w, vertical: DsfrSpacings.s6w),
+      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s6w, horizontal: DsfrSpacings.s2w),
       child: Column(
-        spacing: DsfrSpacings.s2w,
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: DsfrSpacings.s2w,
         children: [
           const Text('Raccourcis', style: DsfrTextStyle.headline3()),
           SingleChildScrollView(
@@ -33,17 +33,17 @@ class HomeShortcuts extends StatelessWidget {
                     ThemeType.values
                         .flatMap(
                           (final themeType) => ThemeSummary.buildThemeLinksFor(
+                            themeType: themeType,
                             commune: commune,
                             aidCount: nbAids,
                             recipeCount: nbRecipies,
-                            themeType: themeType,
                           ),
                         )
                         .toSet()
                         .map(
                           (final link) => SizedBox(
-                            height: double.infinity,
                             width: screenWidth(context, percentage: 0.65),
+                            height: double.infinity,
                             child: ThemeServiceInfo(link: link),
                           ),
                         )

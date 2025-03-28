@@ -12,6 +12,7 @@ class DsfrLink extends StatefulWidget {
     required this.label,
     required this.textStyle,
     required this.underlineThickness,
+    required this.textAlign,
     required this.iconSize,
     required this.iconPosition,
     this.icon,
@@ -21,6 +22,7 @@ class DsfrLink extends StatefulWidget {
   const DsfrLink.sm({
     final Key? key,
     required final String label,
+    final TextAlign textAlign = TextAlign.start,
     final IconData? icon,
     final DsfrLinkIconPosition iconPosition = DsfrLinkIconPosition.start,
     final VoidCallback? onTap,
@@ -29,6 +31,7 @@ class DsfrLink extends StatefulWidget {
          label: label,
          textStyle: const DsfrTextStyle.bodySm(),
          underlineThickness: 1.75,
+         textAlign: textAlign,
          iconSize: 16,
          iconPosition: iconPosition,
          icon: icon,
@@ -38,6 +41,7 @@ class DsfrLink extends StatefulWidget {
   const DsfrLink.md({
     final Key? key,
     required final String label,
+    final TextAlign textAlign = TextAlign.start,
     final IconData? icon,
     final DsfrLinkIconPosition iconPosition = DsfrLinkIconPosition.start,
     final VoidCallback? onTap,
@@ -46,6 +50,7 @@ class DsfrLink extends StatefulWidget {
          label: label,
          textStyle: const DsfrTextStyle.bodyMd(),
          underlineThickness: 2,
+         textAlign: textAlign,
          iconSize: 16,
          iconPosition: iconPosition,
          icon: icon,
@@ -59,6 +64,7 @@ class DsfrLink extends StatefulWidget {
   final VoidCallback? onTap;
   final TextStyle textStyle;
   final double underlineThickness;
+  final TextAlign textAlign;
 
   @override
   State<DsfrLink> createState() => _DsfrLinkState();
@@ -127,6 +133,7 @@ class _DsfrLinkState extends State<DsfrLink> with MaterialStateMixin<DsfrLink> {
                 decorationColor: resolveForegroundColor,
                 decorationThickness: isPressed || isHovered ? widget.underlineThickness : 1,
               ),
+              textAlign: widget.textAlign,
             ),
           ),
         ),

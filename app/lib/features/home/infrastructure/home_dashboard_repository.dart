@@ -17,7 +17,7 @@ class HomeDashboardRepository {
       return Left(Exception('Erreur lors de la récupération du tableau de bord'));
     }
 
-    final json = response.data! as Map<String, dynamic>;
+    final json = response.data as Map<String, dynamic>;
 
     return Right(HomeDashboardMapper.fromJson(json));
   }

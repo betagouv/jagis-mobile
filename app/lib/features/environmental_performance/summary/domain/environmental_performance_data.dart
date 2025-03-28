@@ -21,7 +21,6 @@ final class EnvironmentalPerformanceEmpty extends EnvironmentalPerformanceData {
   final List<Question> questions;
   final int questionsNumber;
   final int questionsNumberAnswered;
-  double get percentageCompletion => questionsNumberAnswered / questionsNumber;
 
   @override
   List<Object> get props => [questions, questionsNumberAnswered, questionsNumber];

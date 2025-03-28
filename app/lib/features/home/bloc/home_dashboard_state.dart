@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 enum HomeDashboardStateStatus { init, loading, success, failure }
 
 @immutable
-class HomeDashboardState extends Equatable {
+final class HomeDashboardState extends Equatable {
   const HomeDashboardState({required this.statut, this.homeDashboard, this.recommendations, this.errorMessage});
   const HomeDashboardState.init() : this(statut: HomeDashboardStateStatus.init);
   const HomeDashboardState.loading() : this(statut: HomeDashboardStateStatus.loading);
@@ -22,6 +22,18 @@ class HomeDashboardState extends Equatable {
   final String? errorMessage;
   final HomeDashboard? homeDashboard;
   final List<Recommandation>? recommendations;
+
+  HomeDashboardState copyWith({
+    final HomeDashboardStateStatus? statut,
+    final String? errorMessage,
+    final HomeDashboard? homeDashboard,
+    final List<Recommandation>? recommendations,
+  }) => HomeDashboardState(
+    statut: statut ?? this.statut,
+    homeDashboard: homeDashboard ?? this.homeDashboard,
+    recommendations: recommendations ?? this.recommendations,
+    errorMessage: errorMessage ?? this.errorMessage,
+  );
 
   @override
   List<Object?> get props => [statut, errorMessage, homeDashboard, recommendations];

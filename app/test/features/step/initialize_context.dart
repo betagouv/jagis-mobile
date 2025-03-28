@@ -33,11 +33,23 @@ Future<void> initializeContext() async {
   setMissionRecommandedByThematique();
   setAids();
   setPoints();
-  setRecommandations();
   setServices();
   setBicycleSimulator();
   setThemes();
   setEnchainements();
+  FeatureContext.instance.dioMock
+    ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
+    ..getM(
+      Endpoints.homeBoard,
+      responseData: {
+        'nom_commune': 'Dole',
+        'total_national_actions_faites': 1,
+        'total_utilisateur_actions_faites': 2,
+        'pourcentage_bilan_done': 0,
+        'nombre_aides': 3,
+        'nombre_recettes': 4,
+      },
+    );
 }
 
 void setThemes() =>
@@ -298,11 +310,6 @@ void setCommunes() => FeatureContext.instance.dioMock.getM(
     'VILLETTE LES DOLE',
   ],
 );
-
-void setRecommandations() =>
-    FeatureContext.instance.dioMock
-      ..getM(Endpoints.recommandationsParThematique(ThemeType.alimentation.name), responseData: <dynamic>[])
-      ..getM(Endpoints.recommandationsParThematique(ThemeType.transport.name), responseData: <dynamic>[]);
 
 void setServices() =>
     FeatureContext.instance.dioMock

@@ -32,8 +32,7 @@ Feature: Gamification
       | 'method' | 'path'                                | 'statusCode' | 'responseData' |
       | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":0}   |
     Given The application is launched
-    When I scroll down to {'Découvrir'}
-    When I tap on {1} text {'Découvrir'}
+    When I tap on {1} text {'🚅 Me déplacer'}
     When I scroll down to {'Commencer'}
     Then I see {'0'} points
     Given the API will return

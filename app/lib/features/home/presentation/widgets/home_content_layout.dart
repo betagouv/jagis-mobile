@@ -1,32 +1,28 @@
-import 'package:app/core/helpers/size.dart';
+import 'package:app/core/assets/images.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/home/bloc/home_dashboard_bloc.dart';
 import 'package:app/features/home/bloc/home_dashboard_event.dart';
 import 'package:app/features/home/bloc/home_dashboard_state.dart';
 import 'package:app/features/home/domain/home_dashboard.dart';
-import 'package:app/features/home/presentation/pages/home_page.dart';
-import 'package:app/features/home/presentation/widgets/home_animated_counter.dart';
+import 'package:app/features/home/presentation/widgets/home_action_global_counter.dart';
 import 'package:app/features/home/presentation/widgets/home_dashboard_counter.dart';
 import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
 import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/survey/survey_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
-import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
+import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeContentLayout extends StatelessWidget {
   const HomeContentLayout({super.key});
 
   @override
   Widget build(final context) => BlocProvider(
-    create:
-        (final context) =>
-            HomeDashboardBloc(repository: context.read(), recommandationsRepository: context.read())
-              ..add(const HomeDashboardLoadRequested()),
+    create: (final context) => HomeDashboardBloc(context.read(), context.read())..add(const HomeDashboardLoadRequested()),
     child: const _View(),
   );
 }
@@ -55,41 +51,33 @@ class _Success extends StatelessWidget {
   final List<Recommandation> recommendations;
 
   @override
-  Widget build(final context) {
-    const spacing = SizedBox(height: DsfrSpacings.s4w);
-    const spacingSmall = SizedBox(height: DsfrSpacings.s2w);
-
-    return RefreshIndicator(
-      onRefresh: () async {
-        if (GoRouter.of(context).canPop()) {
-          GoRouter.of(context).pop();
-        }
-        await GoRouter.of(context).pushNamed(HomePage.name);
-      },
-      child: DecoratedBox(
-        decoration: const BoxDecoration(color: Colors.white),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          clipBehavior: Clip.none,
-          children: [
-            HomeDashboardCounter(
-              nbActionsDone: homeDashboard.nbActionsDoneUser,
-              bilanCarbonePercentageCompletion: homeDashboard.environmentalImpactPercentageCompletion,
-            ),
-            spacingSmall,
-            const _WhichDomainButtonsSection(),
-            spacing,
-            HomeRecommendations(recommendations),
-            spacing,
-            HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
-            spacing,
-            _HomeCounterSection(homeDashboard.nbActionsDoneNational),
-            const SurveySection(),
-          ],
-        ),
+  Widget build(final context) => RefreshIndicator(
+    onRefresh: () async {
+      context.read<HomeDashboardBloc>().add(const HomeDashboardLoadRequested());
+    },
+    child: DecoratedBox(
+      decoration: const BoxDecoration(color: Colors.white),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        clipBehavior: Clip.none,
+        children: [
+          HomeDashboardCounter(
+            nbActionsDone: homeDashboard.nbActionsDoneUser,
+            bilanCarbonePercentageCompletion: homeDashboard.environmentalImpactPercentageCompletion,
+          ),
+          const SizedBox(height: DsfrSpacings.s3v),
+          const _WhichDomainButtonsSection(),
+          const SizedBox(height: DsfrSpacings.s6w),
+          HomeRecommendations(recommendations),
+          const SizedBox(height: DsfrSpacings.s6w),
+          HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
+          const SizedBox(height: DsfrSpacings.s6w),
+          _HomeCounterSection(homeDashboard.nbActionsDoneNational),
+          const SurveySection(),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 class _HomeCounterSection extends StatelessWidget {
@@ -103,19 +91,17 @@ class _HomeCounterSection extends StatelessWidget {
     children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: Center(
-          child: Row(
-            spacing: DsfrSpacings.s2w,
-            children: [
-              HomeAnimatedCounter(nbActionsDone: nbActionsDoneNational),
-              const Expanded(
-                child: Text(Localisation.actionsRealiseesEnFrance, style: DsfrTextStyle.bodyLg(color: Color(0xFF006854))),
-              ),
-            ],
-          ),
+        child: Row(
+          spacing: DsfrSpacings.s2w,
+          children: [
+            HomeActionGlobalCounter(nbActionsDone: nbActionsDoneNational),
+            const Expanded(
+              child: Text(Localisation.actionsRealiseesEnFrance, style: DsfrTextStyle.bodyLg(color: Color(0xFF006854))),
+            ),
+          ],
         ),
       ),
-      Image.asset('assets/images/home_illustration.webp', width: double.infinity, fit: BoxFit.cover),
+      const FnvImage.asset(AssetImages.homeIllustration, width: double.infinity, fit: BoxFit.cover),
     ],
   );
 }
@@ -125,21 +111,19 @@ class _WhichDomainButtonsSection extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Column(
-    spacing: DsfrSpacings.s2w,
+    spacing: DsfrSpacings.s3w,
     children: [
-      SizedBox(
-        width: screenWidth(context, percentage: 0.7),
-        child: const Wrap(
-          children: [
-            Text('Dans quel domaine souhaitez-vous agir ?', style: DsfrTextStyle.body2XlMedium(), textAlign: TextAlign.center),
-          ],
-        ),
+      const Text(
+        Localisation.dansQuelDomaineSouhaitezVousAgir,
+        style: DsfrTextStyle.body2XlMedium(),
+        textAlign: TextAlign.center,
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: GridView(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
+          padding: EdgeInsets.zero,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: DsfrSpacings.s1w,

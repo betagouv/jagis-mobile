@@ -17,7 +17,7 @@ class BibliothequeRepository {
     required final String? titre,
     required final bool? isFavorite,
   }) async {
-    final map = <String, String>{
+    final map = {
       if (thematiques != null && thematiques.isNotEmpty) 'filtre_thematiques': thematiques.join(','),
       if (titre != null && titre.isNotEmpty) 'titre': titre,
       if (isFavorite != null && isFavorite) 'favoris': '$isFavorite',

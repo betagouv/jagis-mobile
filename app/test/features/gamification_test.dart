@@ -14,8 +14,8 @@ import './step/i_see.dart';
 import './step/i_tap_on.dart';
 import './step/i_dont_see.dart';
 import './step/the_api_receives.dart';
-import './step/i_scroll_down_to.dart';
 import './step/i_tap_on_text.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_tap_on_the_menu_button.dart';
 import './step/i_have_actions_in_my_library.dart';
 
@@ -149,8 +149,7 @@ void main() {
               ]
             ]));
         await theApplicationIsLaunched(tester);
-        await iScrollDownTo(tester, 'Découvrir');
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iSeePoints(tester, '0');
         await theApiWillReturn(

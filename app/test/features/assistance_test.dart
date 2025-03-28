@@ -7,11 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
-import './step/i_scroll_down.dart';
-import './step/i_see.dart';
-import './step/i_dont_see.dart';
 import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
+import './step/i_see.dart';
+import './step/i_dont_see.dart';
 
 void main() {
   setUpAll(() async {
@@ -36,27 +35,6 @@ void main() {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''Show 2 first assistances on the home page''',
-        (tester) async {
-      var success = true;
-      try {
-        await beforeEach('''Show 2 first assistances on the home page''');
-        await bddSetUp(tester);
-        await iScrollDown(tester);
-        await iScrollDown(tester);
-        await iSee(tester, 'Rénover son logement');
-        await iSee(tester, 'Acheter un vélo');
-        await iDontSee(tester, 'Composter ses déchets');
-      } on TestFailure {
-        success = false;
-        rethrow;
-      } finally {
-        await afterEach(
-          '''Show 2 first assistances on the home page''',
-          success,
-        );
-      }
-    });
     testWidgets('''Show assistances on the assistance page''', (tester) async {
       var success = true;
       try {

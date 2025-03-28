@@ -1,5 +1,4 @@
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
-import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
@@ -88,13 +87,6 @@ class _Success extends StatelessWidget {
         ActionsRecommandedSection(theme: theme),
         const SizedBox(height: DsfrSpacings.s4w),
         Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services(services: data.services)),
-        const SizedBox(height: DsfrSpacings.s4w),
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-            child: _Recommandations(themeType: themeType),
-          ),
-        ),
       ],
     );
   }
@@ -120,13 +112,4 @@ class _Services extends StatelessWidget {
       ),
     ],
   );
-}
-
-class _Recommandations extends StatelessWidget {
-  const _Recommandations({required this.themeType});
-
-  final ThemeType themeType;
-
-  @override
-  Widget build(final context) => MesRecommandations(theme: themeType);
 }

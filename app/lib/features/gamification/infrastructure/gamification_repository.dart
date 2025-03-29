@@ -25,7 +25,10 @@ class GamificationRepository {
 
     final json = response.data as Map<String, dynamic>;
 
-    final gamification = Gamification(points: (json['points'] as num).toInt());
+    final gamification = Gamification(
+      points: (json['points'] as num).toInt(),
+      badges: json['badges'] == null ? 0 : (json['badges'] as List).length,
+    );
 
     _gamificationSubject.add(gamification);
 

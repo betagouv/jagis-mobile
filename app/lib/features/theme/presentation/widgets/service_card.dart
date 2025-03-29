@@ -86,59 +86,53 @@ class _ServiceCardBase extends StatefulWidget {
 
 class _ServiceCardBaseState extends State<_ServiceCardBase> with MaterialStateMixin<_ServiceCardBase> {
   @override
-  Widget build(final context) {
-    const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
-
-    return DsfrFocusWidget(
-      isFocused: isFocused,
-      borderRadius: borderRadius,
-      child: DecoratedBox(
-        decoration: ShapeDecoration(
-          color: widget.backgroundColor,
-          shadows: cardBoxShadow,
-          shape: RoundedRectangleBorder(side: BorderSide(color: widget.borderColor), borderRadius: borderRadius),
-        ),
-        child: Material(
-          color: FnvColors.transparent,
-          child: InkWell(
-            onTap: widget.onTap,
-            onHighlightChanged: updateMaterialState(WidgetState.pressed),
-            onHover: updateMaterialState(WidgetState.hovered),
-            focusColor: FnvColors.transparent,
-            borderRadius: borderRadius,
-            onFocusChange: updateMaterialState(WidgetState.focused),
-            child: SizedBox(
-              width: 156,
-              child: Padding(
-                padding: const EdgeInsets.all(DsfrSpacings.s1w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.service.titre, style: DsfrTextStyle.bodyMdMedium(color: widget.titleColor)),
-                    const SizedBox(height: DsfrSpacings.s1w),
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            capitalize(widget.service.sousTitre),
-                            style: DsfrTextStyle.bodySmMedium(color: widget.subTitleColor),
-                            overflow: TextOverflow.ellipsis,
-                          ),
+  Widget build(final context) => DsfrFocusWidget(
+    isFocused: isFocused,
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        border: Border.all(color: widget.borderColor),
+        boxShadow: cardBoxShadow,
+      ),
+      child: Material(
+        color: FnvColors.transparent,
+        child: InkWell(
+          onTap: widget.onTap,
+          onHighlightChanged: updateMaterialState(WidgetState.pressed),
+          onHover: updateMaterialState(WidgetState.hovered),
+          focusColor: FnvColors.transparent,
+          onFocusChange: updateMaterialState(WidgetState.focused),
+          child: SizedBox(
+            width: 156,
+            child: Padding(
+              padding: const EdgeInsets.all(DsfrSpacings.s1w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(widget.service.titre, style: DsfrTextStyle.bodyMdMedium(color: widget.titleColor)),
+                  const SizedBox(height: DsfrSpacings.s1w),
+                  const Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          capitalize(widget.service.sousTitre),
+                          style: DsfrTextStyle.bodySmMedium(color: widget.subTitleColor),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        widget.icon,
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      widget.icon,
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

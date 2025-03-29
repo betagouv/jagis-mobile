@@ -14,7 +14,7 @@ class Points extends StatelessWidget {
           ? PointsWidget(
             points: points,
             backgroundColor: DsfrColors.backgroundContrastGrey,
-            textColor: DsfrColors.textDefaultGrey,
+            iconColor: DsfrColors.textDefaultGrey,
           )
           : PointsWidget(points: points);
 }

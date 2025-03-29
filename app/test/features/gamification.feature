@@ -2,8 +2,12 @@ Feature: Gamification
 
   Scenario: Voir le points au lancement de l'application
     Given I am logged in
+    Given the API will return
+      | 'method' | 'path'                                | 'statusCode' | 'responseData'  |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":2000} |
     Given The application is launched
-    Then I see {'650'} points
+    Then I see {'2000'} points
+    Then I don't see {'0'} badges
 
   Scenario: Voir le popup de reset si c'est un ancien compte
     Given I am logged in
@@ -17,10 +21,11 @@ Feature: Gamification
     When I tap on {'Continuer'}
     Then I see {'Merci pour votre soutien !'}
     Given the API will return
-      | 'method' | 'path'                                | 'statusCode' | 'responseData' |
-      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":200} |
+      | 'method' | 'path'                                | 'statusCode' | 'responseData'                                                                                                                                       |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":200,"badges":[{"description":"Présent depuis les premiers jours","image_url":"badge-pionnier.webp","titre":"Pionnier","type":"pionnier"}]} |
     When I tap on {'Récolter'}
     Then I see {'200'} points
+    Then I see {'1'} badges
     Then I don't see {'Merci pour votre soutien !'}
     Then the API receives
       | 'method' | 'path'                                                | 'statusCode' | 'requestData' |

@@ -19,12 +19,10 @@ class _FnvCardState extends State<FnvCard> with MaterialStateMixin<FnvCard> {
   Widget build(final context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
-      decoration: ShapeDecoration(
+      decoration: BoxDecoration(
         color: FnvColors.carteFond,
-        shadows: cardBoxShadow,
-        shape: RoundedRectangleBorder(
-          side: widget.borderColor == null ? BorderSide.none : BorderSide(color: widget.borderColor!, width: DsfrSpacings.s0v5),
-        ),
+        border: widget.borderColor == null ? null : Border.all(color: widget.borderColor!, width: DsfrSpacings.s0v5),
+        boxShadow: cardBoxShadow,
       ),
       child: Material(
         color: FnvColors.transparent,

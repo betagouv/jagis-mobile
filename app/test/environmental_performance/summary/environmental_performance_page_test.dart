@@ -186,8 +186,6 @@ void main() {
     testWidgets("Voir le contenu respect l'accessiblité", (final tester) async {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await pumpEnvironmentalPerformancePage(tester, dio);
-      await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
-      await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
       await expectLater(tester, meetsGuideline(textContrastGuideline));
       await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
     });

@@ -30,6 +30,7 @@ import 'package:app/features/profil/informations/presentation/pages/mes_informat
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
+import 'package:app/features/ranking/presentation/pages/ranking_page.dart';
 import 'package:app/features/services/recipes/item/presentation/pages/recipe_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
@@ -80,6 +81,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         RecipePage.route,
         QuizPage.route,
         ProfilPage.route,
+        RankingPage.route,
         MesInformationsPage.route,
         MonLogementPage.route,
         KnowYourCustomersPage.route,

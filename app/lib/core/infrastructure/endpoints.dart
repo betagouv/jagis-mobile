@@ -31,6 +31,7 @@ abstract final class Endpoints {
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';
   static const validerCode = '/utilisateurs/valider';
+  static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const seasonalFruitsAndVegetablesCategories = '/utilisateurs/{userId}/recherche_services/fruits_legumes/categories';
   static const seasonalFruitsAndVegetablesSearch = '/utilisateurs/{userId}/recherche_services/fruits_legumes/search2';
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';

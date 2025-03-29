@@ -45,7 +45,7 @@ void main() {
     ielVoitLeTexte('Michel');
     ielVoitLeTexteDansTexteRiche('michel@dupont.fr');
     await ielScrolle(tester, Localisation.revenuFiscal);
-    ielVoitLeTexte(FnvNumberFormat.formatNumber(1));
+    ielVoitLeTexte(FnvNumberFormat.formatNumber(1.5));
     ielVoitLeTexte(formatCurrency(16000));
   });
 
@@ -89,7 +89,7 @@ Future<void> _allerSurMesInformations(final WidgetTester tester) async {
     nom: 'Dupont',
     codePostal: '75018',
     commune: 'Paris',
-    nombreDePartsFiscales: 1,
+    nombreDePartsFiscales: 1.5,
     revenuFiscal: 16000,
   );
   ielEstConnecte();

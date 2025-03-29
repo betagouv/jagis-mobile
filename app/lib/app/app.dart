@@ -43,6 +43,7 @@ import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/infrastructure/quizzes_repository.dart';
 import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
+import 'package:app/features/ranking/infrastructure/ranking_repository.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/recommandations/presentation/bloc/recommandations_bloc.dart';
 import 'package:app/features/services/lvao/infrastructure/lvao_repository.dart';
@@ -172,6 +173,7 @@ class _AppState extends State<App> {
               RepositoryProvider.value(value: widget.tracker),
               RepositoryProvider.value(value: communesRepository),
               RepositoryProvider.value(value: profilRepository),
+              RepositoryProvider(create: (final context) => RankingRepository(widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => QuizRepository(client: widget.dioHttpClient)),
               RepositoryProvider(create: (final context) => aidsRepository),
               RepositoryProvider(create: (final context) => QuestionRepository(widget.dioHttpClient)),

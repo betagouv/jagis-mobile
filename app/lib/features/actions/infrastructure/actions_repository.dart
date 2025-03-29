@@ -16,11 +16,13 @@ class ActionsRepository {
     final List<String> themes = const [],
     final String title = '',
     final bool alreadyConsulted = false,
+    final bool onlyDone = false,
   }) async {
     final queryParameters = <String, dynamic>{
       if (title.isNotEmpty) 'titre': title,
       if (themes.isNotEmpty) 'thematique': themes,
       if (alreadyConsulted) 'consultation': 'vu',
+      if (onlyDone) 'realisation': 'faite',
     };
 
     final url = Uri(path: Endpoints.actions, queryParameters: queryParameters.isEmpty ? null : queryParameters).toString();

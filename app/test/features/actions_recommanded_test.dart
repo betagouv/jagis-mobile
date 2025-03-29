@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
-import './step/i_scroll_down_to.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_see.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_tap_on.dart';
 import './step/i_have_theme_with_actions.dart';
 import './step/i_have_theme_with_no_action.dart';
@@ -27,7 +27,6 @@ void main() {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
-      await iScrollDownTo(tester, 'Découvrir');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {
@@ -44,7 +43,7 @@ void main() {
       try {
         await beforeEach('''Voir les actions recommandées''');
         await bddSetUp(tester);
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iSee(tester, 'Mes actions recommandées');
       } on TestFailure {
         success = false;
@@ -63,7 +62,7 @@ void main() {
         await beforeEach(
             '''Voir la popup si la personnalisation n'a pas été faite''');
         await bddSetUp(tester);
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iSee(tester, 'Envie d’avoir un vrai impact ?');
       } on TestFailure {
         success = false;
@@ -80,7 +79,7 @@ void main() {
       try {
         await beforeEach('''Commencer les questions''');
         await bddSetUp(tester);
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
@@ -100,12 +99,13 @@ void main() {
       try {
         await beforeEach('''Répondre à toutes les questions''');
         await bddSetUp(tester);
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
             "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
         await iTapOn(tester, "Oui");
+        await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, "Question suivante");
         await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
         await iTapOn(tester, "Non");
@@ -129,7 +129,7 @@ void main() {
         await beforeEach('''Refaire le questionnaire''');
         await bddSetUp(tester);
         await iHaveThemeWithNoAction(tester);
-        await iTapOnText(tester, 1, 'Découvrir');
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iHaveThemeWithCustomizationNeeded(tester);
         await iScrollDownTo(tester, 'Refaire');
         await iTapOn(tester, 'Refaire');

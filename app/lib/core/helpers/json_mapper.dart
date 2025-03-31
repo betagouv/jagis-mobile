@@ -6,6 +6,6 @@ abstract final class JsonListMapper {
   /// Converts a JSON list to a list of objects of type T using the provided fromJson function.
   ///
   /// If the jsonList is null, an empty list is returned.
-  static List<T> fromJsonList<T>(final dynamic jsonList, final JsonMapper<T> fromJson) =>
-      jsonList == null ? [] : (jsonList as List<dynamic>).cast<Map<String, dynamic>>().map(fromJson).toList();
+  static List<T> fromJsonList<T>(final dynamic jsonList, final JsonMapper<T?> fromJson) =>
+      jsonList == null ? [] : (jsonList as List<dynamic>).cast<Map<String, dynamic>>().map(fromJson).whereType<T>().toList();
 }

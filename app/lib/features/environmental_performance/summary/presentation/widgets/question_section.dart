@@ -28,11 +28,7 @@ class QuestionSection extends StatelessWidget {
             label: EnvironmentalPerformanceSummaryL10n.commentEstCalcule,
             body: _AccordionBody(
               // TODO(erolley): factorize markdown body in Accordion
-              child: FnvMarkdown(
-                data: EnvironmentalPerformanceSummaryL10n.commentEstCalculeContenu,
-                p: DsfrTextStyle(fontSize: 15),
-                a: DsfrTextStyle(fontSize: 15, color: DsfrColors.blueFranceSun113),
-              ),
+              child: FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.commentEstCalculeContenu),
             ),
           ),
         ],

@@ -16,17 +16,17 @@ Feature: Mes actions recommandées
     When I tap on {1} text {'🚅 Me déplacer'}
     When I scroll down to {'Commencer'}
     When I tap on {'Commencer'}
-    Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
+    Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
 
   Scenario: Répondre à toutes les questions
     When I tap on {1} text {'🚅 Me déplacer'}
     When I scroll down to {'Commencer'}
     When I tap on {'Commencer'}
-    Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
+    Then I see {"Avez-vous pris l'avion au moins une fois ces 3 dernières années ?"}
     When I tap on {"Oui"}
     When I scroll down to {'Question suivante'}
     When I tap on {"Question suivante"}
-    Then I see {"Êtes-vous équipé(e) d’un vélo ?"}
+    Then I see {"Êtes-vous équipé(e) d’un vélo ?"}
     When I tap on {"Non"}
     Then I have theme with actions
     When I tap on {"Question suivante"}

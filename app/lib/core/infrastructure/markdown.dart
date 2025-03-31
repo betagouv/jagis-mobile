@@ -6,14 +6,22 @@ import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 
 class FnvMarkdown extends StatelessWidget {
-  const FnvMarkdown({super.key, required this.data, this.h1, this.h2, this.h3, this.p, this.a, this.strong, this.hTag});
+  const FnvMarkdown({
+    super.key,
+    required this.data,
+    this.h1 = const DsfrTextStyle.headline4(),
+    this.h2 = const DsfrTextStyle.headline4(),
+    this.h3 = const DsfrTextStyle.headline5(),
+    this.p = const DsfrTextStyle.bodyMd(),
+    this.strong,
+    this.hTag,
+  });
 
   final String data;
   final TextStyle? h1;
   final TextStyle? h2;
   final TextStyle? h3;
   final TextStyle? p;
-  final TextStyle? a;
   final TextStyle? strong;
   final HTag? hTag;
 
@@ -21,7 +29,7 @@ class FnvMarkdown extends StatelessWidget {
   Widget build(final context) => GptMarkdownTheme(
     gptThemeData: GptMarkdownThemeData(brightness: Brightness.light, h1: h1, h2: h2, h3: h3),
     child: GptMarkdown(
-      data,
+      data.replaceAll(' ?', ' ?').replaceAll(' !', ' !').replaceAll(' :', ' :'),
       style: p,
       onLinkTab: (final url, final title) async => FnvUrlLauncher.launch(url),
       components: [
@@ -29,7 +37,7 @@ class FnvMarkdown extends StatelessWidget {
         NewLines(),
         BlockQuote(),
         _ImageMd(),
-        _ATagMd(a),
+        _ATagMd(),
         TableMd(),
         hTag ?? FNVHTag(),
         UnOrderedList(),
@@ -94,10 +102,6 @@ class _BoldMd extends BoldMd {
 }
 
 class _ATagMd extends ATagMd {
-  _ATagMd(this.textStyle);
-
-  final TextStyle? textStyle;
-
   @override
   InlineSpan span(final BuildContext context, final String text, final GptMarkdownConfig config) {
     final match = exp.firstMatch(text.trim());
@@ -137,14 +141,4 @@ class _ImageMd extends ImageMd {
 
     return WidgetSpan(child: FnvImage.network(imageUrl, semanticLabel: altText));
   }
-}
-
-({String content, String heading}) parseFirstHeadingInMardown(final String markdownString) {
-  final titleRegex = RegExp(r'^#+\s+(.+)\s*\n');
-  final titleMatch = titleRegex.firstMatch(markdownString);
-  final heading = titleMatch == null ? '' : titleMatch.group(1)!.trim();
-
-  final content = markdownString.trim().replaceAll(RegExp(r'^#+\s+(.+)\s*\n'), '').trim();
-
-  return (heading: heading, content: content);
 }

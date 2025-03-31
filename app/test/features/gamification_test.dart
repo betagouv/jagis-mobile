@@ -252,7 +252,7 @@ void main() {
                   "code": "quiz_tri_dechets",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
-                      "Testez vos connaissances sur le tri des déchets avec ce quiz !",
+                      "Testez vos connaissances sur le tri des déchets avec ce quiz !",
                   "consigne":
                       "Réalisez cette action dans les prochaines semaines et partagez vos retours",
                   "label_compteur":
@@ -281,14 +281,14 @@ void main() {
                       "points": 5,
                       "sousTitre": null,
                       "titre":
-                          "Vrai ou faux : tous les déchets organiques peuvent être compostés",
+                          "Vrai ou faux : tous les déchets organiques peuvent être compostés",
                       "thematique_principale": "dechet",
                       "questions": [
                         {
                           "explicationKO": null,
                           "explicationOk": null,
                           "libelle":
-                              "Vrai ou faux : tous les déchets organiques peuvent être compostés",
+                              "Vrai ou faux : tous les déchets organiques peuvent être compostés",
                           "reponses": [
                             {"exact": false, "reponse": "Vrai"},
                             {"exact": true, "reponse": "Faux"}
@@ -303,15 +303,15 @@ void main() {
                       "duree": "⏱️ 2 minutes",
                       "points": 5,
                       "sousTitre": null,
-                      "titre": "Où jeter une barquette en aluminium ?",
+                      "titre": "Où jeter une barquette en aluminium ?",
                       "thematique_principale": "alimentation",
                       "questions": [
                         {
                           "explicationKO":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
+                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
                           "explicationOk":
-                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
-                          "libelle": "Où jeter une barquette en aluminium ?",
+                              "<p><strong>L'aluminium se recycle. </strong>La barquette, préalablement vidée et lavée, doit donc être placée dans la <strong>poubelle des emballages recyclables</strong>. </p><blockquote><p>ℹ️ <strong><em>Le saviez-vous ? </em></strong>On estime que 75% de l'aluminium produit depuis 1880 est toujours utilisé aujourd'hui.</p></blockquote>",
+                          "libelle": "Où jeter une barquette en aluminium ?",
                           "reponses": [
                             {
                               "exact": false,
@@ -337,7 +337,7 @@ void main() {
                   "services": [],
                   "nom_commune": "Asnières-sur-Seine",
                   "quizz_felicitations":
-                      "Alors, le tri n'a plus de secret pour vous ? En cas de doute, rendez-vous sur le site Que faire de mes déchets",
+                      "Alors, le tri n'a plus de secret pour vous ? En cas de doute, rendez-vous sur le site Que faire de mes déchets",
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
@@ -452,7 +452,7 @@ void main() {
                     {
                       "code": "KYC_saison_frequence",
                       "question":
-                          "Faites-vous attention à consommer des fruits et légumes de saison ?",
+                          "Faites-vous attention à consommer des fruits et légumes de saison ?",
                       "reponse_multiple": [
                         {"code": "jamais", "label": "Jamais", "selected": true},
                         {
@@ -481,7 +481,7 @@ void main() {
                     {
                       "code": "KYC_gaspillage_alimentaire_frequence",
                       "question":
-                          "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
+                          "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
                       "reponse_multiple": [
                         {
                           "code": "50L",
@@ -533,7 +533,7 @@ void main() {
                 {
                   "code": "KYC_saison_frequence",
                   "question":
-                      "Faites-vous attention à consommer des fruits et légumes de saison ?",
+                      "Faites-vous attention à consommer des fruits et légumes de saison ?",
                   "reponse_multiple": [
                     {"code": "jamais", "label": "Jamais", "selected": false},
                     {"code": "parfois", "label": "Parfois", "selected": false},
@@ -561,7 +561,7 @@ void main() {
                 {
                   "code": "KYC_gaspillage_alimentaire_frequence",
                   "question":
-                      "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
+                      "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
                   "reponse_multiple": [
                     {
                       "code": "50L",

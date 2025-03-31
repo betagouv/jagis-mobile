@@ -1,12 +1,12 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
+import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:gpt_markdown/custom_widgets/link_button.dart';
 import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 
 class FnvMarkdown extends StatelessWidget {
-  const FnvMarkdown({super.key, required this.data, this.h1, this.h2, this.h3, this.p, this.a, this.strong});
+  const FnvMarkdown({super.key, required this.data, this.h1, this.h2, this.h3, this.p, this.a, this.strong, this.hTag});
 
   final String data;
   final TextStyle? h1;
@@ -15,6 +15,7 @@ class FnvMarkdown extends StatelessWidget {
   final TextStyle? p;
   final TextStyle? a;
   final TextStyle? strong;
+  final HTag? hTag;
 
   @override
   Widget build(final context) => GptMarkdownTheme(
@@ -30,7 +31,7 @@ class FnvMarkdown extends StatelessWidget {
         _ImageMd(),
         _ATagMd(a),
         TableMd(),
-        _HTag(),
+        hTag ?? FNVHTag(),
         UnOrderedList(),
         OrderedList(),
         RadioButtonMd(),
@@ -49,7 +50,7 @@ class FnvMarkdown extends StatelessWidget {
   );
 }
 
-class _HTag extends HTag {
+class FNVHTag extends HTag {
   @override
   Widget build(final BuildContext context, final String text, final GptMarkdownConfig config) {
     final match = exp.firstMatch(text.trim());
@@ -64,7 +65,10 @@ class _HTag extends HTag {
           1]?.copyWith(color: config.style?.color),
     );
 
-    return Text.rich(TextSpan(children: MarkdownComponent.generate(context, namedGroup, conf, false)));
+    return Padding(
+      padding: const EdgeInsets.only(top: DsfrSpacings.s2w, bottom: DsfrSpacings.s1w),
+      child: Text.rich(TextSpan(children: MarkdownComponent.generate(context, namedGroup, conf, false))),
+    );
   }
 }
 
@@ -103,18 +107,13 @@ class _ATagMd extends ATagMd {
 
     final linkText = match?[1] ?? '';
     final url = match?[2] ?? '';
-    final theme = GptMarkdownTheme.of(context);
 
     return WidgetSpan(
-      child: LinkButton(
-        text: linkText,
-        config: config,
-        color: theme.linkColor,
-        hoverColor: theme.linkHoverColor,
-        onPressed: () {
+      child: DsfrLink.md(
+        label: linkText,
+        onTap: () {
           config.onLinkTab?.call(url, linkText);
         },
-        textStyle: textStyle,
       ),
     );
   }

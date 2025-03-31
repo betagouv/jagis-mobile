@@ -83,23 +83,20 @@ class _Success extends StatelessWidget {
       DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: DsfrSpacings.s3w,
           children: [
-            const SizedBox(height: DsfrSpacings.s3w),
+            const SizedBox(height: DsfrSpacings.s1w),
             switch (action) {
               final ActionClassic a => ActionClassicView(action: a),
               final ActionSimulator a => ActionSimulatorView(action: a),
               final ActionQuiz a => ActionQuizView(action: a),
               final ActionPerformance a => ActionPerformanceView(action: a),
             },
-            if (action.aidSummaries.isNotEmpty) ...[
-              const SizedBox(height: DsfrSpacings.s3w),
-              ActionAidsView(aidSummaries: action.aidSummaries),
-            ],
-            if (action.faq != null && action.faq!.isNotEmpty) ...[
-              const SizedBox(height: DsfrSpacings.s3w),
-              ActionFAQView(faq: action.faq!),
-            ],
-            const SizedBox(height: DsfrSpacings.s3w),
+            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
+            if (action.faq != null && action.faq!.isNotEmpty) ActionFAQView(faq: action.faq!),
+            if (action.aidSummaries.isEmpty && (action.faq == null || action.faq!.isEmpty))
+              const SizedBox(height: DsfrSpacings.s1w),
           ],
         ),
       ),

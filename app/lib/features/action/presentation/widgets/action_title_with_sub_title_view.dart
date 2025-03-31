@@ -26,7 +26,7 @@ class ActionTitleWithSubTitleView extends StatelessWidget {
       spacing: DsfrSpacings.s3v,
       children: [
         FnvMarkdown(data: fullTitle, p: const DsfrTextStyle(fontSize: 28)),
-        if (subTitle != null) Text(subTitle!, style: const DsfrTextStyle.bodyLg()),
+        if (subTitle != null) FnvMarkdown(data: subTitle!, p: const DsfrTextStyle.bodyLg()),
       ],
     );
   }

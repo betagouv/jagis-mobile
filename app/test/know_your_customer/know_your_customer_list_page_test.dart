@@ -50,7 +50,7 @@ void main() {
     await tester.pumpAndSettle();
 
     for (final question in questions) {
-      final expected = QuestionMapper.fromJson(question)!;
+      final expected = QuestionMapper.fromJson(question);
       if (expected.isAnswered) {
         expect(find.text(expected.label), findsOneWidget);
         final responsesDisplay = expected.responsesDisplay();
@@ -74,7 +74,7 @@ void main() {
       await tester.pumpAndSettle();
 
       for (final question in questions) {
-        final expected = QuestionMapper.fromJson(question)!;
+        final expected = QuestionMapper.fromJson(question);
 
         Matcher findsWhenAnsweredAndPartOfTheme(final Question expected, final ThemeType? theme) {
           if (!expected.isAnswered) {

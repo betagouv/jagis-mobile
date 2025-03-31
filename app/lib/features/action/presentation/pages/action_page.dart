@@ -101,8 +101,8 @@ class _Success extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
                 child: Column(
-                  spacing: DsfrSpacings.s2w,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: DsfrSpacings.s2w,
                   children: [
                     const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
                     DsfrAccordionsGroup(

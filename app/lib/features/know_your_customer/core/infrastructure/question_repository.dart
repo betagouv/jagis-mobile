@@ -17,9 +17,11 @@ class QuestionRepository {
       return Left(Exception('Erreur lors de la récupération de la question'));
     }
 
-    final fromJson = QuestionMapper.fromJson(response.data as Map<String, dynamic>);
-
-    return fromJson == null ? Left(Exception('Erreur lors de la récupération de la question')) : Right(fromJson);
+    try {
+      return Right(QuestionMapper.fromJson(response.data as Map<String, dynamic>));
+    } on Exception catch (e) {
+      return Left(Exception('Erreur lors de la récupération de la question: $e'));
+    }
   }
 
   Future<Either<Exception, Unit>> update(final Question question) async {

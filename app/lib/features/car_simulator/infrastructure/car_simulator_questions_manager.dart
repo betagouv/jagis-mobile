@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/features/action/domain/action.dart';
@@ -16,11 +17,7 @@ class CarSimulatorQuestionsManager extends CursorManagerFromList<Question> {
 
           final data = response.data as Map<String, dynamic>;
 
-          return (data['kycs'] as List<dynamic>)
-              .cast<Map<String, dynamic>>()
-              .map(QuestionMapper.fromJson)
-              .whereType<Question>()
-              .toList();
+          return JsonListMapper.fromJsonList(data['kycs'], QuestionMapper.fromJson);
         },
       );
 }

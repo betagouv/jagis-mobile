@@ -78,12 +78,12 @@ abstract final class ActionSimulatorMapper {
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),
     isDone: ActionMapper.isDoneFromJson(json),
-    aidSummaries: ActionMapper.aidSummariesFromJson(json),
-    nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
-    score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
-    why: json['pourquoi'] as String,
+    nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
+    aidSummaries: ActionMapper.aidSummariesFromJson(json),
+    score: ActionMapper.scoreFromJson(json),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
+    why: json['pourquoi'] as String,
   );
 }
 
@@ -97,8 +97,8 @@ abstract final class ActionPerformanceMapper {
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),
     isDone: ActionMapper.isDoneFromJson(json),
-    aidSummaries: ActionMapper.aidSummariesFromJson(json),
     nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
+    aidSummaries: ActionMapper.aidSummariesFromJson(json),
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),

@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
@@ -9,9 +10,8 @@ class ActionsRecommandedQuestionsManager extends CursorManagerFromList<Question>
     : super(
         getList: () async {
           final response = await client.get(Endpoints.questions(sequenceId));
-          final data = response.data as List<dynamic>;
 
-          return data.cast<Map<String, dynamic>>().map(QuestionMapper.fromJson).whereType<Question>().toList();
+          return JsonListMapper.fromJsonList(response.data, QuestionMapper.fromJson);
         },
       );
 }

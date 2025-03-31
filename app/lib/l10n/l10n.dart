@@ -7,7 +7,9 @@ abstract final class Localisation {
   const Localisation._();
 
   static const accederAuSimulateur = 'Accéder au simulateur';
+  static const accederAuCatalogue = 'Accéder au catalogue';
   static const acheterUnVelo = 'Acheter un vélo';
+  static const envieDeVoirOuRevoirToutesLesActions = 'Envie de voir ou revoir toutes les actions ?';
   static const actionBravo = 'Bravo ! 🎉';
   static const actions = 'Actions';
   static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
@@ -168,7 +170,6 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mesActionsRecommandeesEpuiseeDescription =
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
-
   static const mesAidesDisponibles = 'Mes aides disponibles';
   static const mesAidesLien = 'Voir toutes les aides';
   static const mesFavoris = 'Mes favoris';

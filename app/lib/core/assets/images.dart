@@ -1,10 +1,11 @@
 abstract final class AssetImages {
   const AssetImages._();
 
+  static const actions = 'assets/images/actions.webp';
+  static const actionsRecommandedEmpty = 'assets/images/actions_recommanded_empty.webp';
   static const franceNationVerte = 'assets/images/logo_fnv.png';
   static const franceNationVerteSemantic = 'Logo de France Nation Verte';
   static const franceConnect = 'assets/images/france_connect.svg';
-
   static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
   static const lvaoStore = 'assets/images/lvao_store.svg';
   static const impactCo2Illustration = 'assets/images/service-fruits.webp';

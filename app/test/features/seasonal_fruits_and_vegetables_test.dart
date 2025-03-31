@@ -8,7 +8,6 @@ import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on.dart';
-import './step/i_scroll_down.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';
 
@@ -25,10 +24,7 @@ void main() {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
       await iTapOn(tester, '🍛 Me nourrir');
-      await iScrollDown(tester);
-      await iScrollDown(tester);
-      await iScrollDown(tester);
-      await iTapOn(tester, 'Fruits et légumes de saison');
+      await iTapOn(tester, '1 calendrier de fruits et légumes de saison');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

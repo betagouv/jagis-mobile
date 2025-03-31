@@ -1,3 +1,5 @@
+import 'package:app/core/assets/images.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/action_card.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_questions.dart';
@@ -55,6 +57,8 @@ class _ActionsEmpty extends StatelessWidget {
   @override
   Widget build(final context) => Column(
     children: [
+      const FnvImage.asset(AssetImages.actionsRecommandedEmpty, height: 148),
+      const SizedBox(height: DsfrSpacings.s2w),
       const Text(Localisation.mesActionsRecommandeesEpuiseeTitre, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
       const SizedBox(height: DsfrSpacings.s1v),
       const Text(

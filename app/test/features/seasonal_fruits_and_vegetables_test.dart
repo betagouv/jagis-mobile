@@ -7,11 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
-<<<<<<< HEAD
-=======
 import './step/i_tap_on_text.dart';
-import './step/i_scroll_down.dart';
->>>>>>> a5d0bfce (refactor(aids, theme_hub): suppression de classes et nettoyage de code)
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';

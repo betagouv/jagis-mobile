@@ -103,17 +103,17 @@ class _DsfrAccordionState extends State<_DsfrAccordion> with MaterialStateMixin<
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 48),
               child: Padding(
-                padding: const EdgeInsets.only(top: DsfrSpacings.s3v, bottom: DsfrSpacings.s3v, left: DsfrSpacings.s3v),
+                padding: const EdgeInsets.only(left: DsfrSpacings.s3v, top: DsfrSpacings.s3v, bottom: DsfrSpacings.s3v),
                 child: Row(
                   children: [
                     Expanded(
                       child:
-                          widget.item.headerBuilder != null
-                              ? widget.item.headerBuilder!(widget.isExpanded)
-                              : Text(
+                          widget.item.headerBuilder == null
+                              ? Text(
                                 widget.item.label ?? '',
                                 style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.blueFranceSun113),
-                              ),
+                              )
+                              : widget.item.headerBuilder!(widget.isExpanded),
                     ),
                     if (widget.item.isEnable)
                       AnimatedRotation(

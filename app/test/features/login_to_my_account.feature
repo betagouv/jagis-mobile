@@ -21,4 +21,4 @@ Feature: Login to my account
     Given The application is launched
     When I tap on the menu button
     When I tap on {'Se déconnecter'}
-    Then I see {'Ensemble,\naméliorons\nnos habitudes\nau jour le jour'}
+    Then I see {'Ensemble, améliorons nos habitudes au jour le jour'}

@@ -26,13 +26,11 @@ class PreOnboardingPage extends StatelessWidget {
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: DsfrSpacings.s15w),
+                const SizedBox(height: DsfrSpacings.s9w),
                 const Text(Localisation.preOnboardingTitre, style: DsfrTextStyle.displayXs(), textScaler: TextScaler.noScaling),
                 const SizedBox(height: DsfrSpacings.s3w),
                 Row(
-                  spacing: DsfrSpacings.s3w,
                   children: [
                     FnvSvg.asset(
                       AssetImages.republiqueFrancaise,

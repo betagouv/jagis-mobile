@@ -82,7 +82,7 @@ void main() {
         await iTapOnTheMenuButton(tester);
         await iTapOn(tester, 'Se déconnecter');
         await iSee(
-            tester, 'Ensemble,\naméliorons\nnos habitudes\nau jour le jour');
+            tester, 'Ensemble, améliorons nos habitudes au jour le jour');
       } on TestFailure {
         success = false;
         rethrow;

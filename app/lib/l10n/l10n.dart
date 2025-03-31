@@ -226,7 +226,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
-  static const preOnboardingTitre = 'Ensemble,\naméliorons\nnos habitudes\nau jour le jour';
+  static const preOnboardingTitre = 'Ensemble, améliorons nos habitudes au jour le jour';
   static const premiereFoisSur = 'Première fois sur J’agis ?';
   static const prenom = 'Prénom';
   static const prixDuVelo = 'Prix du vélo';

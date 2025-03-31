@@ -20,15 +20,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  draft-check:
-    if: github.event.pull_request.draft == true
-    runs-on: ubuntu-latest
-    steps:
-      - name: ❌ Fail for draft PR
-        run: |
-          echo "Cette PR est en mode draft. Les checks complets seront exécutés quand la PR sera prête pour la revue."
-          exit 1
-
   continuous-integration:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest

@@ -1,3 +1,6 @@
+import 'package:app/core/assets/images.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
+import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
 import 'package:app/features/recommandations/presentation/widgets/mes_recommandations.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
@@ -11,6 +14,7 @@ import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 final themeRouteObserver = RouteObserver<ModalRoute<dynamic>>();
 
@@ -82,19 +86,20 @@ class _Success extends StatelessWidget {
     final theme = data.theme;
     final themeType = theme.themeType;
 
+    const sizedBox = SizedBox(height: DsfrSpacings.s4w);
+    const padding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
+
     return ListView(
       children: [
         ThemeHeader(themeType: themeType, themeSummary: data.summary),
         ActionsRecommandedSection(theme: theme),
-        const SizedBox(height: DsfrSpacings.s4w),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: _Services(services: data.services)),
-        const SizedBox(height: DsfrSpacings.s4w),
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-            child: _Recommandations(themeType: themeType),
-          ),
-        ),
+        sizedBox,
+        Padding(padding: padding, child: _Services(services: data.services)),
+        sizedBox,
+        Padding(padding: padding, child: _Recommandations(themeType: themeType)),
+        sizedBox,
+        const Padding(padding: padding, child: _ActionCatalog()),
+        const SafeArea(child: sizedBox),
       ],
     );
   }
@@ -116,6 +121,27 @@ class _Services extends StatelessWidget {
         clipBehavior: Clip.none,
         child: IntrinsicHeight(
           child: Row(spacing: DsfrSpacings.s2w, children: services.map((final e) => ServiceCard(service: e)).toList()),
+        ),
+      ),
+    ],
+  );
+}
+
+class _ActionCatalog extends StatelessWidget {
+  const _ActionCatalog();
+
+  @override
+  Widget build(final BuildContext context) => Column(
+    spacing: DsfrSpacings.s3w,
+    children: [
+      const FnvImage.asset(AssetImages.actions, height: 80),
+      const Text(Localisation.envieDeVoirOuRevoirToutesLesActions, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
+      FittedBox(
+        child: DsfrButton(
+          label: Localisation.accederAuCatalogue,
+          variant: DsfrButtonVariant.secondary,
+          size: DsfrButtonSize.lg,
+          onPressed: () async => GoRouter.of(context).pushNamed(ActionsPage.name),
         ),
       ),
     ],

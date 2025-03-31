@@ -295,6 +295,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const quoiDeNeuf = 'Quoi de neuf ?';
   static const toutVoir = 'Tout voir';
   static const actionsRealiseesEnFrance = 'Actions réalisées ensemble partout en France';
+  static const onRepondAVosQuestions = 'On répond à vos questions !';
 
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;

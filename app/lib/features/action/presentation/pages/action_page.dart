@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
@@ -13,6 +14,7 @@ import 'package:app/features/action/presentation/widgets/action_simulator_view.d
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,6 +95,30 @@ class _Success extends StatelessWidget {
             if (action.aidSummaries.isNotEmpty) ...[
               const SizedBox(height: DsfrSpacings.s3w),
               ActionAidsView(aidSummaries: action.aidSummaries),
+            ],
+            if (action.faq != null && action.faq!.isNotEmpty) ...[
+              const SizedBox(height: DsfrSpacings.s3w),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+                child: Column(
+                  spacing: DsfrSpacings.s2w,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
+                    DsfrAccordionsGroup(
+                      values:
+                          action.faq!
+                              .map(
+                                (final faqItem) => DsfrAccordion.simple(
+                                  label: faqItem.question,
+                                  body: FnvMarkdown(data: faqItem.answer, p: const DsfrTextStyle.bodyMd()),
+                                ),
+                              )
+                              .toList(),
+                    ),
+                  ],
+                ),
+              ),
             ],
             const SizedBox(height: DsfrSpacings.s3w),
           ],

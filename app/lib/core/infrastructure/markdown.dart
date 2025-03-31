@@ -2,7 +2,6 @@ import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
-import 'package:gpt_markdown/custom_widgets/link_button.dart';
 import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 
@@ -108,18 +107,13 @@ class _ATagMd extends ATagMd {
 
     final linkText = match?[1] ?? '';
     final url = match?[2] ?? '';
-    final theme = GptMarkdownTheme.of(context);
 
     return WidgetSpan(
-      child: LinkButton(
-        text: linkText,
-        config: config,
-        color: theme.linkColor,
-        hoverColor: theme.linkHoverColor,
-        onPressed: () {
+      child: DsfrLink.md(
+        label: linkText,
+        onTap: () {
           config.onLinkTab?.call(url, linkText);
         },
-        textStyle: textStyle,
       ),
     );
   }

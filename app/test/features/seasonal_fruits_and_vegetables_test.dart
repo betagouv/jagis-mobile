@@ -28,8 +28,8 @@ void main() {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
-      await iTapOn(tester, '🍛 Me nourrir');
-      await iTapOn(tester, '1 calendrier de fruits et légumes de saison');
+      await iTapOnText(tester, 1, '🍛 Me nourrir');
+      await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

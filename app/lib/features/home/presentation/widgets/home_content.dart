@@ -71,6 +71,7 @@ class _HomeContentState extends State<HomeContent> {
           context: context,
           builder: (final context) => const ResetModal(),
           name: 'reset-modal',
+          isDismissible: false,
         );
       }
     },

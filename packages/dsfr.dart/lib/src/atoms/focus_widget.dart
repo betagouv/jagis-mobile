@@ -20,6 +20,6 @@ class DsfrFocusWidget extends StatelessWidget {
               : null,
       borderRadius: borderRadius?.add(const BorderRadius.all(Radius.circular(DsfrSpacings.s0v5))),
     ),
-    child: Padding(padding: const EdgeInsets.all(DsfrSpacings.s0v5), child: child),
+    child: child,
   );
 }

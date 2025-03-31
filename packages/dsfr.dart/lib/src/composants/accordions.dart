@@ -3,6 +3,7 @@
 import 'package:dsfr/src/atoms/focus_widget.dart';
 import 'package:dsfr/src/composants/divider.dart';
 import 'package:dsfr/src/fondamentaux/colors.g.dart';
+import 'package:dsfr/src/fondamentaux/fonts.dart';
 import 'package:dsfr/src/fondamentaux/icons.g.dart';
 import 'package:dsfr/src/fondamentaux/spacing.g.dart';
 import 'package:dsfr/src/helpers/iterable_extension.dart';
@@ -12,9 +13,17 @@ typedef DsfrAccordionCallback = void Function(int panelIndex, bool isExpanded);
 typedef DsfrAccordionHeaderBuilder = Widget Function(bool isExpanded);
 
 class DsfrAccordion {
-  const DsfrAccordion({required this.headerBuilder, required this.body, this.isEnable = true});
+  const DsfrAccordion._({this.label, this.headerBuilder, required this.body, this.isEnable = true});
+  const DsfrAccordion.simple({required final String label, required final Widget body, final bool isEnable = true})
+    : this._(label: label, body: body, isEnable: isEnable);
+  const DsfrAccordion.custom({
+    required final DsfrAccordionHeaderBuilder headerBuilder,
+    required final Widget body,
+    final bool isEnable = true,
+  }) : this._(headerBuilder: headerBuilder, body: body, isEnable: isEnable);
 
-  final DsfrAccordionHeaderBuilder headerBuilder;
+  final DsfrAccordionHeaderBuilder? headerBuilder;
+  final String? label;
   final Widget body;
   final bool isEnable;
 }
@@ -94,10 +103,18 @@ class _DsfrAccordionState extends State<_DsfrAccordion> with MaterialStateMixin<
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 48),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v),
+                padding: const EdgeInsets.only(top: DsfrSpacings.s3v, bottom: DsfrSpacings.s3v, left: DsfrSpacings.s3v),
                 child: Row(
                   children: [
-                    Expanded(child: widget.item.headerBuilder(widget.isExpanded)),
+                    Expanded(
+                      child:
+                          widget.item.headerBuilder != null
+                              ? widget.item.headerBuilder!(widget.isExpanded)
+                              : Text(
+                                widget.item.label ?? '',
+                                style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.blueFranceSun113),
+                              ),
+                    ),
                     if (widget.item.isEnable)
                       AnimatedRotation(
                         turns: widget.isExpanded ? -0.5 : 0,

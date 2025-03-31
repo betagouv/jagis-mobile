@@ -380,13 +380,13 @@ class _Questions extends StatelessWidget {
   @override
   Widget build(final context) => DsfrAccordionsGroup(
     values: [
-      DsfrAccordion(
+      DsfrAccordion.custom(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.ouTrouverCesInformations),
         body: const _AccordionBody(
           child: FnvMarkdown(data: Localisation.ouTrouverCesInformationsReponse, p: DsfrTextStyle(fontSize: 15)),
         ),
       ),
-      DsfrAccordion(
+      DsfrAccordion.custom(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.pourquoiCesQuestions),
         body: const _AccordionBody(
           child: FnvMarkdown(data: Localisation.pourquoiCesQuestionsReponse, p: DsfrTextStyle(fontSize: 15)),

@@ -19,16 +19,16 @@ class QuestionSection extends StatelessWidget {
       ),
       DsfrAccordionsGroup(
         values: [
-          DsfrAccordion(
-            headerBuilder: (final isExpanded) => const _AccordionHeader(text: EnvironmentalPerformanceSummaryL10n.quEstCeQuUn),
-            body: const _AccordionBody(
+          const DsfrAccordion.simple(
+            label: EnvironmentalPerformanceSummaryL10n.quEstCeQuUn,
+            body: _AccordionBody(
               child: FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.quEstCeQuUnContenu, p: DsfrTextStyle(fontSize: 15)),
             ),
           ),
-          DsfrAccordion(
-            headerBuilder:
-                (final isExpanded) => const _AccordionHeader(text: EnvironmentalPerformanceSummaryL10n.commentEstCalcule),
+          DsfrAccordion.simple(
+            label: EnvironmentalPerformanceSummaryL10n.commentEstCalcule,
             body: _AccordionBody(
+              // TODO(erolley): factorize markdown body in Accordion
               child: FnvMarkdown(
                 data: EnvironmentalPerformanceSummaryL10n.commentEstCalculeContenu,
                 p: const DsfrTextStyle(fontSize: 15),
@@ -45,18 +45,6 @@ class QuestionSection extends StatelessWidget {
         ],
       ),
     ],
-  );
-}
-
-class _AccordionHeader extends StatelessWidget {
-  const _AccordionHeader({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(final context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-    child: Text(text, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.blueFranceSun113)),
   );
 }
 

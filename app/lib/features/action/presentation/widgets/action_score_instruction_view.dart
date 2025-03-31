@@ -58,7 +58,7 @@ class ActionScoreInstructionView extends StatelessWidget {
                 },
               ],
             ),
-          if (action.nbActionsDone > 0) ...[
+          if (action.nbActionsDone > 1) ...[
             const SizedBox(height: DsfrSpacings.s3w),
             const DsfrDivider(),
             const SizedBox(height: DsfrSpacings.s3w),

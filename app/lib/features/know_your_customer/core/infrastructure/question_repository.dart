@@ -19,8 +19,8 @@ class QuestionRepository {
 
     try {
       return Right(QuestionMapper.fromJson(response.data as Map<String, dynamic>));
-    } on Exception catch (e) {
-      return Left(Exception('Erreur lors de la récupération de la question: $e'));
+    } on Exception catch (error) {
+      return Left(Exception('Erreur lors de la récupération de la question: $error'));
     }
   }
 

@@ -17,4 +17,6 @@ abstract final class FnvNumberFormat {
   static String formatNumber(final double nombre) => NumberFormat('0.##', 'fr').format(nombre);
 
   static String formatNumberAfterRounding(final double nombre) => NumberFormat('0.##', 'fr').format(nombre.round());
+
+  static String kgToTonnes(final double nombre) => NumberFormat('0.#', 'fr').format(nombre / 1000);
 }

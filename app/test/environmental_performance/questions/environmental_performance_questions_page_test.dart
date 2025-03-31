@@ -78,7 +78,7 @@ void main() {
       dio.getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await tester.tap(find.text(Localisation.continuer));
       await tester.pumpAndSettle();
-      expect(find.text('Mon bilan environnemental'), findsOneWidget);
+      expect(find.text(Localisation.monBilanEnvironnemental), findsOneWidget);
     });
   });
 }

@@ -38,6 +38,7 @@ abstract final class Endpoints {
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
   static const gamificationReset = '/utilisateurs/{userId}/gamification/popup_reset_vue';
+  static const homeBoard = '/utilisateurs/{userId}/home_board';
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
   static const themes = '/utilisateurs/{userId}/thematiques';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
@@ -46,7 +47,7 @@ abstract final class Endpoints {
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String resetCustomization(final String themeCode) => '${theme(themeCode)}/reset_personnalisation';
   static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
-  static String recommandationsParThematique(final String themeCode) => '${theme(themeCode)}/recommandations';
+  static const recommandationsV3 = '/utilisateurs/{userId}/recommandations_v3';
   static String servicesParThematique(final String themeCode) => '${theme(themeCode)}/recherche_services';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';
   static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';

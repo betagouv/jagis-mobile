@@ -59,8 +59,18 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
         'popup_reset_est_vue': true,
       },
     )
-    ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours', responseData: <dynamic>[])
-    ..getM('/utilisateurs/%7BuserId%7D/defis_v2?status=en_cours&thematique=alimentation', responseData: <dynamic>[])
+    ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
+    ..getM(
+      Endpoints.homeBoard,
+      responseData: {
+        'nom_commune': 'Dole',
+        'total_national_actions_faites': 1,
+        'total_utilisateur_actions_faites': 2,
+        'pourcentage_bilan_done': 0,
+        'nombre_aides': 3,
+        'nombre_recettes': 4,
+      },
+    )
     ..getM(Endpoints.gamification, responseData: {'points': 650})
     ..getM(
       Endpoints.aids,

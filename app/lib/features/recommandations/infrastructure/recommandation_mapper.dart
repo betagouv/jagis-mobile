@@ -8,18 +8,9 @@ abstract final class RecommandationMapper {
 
   static Recommandation fromJson(final Map<String, dynamic> json) => Recommandation(
     id: json['content_id'] as String,
-    type: _mapContentTypeFromJson(json['type'] as String),
     titre: json['titre'] as String,
     sousTitre: json['soustitre'] as String?,
     imageUrl: json['image_url'] as String,
-    points: (json['points'] as num).toInt(),
     thematique: ThemeTypeMapper.convert(json['thematique_principale'] as String),
   );
-
-  static TypeDuContenu _mapContentTypeFromJson(final String? type) => switch (type) {
-    'article' => TypeDuContenu.article,
-    'kyc' => TypeDuContenu.kyc,
-    'quizz' => TypeDuContenu.quiz,
-    _ => TypeDuContenu.article,
-  };
 }

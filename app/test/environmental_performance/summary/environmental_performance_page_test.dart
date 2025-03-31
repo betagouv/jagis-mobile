@@ -9,6 +9,7 @@ import 'package:app/features/environmental_performance/summary/infrastructure/en
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -145,7 +146,7 @@ void main() {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await mockNetworkImages(() async {
         await pumpEnvironmentalPerformancePage(tester, dio);
-        expect(find.text('Mon bilan environnemental'), findsOneWidget);
+        expect(find.text(Localisation.monBilanEnvironnemental), findsOneWidget);
         expect(find.text('2,9'), findsOneWidget);
         expect(find.text('Voiture'), findsOneWidget);
         await tester.scrollUntilVisible(

@@ -7,7 +7,7 @@ import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
-import 'package:app/features/theme_hub/presentation/helpers/tab_bar_router.dart';
+import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';

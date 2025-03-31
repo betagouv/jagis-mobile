@@ -45,7 +45,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
               values:
                   state.aidesDisponibles
                       .map(
-                        (final e) => DsfrAccordion(
+                        (final e) => DsfrAccordion.custom(
                           headerBuilder:
                               (final isExpanded) => _Header(titre: e.titre, montantMax: e.montantTotal, isExpanded: isExpanded),
                           body: _Body(aides: e.aides),

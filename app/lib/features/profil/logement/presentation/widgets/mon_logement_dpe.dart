@@ -1,7 +1,6 @@
 // ignore_for_file: avoid-slow-collection-methods
 
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/alert_info.dart';
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_bloc.dart';
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_event.dart';
@@ -36,11 +35,6 @@ class MonLogementDpe extends StatelessWidget {
                   "Le DPE, c'est le **Diagnostic de Performance Énergétique de votre logement**. Il mesure d'un côté l'énergie nécessaire pour y maintenir une température standard, et de l'autre l'empreinte climat associée. Le DPE est exprimé comme une note de A (très bon) à G (passoire thermique). Vous pouvez obtenir une estimation de votre DPE en 2 clics avec le service [Go Renov](https://particulier.gorenove.fr/).",
               p: const DsfrTextStyle(fontSize: 15),
               a: const DsfrTextStyle(fontSize: 15).copyWith(color: DsfrColors.blueFranceSun113),
-              onTapLink: (final href) async {
-                if (href != null) {
-                  await FnvUrlLauncher.launch(href);
-                }
-              },
             ),
           ),
         ],

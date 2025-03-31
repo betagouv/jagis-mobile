@@ -26,13 +26,13 @@ dependencies:
   flutter_inset_shadow: 2.0.3
   flutter_localizations:
     sdk: flutter
-  flutter_markdown: 0.7.6+2
   flutter_native_splash: 2.4.5
   flutter_secure_storage: 9.2.4
   flutter_widget_from_html_core: 0.16.0
   fpdart: 1.1.1
   fwfh_url_launcher: 0.16.0
   go_router: 14.8.1
+  gpt_markdown: 1.0.16
   html: 0.15.5
   intl: 0.19.0 # Bloqué en 0.19.0 par flutter_localizations
   jovial_svg: 1.1.25

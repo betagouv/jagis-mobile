@@ -63,10 +63,9 @@ class ActionScoreInstructionView extends StatelessWidget {
             const DsfrDivider(),
             const SizedBox(height: DsfrSpacings.s3w),
             switch (action) {
-              ActionClassic() => FnvMarkdown(data: action.scoreLabel, p: const DsfrTextStyle.bodyMd()),
+              ActionClassic() => FnvMarkdown(data: action.scoreLabel),
               ActionSimulator() || ActionQuiz() || ActionPerformance() => FnvMarkdown(
                 data: '**${action.nbActionsDone} ${action.scoreLabel}** faites par la communauté',
-                p: const DsfrTextStyle.bodyMd(),
               ),
             },
           ],

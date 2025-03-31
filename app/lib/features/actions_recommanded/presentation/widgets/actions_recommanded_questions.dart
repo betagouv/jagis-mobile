@@ -139,7 +139,7 @@ class _GetStarted extends StatelessWidget {
         children: [
           const Text(Localisation.envieDAvoirUnVraiImpact, style: DsfrTextStyle.headline5()),
           const SizedBox(height: DsfrSpacings.s1v),
-          const FnvMarkdown(data: Localisation.envieDAvoirUnVraiImpactDescription, p: DsfrTextStyle.bodyMd()),
+          const FnvMarkdown(data: Localisation.envieDAvoirUnVraiImpactDescription),
           const SizedBox(height: DsfrSpacings.s2w),
           AnimationShake(
             child: DsfrRawButton(

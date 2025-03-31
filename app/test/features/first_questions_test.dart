@@ -144,7 +144,7 @@ void main() {
         await bddSetUp(tester);
         await iSeeSemantics(tester, 'Question 1 sur 3');
         await iSeeSemantics(
-            tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
+            tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
         await iSeeSemantics(tester,
             'Nous avons quelques questions à vous poser pour personnaliser votre expérience !');
         await iSeeSemantics(tester, 'Mon pseudonyme');

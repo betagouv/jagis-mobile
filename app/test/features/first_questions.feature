@@ -44,7 +44,7 @@ Feature: Onboarding
 
   Scenario: Vérifier l'accessibilité sur la page du pseudonyme
     Then I see {'Question 1 sur 3'} semantics
-    Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'} semantics
+    Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'} semantics
     Then I see {'Nous avons quelques questions à vous poser pour personnaliser votre expérience !'} semantics
     Then I see {'Mon pseudonyme'} semantics
     Then I see {'Continuer'} semantics

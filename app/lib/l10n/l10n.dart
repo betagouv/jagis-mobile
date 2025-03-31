@@ -13,7 +13,7 @@ abstract final class Localisation {
   static const actionBravo = 'Bravo ! 🎉';
   static const actions = 'Actions';
   static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
-  static const actionPerformanceTerminePart1 = 'Vous avez terminé votre bilan ! Il est de ';
+  static const actionPerformanceTerminePart1 = 'Vous avez terminé votre bilan ! Il est de ';
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
   static const adresseEmail = 'Mon adresse email';
@@ -36,7 +36,7 @@ abstract final class Localisation {
   static const bibliotheque = 'Bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
-  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
+  static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Bilan environnemental';
   static const monBilanEnvironnemental = 'Mon bilan environnemental';

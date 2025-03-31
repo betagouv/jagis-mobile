@@ -20,12 +20,7 @@ class ActionFAQView extends StatelessWidget {
         DsfrAccordionsGroup(
           values:
               faq
-                  .map(
-                    (final faqItem) => DsfrAccordion.simple(
-                      label: faqItem.question,
-                      body: FnvMarkdown(data: faqItem.answer, p: const DsfrTextStyle.bodyMd()),
-                    ),
-                  )
+                  .map((final faqItem) => DsfrAccordion.simple(label: faqItem.question, body: FnvMarkdown(data: faqItem.answer)))
                   .toList(),
         ),
       ],

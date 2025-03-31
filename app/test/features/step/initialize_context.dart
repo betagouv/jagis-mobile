@@ -91,7 +91,7 @@ void setThemes() =>
         responseData: [
           {
             'code': 'KYC003',
-            'question': 'Êtes-vous équipé(e) d’un vélo ?',
+            'question': 'Êtes-vous équipé(e) d’un vélo ?',
             'reponse_multiple': [
               {'code': 'oui', 'label': 'Oui', 'selected': false},
               {'code': 'non', 'label': 'Non', 'selected': false},
@@ -109,7 +109,7 @@ void setThemes() =>
         Endpoints.question('KYC003'),
         responseData: {
           'code': 'KYC003',
-          'question': 'Êtes-vous équipé(e) d’un vélo ?',
+          'question': 'Êtes-vous équipé(e) d’un vélo ?',
           'reponse_multiple': [
             {'code': 'oui', 'label': 'Oui', 'selected': false},
             {'code': 'non', 'label': 'Non', 'selected': false},
@@ -177,7 +177,7 @@ void setEnchainements() {
   final questions = [
     {
       'code': 'KYC_transport_avion_3_annees',
-      'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
+      'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
       'reponse_multiple': [
         {'code': 'oui', 'label': 'Oui', 'selected': false},
         {'code': 'non', 'label': 'Non', 'selected': true},
@@ -192,7 +192,7 @@ void setEnchainements() {
     },
     {
       'code': 'KYC003',
-      'question': 'Êtes-vous équipé(e) d’un vélo ?',
+      'question': 'Êtes-vous équipé(e) d’un vélo ?',
       'reponse_multiple': [
         {'code': 'oui', 'label': 'Oui', 'selected': false},
         {'code': 'non', 'label': 'Non', 'selected': false},

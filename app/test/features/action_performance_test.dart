@@ -68,7 +68,7 @@ void main() {
                   {
                     "code": "KYC_saison_frequence",
                     "question":
-                        "Faites-vous attention à consommer des fruits et légumes de saison ?",
+                        "Faites-vous attention à consommer des fruits et légumes de saison ?",
                     "reponse_multiple": [
                       {"code": "jamais", "label": "Jamais", "selected": true},
                       {
@@ -97,7 +97,7 @@ void main() {
                   {
                     "code": "KYC_gaspillage_alimentaire_frequence",
                     "question":
-                        "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
+                        "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
                     "reponse_multiple": [
                       {
                         "code": "50L",
@@ -149,7 +149,7 @@ void main() {
               {
                 "code": "KYC_saison_frequence",
                 "question":
-                    "Faites-vous attention à consommer des fruits et légumes de saison ?",
+                    "Faites-vous attention à consommer des fruits et légumes de saison ?",
                 "reponse_multiple": [
                   {"code": "jamais", "label": "Jamais", "selected": false},
                   {"code": "parfois", "label": "Parfois", "selected": false},
@@ -177,7 +177,7 @@ void main() {
               {
                 "code": "KYC_gaspillage_alimentaire_frequence",
                 "question":
-                    "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
+                    "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
                 "reponse_multiple": [
                   {
                     "code": "50L",
@@ -276,7 +276,7 @@ void main() {
         await beforeEach('''Voir la première question''');
         await bddSetUp(tester);
         await iSee(tester,
-            'Faites-vous attention à consommer des fruits et légumes de saison ?');
+            'Faites-vous attention à consommer des fruits et légumes de saison ?');
       } on TestFailure {
         success = false;
         rethrow;

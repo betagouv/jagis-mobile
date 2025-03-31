@@ -44,7 +44,7 @@ class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
             ],
           ),
           CompareBar(value: footprint.percentageOfMaxFootprint),
-          const FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.aTitreDeComparaison, p: DsfrTextStyle.bodyMd()),
+          const FnvMarkdown(data: EnvironmentalPerformanceSummaryL10n.aTitreDeComparaison),
         ],
       ),
     ),

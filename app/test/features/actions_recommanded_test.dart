@@ -83,7 +83,7 @@ void main() {
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
-            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
+            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
       } on TestFailure {
         success = false;
         rethrow;
@@ -103,11 +103,11 @@ void main() {
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester,
-            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
+            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
         await iTapOn(tester, "Oui");
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, "Question suivante");
-        await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
+        await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
         await iTapOn(tester, "Non");
         await iHaveThemeWithActions(tester);
         await iTapOn(tester, "Question suivante");

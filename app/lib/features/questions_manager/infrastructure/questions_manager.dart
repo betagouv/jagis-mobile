@@ -15,7 +15,6 @@ class QuestionsManager extends CursorManagerFromList<Question> {
           return ((response.data as Map<String, dynamic>)['kycs'] as List<dynamic>)
               .cast<Map<String, dynamic>>()
               .map(QuestionMapper.fromJson)
-              .whereType<Question>()
               .toList();
         },
       );

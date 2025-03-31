@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -29,8 +30,6 @@ class EnvironmentalPerformanceSummaryRepository {
       return Left(Exception('Erreur lors de la récupération du mini bilan'));
     }
 
-    final data = response.data! as List<dynamic>;
-
-    return Right(data.cast<Map<String, dynamic>>().map(QuestionMapper.fromJson).whereType<Question>().toList());
+    return Right(JsonListMapper.fromJsonList(response.data, QuestionMapper.fromJson));
   }
 }

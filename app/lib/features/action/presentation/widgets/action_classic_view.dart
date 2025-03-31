@@ -1,5 +1,6 @@
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown.dart';
+import 'package:app/features/action/presentation/widgets/action_markdown_heading.dart';
 import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
@@ -24,7 +25,13 @@ class ActionClassicView extends StatelessWidget {
         RecipeHorizontalList(category: action.recipesService.category),
       ],
       const SizedBox(height: DsfrSpacings.s4w),
-      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: ActionMarkdown(data: action.how)),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+        child: ActionMarkdown(
+          data: action.how,
+          hTag: ActionMarkdownHeading(icon: DsfrIcons.othersLeafLine, color: const Color(0xFF39826C)),
+        ),
+      ),
       const SizedBox(height: DsfrSpacings.s2w),
     ],
   );

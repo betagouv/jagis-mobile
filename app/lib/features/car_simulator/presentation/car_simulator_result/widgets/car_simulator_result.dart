@@ -72,9 +72,7 @@ class _CarSimulatorResultView extends StatelessWidget {
   final CarSimulatorOption? bestEmissionsOption;
 
   @override
-  Widget build(final context) =>
-  // TODO(erolley): ListView doesn't work here
-  Padding(
+  Widget build(final context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

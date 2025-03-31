@@ -200,7 +200,7 @@ class _Section extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(e.title, style: const DsfrTextStyle.bodyMd()),
+                  Expanded(child: Text(e.title, style: const DsfrTextStyle.bodyMd(), overflow: TextOverflow.ellipsis)),
                   FnvImage.network(e.imageUrl, width: 24, height: 24),
                 ],
               ),

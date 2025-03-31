@@ -1,4 +1,5 @@
 Feature: Delete my account
+
   Background:
     Given I am logged in
     Given The application is launched
@@ -12,7 +13,7 @@ Feature: Delete my account
   Scenario: Confirm account deletion
     When I tap on {'Confirmer'}
     Then The account deletion endpoint has been called
-    Then I see {'Ensemble,\naméliorons\nnos habitudes\nau jour le jour'}
+    Then I see {'Ensemble, améliorons nos habitudes au jour le jour'}
 
   Scenario: Cancel account deletion
     When I tap on {'Annuler'}

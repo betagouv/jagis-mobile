@@ -7,6 +7,9 @@ import 'package:app/core/notifications/infrastructure/firebase_options.dart';
 import 'package:app/core/notifications/infrastructure/notification_data_mapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+
+typedef _AsyncCallback<T> = Future<T> Function();
 
 class NotificationService {
   static const _topicAll = 'all';
@@ -14,13 +17,13 @@ class NotificationService {
 
   Future<void> initializeApp() async => Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  Future<String?> getToken() async => FirebaseMessaging.instance.getToken();
+  Future<String?> getToken() async => _executePlatformSafeCallback(() async => FirebaseMessaging.instance.getToken());
 
   Future<AuthorizationStatus> requestPermission() async {
     final permission = await FirebaseMessaging.instance.requestPermission();
     if (permission.authorizationStatus == AuthorizationStatus.authorized) {
       await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
-      await FirebaseMessaging.instance.subscribeToTopic(_topicAll);
+      await _executePlatformSafeCallback(() => FirebaseMessaging.instance.subscribeToTopic(_topicAll));
     }
 
     final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
@@ -39,10 +42,26 @@ class NotificationService {
     return permission.authorizationStatus;
   }
 
+  /// Solution pour éviter le crash sur iOS 15.x
+  ///
+  /// [iOS 15.x and APNS token has not been set yet.](https://github.com/firebase/flutterfire/issues/17188)
+  Future<T?> _executePlatformSafeCallback<T>(final _AsyncCallback<T?> callback) async {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+      if (apnsToken != null) {
+        return callback();
+      }
+
+      return null;
+    }
+
+    return callback();
+  }
+
   Stream<NotificationData> get onMessageOpenedApp => _messageController.stream;
 
   Future<void> deleteToken() async {
-    await FirebaseMessaging.instance.unsubscribeFromTopic(_topicAll);
-    await FirebaseMessaging.instance.deleteToken();
+    await _executePlatformSafeCallback(() => FirebaseMessaging.instance.unsubscribeFromTopic(_topicAll));
+    await _executePlatformSafeCallback(() => FirebaseMessaging.instance.deleteToken());
   }
 }

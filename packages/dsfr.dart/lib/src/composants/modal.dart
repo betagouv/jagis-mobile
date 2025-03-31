@@ -32,9 +32,11 @@ class DsfrModal extends StatelessWidget {
   }) async => showDialog(
     context: context,
     builder:
-        (final context) => Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: DsfrModal(isDismissible: isDismissible, child: builder(context)),
+        (final context) => Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            child: DsfrModal(isDismissible: isDismissible, child: builder(context)),
+          ),
         ),
     barrierDismissible: isDismissible,
     barrierColor: DsfrColors.grey50.withAlpha(163),
@@ -47,31 +49,33 @@ class DsfrModal extends StatelessWidget {
   @override
   Widget build(final context) => ColoredBox(
     color: DsfrColors.grey1000,
-    child: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(DsfrSpacings.s2w),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (isDismissible) ...[
-              Align(
-                alignment: Alignment.topRight,
-                child: FittedBox(
-                  child: DsfrButton(
-                    label: 'Fermer',
-                    icon: DsfrIcons.systemCloseLine,
-                    iconLocation: DsfrButtonIconLocation.right,
-                    variant: DsfrButtonVariant.tertiaryWithoutBorder,
-                    size: DsfrButtonSize.sm,
-                    onPressed: () => Navigator.of(context).pop(),
+    child: SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(DsfrSpacings.s2w),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (isDismissible) ...[
+                Align(
+                  alignment: Alignment.topRight,
+                  child: FittedBox(
+                    child: DsfrButton(
+                      label: 'Fermer',
+                      icon: DsfrIcons.systemCloseLine,
+                      iconLocation: DsfrButtonIconLocation.right,
+                      variant: DsfrButtonVariant.tertiaryWithoutBorder,
+                      size: DsfrButtonSize.sm,
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: DsfrSpacings.s1w),
+                const SizedBox(height: DsfrSpacings.s1w),
+              ],
+              Flexible(child: child),
             ],
-            Flexible(child: child),
-          ],
+          ),
         ),
       ),
     ),

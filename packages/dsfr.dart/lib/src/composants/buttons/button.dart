@@ -41,7 +41,7 @@ class DsfrButton extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    Widget child = Text(label);
+    Widget child = Text(label, overflow: TextOverflow.ellipsis);
     if (icon != null) {
       final buttonIcon = Icon(icon, size: _getIconSize(size));
       var children = <Widget>[buttonIcon, const SizedBox(width: DsfrSpacings.s1w), Flexible(child: child)];

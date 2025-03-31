@@ -165,7 +165,7 @@ class _View extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s1w),
       FnvMarkdown(data: descriptionMarkdown, p: const DsfrTextStyle.bodyMd()),
       if (extra != null) ...[const SizedBox(height: DsfrSpacings.s2w), extra!],
-      const Spacer(),
+      const SizedBox(height: DsfrSpacings.s5w),
       Align(alignment: Alignment.centerRight, child: FittedBox(child: button)),
     ],
   );

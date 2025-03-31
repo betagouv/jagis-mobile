@@ -48,6 +48,7 @@ Future<void> pumpHomePage(final WidgetTester tester) async {
             'total_national_actions_faites': 1,
             'total_utilisateur_actions_faites': 2,
             'pourcentage_bilan_done': 0,
+            'bilan_carbone_total_kg': 10.5,
             'nombre_aides': 3,
             'nombre_recettes': 4,
           },

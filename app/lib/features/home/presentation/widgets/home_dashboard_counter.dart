@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/helpers/number_format.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
@@ -6,14 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeDashboardCounter extends StatelessWidget {
-  const HomeDashboardCounter({super.key, required this.nbActionsDone, required this.bilanCarbonePercentageCompletion});
+  const HomeDashboardCounter({
+    super.key,
+    required this.nbActionsDone,
+    required this.bilanCarbonePercentageCompletion,
+    required this.environmentalKgCO2e,
+  });
 
   final int nbActionsDone;
   final int bilanCarbonePercentageCompletion;
+  final double environmentalKgCO2e;
 
   @override
   Widget build(final BuildContext context) {
-    const progressSize = 88.0;
+    final bilanIsDone = bilanCarbonePercentageCompletion == 100;
+    final progressSize = bilanIsDone ? 70.0 : 80.0;
 
     return DecoratedBox(
       decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(AssetImages.homeDashboardBg), fit: BoxFit.fill)),
@@ -31,7 +39,7 @@ class HomeDashboardCounter extends StatelessWidget {
                     Stack(
                       alignment: AlignmentDirectional.center,
                       children: [
-                        const SizedBox.square(dimension: progressSize),
+                        SizedBox.square(dimension: progressSize),
                         Text(nbActionsDone.toString(), style: const DsfrTextStyle(fontSize: 37, fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -44,7 +52,7 @@ class HomeDashboardCounter extends StatelessWidget {
                 ),
               ),
             ),
-            const DsfrDivider(width: 1, height: 150),
+            Padding(padding: const EdgeInsets.only(top: 20), child: DsfrDivider(width: 1, height: progressSize)),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
@@ -54,40 +62,47 @@ class HomeDashboardCounter extends StatelessWidget {
                     Stack(
                       alignment: AlignmentDirectional.center,
                       children: [
-                        SizedBox.square(
-                          dimension: progressSize,
-                          child: CircularProgressIndicator(
-                            value: bilanCarbonePercentageCompletion / 100,
-                            backgroundColor: const Color(0xFFE7E3DC),
-                            valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
-                            strokeWidth: 4,
-                            strokeCap: StrokeCap.round,
+                        SizedBox.square(dimension: progressSize * 0.9),
+                        if (!bilanIsDone)
+                          SizedBox.square(
+                            dimension: progressSize,
+                            child: CircularProgressIndicator(
+                              value: bilanCarbonePercentageCompletion / 100,
+                              backgroundColor: const Color(0xFFE7E3DC),
+                              valueColor: const AlwaysStoppedAnimation(Color(0xFFA89F8E)),
+                              strokeWidth: 4,
+                              strokeCap: StrokeCap.round,
+                            ),
                           ),
-                        ),
                         Text.rich(
-                          TextSpan(
-                            text: bilanCarbonePercentageCompletion.toString(),
-                            children: const [
-                              TextSpan(text: '%', style: DsfrTextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
+                          bilanIsDone
+                              ? TextSpan(
+                                text: FnvNumberFormat.kgToTonnes(environmentalKgCO2e),
+                                children: const [
+                                  TextSpan(text: 'T', style: DsfrTextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: '/an', style: DsfrTextStyle(fontSize: 13)),
+                                ],
+                              )
+                              : TextSpan(
+                                text: bilanCarbonePercentageCompletion.toString(),
+                                children: const [
+                                  TextSpan(text: '%', style: DsfrTextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                                ],
+                              ),
                           style: const DsfrTextStyle(fontSize: 37, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     Column(
                       children: [
-                        if (bilanCarbonePercentageCompletion != 100)
+                        if (!bilanIsDone)
                           const Text(
                             Localisation.monBilanEnvironnemental,
                             style: DsfrTextStyle.bodySm(),
                             textAlign: TextAlign.center,
                           ),
                         DsfrLink.sm(
-                          label:
-                              bilanCarbonePercentageCompletion == 100
-                                  ? Localisation.monBilanEnvironnemental
-                                  : Localisation.completer,
+                          label: bilanIsDone ? Localisation.monBilanEnvironnemental : Localisation.completer,
                           textAlign: TextAlign.center,
                           icon: DsfrIcons.systemArrowRightSLine,
                           iconPosition: DsfrLinkIconPosition.end,

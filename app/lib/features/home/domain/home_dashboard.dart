@@ -6,6 +6,7 @@ class HomeDashboard extends Equatable {
     required this.nbActionsDoneNational,
     required this.nbActionsDoneUser,
     required this.environmentalImpactPercentageCompletion,
+    required this.environmentalKgCO2e,
     required this.nbAids,
     required this.nbRecipies,
   });
@@ -14,6 +15,7 @@ class HomeDashboard extends Equatable {
   final int nbActionsDoneNational;
   final int nbActionsDoneUser;
   final int environmentalImpactPercentageCompletion;
+  final double environmentalKgCO2e;
   final int nbAids;
   final int nbRecipies;
 
@@ -23,6 +25,7 @@ class HomeDashboard extends Equatable {
     nbActionsDoneNational,
     nbActionsDoneUser,
     environmentalImpactPercentageCompletion,
+    environmentalKgCO2e,
     nbAids,
     nbRecipies,
   ];

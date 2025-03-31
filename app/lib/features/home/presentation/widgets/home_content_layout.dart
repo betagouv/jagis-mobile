@@ -64,6 +64,7 @@ class _Success extends StatelessWidget {
           HomeDashboardCounter(
             nbActionsDone: homeDashboard.nbActionsDoneUser,
             bilanCarbonePercentageCompletion: homeDashboard.environmentalImpactPercentageCompletion,
+            environmentalKgCO2e: homeDashboard.environmentalKgCO2e,
           ),
           const SizedBox(height: DsfrSpacings.s3v),
           const _WhichDomainButtonsSection(),

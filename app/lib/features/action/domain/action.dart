@@ -1,6 +1,7 @@
 import 'package:app/features/action/domain/action_service.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
+import 'package:app/features/faq/domain/faq.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -17,6 +18,7 @@ sealed class Action extends Equatable {
     required this.isDone,
     required this.aidSummaries,
     required this.score,
+    required this.faq,
   });
 
   final ThemeType themeType;
@@ -28,9 +30,10 @@ sealed class Action extends Equatable {
   final bool isDone;
   final int nbActionsDone;
   final int score;
+  final List<FAQItem>? faq;
 
   @override
-  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score];
+  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq];
 
   String get instruction;
   String get instructionWhenDone;
@@ -49,6 +52,7 @@ final class ActionClassic extends Action {
     required super.aidSummaries,
     required super.nbActionsDone,
     required super.score,
+    required super.faq,
     required this.why,
     required this.instruction,
     required this.scoreLabel,
@@ -92,6 +96,7 @@ final class ActionQuiz extends Action {
     required super.aidSummaries,
     required super.nbActionsDone,
     required super.score,
+    required super.faq,
     required this.quizzes,
     required this.congratulatoryText,
   });
@@ -131,6 +136,7 @@ final class ActionPerformance extends Action {
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
+    required super.faq,
     required this.questions,
   });
 
@@ -160,11 +166,12 @@ final class ActionSimulator extends ActionPerformance {
     required super.subTitle,
     required super.alreadySeen,
     required super.isDone,
-    required this.why,
+    required super.faq,
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
     required super.questions,
+    required this.why,
   });
 
   final String? why;

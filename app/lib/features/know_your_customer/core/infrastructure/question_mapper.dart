@@ -8,7 +8,7 @@ import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart
 abstract final class QuestionMapper {
   const QuestionMapper._();
 
-  static Question? fromJson(final Map<String, dynamic> json) {
+  static Question fromJson(final Map<String, dynamic> json) {
     final type = json['type'] as String;
 
     return switch (type) {
@@ -18,7 +18,7 @@ abstract final class QuestionMapper {
       'mosaic_boolean' => _questionMosaicBoolean(json),
       'entier' => _questionInteger(json),
       'decimal' => _questionDecimal(json),
-      _ => null,
+      _ => throw ArgumentError('Unknown question type: $type'),
     };
   }
 

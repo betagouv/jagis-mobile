@@ -32,13 +32,12 @@ sealed class Action extends Equatable {
   final int score;
   final List<FAQItem>? faq;
 
-  @override
-  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq];
-
   String get instruction;
   String get instructionWhenDone;
-  String get scoreLabel;
   ActionType get type;
+
+  @override
+  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq];
 }
 
 final class ActionClassic extends Action {
@@ -63,8 +62,6 @@ final class ActionClassic extends Action {
   final String why;
   final String how;
   final List<ActionService> services;
-
-  @override
   final String scoreLabel;
 
   @override
@@ -119,9 +116,6 @@ final class ActionQuiz extends Action {
   String get instructionWhenDone => 'Vous avez obtenu plus de $correctAnswersRequired bonnes réponses';
 
   @override
-  String get scoreLabel => 'quiz';
-
-  @override
   ActionType get type => ActionType.quiz;
 }
 
@@ -150,9 +144,6 @@ final class ActionPerformance extends Action {
 
   @override
   String get instructionWhenDone => 'Vous avez terminé ce bilan';
-
-  @override
-  String get scoreLabel => 'bilans';
 
   @override
   ActionType get type => ActionType.performance;
@@ -186,9 +177,6 @@ final class ActionSimulator extends ActionPerformance {
 
   @override
   String get instructionWhenDone => 'Vous avez terminé ce simulateur';
-
-  @override
-  String get scoreLabel => 'simulations';
 
   @override
   ActionType get type => ActionType.simulator;

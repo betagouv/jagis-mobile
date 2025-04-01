@@ -9,7 +9,7 @@ class RecommendationWidget extends StatefulWidget {
   const RecommendationWidget({super.key, required this.id, required this.imageUrl, required this.titre, this.onPop});
 
   final String id;
-  final String imageUrl;
+  final String? imageUrl;
   final String titre;
   final VoidCallback? onPop;
 
@@ -32,7 +32,10 @@ class _RecommendationWidgetState extends State<RecommendationWidget> with Materi
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FnvImage.network(widget.imageUrl, width: width, height: width * 0.6, fit: BoxFit.cover),
+            if (widget.imageUrl == null)
+              const Placeholder(fallbackWidth: width, fallbackHeight: width * 0.6)
+            else
+              FnvImage.network(widget.imageUrl!, width: width, height: width * 0.6, fit: BoxFit.cover),
             Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
               child: Text(widget.titre, style: const DsfrTextStyle.bodyMdMedium()),

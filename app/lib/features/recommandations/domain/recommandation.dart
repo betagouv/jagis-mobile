@@ -13,7 +13,7 @@ class Recommandation extends Equatable {
   final String id;
   final String titre;
   final String? sousTitre;
-  final String imageUrl;
+  final String? imageUrl;
   final ThemeType thematique;
 
   @override

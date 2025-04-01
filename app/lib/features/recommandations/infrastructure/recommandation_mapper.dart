@@ -10,7 +10,7 @@ abstract final class RecommandationMapper {
     id: json['content_id'] as String,
     titre: json['titre'] as String,
     sousTitre: json['soustitre'] as String?,
-    imageUrl: json['image_url'] as String,
+    imageUrl: json['image_url'] as String?,
     thematique: ThemeTypeMapper.convert(json['thematique_principale'] as String),
   );
 }

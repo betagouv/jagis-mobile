@@ -27,8 +27,11 @@ class ActionPage extends StatelessWidget {
 
   static Map<String, String> pathParameters({
     required final ActionType type,
-    required final String title,
     required final String id,
+    // NOTE(erolley): title is only used to match the sharared link to be more
+    // user friendly but it could be arbitrary, therefore, for internal links,
+    // we use a default value.
+    final String title = 'titre-action',
   }) => {'type': actionTypeToAPIString(type), 'title': title, 'id': id};
 
   final String id;

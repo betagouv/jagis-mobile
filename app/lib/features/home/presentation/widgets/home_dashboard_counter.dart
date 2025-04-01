@@ -16,7 +16,7 @@ class HomeDashboardCounter extends StatelessWidget {
 
   final int nbActionsDone;
   final int bilanCarbonePercentageCompletion;
-  final double environmentalKgCO2e;
+  final double? environmentalKgCO2e;
 
   @override
   Widget build(final BuildContext context) {
@@ -75,9 +75,9 @@ class HomeDashboardCounter extends StatelessWidget {
                             ),
                           ),
                         Text.rich(
-                          bilanIsDone
+                          bilanIsDone && environmentalKgCO2e != null
                               ? TextSpan(
-                                text: FnvNumberFormat.kgToTonnes(environmentalKgCO2e),
+                                text: FnvNumberFormat.kgToTonnes(environmentalKgCO2e!),
                                 children: const [
                                   TextSpan(text: 'T', style: DsfrTextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
                                   TextSpan(text: '/an', style: DsfrTextStyle(fontSize: 13)),

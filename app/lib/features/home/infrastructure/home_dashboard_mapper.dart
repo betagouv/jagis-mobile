@@ -8,7 +8,7 @@ abstract final class HomeDashboardMapper {
     nbActionsDoneNational: json['total_national_actions_faites'] as int,
     nbActionsDoneUser: json['total_utilisateur_actions_faites'] as int,
     environmentalImpactPercentageCompletion: json['pourcentage_bilan_done'] as int,
-    environmentalKgCO2e: json['bilan_carbone_total_kg'] as double,
+    environmentalKgCO2e: json['bilan_carbone_total_kg'] as double?,
     nbAids: json['nombre_aides'] as int,
     nbRecipies: json['nombre_recettes'] as int,
   );

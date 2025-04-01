@@ -15,7 +15,7 @@ class HomeDashboard extends Equatable {
   final int nbActionsDoneNational;
   final int nbActionsDoneUser;
   final int environmentalImpactPercentageCompletion;
-  final double environmentalKgCO2e;
+  final double? environmentalKgCO2e;
   final int nbAids;
   final int nbRecipies;
 

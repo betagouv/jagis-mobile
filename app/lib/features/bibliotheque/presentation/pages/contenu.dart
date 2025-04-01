@@ -22,6 +22,8 @@ class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
     const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
     final sousTitre = widget.contenu.sousTitre;
 
+    final contenu = widget.contenu;
+
     return DsfrFocusWidget(
       isFocused: isFocused,
       borderRadius: borderRadius,
@@ -35,9 +37,8 @@ class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
           color: FnvColors.transparent,
           child: InkWell(
             onTap:
-                () async => GoRouter.of(
-                  context,
-                ).pushNamed(ArticlePage.name, pathParameters: {'titre': widget.contenu.titre, 'id': widget.contenu.id}),
+                () async =>
+                    GoRouter.of(context).pushNamed(ArticlePage.name, pathParameters: {'titre': contenu.titre, 'id': contenu.id}),
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),
             focusColor: FnvColors.transparent,
@@ -48,7 +49,7 @@ class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
               children: [
                 ClipRRect(
                   borderRadius: borderRadius.copyWith(bottomLeft: Radius.zero, bottomRight: Radius.zero),
-                  child: FnvImage.network(widget.contenu.imageUrl, fit: BoxFit.cover),
+                  child: contenu.imageUrl == null ? const Placeholder() : FnvImage.network(contenu.imageUrl!, fit: BoxFit.cover),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(DsfrSpacings.s2w),
@@ -56,8 +57,8 @@ class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: DsfrSpacings.s1w,
                     children: [
-                      Text(widget.contenu.thematique.displayName, style: const DsfrTextStyle.bodyXsBold()),
-                      Text(widget.contenu.titre, style: const DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113)),
+                      Text(contenu.thematique.displayName, style: const DsfrTextStyle.bodyXsBold()),
+                      Text(contenu.titre, style: const DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113)),
                       if (sousTitre != null) Text(sousTitre, style: const DsfrTextStyle.bodyMd()),
                     ],
                   ),

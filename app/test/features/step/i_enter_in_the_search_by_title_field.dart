@@ -7,7 +7,7 @@ import 'i_enter_in_the_field.dart';
 /// Usage: I enter {'vêtements'} in the search by title field
 Future<void> iEnterInTheSearchByTitleField(final WidgetTester tester, final String text) async {
   FeatureContext.instance.dioMock.getM(
-    Uri.parse('/utilisateurs/{userId}/bibliotheque?titre=$text').toString(),
+    Uri.parse('/utilisateurs/{userId}/bibliotheque_v2?titre=$text').toString(),
     responseData: {
       'contenu': [
         {

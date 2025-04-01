@@ -2,10 +2,10 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/bibliotheque/domain/bibliotheque.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/bibliotheque_bloc.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/bibliotheque_event.dart';
-import 'package:app/features/bibliotheque/presentation/pages/contenu.dart';
+import 'package:app/features/bibliotheque/domain/library.dart';
+import 'package:app/features/bibliotheque/presentation/bloc/library_bloc.dart';
+import 'package:app/features/bibliotheque/presentation/bloc/library_event.dart';
+import 'package:app/features/bibliotheque/presentation/pages/library_content.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/l10n/l10n.dart';
@@ -13,8 +13,8 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BibliothequeView extends StatelessWidget {
-  const BibliothequeView({super.key});
+class LibraryView extends StatelessWidget {
+  const LibraryView({super.key});
 
   @override
   Widget build(final context) {
@@ -30,12 +30,14 @@ class BibliothequeView extends StatelessWidget {
             children: [
               const FnvTitle(title: Localisation.bibliotheque, subtitle: Localisation.bibliothequeSousTitre),
               const SizedBox(height: DsfrSpacings.s3w),
-              DsfrSearchBar(onChanged: (final value) => context.read<BibliothequeBloc>().add(BibliothequeRechercheSaisie(value))),
+              DsfrSearchBar(onChanged: (final value) => context.read<LibraryBloc>().add(LibrarySearchEntered(value))),
               const SizedBox(height: DsfrSpacings.s1w),
               const _Thematiques(),
               const SizedBox(height: DsfrSpacings.s1w),
               const _Favorites(),
               const SizedBox(height: DsfrSpacings.s1w),
+              const _AlreadyRead(),
+              const SizedBox(height: DsfrSpacings.s2w),
               const _Nombre(),
               const SizedBox(height: DsfrSpacings.s2w),
             ],
@@ -54,8 +56,19 @@ class _Favorites extends StatelessWidget {
   @override
   Widget build(final context) => DsfrToggleSwitch(
     label: Localisation.mesFavoris,
-    value: context.select<BibliothequeBloc, bool>((final value) => value.state.isFavorites),
-    onChanged: (final value) => context.read<BibliothequeBloc>().add(BibliothequeFavorisSelectionnee(value)),
+    value: context.select<LibraryBloc, bool>((final value) => value.state.isFavorites),
+    onChanged: (final value) => context.read<LibraryBloc>().add(LibraryFavoritesSelected(value)),
+  );
+}
+
+class _AlreadyRead extends StatelessWidget {
+  const _AlreadyRead();
+
+  @override
+  Widget build(final context) => DsfrToggleSwitch(
+    label: 'Articles déjà lus',
+    value: context.select<LibraryBloc, bool>((final value) => value.state.areAlreadyRead),
+    onChanged: (final value) => context.read<LibraryBloc>().add(LibraryAlreadyReadSelected(value)),
   );
 }
 
@@ -64,7 +77,7 @@ class _Thematiques extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    final filtres = context.select<BibliothequeBloc, List<BibliothequeFiltre>>((final value) => value.state.bibliotheque.filtres);
+    final filtres = context.select<LibraryBloc, List<LibraryFilter>>((final value) => value.state.library.filters);
     const s1w = DsfrSpacings.s1w;
 
     return Wrap(
@@ -74,9 +87,9 @@ class _Thematiques extends StatelessWidget {
           filtres
               .map(
                 (final thematique) => FnvTag(
-                  label: thematique.titre,
-                  selected: thematique.choisi,
-                  onTap: () => context.read<BibliothequeBloc>().add(BibliothequeThematiqueSelectionnee(thematique.code)),
+                  label: thematique.title,
+                  selected: thematique.isSelected,
+                  onTap: () => context.read<LibraryBloc>().add(LibraryThemeSelected(thematique.code)),
                 ),
               )
               .toList(),
@@ -89,7 +102,7 @@ class _Nombre extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    final nombreArticle = context.select<BibliothequeBloc, int>((final value) => value.state.bibliotheque.contenus.length);
+    final nombreArticle = context.select<LibraryBloc, int>((final value) => value.state.library.contents.length);
 
     return Text(Localisation.nombreArticle(nombreArticle), style: const DsfrTextStyle.bodyLgBold());
   }
@@ -100,7 +113,7 @@ class _SliverListe extends StatelessWidget {
 
   @override
   Widget build(final context) {
-    final contenus = context.select<BibliothequeBloc, List<Recommandation>>((final value) => value.state.bibliotheque.contenus);
+    final contenus = context.select<LibraryBloc, List<Recommandation>>((final value) => value.state.library.contents);
 
     return contenus.isEmpty
         ? SliverFillRemaining(
@@ -114,7 +127,7 @@ class _SliverListe extends StatelessWidget {
           ),
         )
         : SliverList.separated(
-          itemBuilder: (final context, final index) => Contenu(contenu: contenus[index]),
+          itemBuilder: (final context, final index) => LibraryContent(content: contenus[index]),
           separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
           itemCount: contenus.length,
         );

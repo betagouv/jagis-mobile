@@ -1,4 +1,5 @@
-Feature: Article library
+Feature: Articles
+
   Background:
     Given I am logged in
     Given The application is launched
@@ -40,6 +41,14 @@ Feature: Article library
     Given I have {2} articles in my library
     When I tap on {'Bibliothèque'}
     When I filter by favorites
+    Then I see {'1 article'}
+    Then I see {"Qu'est-ce qu'une alimentation durable ?"}
+    Then I don't see {"Comment réduire l'impact de ses vêtements ?"}
+
+  Scenario: Fitlré les articles par articles déjà lus
+    Given I have {2} articles in my library
+    When I tap on {'Bibliothèque'}
+    When I filter by articles already read
     Then I see {'1 article'}
     Then I see {"Qu'est-ce qu'une alimentation durable ?"}
     Then I don't see {"Comment réduire l'impact de ses vêtements ?"}

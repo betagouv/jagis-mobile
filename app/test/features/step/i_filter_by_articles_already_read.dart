@@ -1,11 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
+import 'i_tap_on.dart';
 
-/// Usage: I have {2} articles in my library
-Future<void> iHaveArticlesInMyLibrary(final WidgetTester tester, final int number) async {
+/// Usage: I filter by articles already read
+Future<void> iFilterByArticlesAlreadyRead(final WidgetTester tester) async {
   FeatureContext.instance.dioMock.getM(
-    '/utilisateurs/%7BuserId%7D/bibliotheque_v2',
+    '/utilisateurs/%7BuserId%7D/bibliotheque_v2?include=lu',
     responseData: {
       'contenu': [
         {
@@ -21,20 +22,7 @@ Future<void> iHaveArticlesInMyLibrary(final WidgetTester tester, final int numbe
           'favoris': true,
           'read_date': '2024-12-10T08:38:25.847Z',
         },
-        {
-          'content_id': '197',
-          'type': 'article',
-          'titre': "Comment réduire l'impact de ses vêtements ?",
-          'soustitre': null,
-          'thematique_principale': 'consommation',
-          'thematique_principale_label': '🛒 Consommation durable',
-          'thematiques': ['consommation'],
-          'image_url': 'https://example.com/image.jpg',
-          'points': 5,
-          'favoris': false,
-          'read_date': '2024-12-09T09:31:01.537Z',
-        },
-      ].sublist(0, number),
+      ],
       'filtres': [
         {'code': 'alimentation', 'label': '🥦 Alimentation', 'selected': false},
         {'code': 'transport', 'label': '🚗 Transports', 'selected': false},
@@ -46,4 +34,5 @@ Future<void> iHaveArticlesInMyLibrary(final WidgetTester tester, final int numbe
       ],
     },
   );
+  await iTapOn(tester, 'Articles déjà lus');
 }

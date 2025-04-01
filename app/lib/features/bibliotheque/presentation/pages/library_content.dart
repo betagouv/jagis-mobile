@@ -7,32 +7,26 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Contenu extends StatefulWidget {
-  const Contenu({super.key, required this.contenu});
+class LibraryContent extends StatefulWidget {
+  const LibraryContent({super.key, required this.content});
 
-  final Recommandation contenu;
+  final Recommandation content;
 
   @override
-  State<Contenu> createState() => _ContenuState();
+  State<LibraryContent> createState() => _LibraryContentState();
 }
 
-class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
+class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin<LibraryContent> {
   @override
   Widget build(final context) {
-    const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
-    final sousTitre = widget.contenu.sousTitre;
+    final sousTitre = widget.content.sousTitre;
 
-    final contenu = widget.contenu;
+    final contenu = widget.content;
 
     return DsfrFocusWidget(
       isFocused: isFocused,
-      borderRadius: borderRadius,
       child: DecoratedBox(
-        decoration: const ShapeDecoration(
-          color: Colors.white,
-          shadows: recommandationOmbre,
-          shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        ),
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: recommandationOmbre),
         child: Material(
           color: FnvColors.transparent,
           child: InkWell(
@@ -42,15 +36,11 @@ class _ContenuState extends State<Contenu> with MaterialStateMixin<Contenu> {
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),
             focusColor: FnvColors.transparent,
-            borderRadius: borderRadius,
             onFocusChange: updateMaterialState(WidgetState.focused),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ClipRRect(
-                  borderRadius: borderRadius.copyWith(bottomLeft: Radius.zero, bottomRight: Radius.zero),
-                  child: contenu.imageUrl == null ? const Placeholder() : FnvImage.network(contenu.imageUrl!, fit: BoxFit.cover),
-                ),
+                if (contenu.imageUrl == null) const Placeholder() else FnvImage.network(contenu.imageUrl!, fit: BoxFit.cover),
                 Padding(
                   padding: const EdgeInsets.all(DsfrSpacings.s2w),
                   child: Column(

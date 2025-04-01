@@ -6,7 +6,7 @@ import 'i_tap_on.dart';
 /// Usage: I filter by favorites
 Future<void> iFilterByFavorites(final WidgetTester tester) async {
   FeatureContext.instance.dioMock.getM(
-    '/utilisateurs/%7BuserId%7D/bibliotheque?favoris=true',
+    '/utilisateurs/%7BuserId%7D/bibliotheque_v2?include=favoris',
     responseData: {
       'contenu': [
         {

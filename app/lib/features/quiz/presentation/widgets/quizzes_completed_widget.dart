@@ -104,6 +104,7 @@ class _SuccessContent extends StatelessWidget {
       _MessagePanel(message: congratulatoryText),
       const SizedBox(height: DsfrSpacings.s4w),
       _PrimaryButton(label: goBackText, onPressed: onGoBack),
+      const SizedBox(height: DsfrSpacings.s2w),
       _SecondaryButton(label: Localisation.recommencerLeQuiz, onPressed: onRepeatQuiz),
     ],
   );
@@ -137,6 +138,7 @@ class _FailureContent extends StatelessWidget {
       const _MessagePanel(message: Localisation.retentezVotreChancePourValiderCetteAction),
       const SizedBox(height: DsfrSpacings.s4w),
       _PrimaryButton(label: Localisation.recommencerLeQuiz, onPressed: onRepeatQuiz),
+      const SizedBox(height: DsfrSpacings.s2w),
       _SecondaryButton(label: goBackText, onPressed: onGoBack),
     ],
   );

@@ -96,6 +96,7 @@ class _Success extends StatelessWidget {
           size: DsfrButtonSize.lg,
           onPressed: () => GoRouter.of(context).pop(),
         ),
+        const SizedBox(height: DsfrSpacings.s2w),
         DsfrButton(
           label: Localisation.recommencerLeBilan,
           variant: DsfrButtonVariant.secondary,

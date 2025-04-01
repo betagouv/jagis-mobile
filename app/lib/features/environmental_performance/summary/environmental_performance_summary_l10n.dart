@@ -49,5 +49,5 @@ Calculer son **bilan environnemental** permet de comprendre quels sont nos usage
   static const mesPrincipauxPostesDemission = 'Mes principaux postes d’émission';
   static const voirDetailHebdomadaire = 'Voir le détail hebdomadaire';
   static const deCO2eParAn = 'de CO₂e par an';
-  static const aTitreDeComparaison = 'À titre de comparaison, la moyenne française est de **9,2 tonnes**';
+  static const aTitreDeComparaison = 'À titre de comparaison, la moyenne française est de **9,4 tonnes** en 2023';
 }

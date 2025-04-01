@@ -3,6 +3,7 @@ import 'package:app/features/profil/informations/presentation/bloc/mes_informati
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MesInformationsPseudonyme extends StatelessWidget {
@@ -19,6 +20,7 @@ class MesInformationsPseudonyme extends StatelessWidget {
       onChanged: (final value) => context.read<MesInformationsBloc>().add(MesInformationsPseudonymChange(value)),
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,
+      inputFormatters: [LengthLimitingTextInputFormatter(30)],
     );
   }
 }

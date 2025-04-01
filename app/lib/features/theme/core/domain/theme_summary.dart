@@ -1,5 +1,8 @@
 // ignore_for_file: avoid-long-functions
 
+import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/presentation/pages/action_page.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
@@ -39,14 +42,15 @@ final class ThemeSummary extends Equatable {
         ),
       ],
       ThemeType.logement => [
-        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur Mes aides Réno', url: 'https://mesaidesreno.beta.gouv.fr/'),
+        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur _Mes aides Réno_', url: 'https://mesaidesreno.beta.gouv.fr/'),
       ],
       ThemeType.transport => [
-        const ThemeSummaryExternalLink(
-          label: '🚙 **1** simulateur Dois-je changer de voiture ?',
-          url: 'https://jechangemavoiture.gouv.fr/jcmv/',
+        ThemeSummaryInternalLink(
+          label: '🚙 **1** simulateur _Dois-je changer de voiture ?_',
+          route: ActionPage.name,
+          pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
         ),
-        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur aides vélo', route: AideSimulateurVeloPage.name),
+        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur _Mes aides vélo_', route: AideSimulateurVeloPage.name),
       ],
       ThemeType.consommation => [
         const ThemeSummaryExternalLink(
@@ -72,16 +76,17 @@ sealed class ThemeSummaryLink extends Equatable {
   final String label;
 
   @override
-  List<Object> get props => [label];
+  List<Object?> get props => [label];
 }
 
 final class ThemeSummaryInternalLink extends ThemeSummaryLink {
-  const ThemeSummaryInternalLink({required super.label, required this.route});
+  const ThemeSummaryInternalLink({required super.label, required this.route, this.pathParams});
 
   final String route;
+  final Map<String, String>? pathParams;
 
   @override
-  List<Object> get props => [...super.props, route];
+  List<Object?> get props => [...super.props, route, pathParams];
 }
 
 final class ThemeSummaryExternalLink extends ThemeSummaryLink {
@@ -90,5 +95,5 @@ final class ThemeSummaryExternalLink extends ThemeSummaryLink {
   final String url;
 
   @override
-  List<Object> get props => [...super.props, url];
+  List<Object?> get props => [...super.props, url];
 }

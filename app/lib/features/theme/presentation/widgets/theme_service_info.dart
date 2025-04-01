@@ -17,7 +17,7 @@ class ThemeServiceInfo extends StatelessWidget {
       final aLink = link;
       switch (aLink) {
         case ThemeSummaryInternalLink():
-          await GoRouter.of(context).pushNamed(aLink.route);
+          await GoRouter.of(context).pushNamed(aLink.route, pathParameters: aLink.pathParams ?? const {});
         case ThemeSummaryExternalLink():
           await FnvUrlLauncher.launch(aLink.url);
       }

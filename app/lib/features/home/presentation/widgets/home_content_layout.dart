@@ -9,7 +9,6 @@ import 'package:app/features/home/presentation/widgets/home_dashboard_counter.da
 import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
 import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
-import 'package:app/features/survey/survey_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
@@ -74,7 +73,6 @@ class _Success extends StatelessWidget {
           HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
           const SizedBox(height: DsfrSpacings.s6w),
           _HomeCounterSection(homeDashboard.nbActionsDoneNational),
-          const SurveySection(),
         ],
       ),
     ),

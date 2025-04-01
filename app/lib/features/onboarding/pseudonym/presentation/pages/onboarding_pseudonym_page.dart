@@ -15,6 +15,7 @@ import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -80,6 +81,7 @@ class _Content extends StatelessWidget {
               textCapitalization: TextCapitalization.sentences,
               textInputAction: isUserFranceConnect ? TextInputAction.done : TextInputAction.next,
               autofocus: true,
+              inputFormatters: [LengthLimitingTextInputFormatter(30)],
             ),
             BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, String?>(
               selector: (final state) => state.errorMessage,

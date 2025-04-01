@@ -6,7 +6,7 @@ import 'i_tap_on.dart';
 /// Usage: I filter with {'🥦 Alimentation'} theme
 Future<void> iFilterWithTheme(final WidgetTester tester, final String theme) async {
   FeatureContext.instance.dioMock.getM(
-    '/utilisateurs/%7BuserId%7D/bibliotheque?filtre_thematiques=alimentation',
+    '/utilisateurs/%7BuserId%7D/bibliotheque_v2?filtre_thematiques=alimentation',
     responseData: {
       'contenu': [
         {

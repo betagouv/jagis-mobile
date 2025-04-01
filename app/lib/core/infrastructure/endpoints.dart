@@ -8,7 +8,7 @@ abstract final class Endpoints {
   static const aids = '/utilisateurs/{userId}/aides_v2';
   static String aid(final String code) => '/utilisateurs/{userId}/aides/$code';
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';
-  static const bibliotheque = '/utilisateurs/{userId}/bibliotheque';
+  static const bibliotheque = '/utilisateurs/{userId}/bibliotheque_v2';
   static const bilan = '/utilisateurs/{userId}/bilans/last_v3';
   static String bilanByTheme(final String type) => '/utilisateurs/{userId}/bilans/last_v3/$type';
   static const creationCompte = '/utilisateurs_v2';

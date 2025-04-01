@@ -13,7 +13,7 @@ import 'package:app/features/authentification/mot_de_passe_oublie/pages/mot_de_p
 import 'package:app/features/authentification/mot_de_passe_oublie_code/pages/mot_de_passe_oublie_code_page.dart';
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
-import 'package:app/features/bibliotheque/presentation/pages/bibliotheque_page.dart';
+import 'package:app/features/bibliotheque/presentation/pages/library_page.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
@@ -74,7 +74,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         AidPage.route,
         AideSimulateurVeloPage.route(routes: [AideSimulateurVeloDisponiblePage.route]),
         ArticlePage.route,
-        BibliothequePage.route,
+        LibraryPage.route,
         ActionsPage.route,
         ActionPage.route,
         RecipesPage.route,

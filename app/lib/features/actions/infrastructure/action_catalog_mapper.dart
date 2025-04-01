@@ -1,12 +1,28 @@
+import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/actions/domain/action_catalog.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
+import 'package:app/features/actions/domain/action_summary.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions/infrastructure/action_summary_mapper.dart';
+import 'package:fpdart/fpdart.dart';
 
 abstract final class ActionCatalogMapper {
   const ActionCatalogMapper._();
 
   static ActionCatalog fromJson(final Map<String, dynamic> json) => ActionCatalog(
-    actions: (json['actions'] as List<dynamic>).cast<Map<String, dynamic>>().map(ActionSummaryMapper.fromJson).toList(),
+    actions:
+        (json['actions'] as List<dynamic>)
+            .cast<Map<String, dynamic>>()
+            .map(ActionSummaryMapper.fromJson)
+            .prepend(
+              ActionSummary(
+                type: ActionType.simulator,
+                id: ActionSimulatorId.mesAidesReno.apiString,
+                title: 'Simulateur Mes Aides Reno',
+                numberOfAidsAvailable: 4,
+              ),
+            )
+            .toList(),
     themes:
         (json['filtres'] as List<dynamic>)
             .cast<Map<String, dynamic>>()

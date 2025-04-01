@@ -7,8 +7,8 @@ class PointsWidget extends StatelessWidget {
   const PointsWidget({
     super.key,
     required this.points,
-    this.backgroundColor = const Color(0xFFEBFCE2),
-    this.iconColor = const Color(0xFF43B971),
+    this.backgroundColor = const Color.fromARGB(102, 206, 244, 184),
+    this.iconColor = const Color(0xFF3CD277),
   });
 
   final int points;

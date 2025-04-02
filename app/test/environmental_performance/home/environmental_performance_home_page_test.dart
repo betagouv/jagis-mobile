@@ -53,8 +53,7 @@ Future<void> pumpHomePage(final WidgetTester tester) async {
             'nombre_recettes': 4,
           },
         )
-        ..getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData)
-        ..getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilan);
+        ..getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData);
 
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
   final recommandationsRepository = RecommandationsRepository(client: client);

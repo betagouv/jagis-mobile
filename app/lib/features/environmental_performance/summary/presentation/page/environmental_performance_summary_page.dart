@@ -2,7 +2,6 @@ import 'package:app/features/environmental_performance/summary/domain/environmen
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_event.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_state.dart';
-import 'package:app/features/environmental_performance/summary/presentation/widgets/empty/body_empty.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/body_full.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/body_partial.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
@@ -38,7 +37,6 @@ class _View extends StatelessWidget {
             EnvironmentalPerformanceInitial() => const SizedBox.shrink(),
             EnvironmentalPerformanceLoading() => const Center(child: CircularProgressIndicator()),
             EnvironmentalPerformanceSuccess() => switch (state.data) {
-              (final EnvironmentalPerformanceEmpty a) => BodyEmpty(data: a),
               (final EnvironmentalPerformancePartial a) => BodyPartial(data: a),
               (final EnvironmentalPerformanceFull a) => BodyFull(data: a),
             },

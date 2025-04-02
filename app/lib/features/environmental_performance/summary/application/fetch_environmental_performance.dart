@@ -10,14 +10,6 @@ class FetchEnvironmentalPerformance {
   Future<Either<Exception, EnvironmentalPerformanceData>> call() async {
     final result = await _port.fetch();
 
-    return result.fold(Left.new, (final r) async {
-      if (r is EnvironmentalPerformanceEmpty) {
-        final kyc = await _port.fetchMiniBilan();
-
-        return kyc.fold(Left.new, (final r2) => Right(EnvironmentalPerformanceEmpty(questions: r2)));
-      }
-
-      return Right(r);
-    });
+    return result.fold(Left.new, (final r) async => Right(r));
   }
 }

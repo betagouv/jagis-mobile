@@ -12,26 +12,30 @@ abstract final class EnvironmentalPerformanceSummaryMapper {
   static EnvironmentalPerformanceData fromJson(final Map<String, dynamic> json) {
     if (json.containsKey('bilan_complet')) {
       return _fromFullJson(json);
-    } else if (json.containsKey('bilan_approximatif')) {
-      return _fromPartialJson(json);
     }
 
-    return EnvironmentalPerformanceEmpty(questions: const []);
+    return _fromPartialJson(json);
   }
 
   static EnvironmentalPerformanceDetailItem detailItemFromJson(final Map<String, dynamic> json) => _detailItemFromJson(json);
 
   static EnvironmentalPerformancePartial _fromPartialJson(final Map<String, dynamic> json) {
-    final partial = json['bilan_approximatif'] as Map<String, dynamic>;
     final percentageCompletion = (json['pourcentage_completion_totale'] as num).toInt();
     final categories =
         (json['liens_bilans_thematique'] as List<dynamic>).cast<Map<String, dynamic>>().map(_categoryFromJson).toList();
 
+    final partial = json['bilan_approximatif'] as Map<String, dynamic>?;
+
     return EnvironmentalPerformancePartial(
-      performanceOnTransport: _mapLevelFromJson(partial['impact_transport'] as String?),
-      performanceOnFood: _mapLevelFromJson(partial['impact_alimentation'] as String?),
-      performanceOnHousing: _mapLevelFromJson(partial['impact_logement'] as String?),
-      performanceOnConsumption: _mapLevelFromJson(partial['impact_consommation'] as String?),
+      partialData:
+          partial == null
+              ? null
+              : EnvironmentalPerformancePartialLevel(
+                performanceOnTransport: _mapLevelFromJson(partial['impact_transport'] as String?),
+                performanceOnFood: _mapLevelFromJson(partial['impact_alimentation'] as String?),
+                performanceOnHousing: _mapLevelFromJson(partial['impact_logement'] as String?),
+                performanceOnConsumption: _mapLevelFromJson(partial['impact_consommation'] as String?),
+              ),
       percentageCompletion: percentageCompletion,
       categories: categories,
     );

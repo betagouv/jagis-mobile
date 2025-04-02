@@ -23,16 +23,18 @@ class BodyPartial extends StatelessWidget {
         child: FnvTitle(title: EnvironmentalPerformanceSummaryL10n.estimerMonBilanEnvironnemental),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: Text(EnvironmentalPerformanceSummaryL10n.maPremiereEstimation, style: DsfrTextStyle.headline4()),
-      ),
-      const SizedBox(height: DsfrSpacings.s3v),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: EnvironmentalPerformanceCard(partial: data),
-      ),
-      const SizedBox(height: DsfrSpacings.s3v),
+      if (data.partialData != null) ...[
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
+          child: Text(EnvironmentalPerformanceSummaryL10n.maPremiereEstimation, style: DsfrTextStyle.headline4()),
+        ),
+        const SizedBox(height: DsfrSpacings.s3v),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
+          child: EnvironmentalPerformanceCard(partial: data.partialData!),
+        ),
+        const SizedBox(height: DsfrSpacings.s3v),
+      ],
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
         child: Text.rich(

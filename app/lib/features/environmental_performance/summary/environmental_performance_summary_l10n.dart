@@ -8,11 +8,6 @@ abstract final class EnvironmentalPerformanceSummaryL10n {
   static const vosReponses = 'vos réponses';
   static const monEstimation = 'mon estimation';
   static const affinerMonEstimationSousTitre = 'Et obtenez un bilan détaillé de votre impact sur l’environnement';
-  static const questions = 'questions';
-  static const minutes = 'minutes';
-  static const commencerMonMiniBilanDescription =
-      'Découvrez quels usages et habitudes contribuent le plus au dérèglement climatique, et quelles actions auront le plus d’impact positif.';
-  static const commencerMonMiniBilan = 'Commencer mon mini bilan';
   static const uneQuestion = 'Une question ?';
   static const quEstCeQuUn = 'Qu’est-ce qu’un bilan environnemental ?';
   static const quEstCeQuUnContenu = '''

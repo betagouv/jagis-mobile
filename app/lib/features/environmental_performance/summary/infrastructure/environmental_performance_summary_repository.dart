@@ -1,11 +1,8 @@
-import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/features/environmental_performance/summary/domain/environmental_performance_data.dart';
 import 'package:app/features/environmental_performance/summary/infrastructure/environmental_performance_summary_mapper.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class EnvironmentalPerformanceSummaryRepository {
@@ -22,14 +19,5 @@ class EnvironmentalPerformanceSummaryRepository {
     final data = response.data! as Map<String, dynamic>;
 
     return Right(EnvironmentalPerformanceSummaryMapper.fromJson(data));
-  }
-
-  Future<Either<Exception, List<Question>>> fetchMiniBilan() async {
-    final response = await _client.get(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'));
-    if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération du mini bilan'));
-    }
-
-    return Right(JsonListMapper.fromJsonList(response.data, QuestionMapper.fromJson));
   }
 }

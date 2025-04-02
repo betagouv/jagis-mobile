@@ -7,10 +7,6 @@ class EnvironmentalPerformanceQuestionBloc
     extends Bloc<EnvironmentalPerformanceQuestionEvent, EnvironmentalPerformanceQuestionState> {
   EnvironmentalPerformanceQuestionBloc({required final EnvironmentalPerformanceQuestionRepository repository})
     : super(const EnvironmentalPerformanceQuestionInitial()) {
-    on<EnvironmentalPerformanceQuestionIdListGiven>((final event, final emit) {
-      emit(const EnvironmentalPerformanceQuestionInitial());
-      emit(EnvironmentalPerformanceQuestionLoadSuccess(questionIdList: event.questionIdList));
-    });
     on<EnvironmentalPerformanceQuestionIdListRequested>((final event, final emit) async {
       emit(const EnvironmentalPerformanceQuestionInitial());
       final result = await repository.fetchBilanByCategory(event.categoryId);

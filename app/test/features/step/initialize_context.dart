@@ -28,7 +28,6 @@ Future<void> initializeContext() async {
   setLogement();
   setPreferences();
   setBilanEmpty();
-  setMiniBilan();
   setMissionRecommanded();
   setMissionRecommandedByThematique();
   setAids();
@@ -169,9 +168,6 @@ void setProfile() {
 void setLogement() => FeatureContext.instance.dioMock.patchM(Endpoints.logement);
 
 void setBilanEmpty() => FeatureContext.instance.dioMock.getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData);
-
-void setMiniBilan() =>
-    FeatureContext.instance.dioMock.getM(Endpoints.questions('ENCHAINEMENT_KYC_mini_bilan_carbone'), responseData: miniBilan);
 
 void setEnchainements() {
   final questions = [

@@ -3,7 +3,7 @@
 import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/features/questions_manager/domain/cursor_manager.dart';
 
-class CursorManagerFromList<T> extends CursorManager<T> {
+class CursorManagerFromList<T> implements CursorManager<T> {
   CursorManagerFromList({required this.getList});
 
   Future<List<T>> Function() getList;

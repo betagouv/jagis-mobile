@@ -5,9 +5,7 @@ import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/text_styles.dart';
 import 'package:app/features/profil/informations/presentation/widgets/revenu_fiscal_input.dart';
 import 'package:app/features/simulateur_velo/domain/velo_pour_simulateur.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.dart';
@@ -55,7 +53,7 @@ class _AideSimulateurVeloView extends StatelessWidget {
         SizedBox(height: DsfrSpacings.s2w),
         _Price(),
         SizedBox(height: DsfrSpacings.s4w),
-        Divider(color: FnvColors.dividerColor),
+        Divider(color: Color(0xFFDEE0EB)),
         SizedBox(height: DsfrSpacings.s3w),
         _ElementsNecessaireAuCalcul(),
       ],
@@ -111,7 +109,7 @@ class _PriceState extends State<_Price> {
           ),
         ),
         const SizedBox(height: DsfrSpacings.s2w),
-        const Text(Localisation.prixDuVeloExplications, style: FnvTextStyles.prixExplicationsStyle),
+        const Text(Localisation.prixDuVeloExplications, style: DsfrTextStyle.bodySmBold()),
         const SizedBox(height: DsfrSpacings.s1w),
         ...VeloPourSimulateur.values
             .map((final e) {

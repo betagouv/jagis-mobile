@@ -1,6 +1,6 @@
-import 'package:app/core/presentation/widgets/fondamentaux/text_styles.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +11,7 @@ class HomeAppBarTitle extends StatelessWidget {
   Widget build(final context) {
     final value = context.select<UserBloc, String?>((final bloc) => bloc.state.user?.pseudonym);
 
-    const font = FnvTextStyles.appBarTitleStyle;
+    const font = DsfrTextStyle.bodyMd();
     if (value == null || value.isEmpty) {
       return Text(Localisation.bonjour, style: font.copyWith(fontWeight: FontWeight.bold));
     }

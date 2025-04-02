@@ -37,7 +37,7 @@ class FnvDropdown<T> extends StatelessWidget {
             ),
           ),
           const Padding(
-            // HACK(lsaudon): Pour aligner l'icône
+            /// Pour aligner l'icône
             padding: EdgeInsets.only(top: 10),
             child: Icon(DsfrIcons.systemArrowDownSLine, size: 24, color: DsfrColors.blueFranceSun113),
           ),

@@ -81,20 +81,7 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
       },
     )
     ..getM(Endpoints.aid(aid['content_id']! as String), responseData: aid)
-    ..getM(Endpoints.missionsRecommandeesParThematique('alimentation'), responseData: <dynamic>[])
     ..getM(Endpoints.servicesParThematique('alimentation'), responseData: <dynamic>[])
-    ..getM(
-      Endpoints.themes,
-      responseData: {
-        'nom_commune': 'Dole',
-        'liste_thematiques': [
-          {'thematique': 'alimentation', 'nombre_actions': 5},
-          {'thematique': 'logement', 'nombre_actions': 5},
-          {'thematique': 'transport', 'nombre_actions': 5},
-          {'thematique': 'consommation', 'nombre_actions': 5},
-        ],
-      },
-    )
     ..getM(
       Endpoints.theme(ThemeType.alimentation.name),
       responseData: {

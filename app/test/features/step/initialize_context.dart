@@ -28,8 +28,6 @@ Future<void> initializeContext() async {
   setLogement();
   setPreferences();
   setBilanEmpty();
-  setMissionRecommanded();
-  setMissionRecommandedByThematique();
   setAids();
   setPoints();
   setServices();
@@ -54,24 +52,6 @@ Future<void> initializeContext() async {
 
 void setThemes() =>
     FeatureContext.instance.dioMock
-      ..getM(
-        Endpoints.themes,
-        responseData: {
-          'nom_commune': 'Dole',
-          'liste_thematiques': [
-            {
-              'thematique': 'alimentation',
-              'nombre_actions': 5,
-              'nombre_aides': 0,
-              'nombre_recettes': 1150,
-              'nombre_simulateurs': 0,
-            },
-            {'thematique': 'logement', 'nombre_actions': 4, 'nombre_aides': 6, 'nombre_simulateurs': 0},
-            {'thematique': 'transport', 'nombre_actions': 2, 'nombre_aides': 2, 'nombre_simulateurs': 0},
-            {'thematique': 'consommation', 'nombre_actions': 3, 'nombre_aides': 2, 'nombre_simulateurs': 0},
-          ],
-        },
-      )
       ..getM(
         Endpoints.theme(ThemeType.alimentation.name),
         responseData: {
@@ -211,14 +191,6 @@ void setEnchainements() {
       ..getM(Endpoints.question(q['code']! as String), responseData: q)
       ..putM(Endpoints.question(q['code']! as String));
   }
-}
-
-void setMissionRecommanded() => FeatureContext.instance.dioMock.getM(Endpoints.missionsRecommandees, responseData: <dynamic>[]);
-
-void setMissionRecommandedByThematique() {
-  FeatureContext.instance.dioMock
-    ..getM(Endpoints.missionsRecommandeesParThematique(ThemeType.alimentation.name), responseData: <dynamic>[])
-    ..getM(Endpoints.missionsRecommandeesParThematique(ThemeType.transport.name), responseData: <dynamic>[]);
 }
 
 void setAids() {

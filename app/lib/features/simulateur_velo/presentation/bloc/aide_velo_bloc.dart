@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
-import 'package:app/features/simulateur_velo/domain/velo_pour_simulateur.dart';
 import 'package:app/features/simulateur_velo/infrastructure/aide_velo_repository.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_event.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_state.dart';
@@ -23,6 +22,7 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
     on<AideVeloModificationDemandee>(_onModificationDemandee);
     on<AideVeloPrixChange>(_onPrixChange);
     on<AideVeloEtatChange>(_onEtatChange);
+    on<AideVeloEnSituationHandicapChange>(_onSituationHandicapChange);
     on<AideVeloCodePostalChange>(_onCodePostalChange);
     on<AideVeloCommuneChange>(_onCommuneChange);
     on<AideVeloNombreDePartsFiscalesChange>(_onNombreDePartsFiscalesChange);
@@ -39,17 +39,12 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
     if (result.isRight()) {
       final informations = result.getRight().getOrElse(() => throw Exception());
       emit(
-        AideVeloState(
-          prix: 1000,
-          etatVelo: VeloEtat.neuf,
+        const AideVeloState.empty().copyWith(
+          veutModifierLesInformations: informations.revenuFiscal == null,
           codePostal: informations.codePostal ?? '',
-          communes: const [],
           commune: informations.commune ?? '',
           nombreDePartsFiscales: informations.nombreDePartsFiscales,
           revenuFiscal: informations.revenuFiscal,
-          aidesDisponibles: const [],
-          veutModifierLesInformations: informations.revenuFiscal == null,
-          aideVeloStatut: AideVeloStatut.initial,
         ),
       );
     }
@@ -73,6 +68,10 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
 
   void _onEtatChange(final AideVeloEtatChange event, final Emitter<AideVeloState> emit) {
     emit(state.copyWith(etatVelo: event.valeur));
+  }
+
+  void _onSituationHandicapChange(final AideVeloEnSituationHandicapChange event, final Emitter<AideVeloState> emit) {
+    emit(state.copyWith(enSituationDeHandicap: event.valeur));
   }
 
   Future<void> _onCodePostalChange(final AideVeloCodePostalChange event, final Emitter<AideVeloState> emit) async {
@@ -106,6 +105,7 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
     final result = await _aideVeloRepository.simuler(
       prix: state.prix,
       etatVelo: state.etatVelo,
+      enSituationDeHandicap: state.enSituationDeHandicap,
       codePostal: state.codePostal,
       commune: state.commune,
       nombreDePartsFiscales: state.nombreDePartsFiscales,

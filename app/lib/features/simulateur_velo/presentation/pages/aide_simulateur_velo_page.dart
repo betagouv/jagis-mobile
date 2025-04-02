@@ -49,9 +49,11 @@ class _AideSimulateurVeloView extends StatelessWidget {
         Text(Localisation.simulerMonAide, style: DsfrTextStyle.headline2()),
         Text(Localisation.acheterUnVelo, style: DsfrTextStyle.bodyXl()),
         SizedBox(height: DsfrSpacings.s2w),
-        _BikeState(),
+        _EnSituationDeHandicapInput(),
         SizedBox(height: DsfrSpacings.s2w),
-        _Price(),
+        _VeloEtatInput(),
+        SizedBox(height: DsfrSpacings.s2w),
+        _PrixInput(),
         SizedBox(height: DsfrSpacings.s4w),
         Divider(color: Color(0xFFDEE0EB)),
         SizedBox(height: DsfrSpacings.s3w),
@@ -62,14 +64,14 @@ class _AideSimulateurVeloView extends StatelessWidget {
   );
 }
 
-class _Price extends StatefulWidget {
-  const _Price();
+class _PrixInput extends StatefulWidget {
+  const _PrixInput();
 
   @override
-  State<_Price> createState() => _PriceState();
+  State<_PrixInput> createState() => _PrixInputState();
 }
 
-class _PriceState extends State<_Price> {
+class _PrixInputState extends State<_PrixInput> {
   final _prixVeloController = TextEditingController();
 
   @override
@@ -144,8 +146,8 @@ class _PriceState extends State<_Price> {
   }
 }
 
-class _BikeState extends StatelessWidget {
-  const _BikeState();
+class _VeloEtatInput extends StatelessWidget {
+  const _VeloEtatInput();
 
   @override
   Widget build(final context) => DsfrRadioButtonSet(
@@ -158,6 +160,23 @@ class _BikeState extends StatelessWidget {
       context.read<AideVeloBloc>().add(AideVeloEtatChange(value));
     },
     initialValue: VeloEtat.neuf,
+  );
+}
+
+class _EnSituationDeHandicapInput extends StatelessWidget {
+  const _EnSituationDeHandicapInput();
+
+  @override
+  Widget build(final context) => DsfrRadioButtonSet(
+    title: Localisation.etesVousEnSituationDeHandicap,
+    values: const {true: Localisation.oui, false: Localisation.non},
+    onCallback: (final value) {
+      if (value == null) {
+        return;
+      }
+      context.read<AideVeloBloc>().add(AideVeloEnSituationHandicapChange(value));
+    },
+    initialValue: false,
   );
 }
 

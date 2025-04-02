@@ -101,6 +101,7 @@ abstract final class Localisation {
   static const estimerMesAides = 'Estimer mes aides';
   static const etapes = 'Étapes';
   static const etatDuVelo = 'État du vélo';
+  static const etesVousEnSituationDeHandicap = 'Êtes-vous en situation de handicap ?';
   static const euroSymbol = '€';
   static const facultatif = 'facultatif';
   static const fermer = 'Fermer';

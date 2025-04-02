@@ -19,6 +19,7 @@ class AideVeloRepository {
   Future<Either<Exception, AideVeloParType>> simuler({
     required final int prix,
     required final VeloEtat etatVelo,
+    required final bool enSituationDeHandicap,
     required final String codePostal,
     required final String commune,
     required final double nombreDePartsFiscales,
@@ -34,7 +35,11 @@ class AideVeloRepository {
     return result.fold(Left.new, (final r) async {
       final response = await _client.post(
         Endpoints.simulerAideVelo,
-        data: jsonEncode({'prix_du_velo': prix, 'etat_du_velo': _etatVeloToString(etatVelo)}),
+        data: jsonEncode({
+          'prix_du_velo': prix,
+          'etat_du_velo': _etatVeloToString(etatVelo),
+          'situation_handicap': enSituationDeHandicap,
+        }),
       );
 
       if (response.statusCode! >= HttpStatus.badRequest) {

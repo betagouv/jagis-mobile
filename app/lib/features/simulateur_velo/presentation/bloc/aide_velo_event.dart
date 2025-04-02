@@ -36,6 +36,16 @@ final class AideVeloEtatChange extends AideVeloEvent {
 }
 
 @immutable
+final class AideVeloEnSituationHandicapChange extends AideVeloEvent {
+  const AideVeloEnSituationHandicapChange(this.valeur);
+
+  final bool valeur;
+
+  @override
+  List<Object> get props => [valeur];
+}
+
+@immutable
 final class AideVeloModificationDemandee extends AideVeloEvent {
   const AideVeloModificationDemandee();
 }

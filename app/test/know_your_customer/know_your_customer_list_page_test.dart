@@ -22,7 +22,7 @@ Future<void> _pumpPage(final WidgetTester tester, {required final DioMock dio}) 
   await pumpPage(
     tester: tester,
     repositoryProviders: [
-      RepositoryProvider<KnowYourCustomersRepository>(create: (final context) => KnowYourCustomersRepository(client: client)),
+      RepositoryProvider<KnowYourCustomersRepository>(create: (final context) => KnowYourCustomersRepository(client)),
     ],
     blocProviders: [
       BlocProvider(

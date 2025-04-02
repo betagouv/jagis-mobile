@@ -4,7 +4,7 @@ import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:fpdart/fpdart.dart';
 
 class QuizRepository {
-  const QuizRepository({required final DioHttpClient client}) : _client = client;
+  const QuizRepository(this._client);
 
   final DioHttpClient _client;
 

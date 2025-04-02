@@ -11,7 +11,7 @@ import 'package:app/features/theme/core/infrastructure/theme_data_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ThemeRepository {
-  const ThemeRepository({required final DioHttpClient client}) : _client = client;
+  const ThemeRepository(this._client);
 
   final DioHttpClient _client;
 

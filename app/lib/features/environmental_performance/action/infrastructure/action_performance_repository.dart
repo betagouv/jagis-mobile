@@ -7,7 +7,7 @@ import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ActionPerformanceRepository {
-  const ActionPerformanceRepository({required final DioHttpClient client}) : _client = client;
+  const ActionPerformanceRepository(this._client);
 
   final DioHttpClient _client;
 

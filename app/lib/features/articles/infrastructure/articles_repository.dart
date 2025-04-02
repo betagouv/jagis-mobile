@@ -8,7 +8,7 @@ import 'package:app/features/articles/infrastructure/article_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ArticlesRepository {
-  const ArticlesRepository({required final DioHttpClient client}) : _client = client;
+  const ArticlesRepository(this._client);
 
   final DioHttpClient _client;
 

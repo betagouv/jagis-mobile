@@ -12,7 +12,7 @@ import 'package:app/features/simulateur_velo/infrastructure/aide_velo_par_type_m
 import 'package:fpdart/fpdart.dart';
 
 class AideVeloRepository {
-  const AideVeloRepository({required final DioHttpClient client}) : _client = client;
+  const AideVeloRepository(this._client);
 
   final DioHttpClient _client;
 

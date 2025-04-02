@@ -5,7 +5,7 @@ import 'package:app/features/utilisateur/domain/user.dart';
 import 'package:fpdart/fpdart.dart';
 
 class UserRepository {
-  const UserRepository({required final DioHttpClient client}) : _client = client;
+  const UserRepository(this._client);
 
   final DioHttpClient _client;
 

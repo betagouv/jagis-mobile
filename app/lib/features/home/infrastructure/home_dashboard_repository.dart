@@ -6,7 +6,7 @@ import 'package:app/features/home/infrastructure/home_dashboard_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeDashboardRepository {
-  const HomeDashboardRepository({required final DioHttpClient client}) : _client = client;
+  const HomeDashboardRepository(this._client);
 
   final DioHttpClient _client;
 

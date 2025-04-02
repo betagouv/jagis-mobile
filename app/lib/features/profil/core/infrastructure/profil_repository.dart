@@ -11,7 +11,7 @@ import 'package:app/features/profil/logement/domain/logement.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ProfilRepository {
-  const ProfilRepository({required final DioHttpClient client}) : _client = client;
+  const ProfilRepository(this._client);
 
   final DioHttpClient _client;
 

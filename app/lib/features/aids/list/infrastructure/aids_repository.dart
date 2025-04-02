@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -8,7 +9,7 @@ import 'package:app/features/aids/core/infrastructure/aid_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AidsRepository {
-  const AidsRepository({required final DioHttpClient client}) : _client = client;
+  const AidsRepository(this._client);
 
   final DioHttpClient _client;
 

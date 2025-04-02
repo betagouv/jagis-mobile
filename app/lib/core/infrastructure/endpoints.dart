@@ -19,7 +19,6 @@ abstract final class Endpoints {
   static const login = '/utilisateurs/login_v2';
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
-  static const missionsRecommandees = '/utilisateurs/{userId}/tuiles_missions';
   static const modifierMotDePasse = '/utilisateurs/modifier_mot_de_passe';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
   static const oubliMotDePasse = '/utilisateurs/oubli_mot_de_passe';
@@ -40,13 +39,11 @@ abstract final class Endpoints {
   static const gamificationReset = '/utilisateurs/{userId}/gamification/popup_reset_vue';
   static const homeBoard = '/utilisateurs/{userId}/home_board';
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
-  static const themes = '/utilisateurs/{userId}/thematiques';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
   static String replaceAction({required final String themeCode, required final String type, required final String code}) =>
       '/${theme(themeCode)}/actions/$type/$code';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String resetCustomization(final String themeCode) => '${theme(themeCode)}/reset_personnalisation';
-  static String missionsRecommandeesParThematique(final String themeCode) => '${theme(themeCode)}/tuiles_missions';
   static const recommandationsV3 = '/utilisateurs/{userId}/recommandations_v3';
   static String servicesParThematique(final String themeCode) => '${theme(themeCode)}/recherche_services';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';

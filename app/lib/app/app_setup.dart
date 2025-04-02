@@ -38,7 +38,7 @@ class _AppSetupState extends State<AppSetup> {
   late final NotificationService _notificationService;
   late final AuthenticationService _authenticationService;
 
-  // HACK(lsaudon): Pour que la FutureBuilder soit appelée une seule fois
+  /// Pour que la FutureBuilder soit appelée une seule fois
   late final _initializeDependenciesFuture = _initializeApp();
   final _messageBus = MessageBus();
 

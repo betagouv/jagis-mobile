@@ -15,7 +15,8 @@ class FnvCodeInput extends StatelessWidget {
       width: width,
       height: width * 1.27,
       padding: EdgeInsets.only(
-        bottom: 6, // HACK(lsaudon): Fix vertical alignment parce que la police Marianne est mal pris en compte par flutter
+        /// Fix vertical alignment parce que la police Marianne est mal pris en compte par flutter
+        bottom: 6,
       ),
       textStyle: DsfrTextStyle(fontSize: width * 0.68),
       decoration: BoxDecoration(color: Color(0xFFFBFBFB), border: Border.fromBorderSide(BorderSide(color: Color(0xFFB9BEBE)))),

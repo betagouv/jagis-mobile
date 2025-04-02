@@ -23,7 +23,7 @@ class NotificationService {
     final permission = await FirebaseMessaging.instance.requestPermission();
     if (permission.authorizationStatus == AuthorizationStatus.authorized) {
       await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
-      await _executePlatformSafeCallback(() => FirebaseMessaging.instance.subscribeToTopic(_topicAll));
+      await _executePlatformSafeCallback(() async => FirebaseMessaging.instance.subscribeToTopic(_topicAll));
     }
 
     final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
@@ -61,7 +61,7 @@ class NotificationService {
   Stream<NotificationData> get onMessageOpenedApp => _messageController.stream;
 
   Future<void> deleteToken() async {
-    await _executePlatformSafeCallback(() => FirebaseMessaging.instance.unsubscribeFromTopic(_topicAll));
-    await _executePlatformSafeCallback(() => FirebaseMessaging.instance.deleteToken());
+    await _executePlatformSafeCallback(() async => FirebaseMessaging.instance.unsubscribeFromTopic(_topicAll));
+    await _executePlatformSafeCallback(() async => FirebaseMessaging.instance.deleteToken());
   }
 }

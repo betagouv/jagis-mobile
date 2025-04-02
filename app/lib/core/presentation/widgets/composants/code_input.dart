@@ -1,4 +1,3 @@
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -19,7 +18,7 @@ class FnvCodeInput extends StatelessWidget {
         bottom: 6, // HACK(lsaudon): Fix vertical alignment parce que la police Marianne est mal pris en compte par flutter
       ),
       textStyle: DsfrTextStyle(fontSize: width * 0.68),
-      decoration: BoxDecoration(color: FnvColors.aidesFond, border: Border.fromBorderSide(BorderSide(color: Color(0xFFB9BEBE)))),
+      decoration: BoxDecoration(color: Color(0xFFFBFBFB), border: Border.fromBorderSide(BorderSide(color: Color(0xFFB9BEBE)))),
     );
 
     return MediaQuery(

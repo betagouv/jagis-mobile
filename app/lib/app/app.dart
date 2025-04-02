@@ -124,14 +124,11 @@ class _AppState extends State<App> {
   }
 
   Future<void> _handleArticleNotification(final GoRouter goRouter, final ArticleNotificationData data) async {
-    await goRouter.pushNamed(ArticlePage.name, pathParameters: {'titre': 'titre', 'id': data.pageId});
+    await goRouter.pushNamed(ArticlePage.name, pathParameters: ArticlePage.pathParameters(id: data.pageId));
   }
 
   Future<void> _handleActionNotification(final GoRouter goRouter, final ActionNotificationData data) async {
-    await goRouter.pushNamed(
-      ActionPage.name,
-      pathParameters: ActionPage.pathParameters(type: data.actionType, title: 'titre', id: data.pageId),
-    );
+    await goRouter.pushNamed(ActionPage.name, pathParameters: ActionPage.pathParameters(type: data.actionType, id: data.pageId));
   }
 
   @override

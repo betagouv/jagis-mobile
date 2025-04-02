@@ -31,8 +31,9 @@ class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin
           color: FnvColors.transparent,
           child: InkWell(
             onTap:
-                () async =>
-                    GoRouter.of(context).pushNamed(ArticlePage.name, pathParameters: {'titre': contenu.titre, 'id': contenu.id}),
+                () async => GoRouter.of(
+                  context,
+                ).pushNamed(ArticlePage.name, pathParameters: ArticlePage.pathParameters(title: contenu.titre, id: contenu.id)),
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),
             focusColor: FnvColors.transparent,

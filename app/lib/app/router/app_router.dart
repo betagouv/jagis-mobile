@@ -13,12 +13,12 @@ import 'package:app/features/authentification/mot_de_passe_oublie/pages/mot_de_p
 import 'package:app/features/authentification/mot_de_passe_oublie_code/pages/mot_de_passe_oublie_code_page.dart';
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
-import 'package:app/features/bibliotheque/presentation/pages/library_page.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
+import 'package:app/features/library/presentation/pages/library_page.dart';
 import 'package:app/features/onboarding/presentation/pages/app_est_encore_en_experimentation_page.dart';
 import 'package:app/features/onboarding/presentation/pages/tout_est_pret_page.dart';
 import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';

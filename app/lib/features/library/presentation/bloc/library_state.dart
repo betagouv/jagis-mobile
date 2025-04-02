@@ -1,4 +1,4 @@
-import 'package:app/features/bibliotheque/domain/library.dart';
+import 'package:app/features/library/domain/library.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

@@ -1,6 +1,6 @@
-import 'package:app/features/bibliotheque/infrastructure/library_repository.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/library_event.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/library_state.dart';
+import 'package:app/features/library/infrastructure/library_repository.dart';
+import 'package:app/features/library/presentation/bloc/library_event.dart';
+import 'package:app/features/library/presentation/bloc/library_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {

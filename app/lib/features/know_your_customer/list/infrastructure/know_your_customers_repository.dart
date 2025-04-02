@@ -7,7 +7,7 @@ import 'package:app/features/know_your_customer/core/infrastructure/question_map
 import 'package:fpdart/fpdart.dart';
 
 class KnowYourCustomersRepository {
-  const KnowYourCustomersRepository({required final DioHttpClient client}) : _client = client;
+  const KnowYourCustomersRepository(this._client);
 
   final DioHttpClient _client;
 

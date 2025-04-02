@@ -56,32 +56,32 @@ Future<void> pumpHomePage(final WidgetTester tester) async {
         ..getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData);
 
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
-  final recommandationsRepository = RecommandationsRepository(client: client);
+  final recommandationsRepository = RecommandationsRepository(client);
   await pumpPage(
     tester: tester,
     repositoryProviders: [
       RepositoryProvider<EnvironmentalPerformanceSummaryRepository>.value(
-        value: EnvironmentalPerformanceSummaryRepository(client: client),
+        value: EnvironmentalPerformanceSummaryRepository(client),
       ),
       RepositoryProvider<NotificationService>(
         create: (final context) => const NotificationServiceFake(AuthorizationStatus.denied),
       ),
-      RepositoryProvider<HomeDashboardRepository>(create: (final context) => HomeDashboardRepository(client: client)),
+      RepositoryProvider<HomeDashboardRepository>(create: (final context) => HomeDashboardRepository(client)),
       RepositoryProvider<RecommandationsRepository>.value(value: recommandationsRepository),
     ],
     blocProviders: [
       BlocProvider<GamificationBloc>(create: (final context) => GamificationBlocFake()),
-      BlocProvider(create: (final context) => UserBloc(repository: UserRepository(client: client))),
+      BlocProvider(create: (final context) => UserBloc(repository: UserRepository(client))),
       BlocProvider(
         create:
             (final context) => EnvironmentalPerformanceBloc(
-              useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(client: client)),
+              useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(client)),
             ),
       ),
       BlocProvider(
         create:
             (final context) =>
-                EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(client: client)),
+                EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(client)),
       ),
     ],
     router: GoRouter(

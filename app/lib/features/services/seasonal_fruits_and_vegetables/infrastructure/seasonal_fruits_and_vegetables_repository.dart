@@ -8,7 +8,7 @@ import 'package:app/features/services/seasonal_fruits_and_vegetables/infrastruct
 import 'package:fpdart/fpdart.dart';
 
 class SeasonalFruitsAndVegetablesRepository {
-  const SeasonalFruitsAndVegetablesRepository({required final DioHttpClient client}) : _client = client;
+  const SeasonalFruitsAndVegetablesRepository(this._client);
 
   final DioHttpClient _client;
 

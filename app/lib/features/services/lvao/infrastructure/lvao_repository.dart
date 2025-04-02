@@ -6,7 +6,7 @@ import 'package:app/features/services/lvao/infrastructure/lvao_actor_mapper.dart
 import 'package:fpdart/fpdart.dart';
 
 class LvaoRepository {
-  const LvaoRepository({required final DioHttpClient client}) : _client = client;
+  const LvaoRepository(this._client);
 
   final DioHttpClient _client;
 

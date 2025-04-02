@@ -6,7 +6,7 @@ import 'package:app/features/services/recipes/action/infrastructure/action_recip
 import 'package:fpdart/fpdart.dart';
 
 class ActionRecipesRepository {
-  const ActionRecipesRepository({required final DioHttpClient client}) : _client = client;
+  const ActionRecipesRepository(this._client);
 
   final DioHttpClient _client;
 

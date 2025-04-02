@@ -28,7 +28,7 @@ Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final D
     tester: tester,
     repositoryProviders: [
       RepositoryProvider<EnvironmentalPerformanceSummaryRepository>.value(
-        value: EnvironmentalPerformanceSummaryRepository(client: dioHttpClient),
+        value: EnvironmentalPerformanceSummaryRepository(dioHttpClient),
       ),
     ],
     blocProviders: [
@@ -36,14 +36,13 @@ Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final D
       BlocProvider(
         create:
             (final context) => EnvironmentalPerformanceBloc(
-              useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(client: dioHttpClient)),
+              useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(dioHttpClient)),
             ),
       ),
       BlocProvider(
         create:
-            (final context) => EnvironmentalPerformanceQuestionBloc(
-              repository: EnvironmentalPerformanceQuestionRepository(client: dioHttpClient),
-            ),
+            (final context) =>
+                EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(dioHttpClient)),
       ),
     ],
     page: EnvironmentalPerformanceSummaryPage.route,

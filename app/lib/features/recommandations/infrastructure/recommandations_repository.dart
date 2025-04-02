@@ -6,7 +6,7 @@ import 'package:app/features/recommandations/infrastructure/recommandation_mappe
 import 'package:fpdart/fpdart.dart';
 
 class RecommandationsRepository {
-  const RecommandationsRepository({required final DioHttpClient client}) : _client = client;
+  const RecommandationsRepository(this._client);
 
   final DioHttpClient _client;
 

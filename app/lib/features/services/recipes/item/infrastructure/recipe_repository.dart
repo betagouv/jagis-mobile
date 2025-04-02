@@ -6,7 +6,7 @@ import 'package:app/features/services/recipes/item/infrastructure/recipe_mapper.
 import 'package:fpdart/fpdart.dart';
 
 class RecipeRepository {
-  const RecipeRepository({required final DioHttpClient client}) : _client = client;
+  const RecipeRepository(this._client);
 
   final DioHttpClient _client;
 

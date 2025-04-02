@@ -6,7 +6,7 @@ import 'package:app/features/environmental_performance/summary/infrastructure/en
 import 'package:fpdart/fpdart.dart';
 
 class EnvironmentalPerformanceSummaryRepository {
-  const EnvironmentalPerformanceSummaryRepository({required final DioHttpClient client}) : _client = client;
+  const EnvironmentalPerformanceSummaryRepository(this._client);
 
   final DioHttpClient _client;
 

@@ -8,7 +8,7 @@ import 'package:app/features/services/recipes/list/infrastructure/recipe_summary
 import 'package:fpdart/fpdart.dart';
 
 class RecipesRepository {
-  const RecipesRepository({required final DioHttpClient client}) : _client = client;
+  const RecipesRepository(this._client);
 
   final DioHttpClient _client;
 

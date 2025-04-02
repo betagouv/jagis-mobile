@@ -7,7 +7,7 @@ import 'package:app/features/know_your_customer/core/infrastructure/question_map
 import 'package:fpdart/fpdart.dart';
 
 class EnvironmentalPerformanceQuestionRepository {
-  const EnvironmentalPerformanceQuestionRepository({required final DioHttpClient client}) : _client = client;
+  const EnvironmentalPerformanceQuestionRepository(this._client);
 
   final DioHttpClient _client;
 

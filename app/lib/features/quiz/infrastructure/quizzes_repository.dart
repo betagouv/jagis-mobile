@@ -5,7 +5,7 @@ import 'package:app/features/quiz/domain/quiz_score.dart';
 import 'package:fpdart/fpdart.dart';
 
 class QuizzesRepository {
-  const QuizzesRepository({required final DioHttpClient client}) : _client = client;
+  const QuizzesRepository(this._client);
 
   final DioHttpClient _client;
 

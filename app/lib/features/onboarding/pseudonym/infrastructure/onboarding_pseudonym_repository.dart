@@ -7,7 +7,7 @@ import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:fpdart/fpdart.dart';
 
 final class OnboardingPseudonymRepository {
-  const OnboardingPseudonymRepository({required final DioHttpClient client}) : _client = client;
+  const OnboardingPseudonymRepository(this._client);
 
   final DioHttpClient _client;
 

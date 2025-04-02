@@ -9,7 +9,7 @@ import 'package:app/features/car_simulator/infrastructure/car_simulator_mapper.d
 import 'package:fpdart/fpdart.dart';
 
 class CarSimulatorRepository {
-  const CarSimulatorRepository({required final DioHttpClient client}) : _client = client;
+  const CarSimulatorRepository(this._client);
 
   final DioHttpClient _client;
   Future<Either<Exception, CarInfos>> computeCurrentCar() async {

@@ -4,7 +4,7 @@ import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:fpdart/fpdart.dart';
 
 class CommunesRepository {
-  const CommunesRepository({required final DioHttpClient client}) : _client = client;
+  const CommunesRepository(this._client);
 
   final DioHttpClient _client;
 

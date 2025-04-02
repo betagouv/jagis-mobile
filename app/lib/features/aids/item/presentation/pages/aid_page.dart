@@ -108,7 +108,6 @@ class _AidPageContent extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Color(0xffeef2ff),
             border: Border.fromBorderSide(BorderSide(color: Color(0xffb1b1ff))),
-            borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1v5)),
           ),
           child: PartnerWidget(partner: aid.partner!),
         ),

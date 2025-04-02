@@ -80,10 +80,7 @@ class _Success extends StatelessWidget {
                               spacing: DsfrSpacings.s2w,
                               children: [
                                 const DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: Color(0xffF2EAF8),
-                                    borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w)),
-                                  ),
+                                  decoration: BoxDecoration(color: Color(0xffF2EAF8)),
                                   child: FnvImage.asset(AssetImages.lvaoStore, width: 72, height: 99),
                                 ),
                                 Expanded(

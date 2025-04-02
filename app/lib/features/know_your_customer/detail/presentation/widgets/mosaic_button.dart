@@ -35,7 +35,6 @@ class _MosaicButtonStyle {
 abstract final class _MosaicButtonStyles {
   static const selected = _MosaicButtonStyle.selected();
   static const unselected = _MosaicButtonStyle.unselected();
-  static const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
 }
 
 class MosaicButton extends StatelessWidget {
@@ -58,7 +57,6 @@ class MosaicButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: style.backgroundColor,
             border: Border.all(color: style.borderColor, width: style.borderWidth),
-            borderRadius: _MosaicButtonStyles.borderRadius,
           ),
           child: ConstrainedBox(
             constraints: const BoxConstraints.expand(),
@@ -66,7 +64,6 @@ class MosaicButton extends StatelessWidget {
               color: FnvColors.transparent,
               child: InkWell(
                 onTap: () => onChanged(!value),
-                borderRadius: _MosaicButtonStyles.borderRadius,
                 child: Padding(
                   padding: const EdgeInsets.all(DsfrSpacings.s1w),
                   child: Column(

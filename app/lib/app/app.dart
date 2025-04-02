@@ -19,7 +19,6 @@ import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_di
 import 'package:app/features/articles/infrastructure/articles_repository.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
 import 'package:app/features/authentification/core/infrastructure/authentification_repository.dart';
-import 'package:app/features/bibliotheque/infrastructure/library_repository.dart';
 import 'package:app/features/car_simulator/infrastructure/car_simulator_repository.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
@@ -36,6 +35,7 @@ import 'package:app/features/gamification/reset/infrastructure/reset_repository.
 import 'package:app/features/home/infrastructure/home_dashboard_repository.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
+import 'package:app/features/library/infrastructure/library_repository.dart';
 import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';

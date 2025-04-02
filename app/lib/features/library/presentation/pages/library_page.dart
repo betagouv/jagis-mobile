@@ -1,7 +1,7 @@
-import 'package:app/features/bibliotheque/presentation/bloc/library_bloc.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/library_event.dart';
-import 'package:app/features/bibliotheque/presentation/bloc/library_state.dart';
-import 'package:app/features/bibliotheque/presentation/pages/library_view.dart';
+import 'package:app/features/library/presentation/bloc/library_bloc.dart';
+import 'package:app/features/library/presentation/bloc/library_event.dart';
+import 'package:app/features/library/presentation/bloc/library_state.dart';
+import 'package:app/features/library/presentation/pages/library_view.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

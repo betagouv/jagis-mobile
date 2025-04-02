@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
-import 'package:app/features/bibliotheque/domain/library.dart';
-import 'package:app/features/bibliotheque/infrastructure/library_mapper.dart';
+import 'package:app/features/library/domain/library.dart';
+import 'package:app/features/library/infrastructure/library_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class LibraryRepository {

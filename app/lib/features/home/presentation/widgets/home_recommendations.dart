@@ -1,6 +1,6 @@
-import 'package:app/features/bibliotheque/presentation/pages/library_page.dart';
 import 'package:app/features/home/bloc/home_dashboard_bloc.dart';
 import 'package:app/features/home/bloc/home_dashboard_event.dart';
+import 'package:app/features/library/presentation/pages/library_page.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/recommandations/presentation/widgets/recommendation_widget.dart';
 import 'package:app/l10n/l10n.dart';

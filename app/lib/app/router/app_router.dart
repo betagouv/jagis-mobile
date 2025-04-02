@@ -29,7 +29,6 @@ import 'package:app/features/pre_onboarding/presentation/pages/pre_onboarding_pa
 import 'package:app/features/profil/informations/presentation/pages/mes_informations_page.dart';
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
-import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:app/features/ranking/presentation/pages/ranking_page.dart';
 import 'package:app/features/services/recipes/item/presentation/pages/recipe_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
@@ -79,7 +78,6 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         ActionPage.route,
         RecipesPage.route,
         RecipePage.route,
-        QuizPage.route,
         ProfilPage.route,
         RankingPage.route,
         MesInformationsPage.route,

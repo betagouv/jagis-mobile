@@ -222,7 +222,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const point = '.';
   static const politiqueDeConfidentialite = 'Politique de confidentialité';
   static const politiqueDeConfidentialiteSite = 'https://jagis.beta.gouv.fr/politique-de-confidentialite';
-  static const pourquoi = 'Pourquoi ?';
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
@@ -260,7 +259,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const revenirALaThematique = 'Revenir à la thématique';
   static const revenirAuCatalogue = 'Revenir au catalogue';
   static const revenirAuSimulateur = 'Revenir au simulateur';
-  static const revenirEnArriere = 'Revenir en arrière';
   static const revenuFiscal = 'Revenu fiscal de référence de mon foyer';
   static const revenuQuestion = 'Quelle est votre tranche de revenus ?';
   static const seDeconnecter = 'Se déconnecter';

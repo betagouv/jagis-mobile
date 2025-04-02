@@ -8,7 +8,6 @@ abstract final class NotificationDataMapper {
     final pageId = json['page_id'] as String;
 
     return switch (json['page_type'] as String) {
-      'quiz' => QuizNotificationData(pageId),
       'article' => ArticleNotificationData(pageId),
       'action' => ActionNotificationData(pageId, actionTypeFromAPIString(json['action_type'] as String)),
       _ => throw UnimplementedError(),

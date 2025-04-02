@@ -243,7 +243,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const raccourcis = 'Raccourcis';
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';
+  static const voirMesResultats = 'Voir mes résultats';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
+  static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const rechargeElectriqueQuestion = 'J’ai la possibilité de recharger un véhicule électrique au quotidien.';
   static const rechercherParTitre = 'Rechercher par titre';
   static const recommencerLeQuiz = 'Recommencer le quiz';

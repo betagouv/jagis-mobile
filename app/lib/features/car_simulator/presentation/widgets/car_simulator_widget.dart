@@ -83,9 +83,9 @@ class _Success extends StatelessWidget {
                 description: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Vous avez déjà fait ce simulateur', style: DsfrTextStyle.bodyMd()),
+                    const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd()),
                     DsfrLink.md(
-                      label: 'Voir mes résultats',
+                      label: Localisation.voirMesResultats,
                       onTap: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
                     ),
                   ],

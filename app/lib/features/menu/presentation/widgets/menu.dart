@@ -1,5 +1,4 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/authentification/logout/presentation/widgets/logout_widget.dart';
@@ -36,7 +35,7 @@ class Menu extends StatelessWidget {
                   iconSize: 24,
                   padding: const EdgeInsets.all(DsfrSpacings.s1w),
                   onPressed: () => GoRouter.of(context).pop(),
-                  style: const ButtonStyle(shape: WidgetStatePropertyAll(roundedRectangleBorder)),
+                  style: const ButtonStyle(shape: WidgetStatePropertyAll(RoundedRectangleBorder())),
                   icon: const Icon(
                     DsfrIcons.systemCloseLine,
                     color: DsfrColors.blueFranceSun113,
@@ -104,12 +103,7 @@ class _MenuItem extends StatelessWidget {
             children: [
               if (isCurrentPage)
                 const DecoratedBox(
-                  decoration: ShapeDecoration(
-                    color: DsfrColors.blueFranceSun113,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.horizontal(right: Radius.circular(DsfrSpacings.s0v5)),
-                    ),
-                  ),
+                  decoration: BoxDecoration(color: DsfrColors.blueFranceSun113),
                   child: SizedBox(width: 3, height: 24),
                 ),
               Padding(

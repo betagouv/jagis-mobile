@@ -32,13 +32,7 @@ class RecipeCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: 150,
-            child: DecoratedBox(
-              decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w))),
-              child: FnvImage.network(imageUrl, fit: BoxFit.fitWidth),
-            ),
-          ),
+          SizedBox(height: 150, child: FnvImage.network(imageUrl, fit: BoxFit.fitWidth)),
           Padding(
             padding: const EdgeInsets.all(DsfrSpacings.s2w),
             child: Column(

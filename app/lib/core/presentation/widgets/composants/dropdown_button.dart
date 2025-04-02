@@ -51,13 +51,10 @@ class FnvDropdown<T> extends StatelessWidget {
       onChanged(value);
     },
     menuStyle: const DropdownMenuStyle(
-      decoration: ShapeDecoration(
+      decoration: BoxDecoration(
         color: Color(0xFFFFFFFF),
-        shadows: [BoxShadow(color: Color(0x0D000000), offset: Offset(0, 4), blurRadius: 4)],
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Color(0x0D000000)),
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-        ),
+        border: Border.fromBorderSide(BorderSide(color: Color(0x0D000000))),
+        boxShadow: [BoxShadow(color: Color(0x0D000000), offset: Offset(0, 4), blurRadius: 4)],
       ),
       alignment: Alignment.bottomLeft,
       offset: Offset(0, 8),

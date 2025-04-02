@@ -22,12 +22,9 @@ class FnvAlertInfo extends StatelessWidget {
     }
 
     return DecoratedBox(
-      decoration: const ShapeDecoration(
+      decoration: const BoxDecoration(
         color: DsfrColors.info950,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: DsfrColors.blueFranceMain525),
-          borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w)),
-        ),
+        border: Border.fromBorderSide(BorderSide(color: DsfrColors.blueFranceMain525)),
       ),
       child: Padding(padding: const EdgeInsets.all(DsfrSpacings.s2w), child: child),
     );

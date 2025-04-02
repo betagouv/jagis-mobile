@@ -14,11 +14,7 @@ class EstimadedTimedWidget extends StatelessWidget {
     const borderColor = Color(0xffb1b1ff);
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: backgroundColor,
-        border: Border.fromBorderSide(BorderSide(color: borderColor)),
-        borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w)),
-      ),
+      decoration: const BoxDecoration(color: backgroundColor, border: Border.fromBorderSide(BorderSide(color: borderColor))),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v, horizontal: DsfrSpacings.s3w),
         child: Row(

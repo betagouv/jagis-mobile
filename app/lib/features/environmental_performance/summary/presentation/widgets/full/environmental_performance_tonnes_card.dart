@@ -14,11 +14,7 @@ class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
 
   @override
   Widget build(final context) => DecoratedBox(
-    decoration: const ShapeDecoration(
-      color: FnvColors.carteFond,
-      shadows: recommandationOmbre,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w))),
-    ),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: recommandationOmbre),
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v, horizontal: DsfrSpacings.s2w),
       child: Column(

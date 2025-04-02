@@ -25,25 +25,15 @@ class PartnerCard extends StatelessWidget {
     const borderColor = Color(0xffb1b1ff);
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: Color(0xffeef2ff),
-        border: Border.fromBorderSide(BorderSide(color: borderColor)),
-        borderRadius: BorderRadius.all(Radius.circular(DsfrSpacings.s1w)),
-      ),
+      decoration: const BoxDecoration(color: Color(0xffeef2ff), border: Border.fromBorderSide(BorderSide(color: borderColor))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 1, top: 1, right: 1),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(DsfrSpacings.s1w),
-                topRight: Radius.circular(DsfrSpacings.s1w),
-              ),
-              child: ColoredBox(
-                color: Colors.white,
-                child: FnvImage.asset(image, alignment: Alignment.topCenter, height: 170, fit: BoxFit.cover),
-              ),
+            child: ColoredBox(
+              color: Colors.white,
+              child: FnvImage.asset(image, alignment: Alignment.topCenter, height: 170, fit: BoxFit.cover),
             ),
           ),
           const DsfrDivider(color: borderColor),

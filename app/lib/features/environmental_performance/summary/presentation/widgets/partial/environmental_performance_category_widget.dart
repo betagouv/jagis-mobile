@@ -76,62 +76,49 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   static const _imageHeight = 126.0;
 
   @override
-  Widget build(final context) {
-    const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s1w));
-
-    return DsfrFocusWidget(
-      isFocused: isFocused,
-      borderRadius: borderRadius,
-      child: DecoratedBox(
-        decoration: const ShapeDecoration(
-          color: Colors.white,
-          shadows: recommandationOmbre,
-          shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        ),
-        child: Material(
-          color: FnvColors.transparent,
-          child: InkWell(
-            onTap: widget.onTap,
-            onHighlightChanged: updateMaterialState(WidgetState.pressed),
-            onHover: updateMaterialState(WidgetState.hovered),
-            focusColor: FnvColors.transparent,
-            borderRadius: borderRadius,
-            onFocusChange: updateMaterialState(WidgetState.focused),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: DsfrSpacings.s1w,
-                top: DsfrSpacings.s1w,
-                right: DsfrSpacings.s1w,
-                bottom: DsfrSpacings.s3v,
-              ),
-              child: SizedBox(
-                width: _imageWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
-                      child: FnvImage.network(widget.imageUrl, width: _imageWidth, height: _imageHeight),
-                    ),
-                    const SizedBox(height: DsfrSpacings.s1v),
-                    LinearProgressIndicator(
-                      value: widget.progression,
-                      backgroundColor: const Color(0xFFEEEEFF),
-                      color: widget.color,
-                      minHeight: DsfrSpacings.s1v5,
-                      semanticsLabel: 'Bilan complété à ${widget.completion}%',
-                      borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
-                    ),
-                    const SizedBox(height: DsfrSpacings.s1w),
-                    Text(widget.label, style: const DsfrTextStyle.bodyLgMedium()),
-                    Text('${widget.numberOfQuestions} questions', style: DsfrTextStyle.bodySm(color: widget.color)),
-                  ],
-                ),
+  Widget build(final context) => DsfrFocusWidget(
+    isFocused: isFocused,
+    child: DecoratedBox(
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: recommandationOmbre),
+      child: Material(
+        color: FnvColors.transparent,
+        child: InkWell(
+          onTap: widget.onTap,
+          onHighlightChanged: updateMaterialState(WidgetState.pressed),
+          onHover: updateMaterialState(WidgetState.hovered),
+          focusColor: FnvColors.transparent,
+          onFocusChange: updateMaterialState(WidgetState.focused),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: DsfrSpacings.s1w,
+              top: DsfrSpacings.s1w,
+              right: DsfrSpacings.s1w,
+              bottom: DsfrSpacings.s3v,
+            ),
+            child: SizedBox(
+              width: _imageWidth,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FnvImage.network(widget.imageUrl, width: _imageWidth, height: _imageHeight),
+                  const SizedBox(height: DsfrSpacings.s1v),
+                  LinearProgressIndicator(
+                    value: widget.progression,
+                    backgroundColor: const Color(0xFFEEEEFF),
+                    color: widget.color,
+                    minHeight: DsfrSpacings.s1v5,
+                    semanticsLabel: 'Bilan complété à ${widget.completion}%',
+                    borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
+                  ),
+                  const SizedBox(height: DsfrSpacings.s1w),
+                  Text(widget.label, style: const DsfrTextStyle.bodyLgMedium()),
+                  Text('${widget.numberOfQuestions} questions', style: DsfrTextStyle.bodySm(color: widget.color)),
+                ],
               ),
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

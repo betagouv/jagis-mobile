@@ -1,7 +1,7 @@
 import 'package:app/core/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:app/core/authentication/presentation/bloc/authentication_state.dart';
+import 'package:app/core/authentication/presentation/restart_widget.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
-import 'package:app/features/pre_onboarding/presentation/pages/pre_onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,12 +13,16 @@ class AuthenticationRedirection extends StatelessWidget {
 
   @override
   Widget build(final context) => BlocListener<AuthenticationBloc, AuthenticationState>(
-    listener:
-        (final context, final state) => switch (state) {
-          AuthenticationUnauthenticated() => GoRouter.of(context).goNamed(PreOnboardingPage.name),
-          AuthenticationAuthenticated() => GoRouter.of(context).goNamed(HomePage.name),
-          AuthenticationInitial() => null,
-        },
+    listener: (final context, final state) {
+      switch (state) {
+        case AuthenticationInitial():
+          break;
+        case AuthenticationUnauthenticated():
+          RestartWidget.restartApp(context);
+        case AuthenticationAuthenticated():
+          GoRouter.of(context).goNamed(HomePage.name);
+      }
+    },
     bloc: context.read(),
     child: child,
   );

@@ -9,7 +9,13 @@ class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key, required this.id});
 
   static const name = 'article';
-  static const path = 'article/:titre/:id';
+  static const path = 'article/:title/:id';
+
+  static Map<String, String> pathParameters({
+    // NOTE(lsaudon): Le titre est uniquement ajouté pour être iso avec le web et permettre le deeplink
+    final String title = 'titre-action',
+    required final String id,
+  }) => {'title': title, 'id': id};
 
   static GoRoute get route =>
       GoRoute(path: path, name: name, builder: (final context, final state) => ArticlePage(id: state.pathParameters['id']!));

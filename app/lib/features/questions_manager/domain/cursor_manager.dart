@@ -1,6 +1,6 @@
 import 'package:app/features/questions_manager/domain/cursor.dart';
 
-abstract class CursorManager<T> {
+abstract interface class CursorManager<T> {
   const CursorManager();
   Future<Cursor<T>> first();
   Future<Cursor<T>> previous(final Cursor<T> current);

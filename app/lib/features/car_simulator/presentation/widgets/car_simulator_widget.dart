@@ -1,5 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
-import 'package:app/features/car_simulator/infrastructure/car_simulator_questions_manager.dart';
+import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
@@ -12,6 +13,7 @@ import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart'
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
 import 'package:app/features/questions_manager/domain/cursor.dart';
+import 'package:app/features/questions_manager/infrastructure/questions_manager.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +27,13 @@ class CarSimulatorWidget extends StatelessWidget {
   @override
   Widget build(final context) => BlocProvider(
     create:
-        (final context) =>
-            QuestionsManagerBloc(application: CarSimulatorQuestionsManager(client: context.read()))
-              ..add(const QuestionsManagerFirstQuestionRequested()),
+        (final context) => QuestionsManagerBloc(
+          application: QuestionsManager(
+            client: context.read(),
+            type: ActionType.simulator,
+            code: ActionSimulatorId.carSimulator.apiString,
+          ),
+        )..add(const QuestionsManagerFirstQuestionRequested()),
     child: _View(isDone: isDone),
   );
 }

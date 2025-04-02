@@ -10,6 +10,7 @@ final class AideVeloState extends Equatable {
   const AideVeloState({
     required this.prix,
     required this.etatVelo,
+    required this.enSituationDeHandicap,
     required this.codePostal,
     required this.communes,
     required this.commune,
@@ -24,6 +25,7 @@ final class AideVeloState extends Equatable {
     : this(
         prix: 1000,
         etatVelo: VeloEtat.neuf,
+        enSituationDeHandicap: false,
         codePostal: '',
         communes: const [],
         commune: '',
@@ -36,6 +38,7 @@ final class AideVeloState extends Equatable {
 
   final int prix;
   final VeloEtat etatVelo;
+  final bool enSituationDeHandicap;
   final bool veutModifierLesInformations;
   final String codePostal;
   final List<String> communes;
@@ -57,6 +60,7 @@ final class AideVeloState extends Equatable {
   AideVeloState copyWith({
     final int? prix,
     final VeloEtat? etatVelo,
+    final bool? enSituationDeHandicap,
     final bool? veutModifierLesInformations,
     final String? codePostal,
     final List<String>? communes,
@@ -68,6 +72,7 @@ final class AideVeloState extends Equatable {
   }) => AideVeloState(
     prix: prix ?? this.prix,
     etatVelo: etatVelo ?? this.etatVelo,
+    enSituationDeHandicap: enSituationDeHandicap ?? this.enSituationDeHandicap,
     codePostal: codePostal ?? this.codePostal,
     communes: communes ?? this.communes,
     commune: commune ?? this.commune,
@@ -82,6 +87,7 @@ final class AideVeloState extends Equatable {
   List<Object?> get props => [
     prix,
     etatVelo,
+    enSituationDeHandicap,
     codePostal,
     communes,
     commune,

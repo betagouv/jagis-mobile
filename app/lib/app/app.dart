@@ -40,7 +40,6 @@ import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseu
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
 import 'package:app/features/quiz/infrastructure/quizzes_repository.dart';
-import 'package:app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:app/features/ranking/infrastructure/ranking_repository.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/services/lvao/infrastructure/lvao_repository.dart';
@@ -110,17 +109,11 @@ class _AppState extends State<App> {
 
   Future<void> _handleNotification({required final GoRouter goRouter, required final NotificationData data}) async {
     switch (data) {
-      case QuizNotificationData():
-        await _handleQuizNotification(goRouter, data);
       case ArticleNotificationData():
         await _handleArticleNotification(goRouter, data);
       case ActionNotificationData():
         await _handleActionNotification(goRouter, data);
     }
-  }
-
-  Future<void> _handleQuizNotification(final GoRouter goRouter, final QuizNotificationData data) async {
-    await goRouter.pushNamed(QuizPage.name, pathParameters: {'id': data.pageId});
   }
 
   Future<void> _handleArticleNotification(final GoRouter goRouter, final ArticleNotificationData data) async {

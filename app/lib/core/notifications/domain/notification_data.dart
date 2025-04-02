@@ -13,11 +13,6 @@ sealed class NotificationData extends Equatable {
 }
 
 @immutable
-final class QuizNotificationData extends NotificationData {
-  const QuizNotificationData(super.pageId);
-}
-
-@immutable
 final class ArticleNotificationData extends NotificationData {
   const ArticleNotificationData(super.pageId);
 }

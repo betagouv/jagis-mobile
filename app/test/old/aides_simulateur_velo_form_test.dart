@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_scroll_down.dart';
 import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
@@ -81,6 +82,7 @@ void main() {
       await mockNetworkImages(() async {
         ielACesInformationsDeProfil(codePostal: codePostal, commune: commune, nombreDePartsFiscales: nombreDePart);
         await _allerSurLeSimulateurVelo(tester, aide2);
+        await iScrollDown(tester);
         ielVoitLeTexteDansTexteRiche(Localisation.aideVeloAvertissement);
       });
     });

@@ -68,12 +68,6 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
             // https://github.com/flutter/flutter/issues/32756#issuecomment-846705128
             ndk {
                 abiFilters.clear()

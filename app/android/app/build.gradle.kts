@@ -11,13 +11,8 @@ plugins {
 android {
     namespace = "fr.gouv.agir"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.2.12479018" // [NDK default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android)  // flutter.ndkVersion
-    externalNativeBuild {
-        cmake {
-            version = "3.31.6" // [CMake default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android) 
-        }
-    }
-
+    ndkVersion = "27.0.12077973" // flutter.ndkVersion
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

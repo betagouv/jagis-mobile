@@ -8,6 +8,21 @@ jobs:
     steps:
       - name: 📚 Git checkout
         uses: actions/checkout@v4
+      - name: Cache NDK (Side by side)
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/lib/android/sdk/ndk/
+          key: ${{ runner.os }}-ndk-${{ hashFiles('app/android/build.gradle.kts', 'aoo/pubspec.yaml') }}
+      - name: Cache Android SDK Platform
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/lib/android/sdk/platforms/
+          key: ${{ runner.os }}-sdk-${{ hashFiles('app/android/build.gradle.kts', 'aoo/pubspec.yaml') }}
+      - name: Cache CMake
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/lib/android/sdk/cmake/
+          key: ${{ runner.os }}-cmake-${{ hashFiles('app/android/build.gradle.kts', 'aoo/pubspec.yaml') }}
       - name: 🔑 Ajouter le fichier keystore
         working-directory: app/android/app
         run: echo "${{ secrets.DEV_ANDROID_KEYSTORE }}" | base64 --decode > agir.keystore

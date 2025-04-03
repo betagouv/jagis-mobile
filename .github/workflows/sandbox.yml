@@ -8,27 +8,29 @@ jobs:
     steps:
       - name: 📚 Git checkout
         uses: actions/checkout@v4
-      - name: 🔑 Ajouter le fichier keystore
-        working-directory: app/android/app
-        run: echo "${{ secrets.DEV_ANDROID_KEYSTORE }}" | base64 --decode > agir.keystore
-      - name: 🔑 Ajouter le fichier key properties
-        working-directory: app/android
-        run: echo "${{ secrets.DEV_ANDROID_KEY_PROPERTIES }}" | base64 --decode > key.properties
-      - name: 🔑 Ajouter le fichier de configuration de Firebase
-        working-directory: app/android/app
-        run: echo "${{ secrets.DEV_ANDROID_GOOGLE_SERVICES_JSON }}" | base64 --decode > google-services.json
-      - name: 🔑 Ajouter les variables d'environnements
-        working-directory: app
-        run: echo "${{ secrets.DEV_FLUTTER_ENV }}" | base64 --decode > env.json
-      - name: 🐦 Installer Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          cache: true
-          flutter-version-file: app/pubspec.yaml
-      - name: 🧱 Construire l'application
-        working-directory: app
-        # Support the Cronet embedding dependency use `--dart-define=cronetHttpNoPlay=true` https://pub.dev/packages/cronet_http
-        run: flutter build appbundle --flavor development --dart-define-from-file env.json --dart-define=cronetHttpNoPlay=true --build-number  ${GITHUB_RUN_NUMBER}
-      - name: 🗑️ Nettoyer les fichiers secrets
-        if: always()
-        run: rm -f app/android/app/agir.keystore app/android/key.properties app/android/app/google-services.json app/env.json
+      - name: Check CMake version
+        run: cmake --version
+      # - name: 🔑 Ajouter le fichier keystore
+      #   working-directory: app/android/app
+      #   run: echo "${{ secrets.DEV_ANDROID_KEYSTORE }}" | base64 --decode > agir.keystore
+      # - name: 🔑 Ajouter le fichier key properties
+      #   working-directory: app/android
+      #   run: echo "${{ secrets.DEV_ANDROID_KEY_PROPERTIES }}" | base64 --decode > key.properties
+      # - name: 🔑 Ajouter le fichier de configuration de Firebase
+      #   working-directory: app/android/app
+      #   run: echo "${{ secrets.DEV_ANDROID_GOOGLE_SERVICES_JSON }}" | base64 --decode > google-services.json
+      # - name: 🔑 Ajouter les variables d'environnements
+      #   working-directory: app
+      #   run: echo "${{ secrets.DEV_FLUTTER_ENV }}" | base64 --decode > env.json
+      # - name: 🐦 Installer Flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     cache: true
+      #     flutter-version-file: app/pubspec.yaml
+      # - name: 🧱 Construire l'application
+      #   working-directory: app
+      #   # Support the Cronet embedding dependency use `--dart-define=cronetHttpNoPlay=true` https://pub.dev/packages/cronet_http
+      #   run: flutter build appbundle --flavor development --dart-define-from-file env.json --dart-define=cronetHttpNoPlay=true --build-number  ${GITHUB_RUN_NUMBER}
+      # - name: 🗑️ Nettoyer les fichiers secrets
+      #   if: always()
+      #   run: rm -f app/android/app/agir.keystore app/android/key.properties app/android/app/google-services.json app/env.json

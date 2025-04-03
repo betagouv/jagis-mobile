@@ -17,16 +17,6 @@ android {
             version = "3.22.1" // [CMake default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android) 
         }
     }
-    splits {
-        abi {
-          isEnable = true
-          reset()
-          include("x86_64", "armeabi-v7a", "arm64-v8a")
-          isUniversalApk = false
-        }
-
-    }
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -84,10 +74,16 @@ android {
         release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // https://github.com/flutter/flutter/issues/32756#issuecomment-846705128
+            ndk {
+                abiFilters.clear()
+                abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86_64"))
+            }
         }
         debug {
             signingConfig = signingConfigs.getByName("debug")

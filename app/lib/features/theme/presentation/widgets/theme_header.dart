@@ -1,11 +1,13 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/svg.dart';
+import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ThemeHeader extends StatelessWidget {
   const ThemeHeader({super.key, required this.themeType, required this.themeSummary});
@@ -48,6 +50,7 @@ class ThemeHeader extends StatelessWidget {
                     backgroundColor: DsfrColors.blueFrance925,
                     foregroundColor: DsfrColors.blueFranceSun113,
                     icon: DsfrIcons.mapMapPin2Fill,
+                    onTap: () async => GoRouter.of(context).pushNamed(MonLogementPage.name),
                   ),
                 ],
               ),

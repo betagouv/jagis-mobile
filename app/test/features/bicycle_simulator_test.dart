@@ -84,6 +84,7 @@ void main() {
         await beforeEach('''Change price''');
         await bddSetUp(tester);
         await iTapOn(tester, 'Accéder au simulateur');
+        await iScrollDown(tester);
         await iTapOn(tester, 'Vélo pliant standard : 500 €');
         await iSee(tester, '500');
       } on TestFailure {

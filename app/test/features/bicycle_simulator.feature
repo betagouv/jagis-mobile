@@ -18,6 +18,7 @@ Feature: Assistance
 
   Scenario: Change price
     When I tap on {'Accéder au simulateur'}
+    When I scroll down
     When I tap on {'Vélo pliant standard : 500 €'}
     Then I see {'500'}
 

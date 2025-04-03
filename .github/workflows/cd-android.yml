@@ -44,7 +44,7 @@ jobs:
         # Support the Cronet embedding dependency use `--dart-define=cronetHttpNoPlay=true` https://pub.dev/packages/cronet_http
         run: flutter build appbundle --flavor ${{ inputs.FLAVOR }} --dart-define-from-file env.json --dart-define=cronetHttpNoPlay=true --build-number  ${GITHUB_RUN_NUMBER}
         env:
-           JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+          JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
       - name: 📦 Télécharger l'artéfact
         uses: actions/upload-artifact@v4
         with:

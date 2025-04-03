@@ -14,7 +14,7 @@ android {
     ndkVersion = "27.2.12479018" // [NDK default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android)  // flutter.ndkVersion
     externalNativeBuild {
         cmake {
-            version = "3.22.1" // [CMake default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android) 
+            version = "3.31.6" // [CMake default](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#android) 
         }
     }
 

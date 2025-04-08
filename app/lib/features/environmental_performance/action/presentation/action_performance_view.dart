@@ -1,4 +1,5 @@
 import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/infrastructure/action_questions_manager.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/actions/domain/action_type.dart';
@@ -7,7 +8,6 @@ import 'package:app/features/environmental_performance/action/presentation/actio
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
-import 'package:app/features/questions_manager/infrastructure/questions_manager.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +23,9 @@ class ActionPerformanceView extends StatelessWidget {
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: BlocProvider(
       create:
-          (final context) =>
-              QuestionsManagerBloc(application: QuestionsManager(client: context.read(), type: action.type, code: action.id))
-                ..add(const QuestionsManagerFirstQuestionRequested()),
+          (final context) => QuestionsManagerBloc(
+            application: ActionQuestionsManager(client: context.read(), type: action.type, code: action.id),
+          )..add(const QuestionsManagerFirstQuestionRequested()),
       child: _View(themeType: action.themeType, type: action.type, code: action.id),
     ),
   );

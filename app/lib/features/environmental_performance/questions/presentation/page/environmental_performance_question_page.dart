@@ -2,113 +2,89 @@ import 'package:app/core/navigation/extensions/go_router.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/progress_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
-import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_state.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
-import 'package:app/l10n/l10n.dart';
+import 'package:app/features/environmental_performance/questions/presentation/infrastructure/environmental_performance_questions_manager.dart';
+import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
+import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
+import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
+import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
+import 'package:app/features/questions_manager/presentation/questions_manager_question_view.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class EnvironmentalPerformanceQuestionPage extends StatelessWidget {
-  const EnvironmentalPerformanceQuestionPage({super.key, required this.number});
+  const EnvironmentalPerformanceQuestionPage({super.key, required this.categoryId});
 
   static const name = 'bilan-question';
-  static const path = '$name/:number';
+  static const path = '$name/:categoryId';
 
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
     builder:
-        (final context, final state) =>
-            EnvironmentalPerformanceQuestionPage(number: int.parse(state.pathParameters['number'] ?? '1')),
+        (final context, final state) => EnvironmentalPerformanceQuestionPage(
+          categoryId:
+              state.pathParameters['categoryId']
+              // FIXME(erolley): what if categoryId is null?
+              ??
+              '',
+        ),
   );
 
-  final int number;
-
-  @override
-  Widget build(final context) => _View(number: number);
-}
-
-class _View extends StatelessWidget {
-  const _View({required this.number});
-
-  final int number;
+  final String categoryId;
 
   @override
   Widget build(final context) => FnvScaffold(
     appBar: FnvAppBar(),
-    body: BlocBuilder<EnvironmentalPerformanceQuestionBloc, EnvironmentalPerformanceQuestionState>(
-      builder:
-          (final context, final state) => switch (state) {
-            EnvironmentalPerformanceQuestionInitial() => const SizedBox.shrink(),
-            EnvironmentalPerformanceQuestionLoadSuccess() => _LoadSuccess(state: state, number: number),
-            EnvironmentalPerformanceQuestionLoadFailure() => const Text('Erreur'),
-          },
+    body: BlocProvider(
+      create:
+          (final context) => QuestionsManagerBloc(
+            application: EnvironmentalPerformanceQuestionsManager(client: context.read(), categoryId: categoryId),
+          )..add(const QuestionsManagerFirstQuestionRequested()),
+      child: const _View(),
     ),
   );
 }
 
-class _LoadSuccess extends StatefulWidget {
-  const _LoadSuccess({required this.state, required this.number});
-
-  final EnvironmentalPerformanceQuestionLoadSuccess state;
-  final int number;
+class _View extends StatelessWidget {
+  const _View();
 
   @override
-  State<_LoadSuccess> createState() => _LoadSuccessState();
+  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+    builder:
+        (final context, final state) => switch (state) {
+          QuestionsManagerInitial() || QuestionManagerFinished() => const SizedBox.shrink(),
+          QuestionsManagerLoadSuccess() => _LoadSuccess(state),
+        },
+    listener: (final context, final state) {
+      if (state is QuestionManagerFinished) {
+        GoRouter.of(context).popUntilNamed<void>(EnvironmentalPerformanceSummaryPage.name);
+      }
+    },
+  );
 }
 
-class _LoadSuccessState extends State<_LoadSuccess> {
-  final _mieuxVousConnaitreController = QuestionController();
+class _LoadSuccess extends StatelessWidget {
+  const _LoadSuccess(this.state);
+
+  final QuestionsManagerLoadSuccess state;
 
   @override
-  void dispose() {
-    _mieuxVousConnaitreController.dispose();
-    super.dispose();
-  }
+  Widget build(final context) {
+    final cursor = state.cursor;
 
-  @override
-  Widget build(final context) => Column(
-    children: [
-      FnvProgressBar(current: widget.number, total: widget.state.questionIdList.length),
-      Expanded(
-        child: ListView(
-          padding: const EdgeInsets.all(paddingVerticalPage),
-          children: [
-            QuestionForm(
-              questionId: widget.state.questionIdList[widget.number - 1].value,
-              questionController: _mieuxVousConnaitreController,
-              onSaved: () async {
-                if (widget.number == widget.state.questionIdList.length) {
-                  GoRouter.of(context).popUntilNumber(widget.state.questionIdList.length + 1, result: true);
-
-                  return;
-                }
-                await GoRouter.of(
-                  context,
-                ).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'number': '${widget.number + 1}'});
-              },
-            ),
-            const SizedBox(height: DsfrSpacings.s3w),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: FittedBox(
-                child: DsfrButton(
-                  label: Localisation.continuer,
-                  variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.lg,
-                  onPressed: _mieuxVousConnaitreController.save,
-                ),
-              ),
-            ),
-            const SafeArea(child: SizedBox.shrink()),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s1v,
+      children: [
+        FnvProgressBar(current: cursor.index, total: cursor.elements.length),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+          child: QuestionsManagerQuestionView(key: ValueKey(cursor.element), cursor: cursor),
         ),
-      ),
-    ],
-  );
+        const SafeArea(child: SizedBox.shrink()),
+      ],
+    );
+  }
 }

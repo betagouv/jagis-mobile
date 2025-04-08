@@ -37,7 +37,7 @@ class EnvironmentalPerformanceCategories extends StatelessWidget {
                       );
                       await GoRouter.of(
                         context,
-                      ).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'number': '1'});
+                      ).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'categoryId': e.id});
 
                       if (!context.mounted) {
                         return;

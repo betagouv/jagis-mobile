@@ -96,6 +96,7 @@ class _Content extends StatelessWidget {
             if (!isUserFranceConnect) ...[
               const SizedBox(height: DsfrSpacings.s2w),
               FnvInputCalendar(
+                hintText: Localisation.dateDeNaissanceDescription,
                 label: Localisation.maDateDeNaissance,
                 onDateSelected: (final value) {
                   if (value == null) {

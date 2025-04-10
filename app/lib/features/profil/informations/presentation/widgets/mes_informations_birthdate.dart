@@ -14,6 +14,7 @@ class MesInformationsBirthdate extends StatelessWidget {
     final isNotUserFranceConnect = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isNotUserFranceConnect);
 
     return FnvInputCalendar(
+      hintText: Localisation.dateDeNaissanceDescription,
       label: Localisation.dateDeNaissance,
       initialValue: birthdate,
       onDateSelected: (final birthdate) {

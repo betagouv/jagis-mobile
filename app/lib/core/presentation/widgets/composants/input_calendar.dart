@@ -7,8 +7,16 @@ import 'package:intl/intl.dart';
 final _dateFormat = DateFormat('dd/MM/yyyy', 'fr_FR');
 
 class FnvInputCalendar extends StatefulWidget {
-  const FnvInputCalendar({super.key, required this.label, this.initialValue, required this.onDateSelected, this.enabled = true});
+  const FnvInputCalendar({
+    super.key,
+    this.hintText,
+    required this.label,
+    this.initialValue,
+    required this.onDateSelected,
+    this.enabled = true,
+  });
 
+  final String? hintText;
   final String label;
   final DateTime? initialValue;
   final ValueChanged<DateTime?> onDateSelected;
@@ -65,7 +73,13 @@ class _FnvInputCalendarState extends State<FnvInputCalendar> {
   Widget build(final BuildContext context) => GestureDetector(
     onTap: widget.enabled ? () async => _selectDate(context) : null,
     child: AbsorbPointer(
-      child: DsfrInput(label: widget.label, focusNode: _focusNode, controller: _controller, enabled: widget.enabled),
+      child: DsfrInput(
+        label: widget.label,
+        hintText: widget.hintText,
+        focusNode: _focusNode,
+        controller: _controller,
+        enabled: widget.enabled,
+      ),
     ),
   );
 }

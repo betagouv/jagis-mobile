@@ -3,8 +3,8 @@ import 'package:app/features/action/presentation/widgets/action_why_section_view
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
 import 'package:app/features/mes_aides_reno/presentation/mes_aides_reno_widget.dart';
 import 'package:app/features/services/maif/presentation/widgets/maif_widget.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionSimulatorView extends StatelessWidget {
   const ActionSimulatorView({super.key, required this.action});

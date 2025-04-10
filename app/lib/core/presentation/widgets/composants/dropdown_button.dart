@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/dropdown_button_raw.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvDropdown<T> extends StatelessWidget {
   const FnvDropdown({super.key, required this.items, required this.value, required this.onChanged});
@@ -21,7 +21,7 @@ class FnvDropdown<T> extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(entry.value, style: const DsfrTextStyle.bodyMd()),
+                child: Text(entry.value, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
               ),
             ),
           ),

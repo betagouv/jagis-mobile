@@ -7,9 +7,9 @@ import 'package:app/features/action_ask_question/presentation/bloc/action_ask_qu
 import 'package:app/features/action_ask_question/presentation/bloc/action_ask_question_state.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionAskQuestionPage extends StatelessWidget {
@@ -64,7 +64,7 @@ class _View extends StatelessWidget {
           bottom: DsfrSpacings.s4w,
         ),
         children: [
-          const Text(Localisation.posezVotreQuestion, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.posezVotreQuestion, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s2w),
           const Align(alignment: Alignment.centerLeft, child: FnvImage.asset(AssetImages.askQuestion, width: 156, height: 156)),
           const SizedBox(height: DsfrSpacings.s1w),

@@ -1,4 +1,0 @@
-analyzer:
-  errors:
-    included_file_warning: ignore
-include: package:jagis_lints/analysis_options.yaml

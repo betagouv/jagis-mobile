@@ -12,9 +12,9 @@ import 'package:app/features/know_your_customer/list/presentation/bloc/know_your
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -74,7 +74,7 @@ class _Success extends StatelessWidget {
       children: [
         const Padding(
           padding: padding,
-          child: Text(Localisation.lesCategories, style: DsfrTextStyle.headline4()),
+          child: Text(Localisation.lesCategories, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         Padding(

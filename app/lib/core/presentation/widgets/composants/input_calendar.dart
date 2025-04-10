@@ -1,11 +1,12 @@
 import 'package:clock/clock.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:intl/intl.dart';
 
 final _dateFormat = DateFormat('dd/MM/yyyy', 'fr_FR');
 
+// TODO(lsaudon): Remplacer avec le composant DsfrDateInput
 class FnvInputCalendar extends StatefulWidget {
   const FnvInputCalendar({
     super.key,
@@ -80,9 +81,9 @@ class _FnvInputCalendarState extends State<FnvInputCalendar> {
       child: DsfrInput(
         label: widget.label,
         hintText: widget.hintText,
-        focusNode: _focusNode,
         controller: _controller,
         enabled: widget.enabled,
+        focusNode: _focusNode,
       ),
     ),
   );

@@ -11,9 +11,9 @@ import 'package:app/features/onboarding/question_themes/presentation/bloc/questi
 import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_event.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionThemesPage extends StatelessWidget {
@@ -54,7 +54,7 @@ class _View extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: OnboardingIllustration(assetName: AssetImages.illustration4),
         ),
-        const Text(Localisation.cestPresqueTermine, style: DsfrTextStyle.headline2()),
+        const Text(Localisation.cestPresqueTermine, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         const _Question(),
       ],
@@ -75,7 +75,7 @@ class _Question extends StatelessWidget {
         : Column(
             spacing: DsfrSpacings.s3w,
             children: [
-              Text(question.label, style: const DsfrTextStyle.bodyLg()),
+              Text(question.label, style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
               FnvCheckboxSet(
                 options: question.responses.map((final e) => e.label).toList(),
                 selectedOptions: question.responses.where((final e) => e.isSelected).map((final e) => e.label).toList(),

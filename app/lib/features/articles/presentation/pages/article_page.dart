@@ -8,9 +8,9 @@ import 'package:app/features/articles/domain/article.dart';
 import 'package:app/features/articles/presentation/bloc/article_bloc.dart';
 import 'package:app/features/articles/presentation/bloc/article_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -65,10 +65,10 @@ class _Content extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(article.titre, style: const DsfrTextStyle.headline2()),
+                Text(article.titre, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
                 if (article.sousTitre != null && article.sousTitre!.isNotEmpty) ...[
                   const SizedBox(height: DsfrSpacings.s2w),
-                  Text(article.sousTitre!, style: const DsfrTextStyle.headline6()),
+                  Text(article.sousTitre!, style: const DsfrTextStyle.headline6(color: DsfrColors.grey50)),
                 ],
                 const SizedBox(height: DsfrSpacings.s2w),
                 FnvHtmlWidget(article.contenu),
@@ -84,6 +84,7 @@ class _Content extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (article.partner != null) ...[
                     Row(
@@ -101,7 +102,7 @@ class _Content extends StatelessWidget {
                               ),
                               Text(
                                 article.partner!.name,
-                                style: const DsfrTextStyle.bodyXlBold(),
+                                style: const DsfrTextStyle.bodyXlBold(color: DsfrColors.grey50),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ],

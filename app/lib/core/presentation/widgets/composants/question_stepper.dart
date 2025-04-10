@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class QuestionStepper extends StatelessWidget {
   const QuestionStepper({super.key, required this.current, required this.total});

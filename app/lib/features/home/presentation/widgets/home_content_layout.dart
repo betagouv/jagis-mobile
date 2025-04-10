@@ -12,9 +12,9 @@ import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class HomeContentLayout extends StatelessWidget {
   const HomeContentLayout({super.key});
@@ -108,7 +108,11 @@ class _WhichDomainButtonsSection extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     spacing: DsfrSpacings.s3w,
     children: [
-      const Text(Localisation.dansQuelDomaineSouhaitezVousAgir, style: DsfrTextStyle.bodyXlMedium(), textAlign: TextAlign.center),
+      const Text(
+        Localisation.dansQuelDomaineSouhaitezVousAgir,
+        style: DsfrTextStyle.bodyXlMedium(color: DsfrColors.grey50),
+        textAlign: TextAlign.center,
+      ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: GridView(

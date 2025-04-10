@@ -11,9 +11,9 @@ import 'package:app/core/presentation/widgets/fondamentaux/tab_indicator.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/domain/plant.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/bloc/seasonal_fruits_and_vegetables_bloc.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class SeasonalFruitsAndVegetablesPage extends StatelessWidget {
@@ -84,7 +84,7 @@ class _Success extends StatelessWidget {
             dividerHeight: 0,
             labelStyle: DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),
             labelPadding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s1w),
-            unselectedLabelStyle: DsfrTextStyle.bodyLg(),
+            unselectedLabelStyle: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
           ),
         ),
         Expanded(
@@ -192,7 +192,7 @@ class _Section extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(title, style: const DsfrTextStyle.headline4()),
+      Text(title, style: const DsfrTextStyle.headline4(color: DsfrColors.grey50)),
       Text(subtitle, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey425)),
       const SizedBox(height: DsfrSpacings.s3w),
       ...items.map(
@@ -205,7 +205,11 @@ class _Section extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Text(e.title, style: const DsfrTextStyle.bodyMd(), overflow: TextOverflow.ellipsis),
+                    child: Text(
+                      e.title,
+                      style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   FnvImage.network(e.imageUrl, width: 24, height: 24),
                 ],

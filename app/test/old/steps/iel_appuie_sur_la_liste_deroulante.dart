@@ -1,4 +1,4 @@
-import 'package:dsfr/dsfr.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Iel appuie sur la liste déroulante.

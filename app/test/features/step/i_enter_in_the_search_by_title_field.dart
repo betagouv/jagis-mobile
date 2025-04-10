@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
-import 'i_enter_in_the_field.dart';
+import 'i_enter_in_the_search_bar.dart';
 
 /// Usage: I enter {'vêtements'} in the search by title field
 Future<void> iEnterInTheSearchByTitleField(final WidgetTester tester, final String text) async {
@@ -36,6 +36,6 @@ Future<void> iEnterInTheSearchByTitleField(final WidgetTester tester, final Stri
       ],
     },
   );
-  await iEnterInTheField(tester, text, Localisation.rechercherParTitre);
+  await iEnterInTheSearchBar(tester, text, Localisation.rechercherParTitre);
   await tester.pumpAndSettle(Durations.long2);
 }

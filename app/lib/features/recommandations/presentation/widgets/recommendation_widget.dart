@@ -1,8 +1,8 @@
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RecommendationWidget extends StatefulWidget {
@@ -41,7 +41,7 @@ class _RecommendationWidgetState extends State<RecommendationWidget> with Materi
               FnvImage.network(widget.imageUrl!, width: width, height: width * 0.6, fit: BoxFit.cover),
             Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
-              child: Text(widget.titre, style: const DsfrTextStyle.bodyMdBold()),
+              child: Text(widget.titre, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
             ),
           ],
         ),

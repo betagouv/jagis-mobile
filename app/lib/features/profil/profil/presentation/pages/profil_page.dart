@@ -9,8 +9,8 @@ import 'package:app/features/profil/informations/presentation/pages/mes_informat
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfilPage extends StatelessWidget {
@@ -137,7 +137,9 @@ class _MenuElement extends StatelessWidget {
           spacing: DsfrSpacings.s1w,
           children: [
             Icon(icon, color: iconColor),
-            Expanded(child: Text(label, style: const DsfrTextStyle.bodyMdMedium())),
+            Expanded(
+              child: Text(label, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50)),
+            ),
             Icon(iconRight, color: iconColor),
           ],
         ),

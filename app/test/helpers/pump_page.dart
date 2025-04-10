@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -19,32 +20,35 @@ Future<void> pumpPage({
   final Map<String, String>? routes,
 }) async {
   DeviceInfo.setup(tester);
-  Widget widget = MaterialApp.router(
-    routerConfig:
-        router ??
-        GoRouter(
-          routes: [
-            GoRoute(
-              path: '/',
-              builder: (final context, final state) => const Text('pop'),
-              routes: [
-                page!,
-                ?realRoutes,
-                if (realRoutes == null)
-                  ...?routes?.entries.map(
-                    (final e) =>
-                        GoRoute(path: e.value, name: e.key, builder: (final context, final state) => Text('route: ${e.key}')),
-                  ),
-              ],
-            ),
-          ],
-          initialLocation: '/${page.path}',
-        ),
-    localizationsDelegates: const [
-      GlobalCupertinoLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-    ],
+  Widget widget = DsfrThemeModeProvider.withBuilder(
+    isLightMode: true,
+    builder: (final context) => MaterialApp.router(
+      routerConfig:
+          router ??
+          GoRouter(
+            routes: [
+              GoRoute(
+                path: '/',
+                builder: (final context, final state) => const Text('pop'),
+                routes: [
+                  page!,
+                  ?realRoutes,
+                  if (realRoutes == null)
+                    ...?routes?.entries.map(
+                      (final e) =>
+                          GoRoute(path: e.value, name: e.key, builder: (final context, final state) => Text('route: ${e.key}')),
+                    ),
+                ],
+              ),
+            ],
+            initialLocation: '/${page.path}',
+          ),
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+    ),
   );
 
   if (blocProviders.isNotEmpty) {

@@ -1,6 +1,6 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 
@@ -25,7 +25,7 @@ class ActionMarkdownHeading extends FNVHTag {
     }
 
     final theme = GptMarkdownTheme.of(context);
-    const dsfrTextStyle = DsfrTextStyle.headline3();
+    const dsfrTextStyle = DsfrTextStyle.headline3(color: DsfrColors.grey50);
     final conf = config.copyWith(
       style: [
         dsfrTextStyle,

@@ -8,9 +8,9 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_stat
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:collection/collection.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementDpe extends StatelessWidget {
   const MonLogementDpe({super.key});
@@ -57,10 +57,12 @@ class _FnvDpeState extends State<_FnvDpe> {
     _value = widget.initialValue;
   }
 
-  void _handleChange(final Dpe? value) => setState(() {
-    _value = value;
+  void _handleChange(final Dpe? value) {
+    setState(() {
+      _value = value;
+    });
     widget.onChanged(_value);
-  });
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -125,7 +127,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
   Widget build(final BuildContext context) {
     Widget customPaint = Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
-      child: Text(label, style: const DsfrTextStyle.bodyMdBold()),
+      child: Text(label, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
     );
 
     if (color != null) {
@@ -146,7 +148,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
         child: Row(
           spacing: DsfrSpacings.s1w,
           children: [
-            RadioIcon(key: ValueKey(label), value: value, groupValue: groupValue),
+            DsfrRadioIcon(key: ValueKey(label), value: value, groupValue: groupValue, size: 24),
             Expanded(child: customPaint),
           ],
         ),

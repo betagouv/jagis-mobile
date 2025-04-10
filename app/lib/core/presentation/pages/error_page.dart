@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class ErrorScreen extends StatefulWidget {
@@ -72,22 +72,28 @@ class _ErrorScreenState extends State<ErrorScreen> {
         padding: MediaQuery.paddingOf(context).copyWith(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w),
         children: [
           const SizedBox(height: DsfrSpacings.s2w),
-          const Text(Localisation.erreurInattendue, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.erreurInattendue, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s4w),
-          const Text(Localisation.erreurInattendueContent, style: DsfrTextStyle.bodyXl()),
+          const Text(Localisation.erreurInattendueContent, style: DsfrTextStyle.bodyXl(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s4w),
-          Text("Nom de l'application: ${widget.packageInfo.appName}", style: const DsfrTextStyle.bodyMd()),
+          Text(
+            "Nom de l'application: ${widget.packageInfo.appName}",
+            style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+          ),
           const SizedBox(height: DsfrSpacings.s1w),
           Text(
             "Version de l'application: ${widget.packageInfo.version}+${widget.packageInfo.buildNumber}",
-            style: const DsfrTextStyle.bodyMd(),
+            style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
           ),
           const SizedBox(height: DsfrSpacings.s1w),
-          Text('Magasin: ${widget.packageInfo.installerStore ?? 'inconnu'}', style: const DsfrTextStyle.bodyMd()),
+          Text(
+            'Magasin: ${widget.packageInfo.installerStore ?? 'inconnu'}',
+            style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+          ),
           const SizedBox(height: DsfrSpacings.s1w),
-          Text('Modèle: ${_deviceData.model}', style: const DsfrTextStyle.bodyMd()),
+          Text('Modèle: ${_deviceData.model}', style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1w),
-          Text('Version OS: ${_deviceData.version}', style: const DsfrTextStyle.bodyMd()),
+          Text('Version OS: ${_deviceData.version}', style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
         ],
       ),
     ),

@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvTag extends StatefulWidget {
   const FnvTag({super.key, required this.label, required this.selected, required this.onTap});

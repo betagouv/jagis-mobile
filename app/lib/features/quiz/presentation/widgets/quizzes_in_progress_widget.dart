@@ -1,5 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
+import 'package:app/core/presentation/widgets/composants/radios/radio_button_group.dart';
 import 'package:app/core/source/sources_widget.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_bloc.dart';
@@ -10,9 +11,9 @@ import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_event.dart';
 import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_state.dart';
 import 'package:app/features/quiz/presentation/widgets/panel.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class QuizzesInProgressWidget extends StatelessWidget {
   const QuizzesInProgressWidget({super.key, required this.inProgressState});
@@ -57,28 +58,24 @@ class _QuestionView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s4w,
       children: [
-        Text(state.quiz.question, style: const DsfrTextStyle.headline2()),
+        Text(state.quiz.question, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         if (state.isCorrect == null) _Form(responses: state.quiz.responses) else _Result(quizQuestionState: state),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: FittedBox(
-            child: state.isCorrect == null
-                ? DsfrButton(
-                    label: Localisation.voirLaReponse,
-                    variant: DsfrButtonVariant.primary,
-                    size: DsfrComponentSize.lg,
-                    onPressed: state.selectedResponse == null
-                        ? null
-                        : () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
-                  )
-                : DsfrButton(
-                    label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,
-                    variant: DsfrButtonVariant.primary,
-                    size: DsfrComponentSize.lg,
-                    onPressed: () => context.read<QuizzesBloc>().add(const QuizzesNextQuestion()),
-                  ),
+        if (state.isCorrect == null)
+          DsfrButton(
+            label: Localisation.voirLaReponse,
+            variant: DsfrButtonVariant.primary,
+            size: DsfrComponentSize.lg,
+            onPressed: state.selectedResponse == null
+                ? null
+                : () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
+          )
+        else
+          DsfrButton(
+            label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,
+            variant: DsfrButtonVariant.primary,
+            size: DsfrComponentSize.lg,
+            onPressed: () => context.read<QuizzesBloc>().add(const QuizzesNextQuestion()),
           ),
-        ),
       ],
     ),
   );
@@ -90,8 +87,7 @@ class _Form extends StatelessWidget {
   final List<QuizResponse> responses;
 
   @override
-  Widget build(final BuildContext context) => DsfrRadioButtonGroupHeadless(
-    mode: DsfrRadioButtonSetMode.column,
+  Widget build(final BuildContext context) => FnvRadioButtonGroup(
     values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, e))),
     onChanged: (final value) {
       if (value == null) {
@@ -99,6 +95,8 @@ class _Form extends StatelessWidget {
       }
       context.read<QuizQuestionBloc>().add(QuizQuestionResponseSelected(value));
     },
+    direction: Direction.vertical,
+    size: DsfrComponentSize.md,
   );
 }
 
@@ -135,8 +133,13 @@ class _ResultText extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           text: Localisation.votreReponse(isCorrect),
-          style: const DsfrTextStyle.bodyLg(),
-          children: [TextSpan(text: response, style: const DsfrTextStyle.bodyLgBold())],
+          style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+          children: [
+            TextSpan(
+              text: response,
+              style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50),
+            ),
+          ],
         ),
       ),
     );
@@ -153,7 +156,7 @@ class _Response extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(Localisation.reponse, style: DsfrTextStyle.headline3()),
+        const Text(Localisation.reponse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s1v5),
         FnvHtmlWidget(quizQuestionState.explanation),
         if (quizQuestionState.quiz.sources.isNotEmpty) ...[

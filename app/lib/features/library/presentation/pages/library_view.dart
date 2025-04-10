@@ -9,9 +9,9 @@ import 'package:app/features/library/presentation/pages/library_content.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class LibraryView extends StatelessWidget {
   const LibraryView({super.key});
@@ -19,6 +19,7 @@ class LibraryView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     const padding = paddingVerticalPage;
+    final textEditingController = TextEditingController();
 
     return CustomScrollView(
       primary: true,
@@ -30,7 +31,13 @@ class LibraryView extends StatelessWidget {
             children: [
               const FnvTitle(title: Localisation.bibliotheque, subtitle: Localisation.bibliothequeSousTitre),
               const SizedBox(height: DsfrSpacings.s3w),
-              DsfrSearchBar(onChanged: (final value) => context.read<LibraryBloc>().add(LibrarySearchEntered(value))),
+              DsfrSearchBar(
+                hintText: Localisation.rechercherParTitre,
+                onSearch: () {
+                  context.read<LibraryBloc>().add(LibrarySearchEntered(textEditingController.text));
+                },
+                controller: textEditingController,
+              ),
               const SizedBox(height: DsfrSpacings.s1w),
               const _Thematiques(),
               const SizedBox(height: DsfrSpacings.s1w),
@@ -108,7 +115,7 @@ class _Nombre extends StatelessWidget {
   Widget build(final BuildContext context) {
     final nombreArticle = context.select<LibraryBloc, int>((final value) => value.state.library.contents.length);
 
-    return Text(Localisation.nombreArticle(nombreArticle), style: const DsfrTextStyle.bodyLgBold());
+    return Text(Localisation.nombreArticle(nombreArticle), style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50));
   }
 }
 
@@ -126,7 +133,7 @@ class _SliverListe extends StatelessWidget {
               spacing: DsfrSpacings.s3w,
               children: [
                 FnvSvg.asset(AssetImages.bibliothequeEmpty),
-                const Text(Localisation.bibliothequeAucunArticle, style: DsfrTextStyle.headline4()),
+                const Text(Localisation.bibliothequeAucunArticle, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
               ],
             ),
           )

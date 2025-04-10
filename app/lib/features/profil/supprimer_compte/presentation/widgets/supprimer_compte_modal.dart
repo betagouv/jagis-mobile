@@ -1,6 +1,6 @@
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class SupprimerCompteModal extends StatelessWidget {
@@ -11,10 +11,13 @@ class SupprimerCompteModal extends StatelessWidget {
     mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      const Text(Localisation.supprimerVotreCompteConfirmation, style: DsfrTextStyle.headline4()),
+      const Text(Localisation.supprimerVotreCompteConfirmation, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
       const SizedBox(height: DsfrSpacings.s2w),
-      const Text(Localisation.supprimerVotreCompteContenu, style: DsfrTextStyle.bodyMd()),
-      const Text(Localisation.attentionAucuneDonneeNePourraEtreRecuperee, style: DsfrTextStyle.bodyMdBold()),
+      const Text(Localisation.supprimerVotreCompteContenu, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+      const Text(
+        Localisation.attentionAucuneDonneeNePourraEtreRecuperee,
+        style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+      ),
       const SizedBox(height: DsfrSpacings.s4w),
       DsfrButton(
         label: Localisation.confirmer,

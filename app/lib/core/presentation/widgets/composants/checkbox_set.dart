@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvCheckboxSet extends StatefulWidget {
   const FnvCheckboxSet({super.key, required this.options, required this.selectedOptions, required this.onChanged});
@@ -79,7 +79,12 @@ class _FnvCheckboxSetState extends State<FnvCheckboxSet> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(DsfrSpacings.s2w),
-                child: DsfrCheckbox.md(label: option, value: _selectedOptions.contains(option)),
+                child: DsfrCheckbox(
+                  label: option,
+                  size: DsfrComponentSize.md,
+                  value: _selectedOptions.contains(option),
+                  onChanged: null,
+                ),
               ),
             ),
           ),

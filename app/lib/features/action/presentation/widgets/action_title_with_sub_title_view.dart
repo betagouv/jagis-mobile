@@ -1,7 +1,7 @@
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionTitleWithSubTitleView extends StatelessWidget {
   const ActionTitleWithSubTitleView({super.key, required this.title, required this.subTitle, required this.type});
@@ -26,7 +26,11 @@ class ActionTitleWithSubTitleView extends StatelessWidget {
       spacing: DsfrSpacings.s3v,
       children: [
         FnvMarkdown(data: fullTitle, p: const DsfrTextStyle(fontSize: 28)),
-        if (subTitle != null) FnvMarkdown(data: subTitle!, p: const DsfrTextStyle.bodyLg()),
+        if (subTitle != null)
+          FnvMarkdown(
+            data: subTitle!,
+            p: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+          ),
       ],
     );
   }

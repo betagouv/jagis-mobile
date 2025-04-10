@@ -15,9 +15,9 @@ import 'package:app/features/aids/item/presentation/bloc/aid_state.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_page.dart';
 import 'package:app/features/theme/presentation/widgets/theme_type_tag.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AidPage extends StatelessWidget {
@@ -107,17 +107,18 @@ class _AidPageContent extends StatelessWidget {
         child: ThemeTypeTag(themeType: aid.themeType),
       ),
       const SizedBox(height: DsfrSpacings.s2w),
-      Text(aid.title, style: const DsfrTextStyle.headline2()),
+      Text(aid.title, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
       if (aid.hasSimulator || aid.maxAmount != null) ...[
         const SizedBox(height: DsfrSpacings.s1w),
         Wrap(
           spacing: DsfrSpacings.s1w,
           children: [
             if (aid.maxAmount != null)
-              DsfrTag.sm(
-                label: TextSpan(text: '${Localisation.jusqua}${formatCurrencyWithSymbol(aid.maxAmount)}'),
+              DsfrTag(
+                label: '${Localisation.jusqua}${formatCurrencyWithSymbol(aid.maxAmount)}',
+                size: DsfrComponentSize.sm,
                 backgroundColor: DsfrColors.purpleGlycine925Hover,
-                foregroundColor: const Color(0xFF432636),
+                textColor: const Color(0xFF432636),
               ),
             if (aid.hasSimulator) const SimulatorTag(),
           ],

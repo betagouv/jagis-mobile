@@ -3,8 +3,8 @@ import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class PartnerCard extends StatelessWidget {
   const PartnerCard({
@@ -37,11 +37,11 @@ class PartnerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(Localisation.proposePar, style: DsfrTextStyle.bodySmItalic(color: DsfrColors.blueFranceSun113)),
-              Text(name, style: const DsfrTextStyle.headline5()),
+              Text(name, style: const DsfrTextStyle.headline5(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s2w),
-              Text(description, style: const DsfrTextStyle.bodySm()),
+              Text(description, style: const DsfrTextStyle.bodySm(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s2w),
-              DsfrLink.md(
+              DsfrLink(
                 label: url,
                 onTap: () async {
                   await FnvUrlLauncher.launch(url);

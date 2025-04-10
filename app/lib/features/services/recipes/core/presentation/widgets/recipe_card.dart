@@ -4,8 +4,8 @@ import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/services/recipes/core/presentation/widgets/estimaded_timed_info.dart';
 import 'package:app/features/services/recipes/core/presentation/widgets/recipe_difficulty.dart';
 import 'package:app/features/services/recipes/item/presentation/pages/recipe_page.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RecipeCard extends StatelessWidget {
@@ -42,7 +42,7 @@ class RecipeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: DsfrSpacings.s1w,
               children: [
-                Text(title, style: const DsfrTextStyle.bodyLgBold(), maxLines: 3),
+                Text(title, style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50), maxLines: 3),
                 Row(
                   spacing: DsfrSpacings.s1w,
                   children: [

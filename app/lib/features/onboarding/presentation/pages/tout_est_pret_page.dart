@@ -8,9 +8,9 @@ import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ToutEstPretPage extends StatelessWidget {
@@ -25,8 +25,8 @@ class ToutEstPretPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     const blueFranceSun113 = DsfrColors.blueFranceSun113;
 
-    const bodyLg = DsfrTextStyle.bodyLg();
-    const bodyLgBold = DsfrTextStyle.bodyLgBold();
+    const bodyLg = DsfrTextStyle.bodyLg(color: DsfrColors.grey50);
+    const bodyLgBold = DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50);
 
     final arrow = TextSpan(
       text: '→ ',
@@ -45,7 +45,7 @@ class ToutEstPretPage extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: OnboardingIllustration(assetName: AssetImages.illustration5),
           ),
-          const Text(Localisation.toutEstPret, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.toutEstPret, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s2w),
           Text.rich(
             TextSpan(

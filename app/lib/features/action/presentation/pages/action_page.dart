@@ -15,9 +15,9 @@ import 'package:app/features/action/presentation/widgets/action_simulator_view.d
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionPage extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:app/core/infrastructure/image_viewer.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 
@@ -10,10 +10,10 @@ class FnvMarkdown extends StatelessWidget {
   const FnvMarkdown({
     super.key,
     required this.data,
-    this.h1 = const DsfrTextStyle.headline4(),
-    this.h2 = const DsfrTextStyle.headline4(),
-    this.h3 = const DsfrTextStyle.headline5(),
-    this.p = const DsfrTextStyle.bodyMd(),
+    this.h1 = const DsfrTextStyle.headline4(color: DsfrColors.grey50),
+    this.h2 = const DsfrTextStyle.headline4(color: DsfrColors.grey50),
+    this.h3 = const DsfrTextStyle.headline5(color: DsfrColors.grey50),
+    this.p = const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
     this.strong,
     this.hTag,
     this.overflow,
@@ -125,7 +125,7 @@ class _ATagMd extends ATagMd {
     final url = match?[2] ?? '';
 
     return WidgetSpan(
-      child: DsfrLink.md(
+      child: DsfrLink(
         label: linkText,
         onTap: () {
           config.onLinkTab?.call(url, linkText);

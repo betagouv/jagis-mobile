@@ -10,9 +10,9 @@ import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/service_card.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 final themeRouteObserver = RouteObserver<ModalRoute<dynamic>>();
@@ -114,7 +114,7 @@ class _Services extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      const Text(Localisation.mesServices, style: DsfrTextStyle.headline4()),
+      const Text(Localisation.mesServices, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         clipBehavior: Clip.none,
@@ -137,16 +137,18 @@ class _ActionCatalog extends StatelessWidget {
     spacing: DsfrSpacings.s3w,
     children: [
       const FnvImage.asset(AssetImages.actions, height: 80),
-      const Text(Localisation.envieDeVoirOuRevoirToutesLesActions, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
-      FittedBox(
-        child: DsfrButton(
-          label: Localisation.accederAuCatalogue,
-          variant: DsfrButtonVariant.secondary,
-          size: DsfrComponentSize.lg,
-          onPressed: () async {
-            await GoRouter.of(context).pushNamed(ActionsPage.name);
-          },
-        ),
+      const Text(
+        Localisation.envieDeVoirOuRevoirToutesLesActions,
+        style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+        textAlign: TextAlign.center,
+      ),
+      DsfrButton(
+        label: Localisation.accederAuCatalogue,
+        variant: DsfrButtonVariant.secondary,
+        size: DsfrComponentSize.lg,
+        onPressed: () async {
+          await GoRouter.of(context).pushNamed(ActionsPage.name);
+        },
       ),
     ],
   );

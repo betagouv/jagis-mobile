@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class AchievementBase extends StatelessWidget {
   const AchievementBase({super.key, required this.value, required this.icon, required this.backgroundColor});
@@ -18,7 +18,7 @@ class AchievementBase extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           spacing: DsfrSpacings.s1v,
           children: [
-            Text('$value', style: const DsfrTextStyle.bodySmBold()),
+            Text('$value', style: const DsfrTextStyle.bodySmBold(color: DsfrColors.grey50)),
             ExcludeSemantics(child: icon),
           ],
         ),

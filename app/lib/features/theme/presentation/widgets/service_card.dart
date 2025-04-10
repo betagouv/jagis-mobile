@@ -9,8 +9,8 @@ import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_lis
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ServiceCard extends StatelessWidget {

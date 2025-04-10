@@ -2,8 +2,8 @@ import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
 import 'package:app/features/ranking/domain/user_rank.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class RankItem extends StatelessWidget {
   const RankItem({super.key, required this.userRank, required this.isCurrentUser});
@@ -29,7 +29,11 @@ class RankItem extends StatelessWidget {
           spacing: DsfrSpacings.s1w,
           children: [
             _RankDisplay(rank: userRank.rank),
-            Expanded(child: pseudo == null ? const SizedBox.shrink() : Text(pseudo, style: const DsfrTextStyle.bodyMdBold())),
+            Expanded(
+              child: pseudo == null
+                  ? const SizedBox.shrink()
+                  : Text(pseudo, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+            ),
             PointsWidget(points: userRank.points, backgroundColor: FnvColors.carteFond),
           ],
         ),
@@ -48,22 +52,22 @@ class _RankDisplay extends StatelessWidget {
     1 => const _Rank(
       backgroundColor: Color(0xFFFEFBDB),
       borderColor: Color(0xFFFAE5B6),
-      child: Text('🥇', style: DsfrTextStyle.headline4()),
+      child: Text('🥇', style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
     ),
     2 => const _Rank(
       backgroundColor: Color(0xFFFAFAFA),
       borderColor: Color(0xFFE3E3E3),
-      child: Text('🥈', style: DsfrTextStyle.headline4()),
+      child: Text('🥈', style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
     ),
     3 => const _Rank(
       backgroundColor: Color(0xFFFEECD9),
       borderColor: Color(0xFFE7B6AD),
-      child: Text('🥉', style: DsfrTextStyle.headline4()),
+      child: Text('🥉', style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
     ),
     _ => _Rank(
       backgroundColor: Colors.white,
       borderColor: DsfrColors.grey975Active,
-      child: Text(rank.toString(), style: const DsfrTextStyle.bodyMdBold()),
+      child: Text(rank.toString(), style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
     ),
   };
 }

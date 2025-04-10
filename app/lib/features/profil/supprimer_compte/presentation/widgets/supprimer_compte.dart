@@ -5,9 +5,9 @@ import 'package:app/features/profil/supprimer_compte/presentation/bloc/supprimer
 import 'package:app/features/profil/supprimer_compte/presentation/bloc/supprimer_compte_event.dart';
 import 'package:app/features/profil/supprimer_compte/presentation/widgets/supprimer_compte_modal.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class SupprimerCompte extends StatelessWidget {
   const SupprimerCompte({super.key});
@@ -54,7 +54,7 @@ class SupprimerCompte extends StatelessWidget {
           size: DsfrComponentSize.lg,
           onPressed: () async {
             final bloc = SupprimerCompteBloc(authentificationRepository: context.read(), profilRepository: context.read());
-            final result = await DsfrModal.showModalBottom<bool>(
+            final result = await DsfrModal.showModal<bool>(
               context: context,
               builder: (final context) => const SupprimerCompteModal(),
               name: 'supprimer-compte',

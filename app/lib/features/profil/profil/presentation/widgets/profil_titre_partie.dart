@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ProfilTitrePartie extends StatelessWidget {
   const ProfilTitrePartie({super.key, required this.titre});
@@ -7,5 +7,5 @@ class ProfilTitrePartie extends StatelessWidget {
   final String titre;
 
   @override
-  Widget build(final BuildContext context) => Text(titre, style: const DsfrTextStyle.headline4());
+  Widget build(final BuildContext context) => Text(titre, style: const DsfrTextStyle.headline4(color: DsfrColors.grey50));
 }

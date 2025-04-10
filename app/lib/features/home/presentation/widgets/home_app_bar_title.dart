@@ -1,8 +1,8 @@
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class HomeAppBarTitle extends StatelessWidget {
   const HomeAppBarTitle({super.key});
@@ -11,7 +11,7 @@ class HomeAppBarTitle extends StatelessWidget {
   Widget build(final BuildContext context) {
     final value = context.select<UserBloc, String?>((final bloc) => bloc.state.user?.pseudonym);
 
-    const font = DsfrTextStyle.bodyMd();
+    const font = DsfrTextStyle.bodyMd(color: DsfrColors.grey50);
     if (value == null || value.isEmpty) {
       return Text(Localisation.bonjour, style: font.copyWith(fontWeight: FontWeight.bold));
     }

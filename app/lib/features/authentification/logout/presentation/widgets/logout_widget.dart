@@ -1,9 +1,9 @@
 import 'package:app/features/authentification/logout/presentation/bloc/logout_bloc.dart';
 import 'package:app/features/authentification/logout/presentation/bloc/logout_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class LogoutWidget extends StatelessWidget {
   const LogoutWidget({super.key});
@@ -23,7 +23,7 @@ class _Part extends StatelessWidget {
     alignment: Alignment.centerLeft,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-      child: DsfrLink.md(
+      child: DsfrLink(
         label: Localisation.seDeconnecter,
         onTap: () {
           context.read<LogoutBloc>().add(const LogoutRequested());

@@ -5,8 +5,8 @@ import 'package:app/features/environmental_performance/summary/presentation/widg
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_card.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_categories.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class BodyPartial extends StatelessWidget {
   const BodyPartial({super.key, required this.data});
@@ -25,7 +25,10 @@ class BodyPartial extends StatelessWidget {
       if (data.partialData != null) ...[
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-          child: Text(EnvironmentalPerformanceSummaryL10n.maPremiereEstimation, style: DsfrTextStyle.headline4()),
+          child: Text(
+            EnvironmentalPerformanceSummaryL10n.maPremiereEstimation,
+            style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s3v),
         Padding(
@@ -39,8 +42,14 @@ class BodyPartial extends StatelessWidget {
         child: Text.rich(
           TextSpan(
             children: [
-              const TextSpan(text: EnvironmentalPerformanceSummaryL10n.etincelles, style: DsfrTextStyle.headline4()),
-              const TextSpan(text: ' ${EnvironmentalPerformanceSummaryL10n.estimationCompleteA} ', style: DsfrTextStyle.bodyMd()),
+              const TextSpan(
+                text: EnvironmentalPerformanceSummaryL10n.etincelles,
+                style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+              ),
+              const TextSpan(
+                text: ' ${EnvironmentalPerformanceSummaryL10n.estimationCompleteA} ',
+                style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+              ),
               TextSpan(
                 text: '${data.percentageCompletion}%',
                 style: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
@@ -55,8 +64,14 @@ class BodyPartial extends StatelessWidget {
         child: Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: EnvironmentalPerformanceSummaryL10n.affiner, style: DsfrTextStyle.headline4()),
-              TextSpan(text: ' ', style: DsfrTextStyle.headline4()),
+              TextSpan(
+                text: EnvironmentalPerformanceSummaryL10n.affiner,
+                style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+              ),
+              TextSpan(
+                text: ' ',
+                style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+              ),
               TextSpan(
                 text: EnvironmentalPerformanceSummaryL10n.monEstimation,
                 style: DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113),
@@ -68,7 +83,10 @@ class BodyPartial extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s1v5),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: Text(EnvironmentalPerformanceSummaryL10n.affinerMonEstimationSousTitre, style: DsfrTextStyle.bodyMd()),
+        child: Text(
+          EnvironmentalPerformanceSummaryL10n.affinerMonEstimationSousTitre,
+          style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+        ),
       ),
       const SizedBox(height: DsfrSpacings.s3v),
       Padding(

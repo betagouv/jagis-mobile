@@ -1,4 +1,5 @@
 import 'package:app/core/helpers/number_format.dart';
+import 'package:app/core/presentation/widgets/composants/app_tag.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
@@ -12,9 +13,9 @@ import 'package:app/features/car_simulator/presentation/car_simulator_result/blo
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class CarSimulatorResult extends StatelessWidget {
   const CarSimulatorResult({super.key});
@@ -122,7 +123,10 @@ class _BestCarOptionView extends StatelessWidget {
       Text.rich(
         TextSpan(
           children: [
-            const TextSpan(text: Localisation.lesMeilleuresAlternativesPourLeGabarit, style: DsfrTextStyle.headline2()),
+            const TextSpan(
+              text: Localisation.lesMeilleuresAlternativesPourLeGabarit,
+              style: DsfrTextStyle.headline2(color: DsfrColors.grey50),
+            ),
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
@@ -199,13 +203,13 @@ class _CarSimulatorOptionView extends StatelessWidget {
                 Text(switch (kind) {
                   CarSimulatorOptionKind.bestCost => Localisation.vousAvezDejaLOptionLaPlusEconomique,
                   CarSimulatorOptionKind.bestEmission => Localisation.vousAvezDejaLOptionLaPlusEcologique,
-                }, style: const DsfrTextStyle.headline5())
+                }, style: const DsfrTextStyle.headline5(color: DsfrColors.grey50))
               else ...[
-                Text(option.title, style: const DsfrTextStyle.headline4()),
+                Text(option.title, style: const DsfrTextStyle.headline4(color: DsfrColors.grey50)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+                    const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                     Row(
                       spacing: DsfrSpacings.s1w,
                       children: [
@@ -218,7 +222,7 @@ class _CarSimulatorOptionView extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+                    const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                     Row(
                       spacing: DsfrSpacings.s1w,
                       children: [
@@ -246,22 +250,14 @@ class _KindTagView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (kind) {
-    CarSimulatorOptionKind.bestCost => const DsfrTag.md(
-      label: TextSpan(
-        text: Localisation.laPlusEconomique,
-        style: DsfrTextStyle.bodyMdMedium(color: DsfrColors.textActionHighYellowTournesol),
-      ),
-      backgroundColor: DsfrColors.backgroundContrastYellowTournesol,
-      foregroundColor: DsfrColors.textActionHighYellowTournesol,
+    CarSimulatorOptionKind.bestCost => const DsfrTag(
+      label: Localisation.laPlusEconomique,
+      size: DsfrComponentSize.md,
       icon: DsfrIcons.financeMoneyEuroCircleFill,
     ),
-    CarSimulatorOptionKind.bestEmission => const DsfrTag.md(
-      label: TextSpan(
-        text: Localisation.laPlusEcologique,
-        style: DsfrTextStyle.bodyMdMedium(color: DsfrColors.textActionHighGreenBourgeon),
-      ),
-      backgroundColor: DsfrColors.backgroundContrastGreenBourgeon,
-      foregroundColor: DsfrColors.textActionHighGreenBourgeon,
+    CarSimulatorOptionKind.bestEmission => const DsfrTag(
+      label: Localisation.laPlusEcologique,
+      size: DsfrComponentSize.md,
       icon: DsfrIcons.othersLeafFill,
     ),
   };
@@ -277,21 +273,22 @@ class _DiffInTag extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final diff = unit == '%' ? (to - from) / from * 100 : to - from;
-    final colors = diff > 0
-        ? (fg: DsfrColors.textDefaultError, bg: DsfrColors.backgroundConstrastError)
-        : (fg: DsfrColors.textDefaultSuccess, bg: DsfrColors.backgroundConstrastSuccess);
     final sign = diff > 0 ? '+' : '-';
+    final colors = diff > 0
+        ? (fg: DsfrColorDecisions.textDefaultError(context), bg: DsfrColorDecisions.backgroundContrastError(context))
+        : (fg: DsfrColorDecisions.textDefaultSuccess(context), bg: DsfrColorDecisions.backgroundContrastSuccess(context));
 
     return diff == 0
         ? const SizedBox.shrink()
-        : DsfrTag.md(
+        : AppTag(
             label: TextSpan(
               text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
               style: DsfrTextStyle.bodyMdBold(color: colors.fg),
               children: [TextSpan(text: ' $unit')],
             ),
+            size: DsfrComponentSize.md,
             backgroundColor: colors.bg,
-            foregroundColor: colors.fg,
+            textColor: colors.fg,
           );
   }
 }
@@ -306,7 +303,7 @@ class _CurrentCarResultView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2()),
+      const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
       DecoratedBox(
         decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
         child: Padding(
@@ -314,10 +311,10 @@ class _CurrentCarResultView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd()),
+              const Text(Localisation.coutAnnuel, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
               _NumberWithUnit(num: currentCar.cost, unit: Localisation.euroSymbol),
               const SizedBox(height: DsfrSpacings.s2w),
-              const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd()),
+              const Text(Localisation.emissionsAnnuelles, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
               _NumberWithUnit(num: currentCar.emissions, unit: Localisation.kgCO2e),
               const SizedBox(height: DsfrSpacings.s2w),
               _ContextInfosView(carInfos: currentCar),
@@ -339,10 +336,13 @@ class _NumberWithUnit extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       text: FnvNumberFormat.formatNumberAfterRounding(num),
-      style: const DsfrTextStyle.bodyXlBold(),
+      style: const DsfrTextStyle.bodyXlBold(color: DsfrColors.grey50),
       children: [
         const TextSpan(text: ' '),
-        TextSpan(text: unit, style: const DsfrTextStyle.bodyLg()),
+        TextSpan(
+          text: unit,
+          style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+        ),
       ],
     ),
   );
@@ -378,9 +378,10 @@ class _ContextInfo extends StatelessWidget {
   final String label;
 
   @override
-  Widget build(final BuildContext context) => DsfrTag.md(
-    label: TextSpan(text: label),
+  Widget build(final BuildContext context) => DsfrTag(
+    label: label,
+    size: DsfrComponentSize.md,
     backgroundColor: DsfrColors.blueFrance950,
-    foregroundColor: DsfrColors.blueFranceSun113,
+    textColor: DsfrColors.blueFranceSun113,
   );
 }

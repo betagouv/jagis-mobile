@@ -6,8 +6,8 @@ import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_bor
 import 'package:app/features/onboarding/question_themes/presentation/pages/question_themes_page.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AppEstEncoreEnExperimentationPage extends StatelessWidget {
@@ -26,7 +26,7 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    const bodyLg = DsfrTextStyle.bodyLg();
+    const bodyLg = DsfrTextStyle.bodyLg(color: DsfrColors.grey50);
 
     return FnvScaffold(
       appBar: AppBar(
@@ -40,7 +40,7 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: OnboardingIllustration(assetName: AssetImages.illustration3),
           ),
-          const Text(Localisation.appEstEncoreEnExperimentation, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.appEstEncoreEnExperimentation, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s2w),
           Text.rich(
             TextSpan(

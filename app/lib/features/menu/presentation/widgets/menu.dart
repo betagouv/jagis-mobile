@@ -8,8 +8,8 @@ import 'package:app/features/library/presentation/pages/library_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
 import 'package:app/features/version/presentation/widgets/version_label.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class Menu extends StatelessWidget {
@@ -42,7 +42,9 @@ class Menu extends StatelessWidget {
                     semanticLabel: Localisation.fermer,
                   ),
                 ),
-                const Expanded(child: Text(Localisation.menu, style: DsfrTextStyle.bodyMdBold())),
+                const Expanded(
+                  child: Text(Localisation.menu, style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+                ),
               ],
             ),
           ),
@@ -119,7 +121,7 @@ class _MenuItem extends StatelessWidget {
                   label,
                   style: isCurrentPage
                       ? const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113)
-                      : const DsfrTextStyle.bodyLg(),
+                      : const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
                 ),
               ),
             ],

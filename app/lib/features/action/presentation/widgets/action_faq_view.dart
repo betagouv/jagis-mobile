@@ -2,8 +2,8 @@ import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action_ask_question/presentation/pages/action_ask_question_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionFAQView extends StatelessWidget {
@@ -16,12 +16,12 @@ class ActionFAQView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
+      const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
       DsfrAccordionsGroup(
         values: action.faq!
             .map(
-              (final faqItem) => DsfrAccordion.simple(
-                label: faqItem.question,
+              (final faqItem) => DsfrAccordion(
+                headerLabel: faqItem.question,
                 body: FnvMarkdown(data: faqItem.answer),
               ),
             )
@@ -33,7 +33,7 @@ class ActionFAQView extends StatelessWidget {
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
-              child: DsfrLink.md(
+              child: DsfrLink(
                 label: Localisation.posezVotreQuestion,
                 onTap: () async {
                   await GoRouter.of(context).pushNamed(
@@ -46,7 +46,7 @@ class ActionFAQView extends StatelessWidget {
             const TextSpan(text: Localisation.notreEquipeVousRepond),
           ],
         ),
-        style: const DsfrTextStyle.bodyMd(),
+        style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
       ),
     ],
   );

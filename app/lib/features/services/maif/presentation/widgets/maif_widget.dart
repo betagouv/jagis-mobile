@@ -17,9 +17,9 @@ import 'package:app/features/services/maif/presentation/bloc/maif_bloc.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_event.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MaifWidget extends StatelessWidget {
   const MaifWidget({super.key, required this.action});
@@ -68,7 +68,7 @@ class _Success extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(Localisation.choisissezUneAdresse, style: DsfrTextStyle.headline3()),
+        const Text(Localisation.choisissezUneAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         FnvAutocomplete(
           initialValue: data.userAddress.isFull ? data.userAddress.label : '',
@@ -87,17 +87,15 @@ class _Success extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: DsfrSpacings.s1w,
                 children: [
-                  const Text(Localisation.choisirCommeAdressePrincipaleDescription, style: DsfrTextStyle.bodyMd()),
-                  FittedBox(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: DsfrButton(
-                        label: Localisation.choisirCommeAdressePrincipale,
-                        variant: DsfrButtonVariant.secondary,
-                        size: DsfrComponentSize.lg,
-                        onPressed: () => context.read<MaifBloc>().add(MaifNewAddressChosen(data.searchAddress)),
-                      ),
-                    ),
+                  const Text(
+                    Localisation.choisirCommeAdressePrincipaleDescription,
+                    style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+                  ),
+                  DsfrButton(
+                    label: Localisation.choisirCommeAdressePrincipale,
+                    variant: DsfrButtonVariant.secondary,
+                    size: DsfrComponentSize.lg,
+                    onPressed: () => context.read<MaifBloc>().add(MaifNewAddressChosen(data.searchAddress)),
                   ),
                 ],
               ),
@@ -107,7 +105,7 @@ class _Success extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s3w),
           FnvMarkdown(
             data: Localisation.lesChiffresClesDe(data.searchAddress.city),
-            p: const DsfrTextStyle.headline3(),
+            p: const DsfrTextStyle.headline3(color: DsfrColors.grey50),
             strong: const DsfrTextStyle.headline3(color: DsfrColors.blueFranceSun113),
           ),
           const SizedBox(height: DsfrSpacings.s2w),
@@ -150,7 +148,7 @@ class _Risks extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s1w,
     children: [
-      const Text(Localisation.vosRisques, style: DsfrTextStyle.headline3()),
+      const Text(Localisation.vosRisques, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
       Column(
         spacing: DsfrSpacings.s2w,
         children: risks.map((final e) => _Risk(risk: e)).toList(),
@@ -172,7 +170,7 @@ class _Risk extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(risk.title, style: const DsfrTextStyle.bodyXlBold()),
+          Text(risk.title, style: const DsfrTextStyle.bodyXlBold(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1w),
           _RiskLevel(riskLevel: risk.level),
           Align(
@@ -203,35 +201,41 @@ class _RiskLevel extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (riskLevel) {
-    RiskLevel.unknown => const DsfrTag.md(
-      label: TextSpan(text: 'Inconnu'),
+    RiskLevel.unknown => const DsfrTag(
+      label: 'Inconnu',
+      size: DsfrComponentSize.md,
       backgroundColor: Color(0xFFF1FAF2),
-      foregroundColor: Color(0xFF006207),
+      textColor: Color(0xFF006207),
     ),
-    RiskLevel.veryLow => const DsfrTag.md(
-      label: TextSpan(text: 'Très faible'),
+    RiskLevel.veryLow => const DsfrTag(
+      label: 'Très faible',
+      size: DsfrComponentSize.md,
       backgroundColor: Color(0xFFF1FAF2),
-      foregroundColor: Color(0xFF006207),
+      textColor: Color(0xFF006207),
     ),
-    RiskLevel.low => const DsfrTag.md(
-      label: TextSpan(text: 'Faible'),
+    RiskLevel.low => const DsfrTag(
+      label: 'Faible',
+      size: DsfrComponentSize.md,
       backgroundColor: Color(0xFFECFCAC),
-      foregroundColor: Color(0xFF424F00),
+      textColor: Color(0xFF424F00),
     ),
-    RiskLevel.medium => const DsfrTag.md(
-      label: TextSpan(text: 'Moyen'),
+    RiskLevel.medium => const DsfrTag(
+      label: 'Moyen',
+      size: DsfrComponentSize.md,
       backgroundColor: DsfrColors.greenTilleulVerveine950,
-      foregroundColor: DsfrColors.warning425,
+      textColor: DsfrColors.warning425,
     ),
-    RiskLevel.high => const DsfrTag.md(
-      label: TextSpan(text: 'Fort'),
+    RiskLevel.high => const DsfrTag(
+      label: 'Fort',
+      size: DsfrComponentSize.md,
       backgroundColor: DsfrColors.warning950,
-      foregroundColor: DsfrColors.error425,
+      textColor: DsfrColors.error425,
     ),
-    RiskLevel.veryHigh => const DsfrTag.md(
-      label: TextSpan(text: 'Très fort'),
+    RiskLevel.veryHigh => const DsfrTag(
+      label: 'Très fort',
+      size: DsfrComponentSize.md,
       backgroundColor: Color(0xFFFFC0B8),
-      foregroundColor: Color(0xFF7B0000),
+      textColor: Color(0xFF7B0000),
     ),
   };
 }
@@ -253,8 +257,16 @@ class _NaturalDisastersWidget extends StatelessWidget {
             style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
             textAlign: TextAlign.center,
           ),
-          const Text('arrêtés CATNAT', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
-          const Text('depuis 1982', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
+          const Text(
+            'arrêtés CATNAT',
+            style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            'depuis 1982',
+            style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     ),
@@ -280,8 +292,16 @@ class _DroughtWidget extends StatelessWidget {
                 style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
                 textAlign: TextAlign.center,
               ),
-              const Text('de la surface exposée', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
-              const Text('à la sécheresse géotechnique', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
+              const Text(
+                'de la surface exposée',
+                style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+                textAlign: TextAlign.center,
+              ),
+              const Text(
+                'à la sécheresse géotechnique',
+                style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),
@@ -313,8 +333,16 @@ class _FloodWidget extends StatelessWidget {
                 style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
                 textAlign: TextAlign.center,
               ),
-              const Text('de la surface exposée', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
-              const Text('à l’inondation', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
+              const Text(
+                'de la surface exposée',
+                style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+                textAlign: TextAlign.center,
+              ),
+              const Text(
+                'à l’inondation',
+                style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),

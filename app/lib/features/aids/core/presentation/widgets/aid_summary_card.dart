@@ -6,9 +6,9 @@ import 'package:app/features/aids/core/presentation/widgets/partner_widget.dart'
 import 'package:app/features/aids/core/presentation/widgets/simulator_tag.dart';
 import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AidSummaryCard extends StatelessWidget {
@@ -42,7 +42,7 @@ class AidSummaryCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (aidSummary.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
-                      Text(aidSummary.title, style: const DsfrTextStyle.bodyMd()),
+                      Text(aidSummary.title, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                       if (aidSummary.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
                       if (aidSummary.maxAmount != null) ...[
                         const SizedBox(height: DsfrSpacings.s1w),
@@ -81,10 +81,13 @@ class _AmountMax extends StatelessWidget {
         ),
         const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
         const TextSpan(text: Localisation.jusqua),
-        TextSpan(text: formatCurrencyWithSymbol(value), style: const DsfrTextStyle.bodySmBold()),
+        TextSpan(
+          text: formatCurrencyWithSymbol(value),
+          style: const DsfrTextStyle.bodySmBold(color: DsfrColors.grey50),
+        ),
       ],
     ),
-    style: const DsfrTextStyle.bodySm(),
+    style: const DsfrTextStyle.bodySm(color: DsfrColors.grey50),
   );
 }
 
@@ -100,9 +103,12 @@ class _IsFree extends StatelessWidget {
           child: Icon(DsfrIcons.financeMoneyEuroCircleLine, color: DsfrColors.blueFranceSun113),
         ),
         WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
-        TextSpan(text: Localisation.gratuit, style: DsfrTextStyle.bodySmBold()),
+        TextSpan(
+          text: Localisation.gratuit,
+          style: DsfrTextStyle.bodySmBold(color: DsfrColors.grey50),
+        ),
       ],
     ),
-    style: DsfrTextStyle.bodySm(),
+    style: DsfrTextStyle.bodySm(color: DsfrColors.grey50),
   );
 }

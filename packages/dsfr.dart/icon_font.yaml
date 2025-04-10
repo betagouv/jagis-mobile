@@ -1,3 +1,4 @@
+# dart run icon_font_generator:generator --config-file icon_font.yaml
 icon_font:
   input_svg_dir: "assets/icons/"
   output_font_file: "assets/icons/Dsfr-Icons.otf"

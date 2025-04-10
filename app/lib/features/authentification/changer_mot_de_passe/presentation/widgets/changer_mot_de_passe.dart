@@ -4,9 +4,9 @@ import 'package:app/features/authentification/changer_mot_de_passe/presentation/
 import 'package:app/features/authentification/changer_mot_de_passe/presentation/bloc/changer_mot_de_passe_state.dart';
 import 'package:app/features/profil/profil/presentation/widgets/profil_titre_partie.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ChangerMotDePasse extends StatelessWidget {

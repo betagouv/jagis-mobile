@@ -10,8 +10,8 @@ import 'package:app/features/profil/informations/presentation/widgets/mes_inform
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/profil/profil/presentation/widgets/profil_titre_partie.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MesInformationsForm extends StatelessWidget {
   const MesInformationsForm({super.key});

@@ -10,9 +10,9 @@ import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_event.dart';
 import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_state.dart';
 import 'package:app/features/quiz/presentation/widgets/panel.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class QuizzesInProgressWidget extends StatelessWidget {
   const QuizzesInProgressWidget({super.key, required this.inProgressState});
@@ -58,7 +58,7 @@ class _QuestionView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: DsfrSpacings.s4w,
           children: [
-            Text(state.quiz.question, style: const DsfrTextStyle.headline2()),
+            Text(state.quiz.question, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
             if (state.isCorrect == null) _Form(responses: state.quiz.responses) else _Result(quizQuestionState: state),
             Align(
               alignment: Alignment.centerLeft,
@@ -93,10 +93,11 @@ class _Form extends StatelessWidget {
   final List<QuizResponse> responses;
 
   @override
-  Widget build(final BuildContext context) => DsfrRadioButtonGroupHeadless(
-    mode: DsfrRadioButtonSetMode.column,
+  // TODO(dsfr): exposer la direction dans DsfrRadioButtonGroup
+  Widget build(final BuildContext context) => DsfrRadioButtonGroup.rich(
+    title: 'Pas de titre',
     values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, e))),
-    onChanged: (final value) {
+    onCallback: (final value) {
       if (value == null) {
         return;
       }
@@ -138,8 +139,8 @@ class _ResultText extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           text: Localisation.votreReponse(isCorrect),
-          style: const DsfrTextStyle.bodyLg(),
-          children: [TextSpan(text: response, style: const DsfrTextStyle.bodyLgBold())],
+          style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+          children: [TextSpan(text: response, style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50))],
         ),
       ),
     );
@@ -156,7 +157,7 @@ class _Response extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(Localisation.reponse, style: DsfrTextStyle.headline3()),
+        const Text(Localisation.reponse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s1v5),
         FnvHtmlWidget(quizQuestionState.explanation),
         if (quizQuestionState.quiz.sources.isNotEmpty) ...[

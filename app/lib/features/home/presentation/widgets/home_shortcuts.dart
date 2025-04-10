@@ -3,8 +3,8 @@ import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeShortcuts extends StatelessWidget {
@@ -22,7 +22,7 @@ class HomeShortcuts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: DsfrSpacings.s3w,
         children: [
-          const Text(Localisation.raccourcis, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.raccourcis, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,

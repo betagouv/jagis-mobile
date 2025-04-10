@@ -10,9 +10,9 @@ import 'package:app/features/authentification/mot_de_passe_oublie_code/bloc/mot_
 import 'package:app/features/authentification/mot_de_passe_oublie_code/bloc/mot_de_passe_oublie_code_state.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -52,9 +52,12 @@ class _View extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          const Text(Localisation.motDePasseOublieTitre2, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.motDePasseOublieTitre2, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1w),
-          Text(Localisation.entrezLeCodeRecuOublieMotDePasseParMailDetails(email), style: const DsfrTextStyle.bodyLg()),
+          Text(
+            Localisation.entrezLeCodeRecuOublieMotDePasseParMailDetails(email),
+            style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+          ),
           const SizedBox(height: DsfrSpacings.s2w),
           const _Code(),
           const SizedBox(height: DsfrSpacings.s2w),
@@ -99,7 +102,7 @@ class _ButtonRenvoyerCode extends StatelessWidget {
     listenWhen:
         (final previous, final current) =>
             previous.renvoyerCodeDemande != current.renvoyerCodeDemande && current.renvoyerCodeDemande,
-    child: DsfrLink.md(
+    child: DsfrLink(
       label: Localisation.renvoyerCode,
       onTap: () => context.read<MotDePasseOublieCodeBloc>().add(const MotDePasseOublieCodeRenvoyerCodeDemande()),
     ),

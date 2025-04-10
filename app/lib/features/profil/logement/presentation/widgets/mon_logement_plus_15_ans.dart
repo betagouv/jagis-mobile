@@ -2,9 +2,9 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_bloc
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_event.dart';
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementPlus15Ans extends StatelessWidget {
   const MonLogementPlus15Ans({super.key});
@@ -15,10 +15,11 @@ class MonLogementPlus15Ans extends StatelessWidget {
 
     return MonLogementTitreEtContenu(
       titre: Localisation.monLogementPlusDe15Ans,
-      contenu: DsfrRadioButtonGroupHeadless(
+      contenu: DsfrRadioButtonGroup.simple(
+        title: '',
         values: const {true: Localisation.oui, false: Localisation.non},
-        onChanged: (final value) => context.read<MonLogementBloc>().add(MonLogementPlusDe15AnsChange(value)),
         initialValue: plusDe15ans,
+        onCallback: (final value) => context.read<MonLogementBloc>().add(MonLogementPlusDe15AnsChange(value)),
       ),
     );
   }

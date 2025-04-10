@@ -2,10 +2,10 @@ import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class Decimal extends StatelessWidget {
   const Decimal({super.key, required this.question});

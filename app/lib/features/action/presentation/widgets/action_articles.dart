@@ -3,8 +3,8 @@ import 'package:app/features/library/presentation/pages/library_page.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/recommandations/presentation/widgets/recommendation_widget.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionArticles extends StatelessWidget {
@@ -28,7 +28,7 @@ class ActionArticles extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            DsfrLink.md(
+            DsfrLink(
               label: Localisation.voirTout,
               onTap: () async {
                 await GoRouter.of(context).pushNamed(LibraryPage.name);

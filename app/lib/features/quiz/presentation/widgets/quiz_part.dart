@@ -6,9 +6,9 @@ import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_bloc.dart';
 import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_state.dart';
 import 'package:app/features/quiz/presentation/widgets/quizzes_completed_widget.dart';
 import 'package:app/features/quiz/presentation/widgets/quizzes_in_progress_widget.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class QuizPart extends StatelessWidget {
   const QuizPart({super.key, required this.id, required this.name, required this.quizzes, required this.congratulatoryText});

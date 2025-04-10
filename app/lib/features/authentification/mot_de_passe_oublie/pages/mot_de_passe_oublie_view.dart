@@ -5,9 +5,9 @@ import 'package:app/features/authentification/mot_de_passe_oublie/bloc/mot_de_pa
 import 'package:app/features/authentification/mot_de_passe_oublie/bloc/mot_de_passe_oublie_event.dart';
 import 'package:app/features/authentification/mot_de_passe_oublie_code/pages/mot_de_passe_oublie_code_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class MotDePasseOublieView extends StatelessWidget {
@@ -19,16 +19,16 @@ class MotDePasseOublieView extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
-        const Text(Localisation.motDePasseOublieTitre, style: DsfrTextStyle.headline2()),
+        const Text(Localisation.motDePasseOublieTitre, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s1w),
-        const Text(Localisation.motDePasseOublieDetails, style: DsfrTextStyle.bodyLg()),
+        const Text(Localisation.motDePasseOublieDetails, style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s3w),
         DsfrInput(
           label: Localisation.adresseEmail,
           hintText: Localisation.adresseEmailHint,
           onChanged: (final value) => context.read<MotDePasseOublieBloc>().add(MotDePasseOublieEmailChange(value)),
-          keyboardType: TextInputType.emailAddress,
           autocorrect: false,
+          keyboardType: TextInputType.emailAddress,
           autofillHints: const [AutofillHints.email],
         ),
         const SizedBox(height: DsfrSpacings.s2w),

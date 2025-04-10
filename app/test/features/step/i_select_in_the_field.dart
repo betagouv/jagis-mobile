@@ -1,4 +1,4 @@
-import 'package:dsfr/dsfr.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Usage: I select {'DOLE'} in the {'Commune'} field

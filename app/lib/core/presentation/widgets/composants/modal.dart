@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 abstract final class FnvModal {
   const FnvModal._();
@@ -14,7 +14,7 @@ abstract final class FnvModal {
     builder: (final context) => Center(
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-        child: DsfrModal(isDismissible: isDismissible, child: builder(context)),
+        child: DsfrModal(isDismissible: isDismissible, closeLabel: 'Fermer', child: builder(context)),
       ),
     ),
     barrierDismissible: isDismissible,

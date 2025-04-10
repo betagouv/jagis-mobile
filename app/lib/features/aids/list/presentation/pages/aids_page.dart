@@ -11,9 +11,9 @@ import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_lis
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AidsPage extends StatelessWidget {
@@ -80,7 +80,7 @@ class _List extends StatelessWidget {
       children: [
         const FnvMarkdown(
           data: Localisation.aidListTitle,
-          p: DsfrTextStyle.headline2(),
+          p: DsfrTextStyle.headline2(color: DsfrColors.grey50),
           strong: DsfrTextStyle.headline2(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3w),
@@ -155,7 +155,11 @@ class _ThemeSection extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      Text(themeType.displayName, style: const DsfrTextStyle.headline4(), semanticsLabel: themeType.displayNameWithoutEmoji),
+      Text(
+        themeType.displayName,
+        style: const DsfrTextStyle.headline4(color: DsfrColors.grey50),
+        semanticsLabel: themeType.displayNameWithoutEmoji,
+      ),
       ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,

@@ -6,9 +6,9 @@ import 'package:app/features/environmental_performance/action/presentation/bloc/
 import 'package:app/features/environmental_performance/core/presentation/widgets/performance_detail_body.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionPerformanceFinished extends StatelessWidget {
@@ -60,16 +60,16 @@ class _Success extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(Localisation.actionPerformanceTermineTitle(label), style: const DsfrTextStyle.headline2()),
+        Text(Localisation.actionPerformanceTermineTitle(label), style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s1w),
         Text.rich(
           TextSpan(
-            style: const DsfrTextStyle.bodyLg(),
+            style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
             children: [
               const TextSpan(text: Localisation.actionPerformanceTerminePart1),
               TextSpan(
                 text: Localisation.actionPerformanceTerminePart2(footprintInKgOfCO2ePerYear.tonnesRepresentation),
-                style: const DsfrTextStyle.bodyLgBold(),
+                style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50),
               ),
               TextSpan(text: Localisation.actionPerformanceTerminePart3(label)),
             ],

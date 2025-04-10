@@ -10,10 +10,10 @@ import 'package:app/features/onboarding/question_code_postal/presentation/bloc/q
 import 'package:app/features/onboarding/question_code_postal/presentation/bloc/question_code_postal_event.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionCodePostalPage extends StatelessWidget {
@@ -57,7 +57,7 @@ class _View extends StatelessWidget {
         ),
         const _Prenom(),
         const SizedBox(height: DsfrSpacings.s2w),
-        const Text(Localisation.enchanteDetails, style: DsfrTextStyle.bodyLg()),
+        const Text(Localisation.enchanteDetails, style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s4w),
         const _CodePostalEtCommune(),
       ],
@@ -73,7 +73,7 @@ class _Prenom extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.watch<QuestionCodePostalBloc>().state;
 
-    const dsfrTextStyle = DsfrTextStyle.headline2();
+    const dsfrTextStyle = DsfrTextStyle.headline2(color: DsfrColors.grey50);
 
     return Text.rich(
       TextSpan(
@@ -138,8 +138,8 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
               context.read<QuestionCodePostalBloc>().add(QuestionCodePostalAChange(value));
               _textEditingController.clear();
             },
-            keyboardType: TextInputType.number,
             autofocus: true,
+            keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(5)],
             autofillHints: const [AutofillHints.postalCode],
           ),

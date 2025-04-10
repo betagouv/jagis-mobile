@@ -9,9 +9,9 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_finished.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_success.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionPerformanceView extends StatelessWidget {
   const ActionPerformanceView({super.key, required this.action});

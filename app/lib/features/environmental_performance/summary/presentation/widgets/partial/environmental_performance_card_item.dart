@@ -2,8 +2,8 @@ import 'package:app/features/environmental_performance/summary/domain/environmen
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_card_item_level.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_level.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/rainbow_progress_bar.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class EnvironmentalPerformanceCardItem extends StatelessWidget {
   const EnvironmentalPerformanceCardItem({super.key, required this.emoji, required this.label, required this.level});
@@ -19,7 +19,7 @@ class EnvironmentalPerformanceCardItem extends StatelessWidget {
     return Row(
       spacing: DsfrSpacings.s3v,
       children: [
-        Text(emoji, style: const DsfrTextStyle.headline4()),
+        Text(emoji, style: const DsfrTextStyle.headline4(color: DsfrColors.grey50)),
         Expanded(
           child: Column(
             spacing: DsfrSpacings.s1v5,
@@ -27,7 +27,9 @@ class EnvironmentalPerformanceCardItem extends StatelessWidget {
               Row(
                 spacing: DsfrSpacings.s1v5,
                 children: [
-                  Expanded(child: Text(label, style: const DsfrTextStyle.bodyMdMedium())),
+                  Expanded(
+                    child: Text(label, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50)),
+                  ),
                   EnvironmentalPerformanceCardItemLevel(
                     label: levelRepresentation.label,
                     backgroundColor: levelRepresentation.backgroundColor,

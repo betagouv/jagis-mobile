@@ -1,7 +1,7 @@
 // ignore_for_file: prefer-spacing
 
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class TopEmissionSourceItem extends StatelessWidget {
   const TopEmissionSourceItem({
@@ -25,13 +25,13 @@ class TopEmissionSourceItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: DsfrSpacings.s1w,
           children: [
-            Text('$rank.', style: const DsfrTextStyle.bodyXlMedium()),
+            Text('$rank.', style: const DsfrTextStyle.bodyXlMedium(color: DsfrColors.grey50)),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: DsfrSpacings.s1v5,
                 children: [
-                  Text(label, style: const DsfrTextStyle.bodyXlBold()),
+                  Text(label, style: const DsfrTextStyle.bodyXlBold(color: DsfrColors.grey50)),
                   Text.rich(
                     TextSpan(
                       children: [
@@ -39,7 +39,10 @@ class TopEmissionSourceItem extends StatelessWidget {
                           text: '$percentage%',
                           style: const DsfrTextStyle.bodyLgBold(color: Color(0xFFDF1451)),
                         ),
-                        const TextSpan(text: ' de vos émissions', style: DsfrTextStyle.bodyLg()),
+                        const TextSpan(
+                          text: ' de vos émissions',
+                          style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+                        ),
                       ],
                     ),
                   ),

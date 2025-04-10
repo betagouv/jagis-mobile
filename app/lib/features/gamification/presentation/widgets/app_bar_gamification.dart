@@ -2,9 +2,9 @@ import 'package:app/features/gamification/presentation/bloc/gamification_bloc.da
 import 'package:app/features/gamification/presentation/widgets/app_bar_badge.dart';
 import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
 import 'package:app/features/ranking/presentation/pages/ranking_page.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AppBarGamification extends StatelessWidget {

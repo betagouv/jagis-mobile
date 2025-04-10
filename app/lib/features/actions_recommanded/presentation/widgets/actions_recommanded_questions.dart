@@ -16,9 +16,9 @@ import 'package:app/core/question_flow/presentation/questions_manager_question_v
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionsRecommandedQuestions extends StatelessWidget {
   const ActionsRecommandedQuestions({super.key, required this.sequenceId});
@@ -88,7 +88,7 @@ class _Loader extends StatelessWidget {
           FnvLoader(),
           Text(
             Localisation.nousPreparonsVosRecommandationsPersonnalisees,
-            style: DsfrTextStyle.bodyLg(),
+            style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
             textAlign: TextAlign.center,
           ),
         ],
@@ -116,7 +116,7 @@ class _GetStarted extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(Localisation.envieDAvoirUnVraiImpact, style: DsfrTextStyle.headline5()),
+          const Text(Localisation.envieDAvoirUnVraiImpact, style: DsfrTextStyle.headline5(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1v),
           const FnvMarkdown(data: Localisation.envieDAvoirUnVraiImpactDescription),
           const SizedBox(height: DsfrSpacings.s2w),
@@ -156,7 +156,7 @@ class _Question extends StatelessWidget {
       child: Column(
         spacing: DsfrSpacings.s4w,
         children: [
-          DsfrStepper(title: element.question.label, current: cursor.index, total: cursor.total),
+          DsfrStepper(currentStep: cursor.index, stepsCount: cursor.total, stepTitle: element.question.label),
           QuestionsManagerQuestionView(key: ValueKey(element), cursor: cursor, withoutTitle: true),
         ],
       ),

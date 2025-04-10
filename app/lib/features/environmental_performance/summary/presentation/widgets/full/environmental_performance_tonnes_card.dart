@@ -4,8 +4,8 @@ import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/environmental_performance/summary/domain/footprint.dart';
 import 'package:app/features/environmental_performance/summary/environmental_performance_summary_l10n.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/compare_bar.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
   const EnvironmentalPerformanceTonnesCard({super.key, required this.footprint});
@@ -32,8 +32,8 @@ class EnvironmentalPerformanceTonnesCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(EnvironmentalPerformanceSummaryL10n.tonnes, style: DsfrTextStyle.bodyMdBold()),
-                    Text(EnvironmentalPerformanceSummaryL10n.deCO2eParAn, style: DsfrTextStyle.bodyMd()),
+                    Text(EnvironmentalPerformanceSummaryL10n.tonnes, style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+                    Text(EnvironmentalPerformanceSummaryL10n.deCO2eParAn, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                   ],
                 ),
               ),

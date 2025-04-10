@@ -7,9 +7,9 @@ import 'package:app/features/actions_recommanded/presentation/widgets/action_inf
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionCard extends StatelessWidget {
@@ -32,7 +32,10 @@ class ActionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: DsfrSpacings.s1v,
                 children: [
-                  FnvMarkdown(data: action.title, p: const DsfrTextStyle.bodyLg()),
+                  FnvMarkdown(
+                    data: action.title,
+                    p: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+                  ),
                   ActionInformation(
                     icon: DsfrIcons.financeMoneyEuroCircleLine,
                     value: action.numberOfAidsAvailable,
@@ -60,7 +63,7 @@ class ActionCard extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: DsfrSpacings.s1w, bottom: DsfrSpacings.s1w),
-                child: DsfrButtonIcon(
+                child: DsfrButton(
                   icon: DsfrIcons.systemArrowRightLine,
                   variant: DsfrButtonVariant.primary,
                   size: DsfrComponentSize.md,

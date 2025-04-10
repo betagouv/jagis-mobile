@@ -5,8 +5,8 @@ import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ThemeHeader extends StatelessWidget {
@@ -44,11 +44,12 @@ class ThemeHeader extends StatelessWidget {
                 spacing: DsfrSpacings.s1w,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline1()),
-                  DsfrTag.md(
-                    label: TextSpan(text: Localisation.a(themeSummary.commune)),
+                  Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline1(color: DsfrColors.grey50)),
+                  DsfrTag(
+                    label: Localisation.a(themeSummary.commune),
+                    size: DsfrComponentSize.md,
                     backgroundColor: DsfrColors.blueFrance925,
-                    foregroundColor: DsfrColors.blueFranceSun113,
+                    textColor: DsfrColors.blueFranceSun113,
                     icon: DsfrIcons.mapMapPin2Fill,
                     onTap: () async {
                       await GoRouter.of(context).pushNamed(MonLogementPage.name);

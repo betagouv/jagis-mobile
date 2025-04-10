@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class _MosaicButtonStyle {
   const _MosaicButtonStyle._({
@@ -23,7 +23,7 @@ class _MosaicButtonStyle {
         backgroundColor: const Color(0xfff8f8f7),
         borderColor: const Color(0xffe3e3db),
         borderWidth: 1,
-        textStyle: const DsfrTextStyle.bodyMd(),
+        textStyle: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
       );
 
   final Color backgroundColor;

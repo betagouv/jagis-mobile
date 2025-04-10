@@ -3,8 +3,8 @@ import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class LibraryContent extends StatefulWidget {
@@ -50,9 +50,9 @@ class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: DsfrSpacings.s1w,
                     children: [
-                      Text(contenu.thematique.displayName, style: const DsfrTextStyle.bodyXsBold()),
+                      Text(contenu.thematique.displayName, style: const DsfrTextStyle.bodyXsBold(color: DsfrColors.grey50)),
                       Text(contenu.titre, style: const DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113)),
-                      if (sousTitre != null) Text(sousTitre, style: const DsfrTextStyle.bodyMd()),
+                      if (sousTitre != null) Text(sousTitre, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                     ],
                   ),
                 ),

@@ -149,7 +149,7 @@ final class QuestionSingleChoice extends QuestionMultiple {
     theme: theme,
     label: label,
     isAnswered: isAnswered,
-    responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.label))).toList(),
+    responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.code))).toList(),
     points: points,
   );
 }

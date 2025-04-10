@@ -1,8 +1,8 @@
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ThemeServiceInfo extends StatelessWidget {

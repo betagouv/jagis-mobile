@@ -8,9 +8,9 @@ import 'package:app/features/authentification/se_connecter/presentation/bloc/se_
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_event.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,19 +28,22 @@ class SeConnecterView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          const FnvMarkdown(data: Localisation.pageConnexionTitre, p: DsfrTextStyle.headline2()),
+          const FnvMarkdown(
+            data: Localisation.pageConnexionTitre,
+            p: DsfrTextStyle.headline2(color: DsfrColors.grey50),
+          ),
           const SizedBox(height: DsfrSpacings.s3w),
           const FranceConnectSection(),
           const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.avecMonAdresseEmail, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.avecMonAdresseEmail, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s2w),
           DsfrInput(
             label: Localisation.adresseEmail,
             hintText: Localisation.adresseEmailHint,
             onChanged: (final value) => context.read<SeConnecterBloc>().add(SeConnecterAdresseMailAChange(value)),
+            autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            autocorrect: false,
             autofillHints: const [AutofillHints.email],
           ),
           const _MessageErreur(),

@@ -5,9 +5,9 @@ import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_event.dart';
 import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_state.dart';
 import 'package:app/features/quiz/presentation/widgets/panel.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class QuizzesCompletedWidget extends StatelessWidget {
@@ -171,9 +171,14 @@ class _ScorePanel extends StatelessWidget {
     child: Text.rich(
       TextSpan(
         text: scoreText,
-        children: [TextSpan(text: ' $correctAnswerCount/$totalQuestionsCount', style: const DsfrTextStyle.bodyMdBold())],
+        children: [
+          TextSpan(
+            text: ' $correctAnswerCount/$totalQuestionsCount',
+            style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+          ),
+        ],
       ),
-      style: const DsfrTextStyle.bodyMd(),
+      style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
     ),
   );
 }
@@ -184,7 +189,9 @@ class _MessagePanel extends StatelessWidget {
   final String message;
 
   @override
-  Widget build(final BuildContext context) => Panel(child: Text(message, style: const DsfrTextStyle.bodyMd()));
+  Widget build(final BuildContext context) => Panel(
+    child: Text(message, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+  );
 }
 
 class _PrimaryButton extends StatelessWidget {

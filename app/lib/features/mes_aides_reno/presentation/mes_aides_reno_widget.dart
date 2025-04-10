@@ -7,10 +7,10 @@ import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_event.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_state.dart';
 import 'package:app/features/mes_aides_reno/infrastructure/mes_aides_reno_repository.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class MesAidesRenoWidget extends StatelessWidget {
@@ -83,20 +83,22 @@ class _MesAidesRenoWidgetState extends State<_Success> {
             padding: const EdgeInsets.only(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w, bottom: DsfrSpacings.s4w),
             child: DsfrAlert(
               type: DsfrAlertType.info,
-              description: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd()),
-                  DsfrLink.md(
-                    label: Localisation.voirMesResultats,
-                    onTap: () => {
-                      setState(() {
-                        _isAtEllibilityResult = true;
-                      }),
-                      context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(skipQuestions: true)),
-                    },
-                  ),
-                ],
+              description: DsfrAlertDescriptionWidget(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+                    DsfrLink(
+                      label: Localisation.voirMesResultats,
+                      onTap: () => {
+                        setState(() {
+                          _isAtEllibilityResult = true;
+                        }),
+                        context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(skipQuestions: true)),
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

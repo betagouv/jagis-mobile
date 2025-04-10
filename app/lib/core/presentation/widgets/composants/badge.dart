@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvBadge extends StatelessWidget {
   const FnvBadge({super.key, required this.label, required this.backgroundColor, this.foregroundColor = Colors.white});

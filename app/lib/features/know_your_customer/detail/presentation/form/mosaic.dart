@@ -5,9 +5,9 @@ import 'package:app/features/know_your_customer/detail/presentation/bloc/questio
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/features/know_your_customer/detail/presentation/widgets/mosaic_button.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class Mosaic extends StatelessWidget {
   const Mosaic({super.key, required this.question});
@@ -73,7 +73,7 @@ class _MosaicSetState extends State<_MosaicSet> {
         },
         itemCount: _responses.length,
       ),
-      DsfrLink.md(
+      DsfrLink(
         label: Localisation.aucuneDeCesPropositions,
         onTap: () => context.read<QuestionEditBloc>().add(const QuestionEditMosaicAucuneProposition()),
       ),

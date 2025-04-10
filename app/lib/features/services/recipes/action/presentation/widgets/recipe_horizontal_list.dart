@@ -5,9 +5,9 @@ import 'package:app/features/services/recipes/action/presentation/bloc/action_re
 import 'package:app/features/services/recipes/core/presentation/widgets/recipe_card.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RecipeHorizontalList extends StatelessWidget {
@@ -68,7 +68,7 @@ class _Success extends StatelessWidget {
           ),
         ),
 
-        DsfrLink.md(
+        DsfrLink(
           label: Localisation.voirToutesLesRecettes,
           // TODO(erolley): add category (vegetarian, etc...) to the route
           onTap: () async {

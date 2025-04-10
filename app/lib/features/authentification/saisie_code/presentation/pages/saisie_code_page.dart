@@ -6,9 +6,9 @@ import 'package:app/features/authentification/saisie_code/presentation/bloc/sais
 import 'package:app/features/authentification/saisie_code/presentation/bloc/saisie_code_event.dart';
 import 'package:app/features/authentification/saisie_code/presentation/widgets/saisie_code_input.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,9 +50,9 @@ class SaisieCodePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          const Text(Localisation.entrezLeCodeRecuParMail, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.entrezLeCodeRecuParMail, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1w),
-          Text(Localisation.entrezLeCodeRecuParMailDetails(email), style: const DsfrTextStyle.bodyLg()),
+          Text(Localisation.entrezLeCodeRecuParMailDetails(email), style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s3w),
           SaisieCodeInput(initialValue: code ?? ''),
           const _MessageErreur(),

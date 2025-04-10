@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class EstimadedTimedInfo extends StatelessWidget {
   const EstimadedTimedInfo({super.key, required this.text});

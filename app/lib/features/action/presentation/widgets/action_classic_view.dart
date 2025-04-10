@@ -6,8 +6,8 @@ import 'package:app/features/action/presentation/widgets/action_why_section_view
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
 import 'package:app/features/services/pdcn/presentation/widgets/pdcn_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionClassicView extends StatelessWidget {
   const ActionClassicView({super.key, required this.action});

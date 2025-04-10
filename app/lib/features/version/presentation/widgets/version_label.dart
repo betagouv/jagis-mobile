@@ -1,7 +1,7 @@
 import 'package:app/features/version/presentation/bloc/version_bloc.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class VersionLabel extends StatelessWidget {
   const VersionLabel({super.key});

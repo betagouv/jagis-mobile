@@ -1,6 +1,6 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvAlertInfo extends StatelessWidget {
   const FnvAlertInfo({super.key, required this.label, this.content});

@@ -14,9 +14,9 @@ import 'package:app/features/services/core/infrastructure/service_repository.dar
 import 'package:app/features/services/lvao/domain/lvao_actor.dart';
 import 'package:app/features/services/lvao/presentation/lvao_detail/pages/lvao_detail_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class LvaoListPage extends StatelessWidget {
@@ -58,7 +58,7 @@ final class _Body extends StatelessWidget {
         children: [
           _ServiceCategoriesInput(categories: state.categories, selected: state.categorySelected),
           const SizedBox(height: DsfrSpacings.s1w),
-          const Text(Localisation.lvaoSousTitre, style: DsfrTextStyle.bodyMd()),
+          const Text(Localisation.lvaoSousTitre, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s3w),
           ColoredBox(
             color: Colors.white,
@@ -67,7 +67,7 @@ final class _Body extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3()),
+                  const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
                   FnvAutocomplete(
                     displayStringForOption: (final option) => option.label,
                     onSearch: (final query) => context.read<AddressRepository>().search(query),
@@ -81,9 +81,13 @@ final class _Body extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s3w),
           if (state.suggestions.isEmpty) ...[
             const FnvImage.asset(AssetImages.serviceAucunResultat),
-            const Text(Localisation.serviceAucunResultat, style: DsfrTextStyle.bodyLg(), textAlign: TextAlign.center),
+            const Text(
+              Localisation.serviceAucunResultat,
+              style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+              textAlign: TextAlign.center,
+            ),
           ] else ...[
-            const Text(Localisation.suggestions, style: DsfrTextStyle.headline3()),
+            const Text(Localisation.suggestions, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s3w),
             ...state.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
           ],
@@ -149,14 +153,24 @@ class _Card extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(suggestion.name, style: const DsfrTextStyle.bodyMdBold(), overflow: TextOverflow.ellipsis, maxLines: 1),
-                  Text(suggestion.address, style: const DsfrTextStyle.bodyXs(), overflow: TextOverflow.ellipsis, maxLines: 3),
+                  Text(
+                    suggestion.name,
+                    style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  Text(
+                    suggestion.address,
+                    style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
                   const Spacer(),
-                  DsfrTag.sm(
-                    label: TextSpan(text: Localisation.distance(suggestion.distanceInMeters)),
+                  DsfrTag(
+                    label: Localisation.distance(suggestion.distanceInMeters),
+                    size: DsfrComponentSize.sm,
                     backgroundColor: const Color(0xffEAEAEA),
-                    foregroundColor: const Color(0xff3F3F3F),
-                    textStyle: const DsfrTextStyle.bodyXsMedium(),
+                    textColor: const Color(0xff3F3F3F),
                   ),
                 ],
               ),

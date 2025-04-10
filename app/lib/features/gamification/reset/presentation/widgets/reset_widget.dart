@@ -5,9 +5,9 @@ import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ResetModal extends StatefulWidget {
   const ResetModal({super.key});
@@ -103,8 +103,8 @@ class _PioneerBadge extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(Localisation.pionnier, style: DsfrTextStyle.bodyMdBold()),
-                Text(Localisation.pionnierDescription, style: DsfrTextStyle.bodySm()),
+                Text(Localisation.pionnier, style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+                Text(Localisation.pionnierDescription, style: DsfrTextStyle.bodySm(color: DsfrColors.grey50)),
               ],
             ),
           ),
@@ -158,7 +158,7 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(title, style: const DsfrTextStyle.headline3()),
+      Text(title, style: const DsfrTextStyle.headline3(color: DsfrColors.grey50)),
       const SizedBox(height: DsfrSpacings.s2w),
       Center(child: FnvImage.asset(imagePath, height: 156)),
       const SizedBox(height: DsfrSpacings.s1w),

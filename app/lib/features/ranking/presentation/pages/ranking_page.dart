@@ -5,9 +5,9 @@ import 'package:app/features/ranking/presentation/bloc/ranking_event.dart';
 import 'package:app/features/ranking/presentation/bloc/ranking_state.dart';
 import 'package:app/features/ranking/presentation/widgets/badge_item.dart';
 import 'package:app/features/ranking/presentation/widgets/rank_item.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RankingPage extends StatelessWidget {
@@ -59,12 +59,12 @@ class _Success extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (badges.isNotEmpty) ...[
-              const Text('Mes badges', style: DsfrTextStyle.headline2()),
+              const Text('Mes badges', style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s3w),
               ...badges.map((final badge) => BadgeItem(badge: badge)).separator(const SizedBox(height: DsfrSpacings.s2w)),
               const SizedBox(height: DsfrSpacings.s6w),
             ],
-            const Text('Mon classement', style: DsfrTextStyle.headline2()),
+            const Text('Mon classement', style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s3w),
             ...ranking.topThree
                 .map((final userRank) => RankItem(userRank: userRank, isCurrentUser: userRank.id == ranking.user.id))

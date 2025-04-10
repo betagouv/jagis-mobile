@@ -1,7 +1,7 @@
 import 'package:app/features/action/presentation/widgets/action_markdown.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown_heading.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionWhySectionView extends StatelessWidget {
   const ActionWhySectionView({super.key, required this.why});

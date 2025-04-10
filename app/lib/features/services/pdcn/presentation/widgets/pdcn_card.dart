@@ -7,8 +7,8 @@ import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/services/pdcn/domain/pdcn_summary.dart';
 import 'package:app/features/services/pdcn/presentation/pdcn_detail/pages/pdcn_detail_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class PdcnCard extends StatelessWidget {
@@ -36,14 +36,19 @@ class PdcnCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
-                  Text(e.address, style: const DsfrTextStyle.bodyXs(), overflow: TextOverflow.ellipsis, maxLines: 3),
+                  Text(e.name, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+                  Text(
+                    e.address,
+                    style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
                   const Spacer(),
-                  DsfrTag.sm(
-                    label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
+                  DsfrTag(
+                    label: Localisation.distance(e.distanceInMeters),
+                    size: DsfrComponentSize.sm,
                     backgroundColor: const Color(0xffEAEAEA),
-                    foregroundColor: const Color(0xff3F3F3F),
-                    textStyle: const DsfrTextStyle.bodyXsMedium(),
+                    textColor: const Color(0xff3F3F3F),
                   ),
                 ],
               ),

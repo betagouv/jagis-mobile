@@ -64,9 +64,9 @@ import 'package:app/features/version/presentation/bloc/version_bloc.dart';
 import 'package:app/features/version/presentation/bloc/version_event.dart';
 import 'package:clock/clock.dart';
 import 'package:dio/dio.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -238,24 +238,27 @@ class _AppState extends State<App> {
                         CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.apiClient)),
                   ),
                 ],
-                child: MaterialApp.router(
-                  routerConfig: _goRouter,
-                  builder: (final context, final child) =>
-                      UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox.shrink()),
-                  theme: ThemeData(
-                    colorSchemeSeed: DsfrColors.blueFranceSun113,
-                    scaffoldBackgroundColor: Colors.white,
-                    fontFamily: 'Marianne',
-                    package: 'dsfr',
-                    appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+                child: DsfrThemeModeProvider.withBuilder(
+                  isLightMode: true,
+                  builder: (final context) => MaterialApp.router(
+                    routerConfig: _goRouter,
+                    builder: (final context, final child) =>
+                        UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox()),
+                    theme: ThemeData(
+                      colorSchemeSeed: DsfrColors.blueFranceSun113,
+                      scaffoldBackgroundColor: Colors.white,
+                      fontFamily: 'Marianne',
+                      package: 'dsfr',
+                      appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+                    ),
+                    locale: locale,
+                    localizationsDelegates: const [
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                    ],
+                    supportedLocales: const [locale],
                   ),
-                  locale: locale,
-                  localizationsDelegates: const [
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                  ],
-                  supportedLocales: const [locale],
                 ),
               ),
             ),

@@ -9,9 +9,9 @@ import 'package:app/features/services/recipes/item/presentation/bloc/recipe_bloc
 import 'package:app/features/services/recipes/item/presentation/bloc/recipe_event.dart';
 import 'package:app/features/services/recipes/item/presentation/bloc/recipe_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RecipePage extends StatelessWidget {
@@ -74,11 +74,11 @@ class _Success extends StatelessWidget {
                 child: RecipeDifficulty(value: recipe.difficulty),
               ),
               const SizedBox(height: DsfrSpacings.s1v),
-              Text(recipe.title, style: const DsfrTextStyle.headline2()),
+              Text(recipe.title, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s1v),
               EstimadedTimedInfo(text: Localisation.tempsDePreparation(recipe.preparationTime)),
               const SizedBox(height: DsfrSpacings.s2w),
-              const Text(Localisation.ingredients, style: DsfrTextStyle.headline4()),
+              const Text(Localisation.ingredients, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.ingredients
                   .map(
@@ -88,23 +88,26 @@ class _Success extends StatelessWidget {
                         e.unit,
                         e.name,
                       ].where((final element) => element.isNotEmpty).join(' '),
-                      style: const DsfrTextStyle.bodyMd(),
+                      style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
                     ),
                   )
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),
               const SizedBox(height: DsfrSpacings.s2w),
-              const Text(Localisation.etapes, style: DsfrTextStyle.headline4()),
+              const Text(Localisation.etapes, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.steps
                   .map(
                     (final e) => Text.rich(
                       TextSpan(
                         children: [
-                          TextSpan(text: '${e.order}. ', style: const DsfrTextStyle.bodyMdBold()),
+                          TextSpan(
+                            text: '${e.order}. ',
+                            style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                          ),
                           TextSpan(text: _decodeUnicodeEscapes(e.description)),
                         ],
                       ),
-                      style: const DsfrTextStyle.bodyMd(),
+                      style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
                     ),
                   )
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),

@@ -1,8 +1,8 @@
 import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class RevenuFiscalInput extends StatelessWidget {
   const RevenuFiscalInput({super.key, required this.initialValue, required this.onChanged});
@@ -13,8 +13,8 @@ class RevenuFiscalInput extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => DsfrInput(
     label: Localisation.revenuFiscal,
-    initialValue: initialValue == null ? null : formatCurrency(initialValue!),
     suffixText: '€',
+    initialValue: initialValue == null ? null : formatCurrency(initialValue!),
     onChanged: (final value) {
       final parsedValue = currencyFormat.tryParse(value);
       if (parsedValue == null) {

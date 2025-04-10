@@ -7,9 +7,9 @@ import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_de
 import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_detail_event.dart';
 import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_detail_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class LvaoDetailPage extends StatelessWidget {
@@ -63,21 +63,21 @@ class _Success extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: DsfrTag.sm(
-            label: TextSpan(text: Localisation.distance(detail.distanceInMeters)),
+          child: DsfrTag(
+            label: Localisation.distance(detail.distanceInMeters),
+            size: DsfrComponentSize.sm,
             backgroundColor: const Color(0xffEAEAEA),
-            foregroundColor: const Color(0xff3F3F3F),
-            textStyle: const DsfrTextStyle.bodyXsMedium(),
+            textColor: const Color(0xff3F3F3F),
           ),
         ),
-        Text(detail.name, style: const DsfrTextStyle.headline2()),
+        Text(detail.name, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.5,
           child: FnvMap(latitude: detail.latitude, longitude: detail.longitude),
         ),
         const SizedBox(height: DsfrSpacings.s3w),
-        const Text(Localisation.details, style: DsfrTextStyle.headline4()),
+        const Text(Localisation.details, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         _DetailInfo(icon: DsfrIcons.mapMapPin2Line, text: detail.address),
         const SizedBox(height: DsfrSpacings.s3w),
@@ -100,8 +100,8 @@ class _Success extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s3w),
           const DsfrDivider(),
           const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.sources, style: DsfrTextStyle.bodyXsBold()),
-          ...detail.sources.map((final e) => Text('· $e', style: const DsfrTextStyle.bodyXs())),
+          const Text(Localisation.sources, style: DsfrTextStyle.bodyXsBold(color: DsfrColors.grey50)),
+          ...detail.sources.map((final e) => Text('· $e', style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50))),
         ],
         const SafeArea(child: SizedBox(height: DsfrSpacings.s2w)),
       ],
@@ -120,7 +120,9 @@ class _DetailInfo extends StatelessWidget {
     spacing: DsfrSpacings.s1w,
     children: [
       Icon(icon, color: DsfrColors.blueFranceSun113),
-      Expanded(child: Text(text, style: const DsfrTextStyle.bodyMd())),
+      Expanded(
+        child: Text(text, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+      ),
     ],
   );
 }

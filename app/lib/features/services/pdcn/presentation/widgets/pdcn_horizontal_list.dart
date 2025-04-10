@@ -5,9 +5,9 @@ import 'package:app/features/services/pdcn/presentation/bloc/pdcn_event.dart';
 import 'package:app/features/services/pdcn/presentation/bloc/pdcn_state.dart';
 import 'package:app/features/services/pdcn/presentation/widgets/pdcn_card.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class PdcnHorizontalList extends StatelessWidget {
   const PdcnHorizontalList({super.key, required this.category});
@@ -51,8 +51,8 @@ class _Success extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(Localisation.mesCommerces, style: DsfrTextStyle.headline4()),
-              Text(Localisation.pdcnSousTitre, style: DsfrTextStyle.bodyMd()),
+              Text(Localisation.mesCommerces, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
+              Text(Localisation.pdcnSousTitre, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
             ],
           ),
         ),

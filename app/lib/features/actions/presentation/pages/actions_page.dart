@@ -13,9 +13,9 @@ import 'package:app/features/actions/presentation/bloc/actions_event.dart';
 import 'package:app/features/actions/presentation/bloc/actions_state.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionsPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class _View extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
-        const Text(Localisation.catalogueActions, style: DsfrTextStyle.headline2()),
+        const Text(Localisation.catalogueActions, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s3w),
         BlocBuilder<ActionsBloc, ActionsState>(
           builder: (final context, final state) => _ThemesFilter(
@@ -53,15 +53,22 @@ class _View extends StatelessWidget {
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         BlocBuilder<ActionsBloc, ActionsState>(
-          builder: (final context, final state) => DsfrSearchBar(
-            initialValue: switch (state) {
-              ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => null,
-              ActionsLoadSuccess(:final titleFilter) => titleFilter,
-            },
-            onChanged: (final value) {
-              context.read<ActionsBloc>().add(ActionsFilterByTitleRequested(value));
-            },
-          ),
+          builder: (final context, final state) {
+            final textEditingController = TextEditingController(
+              text: switch (state) {
+                ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => null,
+                ActionsLoadSuccess(:final titleFilter) => titleFilter,
+              },
+            );
+
+            return DsfrSearchBar(
+              hintText: Localisation.rechercherParTitre,
+              onSearch: () {
+                context.read<ActionsBloc>().add(ActionsFilterByTitleRequested(textEditingController.text));
+              },
+              controller: textEditingController,
+            );
+          },
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         BlocBuilder<ActionsBloc, ActionsState>(
@@ -128,9 +135,11 @@ class _Success extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s2w),
           FnvSvg.asset(AssetImages.bibliothequeEmpty),
           const SizedBox(height: DsfrSpacings.s3w),
-          const Center(child: Text(Localisation.aucuneActionTrouvee, style: DsfrTextStyle.headline4())),
+          const Center(
+            child: Text(Localisation.aucuneActionTrouvee, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
+          ),
         ] else ...[
-          Text(Localisation.nombreAction(actions.length), style: const DsfrTextStyle.bodyLgBold()),
+          Text(Localisation.nombreAction(actions.length), style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s2w),
           ListView.separated(
             primary: false,
@@ -183,7 +192,7 @@ class _Element extends StatelessWidget {
                     ActionType.classic => '',
                   } +
                   action.title,
-              p: const DsfrTextStyle.bodyLg(),
+              p: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
             ),
             const SizedBox(height: DsfrSpacings.s1v),
             _Information(
@@ -193,7 +202,7 @@ class _Element extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: DsfrButtonIcon(
+              child: DsfrButton(
                 icon: DsfrIcons.systemArrowRightLine,
                 variant: DsfrButtonVariant.tertiaryWithoutBorder,
                 size: DsfrComponentSize.md,

@@ -15,7 +15,6 @@ abstract final class AssetImages {
   static const errorIllustration = 'assets/images/error_illustration.svg';
   static const feedback = 'assets/images/feedback.webp';
   static const flags = 'assets/images/flags.svg';
-  static const franceConnect = 'assets/images/france_connect.svg';
   static const franceNationVerte = 'assets/images/logo_fnv.png';
   static const franceNationVerteSemantic = 'Logo de France Nation Verte';
   static const homeIllustration = 'assets/images/home_illustration.webp';

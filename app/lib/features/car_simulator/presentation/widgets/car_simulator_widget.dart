@@ -8,9 +8,9 @@ import 'package:app/features/car_simulator/presentation/car_simulator_result/blo
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class CarSimulatorWidget extends StatelessWidget {
   const CarSimulatorWidget({super.key, required this.sequenceId, this.isDone = false});
@@ -67,16 +67,22 @@ class _Success extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w),
               child: DsfrAlert(
                 type: DsfrAlertType.info,
-                description: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd()),
-                    DsfrLink.md(
-                      label: Localisation.voirMesResultats,
-                      onTap: () => context.read<QuestionFlowBloc>().add(const QuestionFlowLastRequested()),
-                    ),
-                  ],
+                description: DsfrAlertDescriptionWidget(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        Localisation.vousAvezDejaFaitCeSimulateur,
+                        style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+                      ),
+                      DsfrLink(
+                        label: Localisation.voirMesResultats,
+                        onTap: () => context.read<QuestionFlowBloc>().add(const QuestionFlowLastRequested()),
+                      ),
+                    ],
+                  ),
                 ),
+                onClose: () => context.read<QuestionFlowBloc>().add(const QuestionFlowLastRequested()),
               ),
             ),
           QuestionStepper(current: cursor.index, total: cursor.total),

@@ -3,10 +3,10 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_bloc
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_event.dart';
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementCodePostalEtCommune extends StatefulWidget {
   const MonLogementCodePostalEtCommune({super.key});

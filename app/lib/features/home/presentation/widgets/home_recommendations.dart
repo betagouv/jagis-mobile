@@ -4,9 +4,9 @@ import 'package:app/features/library/presentation/pages/library_page.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/recommandations/presentation/widgets/recommendation_widget.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeRecommendations extends StatelessWidget {
@@ -24,8 +24,10 @@ class HomeRecommendations extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Expanded(child: Text(Localisation.quoiDeNeuf, style: DsfrTextStyle.headline3())),
-            DsfrLink.md(
+            const Expanded(
+              child: Text(Localisation.quoiDeNeuf, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
+            ),
+            DsfrLink(
               label: Localisation.voirTout,
               onTap: () async {
                 await GoRouter.of(context).pushNamed(LibraryPage.name);

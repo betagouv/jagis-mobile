@@ -1,7 +1,7 @@
 import 'package:app/features/environmental_performance/summary/environmental_performance_summary_l10n.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/progress_bar.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class PerformanceDetailBody extends StatelessWidget {
   const PerformanceDetailBody({super.key, required this.emoji, required this.label, required this.value, required this.progress});
@@ -15,14 +15,14 @@ class PerformanceDetailBody extends StatelessWidget {
   Widget build(final BuildContext context) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(emoji, style: const DsfrTextStyle.bodyMdMedium()),
+      Text(emoji, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50)),
       const SizedBox(width: DsfrSpacings.s1w),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: DsfrSpacings.s1v5,
           children: [
-            Text(label, style: const DsfrTextStyle.bodyMdMedium()),
+            Text(label, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50)),
             ProgressBar(value: progress),
           ],
         ),

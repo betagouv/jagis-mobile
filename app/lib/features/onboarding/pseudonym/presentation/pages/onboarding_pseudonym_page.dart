@@ -2,7 +2,6 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
-import 'package:app/core/presentation/widgets/composants/input_calendar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -13,10 +12,10 @@ import 'package:app/features/onboarding/question_code_postal/presentation/pages/
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class OnboardingPseudonymPage extends StatelessWidget {
@@ -65,9 +64,9 @@ class _Content extends StatelessWidget {
             ),
             const SizedBox(height: DsfrSpacings.s3v),
             const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration1)),
-            const Text(Localisation.bienvenueSur, style: DsfrTextStyle.headline2()),
+            const Text(Localisation.bienvenueSur, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s2w),
-            const Text(Localisation.bienvenueSurDetails, style: DsfrTextStyle.bodyLg()),
+            const Text(Localisation.bienvenueSurDetails, style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s3w),
             DsfrInput(
               label: Localisation.monPseudonyme,
@@ -78,10 +77,10 @@ class _Content extends StatelessWidget {
               onFieldSubmitted: (final value) {
                 context.read<OnboardingPseudonymBloc>().add(const OnboardingPseudonymSubmitted());
               },
+              autofocus: true,
               keyboardType: TextInputType.name,
               textCapitalization: TextCapitalization.sentences,
               textInputAction: isUserFranceConnect ? TextInputAction.done : TextInputAction.next,
-              autofocus: true,
               inputFormatters: [LengthLimitingTextInputFormatter(30)],
             ),
             BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, String?>(
@@ -96,15 +95,16 @@ class _Content extends StatelessWidget {
             ),
             if (!isUserFranceConnect) ...[
               const SizedBox(height: DsfrSpacings.s2w),
-              FnvInputCalendar(
-                hintText: Localisation.dateDeNaissanceDescription,
+              DsfrDateInput(
                 label: Localisation.maDateDeNaissance,
-                onDateSelected: (final value) {
-                  if (value == null) {
-                    return;
-                  }
+                hintText: Localisation.dateDeNaissanceDescription,
+                onChanged: (final value) {
                   context.read<OnboardingPseudonymBloc>().add(OnboardingBirthdateChanged(value));
                 },
+                firstDate: DateTime.now().subtract(const Duration(days: 365 * 123)),
+                lastDate: DateTime.now(),
+                initialDate: DateTime.now().subtract(const Duration(days: 365 * 18)),
+                controller: TextEditingController(),
               ),
             ],
           ],

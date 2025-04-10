@@ -1,6 +1,6 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:pinput/pinput.dart';
 
 class FnvCodeInput extends StatefulWidget {

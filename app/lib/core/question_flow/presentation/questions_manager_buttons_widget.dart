@@ -5,9 +5,9 @@ import 'package:app/core/question_flow/domain/cursor.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class QuestionsManagerButtons extends StatefulWidget {
   const QuestionsManagerButtons({
@@ -48,9 +48,9 @@ class _QuestionsManagerButtonsState extends State<QuestionsManagerButtons> {
   Widget build(final BuildContext context) => Row(
     children: [
       if (widget.cursor.isNotFirst)
-        DsfrButtonIcon(
+        DsfrButton(
           icon: DsfrIcons.systemArrowLeftLine,
-          semanticLabel: Localisation.questionPrecedente,
+          iconSemanticLabel: Localisation.questionPrecedente,
           variant: DsfrButtonVariant.tertiaryWithoutBorder,
           size: DsfrComponentSize.lg,
           onPressed: () => context.read<QuestionFlowBloc>().add(const QuestionFlowPreviousRequested()),

@@ -2,8 +2,8 @@ import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/ranking/domain/achievement_badge.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class BadgeItem extends StatelessWidget {
   const BadgeItem({super.key, required this.badge});
@@ -23,7 +23,7 @@ class BadgeItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(badge.title, style: const DsfrTextStyle.bodyLgBold()),
+                Text(badge.title, style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.grey50)),
                 Text(badge.description, style: const DsfrTextStyle.bodyMd(color: Color(0xFF747474))),
               ],
             ),

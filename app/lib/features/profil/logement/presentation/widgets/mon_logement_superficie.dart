@@ -3,9 +3,9 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_even
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_state.dart';
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementSuperficie extends StatelessWidget {
   const MonLogementSuperficie({super.key});
@@ -16,7 +16,8 @@ class MonLogementSuperficie extends StatelessWidget {
 
     return MonLogementTitreEtContenu(
       titre: Localisation.quelleEstLaSuperficie,
-      contenu: DsfrRadioButtonGroupHeadless(
+      contenu: DsfrRadioButtonGroup.simple(
+        title: '',
         values: const {
           Superficie.s35: Localisation.moinsDe35m2,
           Superficie.s70: Localisation.entre35et70m2,
@@ -24,8 +25,8 @@ class MonLogementSuperficie extends StatelessWidget {
           Superficie.s150: Localisation.entre100et150m2,
           Superficie.s150EtPlus: Localisation.plusDe150m2,
         },
-        onChanged: (final value) => context.read<MonLogementBloc>().add(MonLogementSuperficieChange(value)),
         initialValue: superficie,
+        onCallback: (final value) => context.read<MonLogementBloc>().add(MonLogementSuperficieChange(value)),
       ),
     );
   }

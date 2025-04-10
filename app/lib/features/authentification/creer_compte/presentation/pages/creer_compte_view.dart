@@ -10,9 +10,9 @@ import 'package:app/features/authentification/creer_compte/presentation/widgets/
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,15 +35,15 @@ class CreerCompteView extends StatelessWidget {
           // const SizedBox(height: DsfrSpacings.s3w),
           // const DividerWithText(),
           // const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.creerMonCompteApp, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.creerMonCompteApp, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s3w),
           DsfrInput(
             label: Localisation.adresseEmail,
             hintText: Localisation.adresseEmailHint,
             onChanged: (final value) => context.read<CreerCompteBloc>().add(CreerCompteAdresseMailAChangee(value)),
+            autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            autocorrect: false,
             autofillHints: const [AutofillHints.email],
           ),
           const SizedBox(height: DsfrSpacings.s2w),
@@ -55,7 +55,7 @@ class CreerCompteView extends StatelessWidget {
           const _BoutonCreerCompte(),
           const SizedBox(height: DsfrSpacings.s2w),
           Center(
-            child: DsfrLink.md(
+            child: DsfrLink(
               label: Localisation.vousAvezDejaUnCompte,
               onTap: () async {
                 await GoRouter.of(context).pushReplacementNamed(SeConnecterPage.name);

@@ -1,7 +1,7 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ListItem extends StatelessWidget {
   const ListItem({super.key, required this.title, required this.subTitle, required this.onTap});
@@ -24,7 +24,7 @@ class ListItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const DsfrTextStyle.headline6()),
+                  Text(title, style: const DsfrTextStyle.headline6(color: DsfrColors.grey50)),
                   Text(
                     subTitle,
                     style: const DsfrTextStyle.bodyXs(color: Color(0xFF7E7E7E)),

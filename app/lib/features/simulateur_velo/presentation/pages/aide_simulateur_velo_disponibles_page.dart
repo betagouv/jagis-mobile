@@ -10,9 +10,9 @@ import 'package:app/features/simulateur_velo/domain/aide_velo.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class AideSimulateurVeloDisponiblePage extends StatelessWidget {
@@ -35,7 +35,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-            child: Text(Localisation.mesAidesDisponibles, style: DsfrTextStyle.headline2()),
+            child: Text(Localisation.mesAidesDisponibles, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           ),
           const SizedBox(height: DsfrSpacings.s2w),
           if (state.aideVeloStatut == AideVeloStatut.chargement)
@@ -45,11 +45,11 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
               values:
                   state.aidesDisponibles
                       .map(
-                        (final e) => DsfrAccordion.custom(
+                        // TODO(lsaudondsfr): Faire son FnvAccordion pour Si le body est null, ne pas afficher désactiver l'accordéon
+                        (final e) => DsfrAccordion.builder(
                           headerBuilder:
                               (final isExpanded) => _Header(titre: e.titre, montantMax: e.montantTotal, isExpanded: isExpanded),
                           body: _Body(aides: e.aides),
-                          isEnable: e.aides.isNotEmpty,
                         ),
                       )
                       .toList(),
@@ -60,7 +60,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                 children: [
-                  const TextSpan(text: Localisation.propulsePar, style: DsfrTextStyle.bodyXsBold()),
+                  const TextSpan(text: Localisation.propulsePar, style: DsfrTextStyle.bodyXsBold(color: DsfrColors.grey50)),
                   WidgetSpan(
                     alignment: PlaceholderAlignment.baseline,
                     baseline: TextBaseline.alphabetic,
@@ -103,18 +103,34 @@ class _Header extends StatelessWidget {
     child: Row(
       spacing: DsfrSpacings.s1w,
       children: [
-        Expanded(child: Text(titre, style: isExpanded ? const DsfrTextStyle.bodyMdBold() : const DsfrTextStyle.bodyMd())),
+        Expanded(
+          child: Text(
+            titre,
+            style:
+                isExpanded
+                    ? const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)
+                    : const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+          ),
+        ),
         Text.rich(
           TextSpan(
             children:
                 montantMax == null
-                    ? [const TextSpan(text: Localisation.aucuneAideDisponible, style: DsfrTextStyle.bodyMdBold())]
+                    ? [
+                      const TextSpan(
+                        text: Localisation.aucuneAideDisponible,
+                        style: DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                      ),
+                    ]
                     : [
                       const TextSpan(text: Localisation.jusqua),
-                      TextSpan(text: Localisation.euro(montantMax!), style: const DsfrTextStyle.bodyMdBold()),
+                      TextSpan(
+                        text: Localisation.euro(montantMax!),
+                        style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                      ),
                     ],
           ),
-          style: const DsfrTextStyle.bodyMd(),
+          style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
         ),
       ],
     ),
@@ -143,12 +159,12 @@ class _Body extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         spacing: DsfrSpacings.s1v,
                         children: [
-                          Text(e.libelle, style: const DsfrTextStyle.bodyMdBold()),
-                          Text(e.description.trim(), style: const DsfrTextStyle.bodyXs()),
-                          DsfrLink.sm(
+                          Text(e.libelle, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
+                          Text(e.description.trim(), style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50)),
+                          DsfrLink(
                             label: Localisation.voirLesDemarches,
-                            icon: DsfrIcons.systemExternalLinkFill,
                             iconPosition: DsfrLinkIconPosition.end,
+                            icon: DsfrIcons.systemExternalLinkFill,
                             onTap: () async {
                               await FnvUrlLauncher.launch(e.lien);
                             },
@@ -156,7 +172,7 @@ class _Body extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Text(Localisation.euro(e.montant), style: const DsfrTextStyle.bodyMdBold()),
+                    Text(Localisation.euro(e.montant), style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
                   ],
                 ),
               ),

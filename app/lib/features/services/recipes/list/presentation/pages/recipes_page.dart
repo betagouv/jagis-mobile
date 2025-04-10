@@ -8,9 +8,9 @@ import 'package:app/features/services/recipes/list/presentation/bloc/recipes_blo
 import 'package:app/features/services/recipes/list/presentation/bloc/recipes_event.dart';
 import 'package:app/features/services/recipes/list/presentation/bloc/recipes_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class RecipesPage extends StatelessWidget {

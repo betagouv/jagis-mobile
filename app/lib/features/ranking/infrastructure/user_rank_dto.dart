@@ -6,7 +6,7 @@ class UserRankDto extends UserRank {
   factory UserRankDto.fromJson(final Map<String, dynamic> json) => UserRankDto(
     points: json['points'] as int,
     rank: json['rank'] as int,
-    pseudo: json['pseudo'] as String,
+    pseudo: json['pseudo'] as String?,
     id: json['id'] as String,
   );
 }

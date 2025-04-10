@@ -15,6 +15,7 @@ class RankItem extends StatelessWidget {
   Widget build(final BuildContext context) {
     final borderColor = isCurrentUser ? DsfrColors.blueFranceMain525 : FnvColors.carteFond;
     final backgroundColor = isCurrentUser ? DsfrColors.blueFrance925 : FnvColors.carteFond;
+    final pseudo = userRank.pseudo;
 
     return DecoratedBox(
       decoration: BoxDecoration(color: backgroundColor, border: Border.all(color: borderColor), boxShadow: cardBoxShadow),
@@ -24,7 +25,7 @@ class RankItem extends StatelessWidget {
           spacing: DsfrSpacings.s1w,
           children: [
             _RankDisplay(rank: userRank.rank),
-            Expanded(child: Text(userRank.pseudo, style: const DsfrTextStyle.bodyMdBold())),
+            Expanded(child: pseudo == null ? const SizedBox.shrink() : Text(pseudo, style: const DsfrTextStyle.bodyMdBold())),
             PointsWidget(points: userRank.points, backgroundColor: FnvColors.carteFond),
           ],
         ),

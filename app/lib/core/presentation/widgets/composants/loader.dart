@@ -22,9 +22,7 @@ class _FnvLoaderState extends State<FnvLoader> with SingleTickerProviderStateMix
       end: const Offset(0.5, 0),
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    _colorAnimation = TweenSequence<Color?>(
-      _getSequenceColor(const [Color(0xFFFF4500), Color(0xFF32CD32), Color(0xFF1E90FF), Color(0xFF9932CC)]),
-    ).animate(_controller);
+    _colorAnimation = TweenSequence<Color?>(_getSequenceColor(const [Color(0xFF00A081), Color(0xFFDDB7E6)])).animate(_controller);
   }
 
   List<TweenSequenceItem<Color?>> _getSequenceColor(final List<Color> colors) {

@@ -24,6 +24,10 @@
 		<string>????</string>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>CFBundleAllowMixedLocalizations</key>
+		<true/>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>xx-XX</string>
 		<key>FlutterDeepLinkingEnabled</key>
 		<true/>
 		<key>ITSAppUsesNonExemptEncryption</key>

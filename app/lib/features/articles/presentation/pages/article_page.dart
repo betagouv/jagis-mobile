@@ -1,9 +1,18 @@
+import 'package:app/core/helpers/string.dart';
+import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
+import 'package:app/core/presentation/widgets/composants/html_widget.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/articles/presentation/pages/article_view.dart';
+import 'package:app/features/articles/domain/article.dart';
+import 'package:app/features/articles/presentation/bloc/article_bloc.dart';
+import 'package:app/features/articles/presentation/bloc/article_event.dart';
+import 'package:app/l10n/l10n.dart';
+import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key, required this.id});
@@ -12,7 +21,7 @@ class ArticlePage extends StatelessWidget {
   static const path = 'article/:title/:id';
 
   static Map<String, String> pathParameters({
-    // NOTE(lsaudon): Le titre est uniquement ajouté pour être iso avec le web et permettre le deeplink
+    // Le titre est uniquement ajouté pour être iso avec le web et permettre le deeplink
     final String title = 'titre-action',
     required final String id,
   }) => {'title': title, 'id': id};
@@ -25,6 +34,151 @@ class ArticlePage extends StatelessWidget {
   @override
   Widget build(final context) => FnvScaffold(
     appBar: FnvAppBar(),
-    body: SingleChildScrollView(padding: const EdgeInsets.all(paddingVerticalPage), child: SafeArea(child: ArticleView(id: id))),
+    body: BlocProvider(
+      create: (final context) => ArticleBloc(articlesRepository: context.read())..add(ArticleRecuperationDemandee(id)),
+      child: const _Content(),
+    ),
   );
+}
+
+class _Content extends StatelessWidget {
+  const _Content();
+
+  @override
+  Widget build(final context) {
+    final article = context.select<ArticleBloc, Article>((final v) => v.state.article);
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: DsfrSpacings.s2w,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              children: [
+                Text(article.titre, style: const DsfrTextStyle.headline2()),
+                if (article.sousTitre != null && article.sousTitre!.isNotEmpty) ...[
+                  const SizedBox(height: DsfrSpacings.s2w),
+                  Text(article.sousTitre!, style: const DsfrTextStyle.headline6()),
+                ],
+                const SizedBox(height: DsfrSpacings.s2w),
+                FnvHtmlWidget(article.contenu),
+                if (article.partner != null) ...[
+                  const SizedBox(height: DsfrSpacings.s4w),
+                  const Text(Localisation.proposePar, style: DsfrTextStyle.bodySm()),
+                  const SizedBox(height: DsfrSpacings.s1w),
+                  _LogoWidget(article: article),
+                ],
+                if (article.sources.isNotEmpty) ...[
+                  const SizedBox(height: DsfrSpacings.s2w),
+                  const Text('Sources :', style: DsfrTextStyle.bodySm()),
+                  const SizedBox(height: DsfrSpacings.s1w),
+                  ...article.sources.map(
+                    (final source) => Padding(
+                      padding: const EdgeInsets.only(bottom: DsfrSpacings.s1w),
+                      child: InkWell(
+                        onTap: () async => FnvUrlLauncher.launch(source.url),
+                        child: Text.rich(
+                          TextSpan(
+                            text: source.label,
+                            children: const [
+                              WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: Icon(DsfrIcons.systemExternalLinkLine, size: 14),
+                              ),
+                            ],
+                          ),
+                          style: const DsfrTextStyle.bodySm().copyWith(decoration: TextDecoration.underline),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          ColoredBox(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(DsfrSpacings.s2w),
+              child: Column(
+                spacing: DsfrSpacings.s2w,
+                children: [
+                  _FavoriteButton(isFavorite: article.isFavorite),
+                  DsfrButton(
+                    label: Localisation.partagerLArticle,
+                    icon: DsfrIcons.systemShareLine,
+                    iconLocation: DsfrButtonIconLocation.right,
+                    variant: DsfrButtonVariant.tertiary,
+                    size: DsfrButtonSize.lg,
+                    onPressed: () async {
+                      final uri = Uri.parse(
+                        'https://jagis.beta.gouv.fr/article/${titleToKebabCase(article.titre)}/${article.id}',
+                      );
+                      await Share.shareUri(uri);
+                    },
+                  ),
+                  const SafeArea(child: SizedBox(height: DsfrSpacings.s2w)),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  const _FavoriteButton({required this.isFavorite});
+
+  final bool isFavorite;
+
+  @override
+  Widget build(final BuildContext context) {
+    const iconLocation = DsfrButtonIconLocation.right;
+    const variant = DsfrButtonVariant.tertiary;
+    const size = DsfrButtonSize.lg;
+
+    if (isFavorite) {
+      return DsfrButton(
+        label: Localisation.retirerDesFavoris,
+        icon: DsfrIcons.healthHeartFill,
+        iconLocation: iconLocation,
+        iconColor: DsfrColors.redMarianneMain472,
+        variant: variant,
+        size: size,
+        onPressed: () => context.read<ArticleBloc>().add(const ArticleRemoveToFavoritesPressed()),
+      );
+    }
+
+    return DsfrButton(
+      label: Localisation.ajouterEnFavoris,
+      icon: DsfrIcons.healthHeartLine,
+      iconLocation: iconLocation,
+      variant: variant,
+      size: size,
+      onPressed: () => context.read<ArticleBloc>().add(const ArticleAddToFavoritesPressed()),
+    );
+  }
+}
+
+class _LogoWidget extends StatelessWidget {
+  const _LogoWidget({required this.article});
+
+  final Article article;
+
+  @override
+  Widget build(final context) {
+    if (article.partner == null) {
+      return const SizedBox.shrink();
+    }
+
+    final partner = article.partner!;
+    final logoUrl = partner.logo;
+    final logoName = partner.name;
+
+    return FnvImage.network(logoUrl, semanticLabel: logoName);
+  }
 }

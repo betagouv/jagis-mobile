@@ -5,8 +5,7 @@ class UserRank extends Equatable {
 
   final int points;
   final int rank;
-  final String pseudo;
-
+  final String? pseudo;
   final String id;
 
   @override

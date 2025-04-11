@@ -20,8 +20,6 @@ class Libre extends StatelessWidget {
       controller: controller,
       onChanged: (final value) => context.read<QuestionEditBloc>().add(QuestionEditLibreChangee(value)),
       maxLines: 4,
-      minLines: 3,
-      inputConstraints: null,
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_bloc.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_event.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_state.dart';
@@ -71,7 +71,8 @@ class _Success extends StatelessWidget {
             children:
                 state.actors
                     .map(
-                      (final e) => FnvCard(
+                      (final e) => DecoratedBox(
+                        decoration: const BoxDecoration(boxShadow: cardBoxShadow),
                         child: SizedBox(
                           width: 346,
                           child: Padding(

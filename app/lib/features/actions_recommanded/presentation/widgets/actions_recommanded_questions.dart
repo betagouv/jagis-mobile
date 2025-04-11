@@ -3,8 +3,8 @@ import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/actions_recommanded/infrastructure/actions_recommanded_manager.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
@@ -125,7 +125,8 @@ class _GetStarted extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final context) => FnvCard(
+  Widget build(final context) => DecoratedBox(
+    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
     child: Padding(
       padding: const EdgeInsets.only(
         left: DsfrSpacings.s3w,

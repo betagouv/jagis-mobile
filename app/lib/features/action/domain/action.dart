@@ -19,6 +19,7 @@ sealed class Action extends Equatable {
     required this.aidSummaries,
     required this.score,
     required this.faq,
+    required this.rate,
   });
 
   final ThemeType themeType;
@@ -31,13 +32,14 @@ sealed class Action extends Equatable {
   final int nbActionsDone;
   final int score;
   final List<FAQItem>? faq;
+  final int? rate;
 
   String get instruction;
   String get instructionWhenDone;
   ActionType get type;
 
   @override
-  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq];
+  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq, rate];
 }
 
 final class ActionClassic extends Action {
@@ -52,6 +54,7 @@ final class ActionClassic extends Action {
     required super.nbActionsDone,
     required super.score,
     required super.faq,
+    required super.rate,
     required this.why,
     required this.instruction,
     required this.scoreLabel,
@@ -94,6 +97,7 @@ final class ActionQuiz extends Action {
     required super.nbActionsDone,
     required super.score,
     required super.faq,
+    required super.rate,
     required this.quizzes,
     required this.congratulatoryText,
   });
@@ -131,6 +135,7 @@ final class ActionPerformance extends Action {
     required super.aidSummaries,
     required super.score,
     required super.faq,
+    required super.rate,
     required this.questions,
   });
 
@@ -162,6 +167,7 @@ final class ActionSimulator extends ActionPerformance {
     required super.aidSummaries,
     required super.score,
     required super.questions,
+    required super.rate,
     required this.why,
   });
 

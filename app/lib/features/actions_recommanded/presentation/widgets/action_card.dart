@@ -1,5 +1,5 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/action_information.dart';
@@ -17,7 +17,8 @@ class ActionCard extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final context) => FnvCard(
+  Widget build(final context) => DecoratedBox(
+    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
     child: IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

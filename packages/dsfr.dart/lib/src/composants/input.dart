@@ -34,6 +34,9 @@ class DsfrInput extends StatefulWidget {
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.enabled,
+    this.maxLines = 1,
+    this.maxLength,
+    this.inputConstraints = const BoxConstraints(maxHeight: DsfrSpacings.s6w),
     this.inputFormatters,
     this.scrollPadding = const EdgeInsets.all(20),
     this.autofillHints,
@@ -49,7 +52,6 @@ class DsfrInput extends StatefulWidget {
   final GestureTapCallback? onTap;
   final ValueChanged<String>? onFieldSubmitted;
   final FormFieldValidator<String>? validator;
-
   final double? width;
   final TextStyle labelStyle;
   final Color labelColor;
@@ -60,9 +62,12 @@ class DsfrInput extends StatefulWidget {
   final bool isPasswordMode;
   final bool? autocorrect;
   final bool? enabled;
+  final int? maxLines;
+  final int? maxLength;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
   final TextInputAction? textInputAction;
+  final BoxConstraints? inputConstraints;
   final List<TextInputFormatter>? inputFormatters;
   final EdgeInsets scrollPadding;
   final Iterable<String>? autofillHints;
@@ -132,8 +137,11 @@ class _DsfrInputState extends State<DsfrInput> {
                   passwordVisibility: _passwordVisibility,
                   autocorrect: widget.autocorrect,
                   enabled: widget.enabled,
+                  maxLines: widget.maxLines,
+                  maxLength: widget.maxLength,
                   textAlign: widget.textAlign,
                   autofocus: widget.autofocus,
+                  inputConstraints: widget.inputConstraints,
                   inputFormatters: widget.inputFormatters,
                   scrollPadding: widget.scrollPadding,
                   autofillHints: widget.autofillHints,

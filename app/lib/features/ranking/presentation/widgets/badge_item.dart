@@ -1,5 +1,5 @@
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/ranking/domain/achievement_badge.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,8 @@ class BadgeItem extends StatelessWidget {
   final AchievementBadge badge;
 
   @override
-  Widget build(final BuildContext context) => FnvCard(
+  Widget build(final BuildContext context) => DecoratedBox(
+    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s1w),
       child: Row(

@@ -3,6 +3,7 @@ import 'package:app/core/authentication/presentation/bloc/authentication_state.d
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/pages/error_route_page.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
+import 'package:app/features/action_feedback/presentation/pages/action_feedback_page.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
@@ -76,6 +77,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         LibraryPage.route,
         ActionsPage.route,
         ActionPage.route,
+        ActionFeedbackPage.route,
         RecipesPage.route,
         RecipePage.route,
         ProfilPage.route,

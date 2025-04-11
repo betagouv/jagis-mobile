@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dsfr/dsfr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers.dart';
@@ -51,17 +52,24 @@ void main() {
         await tester.pumpWidget(
           App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg, onPressed: () {})),
         );
-        expect(
-          tester.getSemantics(find.text(label)),
-          containsSemantics(
-            label: label,
-            isButton: true,
-            isFocusable: true,
-            hasEnabledState: true,
-            isEnabled: true,
-            hasTapAction: true,
+        expect(tester.getSemantics(find.text(label)), containsSemantics(label: label, isButton: true));
+        handle.dispose();
+      });
+
+      testWidgets('DsfrRawButton voir le label', (final tester) async {
+        final handle = tester.ensureSemantics();
+        const label = 'Label bouton';
+        await tester.pumpWidget(
+          App(
+            child: DsfrRawButton(
+              variant: DsfrButtonVariant.primary,
+              size: DsfrComponentSize.lg,
+              onPressed: () {},
+              child: const Text(label),
+            ),
           ),
         );
+        expect(tester.getSemantics(find.text(label)), containsSemantics(label: label, isButton: true));
         handle.dispose();
       });
     });

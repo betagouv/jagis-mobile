@@ -17,10 +17,11 @@ class ActionRepository {
 
   Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {
     final actionTypeAPI = actionTypeToAPIString(type);
+
     final response = await _client.get(Endpoints.action(type: actionTypeAPI, code: id));
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception("Type: $actionTypeAPI,\nID: $id,\nError: Erreur lors de la récupération de l'action: $response"));
+      return Left(Exception("Erreur lors de la récupération de l'action"));
     }
 
     final json = response.data! as Map<String, dynamic>;
@@ -39,6 +40,23 @@ class ActionRepository {
     await _client.post(Endpoints.actionFaite(type: actionTypeToAPIString(type), code: id));
 
     _messageBus.publish(actionDoneTopic);
+
+    return const Right(unit);
+  }
+
+  Future<Either<Exception, Unit>> feedback({
+    required final ActionType type,
+    required final String id,
+    required final int rate,
+    required final String message,
+  }) async {
+    final response = await _client.post(
+      Endpoints.actionFeedback(type: actionTypeToAPIString(type), code: id),
+      data: {'like_level': rate, 'feedback': message},
+    );
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception("Erreur lors de l'envoi du retour."));
+    }
 
     return const Right(unit);
   }

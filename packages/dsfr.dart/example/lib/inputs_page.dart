@@ -19,6 +19,7 @@ class InputsPage extends StatelessWidget {
         ],
       ),
       const DsfrInput(label: 'Password', onChanged: print, isPasswordMode: true),
+      const DsfrInput(label: 'TextArea', onChanged: print, maxLines: 5),
       const DsfrInputHeadless(onChanged: print),
     ],
   );

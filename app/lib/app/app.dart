@@ -247,6 +247,8 @@ class _AppState extends State<App> {
                   theme: ThemeData(
                     colorSchemeSeed: DsfrColors.blueFranceSun113,
                     scaffoldBackgroundColor: Colors.white,
+                    fontFamily: 'Marianne',
+                    package: 'dsfr',
                     appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
                   ),
                   locale: locale,

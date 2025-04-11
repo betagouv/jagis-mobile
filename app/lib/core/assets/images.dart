@@ -6,6 +6,7 @@ abstract final class AssetImages {
   static const franceNationVerte = 'assets/images/logo_fnv.png';
   static const franceNationVerteSemantic = 'Logo de France Nation Verte';
   static const franceConnect = 'assets/images/france_connect.svg';
+  static const feedback = 'assets/images/feedback.webp';
   static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
   static const lvaoStore = 'assets/images/lvao_store.svg';
   static const impactCo2Illustration = 'assets/images/service-fruits.webp';
@@ -13,7 +14,7 @@ abstract final class AssetImages {
   static const republiqueFrancaise = 'assets/images/logo_rf.svg';
   static const republiqueFrancaiseSemantic = 'Logo officiel de la République Française';
   static const ademe = 'assets/images/logo_ademe.svg';
-  static const ademeSemantic = 'Logo de l’ADEME: Agence de la transition écologique';
+  static const ademeSemantic = 'Logo de l’ADEME : Agence de la transition écologique';
   static const mesAidesVeloLogo = 'assets/images/mesaidesvelo_logo.svg';
   static const mesAidesVeloTexte = 'assets/images/mesaidesvelo_texte.svg';
   static const bibliothequeEmpty = 'assets/images/bibliotheque_illustration.svg';

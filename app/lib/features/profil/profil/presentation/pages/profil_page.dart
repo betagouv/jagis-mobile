@@ -1,6 +1,6 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
@@ -27,7 +27,8 @@ class ProfilPage extends StatelessWidget {
       children: [
         const FnvTitle(title: Localisation.monProfil),
         const SizedBox(height: DsfrSpacings.s3w),
-        FnvCard(
+        DecoratedBox(
+          decoration: const BoxDecoration(boxShadow: cardBoxShadow),
           child: Column(
             children: [
               _MenuElement(

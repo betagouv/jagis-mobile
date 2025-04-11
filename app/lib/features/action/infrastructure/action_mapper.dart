@@ -41,6 +41,7 @@ abstract final class ActionClassicMapper {
     nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
+    rate: (json['like_level'] as num?)?.toInt(),
     why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
     scoreLabel: json['label_compteur'] as String,
@@ -63,6 +64,7 @@ abstract final class ActionQuizMapper {
     nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
+    rate: (json['like_level'] as num?)?.toInt(),
     quizzes: JsonListMapper.fromJsonList(json['quizzes'], QuizMapper.fromJson),
     congratulatoryText: json['quizz_felicitations'] as String,
   );
@@ -83,6 +85,7 @@ abstract final class ActionSimulatorMapper {
     aidSummaries: ActionMapper.aidSummariesFromJson(json),
     score: ActionMapper.scoreFromJson(json),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
+    rate: (json['like_level'] as num?)?.toInt(),
     why: json['pourquoi'] as String,
   );
 }
@@ -101,6 +104,7 @@ abstract final class ActionPerformanceMapper {
     aidSummaries: ActionMapper.aidSummariesFromJson(json),
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
+    rate: (json['like_level'] as num?)?.toInt(),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
   );
 }

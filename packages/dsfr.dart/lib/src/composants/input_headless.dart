@@ -27,7 +27,7 @@ class DsfrInputHeadless extends StatefulWidget {
     this.radius = DsfrSpacings.s1v,
     this.enabled,
     this.maxLines = 1,
-    this.minLines = 1,
+    this.maxLength,
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.inputStyle = const DsfrTextStyle.bodyMd(),
@@ -59,7 +59,7 @@ class DsfrInputHeadless extends StatefulWidget {
   final bool? autocorrect;
   final bool? enabled;
   final int? maxLines;
-  final int? minLines;
+  final int? maxLength;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
   final TextInputAction? textInputAction;
@@ -137,12 +137,13 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixText: widget.suffixText,
               suffixStyle: widget.inputStyle,
+              counterStyle: const DsfrTextStyle.bodyXs(color: DsfrColors.grey200),
               filled: true,
               fillColor: widget.fillColor,
               focusedBorder: underlineInputBorder,
               enabledBorder: underlineInputBorder,
               border: underlineInputBorder,
-              constraints: widget.inputConstraints,
+              constraints: widget.maxLines == 1 ? widget.inputConstraints : null,
             ),
             keyboardType: widget.keyboardType,
             textCapitalization: widget.textCapitalization,
@@ -154,7 +155,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
             autocorrect: widget.autocorrect ?? !widget.isPasswordMode,
             enableSuggestions: !widget.isPasswordMode,
             maxLines: widget.maxLines,
-            minLines: widget.minLines,
+            maxLength: widget.maxLength,
             onChanged: widget.onChanged,
             onTap: widget.onTap,
             onTapOutside: (final event) => FocusManager.instance.primaryFocus?.unfocus(),

@@ -93,6 +93,7 @@ abstract final class Localisation {
   static const envieDAvoirUnVraiImpact = 'Envie d’avoir un vrai impact ?';
   static const envieDAvoirUnVraiImpactDescription =
       'Laissez-vous guider par nos recommandations d’actions **choisies pour vous !**';
+  static const envoyer = 'Envoyer';
   static const erreurInattendue = 'Erreur inattendue';
   static const erreurInattendueContent =
       'Désolé, le service rencontre un problème, nous y travaillons pour le résoudre le plus rapidement possible.';
@@ -136,6 +137,10 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
+  static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
+  static const avezVousAimeCettePageDescription =
+      'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
+  static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const jeCreeMonCompte = 'Je crée mon compte';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';

@@ -50,12 +50,12 @@ class _Content extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: DsfrSpacings.s2w,
         children: [
           Padding(
             padding: const EdgeInsets.all(DsfrSpacings.s2w),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(article.titre, style: const DsfrTextStyle.headline2()),
                 if (article.sousTitre != null && article.sousTitre!.isNotEmpty) ...[

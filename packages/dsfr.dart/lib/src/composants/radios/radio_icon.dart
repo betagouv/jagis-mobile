@@ -12,7 +12,9 @@ class RadioIcon<T> extends StatelessWidget {
     checked: groupValue == value,
     selected: groupValue == value,
     inMutuallyExclusiveGroup: true,
-    child: FittedBox(child: CustomPaint(painter: _RadioIconPainter(isSelected: groupValue == value), size: const Size(24, 24))),
+    child: FittedBox(
+      child: CustomPaint(painter: _RadioIconPainter(isSelected: groupValue == value), size: const Size.square(24)),
+    ),
   );
 }
 

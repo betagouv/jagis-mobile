@@ -22,7 +22,7 @@ class FnvErrorRoutePage extends StatelessWidget {
         DsfrButton(
           label: Localisation.erreurRoutePageAction,
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => context.go(HomePage.path),
         ),
       ],

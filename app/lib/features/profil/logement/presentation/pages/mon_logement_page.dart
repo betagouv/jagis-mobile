@@ -50,7 +50,7 @@ class _MonLogementView extends StatelessWidget {
       child: DsfrButton(
         label: Localisation.mettreAJourMesInformations,
         variant: DsfrButtonVariant.primary,
-        size: DsfrButtonSize.lg,
+        size: DsfrComponentSize.lg,
         onPressed: () {
           context.read<MonLogementBloc>().add(const MonLogementMiseAJourDemandee());
           ScaffoldMessenger.of(context)

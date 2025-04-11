@@ -88,7 +88,7 @@ class _Classic extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s3w),
       DsfrRawButton(
         variant: DsfrButtonVariant.primary,
-        size: DsfrButtonSize.lg,
+        size: DsfrComponentSize.lg,
         onPressed: () => context.read<ActionBloc>().add(ActionMarkAsDone(id: action.id, type: action.type)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

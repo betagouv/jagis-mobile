@@ -58,7 +58,7 @@ class _ChangerMotDePasseButton extends StatelessWidget {
   Widget build(final context) => DsfrButton(
     label: Localisation.changerMonMotDePasse,
     variant: DsfrButtonVariant.primary,
-    size: DsfrButtonSize.lg,
+    size: DsfrComponentSize.lg,
     onPressed:
         context.select<ChangerMotDePasseBloc, bool>((final bloc) => bloc.state.estValide)
             ? () => context.read<ChangerMotDePasseBloc>().add(const ChangerMotDePasseChangementDemande())

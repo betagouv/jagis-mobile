@@ -115,7 +115,7 @@ class _Content extends StatelessWidget {
                 child: DsfrButton(
                   label: Localisation.continuer,
                   variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.lg,
+                  size: DsfrComponentSize.lg,
                   onPressed:
                       isValid ? () => context.read<OnboardingPseudonymBloc>().add(const OnboardingPseudonymSubmitted()) : null,
                 ),

@@ -61,7 +61,7 @@ class _View extends StatelessWidget {
               child: DsfrButton(
                 label: Localisation.accederAuSimulateur,
                 variant: DsfrButtonVariant.primary,
-                size: DsfrButtonSize.lg,
+                size: DsfrComponentSize.lg,
                 onPressed: () async {
                   if (aid.hasBikeSimulator) {
                     await GoRouter.of(context).pushNamed(AideSimulateurVeloPage.name);

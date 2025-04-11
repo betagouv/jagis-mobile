@@ -15,7 +15,7 @@ class ButtonsPage extends StatelessWidget {
 
     final children = <Widget>[];
     for (final variant in DsfrButtonVariant.values) {
-      for (final size in DsfrButtonSize.values) {
+      for (final size in DsfrComponentSize.values) {
         children.addAll([
           Text('variant: ${variant.name}, size: ${size.name}'),
           DsfrButton(label: label, variant: variant, size: size),

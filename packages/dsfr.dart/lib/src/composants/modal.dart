@@ -24,25 +24,6 @@ class DsfrModal extends StatelessWidget {
     routeSettings: RouteSettings(name: name),
   );
 
-  static Future<T?> showFullModal<T>({
-    required final BuildContext context,
-    required final WidgetBuilder builder,
-    required final String name,
-    final bool isDismissible = true,
-  }) async => showDialog(
-    context: context,
-    builder:
-        (final context) => Center(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-            child: DsfrModal(isDismissible: isDismissible, child: builder(context)),
-          ),
-        ),
-    barrierDismissible: isDismissible,
-    barrierColor: DsfrColors.grey50.withAlpha(163),
-    routeSettings: RouteSettings(name: name),
-  );
-
   final Widget child;
   final bool isDismissible;
 
@@ -66,7 +47,7 @@ class DsfrModal extends StatelessWidget {
                       icon: DsfrIcons.systemCloseLine,
                       iconLocation: DsfrButtonIconLocation.right,
                       variant: DsfrButtonVariant.tertiaryWithoutBorder,
-                      size: DsfrButtonSize.sm,
+                      size: DsfrComponentSize.sm,
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),

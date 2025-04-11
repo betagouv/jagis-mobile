@@ -16,12 +16,9 @@ class MonLogementResidencePrincipale extends StatelessWidget {
 
     return MonLogementTitreEtContenu(
       titre: Localisation.maResidencePrincipaleEst,
-      contenu: DsfrRadioButtonSetHeadless(
-        values: const {
-          TypeDeLogement.appartement: DsfrRadioButtonItem(Localisation.unAppartement),
-          TypeDeLogement.maison: DsfrRadioButtonItem(Localisation.uneMaison),
-        },
-        onCallback: (final value) {
+      contenu: DsfrRadioButtonGroupHeadless(
+        values: const {TypeDeLogement.appartement: Localisation.unAppartement, TypeDeLogement.maison: Localisation.uneMaison},
+        onChanged: (final value) {
           if (value == null) {
             return;
           }

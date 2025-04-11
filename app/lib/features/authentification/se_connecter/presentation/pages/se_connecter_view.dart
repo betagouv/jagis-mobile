@@ -72,7 +72,7 @@ class SeConnecterView extends StatelessWidget {
                 (final context, final state) => DsfrButton(
                   label: Localisation.meConnecter,
                   variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.lg,
+                  size: DsfrComponentSize.lg,
                   onPressed: state ? () => context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee()) : null,
                 ),
           ),

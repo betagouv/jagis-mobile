@@ -4,12 +4,12 @@ import 'package:dsfr/src/fondamentaux/icons.g.dart';
 import 'package:dsfr/src/fondamentaux/spacing.g.dart';
 import 'package:flutter/material.dart';
 
-enum DsfrAlertSeverity { info, warning, error, success }
+enum DsfrAlertType { info, warning, error, success }
 
 class DsfrAlert extends StatelessWidget {
-  const DsfrAlert({super.key, required this.severity, this.title, this.description});
+  const DsfrAlert({super.key, required this.type, this.title, this.description});
 
-  final DsfrAlertSeverity severity;
+  final DsfrAlertType type;
   final String? title;
   final Widget? description;
 
@@ -47,17 +47,17 @@ class DsfrAlert extends StatelessWidget {
     ),
   );
 
-  IconData get _icon => switch (severity) {
-    DsfrAlertSeverity.info => DsfrIcons.systemFrInfoFill,
-    DsfrAlertSeverity.warning => DsfrIcons.systemFrWarningFill,
-    DsfrAlertSeverity.error => DsfrIcons.systemFrErrorFill,
-    DsfrAlertSeverity.success => DsfrIcons.systemFrSuccessFill,
+  IconData get _icon => switch (type) {
+    DsfrAlertType.info => DsfrIcons.systemFrInfoFill,
+    DsfrAlertType.warning => DsfrIcons.systemFrWarningFill,
+    DsfrAlertType.error => DsfrIcons.systemFrErrorFill,
+    DsfrAlertType.success => DsfrIcons.systemFrSuccessFill,
   };
 
-  Color get _color => switch (severity) {
-    DsfrAlertSeverity.info => DsfrColors.backgroundFlatInfo,
-    DsfrAlertSeverity.warning => DsfrColors.warning425,
-    DsfrAlertSeverity.error => DsfrColors.error425,
-    DsfrAlertSeverity.success => DsfrColors.success425,
+  Color get _color => switch (type) {
+    DsfrAlertType.info => DsfrColors.backgroundFlatInfo,
+    DsfrAlertType.warning => DsfrColors.warning425,
+    DsfrAlertType.error => DsfrColors.error425,
+    DsfrAlertType.success => DsfrColors.success425,
   };
 }

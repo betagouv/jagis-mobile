@@ -69,7 +69,7 @@ class _View extends StatelessWidget {
           DsfrButton(
             label: Localisation.valider,
             variant: DsfrButtonVariant.primary,
-            size: DsfrButtonSize.lg,
+            size: DsfrComponentSize.lg,
             onPressed: () => context.read<MotDePasseOublieCodeBloc>().add(const MotDePasseOublieCodeValidationDemande()),
           ),
         ],

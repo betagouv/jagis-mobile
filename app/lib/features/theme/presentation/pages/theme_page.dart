@@ -137,7 +137,7 @@ class _ActionCatalog extends StatelessWidget {
         child: DsfrButton(
           label: Localisation.accederAuCatalogue,
           variant: DsfrButtonVariant.secondary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () async => GoRouter.of(context).pushNamed(ActionsPage.name),
         ),
       ),

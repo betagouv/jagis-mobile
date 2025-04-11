@@ -49,7 +49,7 @@ class PreOnboardingPage extends StatelessWidget {
                 DsfrButton(
                   label: Localisation.jeCreeMonCompte,
                   variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.lg,
+                  size: DsfrComponentSize.lg,
                   onPressed: () async => GoRouter.of(context).pushNamed(CreerComptePage.name),
                 ),
                 const SizedBox(height: DsfrSpacings.s2w),

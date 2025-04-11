@@ -65,7 +65,7 @@ class ToutEstPretPage extends StatelessWidget {
         child: DsfrButton(
           label: Localisation.cestParti,
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () {
             context.read<UserBloc>().add(const UserFetchRequested());
             GoRouter.of(context).goNamed(HomePage.name);

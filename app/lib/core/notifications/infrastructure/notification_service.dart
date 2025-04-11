@@ -9,8 +9,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 
-typedef _AsyncCallback<T> = Future<T> Function();
-
 class NotificationService {
   static const _topicAll = 'all';
   final _messageController = StreamController<NotificationData>.broadcast();
@@ -45,17 +43,17 @@ class NotificationService {
   /// Solution pour éviter le crash sur iOS 15.x
   ///
   /// [iOS 15.x and APNS token has not been set yet.](https://github.com/firebase/flutterfire/issues/17188)
-  Future<T?> _executePlatformSafeCallback<T>(final _AsyncCallback<T?> callback) async {
+  Future<T?> _executePlatformSafeCallback<T>(final AsyncValueGetter<T?> asyncOperation) async {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
       if (apnsToken != null) {
-        return callback();
+        return asyncOperation();
       }
 
       return null;
     }
 
-    return callback();
+    return asyncOperation();
   }
 
   Stream<NotificationData> get onMessageOpenedApp => _messageController.stream;

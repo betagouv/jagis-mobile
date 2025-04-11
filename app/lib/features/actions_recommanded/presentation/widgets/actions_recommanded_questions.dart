@@ -144,7 +144,7 @@ class _GetStarted extends StatelessWidget {
           AnimationShake(
             child: DsfrRawButton(
               variant: DsfrButtonVariant.primary,
-              size: DsfrButtonSize.lg,
+              size: DsfrComponentSize.lg,
               onPressed: onPressed,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -200,13 +200,13 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
             icon: DsfrIcons.systemArrowLeftLine,
             semanticLabel: Localisation.questionPrecedente,
             variant: DsfrButtonVariant.secondary,
-            size: DsfrButtonSize.lg,
+            size: DsfrComponentSize.lg,
             onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
           ),
           DsfrButton(
             label: Localisation.questionSuivante,
             variant: DsfrButtonVariant.primary,
-            size: DsfrButtonSize.lg,
+            size: DsfrComponentSize.lg,
             onPressed: _controller.save,
           ),
         ],

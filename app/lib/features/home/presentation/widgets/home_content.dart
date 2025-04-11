@@ -1,5 +1,6 @@
 import 'package:app/core/notifications/infrastructure/notification_repository.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
+import 'package:app/core/presentation/widgets/composants/modal.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_event.dart';
 import 'package:app/features/gamification/reset/presentation/widgets/reset_widget.dart';
@@ -8,7 +9,6 @@ import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_event.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_state.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +67,7 @@ class _HomeContentState extends State<HomeContent> {
       await _handleNotifications(context);
 
       if (context.mounted && !user.shouldShowResetPopup) {
-        await DsfrModal.showFullModal<void>(
+        await FnvModal.showFullModal<void>(
           context: context,
           builder: (final context) => const ResetModal(),
           name: 'reset-modal',

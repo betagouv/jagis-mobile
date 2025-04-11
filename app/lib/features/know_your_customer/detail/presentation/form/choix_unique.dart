@@ -11,15 +11,15 @@ class ChoixUnique extends StatelessWidget {
   final QuestionSingleChoice question;
 
   @override
-  Widget build(final context) => DsfrRadioButtonSetHeadless(
-    values: Map.fromEntries(question.responses.map((final r) => MapEntry(r.label, DsfrRadioButtonItem(r.label)))),
-    onCallback: (final value) {
+  Widget build(final context) => DsfrRadioButtonGroupHeadless(
+    mode: DsfrRadioButtonSetMode.column,
+    values: Map.fromEntries(question.responses.map((final r) => MapEntry(r.label, r.label))),
+    onChanged: (final value) {
       if (value == null) {
         return;
       }
       context.read<QuestionEditBloc>().add(QuestionEditChoixUniqueChangee(value));
     },
     initialValue: question.responses.where((final r) => r.isSelected).firstOrNull?.label,
-    mode: DsfrRadioButtonSetMode.column,
   );
 }

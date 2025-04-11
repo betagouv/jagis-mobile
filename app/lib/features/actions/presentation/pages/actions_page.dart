@@ -201,7 +201,7 @@ class _Element extends StatelessWidget {
               child: DsfrButtonIcon(
                 icon: DsfrIcons.systemArrowRightLine,
                 variant: DsfrButtonVariant.tertiaryWithoutBorder,
-                size: DsfrButtonSize.md,
+                size: DsfrComponentSize.md,
                 onPressed: onTap,
               ),
             ),

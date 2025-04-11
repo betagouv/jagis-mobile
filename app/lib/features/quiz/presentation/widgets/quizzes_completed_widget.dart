@@ -190,7 +190,7 @@ class _PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(final context) =>
-      DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrButtonSize.lg, onPressed: onPressed);
+      DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg, onPressed: onPressed);
 }
 
 class _SecondaryButton extends StatelessWidget {
@@ -201,5 +201,5 @@ class _SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(final context) =>
-      DsfrButton(label: label, variant: DsfrButtonVariant.secondary, size: DsfrButtonSize.lg, onPressed: onPressed);
+      DsfrButton(label: label, variant: DsfrButtonVariant.secondary, size: DsfrComponentSize.lg, onPressed: onPressed);
 }

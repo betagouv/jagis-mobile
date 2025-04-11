@@ -150,10 +150,10 @@ class _VeloEtatInput extends StatelessWidget {
   const _VeloEtatInput();
 
   @override
-  Widget build(final context) => DsfrRadioButtonSet(
+  Widget build(final context) => DsfrRadioButtonGroup(
     title: Localisation.etatDuVelo,
     values: {VeloEtat.neuf: VeloEtat.neuf.label, VeloEtat.occasion: VeloEtat.occasion.label},
-    onCallback: (final value) {
+    onChanged: (final value) {
       if (value == null) {
         return;
       }
@@ -167,10 +167,10 @@ class _EnSituationDeHandicapInput extends StatelessWidget {
   const _EnSituationDeHandicapInput();
 
   @override
-  Widget build(final context) => DsfrRadioButtonSet(
+  Widget build(final context) => DsfrRadioButtonGroup(
     title: Localisation.etesVousEnSituationDeHandicap,
     values: const {true: Localisation.oui, false: Localisation.non},
-    onCallback: (final value) {
+    onChanged: (final value) {
       if (value == null) {
         return;
       }
@@ -380,7 +380,7 @@ class _EstimerMesAides extends StatelessWidget {
   Widget build(final context) => DsfrButton(
     label: Localisation.estimerMesAides,
     variant: DsfrButtonVariant.primary,
-    size: DsfrButtonSize.lg,
+    size: DsfrComponentSize.lg,
     onPressed:
         context.watch<AideVeloBloc>().state.estValide
             ? () async {

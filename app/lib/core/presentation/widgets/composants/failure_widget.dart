@@ -23,7 +23,7 @@ class FnvFailureWidget extends StatelessWidget {
         DsfrButton(
           label: Localisation.rafraichir,
           variant: DsfrButtonVariant.secondary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: onPressed,
         ),
       ],

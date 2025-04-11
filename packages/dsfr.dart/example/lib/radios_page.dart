@@ -18,7 +18,7 @@ class _RadiosPageState extends State<RadiosPage> {
   Widget build(final context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      DsfrRadioButtonSet(title: 'Radios', values: const {1: 'Un', 2: 'Deux', 3: 'Trois'}, onCallback: (final p0) {}),
+      DsfrRadioButtonGroup(title: 'Radios', values: const {1: 'Un', 2: 'Deux', 3: 'Trois'}, onChanged: (final p0) {}),
       const SizedBox(height: DsfrSpacings.s3w),
       DsfrRadioButton<int>(
         title: 'Un',

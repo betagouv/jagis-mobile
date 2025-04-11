@@ -112,11 +112,7 @@ class _WhichDomainButtonsSection extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     spacing: DsfrSpacings.s3w,
     children: [
-      const Text(
-        Localisation.dansQuelDomaineSouhaitezVousAgir,
-        style: DsfrTextStyle.body2XlMedium(),
-        textAlign: TextAlign.center,
-      ),
+      const Text(Localisation.dansQuelDomaineSouhaitezVousAgir, style: DsfrTextStyle.bodyXlMedium(), textAlign: TextAlign.center),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: GridView(
@@ -135,7 +131,7 @@ class _WhichDomainButtonsSection extends StatelessWidget {
                     (final theme) => DsfrButton(
                       label: theme.displayName,
                       variant: DsfrButtonVariant.primary,
-                      size: DsfrButtonSize.md,
+                      size: DsfrComponentSize.md,
                       onPressed: () => navigateToTheme(context, theme),
                     ),
                   )

@@ -52,21 +52,21 @@ class _QuestionsManagerButtonsState extends State<QuestionsManagerButtons> {
           icon: DsfrIcons.systemArrowLeftLine,
           semanticLabel: Localisation.questionPrecedente,
           variant: DsfrButtonVariant.tertiaryWithoutBorder,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
         ),
       if (_inputIsEmpty)
         DsfrButton(
           label: Localisation.passerLaQuestion,
           variant: DsfrButtonVariant.secondary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
         )
       else
         DsfrButton(
           label: Localisation.questionSuivante,
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: widget.questionController.save,
         ),
     ],

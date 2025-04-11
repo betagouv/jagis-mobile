@@ -93,14 +93,14 @@ class _Success extends StatelessWidget {
         DsfrButton(
           label: _getBackText(context),
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => GoRouter.of(context).pop(),
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         DsfrButton(
           label: Localisation.recommencerLeBilan,
           variant: DsfrButtonVariant.secondary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerFirstQuestionRequested()),
         ),
       ],

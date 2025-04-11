@@ -17,8 +17,6 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-typedef Callback = void Function();
-
 class QuestionForm extends StatelessWidget {
   const QuestionForm({
     super.key,
@@ -33,7 +31,7 @@ class QuestionForm extends StatelessWidget {
   final bool withoutTitle;
   final QuestionController questionController;
   final InputController? inputController;
-  final Callback? onSaved;
+  final VoidCallback? onSaved;
 
   @override
   Widget build(final context) => BlocProvider(
@@ -61,7 +59,7 @@ class _Content extends StatelessWidget {
   final bool withoutTitle;
   final QuestionController questionController;
   final InputController? inputController;
-  final Callback? onSaved;
+  final VoidCallback? onSaved;
 
   @override
   Widget build(final context) => BlocListener<QuestionEditBloc, QuestionEditState>(

@@ -61,7 +61,7 @@ class ActionCard extends StatelessWidget {
                 child: DsfrButtonIcon(
                   icon: DsfrIcons.systemArrowRightLine,
                   variant: DsfrButtonVariant.primary,
-                  size: DsfrButtonSize.md,
+                  size: DsfrComponentSize.md,
                   onPressed: () async {
                     await GoRouter.of(context).pushNamed(
                       ActionPage.name,

@@ -1,1 +1,1 @@
-enum DsfrButtonSize { lg, md, sm }
+enum DsfrComponentSize { sm, md, lg }

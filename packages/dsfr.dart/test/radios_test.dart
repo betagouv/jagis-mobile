@@ -41,7 +41,7 @@ void main() {
       const label3 = 'Trois';
       await tester.pumpWidget(
         App(
-          child: DsfrRadioButtonSet(title: title, values: const {1: label1, 2: label2, 3: label3}, onCallback: (final value) {}),
+          child: DsfrRadioButtonGroup(title: title, values: const {1: label1, 2: label2, 3: label3}, onChanged: (final value) {}),
         ),
       );
 
@@ -56,10 +56,10 @@ void main() {
       const label2 = 'Label2';
       await tester.pumpWidget(
         App(
-          child: DsfrRadioButtonSet(
+          child: DsfrRadioButtonGroup(
             title: 'Title',
             values: const {1: 'Label1', 2: label2, 3: 'Label3'},
-            onCallback: completer.complete,
+            onChanged: completer.complete,
           ),
         ),
       );

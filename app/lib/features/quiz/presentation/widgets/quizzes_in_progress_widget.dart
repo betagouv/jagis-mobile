@@ -67,7 +67,7 @@ class _QuestionView extends StatelessWidget {
                         ? DsfrButton(
                           label: Localisation.voirLaReponse,
                           variant: DsfrButtonVariant.primary,
-                          size: DsfrButtonSize.lg,
+                          size: DsfrComponentSize.lg,
                           onPressed:
                               state.selectedResponse == null
                                   ? null
@@ -76,7 +76,7 @@ class _QuestionView extends StatelessWidget {
                         : DsfrButton(
                           label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,
                           variant: DsfrButtonVariant.primary,
-                          size: DsfrButtonSize.lg,
+                          size: DsfrComponentSize.lg,
                           onPressed: () => context.read<QuizzesBloc>().add(const QuizzesNextQuestion()),
                         ),
               ),
@@ -92,15 +92,15 @@ class _Form extends StatelessWidget {
   final List<QuizResponse> responses;
 
   @override
-  Widget build(final context) => DsfrRadioButtonSetHeadless(
-    values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, DsfrRadioButtonItem(e)))),
-    onCallback: (final value) {
+  Widget build(final context) => DsfrRadioButtonGroupHeadless(
+    mode: DsfrRadioButtonSetMode.column,
+    values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, e))),
+    onChanged: (final value) {
       if (value == null) {
         return;
       }
       context.read<QuizQuestionBloc>().add(QuizQuestionResponseSelected(value));
     },
-    mode: DsfrRadioButtonSetMode.column,
   );
 }
 

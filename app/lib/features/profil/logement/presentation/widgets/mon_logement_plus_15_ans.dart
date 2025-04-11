@@ -15,9 +15,9 @@ class MonLogementPlus15Ans extends StatelessWidget {
 
     return MonLogementTitreEtContenu(
       titre: Localisation.monLogementPlusDe15Ans,
-      contenu: DsfrRadioButtonSetHeadless(
-        values: const {true: DsfrRadioButtonItem(Localisation.oui), false: DsfrRadioButtonItem(Localisation.non)},
-        onCallback: (final value) => context.read<MonLogementBloc>().add(MonLogementPlusDe15AnsChange(value)),
+      contenu: DsfrRadioButtonGroupHeadless(
+        values: const {true: Localisation.oui, false: Localisation.non},
+        onChanged: (final value) => context.read<MonLogementBloc>().add(MonLogementPlusDe15AnsChange(value)),
         initialValue: plusDe15ans,
       ),
     );

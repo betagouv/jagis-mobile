@@ -75,7 +75,7 @@ class _ActionsEmpty extends StatelessWidget {
             label: Localisation.refaire,
             icon: DsfrIcons.systemRefreshLine,
             variant: DsfrButtonVariant.secondary,
-            size: DsfrButtonSize.lg,
+            size: DsfrComponentSize.lg,
             onPressed: () => context.read<ThemeBloc>().add(const ThemeResetRequested()),
           ),
         ],
@@ -101,7 +101,7 @@ class _ExploreAnotherTheme extends StatelessWidget {
     return DsfrButton(
       label: 'Explorer “${themeExplored.displayNameWithoutEmoji}”',
       variant: DsfrButtonVariant.primary,
-      size: DsfrButtonSize.lg,
+      size: DsfrComponentSize.lg,
       onPressed: () {
         navigateToTheme(context, themeExplored);
       },
@@ -134,7 +134,7 @@ class _ActionsState extends State<_Actions> {
           DsfrButton(
             label: Localisation.voirPlusActions,
             variant: DsfrButtonVariant.secondary,
-            size: DsfrButtonSize.md,
+            size: DsfrComponentSize.md,
             onPressed: () => setState(() => _showAllItems = true),
           ),
       ],

@@ -108,7 +108,7 @@ class _BoutonCreerCompte extends StatelessWidget {
     return DsfrButton(
       label: Localisation.creerMonCompte,
       variant: DsfrButtonVariant.primary,
-      size: DsfrButtonSize.lg,
+      size: DsfrComponentSize.lg,
       onPressed: estValide ? () => context.read<CreerCompteBloc>().add(const CreerCompteCreationDemandee()) : null,
     );
   }

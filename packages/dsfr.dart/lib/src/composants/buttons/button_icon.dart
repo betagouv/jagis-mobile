@@ -25,15 +25,15 @@ class DsfrButtonIcon extends StatelessWidget {
   final Color? iconColor;
   final DsfrButtonVariant variant;
   final Color? foregroundColor;
-  final DsfrButtonSize size;
+  final DsfrComponentSize size;
   final VoidCallback? onPressed;
 
-  double _getIconSize(final DsfrButtonSize size) {
+  double _getIconSize(final DsfrComponentSize size) {
     switch (size) {
-      case DsfrButtonSize.lg:
-      case DsfrButtonSize.md:
+      case DsfrComponentSize.lg:
+      case DsfrComponentSize.md:
         return DsfrSpacings.s3w;
-      case DsfrButtonSize.sm:
+      case DsfrComponentSize.sm:
         return DsfrSpacings.s2w;
     }
   }

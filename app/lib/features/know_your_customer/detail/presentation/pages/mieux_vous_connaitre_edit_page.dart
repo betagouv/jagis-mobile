@@ -66,7 +66,7 @@ class _ViewState extends State<_View> {
         label: Localisation.mettreAJour,
         icon: DsfrIcons.deviceSave3Fill,
         variant: DsfrButtonVariant.primary,
-        size: DsfrButtonSize.lg,
+        size: DsfrComponentSize.lg,
         onPressed: _mieuxVousConnaitreController.save,
       ),
     ),

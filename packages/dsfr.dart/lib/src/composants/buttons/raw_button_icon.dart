@@ -23,7 +23,7 @@ class DsfrRawButtonIcon extends StatefulWidget {
   final Widget child;
   final DsfrButtonVariant variant;
   final Color? foregroundColor;
-  final DsfrButtonSize size;
+  final DsfrComponentSize size;
   final BorderRadius? borderRadius;
   final VoidCallback? onPressed;
 
@@ -59,15 +59,15 @@ class _DsfrRawButtonIconState extends State<DsfrRawButtonIcon> with MaterialStat
     setMaterialState(WidgetState.disabled, widget.onPressed == null);
   }
 
-  EdgeInsetsGeometry _getPadding(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => const EdgeInsets.all(12),
-    DsfrButtonSize.md || DsfrButtonSize.sm => const EdgeInsets.all(8),
+  EdgeInsetsGeometry _getPadding(final DsfrComponentSize size) => switch (size) {
+    DsfrComponentSize.lg => const EdgeInsets.all(12),
+    DsfrComponentSize.md || DsfrComponentSize.sm => const EdgeInsets.all(8),
   };
 
-  double _getMinHeight(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => DsfrSpacings.s6w,
-    DsfrButtonSize.md => DsfrSpacings.s5w,
-    DsfrButtonSize.sm => DsfrSpacings.s4w,
+  double _getMinHeight(final DsfrComponentSize size) => switch (size) {
+    DsfrComponentSize.lg => DsfrSpacings.s6w,
+    DsfrComponentSize.md => DsfrSpacings.s5w,
+    DsfrComponentSize.sm => DsfrSpacings.s4w,
   };
 
   @override

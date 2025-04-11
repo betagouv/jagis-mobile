@@ -111,7 +111,7 @@ class _Content extends StatelessWidget {
                     icon: DsfrIcons.systemShareLine,
                     iconLocation: DsfrButtonIconLocation.right,
                     variant: DsfrButtonVariant.tertiary,
-                    size: DsfrButtonSize.lg,
+                    size: DsfrComponentSize.lg,
                     onPressed: () async {
                       final uri = Uri.parse(
                         'https://jagis.beta.gouv.fr/article/${titleToKebabCase(article.titre)}/${article.id}',
@@ -139,7 +139,7 @@ class _FavoriteButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     const iconLocation = DsfrButtonIconLocation.right;
     const variant = DsfrButtonVariant.tertiary;
-    const size = DsfrButtonSize.lg;
+    const size = DsfrComponentSize.lg;
 
     if (isFavorite) {
       return DsfrButton(

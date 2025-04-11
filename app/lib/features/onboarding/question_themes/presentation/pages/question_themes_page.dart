@@ -91,7 +91,7 @@ class _ButtonContinuer extends StatelessWidget {
     return DsfrButton(
       label: Localisation.continuer,
       variant: DsfrButtonVariant.primary,
-      size: DsfrButtonSize.lg,
+      size: DsfrComponentSize.lg,
       onPressed:
           estRempli
               ? () async {

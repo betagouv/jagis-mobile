@@ -329,7 +329,7 @@ class _NumberWithUnit extends StatelessWidget {
   Widget build(final context) => Text.rich(
     TextSpan(
       text: FnvNumberFormat.formatNumberAfterRounding(num),
-      style: const DsfrTextStyle.body2XlBold(),
+      style: const DsfrTextStyle.bodyXlBold(),
       children: [const TextSpan(text: ' '), TextSpan(text: unit, style: const DsfrTextStyle.bodyLg())],
     ),
   );

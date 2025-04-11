@@ -24,7 +24,7 @@ class DsfrRawButton extends StatefulWidget {
   final Widget child;
   final DsfrButtonVariant variant;
   final Color? foregroundColor;
-  final DsfrButtonSize size;
+  final DsfrComponentSize size;
   final BorderRadius? borderRadius;
   final VoidCallback? onPressed;
 
@@ -62,22 +62,22 @@ class _DsfrRawButtonState extends State<DsfrRawButton> with MaterialStateMixin<D
     setMaterialState(WidgetState.disabled, widget.onPressed == null);
   }
 
-  EdgeInsetsGeometry _getPadding(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-    DsfrButtonSize.md => const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-    DsfrButtonSize.sm => const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+  EdgeInsetsGeometry _getPadding(final DsfrComponentSize size) => switch (size) {
+    DsfrComponentSize.lg => const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+    DsfrComponentSize.md => const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    DsfrComponentSize.sm => const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
   };
 
-  TextStyle _getTextStyle(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => const DsfrTextStyle.bodyLgMedium(height: 1),
-    DsfrButtonSize.md => const DsfrTextStyle.bodyMdMedium(height: 1),
-    DsfrButtonSize.sm => const DsfrTextStyle.bodySmMedium(height: 1),
+  TextStyle _getTextStyle(final DsfrComponentSize size) => switch (size) {
+    DsfrComponentSize.lg => const DsfrTextStyle.bodyLgMedium(height: 1),
+    DsfrComponentSize.md => const DsfrTextStyle.bodyMdMedium(height: 1),
+    DsfrComponentSize.sm => const DsfrTextStyle.bodySmMedium(height: 1),
   };
 
-  double _getMinHeight(final DsfrButtonSize size) => switch (size) {
-    DsfrButtonSize.lg => DsfrSpacings.s6w,
-    DsfrButtonSize.md => DsfrSpacings.s5w,
-    DsfrButtonSize.sm => DsfrSpacings.s4w,
+  double _getMinHeight(final DsfrComponentSize size) => switch (size) {
+    DsfrComponentSize.lg => DsfrSpacings.s6w,
+    DsfrComponentSize.md => DsfrSpacings.s5w,
+    DsfrComponentSize.sm => DsfrSpacings.s4w,
   };
 
   @override

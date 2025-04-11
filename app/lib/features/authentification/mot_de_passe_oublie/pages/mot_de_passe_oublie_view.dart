@@ -48,7 +48,7 @@ class _Valider extends StatelessWidget {
     return DsfrButton(
       label: Localisation.valider,
       variant: DsfrButtonVariant.primary,
-      size: DsfrButtonSize.lg,
+      size: DsfrComponentSize.lg,
       onPressed:
           emailEstValide
               ? () async {

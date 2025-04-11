@@ -74,7 +74,7 @@ class _Success extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w),
               child: DsfrAlert(
-                severity: DsfrAlertSeverity.info,
+                type: DsfrAlertType.info,
                 description: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

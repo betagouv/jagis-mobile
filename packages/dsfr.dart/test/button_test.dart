@@ -10,7 +10,7 @@ void main() {
     testWidgets('Voir le label', (final tester) async {
       const label = 'Label bouton';
       await tester.pumpWidget(
-        const App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrButtonSize.lg)),
+        const App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg)),
       );
       expect(find.text(label), findsOneWidget);
     });
@@ -23,7 +23,7 @@ void main() {
           child: DsfrButton(
             label: label,
             variant: DsfrButtonVariant.primary,
-            size: DsfrButtonSize.lg,
+            size: DsfrComponentSize.lg,
             onPressed: completer.complete,
           ),
         ),
@@ -38,7 +38,7 @@ void main() {
         final handle = tester.ensureSemantics();
         const label = 'Label bouton';
         await tester.pumpWidget(
-          const App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrButtonSize.lg)),
+          const App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg)),
         );
 
         expect(tester.getSemantics(find.text(label)), containsSemantics(label: label, isButton: true, hasEnabledState: true));
@@ -49,7 +49,7 @@ void main() {
         final handle = tester.ensureSemantics();
         const label = 'Label bouton';
         await tester.pumpWidget(
-          App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrButtonSize.lg, onPressed: () {})),
+          App(child: DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg, onPressed: () {})),
         );
         expect(
           tester.getSemantics(find.text(label)),

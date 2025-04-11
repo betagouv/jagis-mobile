@@ -44,17 +44,17 @@ class _RankDisplay extends StatelessWidget {
     1 => const _Rank(
       backgroundColor: Color(0xFFFEFBDB),
       borderColor: Color(0xFFFAE5B6),
-      child: Text('🥇', style: DsfrTextStyle.body2XlBold()),
+      child: Text('🥇', style: DsfrTextStyle.headline4()),
     ),
     2 => const _Rank(
       backgroundColor: Color(0xFFFAFAFA),
       borderColor: Color(0xFFE3E3E3),
-      child: Text('🥈', style: DsfrTextStyle.body2XlBold()),
+      child: Text('🥈', style: DsfrTextStyle.headline4()),
     ),
     3 => const _Rank(
       backgroundColor: Color(0xFFFEECD9),
       borderColor: Color(0xFFE7B6AD),
-      child: Text('🥉', style: DsfrTextStyle.body2XlBold()),
+      child: Text('🥉', style: DsfrTextStyle.headline4()),
     ),
     _ => _Rank(
       backgroundColor: Colors.white,

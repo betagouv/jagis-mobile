@@ -26,7 +26,7 @@ class MonLogementDpe extends StatelessWidget {
         children: [
           _FnvDpe(
             initialValue: dpe,
-            onCallback: (final value) => context.read<MonLogementBloc>().add(MonLogementDpeChange(value)),
+            onChanged: (final value) => context.read<MonLogementBloc>().add(MonLogementDpeChange(value)),
           ),
           const FnvAlertInfo(label: Localisation.dpeExplication, content: FnvMarkdown(data: Localisation.dpeExplicationDetails)),
         ],
@@ -36,10 +36,10 @@ class MonLogementDpe extends StatelessWidget {
 }
 
 class _FnvDpe extends StatefulWidget {
-  const _FnvDpe({this.initialValue, required this.onCallback});
+  const _FnvDpe({this.initialValue, required this.onChanged});
 
   final Dpe? initialValue;
-  final Callback<Dpe?> onCallback;
+  final ValueChanged<Dpe?> onChanged;
 
   @override
   State<_FnvDpe> createState() => _FnvDpeState();
@@ -56,7 +56,7 @@ class _FnvDpeState extends State<_FnvDpe> {
 
   void _handleChange(final Dpe? value) => setState(() {
     _value = value;
-    widget.onCallback(_value);
+    widget.onChanged(_value);
   });
 
   @override
@@ -84,7 +84,7 @@ class _FnvDpeState extends State<_FnvDpe> {
                   label: e.name,
                   value: e.value,
                   groupValue: _value,
-                  onCallback: _handleChange,
+                  onChanged: _handleChange,
                   color: e.color,
                   width: width * ((index + 1) * 10 + 17),
                 ),
@@ -107,7 +107,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
     required this.label,
     required this.value,
     required this.groupValue,
-    required this.onCallback,
+    required this.onChanged,
     required this.color,
     required this.width,
   });
@@ -117,7 +117,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
   final Dpe? groupValue;
   final Color? color;
   final double width;
-  final Callback<Dpe?> onCallback;
+  final ValueChanged<Dpe?> onChanged;
 
   @override
   Widget build(final context) {
@@ -137,7 +137,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => onCallback(value),
+      onTap: () => onChanged(value),
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: width,

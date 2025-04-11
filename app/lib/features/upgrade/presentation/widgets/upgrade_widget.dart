@@ -48,7 +48,7 @@ class _UpgradeModal extends StatelessWidget {
       DsfrButton(
         label: UpgradeL10n.button,
         variant: DsfrButtonVariant.primary,
-        size: DsfrButtonSize.lg,
+        size: DsfrComponentSize.lg,
         onPressed: () async {
           final url =
               Platform.isIOS

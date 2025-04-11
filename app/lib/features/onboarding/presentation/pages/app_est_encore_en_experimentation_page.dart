@@ -58,7 +58,7 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
         child: DsfrButton(
           label: Localisation.jaiCompris,
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () async => GoRouter.of(context).pushNamed(QuestionThemesPage.name),
         ),
       ),

@@ -6,20 +6,12 @@ import 'package:dsfr/src/fondamentaux/spacing.g.dart';
 import 'package:flutter/material.dart';
 
 class DsfrRadioButton<T> extends StatefulWidget {
-  const DsfrRadioButton({
-    super.key,
-    required this.title,
-    required this.value,
-    required this.groupValue,
-    required this.onChanged,
-    this.backgroundColor,
-  });
+  const DsfrRadioButton({super.key, required this.title, required this.value, required this.groupValue, required this.onChanged});
 
   final String title;
   final T value;
   final T? groupValue;
   final ValueChanged<T?>? onChanged;
-  final Color? backgroundColor;
 
   @override
   State<DsfrRadioButton<T>> createState() => _DsfrRadioButtonState<T>();
@@ -40,7 +32,6 @@ class _DsfrRadioButtonState<T> extends State<DsfrRadioButton<T>> with MaterialSt
         onFocusChange: updateMaterialState(WidgetState.focused),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: widget.backgroundColor,
             border: Border.fromBorderSide(
               BorderSide(color: widget.groupValue == widget.value ? DsfrColors.blueFranceSun113 : DsfrColors.grey900),
             ),

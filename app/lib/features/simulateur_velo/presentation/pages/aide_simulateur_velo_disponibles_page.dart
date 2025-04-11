@@ -82,7 +82,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
         child: DsfrButton(
           label: Localisation.revenirAuSimulateur,
           variant: DsfrButtonVariant.primary,
-          size: DsfrButtonSize.lg,
+          size: DsfrComponentSize.lg,
           onPressed: () => GoRouter.of(context).pop(),
         ),
       ),

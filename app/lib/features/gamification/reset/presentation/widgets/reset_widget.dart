@@ -65,7 +65,7 @@ class _ContinueButton extends StatelessWidget {
     icon: DsfrIcons.systemArrowRightSLine,
     iconLocation: DsfrButtonIconLocation.right,
     variant: DsfrButtonVariant.secondary,
-    size: DsfrButtonSize.lg,
+    size: DsfrComponentSize.lg,
     onPressed: onPressed,
   );
 }
@@ -123,7 +123,7 @@ class _ResetButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => DsfrRawButton(
     variant: DsfrButtonVariant.primary,
-    size: DsfrButtonSize.lg,
+    size: DsfrComponentSize.lg,
     onPressed: onPressed,
     child: Center(
       child: Row(

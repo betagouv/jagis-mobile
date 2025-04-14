@@ -23,12 +23,12 @@ class ThemeServiceInfo extends StatelessWidget {
       }
     },
     child: Padding(
-      padding: const EdgeInsets.only(left: 8, top: 12, right: 4, bottom: 12),
+      padding: const EdgeInsets.only(left: 12, top: 12, right: 8, bottom: 12),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: DsfrSpacings.s1v,
         children: [
-          Flexible(child: FnvMarkdown(data: link.label, p: const DsfrTextStyle.bodySm())),
+          Flexible(child: FnvMarkdown(data: link.label)),
           Icon(
             switch (link) {
               ThemeSummaryInternalLink() => DsfrIcons.systemArrowRightSLine,

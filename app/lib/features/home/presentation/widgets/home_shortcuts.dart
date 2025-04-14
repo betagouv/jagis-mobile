@@ -43,7 +43,7 @@ class HomeShortcuts extends StatelessWidget {
                         .toSet()
                         .map(
                           (final link) => SizedBox(
-                            width: screenWidth(context, percentage: 0.65),
+                            width: screenWidth(context, percentage: 0.8),
                             height: double.infinity,
                             child: ThemeServiceInfo(link: link),
                           ),

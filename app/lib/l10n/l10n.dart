@@ -303,7 +303,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String a(final String value) => 'à $value';
   static String actionsTerminees(final int nbActions) => nbActions > 1 ? 'Actions terminées' : 'Action terminée';
   static const quoiDeNeuf = 'Quoi de neuf ?';
-  static const toutVoir = 'Tout voir';
+  static const voirTout = 'Voir tout';
   static const actionsRealiseesEnFrance = 'Actions réalisées ensemble partout en France';
   static const onRepondAVosQuestions = 'On répond à vos questions !';
 

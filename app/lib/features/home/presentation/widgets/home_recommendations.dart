@@ -25,7 +25,7 @@ class HomeRecommendations extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Expanded(child: Text(Localisation.quoiDeNeuf, style: DsfrTextStyle.headline3())),
-            DsfrLink.md(label: Localisation.toutVoir, onTap: () async => GoRouter.of(context).pushNamed(LibraryPage.name)),
+            DsfrLink.md(label: Localisation.voirTout, onTap: () async => GoRouter.of(context).pushNamed(LibraryPage.name)),
           ],
         ),
         SingleChildScrollView(

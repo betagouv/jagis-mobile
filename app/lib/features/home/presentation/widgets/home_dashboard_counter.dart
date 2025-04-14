@@ -1,4 +1,3 @@
-import 'package:app/core/assets/images.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/l10n/l10n.dart';
@@ -24,7 +23,7 @@ class HomeDashboardCounter extends StatelessWidget {
     final progressSize = bilanIsDone ? 70.0 : 80.0;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(AssetImages.homeDashboardBg), fit: BoxFit.fill)),
+      decoration: const BoxDecoration(color: Color(0xFFF6F4F0)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
         child: Row(

@@ -38,5 +38,4 @@ abstract final class AssetImages {
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
   static const homeIllustration = 'assets/images/home_illustration.webp';
-  static const homeDashboardBg = 'assets/images/home_dashboard_bg.webp';
 }

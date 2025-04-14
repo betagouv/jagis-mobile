@@ -40,11 +40,10 @@ class ThemeHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DsfrSpacings.s3w,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
+              Wrap(
                 spacing: DsfrSpacings.s1w,
                 children: [
-                  Flexible(child: Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline1())),
+                  Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline1()),
                   DsfrTag.md(
                     label: TextSpan(text: Localisation.a(themeSummary.commune)),
                     backgroundColor: DsfrColors.blueFrance925,

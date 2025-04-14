@@ -60,7 +60,7 @@ abstract final class Localisation {
   static const creerMonCompteApp = 'Créez votre compte J’agis';
   static const dateDeNaissance = 'Date de naissance';
   static const dateDeNaissanceDescription = 'Nécessaire pour faciliter votre identification';
-  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine souhaitez-vous agir ?';
+  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const dejaConsultees = 'Déjà consultées';

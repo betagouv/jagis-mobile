@@ -1,21 +1,25 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
-class MesAidesRenoEvent extends Equatable {
+@immutable
+sealed class MesAidesRenoEvent extends Equatable {
   const MesAidesRenoEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class MesAidesRenoIframeUrlRequested extends MesAidesRenoEvent {
+@immutable
+final class MesAidesRenoIframeUrlRequested extends MesAidesRenoEvent {
   const MesAidesRenoIframeUrlRequested();
 }
 
-class MesAidesRenoSendSituation extends MesAidesRenoEvent {
+@immutable
+final class MesAidesRenoSendSituation extends MesAidesRenoEvent {
   const MesAidesRenoSendSituation(this.situation);
 
-  final Object situation;
+  final Map<String, dynamic> situation;
 
   @override
-  List<Object?> get props => [situation];
+  List<Object> get props => [situation];
 }

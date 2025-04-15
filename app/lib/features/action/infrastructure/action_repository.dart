@@ -20,15 +20,16 @@ class ActionRepository {
     themeType: ThemeType.transport,
     id: ActionSimulatorId.mesAidesReno.apiString,
     title: 'Simulateur Mes Aides Reno',
+    subTitle: '',
     alreadySeen: true,
     isDone: isDone ?? false,
+    faq: const [],
     nbActionsDone: 10,
     aidSummaries: const [],
     score: 10,
     questions: const [],
+    rate: 0,
     why: 'Pourquoi',
-    subTitle: '',
-    faq: const [],
   );
 
   Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {

@@ -1,6 +1,7 @@
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
@@ -176,7 +177,7 @@ class _CarSimulatorOptionView extends StatelessWidget {
         kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(boxShadow: cardBoxShadow),
+      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: SizedBox(
@@ -300,7 +301,7 @@ class _CurrentCarResultView extends StatelessWidget {
     children: [
       const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2()),
       DecoratedBox(
-        decoration: const BoxDecoration(boxShadow: cardBoxShadow),
+        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
         child: Padding(
           padding: const EdgeInsets.all(DsfrSpacings.s2w),
           child: Column(

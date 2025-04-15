@@ -4,6 +4,7 @@ import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/actions_recommanded/infrastructure/actions_recommanded_manager.dart';
 import 'package:app/features/know_your_customer/core/domain/question_code.dart';
@@ -126,7 +127,7 @@ class _GetStarted extends StatelessWidget {
 
   @override
   Widget build(final context) => DecoratedBox(
-    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
     child: Padding(
       padding: const EdgeInsets.only(
         left: DsfrSpacings.s3w,

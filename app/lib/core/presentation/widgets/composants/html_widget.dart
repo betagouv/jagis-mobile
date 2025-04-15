@@ -6,6 +6,7 @@ import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:fwfh_webview/fwfh_webview.dart';
 import 'package:go_router/go_router.dart';
 import 'package:html/dom.dart' as dom;
 
@@ -24,6 +25,7 @@ class FnvHtmlWidget extends StatelessWidget {
     child: HtmlWidget(
       html,
       customStylesBuilder: _handlePDansLi,
+      factoryBuilder: IframeFactory.new,
       onTapImage: (final imageMetadata) async {
         final sources = imageMetadata.sources;
         if (sources.isNotEmpty) {
@@ -59,3 +61,5 @@ class FnvHtmlWidget extends StatelessWidget {
     ),
   );
 }
+
+class IframeFactory extends WidgetFactory with WebViewFactory {}

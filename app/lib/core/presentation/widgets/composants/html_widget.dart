@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/image_viewer.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
@@ -23,6 +24,13 @@ class FnvHtmlWidget extends StatelessWidget {
     child: HtmlWidget(
       html,
       customStylesBuilder: _handlePDansLi,
+      onTapImage: (final imageMetadata) async {
+        final sources = imageMetadata.sources;
+        if (sources.isNotEmpty) {
+          final element = sources.first;
+          await enlargeImage(context, src: element.url, semanticLabel: imageMetadata.alt);
+        }
+      },
       onTapUrl: (final url) async {
         final uri = Uri.parse(url);
         if (uri.host == 'jagis.beta.gouv.fr') {

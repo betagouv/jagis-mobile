@@ -1,4 +1,5 @@
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
@@ -18,7 +19,7 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(final context) => DecoratedBox(
-    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
     child: IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

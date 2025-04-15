@@ -6,23 +6,6 @@ import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ActionBloc extends Bloc<ActionEvent, ActionState> {
-  static var isDone = false;
-
-  static ActionSimulator mesAidesReno() => ActionSimulator(
-    themeType: ThemeType.transport,
-    id: ActionSimulatorId.mesAidesReno.apiString,
-    title: 'Simulateur Mes Aides Reno',
-    alreadySeen: true,
-    isDone: isDone,
-    nbActionsDone: 10,
-    aidSummaries: const [],
-    score: 10,
-    questions: const [],
-    why: '## En quelques mots',
-    subTitle: '',
-    faq: const [],
-  );
-
   ActionBloc({required final ActionRepository repository}) : super(const ActionState.initial()) {
     on<ActionLoadRequested>((final event, final emit) async {
       emit(const ActionState.inProgress());
@@ -42,6 +25,7 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
       if (event.id == ActionSimulatorId.mesAidesReno.apiString) {
         isDone = true;
         emit(ActionState.success(action: mesAidesReno()));
+
         return;
       }
       await repository.markAsDone(type: event.type, id: event.id);
@@ -51,4 +35,22 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
       );
     });
   }
+
+  static var isDone = false;
+
+  static ActionSimulator mesAidesReno() => ActionSimulator(
+    themeType: ThemeType.transport,
+    id: ActionSimulatorId.mesAidesReno.apiString,
+    title: 'Simulateur Mes Aides Reno',
+    subTitle: '',
+    alreadySeen: true,
+    isDone: isDone,
+    faq: const [],
+    nbActionsDone: 10,
+    aidSummaries: const [],
+    score: 10,
+    questions: const [],
+    why: '## En quelques mots',
+    rate: 0,
+  );
 }

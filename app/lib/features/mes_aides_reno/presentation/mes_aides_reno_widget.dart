@@ -52,12 +52,14 @@ class _MesAidesRenoWidgetState extends State<_Success> {
   @override
   void dispose() {
     _webViewController?.removeJavaScriptHandler(handlerName: mesAidesRenoHandlerName);
+    _webViewController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(final BuildContext context) {
     final url = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
+
     return SizedBox(
       height: _webViewHeight,
       child: InAppWebView(
@@ -70,7 +72,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
           _webViewController = controller;
           _webViewController?.addJavaScriptHandler(
             handlerName: mesAidesRenoHandlerName,
-            callback: (final args) async {
+            callback: (final args) {
               final data = args.first as Map<String, dynamic>;
 
               switch (data['kind']) {
@@ -86,7 +88,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                     context.read<ActionBloc>().add(
                       ActionMarkAsDone(id: ActionSimulatorId.mesAidesReno.apiString, type: ActionType.simulator),
                     );
-                    context.read<MesAidesRenoBloc>().add(MesAidesRenoSendSituation(data));
+                    context.read<MesAidesRenoBloc>().add(MesAidesRenoSendSituation(data as Map<String, dynamic>));
                     break;
                   }
               }

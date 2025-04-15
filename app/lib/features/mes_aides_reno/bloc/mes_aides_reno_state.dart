@@ -18,11 +18,4 @@ final class MesAidesRenoState extends Equatable {
 
   @override
   List<Object?> get props => [status, errorMessage, iframeUrl];
-
-  MesAidesRenoState copyWith({final MesAidesRenoStateStatus? status, final String? errorMessage, final String? iframeUrl}) =>
-      MesAidesRenoState(
-        status: status ?? this.status,
-        errorMessage: errorMessage ?? this.errorMessage,
-        iframeUrl: iframeUrl ?? this.iframeUrl,
-      );
 }

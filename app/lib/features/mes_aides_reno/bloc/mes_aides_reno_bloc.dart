@@ -17,7 +17,7 @@ class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
       } else {
         emit(
           MesAidesRenoState.failure(
-            'Error while fetching data:\n  url: ${Endpoints.mesAidesRenoGetIframeUrl}\n  code: ${result.statusCode}',
+            'Error while fetching data:\n  url: ${Endpoints.mesAidesRenoGetIframeUrl}\n  code: ${result.statusCode ?? 'unknown'}',
           ),
         );
       }
@@ -29,7 +29,7 @@ class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
       if (isResponseUnsuccessful(result.statusCode)) {
         emit(
           MesAidesRenoState.failure(
-            'Error while posting data:\n  url: ${Endpoints.mesAidesRenoPostSituation}\n  code: ${result.statusCode}',
+            'Error while posting data:\n  url: ${Endpoints.mesAidesRenoPostSituation}\n  code: ${result.statusCode ?? 'unknown'}',
           ),
         );
       }

@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/image_viewer.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:dsfr/dsfr.dart';
@@ -139,6 +140,11 @@ class _ImageMd extends ImageMd {
 
     final altText = match[1];
 
-    return WidgetSpan(child: FnvImage.network(imageUrl, semanticLabel: altText));
+    return WidgetSpan(
+      child: GestureDetector(
+        onTap: () async => enlargeImage(context, src: imageUrl, semanticLabel: altText),
+        child: FnvImage.network(imageUrl, semanticLabel: altText),
+      ),
+    );
   }
 }

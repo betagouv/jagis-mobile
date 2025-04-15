@@ -31,6 +31,7 @@ dependencies:
   flutter_secure_storage: 9.2.4
   flutter_widget_from_html_core: 0.16.0
   fpdart: 1.1.1
+  fwfh_webview: 0.15.4
   go_router: 14.8.1
   gpt_markdown: 1.0.16
   html: 0.15.5+1

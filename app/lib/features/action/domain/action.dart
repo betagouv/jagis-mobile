@@ -1,3 +1,4 @@
+import 'package:app/core/domain/source.dart';
 import 'package:app/features/action/domain/action_service.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
@@ -20,6 +21,7 @@ sealed class Action extends Equatable {
     required this.score,
     required this.faq,
     required this.rate,
+    required this.sources,
   });
 
   final ThemeType themeType;
@@ -33,13 +35,27 @@ sealed class Action extends Equatable {
   final int score;
   final List<FAQItem>? faq;
   final int? rate;
+  final List<Source> sources;
 
   String get instruction;
   String get instructionWhenDone;
   ActionType get type;
 
   @override
-  List<Object?> get props => [themeType, id, title, subTitle, aidSummaries, alreadySeen, isDone, nbActionsDone, score, faq, rate];
+  List<Object?> get props => [
+    themeType,
+    id,
+    title,
+    subTitle,
+    aidSummaries,
+    alreadySeen,
+    isDone,
+    nbActionsDone,
+    score,
+    faq,
+    rate,
+    sources,
+  ];
 }
 
 final class ActionClassic extends Action {
@@ -55,6 +71,7 @@ final class ActionClassic extends Action {
     required super.score,
     required super.faq,
     required super.rate,
+    required super.sources,
     required this.why,
     required this.instruction,
     required this.scoreLabel,
@@ -98,6 +115,7 @@ final class ActionQuiz extends Action {
     required super.score,
     required super.faq,
     required super.rate,
+    required super.sources,
     required this.quizzes,
     required this.congratulatoryText,
   });
@@ -136,6 +154,7 @@ final class ActionPerformance extends Action {
     required super.score,
     required super.faq,
     required super.rate,
+    required super.sources,
     required this.questions,
   });
 
@@ -168,6 +187,7 @@ final class ActionSimulator extends ActionPerformance {
     required super.score,
     required super.questions,
     required super.rate,
+    required super.sources,
     required this.why,
   });
 

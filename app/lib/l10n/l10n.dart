@@ -276,6 +276,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const seDeconnecter = 'Se déconnecter';
   static const simulateur = 'Simulateur';
   static const simulerMonAide = 'Simuler mon aide';
+  static const sources = 'Sources :';
   static const statistiques = 'Statistiques';
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
   static const supprimerVotreCompte = 'Supprimer mon compte';

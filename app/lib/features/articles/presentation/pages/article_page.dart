@@ -1,5 +1,5 @@
+import 'package:app/core/domain/sources_widget.dart';
 import 'package:app/core/helpers/string.dart';
-import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -72,28 +72,7 @@ class _Content extends StatelessWidget {
                 ],
                 if (article.sources.isNotEmpty) ...[
                   const SizedBox(height: DsfrSpacings.s2w),
-                  const Text('Sources :', style: DsfrTextStyle.bodySm()),
-                  const SizedBox(height: DsfrSpacings.s1w),
-                  ...article.sources.map(
-                    (final source) => Padding(
-                      padding: const EdgeInsets.only(bottom: DsfrSpacings.s1w),
-                      child: InkWell(
-                        onTap: () async => FnvUrlLauncher.launch(source.url),
-                        child: Text.rich(
-                          TextSpan(
-                            text: source.label,
-                            children: const [
-                              WidgetSpan(
-                                alignment: PlaceholderAlignment.middle,
-                                child: Icon(DsfrIcons.systemExternalLinkLine, size: 14),
-                              ),
-                            ],
-                          ),
-                          style: const DsfrTextStyle.bodySm().copyWith(decoration: TextDecoration.underline),
-                        ),
-                      ),
-                    ),
-                  ),
+                  SourcesWidget(sources: article.sources),
                 ],
               ],
             ),

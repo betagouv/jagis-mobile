@@ -1,4 +1,4 @@
-import 'package:app/core/domain/sources_widget.dart';
+import 'package:app/core/source/sources_widget.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown_heading.dart';

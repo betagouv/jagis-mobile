@@ -1,9 +1,9 @@
-import 'package:app/core/domain/sources_widget.dart';
 import 'package:app/core/helpers/string.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
+import 'package:app/core/source/sources_widget.dart';
 import 'package:app/features/articles/domain/article.dart';
 import 'package:app/features/articles/presentation/bloc/article_bloc.dart';
 import 'package:app/features/articles/presentation/bloc/article_event.dart';

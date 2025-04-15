@@ -1,6 +1,6 @@
-import 'package:app/core/domain/source_mapper.dart';
 import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/theme_type_mapper.dart';
+import 'package:app/core/source/source_mapper.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/infrastructure/action_service_mapper.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';

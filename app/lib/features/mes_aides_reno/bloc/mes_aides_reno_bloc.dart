@@ -24,14 +24,9 @@ class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
     });
 
     on<MesAidesRenoSendSituation>((final event, final emit) async {
-      emit(const MesAidesRenoState.loading());
-
       final result = await client.post(Endpoints.mesAidesRenoPostSituation, data: event.situation);
-      print('MesAidesRenoBloc: ${event.situation}');
 
-      if (isResponseSuccessful(result.statusCode)) {
-        emit(state.copyWith(status: MesAidesRenoStateStatus.sendSituationSuccess));
-      } else {
+      if (isResponseUnsuccessful(result.statusCode)) {
         emit(
           MesAidesRenoState.failure(
             'Error while posting data:\n  url: ${Endpoints.mesAidesRenoPostSituation}\n  code: ${result.statusCode}',

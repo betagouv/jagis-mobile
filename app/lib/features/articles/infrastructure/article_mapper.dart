@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'package:app/core/domain/source_mapper.dart';
+import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/features/articles/domain/article.dart';
 import 'package:app/features/articles/domain/partner.dart';
-import 'package:app/features/articles/domain/source.dart';
 
 abstract final class ArticleMapper {
   const ArticleMapper._();
@@ -20,14 +21,8 @@ abstract final class ArticleMapper {
               logo: json['partenaire_logo_url'] as String,
               url: json['partenaire_url'] as String,
             ),
-    sources: (json['sources'] as List<dynamic>).cast<Map<String, dynamic>>().map(SourceMapper.fromJson).toList(),
+    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     isFavorite: json['favoris'] as bool,
     isRead: json['read_date'] != null,
   );
-}
-
-abstract final class SourceMapper {
-  const SourceMapper._();
-
-  static Source fromJson(final Map<String, dynamic> json) => Source(label: json['label'] as String, url: json['url'] as String);
 }

@@ -1,3 +1,4 @@
+import 'package:app/core/domain/sources_widget.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown_heading.dart';
@@ -16,6 +17,12 @@ class ActionClassicView extends StatelessWidget {
   Widget build(final context) => Column(
     children: [
       ActionWhySectionView(why: action.why),
+      if (action.sources.isNotEmpty) ...[
+        const SizedBox(height: DsfrSpacings.s1w),
+        const DsfrDivider(),
+        const SizedBox(height: DsfrSpacings.s3w),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: SourcesWidget(sources: action.sources)),
+      ],
       if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
         LvaoHorizontalList(category: action.lvaoService.category),

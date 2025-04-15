@@ -1,3 +1,4 @@
+import 'package:app/core/domain/sources_widget.dart';
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
@@ -161,8 +162,7 @@ class _Response extends StatelessWidget {
         FnvHtmlWidget(quizQuestionState.explanation),
         if (quizQuestionState.quiz.sources.isNotEmpty) ...[
           const SizedBox(height: DsfrSpacings.s2w),
-          // TODO(lsaudon): utiliser lien cliquable pour une liste de source
-          Text('Source : ${quizQuestionState.quiz.sources.first.label}', style: const DsfrTextStyle.bodyXs()),
+          SourcesWidget(sources: quizQuestionState.quiz.sources),
         ],
       ],
     ),

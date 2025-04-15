@@ -1,3 +1,4 @@
+import 'package:app/core/domain/source_mapper.dart';
 import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/theme_type_mapper.dart';
 import 'package:app/features/action/domain/action.dart';
@@ -42,6 +43,7 @@ abstract final class ActionClassicMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
+    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
     scoreLabel: json['label_compteur'] as String,
@@ -65,6 +67,7 @@ abstract final class ActionQuizMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
+    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     quizzes: JsonListMapper.fromJsonList(json['quizzes'], QuizMapper.fromJson),
     congratulatoryText: json['quizz_felicitations'] as String,
   );
@@ -86,6 +89,7 @@ abstract final class ActionSimulatorMapper {
     score: ActionMapper.scoreFromJson(json),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
     rate: (json['like_level'] as num?)?.toInt(),
+    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     why: json['pourquoi'] as String,
   );
 }
@@ -105,6 +109,7 @@ abstract final class ActionPerformanceMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
+    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
   );
 }

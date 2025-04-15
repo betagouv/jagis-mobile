@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'package:app/features/articles/infrastructure/article_mapper.dart';
+import 'package:app/core/domain/source_mapper.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 
 abstract final class QuizMapper {

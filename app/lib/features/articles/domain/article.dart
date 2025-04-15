@@ -1,5 +1,5 @@
+import 'package:app/core/domain/source.dart';
 import 'package:app/features/articles/domain/partner.dart';
-import 'package:app/features/articles/domain/source.dart';
 import 'package:equatable/equatable.dart';
 
 class Article extends Equatable {

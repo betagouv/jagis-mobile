@@ -16,24 +16,24 @@ class ActionRepository {
   final DioHttpClient _client;
   final MessageBus _messageBus;
 
+  static ActionSimulator mesAidesReno(final bool? isDone) => ActionSimulator(
+    themeType: ThemeType.transport,
+    id: ActionSimulatorId.mesAidesReno.apiString,
+    title: 'Simulateur Mes Aides Reno',
+    alreadySeen: true,
+    isDone: isDone ?? false,
+    nbActionsDone: 10,
+    aidSummaries: const [],
+    score: 10,
+    questions: const [],
+    why: 'Pourquoi',
+    subTitle: '',
+    faq: const [],
+  );
+
   Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {
     if (id == ActionSimulatorId.mesAidesReno.apiString) {
-      return Right(
-        ActionSimulator(
-          themeType: ThemeType.transport,
-          id: ActionSimulatorId.mesAidesReno.apiString,
-          title: 'Simulateur Mes Aides Reno',
-          alreadySeen: true,
-          isDone: false,
-          nbActionsDone: 10,
-          aidSummaries: const [],
-          score: 10,
-          questions: const [],
-          why: 'Pourquoi',
-          subTitle: '',
-          faq: const [],
-        ),
-      );
+      return Right(mesAidesReno(false));
     }
 
     final actionTypeAPI = actionTypeToAPIString(type);

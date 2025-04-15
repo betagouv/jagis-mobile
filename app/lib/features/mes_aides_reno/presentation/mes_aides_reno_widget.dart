@@ -54,6 +54,15 @@ class _Success extends StatefulWidget {
 
 class _MesAidesRenoWidgetState extends State<_Success> {
   double _webViewHeight = 700;
+  InAppWebViewController? _webViewController;
+
+  static const mesAidesRenoHandlerName = 'mesAidesRenoHandler';
+
+  @override
+  void dispose() {
+    _webViewController?.removeJavaScriptHandler(handlerName: mesAidesRenoHandlerName);
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -68,8 +77,9 @@ class _MesAidesRenoWidgetState extends State<_Success> {
           await controller.evaluateJavascript(source: _injectEventListeners);
         },
         onWebViewCreated: (final controller) {
-          controller.addJavaScriptHandler(
-            handlerName: 'mesAidesRenoHandler',
+          _webViewController = controller;
+          _webViewController?.addJavaScriptHandler(
+            handlerName: mesAidesRenoHandlerName,
             callback: (final args) async {
               final data = args.first as Map<String, dynamic>;
 
@@ -83,7 +93,9 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                   }
                 case 'mesaidesreno-eligibility-done':
                   {
-                    // situation.forEach((key, value) => print("$key: ${value.runtimeType.toString()}"));
+                    context.read<ActionBloc>().add(
+                      ActionMarkAsDone(id: ActionSimulatorId.mesAidesReno.apiString, type: ActionType.simulator),
+                    );
                     context.read<MesAidesRenoBloc>().add(MesAidesRenoSendSituation(data));
                     break;
                   }

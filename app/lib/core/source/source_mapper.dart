@@ -1,4 +1,4 @@
-import 'package:app/core/domain/source.dart';
+import 'package:app/core/source/source.dart';
 
 abstract final class SourceMapper {
   const SourceMapper._();

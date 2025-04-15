@@ -1,6 +1,6 @@
-import 'package:app/core/domain/sources_widget.dart';
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
+import 'package:app/core/source/sources_widget.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_bloc.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_event.dart';

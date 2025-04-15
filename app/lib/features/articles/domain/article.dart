@@ -1,4 +1,4 @@
-import 'package:app/core/domain/source.dart';
+import 'package:app/core/source/source.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:equatable/equatable.dart';
 

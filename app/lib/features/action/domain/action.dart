@@ -1,4 +1,4 @@
-import 'package:app/core/domain/source.dart';
+import 'package:app/core/source/source.dart';
 import 'package:app/features/action/domain/action_service.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';

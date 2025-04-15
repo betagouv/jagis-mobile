@@ -1,5 +1,5 @@
-import 'package:app/core/domain/source.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
+import 'package:app/core/source/source.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';

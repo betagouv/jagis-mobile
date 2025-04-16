@@ -126,6 +126,7 @@ dart_code_metrics:
     - prefer-correct-switch-length: false # NOTE(lsaudon): Il y a une bonne taille de switch ?
     - prefer-correct-throws: false # NOTE(lsaudon): C'est quoi @Throws ?
     - prefer-correct-type-name: false # NOTE(lsaudon): Je nomme comme je veux.
+    - prefer-digit-separators: false # NOTE(lsaudon): Si il y a l'option régle tous pourquoi pas
     - prefer-early-return: false # NOTE(lsaudon): Bonne règle mais plus dans la tête que dans le linter, c'est des fois moins compréhensible 
     - prefer-extracting-callbacks: false # NOTE(lsaudon): La plus part des cas ça éloigne juste le code de son appelant sans plus value
     - prefer-explicit-type-arguments: false # NOTE(lsaudon): Pourquoi pas

@@ -95,8 +95,10 @@ final class ActionClassic extends Action {
 
   ActionService get lvaoService => services.firstWhere((final service) => service.id == ServiceId.lvao);
   bool get hasLvaoService => services.any((final service) => service.id == ServiceId.lvao);
-  ActionService get recipesService => services.firstWhere((final service) => service.id == ServiceId.recipes);
-  bool get hasRecipesService => services.any((final service) => service.id == ServiceId.recipes);
+  ActionService get mangerBougerService => services.firstWhere((final service) => service.id == ServiceId.mangerBouger);
+  bool get hasMangerBougerService => services.any((final service) => service.id == ServiceId.mangerBouger);
+  ActionService get presDeChezVousService => services.firstWhere((final service) => service.id == ServiceId.presDeChezVous);
+  bool get hasPresDeChezVousService => services.any((final service) => service.id == ServiceId.presDeChezVous);
 
   @override
   List<Object?> get props => [...super.props, how, services, scoreLabel, instruction, why];

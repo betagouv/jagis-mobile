@@ -1,0 +1,111 @@
+import 'package:app/core/infrastructure/endpoints.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../helper/feature_context.dart';
+
+/// Usage: I have Près de chez nous services in my library
+Future<void> iHavePresDeChezNousServicesInMyLibrary(final WidgetTester tester) async {
+  FeatureContext.instance.dioMock.postM(
+    Endpoints.presDeChezVousSearch,
+    requestData: {'categorie': 'zero_dechet', 'nombre_max_resultats': 4, 'rayon_metres': 5000},
+    responseData: {
+      'encore_plus_resultats_dispo': true,
+      'resultats': [
+        {
+          'id': 'DFD',
+          'titre': 'COOPERACTIVE paysanne',
+          'adresse_code_postal': '39100',
+          'adresse_nom_ville': 'Dole',
+          'adresse_rue': '30 Avenue du Maréchal Juin',
+          'site_web': 'https://collectifs.bio/dole',
+          'est_favoris': false,
+          'nombre_favoris': 0,
+          'distance_metres': 777,
+          'image_url': null,
+          'commitment':
+              "Vous contribuez à valoriser l'agriculture biologique et paysanne du territoire . \r\nVous soutiendrez une initiative instaurant des Relations solidaires, directes et conviviales entre producteurs et consommateurs",
+          'description': 'Faites votre marché sur le site tranquillement chez vous. Récupérez vos produits à notre Point Relais',
+          'phone': '0778178056',
+          'categories': ['Alimentation et Agriculture', 'Point de Distribution', 'Autre réseau'],
+          'open_hours': <dynamic>[],
+          'latitude': 47.08451,
+          'longitude': 5.49734,
+          'categories_labels': ['Alimentation et Agriculture', 'Point de Distribution', 'Autre réseau'],
+        },
+        {
+          'id': 'DY6',
+          'titre': 'L’Association de lutte contre le gaspillage (ALCG)',
+          'adresse_code_postal': '39100',
+          'adresse_nom_ville': 'Dole',
+          'adresse_rue': '51 Avenue Jacques Duhamel',
+          'site_web': 'http://www.alcg-reemploi.com/',
+          'est_favoris': false,
+          'nombre_favoris': 0,
+          'distance_metres': 1164,
+          'image_url': null,
+          'commitment': 'En donnant une seconde vie aux objets, les recycleries de l’ALCG contribuent à limiter nos déchets.',
+          'description':
+              'Une fois triés et revalorisés, les objets que nous avons collectés sont revendus sur nos différents lieux de vente. Vous y trouverez du mobilier, de la décoration, de la vaisselle, des bibelots, des jouets et des vêtements dans les friperies.',
+          'description_more':
+              "Depuis plus de trente ans, l'ALCG développe des prestations de collectes de déchets non dangereux, d'encombrants ou de matières premières. Les apports volontaires d'objets divers et de textiles sont aussi une ressource contribuant au réemploi. De nombreux objets sont apportés en déchetterie alors qu'ils sont encore utilisables. Plutôt que de les laisser partir vers la destruction, nous proposons de les récupérer, via un ressourcier, salarié de l'ALCG, présent dans certaines déchetteries. Ces objets sont stockés dans nos chalets du réemploi avant de partir dans nos ateliers de revalorisation.",
+          'phone': '03 84 82 23 15',
+          'categories': ['Vêtements', 'Habitat et Jardin', 'Ressourcerie', 'Artisanat / Seconde main', 'Friperie'],
+          'open_hours': <dynamic>[],
+          'latitude': 47.08591,
+          'longitude': 5.48369,
+          'categories_labels': ['Vêtements', 'Habitat et Jardin', 'Ressourcerie', 'Artisanat / Seconde main', 'Friperie'],
+        },
+        {
+          'id': 'ByV',
+          'titre': "Bio'Croc",
+          'adresse_code_postal': '39100',
+          'adresse_nom_ville': 'Dole',
+          'adresse_rue': '31 avenue Duhamel',
+          'site_web': 'http://www.biocroc.fr',
+          'est_favoris': false,
+          'nombre_favoris': 0,
+          'distance_metres': 1216,
+          'image_url': null,
+          'commitment': "Une cuisine exclusivement à partir de produits de l'agriculture biologique, locale autant que possible.",
+          'description': 'Un restaurant-traiteur.',
+          'description_more': 'Assiettes et menus de saison, sur le pouce ou non. Plats à emporter. .',
+          'phone': '03 84 81 48 78',
+          'categories': ['Alimentation et Agriculture', 'Restauration', 'Sortie et Culture', 'Lieu pour sortir', 'Autre lieu'],
+          'open_hours': <dynamic>[],
+          'latitude': 47.08696,
+          'longitude': 5.48457,
+          'categories_labels': [
+            'Alimentation et Agriculture',
+            'Restauration',
+            'Sortie et Culture',
+            'Lieu pour sortir',
+            'Autre lieu',
+          ],
+        },
+        {
+          'id': 'CbV',
+          'titre': 'Natura',
+          'adresse_code_postal': '39100',
+          'adresse_nom_ville': 'Dôle',
+          'adresse_rue': '28 rue des Arènes',
+          'est_favoris': false,
+          'nombre_favoris': 0,
+          'distance_metres': 1523,
+          'image_url': null,
+          'commitment': "La promotion et la diffusion de l'agriculture biologique et du commerce équitable.",
+          'description': "Un magasin d'alimentation libre-service.",
+          'description_more':
+              "Épicerie, fruits et légumes, rayon frais, pain, écoproduits d'entretien, produits cosmétiques et de bien-être, diététique...",
+          'phone': '03 84 81 64 52',
+          'categories': ['Alimentation et Agriculture', 'Épicerie & Supérette', 'Autre épicerie'],
+          'open_hours': <dynamic>[],
+          'latitude': 47.09158,
+          'longitude': 5.49147,
+          'ingredients': <dynamic>[],
+          'etapes_recette': <dynamic>[],
+          'categories_labels': ['Alimentation et Agriculture', 'Épicerie & Supérette', 'Autre épicerie'],
+        },
+      ],
+    },
+  );
+}

@@ -222,7 +222,7 @@ class _Information extends StatelessWidget {
   @override
   Widget build(final BuildContext context) =>
       value == 0
-          ? const SizedBox()
+          ? const SizedBox.shrink()
           : ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 24),
             child: Row(

@@ -10,4 +10,4 @@ class ActionService extends Equatable {
   List<Object?> get props => [id, category];
 }
 
-enum ServiceId { lvao, recipes }
+enum ServiceId { lvao, mangerBouger, presDeChezVous }

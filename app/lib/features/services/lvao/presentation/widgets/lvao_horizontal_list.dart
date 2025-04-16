@@ -30,7 +30,7 @@ class _Part extends StatelessWidget {
   Widget build(final BuildContext context) => BlocBuilder<LvaoBloc, LvaoState>(
     builder:
         (final context, final state) => switch (state) {
-          LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox(),
+          LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox.shrink(),
           LvaoLoadSuccess() => _Success(state: state),
         },
   );

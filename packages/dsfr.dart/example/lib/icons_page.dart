@@ -20,7 +20,7 @@ class IconsPage extends StatelessWidget {
         final allIconsKey = allIconsKeys.elementAtOrNull(index);
 
         return allIconsKey == null
-            ? const SizedBox()
+            ? const SizedBox.shrink()
             : Tooltip(message: allIconsKey, child: Icon(allIcons[allIconsKey], size: 32, color: DsfrColors.blueFranceSun113));
       },
       itemCount: allIcons.length,

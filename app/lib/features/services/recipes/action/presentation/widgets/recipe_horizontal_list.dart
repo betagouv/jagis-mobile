@@ -29,7 +29,7 @@ class _Part extends StatelessWidget {
   Widget build(final BuildContext context) => BlocBuilder<ActionRecipesBloc, ActionRecipesState>(
     builder:
         (final context, final state) => switch (state) {
-          ActionRecipesInitial() || ActionRecipesLoadInProgress() || ActionRecipesLoadFailure() => const SizedBox(),
+          ActionRecipesInitial() || ActionRecipesLoadInProgress() || ActionRecipesLoadFailure() => const SizedBox.shrink(),
           ActionRecipesLoadSuccess() => _Success(state: state),
         },
   );

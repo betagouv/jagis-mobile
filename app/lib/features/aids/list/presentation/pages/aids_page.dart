@@ -38,7 +38,7 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => BlocBuilder<AidListBloc, AidListState>(
     builder:
         (final context, final state) => switch (state) {
-          AidListInitial() || AidListLoadInProgress() || AidListLoadFailure() => const SizedBox(),
+          AidListInitial() || AidListLoadInProgress() || AidListLoadFailure() => const SizedBox.shrink(),
           AidListLoadSuccess() => _Success(state: state),
         },
   );
@@ -61,7 +61,7 @@ class _Success extends StatelessWidget {
                   description: Localisation.leServiveNeCouvrePasEncoreVotreVilleDescription,
                   onClose: () => context.read<AidsDisclaimerCubit>().closeDisclaimer(),
                 ),
-                AidsDisclaimerNotVisible() => const SizedBox(),
+                AidsDisclaimerNotVisible() => const SizedBox.shrink(),
               },
         ),
       SafeArea(child: _List(state: state)),

@@ -7,5 +7,5 @@ class SandboxPage extends StatelessWidget {
   static final model = PageItem(title: 'Bac à sable', pageBuilder: (final context) => const SandboxPage());
 
   @override
-  Widget build(final BuildContext context) => const SizedBox();
+  Widget build(final BuildContext context) => const SizedBox.shrink();
 }

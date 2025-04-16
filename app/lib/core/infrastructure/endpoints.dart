@@ -24,6 +24,7 @@ abstract final class Endpoints {
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
   static const oubliMotDePasse = '/utilisateurs/oubli_mot_de_passe';
+  static const presDeChezVousSearch = '/utilisateurs/{userId}/recherche_services/proximite/search2';
   static const profile = '/utilisateurs/{userId}/profile';
   static const questionsKyc = '/utilisateurs/{userId}/questionsKYC_v2';
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';

@@ -44,6 +44,7 @@ import 'package:app/features/quiz/infrastructure/quizzes_repository.dart';
 import 'package:app/features/ranking/infrastructure/ranking_repository.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/services/lvao/infrastructure/lvao_repository.dart';
+import 'package:app/features/services/pres_de_chez_vous/infrastructure/action_pres_de_chez_vous_repository.dart';
 import 'package:app/features/services/recipes/action/infrastructure/action_recipes_repository.dart';
 import 'package:app/features/services/recipes/item/infrastructure/recipe_repository.dart';
 import 'package:app/features/services/recipes/list/infrastructure/recipes_repository.dart';
@@ -178,6 +179,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => ThemeRepository(widget.dioHttpClient)),
                 RepositoryProvider(create: (final context) => ActionRepository(widget.dioHttpClient, widget.messageBus)),
                 RepositoryProvider(create: (final context) => LvaoRepository(widget.dioHttpClient)),
+                RepositoryProvider(create: (final context) => ActionPresDeChezVousRepository(widget.dioHttpClient)),
                 RepositoryProvider(create: (final context) => ActionRecipesRepository(widget.dioHttpClient)),
                 RepositoryProvider(create: (final context) => RecipesRepository(widget.dioHttpClient)),
                 RepositoryProvider(create: (final context) => RecipeRepository(widget.dioHttpClient)),
@@ -242,8 +244,10 @@ class _AppState extends State<App> {
                 child: MaterialApp.router(
                   routerConfig: _goRouter,
                   builder:
-                      (final context, final child) =>
-                          UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox()),
+                      (final context, final child) => UpgradeWidget(
+                        navigatorKey: _goRouter.routerDelegate.navigatorKey,
+                        child: child ?? const SizedBox.shrink(),
+                      ),
                   theme: ThemeData(
                     colorSchemeSeed: DsfrColors.blueFranceSun113,
                     scaffoldBackgroundColor: Colors.white,

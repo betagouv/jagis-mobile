@@ -5,6 +5,7 @@ abstract final class ActionServiceMapper {
 
   static ActionService? fromJson(final Map<String, dynamic> json) {
     final mapServiceId = _mapServiceId(json['recherche_service_id'] as String);
+
     if (mapServiceId == null) {
       return null;
     }
@@ -14,7 +15,8 @@ abstract final class ActionServiceMapper {
 
   static ServiceId? _mapServiceId(final String type) => switch (type) {
     'longue_vie_objets' => ServiceId.lvao,
-    'recettes' => ServiceId.recipes,
-    _ => null, // TODO(lsaudon): check new services
+    'recettes' => ServiceId.mangerBouger,
+    'proximite' => ServiceId.presDeChezVous,
+    _ => null,
   };
 }

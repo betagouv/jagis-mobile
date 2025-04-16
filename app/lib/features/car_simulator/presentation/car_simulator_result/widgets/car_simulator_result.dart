@@ -276,7 +276,7 @@ class _DiffInTag extends StatelessWidget {
     final sign = diff > 0 ? '+' : '-';
 
     return diff == 0
-        ? const SizedBox()
+        ? const SizedBox.shrink()
         : DsfrTag.md(
           label: TextSpan(
             text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
@@ -354,7 +354,7 @@ class _ContextInfosView extends StatelessWidget {
       children: [
         _ContextInfo(label: carInfos.size.label),
         _ContextInfo(label: carInfos.motorisation.label),
-        if (carInfos.fuel == null) const SizedBox() else _ContextInfo(label: carInfos.fuel!.label),
+        if (carInfos.fuel == null) const SizedBox.shrink() else _ContextInfo(label: carInfos.fuel!.label),
       ],
     ),
   );

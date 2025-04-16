@@ -173,6 +173,9 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
   static const mesAidesDisponibles = 'Mes aides disponibles';
+  static const mesCommerces = 'Mes commmerces';
+  static const mesCommercesDescription =
+      'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';

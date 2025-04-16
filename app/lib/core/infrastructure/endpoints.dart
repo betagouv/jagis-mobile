@@ -1,5 +1,5 @@
 abstract final class Endpoints {
-  Endpoints._();
+  const Endpoints._();
 
   static const actions = '/utilisateurs/{userId}/actions';
   static const aids = '/utilisateurs/{userId}/aides_v2';

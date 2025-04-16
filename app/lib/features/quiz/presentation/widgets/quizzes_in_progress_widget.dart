@@ -153,7 +153,6 @@ class _Response extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Panel(
-    // ignore: prefer-spacing
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

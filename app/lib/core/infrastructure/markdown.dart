@@ -16,6 +16,7 @@ class FnvMarkdown extends StatelessWidget {
     this.p = const DsfrTextStyle.bodyMd(),
     this.strong,
     this.hTag,
+    this.overflow,
   });
 
   final String data;
@@ -25,6 +26,7 @@ class FnvMarkdown extends StatelessWidget {
   final TextStyle? p;
   final TextStyle? strong;
   final HTag? hTag;
+  final TextOverflow? overflow;
 
   @override
   Widget build(final BuildContext context) => GptMarkdownTheme(
@@ -35,6 +37,7 @@ class FnvMarkdown extends StatelessWidget {
       onLinkTab: (final url, final title) async {
         await FnvUrlLauncher.launch(url);
       },
+      overflow: overflow,
       components: [
         CodeBlockMd(),
         NewLines(),

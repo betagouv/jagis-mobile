@@ -5,6 +5,7 @@ import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/faq/domain/faq.dart';
 import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
+import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
@@ -22,6 +23,7 @@ sealed class Action extends Equatable {
     required this.faq,
     required this.rate,
     required this.sources,
+    required this.articles,
   });
 
   final ThemeType themeType;
@@ -36,6 +38,7 @@ sealed class Action extends Equatable {
   final List<FAQItem>? faq;
   final int? rate;
   final List<Source> sources;
+  final List<Recommandation> articles;
 
   String get instruction;
   String get instructionWhenDone;
@@ -55,6 +58,7 @@ sealed class Action extends Equatable {
     faq,
     rate,
     sources,
+    articles,
   ];
 }
 
@@ -72,6 +76,7 @@ final class ActionClassic extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.articles,
     required this.why,
     required this.instruction,
     required this.scoreLabel,
@@ -118,6 +123,7 @@ final class ActionQuiz extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.articles,
     required this.quizzes,
     required this.congratulatoryText,
   });
@@ -157,6 +163,7 @@ final class ActionPerformance extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.articles,
     required this.questions,
   });
 
@@ -190,6 +197,7 @@ final class ActionSimulator extends ActionPerformance {
     required super.questions,
     required super.rate,
     required super.sources,
+    required super.articles,
     required this.why,
   });
 

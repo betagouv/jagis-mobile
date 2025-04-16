@@ -6,6 +6,7 @@ import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
+import 'package:app/features/action/presentation/widgets/action_articles.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
 import 'package:app/features/action/presentation/widgets/action_faq_view.dart';
 import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
@@ -106,6 +107,7 @@ class _Success extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: ActionScoreInstructionView(action: action),
       ),
+      if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
       const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
     ],
   );

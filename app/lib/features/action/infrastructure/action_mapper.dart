@@ -9,6 +9,7 @@ import 'package:app/features/faq/domain/faq.dart';
 import 'package:app/features/faq/infrastructure/faq_mapper.dart';
 import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
 import 'package:app/features/quiz/infrastructure/quiz_mapper.dart';
+import 'package:app/features/recommandations/infrastructure/recommandation_mapper.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 
 abstract final class ActionMapper {
@@ -44,6 +45,7 @@ abstract final class ActionClassicMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
     scoreLabel: json['label_compteur'] as String,
@@ -68,6 +70,7 @@ abstract final class ActionQuizMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     quizzes: JsonListMapper.fromJsonList(json['quizzes'], QuizMapper.fromJson),
     congratulatoryText: json['quizz_felicitations'] as String,
   );
@@ -90,6 +93,7 @@ abstract final class ActionSimulatorMapper {
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
   );
 }
@@ -110,6 +114,7 @@ abstract final class ActionPerformanceMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
   );
 }

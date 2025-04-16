@@ -35,12 +35,12 @@ class _RecommendationWidgetState extends State<RecommendationWidget> with Materi
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.imageUrl == null)
-              const Placeholder(fallbackWidth: width, fallbackHeight: width * 0.6)
+              const SizedBox(width: width, height: width * 0.6)
             else
               FnvImage.network(widget.imageUrl!, width: width, height: width * 0.6, fit: BoxFit.cover),
             Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
-              child: Text(widget.titre, style: const DsfrTextStyle.bodyMdMedium()),
+              child: Text(widget.titre, style: const DsfrTextStyle.bodyMdBold()),
             ),
           ],
         ),

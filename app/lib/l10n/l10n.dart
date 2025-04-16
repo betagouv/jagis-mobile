@@ -253,6 +253,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const questionPrecedente = 'Question précédente';
   static const questionSuivante = 'Question suivante';
   static const quoiDeNeuf = 'Quoi de neuf ?';
+  static const pourAllerPlusLoin = 'Pour aller **plus loin**';
   static const raccourcis = 'Raccourcis';
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';

@@ -45,8 +45,8 @@ void main() {
       await tester.tap(find.text(deux).hitTestable());
       await tester.pump();
 
-      expect(completer.isCompleted, true);
-      expect(await completer.future, 2);
+      expect(completer.isCompleted, isTrue);
+      expect(await completer.future, equals(2));
     });
   });
 }

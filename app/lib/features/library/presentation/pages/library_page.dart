@@ -16,7 +16,7 @@ class LibraryPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const LibraryPage());
 
   @override
-  Widget build(final context) => RootPage(
+  Widget build(final BuildContext context) => RootPage(
     body: BlocProvider(
       create: (final context) => LibraryBloc(context.read())..add(const LibraryFetchRequested()),
       child: const _View(),

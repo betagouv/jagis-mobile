@@ -11,7 +11,7 @@ class ChoixUnique extends StatelessWidget {
   final QuestionSingleChoice question;
 
   @override
-  Widget build(final context) => DsfrRadioButtonGroupHeadless(
+  Widget build(final BuildContext context) => DsfrRadioButtonGroupHeadless(
     mode: DsfrRadioButtonSetMode.column,
     values: Map.fromEntries(question.responses.map((final r) => MapEntry(r.label, r.label))),
     onChanged: (final value) {

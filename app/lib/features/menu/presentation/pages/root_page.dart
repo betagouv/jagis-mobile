@@ -23,7 +23,7 @@ class RootPage extends StatelessWidget {
   bool _isAtRootLevel(final BuildContext context) => GoRouter.of(context).routerDelegate.currentConfiguration.matches.length <= 2;
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(title: title, bottom: appBarBottom, isRoot: _isAtRootLevel(context)),
     body: body,
     drawer: const Menu(),

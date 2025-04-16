@@ -13,7 +13,7 @@ class Decimal extends StatelessWidget {
   final QuestionDecimal question;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final controller = TextEditingController(text: question.response.value);
 
     return DsfrInputHeadless(

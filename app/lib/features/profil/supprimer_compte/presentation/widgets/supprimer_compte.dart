@@ -13,7 +13,7 @@ class SupprimerCompte extends StatelessWidget {
   const SupprimerCompte({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const color = DsfrColors.error425;
 
     return Column(

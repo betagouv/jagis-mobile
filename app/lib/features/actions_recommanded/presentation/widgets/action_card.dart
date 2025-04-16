@@ -18,7 +18,7 @@ class ActionCard extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
     child: IntrinsicHeight(
       child: Row(

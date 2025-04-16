@@ -16,7 +16,7 @@ class MonLogementDpe extends StatelessWidget {
   const MonLogementDpe({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final dpe = context.select<MonLogementBloc, Dpe?>((final bloc) => bloc.state.dpe);
 
     return MonLogementTitreEtContenu(
@@ -60,7 +60,7 @@ class _FnvDpeState extends State<_FnvDpe> {
   });
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final width = MediaQuery.sizeOf(context).width / 100;
 
     final labels = [
@@ -120,7 +120,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
   final ValueChanged<Dpe?> onChanged;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     Widget customPaint = Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Text(label, style: const DsfrTextStyle.bodyMdBold()),

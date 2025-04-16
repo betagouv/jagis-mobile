@@ -12,7 +12,7 @@ class ActionAidsView extends StatelessWidget {
   final List<AidSummary> aidSummaries;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.all(DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

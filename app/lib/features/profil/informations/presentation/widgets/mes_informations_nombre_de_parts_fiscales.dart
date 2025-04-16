@@ -11,7 +11,7 @@ class MesInformationsNombreDePartsFiscales extends StatelessWidget {
   const MesInformationsNombreDePartsFiscales({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final nombreDePartsFiscales = context.select<MesInformationsBloc, double>((final bloc) => bloc.state.nombreDePartsFiscales);
 
     return DsfrInput(

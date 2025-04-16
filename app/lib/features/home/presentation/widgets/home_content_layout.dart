@@ -20,7 +20,7 @@ class HomeContentLayout extends StatelessWidget {
   const HomeContentLayout({super.key});
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => HomeDashboardBloc(context.read(), context.read())..add(const HomeDashboardLoadRequested()),
     child: const _View(),
   );
@@ -50,7 +50,7 @@ class _Success extends StatelessWidget {
   final List<Recommandation> recommendations;
 
   @override
-  Widget build(final context) => RefreshIndicator(
+  Widget build(final BuildContext context) => RefreshIndicator(
     onRefresh: () async {
       context.read<HomeDashboardBloc>().add(const HomeDashboardLoadRequested());
     },

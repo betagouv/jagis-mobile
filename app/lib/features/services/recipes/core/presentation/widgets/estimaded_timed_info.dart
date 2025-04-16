@@ -7,7 +7,7 @@ class EstimadedTimedInfo extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const color = Color(0xff6A6A6A);
 
     return Text.rich(

@@ -32,7 +32,7 @@ class _MonLogementCodePostalEtCommuneState extends State<MonLogementCodePostalEt
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final state = context.watch<MonLogementBloc>().state;
     if (state.communes.length == 1) {
       final commune = state.communes.first;

@@ -6,5 +6,5 @@ class ResetRepository {
 
   final DioHttpClient _client;
 
-  Future<void> reset() async => _client.post(Endpoints.gamificationReset);
+  Future<void> reset() => _client.post(Endpoints.gamificationReset);
 }

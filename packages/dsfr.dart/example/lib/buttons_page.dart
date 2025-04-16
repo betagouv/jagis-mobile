@@ -10,7 +10,7 @@ class ButtonsPage extends StatelessWidget {
   void _handleTap() {}
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const label = 'JQgjpqy';
 
     final children = <Widget>[];

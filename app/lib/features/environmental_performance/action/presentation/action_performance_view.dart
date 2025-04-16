@@ -19,7 +19,7 @@ class ActionPerformanceView extends StatelessWidget {
   final ActionPerformance action;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: BlocProvider(
       create:
@@ -39,7 +39,7 @@ class _View extends StatelessWidget {
   final String code;
 
   @override
-  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),

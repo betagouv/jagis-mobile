@@ -11,7 +11,9 @@ import 'package:rxdart/rxdart.dart';
 class GamificationRepository {
   GamificationRepository({required final DioHttpClient client, required final MessageBus messageBus}) : _client = client {
     final topics = [resetPointsTopic, startFirstTimeQuestionsToPersonalizeActionsTopic, actionDoneTopic];
-    _subscription = MergeStream(topics.map(messageBus.subscribe)).listen((final event) async => refresh());
+    _subscription = MergeStream(topics.map(messageBus.subscribe)).listen((final event) async {
+      await refresh();
+    });
   }
 
   final DioHttpClient _client;

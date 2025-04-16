@@ -6,23 +6,20 @@ import 'package:intl/intl.dart';
 abstract final class Localisation {
   const Localisation._();
 
-  static const accederAuSimulateur = 'Accéder au simulateur';
   static const accederAuCatalogue = 'Accéder au catalogue';
+  static const accederAuSimulateur = 'Accéder au simulateur';
   static const acheterUnVelo = 'Acheter un vélo';
-  static const envieDeVoirOuRevoirToutesLesActions = 'Envie de voir ou revoir toutes les actions ?';
   static const actionBravo = 'Bravo ! 🎉';
-  static const actions = 'Actions';
-  static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
   static const actionPerformanceTerminePart1 = 'Vous avez terminé votre bilan ! Il est de ';
-  static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
-  static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
+  static const actions = 'Actions';
+  static const actionsRealiseesEnFrance = 'Actions réalisées ensemble partout en France';
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aide = 'aide';
-  static const aides = 'Aides';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
+  static const aides = 'Aides';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
   static const annuler = 'Annuler';
@@ -32,6 +29,9 @@ abstract final class Localisation {
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
+  static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
+  static const avezVousAimeCettePageDescription =
+      'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
   static const besoinDInspiration = 'Besoin **d’inspiration** ?';
   static const bibliotheque = 'Bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
@@ -39,7 +39,6 @@ abstract final class Localisation {
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bilanEnvironnemental = 'Bilan environnemental';
-  static const monBilanEnvironnemental = 'Mon bilan environnemental';
   static const bonjour = 'Bonjour,\n';
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
@@ -50,6 +49,7 @@ abstract final class Localisation {
   static const codePostal = 'Code postal';
   static const combienEtesVousDansVotreLogement = 'Combien êtes-vous dans votre logement (vous inclus) ?';
   static const commencer = 'Commencer';
+  static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commune = 'Commune';
   static const completer = 'Compléter';
   static const confirmer = 'Confirmer';
@@ -58,9 +58,9 @@ abstract final class Localisation {
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
   static const creerMonCompteApp = 'Créez votre compte J’agis';
+  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const dateDeNaissance = 'Date de naissance';
   static const dateDeNaissanceDescription = 'Nécessaire pour faciliter votre identification';
-  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const dejaConsultees = 'Déjà consultées';
@@ -93,6 +93,7 @@ abstract final class Localisation {
   static const envieDAvoirUnVraiImpact = 'Envie d’avoir un vrai impact ?';
   static const envieDAvoirUnVraiImpactDescription =
       'Laissez-vous guider par nos recommandations d’actions **choisies pour vous !**';
+  static const envieDeVoirOuRevoirToutesLesActions = 'Envie de voir ou revoir toutes les actions ?';
   static const envoyer = 'Envoyer';
   static const erreurInattendue = 'Erreur inattendue';
   static const erreurInattendueContent =
@@ -124,23 +125,19 @@ abstract final class Localisation {
   static const fruitsEtLegumesTitre = 'Les fruits et légumes pour le mois de ';
   static const gratuit = 'Gratuit';
   static const home = 'Accueil';
-  static const impactCo2 = 'Impact CO₂';
-  static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
-  static const impactCo2Url = 'https://impactco2.fr/';
-  static const ingredients = 'Ingrédients';
   static const ilYADuNouveauSurApp = 'Il y a du nouveau sur J’agis !';
   static const ilYADuNouveauSurAppDescription = '''
 Nous avons écouté vos retours et concocté une toute **nouvelle version** du service.
 
 **Personnalisez votre expérience** en quelques questions et obtenez des **idées d’actions** concrètes, avec tous les **outils**, **adresses** et **aides financières** pour y arriver !''';
+  static const impactCo2 = 'Impact CO₂';
+  static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
+  static const impactCo2Url = 'https://impactco2.fr/';
+  static const ingredients = 'Ingrédients';
   static const jaccepte = 'J’accepte ';
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
-  static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
-  static const avezVousAimeCettePageDescription =
-      'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
-  static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const jeCreeMonCompte = 'Je crée mon compte';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
@@ -186,6 +183,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
+  static const monBilanEnvironnemental = 'Mon bilan environnemental';
   static const monIdentite = 'Mon identité';
   static const monLogement = 'Mon logement';
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';
@@ -207,8 +205,9 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const non = 'Non';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
   static const obligatoire = 'obligatoire';
-  static const optionsAvancees = 'Options avancées';
+  static const onRepondAVosQuestions = 'On répond à vos questions !';
   static const onSeLanceLeDefi = 'On se lance le défi ?';
+  static const optionsAvancees = 'Options avancées';
   static const ouHabitezVous = 'Où habitez-vous ?';
   static const ouTrouverCesInformations = 'Où trouver ces informations ?';
   static const ouTrouverCesInformationsReponse = '''
@@ -223,6 +222,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez 1 part pour
 Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme des revenus de toutes les personnes avec lequelles vous partagez vos déclarations d’impôts (pour toute l’année) pour vous faire une première idée.''';
   static const oui = 'Oui';
   static const pageConnexionTitre = 'Accédez à mon compte J’agis';
+  static const partagerLArticle = 'Partager l’article';
   static const passerLaQuestion = 'Passer la question';
   static const pionnier = 'Pionnier';
   static const pionnierDescription = 'Présent depuis les premiers jours';
@@ -249,24 +249,21 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const quelleEstLaSuperficie = 'Quelle est la superficie ?';
   static const questionPrecedente = 'Question précédente';
   static const questionSuivante = 'Question suivante';
+  static const quoiDeNeuf = 'Quoi de neuf ?';
   static const raccourcis = 'Raccourcis';
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';
-  static const voirMesResultats = 'Voir mes résultats';
-  static const voirToutesLesRecettes = 'Voir toutes les recettes';
-  static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const rechargeElectriqueQuestion = 'J’ai la possibilité de recharger un véhicule électrique au quotidien.';
   static const rechercherParTitre = 'Rechercher par titre';
-  static const recommencerLeQuiz = 'Recommencer le quiz';
-  static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recolter = 'Récolter';
+  static const recommencerLeBilan = 'Recommmencer le bilan';
+  static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
   static const renvoyerCode = 'Renvoyer le code';
   static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';
   static const reponse = 'Réponse';
-  static const retirerDesFavoris = 'Retirer des favoris';
-  static const partagerLArticle = 'Partager l’article';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
+  static const retirerDesFavoris = 'Retirer des favoris';
   static const retour = 'Retour';
   static const revenirALaThematique = 'Revenir à la thématique';
   static const revenirAuCatalogue = 'Revenir au catalogue';
@@ -291,23 +288,24 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirLaReponse = 'Voir la réponse';
   static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
+  static const voirMesResultats = 'Voir mes résultats';
   static const voirPlusActions = 'Voir plus d’actions';
+  static const voirTout = 'Voir tout';
+  static const voirToutesLesRecettes = 'Voir toutes les recettes';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
+  static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
   static const vousAvezDejaLOptionLaPlusEconomique = 'Vous avez déjà l’option la plus économique !';
   static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
-  static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
-  static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
   static const vousAvezObtenuUnScoreKoDe = '😬 Vous avez obtenu un score de';
-  static String votreReponse(final bool isCorrect) => '${isCorrect ? '✅' : '❌'} Votre réponse : ';
+  static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
   static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
+  static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
   static String a(final String value) => 'à $value';
+  static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
+  static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
+  static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
   static String actionsTerminees(final int nbActions) => nbActions > 1 ? 'Actions terminées' : 'Action terminée';
-  static const quoiDeNeuf = 'Quoi de neuf ?';
-  static const voirTout = 'Voir tout';
-  static const actionsRealiseesEnFrance = 'Actions réalisées ensemble partout en France';
-  static const onRepondAVosQuestions = 'On répond à vos questions !';
-
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;
 
@@ -345,9 +343,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String nombreArticle(final int value) => value <= 1 ? '$value article' : '$value articles';
 
-  static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
   static String nombreBadges(final int value) => value <= 1 ? '$value badge' : '$value badges';
 
+  static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
   static String pseudonymExclamation(final String value) => '$value !';
 
   static String questionCourantSurMax(final int actuel, final int max) => '**Question $actuel** sur $max';
@@ -355,4 +353,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String tempsDePreparation(final int value) => 'Temps de préparation : $value min';
 
   static String veloLabel(final String text) => '$text : ';
+
+  static String votreReponse(final bool isCorrect) => '${isCorrect ? '✅' : '❌'} Votre réponse : ';
 }

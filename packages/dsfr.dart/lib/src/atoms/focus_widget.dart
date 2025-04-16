@@ -10,7 +10,7 @@ class DsfrFocusWidget extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
       border:
           isFocused

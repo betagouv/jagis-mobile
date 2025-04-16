@@ -24,7 +24,7 @@ class _DropdownButtonRawState<T> extends State<DropdownButtonRaw<T>> {
   final _controller = OverlayPortalController();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final value = widget.selectedItem.value;
 
     return InkWell(
@@ -49,9 +49,9 @@ class _DropdownButtonRawState<T> extends State<DropdownButtonRaw<T>> {
                     .map(
                       (final e) => _DropdownMenuItem(
                         item: e,
-                        onChanged: (final value) {
+                        onChanged: (final newValue) {
                           _controller.hide();
-                          widget.onChanged(value);
+                          widget.onChanged(newValue);
                         },
                       ),
                     )
@@ -81,7 +81,7 @@ class _DropdownMenu extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       TapRegion(onTapOutside: onTapOutside, child: _DropdownMenuLayout(anchorRect: anchorRect, style: style, children: children));
 }
 
@@ -92,7 +92,7 @@ class _DropdownMenuItem<T> extends StatelessWidget {
   final ValueChanged<T> onChanged;
 
   @override
-  Widget build(final context) => Material(
+  Widget build(final BuildContext context) => Material(
     type: MaterialType.transparency,
     child: InkWell(onTap: () => onChanged(item.key), child: Center(child: item.value)),
   );
@@ -106,7 +106,7 @@ class _DropdownMenuLayout extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(final context) => CustomSingleChildLayout(
+  Widget build(final BuildContext context) => CustomSingleChildLayout(
     delegate: _DropdownMenuPositionDelegate(anchorRect: anchorRect, alignment: style.alignment, offset: style.offset),
     child: _DropdownMenuContent(style: style, children: children),
   );
@@ -132,7 +132,7 @@ class _DropdownMenuContentState extends State<_DropdownMenuContent> {
   }
 
   @override
-  Widget build(final context) => IntrinsicWidth(
+  Widget build(final BuildContext context) => IntrinsicWidth(
     child: Material(
       type: MaterialType.transparency,
       child: DecoratedBox(

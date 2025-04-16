@@ -1,4 +1,4 @@
-// ignore_for_file: prefer-spacing
+// ignore_for_file: prefer-spacing, avoid-positional-record-field-access
 
 import 'package:dsfr/src/atoms/focus_widget.dart';
 import 'package:dsfr/src/composants/divider.dart';
@@ -47,7 +47,7 @@ class _DsfrAccordionsGroupState extends State<DsfrAccordionsGroup> {
   });
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const divider = DsfrDivider();
 
     return Column(
@@ -87,7 +87,7 @@ class _DsfrAccordionState extends State<_DsfrAccordion> with MaterialStateMixin<
   void _handleTap() => widget.onAccordionCallback(widget.index, !widget.isExpanded);
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       InkWell(

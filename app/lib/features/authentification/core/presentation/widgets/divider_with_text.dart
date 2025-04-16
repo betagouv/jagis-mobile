@@ -5,7 +5,7 @@ class DividerWithText extends StatelessWidget {
   const DividerWithText({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final divider = Expanded(child: Container(color: const Color(0xffDFD9D9), height: 1));
 
     return Row(

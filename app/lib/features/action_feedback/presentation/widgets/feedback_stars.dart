@@ -11,7 +11,7 @@ class FeedbackStars extends StatelessWidget {
   final ValueChanged<int> onChanged;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const maxStars = 4;
 
     return Semantics(

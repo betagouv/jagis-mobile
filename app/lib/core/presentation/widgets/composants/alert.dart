@@ -12,7 +12,7 @@ class FnvAlert extends StatelessWidget {
   final Color color;
 
   @override
-  Widget build(final context) => Row(
+  Widget build(final BuildContext context) => Row(
     spacing: DsfrSpacings.s1w,
     children: [
       Icon(icon, size: DsfrSpacings.s2w, color: color),

@@ -50,5 +50,5 @@ class AuthenticationService {
     await _authenticationStorage.deleteAuthToken();
   }
 
-  Future<void> dispose() async => _authenticationStatusController.close();
+  Future<void> dispose() => _authenticationStatusController.close();
 }

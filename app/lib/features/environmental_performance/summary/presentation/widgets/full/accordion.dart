@@ -1,4 +1,4 @@
-// ignore_for_file: prefer-spacing
+// ignore_for_file: prefer-spacing, avoid-positional-record-field-access
 
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
@@ -29,7 +29,7 @@ class _FnvAccordionsGroupState extends State<FnvAccordionsGroup> {
   var _isExpanded = false;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const divider = DsfrDivider();
 
     return Column(
@@ -68,7 +68,7 @@ class _FnvAccordion extends StatelessWidget {
   void _handleTap() => onAccordionCallback(index, !isExpanded);
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       InkWell(

@@ -8,7 +8,7 @@ class EnvironmentalPerformanceBloc extends Bloc<EnvironmentalPerformanceEvent, E
     : super(const EnvironmentalPerformanceInitial()) {
     on<EnvironmentalPerformanceStarted>((final event, final emit) async {
       emit(const EnvironmentalPerformanceLoading());
-      final result = await useCase();
+      final result = await useCase.run();
       result.fold(
         (final l) => emit(EnvironmentalPerformanceFailure(errorMessage: l.toString())),
         (final r) => emit(EnvironmentalPerformanceSuccess(data: r)),

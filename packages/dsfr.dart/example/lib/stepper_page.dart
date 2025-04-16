@@ -8,7 +8,7 @@ class StepperPage extends StatelessWidget {
   static final model = PageItem(title: 'Étapier', pageBuilder: (final context) => const StepperPage());
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const length = 9;
 
     return SingleChildScrollView(

@@ -105,7 +105,9 @@ class HomeDashboardCounter extends StatelessWidget {
                           textAlign: TextAlign.center,
                           icon: DsfrIcons.systemArrowRightSLine,
                           iconPosition: DsfrLinkIconPosition.end,
-                          onTap: () async => GoRouter.of(context).pushNamed(EnvironmentalPerformanceSummaryPage.name),
+                          onTap: () async {
+                            await GoRouter.of(context).pushNamed(EnvironmentalPerformanceSummaryPage.name);
+                          },
                         ),
                       ],
                     ),

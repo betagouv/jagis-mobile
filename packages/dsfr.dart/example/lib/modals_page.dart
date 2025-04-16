@@ -8,7 +8,7 @@ class ModalsPage extends StatelessWidget {
   static final model = PageItem(title: 'Modales', pageBuilder: (final context) => const ModalsPage());
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
       DsfrButton(

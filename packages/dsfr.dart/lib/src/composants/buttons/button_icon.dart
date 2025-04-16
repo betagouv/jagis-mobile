@@ -39,7 +39,7 @@ class DsfrButtonIcon extends StatelessWidget {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     Widget child = Icon(icon, size: _getIconSize(size), semanticLabel: semanticLabel);
     if (iconColor != null) {
       child = IconTheme(data: IconThemeData(color: iconColor), child: child);

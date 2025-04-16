@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(final context) => MaterialApp(
+  Widget build(final BuildContext context) => MaterialApp(
     home: MasterPage(
       pageItems: [
         StepperPage.model,

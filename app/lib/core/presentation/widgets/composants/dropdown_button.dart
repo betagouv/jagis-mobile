@@ -10,7 +10,7 @@ class FnvDropdown<T> extends StatelessWidget {
   final ValueChanged<T> onChanged;
 
   @override
-  Widget build(final context) => DropdownButtonRaw<T>(
+  Widget build(final BuildContext context) => DropdownButtonRaw<T>(
     items: Map.fromEntries(
       items.entries.map(
         (final entry) => MapEntry(

@@ -32,7 +32,7 @@ class ArticlePage extends StatelessWidget {
   final String id;
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
       create: (final context) => ArticleBloc(articlesRepository: context.read())..add(ArticleRecuperationDemandee(id)),
@@ -45,7 +45,7 @@ class _Content extends StatelessWidget {
   const _Content();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final article = context.select<ArticleBloc, Article>((final v) => v.state.article);
 
     return SingleChildScrollView(
@@ -149,7 +149,7 @@ class _LogoWidget extends StatelessWidget {
   final Article article;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     if (article.partner == null) {
       return const SizedBox.shrink();
     }

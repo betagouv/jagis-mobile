@@ -41,7 +41,7 @@ class _DsfrSearchBarState extends State<DsfrSearchBar> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const inputBorderWidth = DsfrSpacings.s0v5;
     const radius = DsfrSpacings.s1v;
     const primaryColor = DsfrColors.blueFranceSun113;

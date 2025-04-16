@@ -17,7 +17,7 @@ class ActionPerformanceFinished extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) => ActionPerformanceFinishedBloc(context.read())..add(ActionPerformanceFinishedLoadRequested(themeType)),
     child: const _View(),
@@ -28,7 +28,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => BlocBuilder<ActionPerformanceFinishedBloc, ActionPerformanceFinishedState>(
+  Widget build(final BuildContext context) => BlocBuilder<ActionPerformanceFinishedBloc, ActionPerformanceFinishedState>(
     builder:
         (final context, final state) => switch (state) {
           ActionPerformanceFinishedInitial() => const SizedBox.shrink(),

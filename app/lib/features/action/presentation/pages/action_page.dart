@@ -44,7 +44,7 @@ class ActionPage extends StatelessWidget {
   );
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => ActionBloc(repository: context.read())..add(ActionLoadRequested(id: id, type: type)),
     child: const _View(),
   );
@@ -54,7 +54,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<ActionBloc, ActionState>(
       builder:
@@ -73,7 +73,7 @@ class _Success extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     children: [
       const SizedBox(height: DsfrSpacings.s3w),
       Padding(

@@ -11,7 +11,7 @@ class ActionSimulatorView extends StatelessWidget {
   final ActionSimulator action;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     spacing: DsfrSpacings.s4w,
     children: [
       if (action.why != null) ActionWhySectionView(why: action.why!),

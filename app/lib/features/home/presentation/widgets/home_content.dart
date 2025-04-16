@@ -42,7 +42,7 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   @override
-  Widget build(final context) => BlocConsumer<UserBloc, UserState>(
+  Widget build(final BuildContext context) => BlocConsumer<UserBloc, UserState>(
     builder: (final context, final state) {
       final user = state.user;
       if (user == null || !user.isIntegrationCompleted) {

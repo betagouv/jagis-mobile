@@ -13,7 +13,7 @@ class ChangerMotDePasse extends StatelessWidget {
   const ChangerMotDePasse({super.key});
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => ChangerMotDePasseBloc(profilRepository: context.read()),
     child: const _ChangerMotDePasse(),
   );
@@ -23,7 +23,7 @@ class _ChangerMotDePasse extends StatelessWidget {
   const _ChangerMotDePasse();
 
   @override
-  Widget build(final context) => BlocListener<ChangerMotDePasseBloc, ChangerMotDePasseState>(
+  Widget build(final BuildContext context) => BlocListener<ChangerMotDePasseBloc, ChangerMotDePasseState>(
     listener: (final context, final state) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(Localisation.changerVotreMotDePasseConfirmation)));
       GoRouter.of(context).pop();
@@ -47,7 +47,7 @@ class _MotDePasse extends StatelessWidget {
   const _MotDePasse();
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       FnvMotDePasse(onChanged: (final value) => context.read<ChangerMotDePasseBloc>().add(ChangerMotDePasseAChange(value)));
 }
 
@@ -55,7 +55,7 @@ class _ChangerMotDePasseButton extends StatelessWidget {
   const _ChangerMotDePasseButton();
 
   @override
-  Widget build(final context) => DsfrButton(
+  Widget build(final BuildContext context) => DsfrButton(
     label: Localisation.changerMonMotDePasse,
     variant: DsfrButtonVariant.primary,
     size: DsfrComponentSize.lg,

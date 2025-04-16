@@ -10,7 +10,7 @@ class ActionPerformanceSuccess extends StatelessWidget {
   final QuestionsManagerLoadSuccess questionManager;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final cursor = questionManager.cursor;
 
     return Column(

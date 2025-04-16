@@ -16,7 +16,7 @@ class FnvInkwell extends StatefulWidget {
 
 class _FnvInkwellState extends State<FnvInkwell> with MaterialStateMixin<FnvInkwell> {
   @override
-  Widget build(final context) => DsfrFocusWidget(
+  Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: Material(
       color: widget.color,

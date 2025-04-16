@@ -7,5 +7,5 @@ class ColorsPage extends StatelessWidget {
   static final model = PageItem(title: 'Couleurs - Palette', pageBuilder: (final context) => const ColorsPage());
 
   @override
-  Widget build(final context) => const Text('Colors');
+  Widget build(final BuildContext context) => const Text('Colors');
 }

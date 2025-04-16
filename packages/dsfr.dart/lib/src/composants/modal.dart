@@ -12,7 +12,7 @@ class DsfrModal extends StatelessWidget {
     required final WidgetBuilder builder,
     required final String name,
     final bool isDismissible = true,
-  }) async => showModalBottomSheet<T>(
+  }) => showModalBottomSheet<T>(
     context: context,
     builder: (final context) => DsfrModal(isDismissible: isDismissible, child: builder(context)),
     backgroundColor: Colors.transparent,
@@ -28,7 +28,7 @@ class DsfrModal extends StatelessWidget {
   final bool isDismissible;
 
   @override
-  Widget build(final context) => ColoredBox(
+  Widget build(final BuildContext context) => ColoredBox(
     color: DsfrColors.grey1000,
     child: SingleChildScrollView(
       child: SafeArea(

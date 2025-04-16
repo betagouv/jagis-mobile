@@ -22,7 +22,7 @@ class ToutEstPretPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const ToutEstPretPage());
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const blueFranceSun113 = DsfrColors.blueFranceSun113;
 
     const bodyLg = DsfrTextStyle.bodyLg();

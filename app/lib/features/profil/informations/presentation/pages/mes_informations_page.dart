@@ -21,7 +21,7 @@ class MesInformationsPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const MesInformationsPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             MesInformationsBloc(profilRepository: context.read())..add(const MesInformationsRecuperationDemandee()),
@@ -33,7 +33,7 @@ class _MesInformationsView extends StatelessWidget {
   const _MesInformationsView();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<MesInformationsBloc, MesInformationsState>(
       builder: (final context, final state) {

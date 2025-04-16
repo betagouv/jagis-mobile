@@ -5,7 +5,7 @@ extension GoRouterExt on GoRouter {
     final currentConfiguration = routerDelegate.currentConfiguration;
     final routeStacks = List.of(currentConfiguration.routes);
 
-    for (var i = routeStacks.length - 1; i >= 0; i--) {
+    for (var i = routeStacks.length - 1; i >= 0; i -= 1) {
       final route = routeStacks.elementAtOrNull(i);
       if (route is GoRoute) {
         if (route.name == name) {

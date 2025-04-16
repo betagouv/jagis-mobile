@@ -20,14 +20,14 @@ class CarSimulatorResult extends StatelessWidget {
   const CarSimulatorResult({super.key});
 
   @override
-  Widget build(final context) => const _View();
+  Widget build(final BuildContext context) => const _View();
 }
 
 class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => BlocConsumer<CarSimulatorResultBloc, CarSimulatorResultState>(
+  Widget build(final BuildContext context) => BlocConsumer<CarSimulatorResultBloc, CarSimulatorResultState>(
     builder:
         (final context, final state) => switch (state) {
           CarSimulatorInit() => const Center(
@@ -73,7 +73,7 @@ class _CarSimulatorResultView extends StatelessWidget {
   final CarSimulatorOption? bestEmissionsOption;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +108,7 @@ class _BestCarOptionView extends StatelessWidget {
   final CarSimulatorOption? bestEmissionsOption;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
@@ -172,7 +172,7 @@ class _CarSimulatorOptionView extends StatelessWidget {
   final CarSimulatorOptionKind kind;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final currentCarIsBest =
         kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
 
@@ -237,7 +237,7 @@ class _KindTagView extends StatelessWidget {
   final CarSimulatorOptionKind kind;
 
   @override
-  Widget build(final context) => switch (kind) {
+  Widget build(final BuildContext context) => switch (kind) {
     CarSimulatorOptionKind.bestCost => const DsfrTag.md(
       label: TextSpan(
         text: Localisation.laPlusEconomique,
@@ -267,7 +267,7 @@ class _DiffInTag extends StatelessWidget {
   final String unit;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final diff = unit == '%' ? (to - from) / from * 100 : to - from;
     final colors =
         diff > 0
@@ -295,7 +295,7 @@ class _CurrentCarResultView extends StatelessWidget {
   final CarInfos currentCar;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
@@ -329,7 +329,7 @@ class _NumberWithUnit extends StatelessWidget {
   final String unit;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       text: FnvNumberFormat.formatNumberAfterRounding(num),
       style: const DsfrTextStyle.bodyXlBold(),
@@ -344,7 +344,7 @@ class _ContextInfosView extends StatelessWidget {
   final CarInfos carInfos;
 
   @override
-  Widget build(final context) => Container(
+  Widget build(final BuildContext context) => Container(
     padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
     decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
     width: 270,
@@ -366,7 +366,7 @@ class _ContextInfo extends StatelessWidget {
   final String label;
 
   @override
-  Widget build(final context) => DsfrTag.md(
+  Widget build(final BuildContext context) => DsfrTag.md(
     label: TextSpan(text: label),
     backgroundColor: DsfrColors.blueFrance950,
     foregroundColor: DsfrColors.blueFranceSun113,

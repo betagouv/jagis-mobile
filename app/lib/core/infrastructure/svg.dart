@@ -31,7 +31,7 @@ class FnvSvg extends StatelessWidget {
   final String? semanticsLabel;
 
   @override
-  Widget build(final context) => SizedBox(
+  Widget build(final BuildContext context) => SizedBox(
     width: width,
     height: height,
     child: Semantics(

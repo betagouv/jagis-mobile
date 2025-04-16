@@ -62,6 +62,18 @@ void main() {
   });
 
   testWidgets('Filtrer par thématique', (final tester) async {
+    Matcher findsWhenAnsweredAndPartOfTheme(final Question expectedQuestion, final ThemeType? currentTheme) {
+      if (!expectedQuestion.isAnswered) {
+        return findsNothing;
+      }
+
+      if (currentTheme == null) {
+        return findsOneWidget;
+      }
+
+      return expectedQuestion.theme == currentTheme ? findsOneWidget : findsNothing;
+    }
+
     await _pumpPage(tester, dio: dio);
 
     await tester.pumpAndSettle();
@@ -75,18 +87,6 @@ void main() {
 
       for (final question in questions) {
         final expected = QuestionMapper.fromJson(question);
-
-        Matcher findsWhenAnsweredAndPartOfTheme(final Question expected, final ThemeType? theme) {
-          if (!expected.isAnswered) {
-            return findsNothing;
-          }
-
-          if (theme == null) {
-            return findsOneWidget;
-          }
-
-          return expected.theme == theme ? findsOneWidget : findsNothing;
-        }
 
         expect(find.text(expected.label), findsWhenAnsweredAndPartOfTheme(expected, theme));
       }

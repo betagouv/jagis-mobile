@@ -130,7 +130,7 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
 
                 return AideDisponiblesViewModel(
                   titre: e.key,
-                  montantTotal: value.map((final e) => e.montant).maxOrNull,
+                  montantTotal: value.map((final f) => f.montant).maxOrNull,
                   aides: value,
                 );
               }).toList(),

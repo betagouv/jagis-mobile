@@ -10,7 +10,7 @@ class SourcesWidget extends StatelessWidget {
   final List<Source> sources;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       const Text(Localisation.sources, style: DsfrTextStyle.bodySmBold()),
@@ -26,7 +26,9 @@ class SourcesWidget extends StatelessWidget {
                   label: source.label,
                   icon: DsfrIcons.systemExternalLinkLine,
                   iconPosition: DsfrLinkIconPosition.end,
-                  onTap: () async => FnvUrlLauncher.launch(source.url),
+                  onTap: () async {
+                    await FnvUrlLauncher.launch(source.url);
+                  },
                 ),
               ),
             ],

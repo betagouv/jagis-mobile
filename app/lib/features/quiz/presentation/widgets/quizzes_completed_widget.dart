@@ -29,7 +29,7 @@ class QuizzesCompletedWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final goBackText = _getBackText(context);
 
     return Column(
@@ -65,7 +65,7 @@ class _CompletedQuizTitle extends StatelessWidget {
   final String name;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       text: Localisation.vousAvezTermineLeQuiz,
       children: [TextSpan(text: ' "$name"', style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113))],
@@ -90,7 +90,7 @@ class _SuccessContent extends StatelessWidget {
   final VoidCallback onRepeatQuiz;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       _ScorePanel(
@@ -124,7 +124,7 @@ class _FailureContent extends StatelessWidget {
   final VoidCallback onRepeatQuiz;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       _ScorePanel(
@@ -160,7 +160,7 @@ class _ScorePanel extends StatelessWidget {
   final Color borderColor;
 
   @override
-  Widget build(final context) => Panel(
+  Widget build(final BuildContext context) => Panel(
     backgroundColor: backgroundColor,
     borderColor: borderColor,
     child: Text.rich(
@@ -179,7 +179,7 @@ class _MessagePanel extends StatelessWidget {
   final String message;
 
   @override
-  Widget build(final context) => Panel(child: Text(message, style: const DsfrTextStyle.bodyMd()));
+  Widget build(final BuildContext context) => Panel(child: Text(message, style: const DsfrTextStyle.bodyMd()));
 }
 
 class _PrimaryButton extends StatelessWidget {
@@ -189,7 +189,7 @@ class _PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       DsfrButton(label: label, variant: DsfrButtonVariant.primary, size: DsfrComponentSize.lg, onPressed: onPressed);
 }
 
@@ -200,6 +200,6 @@ class _SecondaryButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       DsfrButton(label: label, variant: DsfrButtonVariant.secondary, size: DsfrComponentSize.lg, onPressed: onPressed);
 }

@@ -19,7 +19,7 @@ class RecommendationWidget extends StatefulWidget {
 
 class _RecommendationWidgetState extends State<RecommendationWidget> with MaterialStateMixin<RecommendationWidget> {
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const width = 203.0;
 
     return FnvCard(

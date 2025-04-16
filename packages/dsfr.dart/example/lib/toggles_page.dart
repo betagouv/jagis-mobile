@@ -15,7 +15,7 @@ class _TogglesPageState extends State<TogglesPage> {
   var _toggle = false;
 
   @override
-  Widget build(final context) => SingleChildScrollView(
+  Widget build(final BuildContext context) => SingleChildScrollView(
     padding: const EdgeInsets.all(16),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

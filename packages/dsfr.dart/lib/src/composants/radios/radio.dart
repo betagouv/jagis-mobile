@@ -19,7 +19,7 @@ class DsfrRadioButton<T> extends StatefulWidget {
 
 class _DsfrRadioButtonState<T> extends State<DsfrRadioButton<T>> with MaterialStateMixin<DsfrRadioButton<T>> {
   @override
-  Widget build(final context) => DsfrFocusWidget(
+  Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: Material(
       color: Colors.transparent,

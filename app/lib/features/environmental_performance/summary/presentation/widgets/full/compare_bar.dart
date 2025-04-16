@@ -6,7 +6,7 @@ class CompareBar extends StatelessWidget {
   final double value;
 
   @override
-  Widget build(final context) => CustomPaint(painter: _Painter(value: value), size: const Size(double.infinity, 12));
+  Widget build(final BuildContext context) => CustomPaint(painter: _Painter(value: value), size: const Size(double.infinity, 12));
 }
 
 class _Painter extends CustomPainter {

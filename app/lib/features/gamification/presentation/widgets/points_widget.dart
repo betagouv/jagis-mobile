@@ -16,7 +16,7 @@ class PointsWidget extends StatelessWidget {
   final Color iconColor;
 
   @override
-  Widget build(final context) => Semantics(
+  Widget build(final BuildContext context) => Semantics(
     label: Localisation.nombrePoints(points),
     child: AchievementBase(
       value: points,

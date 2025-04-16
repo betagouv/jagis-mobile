@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('removeEmoji', () {
-    expect(removeEmoji('Hello world 🌍.'), 'Hello world .');
-    expect(removeEmoji('👋 Hello 🌍 World! 🎉'), ' Hello  World! ');
-    expect(removeEmoji('No emojis here'), 'No emojis here');
+    expect(removeEmoji('Hello world 🌍.'), equals('Hello world .'));
+    expect(removeEmoji('👋 Hello 🌍 World! 🎉'), equals(' Hello  World! '));
+    expect(removeEmoji('No emojis here'), equals('No emojis here'));
   });
 }

@@ -7,7 +7,7 @@ class FetchEnvironmentalPerformance {
 
   final EnvironmentalPerformanceSummaryRepository _port;
 
-  Future<Either<Exception, EnvironmentalPerformanceData>> call() async {
+  Future<Either<Exception, EnvironmentalPerformanceData>> run() async {
     final result = await _port.fetch();
 
     return result.fold(Left.new, (final r) async => Right(r));

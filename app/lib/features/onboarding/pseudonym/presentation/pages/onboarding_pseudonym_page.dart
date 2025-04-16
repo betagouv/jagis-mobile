@@ -29,7 +29,7 @@ class OnboardingPseudonymPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const OnboardingPseudonymPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             OnboardingPseudonymBloc(context.read(), context.read<UserBloc>().state.user?.isUserFranceConnect ?? false),
@@ -41,7 +41,7 @@ class _Content extends StatelessWidget {
   const _Content();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final isUserFranceConnect = context.select<OnboardingPseudonymBloc, bool>((final bloc) => bloc.state.isUserFranceConnect);
 
     return BlocListener<OnboardingPseudonymBloc, OnboardingPseudonymState>(

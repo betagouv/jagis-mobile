@@ -71,7 +71,12 @@ class _FnvInputCalendarState extends State<FnvInputCalendar> {
 
   @override
   Widget build(final BuildContext context) => GestureDetector(
-    onTap: widget.enabled ? () async => _selectDate(context) : null,
+    onTap:
+        widget.enabled
+            ? () async {
+              await _selectDate(context);
+            }
+            : null,
     child: AbsorbPointer(
       child: DsfrInput(
         label: widget.label,

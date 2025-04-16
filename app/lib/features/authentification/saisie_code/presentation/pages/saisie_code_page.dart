@@ -28,7 +28,7 @@ class SaisieCodePage extends StatelessWidget {
   );
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => SaisieCodeBloc(authentificationRepository: context.read(), email: email),
     child: FnvScaffold(
       appBar: AppBar(
@@ -56,7 +56,7 @@ class _MessageErreur extends StatelessWidget {
   const _MessageErreur();
 
   @override
-  Widget build(final context) => context
+  Widget build(final BuildContext context) => context
       .select<SaisieCodeBloc, Option<String>>((final bloc) => bloc.state.erreur)
       .fold(
         () => const SizedBox.shrink(),
@@ -68,7 +68,7 @@ class _ButtonRenvoyerCode extends StatelessWidget {
   const _ButtonRenvoyerCode();
 
   @override
-  Widget build(final context) => BlocListener<SaisieCodeBloc, SaisieCodeState>(
+  Widget build(final BuildContext context) => BlocListener<SaisieCodeBloc, SaisieCodeState>(
     listener:
         (final context, final state) =>
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(Localisation.emailDeConnexionRenvoye))),

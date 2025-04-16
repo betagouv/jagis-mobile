@@ -58,7 +58,7 @@ class _FnvCheckboxSetState extends State<FnvCheckboxSet> {
   }
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s2w,
     children:

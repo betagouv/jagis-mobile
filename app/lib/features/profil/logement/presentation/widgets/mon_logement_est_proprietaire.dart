@@ -10,7 +10,7 @@ class MonLogementEstProprietaire extends StatelessWidget {
   const MonLogementEstProprietaire({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final estProprietaire = context.select<MonLogementBloc, bool?>((final bloc) => bloc.state.estProprietaire);
 
     return MonLogementTitreEtContenu(

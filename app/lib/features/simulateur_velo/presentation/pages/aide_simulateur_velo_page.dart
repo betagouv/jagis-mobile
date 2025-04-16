@@ -30,7 +30,7 @@ class AideSimulateurVeloPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const AideSimulateurVeloPage(), routes: routes);
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     context.read<AideVeloBloc>().add(const AideVeloInformationsDemandee());
 
     return const _AideSimulateurVeloView();
@@ -41,7 +41,7 @@ class _AideSimulateurVeloView extends StatelessWidget {
   const _AideSimulateurVeloView();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
@@ -81,7 +81,7 @@ class _PrixInputState extends State<_PrixInput> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     _prixVeloController.text = context.read<AideVeloBloc>().state.prix.toString();
 
     return Column(
@@ -150,7 +150,7 @@ class _VeloEtatInput extends StatelessWidget {
   const _VeloEtatInput();
 
   @override
-  Widget build(final context) => DsfrRadioButtonGroup(
+  Widget build(final BuildContext context) => DsfrRadioButtonGroup(
     title: Localisation.etatDuVelo,
     values: {VeloEtat.neuf: VeloEtat.neuf.label, VeloEtat.occasion: VeloEtat.occasion.label},
     onChanged: (final value) {
@@ -167,7 +167,7 @@ class _EnSituationDeHandicapInput extends StatelessWidget {
   const _EnSituationDeHandicapInput();
 
   @override
-  Widget build(final context) => DsfrRadioButtonGroup(
+  Widget build(final BuildContext context) => DsfrRadioButtonGroup(
     title: Localisation.etesVousEnSituationDeHandicap,
     values: const {true: Localisation.oui, false: Localisation.non},
     onChanged: (final value) {
@@ -184,7 +184,7 @@ class _ElementsNecessaireAuCalcul extends StatelessWidget {
   const _ElementsNecessaireAuCalcul();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final state = context.watch<AideVeloBloc>().state;
     const bodySmMediumBlue = DsfrTextStyle.bodySmMedium(color: DsfrColors.blueFranceSun113);
 
@@ -256,7 +256,7 @@ class _Avertissement extends StatelessWidget {
   const _Avertissement();
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       context.watch<AideVeloBloc>().state.estValide
           ? const SizedBox.shrink()
           : const Column(
@@ -288,7 +288,7 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final state = context.watch<AideVeloBloc>().state;
     if (state.communes.length == 1) {
       final commune = state.communes.first;
@@ -333,7 +333,7 @@ class _NombreDePartsFiscales extends StatelessWidget {
   const _NombreDePartsFiscales();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final nombreDePartsFiscales = context.read<AideVeloBloc>().state.nombreDePartsFiscales;
 
     return DsfrInput(
@@ -361,7 +361,7 @@ class _RevenuFiscal extends StatelessWidget {
   const _RevenuFiscal();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final revenuFiscal = context.read<AideVeloBloc>().state.revenuFiscal;
 
     return RevenuFiscalInput(
@@ -377,7 +377,7 @@ class _EstimerMesAides extends StatelessWidget {
   const _EstimerMesAides();
 
   @override
-  Widget build(final context) => DsfrButton(
+  Widget build(final BuildContext context) => DsfrButton(
     label: Localisation.estimerMesAides,
     variant: DsfrButtonVariant.primary,
     size: DsfrComponentSize.lg,
@@ -395,7 +395,7 @@ class _Questions extends StatelessWidget {
   const _Questions();
 
   @override
-  Widget build(final context) => DsfrAccordionsGroup(
+  Widget build(final BuildContext context) => DsfrAccordionsGroup(
     values: [
       DsfrAccordion.custom(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.ouTrouverCesInformations),
@@ -419,7 +419,7 @@ class _AccordionBody extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final context) => Padding(padding: const EdgeInsets.all(DsfrSpacings.s2w), child: child);
+  Widget build(final BuildContext context) => Padding(padding: const EdgeInsets.all(DsfrSpacings.s2w), child: child);
 }
 
 class _AccordionHeader extends StatelessWidget {
@@ -428,7 +428,7 @@ class _AccordionHeader extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s1w),
     child: Text.rich(
       TextSpan(

@@ -11,7 +11,7 @@ class FnvErrorRoutePage extends StatelessWidget {
   const FnvErrorRoutePage({super.key});
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     body: ListView(
       padding: MediaQuery.paddingOf(context).copyWith(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w),
       children: [

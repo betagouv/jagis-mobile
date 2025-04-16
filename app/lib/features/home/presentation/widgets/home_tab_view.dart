@@ -12,7 +12,7 @@ class HomeTabView extends StatelessWidget {
   const HomeTabView({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const themeTypes = [ThemeType.alimentation, ThemeType.transport, ThemeType.logement, ThemeType.consommation];
 
     final tabs = [

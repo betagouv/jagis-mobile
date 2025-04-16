@@ -16,7 +16,7 @@ class ThemeHeader extends StatelessWidget {
   final ThemeSummary themeSummary;
 
   @override
-  Widget build(final context) => ColoredBox(
+  Widget build(final BuildContext context) => ColoredBox(
     color: const Color(0xFFF9F6F2),
     child: Stack(
       fit: StackFit.passthrough,
@@ -49,7 +49,9 @@ class ThemeHeader extends StatelessWidget {
                     backgroundColor: DsfrColors.blueFrance925,
                     foregroundColor: DsfrColors.blueFranceSun113,
                     icon: DsfrIcons.mapMapPin2Fill,
-                    onTap: () async => GoRouter.of(context).pushNamed(MonLogementPage.name),
+                    onTap: () async {
+                      await GoRouter.of(context).pushNamed(MonLogementPage.name);
+                    },
                   ),
                 ],
               ),
@@ -72,5 +74,5 @@ class _BackgroundImage extends StatelessWidget {
   final String assetName;
 
   @override
-  Widget build(final context) => Positioned(left: 100, top: 0, bottom: 0, child: FnvSvg.asset(assetName));
+  Widget build(final BuildContext context) => Positioned(left: 100, top: 0, bottom: 0, child: FnvSvg.asset(assetName));
 }

@@ -25,7 +25,7 @@ class RecipePage extends StatelessWidget {
   final String id;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => RecipeBloc(repository: context.read())..add(RecipeLoadRequested(id: id)),
     child: FnvScaffold(appBar: FnvAppBar(), body: const _Body()),
   );
@@ -35,7 +35,7 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final context) => BlocBuilder<RecipeBloc, RecipeState>(
+  Widget build(final BuildContext context) => BlocBuilder<RecipeBloc, RecipeState>(
     builder:
         (final context, final state) => switch (state) {
           RecipeInitial() || RecipeLoadInProgress() => const Center(child: CircularProgressIndicator()),
@@ -51,7 +51,7 @@ class _Success extends StatelessWidget {
   final RecipeLoadSuccess state;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final recipe = state.recipe;
 
     return ListView(

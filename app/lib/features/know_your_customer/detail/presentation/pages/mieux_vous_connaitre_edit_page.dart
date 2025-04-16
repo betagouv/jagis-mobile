@@ -24,7 +24,7 @@ class MieuxVousConnaitreEditPage extends StatelessWidget {
   final String id;
 
   @override
-  Widget build(final context) => _View(id: id);
+  Widget build(final BuildContext context) => _View(id: id);
 }
 
 class _View extends StatefulWidget {
@@ -46,7 +46,7 @@ class _ViewState extends State<_View> {
   }
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(paddingVerticalPage),

@@ -12,7 +12,7 @@ class PerformanceDetailBody extends StatelessWidget {
   final double progress;
 
   @override
-  Widget build(final context) => Row(
+  Widget build(final BuildContext context) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(emoji, style: const DsfrTextStyle.bodyMdMedium()),

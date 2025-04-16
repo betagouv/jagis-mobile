@@ -19,7 +19,7 @@ class QuizPart extends StatelessWidget {
   final String congratulatoryText;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => QuizzesBloc(repository: context.read(), quizzes: quizzes, id: id),
     child: _View(id: id, name: name, congratulatoryText: congratulatoryText),
   );
@@ -33,7 +33,7 @@ class _View extends StatelessWidget {
   final String congratulatoryText;
 
   @override
-  Widget build(final context) => BlocConsumer<QuizzesBloc, QuizzesState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuizzesBloc, QuizzesState>(
     builder:
         (final context, final state) => Padding(
           padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),

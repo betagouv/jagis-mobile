@@ -26,7 +26,7 @@ class QuestionThemesPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const QuestionThemesPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             QuestionThemesBloc(questionRepository: context.read())..add(const QuestionThemesRecuperationDemandee()),
@@ -38,7 +38,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: AppBar(backgroundColor: FnvColors.homeBackground, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
@@ -62,7 +62,7 @@ class _Question extends StatelessWidget {
   const _Question();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final question = context.select<QuestionThemesBloc, QuestionMultipleChoice?>((final bloc) => bloc.state.question);
 
     return question == null
@@ -85,7 +85,7 @@ class _ButtonContinuer extends StatelessWidget {
   const _ButtonContinuer();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final estRempli = context.select<QuestionThemesBloc, bool>((final bloc) => bloc.state.valeur.isNotEmpty);
 
     return DsfrButton(

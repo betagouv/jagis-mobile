@@ -33,7 +33,7 @@ class FnvImage extends StatelessWidget {
   final BoxFit fit;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       _imageUrl == null
           ? _assetName!.endsWith('.svg')
               ? FnvSvg.asset(

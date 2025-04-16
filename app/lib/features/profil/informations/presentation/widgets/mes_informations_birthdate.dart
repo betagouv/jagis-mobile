@@ -9,7 +9,7 @@ class MesInformationsBirthdate extends StatelessWidget {
   const MesInformationsBirthdate({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final birthdate = context.select<MesInformationsBloc, DateTime?>((final bloc) => bloc.state.birthdate);
     final isNotUserFranceConnect = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isNotUserFranceConnect);
 
@@ -17,9 +17,9 @@ class MesInformationsBirthdate extends StatelessWidget {
       hintText: Localisation.dateDeNaissanceDescription,
       label: Localisation.dateDeNaissance,
       initialValue: birthdate,
-      onDateSelected: (final birthdate) {
-        if (birthdate != null) {
-          context.read<MesInformationsBloc>().add(MesInformationsBirthdateChanged(birthdate));
+      onDateSelected: (final dateTime) {
+        if (dateTime != null) {
+          context.read<MesInformationsBloc>().add(MesInformationsBirthdateChanged(dateTime));
         }
       },
       enabled: isNotUserFranceConnect,

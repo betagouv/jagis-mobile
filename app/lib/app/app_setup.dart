@@ -99,7 +99,7 @@ class _AppSetupState extends State<AppSetup> {
   }
 
   @override
-  Widget build(final context) => FutureBuilder<void>(
+  Widget build(final BuildContext context) => FutureBuilder<void>(
     future: _initializeDependenciesFuture,
     builder: (final context, final snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {

@@ -84,7 +84,7 @@ class _DsfrRawButtonIconState extends State<DsfrRawButtonIcon> with MaterialStat
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final textColor = _foregroundColor.resolve(materialStates);
 
     return DsfrFocusWidget(

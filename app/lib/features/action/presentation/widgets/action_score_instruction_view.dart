@@ -21,7 +21,7 @@ class ActionScoreInstructionView extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(boxShadow: cardBoxShadow),
     child: Column(
       children: [
@@ -95,7 +95,7 @@ class _Classic extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(action.instruction, style: const DsfrTextStyle.bodyMd()),

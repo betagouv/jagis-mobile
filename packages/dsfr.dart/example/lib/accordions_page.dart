@@ -8,7 +8,7 @@ class AccordionsPage extends StatelessWidget {
   static final model = PageItem(title: 'Accordéon', pageBuilder: (final context) => const AccordionsPage());
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
       DsfrAccordionsGroup(

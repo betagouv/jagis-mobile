@@ -17,7 +17,7 @@ class LibraryView extends StatelessWidget {
   const LibraryView({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const padding = paddingVerticalPage;
 
     return CustomScrollView(
@@ -54,7 +54,7 @@ class _Favorites extends StatelessWidget {
   const _Favorites();
 
   @override
-  Widget build(final context) => DsfrToggleSwitch(
+  Widget build(final BuildContext context) => DsfrToggleSwitch(
     label: Localisation.mesFavoris,
     value: context.select<LibraryBloc, bool>((final value) => value.state.isFavorites),
     onChanged: (final value) => context.read<LibraryBloc>().add(LibraryFavoritesSelected(value)),
@@ -65,7 +65,7 @@ class _AlreadyRead extends StatelessWidget {
   const _AlreadyRead();
 
   @override
-  Widget build(final context) => DsfrToggleSwitch(
+  Widget build(final BuildContext context) => DsfrToggleSwitch(
     label: 'Articles déjà lus',
     value: context.select<LibraryBloc, bool>((final value) => value.state.areAlreadyRead),
     onChanged: (final value) => context.read<LibraryBloc>().add(LibraryAlreadyReadSelected(value)),
@@ -76,7 +76,7 @@ class _Thematiques extends StatelessWidget {
   const _Thematiques();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final filtres = context.select<LibraryBloc, List<LibraryFilter>>((final value) => value.state.library.filters);
     const s1w = DsfrSpacings.s1w;
 
@@ -101,7 +101,7 @@ class _Nombre extends StatelessWidget {
   const _Nombre();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final nombreArticle = context.select<LibraryBloc, int>((final value) => value.state.library.contents.length);
 
     return Text(Localisation.nombreArticle(nombreArticle), style: const DsfrTextStyle.bodyLgBold());
@@ -112,7 +112,7 @@ class _SliverListe extends StatelessWidget {
   const _SliverListe();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final contenus = context.select<LibraryBloc, List<Recommandation>>((final value) => value.state.library.contents);
 
     return contenus.isEmpty

@@ -20,7 +20,7 @@ class MonLogementPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const MonLogementPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             MonLogementBloc(profilRepository: context.read(), communesRepository: context.read())
@@ -33,7 +33,7 @@ class _MonLogementView extends StatelessWidget {
   const _MonLogementView();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<MonLogementBloc, MonLogementState>(
       builder: (final context, final state) {

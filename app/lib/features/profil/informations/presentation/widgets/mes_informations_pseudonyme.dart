@@ -10,7 +10,7 @@ class MesInformationsPseudonyme extends StatelessWidget {
   const MesInformationsPseudonyme({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final pseudonym = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.pseudonym);
 
     return DsfrInput(

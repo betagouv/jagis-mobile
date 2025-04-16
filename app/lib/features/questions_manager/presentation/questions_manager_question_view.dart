@@ -31,7 +31,7 @@ class _QuestionWidgetState extends State<QuestionsManagerQuestionView> {
   }
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     spacing: DsfrSpacings.s3w,
     children: [
       QuestionForm(

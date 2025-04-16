@@ -10,7 +10,7 @@ class PartnerWidget extends StatelessWidget {
   final Partner partner;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.all(DsfrSpacings.s1w),
     child: Row(
       spacing: DsfrSpacings.s1w,

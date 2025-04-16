@@ -27,12 +27,14 @@ class FnvMarkdown extends StatelessWidget {
   final HTag? hTag;
 
   @override
-  Widget build(final context) => GptMarkdownTheme(
+  Widget build(final BuildContext context) => GptMarkdownTheme(
     gptThemeData: GptMarkdownThemeData(brightness: Brightness.light, h1: h1, h2: h2, h3: h3),
     child: GptMarkdown(
       data.replaceAll(' ?', ' ?').replaceAll(' !', ' !').replaceAll(' :', ' :'),
       style: p,
-      onLinkTab: (final url, final title) async => FnvUrlLauncher.launch(url),
+      onLinkTab: (final url, final title) async {
+        await FnvUrlLauncher.launch(url);
+      },
       components: [
         CodeBlockMd(),
         NewLines(),
@@ -142,7 +144,9 @@ class _ImageMd extends ImageMd {
 
     return WidgetSpan(
       child: GestureDetector(
-        onTap: () async => enlargeImage(context, src: imageUrl, semanticLabel: altText),
+        onTap: () async {
+          await enlargeImage(context, src: imageUrl, semanticLabel: altText);
+        },
         child: FnvImage.network(imageUrl, semanticLabel: altText),
       ),
     );

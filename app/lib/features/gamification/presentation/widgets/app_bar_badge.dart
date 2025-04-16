@@ -11,7 +11,7 @@ class AppBarBadge extends StatelessWidget {
   final int value;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const size = DsfrSpacings.s2w;
 
     return Semantics(

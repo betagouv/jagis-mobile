@@ -9,7 +9,7 @@ class MesInformationsNom extends StatelessWidget {
   const MesInformationsNom({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final nom = context.select<MesInformationsBloc, String?>((final bloc) => bloc.state.nom);
     final isNotUserFranceConnect = context.select<MesInformationsBloc, bool>((final bloc) => bloc.state.isNotUserFranceConnect);
 

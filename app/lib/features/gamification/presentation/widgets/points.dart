@@ -9,7 +9,7 @@ class Points extends StatelessWidget {
   final bool alreadyEarned;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       alreadyEarned
           ? PointsWidget(
             points: points,

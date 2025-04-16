@@ -15,7 +15,7 @@ class FnvTag extends StatefulWidget {
 
 class _FnvTagState extends State<FnvTag> with MaterialStateMixin<FnvTag> {
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const blue = DsfrColors.blueFranceSun113;
     const borderRadius = BorderRadius.all(Radius.circular(100));
 

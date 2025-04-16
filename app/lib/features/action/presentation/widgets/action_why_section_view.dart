@@ -9,7 +9,7 @@ class ActionWhySectionView extends StatelessWidget {
   final String why;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w, horizontal: DsfrSpacings.s2w),
     child: ActionMarkdown(
       data: why,

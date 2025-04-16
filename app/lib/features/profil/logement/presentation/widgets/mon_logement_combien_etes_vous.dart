@@ -9,7 +9,7 @@ class MonLogementCombienEtesVous extends StatelessWidget {
   const MonLogementCombienEtesVous({super.key});
 
   @override
-  Widget build(final context) => const Column(
+  Widget build(final BuildContext context) => const Column(
     children: [
       ProfilTitrePartie(titre: Localisation.combienEtesVousDansVotreLogement),
       SizedBox(height: DsfrSpacings.s2w),

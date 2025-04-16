@@ -42,7 +42,7 @@ class ActionFeedbackPage extends StatelessWidget {
   );
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => ActionFeedbackBloc(context.read(), type: type, id: id, rate: rate),
     child: const _View(),
   );
@@ -52,7 +52,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocConsumer<ActionFeedbackBloc, ActionFeedbackState>(
       builder:

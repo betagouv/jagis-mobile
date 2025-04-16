@@ -9,7 +9,7 @@ class FnvBadge extends StatelessWidget {
   final Color foregroundColor;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: ShapeDecoration(color: backgroundColor, shape: const StadiumBorder()),
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s0v5, horizontal: DsfrSpacings.s1w),

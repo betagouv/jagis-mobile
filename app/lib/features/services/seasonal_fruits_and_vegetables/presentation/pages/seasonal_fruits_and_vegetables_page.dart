@@ -26,7 +26,7 @@ class SeasonalFruitsAndVegetablesPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const SeasonalFruitsAndVegetablesPage());
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
       create:
@@ -41,7 +41,7 @@ final class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final state = context.watch<SeasonalFruitsAndVegetablesBloc>().state;
 
     return switch (state) {
@@ -60,7 +60,7 @@ class _Success extends StatelessWidget {
   final SeasonalFruitsAndVegetablesLoadSuccess value;
 
   @override
-  Widget build(final context) => DefaultTabController(
+  Widget build(final BuildContext context) => DefaultTabController(
     length: 2,
     child: Column(
       children: [
@@ -109,7 +109,7 @@ class _Header extends StatelessWidget {
   final SeasonalFruitsAndVegetablesLoadSuccess value;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       style: const DsfrTextStyle(fontSize: 28, fontWeight: FontWeight.w500),
       children: [
@@ -138,7 +138,7 @@ class _List extends StatelessWidget {
   final List<Plant> moreThan5Kg;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final allItems = [
       if (lessThan1Kg.isNotEmpty)
         _Section(
@@ -185,7 +185,7 @@ class _Section extends StatelessWidget {
   final List<Plant> items;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(title, style: const DsfrTextStyle.headline4()),
@@ -218,6 +218,6 @@ class _PlantCard extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       DecoratedBox(decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow), child: child);
 }

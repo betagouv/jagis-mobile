@@ -17,7 +17,7 @@ class ActionFeedbackWidget extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const color = Color(0xFF636774);
 
     return ColoredBox(

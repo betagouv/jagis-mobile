@@ -22,7 +22,7 @@ class EnvironmentalPerformanceCategoryWidget extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final progression = completion / 100;
 
     final color = progression >= 1 ? DsfrColors.success425 : DsfrColors.blueFranceSun113;
@@ -76,7 +76,7 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   static const _imageHeight = 126.0;
 
   @override
-  Widget build(final context) => DsfrFocusWidget(
+  Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: recommandationOmbre),

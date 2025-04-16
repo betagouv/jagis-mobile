@@ -8,7 +8,7 @@ class SelectPage extends StatelessWidget {
   static final model = PageItem(title: 'Liste déroulante', pageBuilder: (final context) => const SelectPage());
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
       DsfrSelect(

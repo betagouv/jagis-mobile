@@ -40,9 +40,9 @@ class DioHttpClient {
 
   void add(final Interceptor interceptor) => _dio.interceptors.add(interceptor);
 
-  Future<Response<dynamic>> get(final String path) async => _dio.get(path);
-  Future<Response<dynamic>> patch(final String path, {final Object? data}) async => _dio.patch(path, data: data);
-  Future<Response<dynamic>> post(final String path, {final Object? data}) async => _dio.post(path, data: data);
-  Future<Response<dynamic>> put(final String path, {final Object? data}) async => _dio.put(path, data: data);
+  Future<Response<dynamic>> get(final String path) => _dio.get(path);
+  Future<Response<dynamic>> patch(final String path, {final Object? data}) => _dio.patch(path, data: data);
+  Future<Response<dynamic>> post(final String path, {final Object? data}) => _dio.post(path, data: data);
+  Future<Response<dynamic>> put(final String path, {final Object? data}) => _dio.put(path, data: data);
   Future<Response<dynamic>> delete(final String path, {final Object? data}) => _dio.delete(path, data: data);
 }

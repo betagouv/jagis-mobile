@@ -18,7 +18,7 @@ class PreOnboardingPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const PreOnboardingPage());
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
@@ -50,13 +50,17 @@ class PreOnboardingPage extends StatelessWidget {
                   label: Localisation.jeCreeMonCompte,
                   variant: DsfrButtonVariant.primary,
                   size: DsfrComponentSize.lg,
-                  onPressed: () async => GoRouter.of(context).pushNamed(CreerComptePage.name),
+                  onPressed: () async {
+                    await GoRouter.of(context).pushNamed(CreerComptePage.name);
+                  },
                 ),
                 const SizedBox(height: DsfrSpacings.s2w),
                 Center(
                   child: DsfrLink.md(
                     label: Localisation.jaiDejaUnCompte,
-                    onTap: () async => GoRouter.of(context).pushNamed(SeConnecterPage.name),
+                    onTap: () async {
+                      await GoRouter.of(context).pushNamed(SeConnecterPage.name);
+                    },
                   ),
                 ),
                 const SizedBox(height: DsfrSpacings.s3w),

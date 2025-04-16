@@ -18,7 +18,8 @@ class ServiceCard extends StatelessWidget {
   final ServiceItem service;
 
   @override
-  Widget build(final context) => service.isInternalService ? _InternalServiceCard(service) : _ExternalServiceCard(service);
+  Widget build(final BuildContext context) =>
+      service.isInternalService ? _InternalServiceCard(service) : _ExternalServiceCard(service);
 }
 
 class _ExternalServiceCard extends StatelessWidget {
@@ -27,14 +28,16 @@ class _ExternalServiceCard extends StatelessWidget {
   final ServiceItem service;
 
   @override
-  Widget build(final context) => _ServiceCardBase(
+  Widget build(final BuildContext context) => _ServiceCardBase(
     service: service,
     backgroundColor: const Color(0xFFEEF2FF),
     borderColor: const Color(0xFFB1B1FF),
     titleColor: DsfrColors.blueFranceSun113,
     subTitleColor: DsfrColors.blueFranceSun113,
     icon: const Icon(DsfrIcons.systemExternalLinkLine, size: 20, color: DsfrColors.blueFranceSun113),
-    onTap: () async => FnvUrlLauncher.launch(service.externalUrl),
+    onTap: () async {
+      await FnvUrlLauncher.launch(service.externalUrl);
+    },
   );
 }
 
@@ -44,7 +47,7 @@ class _InternalServiceCard extends StatelessWidget {
   final ServiceItem service;
 
   @override
-  Widget build(final context) => _ServiceCardBase(
+  Widget build(final BuildContext context) => _ServiceCardBase(
     service: service,
     backgroundColor: Colors.white,
     borderColor: Colors.white,
@@ -86,7 +89,7 @@ class _ServiceCardBase extends StatefulWidget {
 
 class _ServiceCardBaseState extends State<_ServiceCardBase> with MaterialStateMixin<_ServiceCardBase> {
   @override
-  Widget build(final context) => DsfrFocusWidget(
+  Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
       decoration: BoxDecoration(

@@ -42,7 +42,7 @@ class _FnvLoaderState extends State<FnvLoader> with SingleTickerProviderStateMix
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const amplitude = 75.0;
     const ballWidth = 40.0;
 

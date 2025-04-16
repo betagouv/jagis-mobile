@@ -9,7 +9,7 @@ class SaisieCodeInput extends StatelessWidget {
   const SaisieCodeInput({super.key});
 
   @override
-  Widget build(final context) => Semantics(
+  Widget build(final BuildContext context) => Semantics(
     textField: true,
     label: Localisation.codeDeVerification,
     child: ExcludeSemantics(

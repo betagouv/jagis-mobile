@@ -104,7 +104,7 @@ class _AppState extends State<App> {
     _messageOpenedSubscription = widget.notificationService.onMessageOpenedApp.listen((final event) async {
       widget.tracker.trackNotificationOpened('${event.runtimeType} - ${event.pageId}');
 
-      return _handleNotification(goRouter: _goRouter, data: event);
+      await _handleNotification(goRouter: _goRouter, data: event);
     });
   }
 
@@ -133,7 +133,7 @@ class _AppState extends State<App> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const locale = Locale('fr', 'FR');
 
     final upgradeBloc = UpgradeBloc();

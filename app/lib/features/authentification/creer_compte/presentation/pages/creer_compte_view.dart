@@ -20,10 +20,10 @@ class CreerCompteView extends StatelessWidget {
   const CreerCompteView({super.key});
 
   @override
-  Widget build(final context) => BlocListener<CreerCompteBloc, CreerCompteState>(
-    listener:
-        (final context, final state) async =>
-            GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail}),
+  Widget build(final BuildContext context) => BlocListener<CreerCompteBloc, CreerCompteState>(
+    listener: (final context, final state) async {
+      await GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail});
+    },
     listenWhen: (final previous, final current) => previous.compteCree != current.compteCree && current.compteCree,
     child: FnvScaffold(
       appBar: AppBar(
@@ -60,7 +60,9 @@ class CreerCompteView extends StatelessWidget {
           Center(
             child: DsfrLink.md(
               label: Localisation.vousAvezDejaUnCompte,
-              onTap: () async => GoRouter.of(context).pushReplacementNamed(SeConnecterPage.name),
+              onTap: () async {
+                await GoRouter.of(context).pushReplacementNamed(SeConnecterPage.name);
+              },
             ),
           ),
           const SafeArea(child: SizedBox.shrink()),
@@ -74,7 +76,7 @@ class _Cgu extends StatelessWidget {
   const _Cgu();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final valeur = context.select<CreerCompteBloc, bool>((final bloc) => bloc.state.aCguAcceptees);
 
     return Jaccepte(
@@ -90,7 +92,7 @@ class _MessageErreur extends StatelessWidget {
   const _MessageErreur();
 
   @override
-  Widget build(final context) => context
+  Widget build(final BuildContext context) => context
       .select<CreerCompteBloc, Option<String>>((final bloc) => bloc.state.erreur)
       .fold(
         () => const SizedBox.shrink(),
@@ -102,7 +104,7 @@ class _BoutonCreerCompte extends StatelessWidget {
   const _BoutonCreerCompte();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final estValide = context.select<CreerCompteBloc, bool>((final bloc) => bloc.state.estValide);
 
     return DsfrButton(

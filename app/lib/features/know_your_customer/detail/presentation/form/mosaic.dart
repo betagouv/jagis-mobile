@@ -14,7 +14,7 @@ class Mosaic extends StatelessWidget {
   final QuestionMosaicBoolean question;
 
   @override
-  Widget build(final context) => _MosaicSet(responses: question.responses);
+  Widget build(final BuildContext context) => _MosaicSet(responses: question.responses);
 }
 
 class _MosaicSet extends StatefulWidget {
@@ -36,7 +36,7 @@ class _MosaicSetState extends State<_MosaicSet> {
   }
 
   @override
-  Widget build(final context) => GridView.builder(
+  Widget build(final BuildContext context) => GridView.builder(
     physics: const NeverScrollableScrollPhysics(),
     shrinkWrap: true,
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

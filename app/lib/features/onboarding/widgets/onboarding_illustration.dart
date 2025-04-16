@@ -7,5 +7,5 @@ class OnboardingIllustration extends StatelessWidget {
   final String assetName;
 
   @override
-  Widget build(final context) => SizedBox.square(dimension: 165, child: FnvSvg.asset(assetName));
+  Widget build(final BuildContext context) => SizedBox.square(dimension: 165, child: FnvSvg.asset(assetName));
 }

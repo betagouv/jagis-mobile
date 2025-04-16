@@ -8,7 +8,7 @@ class QuestionStepper extends StatelessWidget {
   final int total;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       text: 'Question ',
       children: [

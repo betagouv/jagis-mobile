@@ -9,7 +9,7 @@ class AchievementBase extends StatelessWidget {
   final Widget icon;
 
   @override
-  Widget build(final context) => ExcludeSemantics(
+  Widget build(final BuildContext context) => ExcludeSemantics(
     child: ColoredBox(
       color: backgroundColor,
       child: Padding(

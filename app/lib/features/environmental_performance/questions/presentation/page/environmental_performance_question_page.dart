@@ -35,7 +35,7 @@ class EnvironmentalPerformanceQuestionPage extends StatelessWidget {
   final String categoryId;
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
       create:
@@ -51,7 +51,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() || QuestionManagerFinished() => const SizedBox.shrink(),
@@ -71,7 +71,7 @@ class _LoadSuccess extends StatelessWidget {
   final QuestionsManagerLoadSuccess state;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final cursor = state.cursor;
 
     return Column(

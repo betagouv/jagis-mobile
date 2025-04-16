@@ -17,7 +17,7 @@ class AidSummaryCard extends StatelessWidget {
   final double? width;
 
   @override
-  Widget build(final context) => FnvCard(
+  Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
       context.read<Tracker>().trackClick('Aides', aidSummary.title);
       await GoRouter.of(
@@ -66,7 +66,7 @@ class _AmountMax extends StatelessWidget {
   final int value;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       children: [
         const WidgetSpan(
@@ -86,7 +86,7 @@ class _IsFree extends StatelessWidget {
   const _IsFree();
 
   @override
-  Widget build(final context) => const Text.rich(
+  Widget build(final BuildContext context) => const Text.rich(
     TextSpan(
       children: [
         WidgetSpan(

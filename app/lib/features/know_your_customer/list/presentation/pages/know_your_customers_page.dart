@@ -28,7 +28,7 @@ class KnowYourCustomersPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const KnowYourCustomersPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => KnowYourCustomersBloc(repository: context.read())..add(const KnowYourCustomersStarted()),
     child: Builder(
       builder:
@@ -66,7 +66,7 @@ class _Success extends StatelessWidget {
   final KnowYourCustomersSuccess state;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final questions = state.questionsFiltered;
     final themeSelected = state.themeSelected;
     const padding = EdgeInsets.symmetric(horizontal: paddingVerticalPage);
@@ -109,7 +109,7 @@ class _Tag extends StatelessWidget {
   final bool isSelected;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const blue = DsfrColors.blueFranceSun113;
 
     const borderRadius = BorderRadius.all(Radius.circular(DsfrSpacings.s4w));
@@ -148,7 +148,7 @@ class _Item extends StatelessWidget {
   final Question question;
 
   @override
-  Widget build(final context) => ListItem(
+  Widget build(final BuildContext context) => ListItem(
     title: question.label,
     subTitle: question.responsesDisplay(),
     onTap: () async {

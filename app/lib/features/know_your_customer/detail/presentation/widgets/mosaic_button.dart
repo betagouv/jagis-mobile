@@ -46,7 +46,7 @@ class MosaicButton extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final style = value ? _MosaicButtonStyles.selected : _MosaicButtonStyles.unselected;
 
     return Stack(

@@ -11,7 +11,7 @@ class ListItem extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(final context) => Material(
+  Widget build(final BuildContext context) => Material(
     color: FnvColors.transparent,
     child: InkWell(
       onTap: onTap,

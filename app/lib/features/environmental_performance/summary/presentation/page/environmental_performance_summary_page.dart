@@ -19,7 +19,7 @@ class EnvironmentalPerformanceSummaryPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const EnvironmentalPerformanceSummaryPage());
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     context.read<EnvironmentalPerformanceBloc>().add(const EnvironmentalPerformanceStarted());
 
     return const _View();
@@ -30,7 +30,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => RootPage(
+  Widget build(final BuildContext context) => RootPage(
     body: BlocBuilder<EnvironmentalPerformanceBloc, EnvironmentalPerformanceState>(
       builder:
           (final context, final state) => switch (state) {

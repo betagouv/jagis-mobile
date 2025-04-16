@@ -12,7 +12,7 @@ class ThemeServiceInfo extends StatelessWidget {
   final ThemeSummaryLink link;
 
   @override
-  Widget build(final context) => FnvCard(
+  Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
       final aLink = link;
       switch (aLink) {

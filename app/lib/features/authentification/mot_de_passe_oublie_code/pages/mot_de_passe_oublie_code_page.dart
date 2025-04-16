@@ -31,7 +31,7 @@ class MotDePasseOublieCodePage extends StatelessWidget {
   );
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => MotDePasseOublieCodeBloc(authentificationRepository: context.read(), email: email),
     child: _View(email: email),
   );
@@ -43,7 +43,7 @@ class _View extends StatelessWidget {
   final String email;
 
   @override
-  Widget build(final context) => BlocListener<MotDePasseOublieCodeBloc, MotDePasseOublieCodeState>(
+  Widget build(final BuildContext context) => BlocListener<MotDePasseOublieCodeBloc, MotDePasseOublieCodeState>(
     listener: (final context, final state) => GoRouter.of(context).popUntilNamed<void>(SeConnecterPage.path),
     listenWhen:
         (final previous, final current) => previous.motDePasseModifie != current.motDePasseModifie && current.motDePasseModifie,
@@ -82,7 +82,7 @@ class _Code extends StatelessWidget {
   const _Code();
 
   @override
-  Widget build(final context) => FnvCodeInput(
+  Widget build(final BuildContext context) => FnvCodeInput(
     onChanged: (final value) {
       if (value.length == 6) {
         context.read<MotDePasseOublieCodeBloc>().add(MotDePasseOublieCodeCodeChange(value));
@@ -95,7 +95,7 @@ class _ButtonRenvoyerCode extends StatelessWidget {
   const _ButtonRenvoyerCode();
 
   @override
-  Widget build(final context) => BlocListener<MotDePasseOublieCodeBloc, MotDePasseOublieCodeState>(
+  Widget build(final BuildContext context) => BlocListener<MotDePasseOublieCodeBloc, MotDePasseOublieCodeState>(
     listener:
         (final context, final state) =>
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(Localisation.emailDeConnexionRenvoye))),
@@ -113,7 +113,7 @@ class _MotDePasse extends StatelessWidget {
   const _MotDePasse();
 
   @override
-  Widget build(final context) => FnvMotDePasse(
+  Widget build(final BuildContext context) => FnvMotDePasse(
     onChanged: (final value) => context.read<MotDePasseOublieCodeBloc>().add(MotDePasseOublieCodeMotDePasseChange(value)),
   );
 }
@@ -122,7 +122,7 @@ class _MessageErreur extends StatelessWidget {
   const _MessageErreur();
 
   @override
-  Widget build(final context) => context
+  Widget build(final BuildContext context) => context
       .select<MotDePasseOublieCodeBloc, Option<String>>((final bloc) => bloc.state.erreur)
       .fold(
         () => const SizedBox.shrink(),

@@ -45,7 +45,7 @@ class _QuestionsManagerButtonsState extends State<QuestionsManagerButtons> {
   }
 
   @override
-  Widget build(final context) => Row(
+  Widget build(final BuildContext context) => Row(
     children: [
       if (!widget.cursor.isStart)
         DsfrButtonIcon(

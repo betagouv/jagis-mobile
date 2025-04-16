@@ -14,7 +14,7 @@ class ActionClassicView extends StatelessWidget {
   final ActionClassic action;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     children: [
       ActionWhySectionView(why: action.why),
       if (action.sources.isNotEmpty) ...[

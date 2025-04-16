@@ -10,7 +10,7 @@ class ActionInformation extends StatelessWidget {
   final String suffix;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       value == 0
           ? const SizedBox()
           : ConstrainedBox(

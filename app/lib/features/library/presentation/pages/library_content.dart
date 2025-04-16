@@ -18,7 +18,7 @@ class LibraryContent extends StatefulWidget {
 
 class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin<LibraryContent> {
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final sousTitre = widget.content.sousTitre;
 
     final contenu = widget.content;
@@ -30,10 +30,11 @@ class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin
         child: Material(
           color: FnvColors.transparent,
           child: InkWell(
-            onTap:
-                () async => GoRouter.of(
-                  context,
-                ).pushNamed(ArticlePage.name, pathParameters: ArticlePage.pathParameters(title: contenu.titre, id: contenu.id)),
+            onTap: () async {
+              await GoRouter.of(
+                context,
+              ).pushNamed(ArticlePage.name, pathParameters: ArticlePage.pathParameters(title: contenu.titre, id: contenu.id));
+            },
             onHighlightChanged: updateMaterialState(WidgetState.pressed),
             onHover: updateMaterialState(WidgetState.hovered),
             focusColor: FnvColors.transparent,

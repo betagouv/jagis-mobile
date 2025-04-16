@@ -93,8 +93,8 @@ void main() {
 
       // Assert.
       final actual = await flutterSecureStorage.readAll();
-      expect(actual, {'token': token});
-      expect(authenticationService.status, const Authenticated(UserId(utilisateurId)));
+      expect(actual, equals({'token': token}));
+      expect(authenticationService.status, equals(const Authenticated(UserId(utilisateurId))));
 
       verify(() => dio.post<dynamic>(Endpoints.loginCode, data: '{"code":"123456","email":"test@example.com"}'));
     },
@@ -116,8 +116,8 @@ void main() {
       await repository.deconnexionDemandee();
 
       // Assert.
-      expect(await flutterSecureStorageMock.readAll(), <String, dynamic>{});
-      expect(authenticationService.status, const Unauthenticated());
+      expect(await flutterSecureStorageMock.readAll(), equals(<String, dynamic>{}));
+      expect(authenticationService.status, equals(const Unauthenticated()));
     },
   );
 
@@ -172,8 +172,8 @@ void main() {
     await repository.validationDemandee(const InformationDeCode(adresseMail: 'test@example.com', code: '123456'));
 
     // Assert.
-    expect(await flutterSecureStorageMock.readAll(), {'token': token});
-    expect(authenticationService.status, const Authenticated(UserId(utilisateurId)));
+    expect(await flutterSecureStorageMock.readAll(), equals({'token': token}));
+    expect(authenticationService.status, equals(const Authenticated(UserId(utilisateurId))));
 
     verify(() => dio.post<dynamic>(Endpoints.validerCode, data: '{"code":"123456","email":"test@example.com"}'));
   });

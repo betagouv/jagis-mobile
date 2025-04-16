@@ -13,7 +13,7 @@ class Entier extends StatelessWidget {
   final QuestionInteger question;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final controller = TextEditingController(text: question.response.value);
 
     return DsfrInputHeadless(

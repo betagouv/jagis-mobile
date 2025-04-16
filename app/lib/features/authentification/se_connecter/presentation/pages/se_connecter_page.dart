@@ -13,7 +13,7 @@ class SeConnecterPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const SeConnecterPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => SeConnecterBloc(authentificationRepository: context.read()),
     child: const SeConnecterView(),
   );

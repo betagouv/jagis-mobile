@@ -11,7 +11,7 @@ class FnvFailureWidget extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

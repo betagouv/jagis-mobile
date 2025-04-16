@@ -11,7 +11,7 @@ class ActionTitleWithSubTitleView extends StatelessWidget {
   final ActionType type;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final fullTitle =
         switch (type) {
           ActionType.quiz => 'Quiz - ',

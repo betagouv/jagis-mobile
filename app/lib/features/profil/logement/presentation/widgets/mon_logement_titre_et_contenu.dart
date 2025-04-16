@@ -9,7 +9,7 @@ class MonLogementTitreEtContenu extends StatelessWidget {
   final Widget contenu;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [ProfilTitrePartie(titre: titre), contenu],

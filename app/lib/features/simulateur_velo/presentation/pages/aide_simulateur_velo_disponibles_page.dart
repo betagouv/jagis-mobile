@@ -25,7 +25,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const AideSimulateurVeloDisponiblePage());
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final state = context.watch<AideVeloBloc>().state;
 
     return FnvScaffold(
@@ -98,7 +98,7 @@ class _Header extends StatelessWidget {
   final bool isExpanded;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: Row(
       spacing: DsfrSpacings.s1w,
@@ -127,7 +127,7 @@ class _Body extends StatelessWidget {
   final List<AideVelo> aides;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     children:
         aides
             .map(
@@ -149,7 +149,9 @@ class _Body extends StatelessWidget {
                             label: Localisation.voirLesDemarches,
                             icon: DsfrIcons.systemExternalLinkFill,
                             iconPosition: DsfrLinkIconPosition.end,
-                            onTap: () async => FnvUrlLauncher.launch(e.lien),
+                            onTap: () async {
+                              await FnvUrlLauncher.launch(e.lien);
+                            },
                           ),
                         ],
                       ),

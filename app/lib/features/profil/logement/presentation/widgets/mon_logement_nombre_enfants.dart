@@ -11,7 +11,7 @@ class MonLogementNombreEnfants extends StatelessWidget {
   const MonLogementNombreEnfants({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final nombreEnfants = context.select<MonLogementBloc, int>((final bloc) => bloc.state.nombreEnfants);
 
     const enfants = Localisation.enfants;
@@ -24,11 +24,11 @@ class MonLogementNombreEnfants extends StatelessWidget {
             key: const ValueKey(enfants),
             initialValue: nombreEnfants.toString(),
             onChanged: (final value) {
-              final nombreEnfants = int.tryParse(value);
-              if (nombreEnfants == null) {
+              final newValue = int.tryParse(value);
+              if (newValue == null) {
                 return;
               }
-              context.read<MonLogementBloc>().add(MonLogementNombreEnfantsChange(nombreEnfants));
+              context.read<MonLogementBloc>().add(MonLogementNombreEnfantsChange(newValue));
             },
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],

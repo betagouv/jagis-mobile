@@ -14,7 +14,7 @@ class _MasterPageState extends State<MasterPage> {
   var _currentIndex = 0;
 
   @override
-  Widget build(final context) => Scaffold(
+  Widget build(final BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text("Système de Design de l'État")),
     body: widget.pageItems.elementAtOrNull(_currentIndex)?.pageBuilder(context),
     drawer: Drawer(

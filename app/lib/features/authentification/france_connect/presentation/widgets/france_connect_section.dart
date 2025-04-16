@@ -12,7 +12,7 @@ class FranceConnectSection extends StatelessWidget {
   const FranceConnectSection({super.key});
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const Text(Localisation.franceConnectTitle, style: DsfrTextStyle.headline2()),
@@ -30,7 +30,7 @@ class _FranceConnectButton extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s3v,
     children: [
@@ -63,7 +63,9 @@ class _FranceConnectButton extends StatelessWidget {
       ),
       _TextButton(
         label: Localisation.franceConnectEnSavoirPlus,
-        onTap: () async => FnvUrlLauncher.launch(Localisation.franceConnectEnSavoirPlusUrl),
+        onTap: () async {
+          await FnvUrlLauncher.launch(Localisation.franceConnectEnSavoirPlusUrl);
+        },
       ),
     ],
   );
@@ -76,7 +78,7 @@ class _TextButton extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(final context) => FnvInkwell(
+  Widget build(final BuildContext context) => FnvInkwell(
     onTap: onTap,
     color: Colors.transparent,
     splashColor: Colors.transparent,

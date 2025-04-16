@@ -21,7 +21,7 @@ class FnvHtmlWidget extends StatelessWidget {
       element.parent?.localName == 'li' && element.localName == 'p' ? {'margin': '0'} : null;
 
   @override
-  Widget build(final context) => SelectionArea(
+  Widget build(final BuildContext context) => SelectionArea(
     child: HtmlWidget(
       html,
       customStylesBuilder: _handlePDansLi,

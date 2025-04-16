@@ -16,7 +16,7 @@ class Menu extends StatelessWidget {
   const Menu({super.key});
 
   @override
-  Widget build(final context) => Drawer(
+  Widget build(final BuildContext context) => Drawer(
     backgroundColor: Colors.white,
     shadowColor: DsfrColors.blueFranceSun113,
     surfaceTintColor: Colors.white,
@@ -57,7 +57,7 @@ class _MenuItems extends StatelessWidget {
   const _MenuItems();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final groupValue = GoRouterState.of(context).name ?? HomePage.name;
 
     return Column(
@@ -89,7 +89,7 @@ class _MenuItem extends StatelessWidget {
   final String groupValue;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final isCurrentPage = groupValue == value;
 
     return ConstrainedBox(
@@ -97,7 +97,12 @@ class _MenuItem extends StatelessWidget {
       child: Material(
         color: FnvColors.transparent,
         child: InkWell(
-          onTap: isCurrentPage ? null : () async => GoRouter.of(context).pushReplacementNamed(value),
+          onTap:
+              isCurrentPage
+                  ? null
+                  : () async {
+                    await GoRouter.of(context).pushReplacementNamed(value);
+                  },
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [

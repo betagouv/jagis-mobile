@@ -12,7 +12,7 @@ class DsfrRadioButtonGroup<T> extends StatelessWidget {
   final ValueChanged<T?> onChanged;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1w,
     children: [

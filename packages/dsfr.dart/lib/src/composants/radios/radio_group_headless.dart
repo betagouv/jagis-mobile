@@ -39,7 +39,7 @@ class _DsfrRadioButtonGroupHeadlessState<T> extends State<DsfrRadioButtonGroupHe
   });
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final children = widget.values.entries
         .map(
           (final e) => DsfrRadioButton<T>(

@@ -34,7 +34,7 @@ class QuestionForm extends StatelessWidget {
   final VoidCallback? onSaved;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             QuestionEditBloc(questionRepository: context.read())..add(QuestionEditRecuperationDemandee(questionId)),
@@ -62,7 +62,7 @@ class _Content extends StatelessWidget {
   final VoidCallback? onSaved;
 
   @override
-  Widget build(final context) => BlocListener<QuestionEditBloc, QuestionEditState>(
+  Widget build(final BuildContext context) => BlocListener<QuestionEditBloc, QuestionEditState>(
     listener: (final context, final state) {
       final aState = state;
 
@@ -117,7 +117,7 @@ class _LoadedContentState extends State<_LoadedContent> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final question = widget.state.question;
 
     return Column(

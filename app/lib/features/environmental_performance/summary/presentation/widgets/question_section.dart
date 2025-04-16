@@ -8,7 +8,7 @@ class QuestionSection extends StatelessWidget {
   const QuestionSection({super.key});
 
   @override
-  Widget build(final context) => const Column(
+  Widget build(final BuildContext context) => const Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s3v,
     children: [
@@ -43,5 +43,5 @@ class _AccordionBody extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final context) => Padding(padding: const EdgeInsets.all(paddingVerticalPage), child: child);
+  Widget build(final BuildContext context) => Padding(padding: const EdgeInsets.all(paddingVerticalPage), child: child);
 }

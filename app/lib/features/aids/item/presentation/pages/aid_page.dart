@@ -35,7 +35,7 @@ class AidPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => AidPage(id: state.pathParameters['id']!));
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => AidBloc(repository: context.read())..add(AidSelectedById(id)),
     child: const _View(),
   );
@@ -45,7 +45,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: switch (context.watch<AidBloc>().state) {
       AidStateLoading() => const Center(child: CircularProgressIndicator()),
@@ -81,7 +81,7 @@ class _AidPageContent extends StatelessWidget {
   final Aid aid;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
       Align(alignment: Alignment.centerLeft, child: ThemeTypeTag(themeType: aid.themeType)),

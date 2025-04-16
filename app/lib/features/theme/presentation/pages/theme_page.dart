@@ -23,7 +23,7 @@ class ThemePage extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => ThemeBloc(themeRepository: context.read(), timedDelay: context.read()),
     child: _Page(themeType),
   );
@@ -64,7 +64,7 @@ class _PageState extends State<_Page> with RouteAware {
   }
 
   @override
-  Widget build(final context) => BlocBuilder<ThemeBloc, ThemeState>(
+  Widget build(final BuildContext context) => BlocBuilder<ThemeBloc, ThemeState>(
     builder:
         (final context, final state) => switch (state) {
           ThemeInitial() => const SizedBox.shrink(),
@@ -81,7 +81,7 @@ class _Success extends StatelessWidget {
   final ThemeLoadSuccess data;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final theme = data.theme;
     final themeType = theme.themeType;
 
@@ -108,7 +108,7 @@ class _Services extends StatelessWidget {
   final List<ServiceItem> services;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
@@ -138,7 +138,9 @@ class _ActionCatalog extends StatelessWidget {
           label: Localisation.accederAuCatalogue,
           variant: DsfrButtonVariant.secondary,
           size: DsfrComponentSize.lg,
-          onPressed: () async => GoRouter.of(context).pushNamed(ActionsPage.name),
+          onPressed: () async {
+            await GoRouter.of(context).pushNamed(ActionsPage.name);
+          },
         ),
       ),
     ],

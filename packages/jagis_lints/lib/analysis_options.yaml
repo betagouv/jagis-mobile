@@ -26,7 +26,7 @@ linter:
     avoid_final_parameters: false # incompatible with `prefer_final_parameters`.
     avoid_positional_boolean_parameters: false
     diagnostic_describe_all_properties: false
-    discarded_futures: false
+    discarded_futures: false # NOTE(lsaudon): Fais bug mocktail
     document_ignores: false
     lines_longer_than_80_chars: false
     one_member_abstracts: false
@@ -66,13 +66,11 @@ dart_code_metrics:
         last:
           - child
           - children
-    - avoid-declaring-call-method: false
-    - avoid-duplicate-collection-elements: false
-    - avoid-duplicate-test-assertions: false
+    - avoid-duplicate-collection-elements: false # NOTE(lsaudon): Pas pertinent en flutter
+    - avoid-duplicate-test-assertions: false # NOTE(lsaudon): Le test de comportement fait que l'on teste plusieurs fois la même chose
     - avoid-dynamic: false
-    - avoid-empty-build-when: false
-    - avoid-getter-prefix: false
-    - avoid-ignoring-return-values: false
+    - avoid-empty-build-when: false # NOTE(lsaudon): à voir
+    - avoid-ignoring-return-values: false # NOTE(lsaudon): On veut rien faire des fois
     - avoid-late-keyword: false
     - avoid-local-functions: false
     - avoid-long-files: false
@@ -81,70 +79,74 @@ dart_code_metrics:
           - test/**
     - avoid-nested-conditional-expressions: false
     - avoid-nested-switch-expressions: false
-    - avoid-non-ascii-symbols: false
-    - avoid-non-null-assertion: false
-    - avoid-passing-async-when-sync-expected: false
-    - avoid-positional-record-field-access: false
-    - avoid-redundant-async: false
-    - avoid-returning-cascades: false
-    - avoid-shadowing: false
+    - avoid-non-ascii-symbols: false # NOTE(lsaudon): C'est en français
+    - avoid-non-null-assertion: false # NOTE(lsaudon): à voir
+    - avoid-passing-async-when-sync-expected: false # NOTE(lsaudon): Faux positif
+    - avoid-redundant-async:
+        exclude:
+          - test/**/step/**
+    - avoid-returning-cascades: false # NOTE(lsaudon): Souvent utilisé pour les blocs
+    - avoid-shadowing:
+        ignore-static: false
+        ignore-fields: true
+        ignore-parameters: true
+        ignored-names:
+          - context
     - avoid-shrink-wrap-in-lists: false # TODO(lsaudon): à réactiver quand tu pourras fix
-    - avoid-similar-names: false
-    - avoid-top-level-members-in-tests: false
-    - avoid-type-casts: false
-    - avoid-unsafe-collection-methods: false
-    - check-is-not-closed-after-async-gap: false
-    - enum-constants-ordering: false
-    - format-comment: false
-    - map-keys-ordering: false
-    - match-getter-setter-field-names: false
+    - avoid-similar-names: false # NOTE(lsaudon): règle flou
+    - avoid-top-level-members-in-tests: false # NOTE(lsaudon): à voir
+    - avoid-type-casts: false # NOTE(lsaudon): C'est chiant pour le json
+    - avoid-unsafe-collection-methods: false # NOTE(lsaudon): à voir
+    - check-is-not-closed-after-async-gap: false # NOTE(lsaudon): à voir
+    - enum-constants-ordering: false # NOTE(lsaudon): On ne veut surtout pas trié par ordre alphabétique
+    - format-comment: false # NOTE(lsaudon): C'est juste des commentaire
+    - map-keys-ordering: false # NOTE(lsaudon): Le tri permet de choisir l'affichage souvent ou une logique métier
+    - match-getter-setter-field-names: false # NOTE(lsaudon): Non, merci un vrai nom c'est mieux
     - member-ordering:
-        alphabetize: false # Passer à true pour trier l10n.dart
+        alphabetize: false # Passer à true pour trier l10n.dart, asset et endpoints.
         order:
           - constructors
           - public-fields
           - private-fields
-    - missing-test-assertion: false
-    - newline-before-case: false
-    - newline-before-method: false
-    - no-empty-block: false
-    - no-empty-string: false
-    - no-equal-arguments: false
-    - no-magic-number: false
-    - no-magic-string: false
-    - parameters-ordering: false
-    - prefer-addition-subtraction-assignments: false
+    - missing-test-assertion: false # NOTE(lsaudon): Non pertinent avec bdd_widget_test
+    - newline-before-case: false # NOTE(lsaudon): ça prend de la place quand même
+    - newline-before-method: false # NOTE(lsaudon): ça prend de la place quand même
+    - no-empty-block: false # NOTE(lsaudon): Des fois on veut rien faire
+    - no-empty-string: false # NOTE(lsaudon): Non c'est bien ça évite null
+    - no-equal-arguments: false # NOTE(lsaudon): Arrive trop souvent de manière légitime en flutter
+    - no-magic-number: false # NOTE(lsaudon): Trop contraignant
+    - no-magic-string: false # NOTE(lsaudon): Peut permettre de trouver les oublis de localisation
+    - parameters-ordering: false # NOTE(lsaudon): Non
     - prefer-boolean-prefixes: false
-    - prefer-class-destructuring: false
-    - prefer-commenting-analyzer-ignores: false
-    - prefer-container: false
-    - prefer-correct-identifier-length: false
-    - prefer-correct-handler-name: false
-    - prefer-correct-switch-length: false
-    - prefer-correct-throws: false
-    - prefer-correct-type-name: false
-    - prefer-early-return: false 
-    - prefer-extracting-callbacks: false
-    - prefer-explicit-type-arguments: false
-    - prefer-extracting-function-callbacks: false
-    - prefer-for-in: false
-    - prefer-for-loop-in-children: false
-    - prefer-getter-over-method: false
-    - prefer-type-over-var: false
+    - prefer-class-destructuring: false # NOTE(lsaudon): Trop vieux pour ça
+    - prefer-commenting-analyzer-ignores: false # NOTE(lsaudon): C'est chiant
+    - prefer-container: false # NOTE(lsaudon): Je prèfere limiter container pour avoir uniquement ce que je veux
+    - prefer-correct-identifier-length: false # NOTE(lsaudon): Je nomme comme je veux.
+    - prefer-correct-handler-name: false # NOTE(lsaudon): Je nomme comme je veux.
+    - prefer-correct-switch-length: false # NOTE(lsaudon): Il y a une bonne taille de switch ?
+    - prefer-correct-throws: false # NOTE(lsaudon): C'est quoi @Throws ?
+    - prefer-correct-type-name: false # NOTE(lsaudon): Je nomme comme je veux.
+    - prefer-early-return: false # NOTE(lsaudon): Bonne règle mais plus dans la tête que dans le linter, c'est des fois moins compréhensible 
+    - prefer-extracting-callbacks: false # NOTE(lsaudon): La plus part des cas ça éloigne juste le code de son appelant sans plus value
+    - prefer-explicit-type-arguments: false # NOTE(lsaudon): Pourquoi pas
+    - prefer-extracting-function-callbacks: false # NOTE(lsaudon): La plus part des cas ça éloigne juste le code de son appelant sans plus value
+    - prefer-for-in: false # NOTE(lsaudon): Vraiment ?
+    - prefer-for-loop-in-children: false # NOTE(lsaudon): Vraiment ?
+    - prefer-getter-over-method: false # NOTE(lsaudon): Pourquoi pas mais moins que les autres
+    - prefer-type-over-var: false # NOTE(lsaudon): var c'est bien
     - prefer-match-file-name: false
     - prefer-moving-to-variable:
         exclude:
           - test/**
-    - prefer-named-boolean-parameters: false
-    - prefer-named-parameters: false
-    - prefer-prefixed-global-constants: false
-    - prefer-returning-conditional-expressions: false
-    - prefer-single-declaration-per-file: false
+    - prefer-named-boolean-parameters: false # NOTE(lsaudon): Pas le choix par certains packages
+    - prefer-named-parameters: false # NOTE(lsaudon): J'essaye de garder les named parameters pour la partie flutter, ça fait souvent redites dans le reste
+    - prefer-prefixed-global-constants: false # NOTE(lsaudon): inutile de savoir que c'est une const ou pas
+    - prefer-returning-conditional-expressions: false # NOTE(lsaudon): c'est des fois mon compréhensible
+    - prefer-single-declaration-per-file: false # NOTE(lsaudon): Pourquoi pas
     - prefer-single-widget-per-file:
         ignore-private-widgets: true
-    - prefer-static-class: false
-    - prefer-static-method: false
-    - prefer-test-matchers: false
+    - prefer-static-class: false # NOTE(lsaudon): Pourquoi pas
+    - prefer-static-method: false # NOTE(lsaudon): C'est mieux dans une classe pour pouvoir mock/fake
     - prefer-trailing-comma: false # TODO(lsaudon): false positive
     - prefer-widget-private-members:
         ignore-static: true

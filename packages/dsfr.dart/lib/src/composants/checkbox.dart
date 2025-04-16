@@ -46,7 +46,7 @@ class DsfrCheckbox extends StatelessWidget {
   final bool isEnabled;
 
   @override
-  Widget build(final context) => Semantics(
+  Widget build(final BuildContext context) => Semantics(
     enabled: isEnabled,
     checked: value,
     label: label,

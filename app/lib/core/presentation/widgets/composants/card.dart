@@ -16,7 +16,7 @@ class FnvCard extends StatefulWidget {
 
 class _FnvCardState extends State<FnvCard> with MaterialStateMixin<FnvCard> {
   @override
-  Widget build(final context) => DsfrFocusWidget(
+  Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
       decoration: BoxDecoration(

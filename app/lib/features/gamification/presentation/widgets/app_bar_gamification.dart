@@ -20,15 +20,25 @@ class AppBarGamification extends StatelessWidget {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final gamificationState = context.watch<GamificationBloc>().state;
 
     return Row(
       spacing: DsfrSpacings.s1w,
       children: [
-        InkWell(onTap: () async => _onTap(context), child: PointsWidget(points: gamificationState.points)),
+        InkWell(
+          onTap: () async {
+            await _onTap(context);
+          },
+          child: PointsWidget(points: gamificationState.points),
+        ),
         if (gamificationState.badges > 0)
-          InkWell(onTap: () async => _onTap(context), child: AppBarBadge(value: gamificationState.badges)),
+          InkWell(
+            onTap: () async {
+              await _onTap(context);
+            },
+            child: AppBarBadge(value: gamificationState.badges),
+          ),
       ],
     );
   }

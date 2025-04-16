@@ -22,7 +22,7 @@ class RecipesPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const RecipesPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => RecipesBloc(repository: context.read())..add(const RecipesLoadRequested()),
     child: FnvScaffold(appBar: FnvAppBar(), body: const _Body()),
   );
@@ -32,7 +32,7 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final context) => BlocBuilder<RecipesBloc, RecipesState>(
+  Widget build(final BuildContext context) => BlocBuilder<RecipesBloc, RecipesState>(
     builder:
         (final context, final state) => switch (state) {
           RecipesInitial() || RecipesLoadInProgress() || RecipesLoadFailure() => const SizedBox(),
@@ -47,7 +47,7 @@ class _Success extends StatelessWidget {
   final RecipesLoadSuccess value;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final items = [
       _Header(value: value),
       ...value.recipes.map(
@@ -83,7 +83,7 @@ class _Header extends StatelessWidget {
   final RecipesLoadSuccess value;
 
   @override
-  Widget build(final context) => Text.rich(
+  Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       style: const DsfrTextStyle(fontSize: 28, fontWeight: FontWeight.w500),
       children: [

@@ -19,7 +19,7 @@ class OptionsAvanceesPage extends StatelessWidget {
       GoRoute(path: path, name: name, builder: (final context, final state) => const OptionsAvanceesPage());
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),

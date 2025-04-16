@@ -20,7 +20,7 @@ class CarSimulatorWidget extends StatelessWidget {
   final bool isDone;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) => QuestionsManagerBloc(
           application: ActionQuestionsManager(
@@ -39,7 +39,7 @@ class _View extends StatelessWidget {
   final bool isDone;
 
   @override
-  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
@@ -61,7 +61,7 @@ class _Success extends StatelessWidget {
   final bool isDone;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final cursor = questionManager.cursor;
 
     return Padding(

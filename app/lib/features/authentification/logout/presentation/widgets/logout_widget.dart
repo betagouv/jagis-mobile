@@ -9,7 +9,7 @@ class LogoutWidget extends StatelessWidget {
   const LogoutWidget({super.key});
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => LogoutBloc(notificationRepository: context.read(), authentificationRepository: context.read()),
     child: const _Part(),
   );
@@ -19,7 +19,7 @@ class _Part extends StatelessWidget {
   const _Part();
 
   @override
-  Widget build(final context) => Align(
+  Widget build(final BuildContext context) => Align(
     alignment: Alignment.centerLeft,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),

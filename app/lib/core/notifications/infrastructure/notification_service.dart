@@ -13,9 +13,9 @@ class NotificationService {
   static const _topicAll = 'all';
   final _messageController = StreamController<NotificationData>.broadcast();
 
-  Future<void> initializeApp() async => Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Future<void> initializeApp() => Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  Future<String?> getToken() async => _executePlatformSafeCallback(() async => FirebaseMessaging.instance.getToken());
+  Future<String?> getToken() => _executePlatformSafeCallback(() async => FirebaseMessaging.instance.getToken());
 
   Future<AuthorizationStatus> requestPermission() async {
     final permission = await FirebaseMessaging.instance.requestPermission();

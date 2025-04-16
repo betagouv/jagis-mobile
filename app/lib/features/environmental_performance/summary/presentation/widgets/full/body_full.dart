@@ -20,7 +20,7 @@ class BodyFull extends StatelessWidget {
   final EnvironmentalPerformanceFull data;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w),
     children: [
       const Padding(
@@ -134,7 +134,7 @@ class _DetailHeader extends StatelessWidget {
   final String value;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const color = Color(0xFF3636A1);
 
     return Row(

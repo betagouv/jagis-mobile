@@ -8,7 +8,7 @@ class HomeAppBarTitle extends StatelessWidget {
   const HomeAppBarTitle({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final value = context.select<UserBloc, String?>((final bloc) => bloc.state.user?.pseudonym);
 
     const font = DsfrTextStyle.bodyMd();

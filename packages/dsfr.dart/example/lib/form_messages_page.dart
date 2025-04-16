@@ -8,7 +8,7 @@ class FormMessagesPage extends StatelessWidget {
   static final model = PageItem(title: 'Message de formulaire', pageBuilder: (final context) => const FormMessagesPage());
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     children: const [
       DsfrFormMessage(type: DsfrFormMessageType.error, text: "Texte d'erreur obligatoire"),
       DsfrFormMessage(type: DsfrFormMessageType.valid, text: 'Texte de validation optionnel'),

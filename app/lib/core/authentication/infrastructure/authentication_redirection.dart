@@ -12,7 +12,7 @@ class AuthenticationRedirection extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final context) => BlocListener<AuthenticationBloc, AuthenticationState>(
+  Widget build(final BuildContext context) => BlocListener<AuthenticationBloc, AuthenticationState>(
     listener: (final context, final state) {
       switch (state) {
         case AuthenticationInitial():

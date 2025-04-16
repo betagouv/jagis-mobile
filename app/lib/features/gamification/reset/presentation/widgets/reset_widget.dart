@@ -26,7 +26,7 @@ class _ResetModalState extends State<ResetModal> {
   }
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       _showStep2
           ? _Step2View(
             onResetPressed: () async {

@@ -9,7 +9,7 @@ class FnvAlertInfo extends StatelessWidget {
   final Widget? content;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     Widget child = Row(
       spacing: DsfrSpacings.s1w,
       children: [

@@ -9,7 +9,7 @@ class FnvTitle extends StatelessWidget {
   final String? subtitle;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       FnvMarkdown(

@@ -18,7 +18,7 @@ class DsfrToggleSwitch extends StatefulWidget {
 
 class _DsfrToggleSwitchState extends State<DsfrToggleSwitch> with MaterialStateMixin<DsfrToggleSwitch> {
   @override
-  Widget build(final context) => Semantics(
+  Widget build(final BuildContext context) => Semantics(
     toggled: widget.value,
     child: InkWell(
       onTap: () => widget.onChanged(!widget.value),
@@ -50,7 +50,7 @@ class _Switch extends StatelessWidget {
   final bool value;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const width = 40.0;
     const height = 24.0;
     const offset = width - height;

@@ -8,7 +8,7 @@ class InputsPage extends StatelessWidget {
   static final model = PageItem(title: 'Champ de saisie', pageBuilder: (final context) => const InputsPage());
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
       Row(

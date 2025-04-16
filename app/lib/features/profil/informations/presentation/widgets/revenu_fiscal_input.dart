@@ -11,7 +11,7 @@ class RevenuFiscalInput extends StatelessWidget {
   final ValueChanged<int> onChanged;
 
   @override
-  Widget build(final context) => DsfrInput(
+  Widget build(final BuildContext context) => DsfrInput(
     label: Localisation.revenuFiscal,
     initialValue: initialValue == null ? null : formatCurrency(initialValue!),
     suffixText: '€',

@@ -9,7 +9,7 @@ abstract final class FnvModal {
     required final WidgetBuilder builder,
     required final String name,
     final bool isDismissible = true,
-  }) async => showDialog(
+  }) => showDialog(
     context: context,
     builder:
         (final context) => Center(

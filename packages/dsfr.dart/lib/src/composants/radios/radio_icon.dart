@@ -8,7 +8,7 @@ class RadioIcon<T> extends StatelessWidget {
   final T? groupValue;
 
   @override
-  Widget build(final context) => Semantics(
+  Widget build(final BuildContext context) => Semantics(
     checked: groupValue == value,
     selected: groupValue == value,
     inMutuallyExclusiveGroup: true,

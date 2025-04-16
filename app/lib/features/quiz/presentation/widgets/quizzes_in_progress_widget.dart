@@ -20,7 +20,7 @@ class QuizzesInProgressWidget extends StatelessWidget {
   final QuizzesInProgress inProgressState;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s1v,
     children: [
@@ -42,7 +42,7 @@ class _Question extends StatelessWidget {
   final bool isLastQuestion;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => QuizQuestionBloc(repository: context.read(), quiz: quiz, isLastQuestion: isLastQuestion),
     child: const _QuestionView(),
   );
@@ -52,7 +52,7 @@ class _QuestionView extends StatelessWidget {
   const _QuestionView();
 
   @override
-  Widget build(final context) => BlocBuilder<QuizQuestionBloc, QuizQuestionState>(
+  Widget build(final BuildContext context) => BlocBuilder<QuizQuestionBloc, QuizQuestionState>(
     builder:
         (final context, final state) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class _Form extends StatelessWidget {
   final List<QuizResponse> responses;
 
   @override
-  Widget build(final context) => DsfrRadioButtonGroupHeadless(
+  Widget build(final BuildContext context) => DsfrRadioButtonGroupHeadless(
     mode: DsfrRadioButtonSetMode.column,
     values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, e))),
     onChanged: (final value) {
@@ -111,7 +111,7 @@ class _Result extends StatelessWidget {
   final QuizQuestionState quizQuestionState;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s2w,
     children: [
@@ -152,7 +152,7 @@ class _Response extends StatelessWidget {
   final QuizQuestionState quizQuestionState;
 
   @override
-  Widget build(final context) => Panel(
+  Widget build(final BuildContext context) => Panel(
     // ignore: prefer-spacing
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -12,7 +12,7 @@ class DsfrStepper extends StatelessWidget {
   final int total;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text('Question $current sur $total', style: const DsfrTextStyle.bodySm(color: DsfrColors.grey200)),

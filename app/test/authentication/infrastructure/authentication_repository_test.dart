@@ -88,7 +88,7 @@ void main() {
       final expirationDate = repository.expirationDate;
 
       // Then
-      expect(expirationDate.value, DateTime.fromMillisecondsSinceEpoch(expirationTime * 1000, isUtc: true));
+      expect(expirationDate.value, equals(DateTime.fromMillisecondsSinceEpoch(expirationTime * 1000, isUtc: true)));
     });
 
     test('Handling missing token', () {

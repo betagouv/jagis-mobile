@@ -66,7 +66,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
   }
 
   @override
-  Widget build(final context) => MaterialApp(
+  Widget build(final BuildContext context) => MaterialApp(
     home: FnvScaffold(
       body: ListView(
         padding: MediaQuery.paddingOf(context).copyWith(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w),

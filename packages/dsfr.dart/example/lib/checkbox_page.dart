@@ -15,7 +15,7 @@ class _CheckboxPageState extends State<CheckboxPage> {
   var _value = false;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(16),
     children: [
       DsfrCheckbox.sm(

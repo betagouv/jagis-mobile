@@ -19,7 +19,7 @@ void main() {
 
     await tester.tap(find.text(label));
 
-    expect(completer.isCompleted, true);
+    expect(completer.isCompleted, isTrue);
   });
 
   group('Accessibilité', () {

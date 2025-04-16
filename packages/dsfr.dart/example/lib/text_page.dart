@@ -16,7 +16,7 @@ class _TextPageState extends State<TextPage> {
   double _fontSize = 16;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final dsfrTextStyle = DsfrTextStyle(fontSize: _fontSize);
     final data = '$_text\n$_text';
 

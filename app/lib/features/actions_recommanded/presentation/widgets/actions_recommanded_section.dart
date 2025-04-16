@@ -19,7 +19,7 @@ class ActionsRecommandedSection extends StatelessWidget {
   final ThemeInfo theme;
 
   @override
-  Widget build(final context) => ColoredBox(
+  Widget build(final BuildContext context) => ColoredBox(
     color: const Color(0xFFF3EDE5),
     child: Padding(
       padding: const EdgeInsets.only(
@@ -55,7 +55,7 @@ class _ActionsEmpty extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     children: [
       const FnvImage.asset(AssetImages.actionsRecommandedEmpty, height: 148),
       const SizedBox(height: DsfrSpacings.s2w),
@@ -90,7 +90,7 @@ class _ExploreAnotherTheme extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final themeExplored = switch (themeType) {
       ThemeType.alimentation => ThemeType.transport,
       ThemeType.transport => ThemeType.logement,
@@ -123,7 +123,7 @@ class _ActionsState extends State<_Actions> {
   var _showAllItems = false;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
 
     return Column(

@@ -27,7 +27,7 @@ class ActionsPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const ActionsPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => ActionsBloc(repository: context.read())..add(const ActionsLoadRequested()),
     child: const _View(),
   );
@@ -37,7 +37,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => RootPage(
+  Widget build(final BuildContext context) => RootPage(
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
@@ -97,7 +97,7 @@ class _ThemesFilter extends StatelessWidget {
   final List<ActionFilter> activeThemes;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const spacing = DsfrSpacings.s1w;
 
     return Wrap(
@@ -123,7 +123,7 @@ class _Success extends StatelessWidget {
   final ActionsLoadSuccess state;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final actions = state.actions;
 
     return Column(
@@ -159,7 +159,7 @@ class _Element extends StatelessWidget {
   final ActionSummary action;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     Future<void> onTap() async {
       await GoRouter.of(context).pushNamed(
         ActionPage.name,
@@ -220,7 +220,7 @@ class _Information extends StatelessWidget {
   final String suffix;
 
   @override
-  Widget build(final context) =>
+  Widget build(final BuildContext context) =>
       value == 0
           ? const SizedBox()
           : ConstrainedBox(

@@ -11,7 +11,7 @@ class MonLogementResidencePrincipale extends StatelessWidget {
   const MonLogementResidencePrincipale({super.key});
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final typeDeLogement = context.select<MonLogementBloc, TypeDeLogement?>((final bloc) => bloc.state.typeDeLogement);
 
     return MonLogementTitreEtContenu(

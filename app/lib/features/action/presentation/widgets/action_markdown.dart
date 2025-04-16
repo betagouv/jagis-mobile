@@ -9,5 +9,5 @@ class ActionMarkdown extends StatelessWidget {
   final HTag? hTag;
 
   @override
-  Widget build(final context) => FnvMarkdown(data: data, hTag: hTag);
+  Widget build(final BuildContext context) => FnvMarkdown(data: data, hTag: hTag);
 }

@@ -27,11 +27,12 @@ class _Modal extends StatelessWidget {
   final String buttonLabel;
 
   @override
-  Widget build(final context) => DsfrButton(
+  Widget build(final BuildContext context) => DsfrButton(
     label: buttonLabel,
     variant: DsfrButtonVariant.primary,
     size: DsfrComponentSize.lg,
-    onPressed:
-        () async => DsfrModal.showModalBottom(context: context, builder: (final context) => const SizedBox(), name: 'name'),
+    onPressed: () async {
+      await DsfrModal.showModalBottom<void>(context: context, builder: (final context) => const SizedBox(), name: 'name');
+    },
   );
 }

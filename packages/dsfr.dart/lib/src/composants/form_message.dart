@@ -27,7 +27,7 @@ class DsfrFormMessage extends StatelessWidget {
   };
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final color = _getColorByType(type);
 
     return Row(

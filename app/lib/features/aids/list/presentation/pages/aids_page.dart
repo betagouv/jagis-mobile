@@ -25,7 +25,7 @@ class AidsPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const AidsPage());
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create: (final context) => AidListBloc(aidsRepository: context.read())..add(const AidListFetch()),
     child: const RootPage(body: _View()),
   );
@@ -35,7 +35,7 @@ class _View extends StatelessWidget {
   const _View();
 
   @override
-  Widget build(final context) => BlocBuilder<AidListBloc, AidListState>(
+  Widget build(final BuildContext context) => BlocBuilder<AidListBloc, AidListState>(
     builder:
         (final context, final state) => switch (state) {
           AidListInitial() || AidListLoadInProgress() || AidListLoadFailure() => const SizedBox(),
@@ -50,7 +50,7 @@ class _Success extends StatelessWidget {
   final AidListLoadSuccess state;
 
   @override
-  Widget build(final context) => ListView(
+  Widget build(final BuildContext context) => ListView(
     children: [
       if (!state.isCovered)
         BlocBuilder<AidsDisclaimerCubit, AidsDisclaimerState>(
@@ -75,7 +75,7 @@ class _List extends StatelessWidget {
   final AidListLoadSuccess state;
 
   @override
-  Widget build(final context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.all(paddingVerticalPage),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +111,7 @@ class _Tag extends StatelessWidget {
   final ThemeType? groupValue;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const selectedColor = DsfrColors.blueFranceSun113;
     final isSelected = value == groupValue;
 
@@ -144,7 +144,7 @@ class _Elements extends StatelessWidget {
   final Map<ThemeType, List<Aid>> themes;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final entries = themes.entries;
     if (entries.length == 1) {
       final a = entries.first;
@@ -174,7 +174,7 @@ class _ThemeSection extends StatelessWidget {
   final List<Aid> aids;
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [

@@ -8,7 +8,7 @@ class TagsPage extends StatelessWidget {
   static final model = PageItem(title: 'Tags', pageBuilder: (final context) => const TagsPage());
 
   @override
-  Widget build(final context) => const SingleChildScrollView(
+  Widget build(final BuildContext context) => const SingleChildScrollView(
     padding: EdgeInsets.all(DsfrSpacings.s2w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

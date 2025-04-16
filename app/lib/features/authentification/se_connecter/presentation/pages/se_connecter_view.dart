@@ -19,10 +19,10 @@ class SeConnecterView extends StatelessWidget {
   const SeConnecterView({super.key});
 
   @override
-  Widget build(final context) => BlocListener<SeConnecterBloc, SeConnecterState>(
-    listener:
-        (final context, final state) async =>
-            GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail}),
+  Widget build(final BuildContext context) => BlocListener<SeConnecterBloc, SeConnecterState>(
+    listener: (final context, final state) async {
+      await GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail});
+    },
     listenWhen: (final previous, final current) => previous.connexionFaite != current.connexionFaite && current.connexionFaite,
     child: FnvScaffold(
       appBar: AppBar(
@@ -62,7 +62,9 @@ class SeConnecterView extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: DsfrLink.md(
               label: Localisation.motDePasseOublie,
-              onTap: () async => GoRouter.of(context).pushNamed(MotDePasseOubliePage.name),
+              onTap: () async {
+                await GoRouter.of(context).pushNamed(MotDePasseOubliePage.name);
+              },
             ),
           ),
           const SizedBox(height: DsfrSpacings.s3w),
@@ -80,7 +82,9 @@ class SeConnecterView extends StatelessWidget {
           Center(
             child: DsfrLink.md(
               label: Localisation.premiereFoisSur,
-              onTap: () async => GoRouter.of(context).pushReplacementNamed(CreerComptePage.name),
+              onTap: () async {
+                await GoRouter.of(context).pushReplacementNamed(CreerComptePage.name);
+              },
             ),
           ),
           const SafeArea(child: SizedBox.shrink()),
@@ -94,7 +98,7 @@ class _MessageErreur extends StatelessWidget {
   const _MessageErreur();
 
   @override
-  Widget build(final context) => context
+  Widget build(final BuildContext context) => context
       .select<SeConnecterBloc, Option<String>>((final bloc) => bloc.state.erreur)
       .fold(
         () => const SizedBox.shrink(),

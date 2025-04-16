@@ -29,7 +29,7 @@ void main() {
       );
       await tester.tap(find.text('Label radio'));
 
-      expect(completer.isCompleted, true);
+      expect(completer.isCompleted, isTrue);
     });
   });
 
@@ -65,8 +65,8 @@ void main() {
       );
       await tester.tap(find.text(label2));
 
-      expect(completer.isCompleted, true);
-      expect(await completer.future, 2);
+      expect(completer.isCompleted, isTrue);
+      expect(await completer.future, equals(2));
     });
   });
 }

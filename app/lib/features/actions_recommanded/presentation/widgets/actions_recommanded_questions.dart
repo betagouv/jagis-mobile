@@ -26,7 +26,7 @@ class ActionsRecommandedQuestions extends StatelessWidget {
   final String sequenceId;
 
   @override
-  Widget build(final context) => BlocProvider(
+  Widget build(final BuildContext context) => BlocProvider(
     create:
         (final context) =>
             QuestionsManagerBloc(application: ActionsRecommandedQuestionsManager(client: context.read(), sequenceId: sequenceId))
@@ -39,7 +39,7 @@ class _Questions extends StatelessWidget {
   const _Questions();
 
   @override
-  Widget build(final context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
     builder:
         (final context, final state) => switch (state) {
           QuestionsManagerInitial() => const SizedBox.shrink(),
@@ -67,7 +67,7 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   var _isExpanded = true;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final cursor = widget.data.cursor;
     final element = cursor.element;
     if (element == null) {
@@ -101,7 +101,7 @@ class _Loader extends StatelessWidget {
   const _Loader();
 
   @override
-  Widget build(final context) => const SizedBox(
+  Widget build(final BuildContext context) => const SizedBox(
     height: 200,
     child: Center(
       child: Column(
@@ -126,7 +126,7 @@ class _GetStarted extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
     child: Padding(
       padding: const EdgeInsets.only(
@@ -184,7 +184,7 @@ class _QuestionWidgetState extends State<_QuestionWidget> {
   }
 
   @override
-  Widget build(final context) => Column(
+  Widget build(final BuildContext context) => Column(
     spacing: DsfrSpacings.s3w,
     children: [
       QuestionForm(

@@ -22,7 +22,9 @@ class _JaccepteState extends State<Jaccepte> {
   @override
   void initState() {
     super.initState();
-    _recognizer.onTap = () async => FnvUrlLauncher.launch(widget.url);
+    _recognizer.onTap = () async {
+      await FnvUrlLauncher.launch(widget.url);
+    };
   }
 
   @override
@@ -32,7 +34,7 @@ class _JaccepteState extends State<Jaccepte> {
   }
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const style = DsfrTextStyle.bodyMd();
     const jaccepte = Localisation.jaccepte;
 

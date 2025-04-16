@@ -10,7 +10,7 @@ class LinksPage extends StatelessWidget {
   void _handleTap() {}
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const label = 'Label lien';
 
     return SingleChildScrollView(

@@ -14,7 +14,7 @@ class MotDePasseOublieView extends StatelessWidget {
   const MotDePasseOublieView({super.key});
 
   @override
-  Widget build(final context) => FnvScaffold(
+  Widget build(final BuildContext context) => FnvScaffold(
     appBar: AppBar(backgroundColor: FnvColors.homeBackground, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
@@ -42,7 +42,7 @@ class _Valider extends StatelessWidget {
   const _Valider();
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     final emailEstValide = context.select<MotDePasseOublieBloc, bool>((final bloc) => bloc.state.emailEstValide);
 
     return DsfrButton(

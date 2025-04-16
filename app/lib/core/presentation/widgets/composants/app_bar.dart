@@ -23,7 +23,7 @@ class FnvAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     Widget widget = SizedBox(
       height: preferredHeight,
       child: Padding(

@@ -66,11 +66,8 @@ class DsfrTag extends StatelessWidget {
   final EdgeInsets padding;
 
   @override
-  Widget build(final context) => DecoratedBox(
-    decoration: ShapeDecoration(
-      color: backgroundColor,
-      shape: const StadiumBorder(),
-    ),
+  Widget build(final BuildContext context) => DecoratedBox(
+    decoration: ShapeDecoration(color: backgroundColor, shape: const StadiumBorder()),
     child: GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,

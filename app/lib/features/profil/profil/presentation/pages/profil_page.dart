@@ -22,7 +22,7 @@ class ProfilPage extends StatelessWidget {
   static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const ProfilPage());
 
   @override
-  Widget build(final context) => RootPage(
+  Widget build(final BuildContext context) => RootPage(
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
@@ -35,60 +35,78 @@ class ProfilPage extends StatelessWidget {
               _MenuElement(
                 icon: DsfrIcons.userAccountCircleLine,
                 label: Localisation.mesInformations,
-                onTap: () async => GoRouter.of(context).pushNamed(MesInformationsPage.name),
+                onTap: () async {
+                  await GoRouter.of(context).pushNamed(MesInformationsPage.name);
+                },
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.buildingsHome4Line,
                 label: Localisation.monLogement,
-                onTap: () async => GoRouter.of(context).pushNamed(MonLogementPage.name),
+                onTap: () async {
+                  await GoRouter.of(context).pushNamed(MonLogementPage.name);
+                },
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.userUserSettingLine,
                 label: Localisation.mieuxVousConnaitre,
-                onTap: () async => GoRouter.of(context).pushNamed(KnowYourCustomersPage.name),
+                onTap: () async {
+                  await GoRouter.of(context).pushNamed(KnowYourCustomersPage.name);
+                },
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.politiqueDeConfidentialite,
-                onTap: () async => FnvUrlLauncher.launch(Localisation.politiqueDeConfidentialiteSite),
+                onTap: () async {
+                  await FnvUrlLauncher.launch(Localisation.politiqueDeConfidentialiteSite);
+                },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.lesCguMenu,
-                onTap: () async => FnvUrlLauncher.launch(Localisation.lesCguSite),
+                onTap: () async {
+                  await FnvUrlLauncher.launch(Localisation.lesCguSite);
+                },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.mentionsLegales,
-                onTap: () async => FnvUrlLauncher.launch(Localisation.mentionsLegalesSite),
+                onTap: () async {
+                  await FnvUrlLauncher.launch(Localisation.mentionsLegalesSite);
+                },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.declarationAccessibilite,
-                onTap: () async => FnvUrlLauncher.launch(Localisation.declarationAccessibiliteSite),
+                onTap: () async {
+                  await FnvUrlLauncher.launch(Localisation.declarationAccessibiliteSite);
+                },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.businessLineChartLine,
                 label: Localisation.statistiques,
-                onTap: () async => FnvUrlLauncher.launch(Localisation.statistiquesSite),
+                onTap: () async {
+                  await FnvUrlLauncher.launch(Localisation.statistiquesSite);
+                },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.systemSettings5Line,
                 label: Localisation.optionsAvancees,
-                onTap: () async => GoRouter.of(context).pushNamed(OptionsAvanceesPage.name),
+                onTap: () async {
+                  await GoRouter.of(context).pushNamed(OptionsAvanceesPage.name);
+                },
               ),
             ],
           ),
@@ -107,7 +125,7 @@ class _MenuElement extends StatelessWidget {
   final IconData iconRight;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const iconColor = DsfrColors.blueFranceSun113;
 
     return GestureDetector(

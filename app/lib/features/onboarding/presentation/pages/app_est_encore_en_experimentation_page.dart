@@ -25,7 +25,7 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
   );
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const bodyLg = DsfrTextStyle.bodyLg();
 
     return FnvScaffold(
@@ -59,7 +59,9 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
           label: Localisation.jaiCompris,
           variant: DsfrButtonVariant.primary,
           size: DsfrComponentSize.lg,
-          onPressed: () async => GoRouter.of(context).pushNamed(QuestionThemesPage.name),
+          onPressed: () async {
+            await GoRouter.of(context).pushNamed(QuestionThemesPage.name);
+          },
         ),
       ),
     );

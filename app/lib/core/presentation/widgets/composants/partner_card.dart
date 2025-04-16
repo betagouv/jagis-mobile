@@ -21,7 +21,7 @@ class PartnerCard extends StatelessWidget {
   final String logo;
 
   @override
-  Widget build(final context) {
+  Widget build(final BuildContext context) {
     const borderColor = Color(0xffb1b1ff);
 
     return DecoratedBox(
@@ -50,7 +50,12 @@ class PartnerCard extends StatelessWidget {
                 const SizedBox(height: DsfrSpacings.s1w),
                 Text(description, style: const DsfrTextStyle(fontSize: 15)),
                 const SizedBox(height: DsfrSpacings.s1w),
-                DsfrLink.md(label: url, onTap: () async => FnvUrlLauncher.launch(url)),
+                DsfrLink.md(
+                  label: url,
+                  onTap: () async {
+                    await FnvUrlLauncher.launch(url);
+                  },
+                ),
                 const SizedBox(height: DsfrSpacings.s2w),
                 FnvImage.asset(logo, height: 40, semanticLabel: 'Logo de $name'),
               ],

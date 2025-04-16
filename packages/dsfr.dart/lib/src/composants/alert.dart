@@ -14,7 +14,7 @@ class DsfrAlert extends StatelessWidget {
   final Widget? description;
 
   @override
-  Widget build(final context) => DecoratedBox(
+  Widget build(final BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(color: _color, border: Border.all(color: _color, strokeAlign: BorderSide.strokeAlignOutside)),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -108,7 +108,8 @@ void main() {
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, "Question suivante");
         await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
-        await iTapOn(tester, "Non");
+        await iScrollDownTo(tester, 'Non');
+        await iTapOn(tester, 'Non');
         await iHaveThemeWithActions(tester);
         await iTapOn(tester, "Question suivante");
         await iSee(

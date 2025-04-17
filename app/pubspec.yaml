@@ -1,7 +1,7 @@
 name: app
 description: "J’agis vous accompagne à chaque étape de la transition écologique."
 publish_to: "none"
-version: 1.1.2+0
+version: 1.1.3+0
 
 environment:
   sdk: 3.7.2
@@ -43,8 +43,8 @@ dependencies:
   package_info_plus: 8.3.0
   pinput: 5.0.1
   rxdart: 0.28.0
-  sentry_dio: 8.14.1
-  sentry_flutter: 8.14.1
+  sentry_dio: 8.14.2
+  sentry_flutter: 8.14.2
   share_plus: 10.1.4
   url_launcher: 6.3.1
 

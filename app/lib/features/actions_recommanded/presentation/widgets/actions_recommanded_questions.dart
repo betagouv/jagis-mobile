@@ -7,12 +7,10 @@ import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/actions_recommanded/infrastructure/actions_recommanded_manager.dart';
-import 'package:app/features/know_your_customer/core/domain/question_code.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
-import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
+import 'package:app/features/questions_manager/presentation/questions_manager_question_view.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/l10n/l10n.dart';
@@ -89,7 +87,7 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
               spacing: DsfrSpacings.s4w,
               children: [
                 DsfrStepper(title: element.label, current: cursor.index + 1, total: cursor.total),
-                _QuestionWidget(key: ValueKey(element), code: element.code),
+                QuestionsManagerQuestionView(key: ValueKey(element), cursor: cursor, withoutTitle: true),
               ],
             ),
           ),
@@ -162,57 +160,5 @@ class _GetStarted extends StatelessWidget {
         ],
       ),
     ),
-  );
-}
-
-class _QuestionWidget extends StatefulWidget {
-  const _QuestionWidget({super.key, required this.code});
-
-  final QuestionCode code;
-
-  @override
-  State<_QuestionWidget> createState() => _QuestionWidgetState();
-}
-
-class _QuestionWidgetState extends State<_QuestionWidget> {
-  final _controller = QuestionController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(final BuildContext context) => Column(
-    spacing: DsfrSpacings.s3w,
-    children: [
-      QuestionForm(
-        questionId: widget.code.value,
-        withoutTitle: true,
-        questionController: _controller,
-        onSaved: () {
-          context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
-        },
-      ),
-      Row(
-        spacing: DsfrSpacings.s1w,
-        children: [
-          DsfrButtonIcon(
-            icon: DsfrIcons.systemArrowLeftLine,
-            semanticLabel: Localisation.questionPrecedente,
-            variant: DsfrButtonVariant.secondary,
-            size: DsfrComponentSize.lg,
-            onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
-          ),
-          DsfrButton(
-            label: Localisation.questionSuivante,
-            variant: DsfrButtonVariant.primary,
-            size: DsfrComponentSize.lg,
-            onPressed: _controller.save,
-          ),
-        ],
-      ),
-    ],
   );
 }

@@ -11,9 +11,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuestionsManagerQuestionView extends StatefulWidget {
-  const QuestionsManagerQuestionView({super.key, required this.cursor});
+  const QuestionsManagerQuestionView({super.key, required this.cursor, this.withoutTitle = false});
 
   final Cursor<Question> cursor;
+  final bool withoutTitle;
 
   @override
   State<QuestionsManagerQuestionView> createState() => _QuestionWidgetState();
@@ -36,6 +37,7 @@ class _QuestionWidgetState extends State<QuestionsManagerQuestionView> {
     children: [
       QuestionForm(
         questionId: widget.cursor.element!.code.value,
+        withoutTitle: widget.withoutTitle,
         questionController: _questionController,
         inputController: _inputController,
         onSaved: () {

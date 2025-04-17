@@ -27,7 +27,8 @@ Feature: Mes actions recommandées
     When I scroll down to {'Question suivante'}
     When I tap on {"Question suivante"}
     Then I see {"Êtes-vous équipé(e) d’un vélo ?"}
-    When I tap on {"Non"}
+    When I scroll down to {'Non'}
+    When I tap on {'Non'}
     Then I have theme with actions
     When I tap on {"Question suivante"}
     When I see {'Trouver le type de voiture qui vous convient le mieux'}

@@ -1,6 +1,5 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/helpers/size.dart';
-import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
@@ -57,7 +56,7 @@ class _Success extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FnvMarkdown(data: Localisation.mesCommerces, p: DsfrTextStyle(fontSize: 22)),
+              Text(Localisation.mesCommerces, style: DsfrTextStyle.headline4()),
               Text(Localisation.mesCommercesDescription, style: DsfrTextStyle(fontSize: 16)),
             ],
           ),

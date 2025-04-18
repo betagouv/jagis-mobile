@@ -1,9 +1,9 @@
 import 'package:app/core/infrastructure/theme_type_mapper.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/core/domain/question_code.dart';
-import 'package:app/features/know_your_customer/core/domain/response.dart';
-import 'package:app/features/know_your_customer/core/domain/response_choice.dart';
-import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart';
+import 'package:app/core/question/domain/question.dart';
+import 'package:app/core/question/domain/question_code.dart';
+import 'package:app/core/question/domain/response.dart';
+import 'package:app/core/question/domain/response_choice.dart';
+import 'package:app/core/question/domain/response_mosaic.dart';
 
 abstract final class QuestionMapper {
   const QuestionMapper._();
@@ -82,7 +82,7 @@ abstract final class QuestionMapper {
   );
 
   static Unit _unit(final Map<String, dynamic> json) =>
-      Unit(abreviation: json['abreviation'] as String, long: json.containsKey('long') ? json['long'] as String : null);
+      Unit(abbreviation: json['abreviation'] as String, long: json.containsKey('long') ? json['long'] as String : null);
 
   static QuestionMosaicBoolean _questionMosaicBoolean(final Map<String, dynamic> json) => QuestionMosaicBoolean(
     code: QuestionCode(json['code'] as String),

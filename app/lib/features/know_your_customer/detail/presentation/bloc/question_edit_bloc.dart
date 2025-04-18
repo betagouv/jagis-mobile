@@ -1,7 +1,7 @@
 // ignore_for_file: avoid-high-cyclomatic-complexity
 
-import 'package:app/features/know_your_customer/core/domain/question.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
+import 'package:app/core/question/domain/question.dart';
+import 'package:app/core/question/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

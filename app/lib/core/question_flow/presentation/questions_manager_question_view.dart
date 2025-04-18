@@ -1,11 +1,11 @@
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
+import 'package:app/core/question_flow/bloc/question_flow_event.dart';
+import 'package:app/core/question_flow/domain/current_question.dart';
+import 'package:app/core/question_flow/domain/cursor.dart';
+import 'package:app/core/question_flow/presentation/questions_manager_buttons_widget.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_form.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
-import 'package:app/features/questions_manager/domain/cursor.dart';
-import 'package:app/features/questions_manager/presentation/questions_manager_buttons_widget.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class QuestionsManagerQuestionView extends StatefulWidget {
   const QuestionsManagerQuestionView({super.key, required this.cursor, this.withoutTitle = false});
 
-  final Cursor<Question> cursor;
+  final Cursor<CurrentQuestion> cursor;
   final bool withoutTitle;
 
   @override
@@ -36,12 +36,12 @@ class _QuestionWidgetState extends State<QuestionsManagerQuestionView> {
     spacing: DsfrSpacings.s3w,
     children: [
       QuestionForm(
-        questionId: widget.cursor.element!.code.value,
+        questionId: widget.cursor.element.question.code.value,
         withoutTitle: widget.withoutTitle,
         questionController: _questionController,
         inputController: _inputController,
         onSaved: () {
-          context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested());
+          context.read<QuestionFlowBloc>().add(const QuestionFlowNextRequested());
         },
       ),
       QuestionsManagerButtons(cursor: widget.cursor, questionController: _questionController, inputController: _inputController),

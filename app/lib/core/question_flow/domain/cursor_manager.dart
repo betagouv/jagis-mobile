@@ -1,4 +1,4 @@
-import 'package:app/features/questions_manager/domain/cursor.dart';
+import 'package:app/core/question_flow/domain/cursor.dart';
 
 abstract interface class CursorManager<T> {
   const CursorManager();

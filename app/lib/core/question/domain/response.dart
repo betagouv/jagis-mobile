@@ -13,11 +13,11 @@ class Response extends Equatable {
 }
 
 final class Unit extends Equatable {
-  const Unit({required this.abreviation, this.long});
+  const Unit({required this.abbreviation, this.long});
 
-  final String abreviation;
+  final String abbreviation;
   final String? long;
 
   @override
-  List<Object?> get props => [abreviation, long];
+  List<Object?> get props => [abbreviation, long];
 }

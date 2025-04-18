@@ -3,7 +3,6 @@ import 'package:app/features/action/domain/action_service.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/faq/domain/faq.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -164,13 +163,13 @@ final class ActionPerformance extends Action {
     required super.rate,
     required super.sources,
     required super.articles,
-    required this.questions,
+    required this.sequenceId,
   });
 
-  final List<Question> questions;
+  final String sequenceId;
 
   @override
-  List<Object?> get props => [...super.props, questions];
+  List<Object?> get props => [...super.props, sequenceId];
 
   @override
   String get instruction => 'Terminez ce bilan et gagnez';
@@ -194,7 +193,7 @@ final class ActionSimulator extends ActionPerformance {
     required super.nbActionsDone,
     required super.aidSummaries,
     required super.score,
-    required super.questions,
+    required super.sequenceId,
     required super.rate,
     required super.sources,
     required super.articles,
@@ -204,7 +203,7 @@ final class ActionSimulator extends ActionPerformance {
   final String? why;
 
   @override
-  List<Object?> get props => [...super.props, why, questions];
+  List<Object?> get props => [...super.props, why, sequenceId];
 
   ActionSimulatorId getId() => ActionSimulatorId.fromApiString(id);
 

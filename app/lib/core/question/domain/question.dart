@@ -1,14 +1,15 @@
-import 'package:app/core/domain/entity.dart';
-import 'package:app/features/know_your_customer/core/domain/question_code.dart';
-import 'package:app/features/know_your_customer/core/domain/response.dart';
-import 'package:app/features/know_your_customer/core/domain/response_choice.dart';
-import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart';
+import 'package:app/core/question/domain/question_code.dart';
+import 'package:app/core/question/domain/response.dart';
+import 'package:app/core/question/domain/response_choice.dart';
+import 'package:app/core/question/domain/response_mosaic.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class Question extends Entity<QuestionCode> {
-  const Question({required super.code, required this.theme, required this.label, required this.isAnswered, required this.points});
+sealed class Question extends Equatable {
+  const Question({required this.code, required this.theme, required this.label, required this.isAnswered, required this.points});
 
+  final QuestionCode code;
   final ThemeType theme;
   final String label;
   final bool isAnswered;

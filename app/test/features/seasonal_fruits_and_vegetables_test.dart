@@ -1,11 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_import, directives_ordering
 
+import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
+import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_tap_on.dart';
@@ -23,6 +25,69 @@ void main() {
   group('''Seasonal fruits and vegetables service''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
+      await theApiWillReturn(
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'responseData'],
+            [
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_alimentation/first',
+              200,
+              {
+                "nombre_total_questions": 4,
+                "nombre_total_questions_effectives": 4,
+                "position_courante": 3,
+                "question_courante": {
+                  "code": "MOSAIC_REDUCTION_DECHETS",
+                  "question":
+                      "Quels éco-gestes mettez-vous en place pour réduire vos déchets ?",
+                  "reponse_multiple": [
+                    {
+                      "code": "KYC_alimentation_compostage",
+                      "label": "Compostage biodéchets",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_alimentation_reduc_gaspi_alim",
+                      "label": "Réduire gaspillage alimentaire",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_alimentation_stoppub",
+                      "label": "Stop pub",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": true
+                    },
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "label": "Achat en vrac",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    }
+                  ],
+                  "is_answered": true,
+                  "categorie": "mission",
+                  "points": 5,
+                  "type": "mosaic_boolean",
+                  "is_NGC": false,
+                  "thematique": "dechet"
+                },
+                "is_first": false,
+                "is_last": false,
+                "is_out_of_range": false
+              }
+            ]
+          ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
       await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');

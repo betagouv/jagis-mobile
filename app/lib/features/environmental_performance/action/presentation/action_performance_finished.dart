@@ -1,9 +1,9 @@
+import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
+import 'package:app/core/question_flow/bloc/question_flow_event.dart';
 import 'package:app/features/environmental_performance/action/presentation/bloc/action_performance_finished_bloc.dart';
 import 'package:app/features/environmental_performance/action/presentation/bloc/action_performance_finished_event.dart';
 import 'package:app/features/environmental_performance/action/presentation/bloc/action_performance_finished_state.dart';
 import 'package:app/features/environmental_performance/core/presentation/widgets/performance_detail_body.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
@@ -101,7 +101,7 @@ class _Success extends StatelessWidget {
           label: Localisation.recommencerLeBilan,
           variant: DsfrButtonVariant.secondary,
           size: DsfrComponentSize.lg,
-          onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerFirstQuestionRequested()),
+          onPressed: () => context.read<QuestionFlowBloc>().add(const QuestionFlowFirstRequested()),
         ),
       ],
     );

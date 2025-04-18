@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/response_mosaic.dart';
+import 'package:app/core/question/domain/response_mosaic.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

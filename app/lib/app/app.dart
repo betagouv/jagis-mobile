@@ -12,6 +12,7 @@ import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/notifications/domain/notification_data.dart';
 import 'package:app/core/notifications/infrastructure/notification_repository.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
+import 'package:app/core/question/infrastructure/question_repository.dart';
 import 'package:app/features/action/infrastructure/action_repository.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/infrastructure/actions_repository.dart';
@@ -34,7 +35,6 @@ import 'package:app/features/gamification/presentation/bloc/gamification_bloc.da
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
 import 'package:app/features/home/infrastructure/home_dashboard_repository.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/question_repository.dart';
 import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
 import 'package:app/features/library/infrastructure/library_repository.dart';
 import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';

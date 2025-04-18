@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/l10n/l10n.dart';
@@ -19,7 +19,7 @@ class Decimal extends StatelessWidget {
     return DsfrInputHeadless(
       key: const ValueKey(Localisation.maReponse),
       controller: controller,
-      suffixText: question.response.unit?.abreviation,
+      suffixText: question.response.unit?.abbreviation,
       onChanged: (final value) {
         context.read<QuestionEditBloc>().add(QuestionEditDecimalChangee(value));
       },

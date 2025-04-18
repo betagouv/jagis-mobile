@@ -1,11 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_import, directives_ordering
 
+import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../features/bdd_hooks/hooks.dart';
 import './step/i_am_logged_in.dart';
+import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_see.dart';
@@ -26,6 +28,110 @@ void main() {
   group('''Mes actions recommandées''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
+      await theApiWillReturn(
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'responseData'],
+            [
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/first',
+              200,
+              {
+                "nombre_total_questions": 3,
+                "nombre_total_questions_effectives": 3,
+                "position_courante": 2,
+                "question_courante": {
+                  "code": "KYC003",
+                  "question": "Êtes-vous équipé(e) d’un vélo ?",
+                  "reponse_multiple": [
+                    {"code": "oui", "label": "Oui", "selected": false},
+                    {"code": "non", "label": "Non", "selected": false}
+                  ],
+                  "is_answered": false,
+                  "categorie": "mission",
+                  "points": 5,
+                  "type": "choix_unique",
+                  "is_NGC": false,
+                  "thematique": "transport"
+                },
+                "is_first": false,
+                "is_last": false,
+                "is_out_of_range": false
+              }
+            ],
+            [
+              'GET',
+              '/utilisateurs/{userId}/questionsKYC_v2/KYC003',
+              200,
+              {
+                "code": "KYC003",
+                "question": "Êtes-vous équipé(e) d’un vélo ?",
+                "reponse_multiple": [
+                  {"code": "oui", "label": "Oui", "selected": false},
+                  {"code": "non", "label": "Non", "selected": false}
+                ],
+                "is_answered": false,
+                "categorie": "mission",
+                "points": 5,
+                "type": "choix_unique",
+                "is_NGC": false,
+                "thematique": "transport"
+              }
+            ],
+            ["PUT", '/utilisateurs/{userId}/questionsKYC_v2/KYC003', 200, {}],
+            [
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/following/KYC003',
+              200,
+              {
+                "nombre_total_questions": 3,
+                "nombre_total_questions_effectives": 3,
+                "position_courante": 3,
+                "question_courante": {
+                  "code": "KYC_possede_voiture_oui_non",
+                  "question": "Possédez-vous une voiture ?",
+                  "reponse_multiple": [
+                    {"code": "oui", "label": "Oui", "selected": false},
+                    {"code": "non", "label": "Non", "selected": false}
+                  ],
+                  "is_answered": false,
+                  "categorie": "recommandation",
+                  "points": 5,
+                  "type": "choix_unique",
+                  "is_NGC": false,
+                  "thematique": "transport"
+                },
+                "is_first": false,
+                "is_last": true,
+                "is_out_of_range": false
+              }
+            ],
+            [
+              'GET',
+              '/utilisateurs/{userId}/questionsKYC_v2/KYC_possede_voiture_oui_non',
+              200,
+              {
+                "code": "KYC_possede_voiture_oui_non",
+                "question": "Possédez-vous une voiture ?",
+                "reponse_multiple": [
+                  {"code": "oui", "label": "Oui", "selected": false},
+                  {"code": "non", "label": "Non", "selected": false}
+                ],
+                "is_answered": false,
+                "categorie": "recommandation",
+                "points": 5,
+                "type": "choix_unique",
+                "is_NGC": false,
+                "thematique": "transport"
+              }
+            ],
+            [
+              "PUT",
+              '/utilisateurs/{userId}/questionsKYC_v2/KYC_possede_voiture_oui_non',
+              200,
+              {}
+            ]
+          ]));
       await theApplicationIsLaunched(tester);
     }
 
@@ -82,8 +188,7 @@ void main() {
         await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
-        await iSee(tester,
-            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
+        await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
       } on TestFailure {
         success = false;
         rethrow;
@@ -102,13 +207,8 @@ void main() {
         await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
-        await iSee(tester,
-            "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?");
-        await iTapOn(tester, "Oui");
-        await iScrollDownTo(tester, 'Question suivante');
+        await iTapOn(tester, 'Non');
         await iTapOn(tester, "Question suivante");
-        await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
-        await iScrollDownTo(tester, 'Non');
         await iTapOn(tester, 'Non');
         await iHaveThemeWithActions(tester);
         await iTapOn(tester, "Question suivante");

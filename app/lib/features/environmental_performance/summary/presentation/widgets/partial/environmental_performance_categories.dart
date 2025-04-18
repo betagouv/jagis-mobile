@@ -32,6 +32,7 @@ class EnvironmentalPerformanceCategories extends StatelessWidget {
                     label: e.label,
                     numberOfQuestions: e.totalNumberQuestions,
                     onTap: () async {
+                      // TODO(lsaudon): Refacto cette partie pourquoi on fait ça.
                       context.read<EnvironmentalPerformanceQuestionBloc>().add(
                         EnvironmentalPerformanceQuestionIdListRequested(e.id),
                       );

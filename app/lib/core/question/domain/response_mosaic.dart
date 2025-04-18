@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/response_choice.dart';
+import 'package:app/core/question/domain/response_choice.dart';
 
 class ResponseMosaic extends ResponseChoice {
   const ResponseMosaic({

@@ -5,7 +5,7 @@ import 'package:app/core/presentation/widgets/composants/checkbox_set.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/onboarding/presentation/pages/tout_est_pret_page.dart';
 import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_bloc.dart';
 import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_event.dart';

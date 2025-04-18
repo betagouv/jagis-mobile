@@ -7,7 +7,6 @@ import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/infrastructure/aid_summary_mapper.dart';
 import 'package:app/features/faq/domain/faq.dart';
 import 'package:app/features/faq/infrastructure/faq_mapper.dart';
-import 'package:app/features/know_your_customer/core/infrastructure/question_mapper.dart';
 import 'package:app/features/quiz/infrastructure/quiz_mapper.dart';
 import 'package:app/features/recommandations/infrastructure/recommandation_mapper.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -90,7 +89,7 @@ abstract final class ActionSimulatorMapper {
     nbActionsDone: ActionMapper.nbActionsDoneFromJson(json),
     aidSummaries: ActionMapper.aidSummariesFromJson(json),
     score: ActionMapper.scoreFromJson(json),
-    questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
+    sequenceId: json['enchainement_id'] as String,
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
@@ -115,6 +114,6 @@ abstract final class ActionPerformanceMapper {
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
     articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
-    questions: JsonListMapper.fromJsonList(json['kycs'], QuestionMapper.fromJson),
+    sequenceId: json['enchainement_id'] as String,
   );
 }

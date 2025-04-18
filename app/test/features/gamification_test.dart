@@ -171,6 +171,52 @@ void main() {
                 '/utilisateurs/{userId}/gamification',
                 200,
                 {"points": 0}
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/first',
+                200,
+                {
+                  "nombre_total_questions": 3,
+                  "nombre_total_questions_effectives": 3,
+                  "position_courante": 2,
+                  "question_courante": {
+                    "code": "KYC003",
+                    "question": "Êtes-vous équipé(e) d’un vélo ?",
+                    "reponse_multiple": [
+                      {"code": "oui", "label": "Oui", "selected": false},
+                      {"code": "non", "label": "Non", "selected": false}
+                    ],
+                    "is_answered": false,
+                    "categorie": "mission",
+                    "points": 5,
+                    "type": "choix_unique",
+                    "is_NGC": false,
+                    "thematique": "transport"
+                  },
+                  "is_first": false,
+                  "is_last": false,
+                  "is_out_of_range": false
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/questionsKYC_v2/KYC003',
+                200,
+                {
+                  "code": "KYC003",
+                  "question": "Êtes-vous équipé(e) d’un vélo ?",
+                  "reponse_multiple": [
+                    {"code": "oui", "label": "Oui", "selected": false},
+                    {"code": "non", "label": "Non", "selected": false}
+                  ],
+                  "is_answered": false,
+                  "categorie": "mission",
+                  "points": 5,
+                  "type": "choix_unique",
+                  "is_NGC": false,
+                  "thematique": "transport"
+                }
               ]
             ]));
         await theApplicationIsLaunched(tester);
@@ -432,8 +478,8 @@ void main() {
                 '/utilisateurs/{userId}/actions/bilan/action_bilan_alimentation',
                 200,
                 {
-                  "nombre_actions_en_cours": 3,
-                  "nombre_actions_faites": 3,
+                  "nombre_actions_en_cours": 0,
+                  "nombre_actions_faites": 0,
                   "nombre_aides_disponibles": 0,
                   "code": "action_bilan_alimentation",
                   "titre": "Calculer les impacts liés à **votre alimentation**",
@@ -448,97 +494,95 @@ void main() {
                   "pourquoi": null,
                   "type": "bilan",
                   "thematique": "alimentation",
-                  "kycs": [
-                    {
-                      "code": "KYC_saison_frequence",
-                      "question":
-                          "Faites-vous attention à consommer des fruits et légumes de saison ?",
-                      "reponse_multiple": [
-                        {"code": "jamais", "label": "Jamais", "selected": true},
-                        {
-                          "code": "parfois",
-                          "label": "Parfois",
-                          "selected": false
-                        },
-                        {
-                          "code": "souvent",
-                          "label": "Souvent",
-                          "selected": false
-                        },
-                        {
-                          "code": "toujours",
-                          "label": "Toujours",
-                          "selected": false
-                        }
-                      ],
-                      "is_answered": true,
-                      "categorie": "mission",
-                      "points": 5,
-                      "type": "choix_unique",
-                      "is_NGC": true,
-                      "thematique": "alimentation"
-                    },
-                    {
-                      "code": "KYC_gaspillage_alimentaire_frequence",
-                      "question":
-                          "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
-                      "reponse_multiple": [
-                        {
-                          "code": "50L",
-                          "label": "Une poubelle de 50L par semaine",
-                          "selected": true
-                        },
-                        {
-                          "code": "20L",
-                          "label": "Une poubelle de 20L par semaine",
-                          "selected": false
-                        },
-                        {
-                          "code": "peu",
-                          "label":
-                              "Environ une poignée ou l'équivalent d'un bol par semaine",
-                          "selected": false
-                        },
-                        {"code": "zero", "label": "Zéro", "selected": false},
-                        {
-                          "code": "ne_sais_pas",
-                          "label": "Je ne sais pas",
-                          "selected": false
-                        }
-                      ],
-                      "is_answered": true,
-                      "categorie": "mission",
-                      "points": 5,
-                      "type": "choix_unique",
-                      "is_NGC": true,
-                      "thematique": "alimentation"
-                    }
-                  ],
                   "quizzes": [],
                   "aides": [],
                   "services": [],
-                  "nom_commune": "Dole",
+                  "nom_commune": "Bordeaux",
                   "quizz_felicitations": null,
-                  "deja_vue": true,
-                  "deja_faite": true,
+                  "deja_vue": false,
+                  "deja_faite": false,
                   "faqs": [],
                   "points": 50,
-                  "sources": []
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "bilan_action_bilan_alimentation"
                 }
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/questionsKYC_v2/KYC_saison_frequence',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/bilan_action_bilan_alimentation/first',
                 200,
                 {
-                  "code": "KYC_saison_frequence",
-                  "question":
-                      "Faites-vous attention à consommer des fruits et légumes de saison ?",
+                  "nombre_total_questions_effectives": 2,
+                  "position_courante": 1,
+                  "question_courante": {
+                    "code": "KYC_petitdej",
+                    "question": "Quel petit déjeuner vous correspond le plus ?",
+                    "reponse_multiple": [
+                      {
+                        "code": "pain",
+                        "label": " Viennoiserie et pain",
+                        "selected": false
+                      },
+                      {
+                        "code": "lait",
+                        "label": "Lait et céréales",
+                        "selected": false
+                      },
+                      {
+                        "code": "bacon",
+                        "label": "Salé (type britannique, bacon et oeuf)",
+                        "selected": false
+                      },
+                      {"code": "fruit", "label": "Fruits", "selected": false},
+                      {
+                        "code": "aucun",
+                        "label": "Pas de petit-dej'",
+                        "selected": false
+                      }
+                    ],
+                    "is_answered": false,
+                    "categorie": "mission",
+                    "points": 5,
+                    "type": "choix_unique",
+                    "is_NGC": true,
+                    "thematique": "alimentation"
+                  },
+                  "is_first": false,
+                  "is_last": false,
+                  "is_out_of_range": false
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/questionsKYC_v2/KYC_petitdej',
+                200,
+                {
+                  "code": "KYC_petitdej",
+                  "question": "Quel petit déjeuner vous correspond le plus ?",
                   "reponse_multiple": [
-                    {"code": "jamais", "label": "Jamais", "selected": false},
-                    {"code": "parfois", "label": "Parfois", "selected": false},
-                    {"code": "souvent", "label": "Souvent", "selected": false},
-                    {"code": "toujours", "label": "Toujours", "selected": false}
+                    {
+                      "code": "pain",
+                      "label": " Viennoiserie et pain",
+                      "selected": false
+                    },
+                    {
+                      "code": "lait",
+                      "label": "Lait et céréales",
+                      "selected": false
+                    },
+                    {
+                      "code": "bacon",
+                      "label": "Salé (type britannique, bacon et oeuf)",
+                      "selected": false
+                    },
+                    {"code": "fruit", "label": "Fruits", "selected": false},
+                    {
+                      "code": "aucun",
+                      "label": "Pas de petit-dej'",
+                      "selected": false
+                    }
                   ],
                   "is_answered": false,
                   "categorie": "mission",
@@ -550,41 +594,64 @@ void main() {
               ],
               [
                 "PUT",
-                "/utilisateurs/{userId}/questionsKYC_v2/KYC_saison_frequence",
+                "/utilisateurs/{userId}/questionsKYC_v2/KYC_petitdej",
                 200,
                 {}
               ],
               [
-                'GET',
-                '/utilisateurs/{userId}/questionsKYC_v2/KYC_gaspillage_alimentaire_frequence',
+                "GET",
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/bilan_action_bilan_alimentation/following/KYC_petitdej',
                 200,
                 {
-                  "code": "KYC_gaspillage_alimentaire_frequence",
+                  "nombre_total_questions_effectives": 2,
+                  "position_courante": 2,
+                  "question_courante": {
+                    "code": "KYC_local_frequence",
+                    "question":
+                        "À quelle fréquence consommez-vous des produits locaux ?",
+                    "reponse_multiple": [
+                      {"code": "jamais", "label": "Jamais", "selected": true},
+                      {
+                        "code": "parfois",
+                        "label": "Parfois",
+                        "selected": false
+                      },
+                      {
+                        "code": "souvent",
+                        "label": "Souvent",
+                        "selected": false
+                      },
+                      {
+                        "code": "toujours",
+                        "label": "Toujours",
+                        "selected": false
+                      }
+                    ],
+                    "is_answered": true,
+                    "categorie": "mission",
+                    "points": 5,
+                    "type": "choix_unique",
+                    "is_NGC": true,
+                    "thematique": "alimentation"
+                  },
+                  "is_first": false,
+                  "is_last": false,
+                  "is_out_of_range": false
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/questionsKYC_v2/KYC_local_frequence',
+                200,
+                {
+                  "code": "KYC_local_frequence",
                   "question":
-                      "Combien estimez-vous la quantité de déchets alimentaires que vous jetez ?",
+                      "À quelle fréquence consommez-vous des produits locaux ?",
                   "reponse_multiple": [
-                    {
-                      "code": "50L",
-                      "label": "Une poubelle de 50L par semaine",
-                      "selected": true
-                    },
-                    {
-                      "code": "20L",
-                      "label": "Une poubelle de 20L par semaine",
-                      "selected": false
-                    },
-                    {
-                      "code": "peu",
-                      "label":
-                          "Environ une poignée ou l'équivalent d'un bol par semaine",
-                      "selected": false
-                    },
-                    {"code": "zero", "label": "Zéro", "selected": false},
-                    {
-                      "code": "ne_sais_pas",
-                      "label": "Je ne sais pas",
-                      "selected": false
-                    }
+                    {"code": "jamais", "label": "Jamais", "selected": true},
+                    {"code": "parfois", "label": "Parfois", "selected": false},
+                    {"code": "souvent", "label": "Souvent", "selected": false},
+                    {"code": "toujours", "label": "Toujours", "selected": false}
                   ],
                   "is_answered": true,
                   "categorie": "mission",
@@ -596,7 +663,7 @@ void main() {
               ],
               [
                 "PUT",
-                "/utilisateurs/{userId}/questionsKYC_v2/KYC_gaspillage_alimentaire_frequence",
+                "/utilisateurs/{userId}/questionsKYC_v2/KYC_local_frequence",
                 200,
                 {}
               ],
@@ -647,10 +714,10 @@ void main() {
         await iTapOn(tester, 'Actions');
         await iTapOn(
             tester, 'Bilan - Calculer les impacts liés à votre alimentation');
-        await iTapOn(tester, 'Jamais');
+        await iTapOn(tester, 'Viennoiserie et pain');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
-        await iTapOn(tester, 'Une poubelle de 50L par semaine');
+        await iTapOn(tester, 'Jamais');
         await iScrollDownTo(tester, 'Question suivante');
         await iSeePoints(tester, '0');
         await theApiWillReturn(

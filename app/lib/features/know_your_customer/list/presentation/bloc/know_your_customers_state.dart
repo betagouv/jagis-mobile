@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';

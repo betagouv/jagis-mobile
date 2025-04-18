@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:dsfr/dsfr.dart';

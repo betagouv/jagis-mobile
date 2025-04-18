@@ -1,4 +1,4 @@
-import 'package:app/features/know_your_customer/core/domain/question_code.dart';
+import 'package:app/core/question/domain/question_code.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

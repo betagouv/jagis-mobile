@@ -1,9 +1,9 @@
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
+import 'package:app/core/question_flow/bloc/question_flow_event.dart';
+import 'package:app/core/question_flow/domain/current_question.dart';
+import 'package:app/core/question_flow/domain/cursor.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/input_controller.dart';
 import 'package:app/features/know_your_customer/detail/presentation/form/question_controller.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
-import 'package:app/features/questions_manager/domain/cursor.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +17,7 @@ class QuestionsManagerButtons extends StatefulWidget {
     required this.inputController,
   });
 
-  final Cursor<Question> cursor;
+  final Cursor<CurrentQuestion> cursor;
   final QuestionController questionController;
   final InputController inputController;
 
@@ -47,20 +47,20 @@ class _QuestionsManagerButtonsState extends State<QuestionsManagerButtons> {
   @override
   Widget build(final BuildContext context) => Row(
     children: [
-      if (!widget.cursor.isStart)
+      if (widget.cursor.isNotFirst)
         DsfrButtonIcon(
           icon: DsfrIcons.systemArrowLeftLine,
           semanticLabel: Localisation.questionPrecedente,
           variant: DsfrButtonVariant.tertiaryWithoutBorder,
           size: DsfrComponentSize.lg,
-          onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerPreviousRequested()),
+          onPressed: () => context.read<QuestionFlowBloc>().add(const QuestionFlowPreviousRequested()),
         ),
       if (_inputIsEmpty)
         DsfrButton(
           label: Localisation.passerLaQuestion,
           variant: DsfrButtonVariant.secondary,
           size: DsfrComponentSize.lg,
-          onPressed: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerNextRequested()),
+          onPressed: () => context.read<QuestionFlowBloc>().add(const QuestionFlowNextRequested()),
         )
       else
         DsfrButton(

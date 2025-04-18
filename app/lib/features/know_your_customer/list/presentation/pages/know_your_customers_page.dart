@@ -4,7 +4,7 @@ import 'package:app/core/presentation/widgets/composants/list_item.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/know_your_customer/core/domain/question.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
 import 'package:app/features/know_your_customer/list/presentation/bloc/know_your_customers_bloc.dart';
 import 'package:app/features/know_your_customer/list/presentation/bloc/know_your_customers_event.dart';

@@ -33,7 +33,6 @@ Future<void> initializeContext() async {
   setServices();
   setBicycleSimulator();
   setThemes();
-  setEnchainements();
   FeatureContext.instance.dioMock
     ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
     ..getM(
@@ -148,50 +147,6 @@ void setProfile() {
 void setLogement() => FeatureContext.instance.dioMock.patchM(Endpoints.logement);
 
 void setBilanEmpty() => FeatureContext.instance.dioMock.getM(Endpoints.bilan, responseData: environmentalPerformanceEmptyData);
-
-void setEnchainements() {
-  final questions = [
-    {
-      'code': 'KYC_transport_avion_3_annees',
-      'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
-      'reponse_multiple': [
-        {'code': 'oui', 'label': 'Oui', 'selected': false},
-        {'code': 'non', 'label': 'Non', 'selected': true},
-        {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
-      ],
-      'is_answered': true,
-      'categorie': 'recommandation',
-      'points': 5,
-      'type': 'choix_unique',
-      'is_NGC': true,
-      'thematique': 'transport',
-    },
-    {
-      'code': 'KYC003',
-      'question': 'Êtes-vous équipé(e) d’un vélo ?',
-      'reponse_multiple': [
-        {'code': 'oui', 'label': 'Oui', 'selected': false},
-        {'code': 'non', 'label': 'Non', 'selected': false},
-      ],
-      'is_answered': false,
-      'categorie': 'recommandation',
-      'points': 5,
-      'type': 'choix_unique',
-      'is_NGC': false,
-      'thematique': 'transport',
-    },
-  ];
-  FeatureContext.instance.dioMock.getM(
-    Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_transport'),
-    responseData: questions,
-  );
-
-  for (final q in questions) {
-    FeatureContext.instance.dioMock
-      ..getM(Endpoints.question(q['code']! as String), responseData: q)
-      ..putM(Endpoints.question(q['code']! as String));
-  }
-}
 
 void setAids() {
   final aids = [

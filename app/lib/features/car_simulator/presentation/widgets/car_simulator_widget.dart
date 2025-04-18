@@ -1,34 +1,29 @@
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
-import 'package:app/features/action/domain/action.dart';
-import 'package:app/features/action/infrastructure/action_questions_manager.dart';
-import 'package:app/features/actions/domain/action_type.dart';
+import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
+import 'package:app/core/question_flow/bloc/question_flow_event.dart';
+import 'package:app/core/question_flow/bloc/question_flow_state.dart';
+import 'package:app/core/question_flow/infrastructure/question_flow_manager.dart';
+import 'package:app/core/question_flow/presentation/questions_manager_question_view.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_bloc.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/widgets/car_simulator_result.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_bloc.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_event.dart';
-import 'package:app/features/questions_manager/bloc/questions_manager_state.dart';
-import 'package:app/features/questions_manager/presentation/questions_manager_question_view.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarSimulatorWidget extends StatelessWidget {
-  const CarSimulatorWidget({super.key, this.isDone = false});
+  const CarSimulatorWidget({super.key, required this.sequenceId, this.isDone = false});
 
+  final String sequenceId;
   final bool isDone;
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
     create:
-        (final context) => QuestionsManagerBloc(
-          application: ActionQuestionsManager(
-            client: context.read(),
-            type: ActionType.simulator,
-            code: ActionSimulatorId.carSimulator.apiString,
-          ),
-        )..add(const QuestionsManagerFirstQuestionRequested()),
+        (final context) =>
+            QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: sequenceId))
+              ..add(const QuestionFlowFirstRequested()),
     child: _View(isDone: isDone),
   );
 }
@@ -39,15 +34,15 @@ class _View extends StatelessWidget {
   final bool isDone;
 
   @override
-  Widget build(final BuildContext context) => BlocConsumer<QuestionsManagerBloc, QuestionsManagerState>(
+  Widget build(final BuildContext context) => BlocConsumer<QuestionFlowBloc, QuestionFlowState>(
     builder:
         (final context, final state) => switch (state) {
-          QuestionsManagerInitial() => const SizedBox.shrink(),
-          QuestionsManagerLoadSuccess() => _Success(questionManager: state, isDone: isDone),
-          QuestionManagerFinished() => const CarSimulatorResult(),
+          QuestionFlowInitial() => const SizedBox.shrink(),
+          QuestionFlowLoadSuccess() => _Success(questionManager: state, isDone: isDone),
+          QuestionFlowFinished() => const CarSimulatorResult(),
         },
     listener: (final context, final state) {
-      if (state is QuestionManagerFinished) {
+      if (state is QuestionFlowFinished) {
         context.read<CarSimulatorResultBloc>().add(const CarSimulatorGetCurrentCarResult());
       }
     },
@@ -57,7 +52,7 @@ class _View extends StatelessWidget {
 class _Success extends StatelessWidget {
   const _Success({required this.questionManager, required this.isDone});
 
-  final QuestionsManagerLoadSuccess questionManager;
+  final QuestionFlowLoadSuccess questionManager;
   final bool isDone;
 
   @override
@@ -81,13 +76,13 @@ class _Success extends StatelessWidget {
                     const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd()),
                     DsfrLink.md(
                       label: Localisation.voirMesResultats,
-                      onTap: () => context.read<QuestionsManagerBloc>().add(const QuestionsManagerLastQuestionRequested()),
+                      onTap: () => context.read<QuestionFlowBloc>().add(const QuestionFlowLastRequested()),
                     ),
                   ],
                 ),
               ),
             ),
-          QuestionStepper(current: cursor.index + 1, total: cursor.total),
+          QuestionStepper(current: cursor.index, total: cursor.total),
           QuestionsManagerQuestionView(key: ValueKey(cursor.element), cursor: cursor),
         ],
       ),

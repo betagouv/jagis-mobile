@@ -48,6 +48,11 @@ abstract final class Endpoints {
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';
+  static String questionsFirst(final String sequenceId) => '${questions(sequenceId)}/first';
+  static String questionsPrevious(final String sequenceId, final String questionCode) =>
+      '${questions(sequenceId)}/preceding/$questionCode';
+  static String questionsNext(final String sequenceId, final String questionCode) =>
+      '${questions(sequenceId)}/following/$questionCode';
   static String quiz(final String contentId) => '/utilisateurs/{userId}/bibliotheque/quizz/$contentId';
   static String quizScore(final String contentId) => '/utilisateurs/{userId}/actions/quizz/$contentId/score';
   static String recipe(final String recipeId) => '/utilisateurs/{userId}/recherche_services/recettes/last_results/$recipeId';

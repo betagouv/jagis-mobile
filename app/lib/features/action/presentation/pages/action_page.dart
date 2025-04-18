@@ -97,8 +97,7 @@ class _Success extends StatelessWidget {
             },
             if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
             if (action.faq != null && action.faq!.isNotEmpty) ActionFAQView(faq: action.faq!),
-            if (action.aidSummaries.isEmpty && (action.faq == null || action.faq!.isEmpty))
-              const SizedBox(height: DsfrSpacings.s1w),
+            const SizedBox(height: DsfrSpacings.s1w),
           ],
         ),
       ),

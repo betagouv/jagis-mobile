@@ -17,6 +17,7 @@ abstract final class AidMapper {
       themeType: ThemeTypeMapper.convert((json['thematiques'] as List<dynamic>).cast<String>().firstOrNull ?? ''),
       scale: aidSummary.scale,
       content: json['contenu'] as String,
+      aidUrl: json['url_demande'] as String?,
       simulatorUrl: json['url_simulateur'] as String?,
     );
   }

@@ -50,6 +50,7 @@ abstract final class Localisation {
   static const combienEtesVousDansVotreLogement = 'Combien êtes-vous dans votre logement (vous inclus) ?';
   static const commencer = 'Commencer';
   static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
+  static const commencerVotreDemarche = 'Commencer votre démarche';
   static const commune = 'Commune';
   static const completer = 'Compléter';
   static const confirmer = 'Confirmer';

@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/failure_widget.dart';
@@ -56,20 +57,34 @@ class _View extends StatelessWidget {
     },
     bottomNavigationBar: switch (context.watch<AidBloc>().state) {
       AidStateSuccess(:final aid) =>
-        aid.hasSimulator
-            ? FnvBottomBar(
+        aid.aidUrl == null
+            ? aid.hasSimulator
+                ? FnvBottomBar(
+                  child: DsfrButton(
+                    label: Localisation.accederAuSimulateur,
+                    variant: DsfrButtonVariant.primary,
+                    size: DsfrComponentSize.lg,
+                    onPressed:
+                        aid.hasBikeSimulator
+                            ? () async {
+                              await GoRouter.of(context).pushNamed(AideSimulateurVeloPage.name);
+                            }
+                            : null,
+                  ),
+                )
+                : null
+            : FnvBottomBar(
               child: DsfrButton(
-                label: Localisation.accederAuSimulateur,
+                label: Localisation.commencerVotreDemarche,
+                icon: DsfrIcons.systemExternalLinkLine,
+                iconLocation: DsfrButtonIconLocation.right,
                 variant: DsfrButtonVariant.primary,
                 size: DsfrComponentSize.lg,
                 onPressed: () async {
-                  if (aid.hasBikeSimulator) {
-                    await GoRouter.of(context).pushNamed(AideSimulateurVeloPage.name);
-                  }
+                  await FnvUrlLauncher.launch(aid.aidUrl!);
                 },
               ),
-            )
-            : null,
+            ),
       _ => null,
     },
   );

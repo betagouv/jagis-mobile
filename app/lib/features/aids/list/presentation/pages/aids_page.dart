@@ -1,5 +1,5 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
+import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
@@ -90,10 +90,24 @@ class _List extends StatelessWidget {
           spacing: DsfrSpacings.s1w,
           runSpacing: DsfrSpacings.s1w,
           children: [
-            _Tag(label: Localisation.tout, value: null, groupValue: state.themeSelected),
+            FnvTag(
+              label: Localisation.tout,
+              selected: null == state.themeSelected,
+              onTap: () {
+                context.read<AidListBloc>().add(const AidListThemeSelected(null));
+              },
+            ),
             ...ThemeType.values
                 .where(state.themes.containsKey)
-                .map((final e) => _Tag(label: e.displayNameWithoutEmoji, value: e, groupValue: state.themeSelected)),
+                .map(
+                  (final e) => FnvTag(
+                    label: e.displayNameWithoutEmoji,
+                    selected: e == state.themeSelected,
+                    onTap: () {
+                      context.read<AidListBloc>().add(AidListThemeSelected(e));
+                    },
+                  ),
+                ),
           ],
         ),
         const SizedBox(height: DsfrSpacings.s4w),
@@ -101,41 +115,6 @@ class _List extends StatelessWidget {
       ],
     ),
   );
-}
-
-class _Tag extends StatelessWidget {
-  const _Tag({required this.label, required this.value, required this.groupValue});
-
-  final String label;
-  final ThemeType? value;
-  final ThemeType? groupValue;
-
-  @override
-  Widget build(final BuildContext context) {
-    const selectedColor = DsfrColors.blueFranceSun113;
-    final isSelected = value == groupValue;
-
-    return Material(
-      color: FnvColors.transparent,
-      child: InkWell(
-        onTap: () {
-          context.read<AidListBloc>().add(AidListThemeSelected(value));
-        },
-        borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s4w)),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: isSelected ? selectedColor : null,
-            border: const Border.fromBorderSide(BorderSide(color: selectedColor)),
-            borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s4w)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-            child: Text(label, style: DsfrTextStyle.bodySmMedium(color: isSelected ? Colors.white : selectedColor)),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class _Elements extends StatelessWidget {

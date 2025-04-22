@@ -11,11 +11,13 @@ class Aid extends AidSummary {
     required this.themeType,
     super.scale,
     required this.content,
+    this.aidUrl,
     this.simulatorUrl,
   });
 
   final ThemeType themeType;
   final String content;
+  final String? aidUrl;
   final String? simulatorUrl;
   bool get hasBikeSimulator => simulatorUrl == '/aides/velo';
 
@@ -23,5 +25,5 @@ class Aid extends AidSummary {
   bool get hasSimulator => simulatorUrl != null && simulatorUrl!.isNotEmpty;
 
   @override
-  List<Object?> get props => [...super.props, themeType, simulatorUrl, content];
+  List<Object?> get props => [...super.props, themeType, content, aidUrl, simulatorUrl];
 }

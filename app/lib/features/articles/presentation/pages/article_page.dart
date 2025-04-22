@@ -95,7 +95,7 @@ class _Content extends StatelessWidget {
                       final uri = Uri.parse(
                         'https://jagis.beta.gouv.fr/article/${titleToKebabCase(article.titre)}/${article.id}',
                       );
-                      await Share.shareUri(uri);
+                      await SharePlus.instance.share(ShareParams(uri: uri));
                     },
                   ),
                   const SafeArea(child: SizedBox(height: DsfrSpacings.s2w)),

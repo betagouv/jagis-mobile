@@ -68,7 +68,7 @@ class _ActionsEmpty extends StatelessWidget {
       ),
       const SizedBox(height: DsfrSpacings.s3w),
       Column(
-        spacing: DsfrSpacings.s1v5,
+        spacing: DsfrSpacings.s2w,
         children: [
           _ExploreAnotherTheme(themeType: themeType),
           DsfrButton(

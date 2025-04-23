@@ -73,11 +73,16 @@ class _LoadSuccess extends StatelessWidget {
       spacing: DsfrSpacings.s1v,
       children: [
         FnvProgressBar(current: cursor.index, total: cursor.total),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
-          child: QuestionsManagerQuestionView(key: ValueKey(cursor.element), cursor: cursor),
+        Flexible(
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s4w, horizontal: DsfrSpacings.s2w),
+                child: QuestionsManagerQuestionView(key: ValueKey(cursor.element), cursor: cursor),
+              ),
+            ),
+          ),
         ),
-        const SafeArea(child: SizedBox.shrink()),
       ],
     );
   }

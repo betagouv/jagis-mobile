@@ -130,6 +130,19 @@ void main() {
               '/utilisateurs/{userId}/questionsKYC_v2/KYC_possede_voiture_oui_non',
               200,
               {}
+            ],
+            [
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/following/KYC_possede_voiture_oui_non',
+              200,
+              {
+                "nombre_total_questions": 3,
+                "nombre_total_questions_effectives": 3,
+                "position_courante": -1,
+                "is_first": false,
+                "is_last": true,
+                "is_out_of_range": false
+              }
             ]
           ]));
       await theApplicationIsLaunched(tester);

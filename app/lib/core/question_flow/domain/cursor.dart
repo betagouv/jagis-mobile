@@ -8,7 +8,6 @@ class Cursor<T> extends Equatable {
   final int total;
   bool get isFirst => index == 1;
   bool get isNotFirst => !isFirst;
-  bool get isLast => index == total;
 
   @override
   List<Object?> get props => [element, index, total];

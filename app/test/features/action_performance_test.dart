@@ -256,6 +256,19 @@ void main() {
               {}
             ],
             [
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/bilan_action_bilan_alimentation/following/KYC_petitdej',
+              200,
+              {
+                "nombre_total_questions": 2,
+                "nombre_total_questions_effectives": 2,
+                "position_courante": -1,
+                "is_first": false,
+                "is_last": false,
+                "is_out_of_range": false
+              }
+            ],
+            [
               "POST",
               "/utilisateurs/{userId}/actions/bilan/action_bilan_alimentation/faite",
               200,

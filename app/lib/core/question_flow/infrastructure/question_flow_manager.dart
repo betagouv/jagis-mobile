@@ -4,6 +4,7 @@ import 'package:app/core/question_flow/domain/current_question.dart';
 import 'package:app/core/question_flow/domain/cursor.dart';
 import 'package:app/core/question_flow/domain/cursor_manager.dart';
 import 'package:app/core/question_flow/infrastructure/current_question_mapper.dart';
+import 'package:fpdart/fpdart.dart';
 
 class QuestionFlowManager implements CursorManager<CurrentQuestion> {
   const QuestionFlowManager(this._client, {required this.sequenceId});
@@ -28,10 +29,16 @@ class QuestionFlowManager implements CursorManager<CurrentQuestion> {
   }
 
   @override
-  Future<Cursor<CurrentQuestion>> next(final Cursor<CurrentQuestion> current) async {
+  Future<Either<Unit, Cursor<CurrentQuestion>>> next(final Cursor<CurrentQuestion> current) async {
     final response = await _client.get(Endpoints.questionsNext(sequenceId, current.element.question.code.value));
-    final element = CurrentQuestionMapper.fromJson(response.data as Map<String, dynamic>);
+    final data = response.data as Map<String, dynamic>;
 
-    return Cursor(element: element, index: element.currentPosition, total: element.totalNumberOfQuestions);
+    if (!data.containsKey('question_courante')) {
+      return const Left(unit);
+    }
+
+    final element = CurrentQuestionMapper.fromJson(data);
+
+    return Right(Cursor(element: element, index: element.currentPosition, total: element.totalNumberOfQuestions));
   }
 }

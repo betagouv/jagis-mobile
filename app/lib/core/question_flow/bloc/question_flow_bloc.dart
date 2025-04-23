@@ -26,15 +26,8 @@ class QuestionFlowBloc extends Bloc<QuestionFlowEvent, QuestionFlowState> {
         return;
       }
 
-      if (blocState.cursor.isLast) {
-        emit(const QuestionFlowFinished());
-
-        return;
-      }
-
       final result = await application.next(blocState.cursor);
-
-      emit(QuestionFlowLoadSuccess(cursor: result));
+      result.fold((final l) => emit(const QuestionFlowFinished()), (final r) => emit(QuestionFlowLoadSuccess(cursor: r)));
     });
 
     on<QuestionFlowLastRequested>((final event, final emit) async {

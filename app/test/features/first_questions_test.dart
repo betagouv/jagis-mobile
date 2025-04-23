@@ -17,6 +17,7 @@ import './step/i_scroll_down_to.dart';
 import './step/i_select_date_in_the_field.dart';
 import './step/i_see.dart';
 import './step/i_select_in_the_field.dart';
+import './step/the_api_receives.dart';
 import './step/i_see_the_home_page.dart';
 import './step/the_api_will_return.dart';
 import './step/i_see_semantics.dart';
@@ -70,6 +71,23 @@ void main() {
         await iSee(tester, 'C’est presque terminé !');
         await iTapOn(tester, 'La cuisine et l’alimentation');
         await iTapOn(tester, 'Continuer');
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                "PUT",
+                "/utilisateurs/{userId}/questionsKYC_v2/KYC_preference",
+                200,
+                [
+                  {"code": "alimentation", "selected": true},
+                  {"code": "transport", "selected": false},
+                  {"code": "logement", "selected": false},
+                  {"code": "consommation", "selected": false},
+                  {"code": "ne_sais_pas", "selected": false}
+                ]
+              ]
+            ]));
         await iSee(tester, 'Tout est prêt !');
         await iTapOn(tester, 'C’est parti !');
         await iSeeTheHomePage(tester);

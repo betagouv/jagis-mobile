@@ -24,6 +24,9 @@ Feature: Onboarding
     Then I see {'C’est presque terminé !'}
     When I tap on {'La cuisine et l’alimentation'}
     When I tap on {'Continuer'}
+    Then the API receives
+      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'                                                                                                                                                                                         |
+      | "PUT"    | "/utilisateurs/{userId}/questionsKYC_v2/KYC_preference" |          200 | [{"code":"alimentation","selected":true},{"code":"transport","selected":false},{"code":"logement","selected":false},{"code":"consommation","selected":false},{"code":"ne_sais_pas","selected":false}] |
     Then I see {'Tout est prêt !'}
     When I tap on {'C’est parti !'}
     Then I see the home page

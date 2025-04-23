@@ -16,7 +16,9 @@ class QuestionThemesBloc extends Bloc<QuestionThemesEvent, QuestionThemesState> 
     });
     on<QuestionThemesOntChange>((final event, final emit) => emit(state.copyWith(valeur: event.valeur)));
     on<QuestionThemesMiseAJourDemandee>((final event, final emit) async {
-      await questionRepository.update(state.question!);
+      if (state.question != null) {
+        await questionRepository.update(state.question!.changeResponses(state.valeur));
+      }
     });
   }
 

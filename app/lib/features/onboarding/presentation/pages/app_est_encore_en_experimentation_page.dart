@@ -29,10 +29,7 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
     const bodyLg = DsfrTextStyle.bodyLg();
 
     return FnvScaffold(
-      appBar: AppBar(
-        backgroundColor: FnvColors.homeBackground,
-        iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
-      ),
+      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [

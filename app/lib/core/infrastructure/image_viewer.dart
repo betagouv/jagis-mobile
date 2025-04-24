@@ -10,7 +10,7 @@ Future<void> enlargeImage(final BuildContext context, {required final String src
       useSafeArea: true,
       swipeDismissible: true,
       doubleTapZoomable: true,
-      backgroundColor: FnvColors.homeBackground,
+      backgroundColor: FnvColors.background,
       closeButtonTooltip: 'Fermer',
       closeButtonColor: Colors.black,
     );

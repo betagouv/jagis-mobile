@@ -31,7 +31,7 @@ class ToutEstPretPage extends StatelessWidget {
     final arrow = TextSpan(text: '→ ', style: bodyLgBold.copyWith(color: blueFranceSun113));
 
     return FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.homeBackground, iconTheme: const IconThemeData(color: blueFranceSun113)),
+      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: blueFranceSun113)),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [

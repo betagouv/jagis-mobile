@@ -53,7 +53,7 @@ class _Content extends StatelessWidget {
       child: FnvScaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: FnvColors.homeBackground,
+          backgroundColor: FnvColors.background,
           iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
         ),
         body: ListView(

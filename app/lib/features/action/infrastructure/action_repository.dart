@@ -60,4 +60,20 @@ class ActionRepository {
 
     return const Right(unit);
   }
+
+  Future<Either<Exception, Unit>> askQuestion({
+    required final ActionType type,
+    required final String id,
+    required final String question,
+  }) async {
+    final response = await _client.post(
+      Endpoints.actionAskQuestion(type: actionTypeToAPIString(type), code: id),
+      data: {'question': question},
+    );
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception("Erreur lors de l'envoi de la question."));
+    }
+
+    return const Right(unit);
+  }
 }

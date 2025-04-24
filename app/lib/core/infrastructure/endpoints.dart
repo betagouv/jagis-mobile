@@ -38,9 +38,11 @@ abstract final class Endpoints {
   static const validerCode = '/utilisateurs/valider';
   static String action({required final String type, required final String code}) => '/utilisateurs/{userId}/actions/$type/$code';
   static String actionFaite({required final String type, required final String code}) =>
-      '/utilisateurs/{userId}/actions/$type/$code/faite';
+      '${action(type: type, code: code)}/faite';
   static String actionFeedback({required final String type, required final String code}) =>
-      '/utilisateurs/{userId}/actions/$type/$code/feedback';
+      '${action(type: type, code: code)}/feedback';
+  static String actionAskQuestion({required final String type, required final String code}) =>
+      '${action(type: type, code: code)}/question';
   static String aid(final String code) => '/utilisateurs/{userId}/aides/$code';
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';
   static String bilanByTheme(final String type) => '/utilisateurs/{userId}/bilans/last_v3/$type';

@@ -43,12 +43,6 @@ class ActionFeedbackWidget extends StatelessWidget {
                 );
                 if (context.mounted && (result ?? false)) {
                   context.read<ActionBloc>().add(ActionLoadRequested(id: action.id, type: action.type));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Merci pour votre retour ! Notre équipe en prendra connaissance très prochainement'),
-                      showCloseIcon: true,
-                    ),
-                  );
                 }
               },
             ),

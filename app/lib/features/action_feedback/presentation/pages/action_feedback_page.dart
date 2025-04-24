@@ -105,6 +105,9 @@ class _View extends StatelessWidget {
           ),
       listener: (final context, final state) {
         if (state.isSend) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text(Localisation.avezVousAimeCettePageSnackBar), showCloseIcon: true));
           GoRouter.of(context).pop(true);
         }
       },

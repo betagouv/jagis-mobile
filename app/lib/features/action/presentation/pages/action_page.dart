@@ -93,7 +93,7 @@ class _Success extends StatelessWidget {
               final ActionPerformance a => ActionPerformanceView(action: a),
             },
             if (action.aidSummaries.isNotEmpty) _PaddingHorizontal(child: ActionAidsView(aidSummaries: action.aidSummaries)),
-            if (action.faq != null && action.faq!.isNotEmpty) _PaddingHorizontal(child: ActionFAQView(faq: action.faq!)),
+            if (action.faq != null && action.faq!.isNotEmpty) _PaddingHorizontal(child: ActionFAQView(action: action)),
             const SizedBox(height: DsfrSpacings.s1w),
           ],
         ),

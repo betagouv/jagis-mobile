@@ -6,6 +6,7 @@ abstract final class AssetImages {
   static const ademe = 'assets/images/logo_ademe.svg';
   static const ademeSemantic = 'Logo de l’ADEME : Agence de la transition écologique';
   static const alimentation = 'assets/images/alimentation.svg';
+  static const askQuestion = 'assets/images/ask_question.svg';
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
   static const bibliothequeEmpty = 'assets/images/bibliotheque_illustration.svg';

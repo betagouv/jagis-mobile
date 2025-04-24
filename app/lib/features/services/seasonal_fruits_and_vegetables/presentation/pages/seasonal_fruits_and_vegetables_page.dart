@@ -69,7 +69,7 @@ class _Success extends StatelessWidget {
         const SizedBox(height: DsfrSpacings.s4w),
         const DecoratedBox(
           decoration: BoxDecoration(
-            color: FnvColors.homeBackground,
+            color: FnvColors.background,
             boxShadow: [BoxShadow(color: Color(0x08000068), offset: Offset(0, 5), blurRadius: 10)],
           ),
           child: TabBar(

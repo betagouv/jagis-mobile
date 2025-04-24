@@ -48,10 +48,7 @@ class _View extends StatelessWidget {
     listenWhen:
         (final previous, final current) => previous.motDePasseModifie != current.motDePasseModifie && current.motDePasseModifie,
     child: FnvScaffold(
-      appBar: AppBar(
-        backgroundColor: FnvColors.homeBackground,
-        iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
-      ),
+      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [

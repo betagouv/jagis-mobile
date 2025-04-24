@@ -15,6 +15,6 @@ class FnvScaffold extends StatelessWidget {
     body: body,
     drawer: drawer,
     bottomNavigationBar: bottomNavigationBar,
-    backgroundColor: FnvColors.homeBackground,
+    backgroundColor: FnvColors.background,
   );
 }

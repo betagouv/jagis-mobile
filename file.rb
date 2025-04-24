@@ -1,1 +1,0 @@
-print 'Pour rendre heureux codeQL.'

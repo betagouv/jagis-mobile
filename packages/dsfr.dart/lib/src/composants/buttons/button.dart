@@ -17,7 +17,7 @@ class DsfrButton extends StatelessWidget {
     required this.variant,
     this.foregroundColor,
     required this.size,
-    this.onPressed,
+    required this.onPressed,
   });
 
   final IconData? icon;

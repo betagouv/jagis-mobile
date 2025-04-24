@@ -2,6 +2,9 @@ name: Continuous Delivery
 
 on: workflow_dispatch
 
+permissions:
+  contents: read
+
 jobs:
   continuous_delivery_android_dev:
     uses: ./.github/workflows/cd-android.yml

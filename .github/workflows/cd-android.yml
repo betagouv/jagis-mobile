@@ -16,6 +16,9 @@ on:
       FLUTTER_ENV:
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   continuous_delivery_android:
     runs-on: ubuntu-latest

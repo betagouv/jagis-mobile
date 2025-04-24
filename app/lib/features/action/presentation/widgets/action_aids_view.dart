@@ -12,30 +12,27 @@ class ActionAidsView extends StatelessWidget {
   final List<AidSummary> aidSummaries;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.all(DsfrSpacings.s2w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        const Text(Localisation.aidesEtBonsPlans, style: DsfrTextStyle.headline3()),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.zero,
-          clipBehavior: Clip.none,
-          child: IntrinsicHeight(
-            child: Row(
-              spacing: DsfrSpacings.s2w,
-              children:
-                  aidSummaries
-                      .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
-                      .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
-                      .toList(),
-            ),
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      const Text(Localisation.aidesEtBonsPlans, style: DsfrTextStyle.headline3()),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.zero,
+        clipBehavior: Clip.none,
+        child: IntrinsicHeight(
+          child: Row(
+            spacing: DsfrSpacings.s2w,
+            children:
+                aidSummaries
+                    .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
+                    .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
+                    .toList(),
           ),
         ),
-        const SizedBox(height: DsfrSpacings.s4w),
-      ],
-    ),
+      ),
+      const SizedBox(height: DsfrSpacings.s4w),
+    ],
   );
 }

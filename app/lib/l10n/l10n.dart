@@ -32,6 +32,8 @@ abstract final class Localisation {
   static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
   static const avezVousAimeCettePageDescription =
       'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
+  static const avezVousAimeCettePageSnackBar =
+      'Merci pour votre retour ! Notre équipe en prendra connaissance très prochainement';
   static const besoinDInspiration = 'Besoin **d’inspiration** ?';
   static const bibliotheque = 'Bibliothèque';
   static const bibliothequeAucunArticle = 'Aucun article trouvé';
@@ -235,6 +237,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const point = '.';
   static const politiqueDeConfidentialite = 'Politique de confidentialité';
   static const politiqueDeConfidentialiteSite = 'https://jagis.beta.gouv.fr/politique-de-confidentialite';
+  static const poserVotreQuestion = 'Poser votre question';
+  static const notreEquipeVousRepond = ', notre équipe vous répond !';
+  static const poserVotreQuestionDescription =
+      'Une question ou une difficulté pour réaliser cette action ?\nNotre équipe vous répondra par email !';
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';

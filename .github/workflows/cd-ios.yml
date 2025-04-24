@@ -24,6 +24,9 @@ on:
       FLUTTER_ENV:
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   continuous_delivery_ios:
     runs-on: macos-15

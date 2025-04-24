@@ -18,7 +18,7 @@ class ButtonsPage extends StatelessWidget {
       for (final size in DsfrComponentSize.values) {
         children.addAll([
           Text('variant: ${variant.name}, size: ${size.name}'),
-          DsfrButton(label: label, variant: variant, size: size),
+          DsfrButton(label: label, variant: variant, size: size, onPressed: null),
           DsfrButton(label: label, variant: variant, size: size, onPressed: _handleTap),
           DsfrButton(label: label, icon: DsfrIcons.buildingsAncientGateFill, variant: variant, size: size, onPressed: _handleTap),
           DsfrButton(

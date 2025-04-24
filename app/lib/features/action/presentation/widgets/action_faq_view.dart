@@ -10,20 +10,17 @@ class ActionFAQView extends StatelessWidget {
   final List<FAQItem> faq;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
-        DsfrAccordionsGroup(
-          values:
-              faq
-                  .map((final faqItem) => DsfrAccordion.simple(label: faqItem.question, body: FnvMarkdown(data: faqItem.answer)))
-                  .toList(),
-        ),
-      ],
-    ),
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
+      DsfrAccordionsGroup(
+        values:
+            faq
+                .map((final faqItem) => DsfrAccordion.simple(label: faqItem.question, body: FnvMarkdown(data: faqItem.answer)))
+                .toList(),
+      ),
+    ],
   );
 }

@@ -28,7 +28,7 @@ class ActionPage extends StatelessWidget {
 
   static Map<String, String> pathParameters({
     required final ActionType type,
-    // NOTE(lsaudon): Le titre est uniquement ajouté pour être iso avec le web et permettre le deeplink
+    // Le titre est uniquement ajouté pour être iso avec le web et permettre le deeplink
     final String title = 'titre-action',
     required final String id,
   }) => {'type': actionTypeToAPIString(type), 'title': title, 'id': id};
@@ -77,10 +77,7 @@ class _Success extends StatelessWidget {
   Widget build(final BuildContext context) => ListView(
     children: [
       const SizedBox(height: DsfrSpacings.s3w),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
-      ),
+      _PaddingHorizontal(child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type)),
       const SizedBox(height: DsfrSpacings.s3w),
       DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
@@ -95,8 +92,8 @@ class _Success extends StatelessWidget {
               final ActionQuiz a => ActionQuizView(action: a),
               final ActionPerformance a => ActionPerformanceView(action: a),
             },
-            if (action.aidSummaries.isNotEmpty) ActionAidsView(aidSummaries: action.aidSummaries),
-            if (action.faq != null && action.faq!.isNotEmpty) ActionFAQView(faq: action.faq!),
+            if (action.aidSummaries.isNotEmpty) _PaddingHorizontal(child: ActionAidsView(aidSummaries: action.aidSummaries)),
+            if (action.faq != null && action.faq!.isNotEmpty) _PaddingHorizontal(child: ActionFAQView(faq: action.faq!)),
             const SizedBox(height: DsfrSpacings.s1w),
           ],
         ),
@@ -110,4 +107,14 @@ class _Success extends StatelessWidget {
       const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
     ],
   );
+}
+
+class _PaddingHorizontal extends StatelessWidget {
+  const _PaddingHorizontal({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(final BuildContext context) =>
+      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: child);
 }

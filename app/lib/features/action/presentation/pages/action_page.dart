@@ -74,38 +74,42 @@ class _Success extends StatelessWidget {
   final Action action;
 
   @override
-  Widget build(final BuildContext context) => ListView(
-    children: [
-      const SizedBox(height: DsfrSpacings.s3w),
-      _PaddingHorizontal(child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type)),
-      const SizedBox(height: DsfrSpacings.s3w),
-      DecoratedBox(
-        decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: DsfrSpacings.s3w,
-          children: [
-            const SizedBox(height: DsfrSpacings.s1w),
-            switch (action) {
-              final ActionClassic a => ActionClassicView(action: a),
-              final ActionSimulator a => ActionSimulatorView(action: a),
-              final ActionQuiz a => ActionQuizView(action: a),
-              final ActionPerformance a => ActionPerformanceView(action: a),
-            },
-            if (action.aidSummaries.isNotEmpty) _PaddingHorizontal(child: ActionAidsView(aidSummaries: action.aidSummaries)),
-            if (action.faq != null && action.faq!.isNotEmpty) _PaddingHorizontal(child: ActionFAQView(action: action)),
-            const SizedBox(height: DsfrSpacings.s1w),
-          ],
+  // TODO(lsaudon): Si on utilise un ListView, ça rebuild le quiz et du coup on perd l'avancement
+  // ignore: prefer-using-list-view
+  Widget build(final BuildContext context) => SingleChildScrollView(
+    child: Column(
+      children: [
+        const SizedBox(height: DsfrSpacings.s3w),
+        _PaddingHorizontal(child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type)),
+        const SizedBox(height: DsfrSpacings.s3w),
+        DecoratedBox(
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s3w,
+            children: [
+              const SizedBox(height: DsfrSpacings.s1w),
+              switch (action) {
+                final ActionClassic a => ActionClassicView(action: a),
+                final ActionSimulator a => ActionSimulatorView(action: a),
+                final ActionQuiz a => ActionQuizView(action: a),
+                final ActionPerformance a => ActionPerformanceView(action: a),
+              },
+              if (action.aidSummaries.isNotEmpty) _PaddingHorizontal(child: ActionAidsView(aidSummaries: action.aidSummaries)),
+              if (action.faq != null && action.faq!.isNotEmpty) _PaddingHorizontal(child: ActionFAQView(action: action)),
+              const SizedBox(height: DsfrSpacings.s1w),
+            ],
+          ),
         ),
-      ),
-      const SizedBox(height: DsfrSpacings.s3w),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
-        child: ActionScoreInstructionView(action: action),
-      ),
-      if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
-      const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
-    ],
+        const SizedBox(height: DsfrSpacings.s3w),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: ActionScoreInstructionView(action: action),
+        ),
+        if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
+        const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
+      ],
+    ),
   );
 }
 

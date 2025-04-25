@@ -260,7 +260,7 @@ void main() {
                 'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
-                {"points": 0}
+                {"points": 1}
               ]
             ]));
         await theApplicationIsLaunched(tester);
@@ -415,7 +415,7 @@ void main() {
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
         await iScrollDownTo(tester, 'Voir le résultat');
-        await iSeePoints(tester, '0');
+        await iSeePoints(tester, '1');
         await theApiWillReturn(
             tester,
             const bdd.DataTable([
@@ -424,11 +424,11 @@ void main() {
                 'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
-                {"points": 20}
+                {"points": 21}
               ]
             ]));
         await iTapOn(tester, 'Voir le résultat');
-        await iSeePoints(tester, '20');
+        await iSeePoints(tester, '21');
       } on TestFailure {
         success = false;
         rethrow;
@@ -463,7 +463,7 @@ void main() {
                 'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
-                {"points": 0}
+                {"points": 1}
               ]
             ]));
         await iAmLoggedIn(tester);
@@ -731,7 +731,7 @@ void main() {
         await iTapOn(tester, 'Question suivante');
         await iTapOn(tester, 'Jamais');
         await iScrollDownTo(tester, 'Question suivante');
-        await iSeePoints(tester, '0');
+        await iSeePoints(tester, '1');
         await theApiWillReturn(
             tester,
             const bdd.DataTable([
@@ -740,11 +740,11 @@ void main() {
                 'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
-                {"points": 50}
+                {"points": 51}
               ]
             ]));
         await iTapOn(tester, 'Question suivante');
-        await iSeePoints(tester, '50');
+        await iSeePoints(tester, '51');
       } on TestFailure {
         success = false;
         rethrow;

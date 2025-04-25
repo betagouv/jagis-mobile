@@ -52,7 +52,7 @@ Feature: Gamification
     Given I am logged in
     Given the API will return
       | 'method' | 'path'                                | 'statusCode' | 'responseData' |
-      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":0}   |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":1}   |
     Given The application is launched
     When I tap on the menu button
     Given I have actions in my library
@@ -77,12 +77,12 @@ Feature: Gamification
     When I scroll down to {'Voir la réponse'}
     When I tap on {'Voir la réponse'}
     When I scroll down to {'Voir le résultat'}
-    Then I see {'0'} points
+    Then I see {'1'} points
     Given the API will return
       | 'method' | 'path'                                | 'statusCode' | 'responseData' |
-      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":20}  |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":21}  |
     When I tap on {'Voir le résultat'}
-    Then I see {'20'} points
+    Then I see {'21'} points
 
   Scenario: Répondre a un bilan fait gagner 50 des feuilles
     Given I have actions in my library
@@ -90,7 +90,7 @@ Feature: Gamification
       | 'bilan' | 'action_bilan_alimentation' | 'Calculer les impacts liés à **votre alimentation**' |                   2 |
     Given the API will return
       | 'method' | 'path'                                | 'statusCode' | 'responseData' |
-      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":0}   |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":1}   |
     Given I am logged in
     Given The application is launched
     When I tap on the menu button
@@ -113,9 +113,9 @@ Feature: Gamification
     When I tap on {'Question suivante'}
     When I tap on {'Jamais'}
     When I scroll down to {'Question suivante'}
-    Then I see {'0'} points
+    Then I see {'1'} points
     Given the API will return
       | 'method' | 'path'                                | 'statusCode' | 'responseData' |
-      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":50}  |
+      | 'GET'    | '/utilisateurs/{userId}/gamification' |          200 | {"points":51}  |
     When I tap on {'Question suivante'}
-    Then I see {'50'} points
+    Then I see {'51'} points

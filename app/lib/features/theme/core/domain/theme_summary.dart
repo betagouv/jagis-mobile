@@ -42,15 +42,15 @@ final class ThemeSummary extends Equatable {
         ),
       ],
       ThemeType.logement => [
-        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur _Mes aides Réno_', url: 'https://mesaidesreno.beta.gouv.fr/'),
+        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur *Mes aides Réno*', url: 'https://mesaidesreno.beta.gouv.fr/'),
       ],
       ThemeType.transport => [
         ThemeSummaryInternalLink(
-          label: '🚙 **1** simulateur _Dois-je changer de voiture ?_',
+          label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
           route: ActionPage.name,
           pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
         ),
-        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur _Mes aides vélo_', route: AideSimulateurVeloPage.name),
+        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
       ],
       ThemeType.consommation => [
         const ThemeSummaryExternalLink(

@@ -29,11 +29,11 @@ final class ThemeSummary extends Equatable {
       ThemeType.alimentation => [
         if (recipeCount != null)
           ThemeSummaryInternalLink(
-            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
+            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
             route: RecipesPage.name,
           ),
         const ThemeSummaryInternalLink(
-          label: '🍓 **1** calendrier de fruits et légumes de saison',
+          label: '🍓 **1** calendrier de fruits et légumes de saison',
           route: SeasonalFruitsAndVegetablesPage.name,
         ),
         ThemeSummaryExternalLink(
@@ -42,15 +42,15 @@ final class ThemeSummary extends Equatable {
         ),
       ],
       ThemeType.logement => [
-        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur *Mes aides Réno*', url: 'https://mesaidesreno.beta.gouv.fr/'),
+        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur *Mes aides Réno*', url: 'https://mesaidesreno.beta.gouv.fr/'),
       ],
       ThemeType.transport => [
         ThemeSummaryInternalLink(
-          label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
+          label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
           route: ActionPage.name,
           pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
         ),
-        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
+        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
       ],
       ThemeType.consommation => [
         const ThemeSummaryExternalLink(
@@ -63,7 +63,7 @@ final class ThemeSummary extends Equatable {
 
     List<ThemeSummaryLink> getAidLinks() =>
         aidCount > 0
-            ? [ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name)]
+            ? [ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name)]
             : [];
 
     return [...getThemeSpecificLinks(), ...getAidLinks()];

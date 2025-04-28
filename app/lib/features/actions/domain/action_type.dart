@@ -3,7 +3,7 @@ enum ActionType {
   quiz,
   simulator,
 
-  /// Bilan environnemental
+  /// Empreinte écologique
   performance,
 }
 

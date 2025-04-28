@@ -20,7 +20,7 @@ class BodyPartial extends StatelessWidget {
     children: [
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: FnvTitle(title: EnvironmentalPerformanceSummaryL10n.estimerMonBilanEnvironnemental),
+        child: FnvTitle(title: EnvironmentalPerformanceSummaryL10n.estimerMonEmpreinteEcologique),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       if (data.partialData != null) ...[

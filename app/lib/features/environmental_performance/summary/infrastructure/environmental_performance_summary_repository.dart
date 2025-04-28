@@ -13,7 +13,7 @@ class EnvironmentalPerformanceSummaryRepository {
   Future<Either<Exception, EnvironmentalPerformanceData>> fetch() async {
     final response = await _client.get(Endpoints.bilan);
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération du bilan environnemental'));
+      return Left(Exception('Erreur lors de la récupération de l’empreinte écologique'));
     }
 
     final data = response.data! as Map<String, dynamic>;

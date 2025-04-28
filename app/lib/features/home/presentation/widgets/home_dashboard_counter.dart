@@ -96,12 +96,12 @@ class HomeDashboardCounter extends StatelessWidget {
                       children: [
                         if (!bilanIsDone)
                           const Text(
-                            Localisation.monBilanEnvironnemental,
+                            Localisation.monEmpreinteEcologique,
                             style: DsfrTextStyle.bodySm(),
                             textAlign: TextAlign.center,
                           ),
                         DsfrLink.sm(
-                          label: bilanIsDone ? Localisation.monBilanEnvironnemental : Localisation.completer,
+                          label: bilanIsDone ? Localisation.monEmpreinteEcologique : Localisation.completer,
                           textAlign: TextAlign.center,
                           icon: DsfrIcons.systemArrowRightSLine,
                           iconPosition: DsfrLinkIconPosition.end,

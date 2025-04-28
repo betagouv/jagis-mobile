@@ -25,7 +25,7 @@ class BodyFull extends StatelessWidget {
     children: [
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: FnvTitle(title: EnvironmentalPerformanceSummaryL10n.monBilanEnvironnemental),
+        child: FnvTitle(title: EnvironmentalPerformanceSummaryL10n.monEmpreinteEcologique),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       Padding(

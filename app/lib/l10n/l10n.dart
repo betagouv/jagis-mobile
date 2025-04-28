@@ -41,7 +41,7 @@ abstract final class Localisation {
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
-  static const bilanEnvironnemental = 'Bilan environnemental';
+  static const empreinteEcologique = 'Empreinte écologique';
   static const bonjour = 'Bonjour,\n';
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
@@ -190,7 +190,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
-  static const monBilanEnvironnemental = 'Mon bilan environnemental';
+  static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';
   static const monLogement = 'Mon logement';
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';

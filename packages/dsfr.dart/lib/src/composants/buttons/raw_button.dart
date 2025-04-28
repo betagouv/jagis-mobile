@@ -33,17 +33,21 @@ class DsfrRawButton extends StatefulWidget {
 }
 
 class _DsfrRawButtonState extends State<DsfrRawButton> with MaterialStateMixin<DsfrRawButton> {
-  late final double _minHeight;
-  late final EdgeInsetsGeometry _padding;
-  late final TextStyle _textStyle;
-  late final DsfrButtonBackgroundColor _backgroundColor;
-  late final DsfrButtonForegroundColor _foregroundColor;
-  late final DsfrButtonBorder _border;
+  late double _minHeight;
+  late EdgeInsetsGeometry _padding;
+  late TextStyle _textStyle;
+  late DsfrButtonBackgroundColor _backgroundColor;
+  late DsfrButtonForegroundColor _foregroundColor;
+  late DsfrButtonBorder _border;
   Timer? _timer;
 
   @override
   void initState() {
     super.initState();
+    _configureState();
+  }
+
+  void _configureState() {
     _backgroundColor = DsfrButtonBackgroundColor.fromVariant(widget.variant);
     _foregroundColor =
         widget.foregroundColor == null
@@ -83,7 +87,7 @@ class _DsfrRawButtonState extends State<DsfrRawButton> with MaterialStateMixin<D
   @override
   void didUpdateWidget(final DsfrRawButton oldWidget) {
     super.didUpdateWidget(oldWidget);
-    setMaterialState(WidgetState.disabled, widget.onPressed == null);
+    _configureState();
   }
 
   @override

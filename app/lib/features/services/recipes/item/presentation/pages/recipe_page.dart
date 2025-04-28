@@ -50,6 +50,10 @@ class _Success extends StatelessWidget {
 
   final RecipeLoadSuccess state;
 
+  /// Le backend, nous envoie des chaînes de caractères avec des caractères Unicode échappés uniquement sur les étapes
+  String _decodeUnicodeEscapes(final String input) =>
+      input.replaceAllMapped(RegExp(r'\\u([0-9a-fA-F]{4})'), (final m) => String.fromCharCode(int.parse(m.group(1)!, radix: 16)));
+
   @override
   Widget build(final BuildContext context) {
     final recipe = state.recipe;
@@ -82,7 +86,7 @@ class _Success extends StatelessWidget {
                       TextSpan(
                         children: [
                           TextSpan(text: '${e.order}. ', style: const DsfrTextStyle.bodyMdBold()),
-                          TextSpan(text: e.description),
+                          TextSpan(text: _decodeUnicodeEscapes(e.description)),
                         ],
                       ),
                       style: const DsfrTextStyle.bodyMd(),

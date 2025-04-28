@@ -4,6 +4,7 @@ import 'package:app/core/question/domain/response_mosaic.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/features/know_your_customer/detail/presentation/widgets/mosaic_button.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,44 +37,54 @@ class _MosaicSetState extends State<_MosaicSet> {
   }
 
   @override
-  Widget build(final BuildContext context) => GridView.builder(
-    physics: const NeverScrollableScrollPhysics(),
-    shrinkWrap: true,
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
-      mainAxisSpacing: DsfrSpacings.s2w,
-      crossAxisSpacing: DsfrSpacings.s2w,
-    ),
-    itemBuilder: (final context, final index) {
-      final e = _responses[index];
-      const size = 40.0;
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: DsfrSpacings.s2w,
+    children: [
+      GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: DsfrSpacings.s2w,
+          crossAxisSpacing: DsfrSpacings.s2w,
+        ),
+        itemBuilder: (final context, final index) {
+          final e = _responses[index];
+          const size = 40.0;
 
-      return MosaicButton(
-        emoji: FnvImage.network(e.imageUrl, width: size, height: size),
-        title: e.label,
-        value: e.isSelected,
-        onChanged: (final value) {
-          setState(() {
-            _responses =
-                _responses
-                    .map(
-                      (final r) =>
-                          r.code == e.code
-                              ? ResponseMosaic(
-                                code: r.code,
-                                label: r.label,
-                                emoji: r.emoji,
-                                imageUrl: r.imageUrl,
-                                isSelected: value,
-                              )
-                              : r,
-                    )
-                    .toList();
-          });
-          context.read<QuestionEditBloc>().add(QuestionEditMosaicChangee(_responses));
+          return MosaicButton(
+            emoji: FnvImage.network(e.imageUrl, width: size, height: size),
+            title: e.label,
+            value: e.isSelected,
+            onChanged: (final value) {
+              setState(() {
+                _responses =
+                    _responses
+                        .map(
+                          (final r) =>
+                              r.code == e.code
+                                  ? ResponseMosaic(
+                                    code: r.code,
+                                    label: r.label,
+                                    emoji: r.emoji,
+                                    imageUrl: r.imageUrl,
+                                    isSelected: value,
+                                  )
+                                  : r,
+                        )
+                        .toList();
+              });
+              context.read<QuestionEditBloc>().add(QuestionEditMosaicChangee(_responses));
+            },
+          );
         },
-      );
-    },
-    itemCount: _responses.length,
+        itemCount: _responses.length,
+      ),
+      DsfrLink.md(
+        label: Localisation.aucuneDeCesPropositions,
+        onTap: () => context.read<QuestionEditBloc>().add(const QuestionEditMosaicAucuneProposition()),
+      ),
+    ],
   );
 }

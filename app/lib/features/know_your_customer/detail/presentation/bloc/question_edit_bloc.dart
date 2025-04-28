@@ -7,7 +7,7 @@ import 'package:app/features/know_your_customer/detail/presentation/bloc/questio
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
-  QuestionEditBloc({required final QuestionRepository questionRepository}) : super(const QuestionEditInitial()) {
+  QuestionEditBloc(final QuestionRepository questionRepository) : super(const QuestionEditInitial()) {
     on<QuestionEditRecuperationDemandee>((final event, final emit) async {
       emit(const QuestionEditInitial());
       final result = await questionRepository.fetchQuestion(id: event.id);
@@ -95,7 +95,24 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
         }
       }
     });
+    on<QuestionEditMosaicAucuneProposition>((final event, final emit) async {
+      final aState = state;
+      switch (aState) {
+        case QuestionEditLoaded():
+          final currentQuestion = aState.newQuestion;
+          if (currentQuestion is QuestionMosaicBoolean) {
+            final modifiedQuestion = currentQuestion.changeResponses([]);
+            final result = await questionRepository.update(modifiedQuestion);
+            result.fold((final l) => emit(QuestionEditError(id: aState.question.code.value, error: l.toString())), (final r) {
+              emit(QuestionEditLoaded(question: modifiedQuestion, newQuestion: modifiedQuestion, updated: true));
+              emit(QuestionEditLoaded(question: modifiedQuestion, newQuestion: modifiedQuestion, updated: false));
+            });
+          }
 
+        default:
+          return;
+      }
+    });
     on<QuestionEditMisAJourDemandee>((final event, final emit) async {
       final aState = state;
       switch (aState) {

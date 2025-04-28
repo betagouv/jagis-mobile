@@ -61,6 +61,11 @@ final class QuestionEditMosaicChangee extends QuestionEditEvent {
 }
 
 @immutable
+final class QuestionEditMosaicAucuneProposition extends QuestionEditEvent {
+  const QuestionEditMosaicAucuneProposition();
+}
+
+@immutable
 final class QuestionEditEntierChangee extends QuestionEditEvent {
   const QuestionEditEntierChangee(this.value);
 
@@ -82,10 +87,5 @@ final class QuestionEditDecimalChangee extends QuestionEditEvent {
 
 @immutable
 final class QuestionEditMisAJourDemandee extends QuestionEditEvent {
-  const QuestionEditMisAJourDemandee(this.id);
-
-  final String id;
-
-  @override
-  List<Object> get props => [id];
+  const QuestionEditMisAJourDemandee();
 }

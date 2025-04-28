@@ -35,9 +35,7 @@ class QuestionForm extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionEditBloc(questionRepository: context.read())..add(QuestionEditRecuperationDemandee(questionId)),
+    create: (final context) => QuestionEditBloc(context.read())..add(QuestionEditRecuperationDemandee(questionId)),
     lazy: false,
     child: _Content(
       withoutTitle: withoutTitle,
@@ -108,7 +106,7 @@ class _LoadedContentState extends State<_LoadedContent> {
     widget.controller.addListener(_listener);
   }
 
-  void _listener() => context.read<QuestionEditBloc>().add(QuestionEditMisAJourDemandee(widget.state.question.code.value));
+  void _listener() => context.read<QuestionEditBloc>().add(const QuestionEditMisAJourDemandee());
 
   @override
   void dispose() {

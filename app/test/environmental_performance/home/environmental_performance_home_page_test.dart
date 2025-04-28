@@ -102,11 +102,11 @@ Future<void> pumpHomePage(final WidgetTester tester) async {
 }
 
 void main() {
-  group("Bilan environnemental sur la page d'accueil", () {
+  group("Empreinte écologique sur la page d'accueil", () {
     testWidgets('Aller sur les questions du mini bilan', (final tester) async {
       await mockNetworkImages(() async {
         await pumpHomePage(tester);
-        expect(find.text(Localisation.monBilanEnvironnemental), findsOneWidget);
+        expect(find.text(Localisation.monEmpreinteEcologique), findsOneWidget);
         await tester.tap(find.textContaining(Localisation.completer));
         await tester.pumpAndSettle();
 

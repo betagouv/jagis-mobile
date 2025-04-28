@@ -14,7 +14,7 @@ class ActionPerformanceRepository {
   Future<Either<Exception, EnvironmentalPerformanceDetailItem>> fetch(final ThemeType themeType) async {
     final response = await _client.get(Endpoints.bilanByTheme(themeType.name));
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération du bilan environnemental'));
+      return Left(Exception('Erreur lors de la récupération de l’empreinte écologique'));
     }
 
     final data = response.data! as Map<String, dynamic>;

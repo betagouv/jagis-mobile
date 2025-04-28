@@ -52,7 +52,7 @@ Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final D
 }
 
 void main() {
-  group('Votre bilan environnemental', () {
+  group('Mon empreinte écologique', () {
     for (final testCase in [
       (
         header: EnvironmentalPerformanceSummaryL10n.quEstCeQuUn,
@@ -60,7 +60,7 @@ void main() {
       ),
       (
         header: EnvironmentalPerformanceSummaryL10n.commentEstCalcule,
-        expected: 'Votre bilan environnemental est calculé à partir',
+        expected: 'Votre empreinte écologique est calculée à partir',
       ),
     ]) {
       testWidgets('Voir le contenu de ${testCase.header}', (final tester) async {
@@ -81,11 +81,11 @@ void main() {
       });
     }
 
-    testWidgets('Voir le contenu de Estimer mon bilan environnemental avec un bilan partiel', (final tester) async {
+    testWidgets('Voir le contenu de Estimer mon empreinte écologique avec un bilan partiel', (final tester) async {
       await mockNetworkImages(() async {
         final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData);
         await pumpEnvironmentalPerformancePage(tester, dio);
-        expect(find.text('Estimer mon bilan environnemental'), findsOneWidget);
+        expect(find.text('Estimer mon empreinte écologique'), findsOneWidget);
         expect(find.text('Faible'), findsOneWidget);
         expect(find.text('Moyen'), findsOneWidget);
         expect(find.text('Fort'), findsOneWidget);
@@ -213,11 +213,11 @@ void main() {
       });
     });
 
-    testWidgets('Voir le contenu de Bilan environnemental', (final tester) async {
+    testWidgets('Voir le contenu d’empreinte écologique', (final tester) async {
       final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData);
       await mockNetworkImages(() async {
         await pumpEnvironmentalPerformancePage(tester, dio);
-        expect(find.text(Localisation.monBilanEnvironnemental), findsOneWidget);
+        expect(find.text(Localisation.monEmpreinteEcologique), findsOneWidget);
         expect(find.text('2,9'), findsOneWidget);
         expect(find.text('Voiture'), findsOneWidget);
         await tester.scrollUntilVisible(

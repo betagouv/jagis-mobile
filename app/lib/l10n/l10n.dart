@@ -29,6 +29,7 @@ abstract final class Localisation {
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
+  static const aucuneDeCesPropositions = 'Aucune de ces propositions';
   static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
   static const avezVousAimeCettePageDescription =
       'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';

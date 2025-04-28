@@ -143,7 +143,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
   static const jeCreeMonCompte = 'Je crée mon compte';
-  static const jusqua = 'Jusqu’à ';
+  static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
@@ -238,9 +238,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const point = '.';
   static const politiqueDeConfidentialite = 'Politique de confidentialité';
   static const politiqueDeConfidentialiteSite = 'https://jagis.beta.gouv.fr/politique-de-confidentialite';
-  static const poserVotreQuestion = 'Poser votre question';
+  static const posezVotreQuestion = 'Posez votre question';
+  static const posezVotreQuestionSnackBar = 'Merci pour votre question ! Notre équipe en prendra connaissance très prochainement';
   static const notreEquipeVousRepond = ', notre équipe vous répond !';
-  static const poserVotreQuestionDescription =
+  static const posezVotreQuestionDescription =
       'Une question ou une difficulté pour réaliser cette action ?\nNotre équipe vous répondra par email !';
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =

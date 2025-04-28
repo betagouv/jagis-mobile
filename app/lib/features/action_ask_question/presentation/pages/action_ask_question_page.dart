@@ -51,7 +51,7 @@ class _View extends StatelessWidget {
         if (state.isSend) {
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(const SnackBar(content: Text(Localisation.avezVousAimeCettePageSnackBar), showCloseIcon: true));
+          ).showSnackBar(const SnackBar(content: Text(Localisation.posezVotreQuestionSnackBar), showCloseIcon: true));
           GoRouter.of(context).pop(true);
         }
       },
@@ -63,14 +63,14 @@ class _View extends StatelessWidget {
           bottom: DsfrSpacings.s4w,
         ),
         children: [
-          const Text(Localisation.poserVotreQuestion, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.posezVotreQuestion, style: DsfrTextStyle.headline3()),
           const SizedBox(height: DsfrSpacings.s2w),
           const Align(alignment: Alignment.centerLeft, child: FnvImage.asset(AssetImages.askQuestion, width: 156, height: 156)),
           const SizedBox(height: DsfrSpacings.s1w),
-          const Text(Localisation.poserVotreQuestionDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey200)),
+          const Text(Localisation.posezVotreQuestionDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey200)),
           const SizedBox(height: DsfrSpacings.s3w),
           DsfrInputHeadless(
-            key: const ValueKey(Localisation.poserVotreQuestion),
+            key: const ValueKey(Localisation.posezVotreQuestion),
             onChanged: (final value) => context.read<ActionAskQuestionBloc>().add(ActionAskQuestionMessageChanged(value)),
             maxLines: 6,
             maxLength: 500,

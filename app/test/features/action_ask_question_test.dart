@@ -104,12 +104,12 @@ void main() {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''Si il y a une FAQ, Poser une question à l'équipe''',
+    testWidgets('''Si il y a une FAQ, Posez une question à l'équipe''',
         (tester) async {
       var success = true;
       try {
         await beforeEach(
-            '''Si il y a une FAQ, Poser une question à l'équipe''');
+            '''Si il y a une FAQ, Posez une question à l'équipe''');
         await bddSetUp(tester);
         await theApiWillReturn(
             tester,
@@ -176,15 +176,15 @@ void main() {
             ]));
         await iTapOn(tester,
             "Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
-        await iScrollDownTo(tester, 'Poser votre question');
-        await iSee(tester, 'Poser votre question');
+        await iScrollDownTo(tester, 'Posez votre question');
+        await iSee(tester, 'Posez votre question');
         await iDontSee(tester,
             'Une question ou une difficulté pour réaliser cette action ?');
-        await iTapOn(tester, 'Poser votre question');
+        await iTapOn(tester, 'Posez votre question');
         await iSee(tester,
             'Une question ou une difficulté pour réaliser cette action ?\nNotre équipe vous répondra par email !');
         await iEnterInTheField(
-            tester, "Voici ma question.", 'Poser votre question');
+            tester, "Voici ma question.", 'Posez votre question');
         await iScrollDownTo(tester, 'Envoyer');
         await iTapOn(tester, 'Envoyer');
         await theApiReceives(
@@ -203,7 +203,7 @@ void main() {
         rethrow;
       } finally {
         await afterEach(
-          '''Si il y a une FAQ, Poser une question à l'équipe''',
+          '''Si il y a une FAQ, Posez une question à l'équipe''',
           success,
         );
       }
@@ -270,7 +270,7 @@ void main() {
             ]));
         await iTapOn(tester,
             "Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
-        await iDontSee(tester, 'Poser votre question');
+        await iDontSee(tester, 'Posez votre question');
       } on TestFailure {
         success = false;
         rethrow;

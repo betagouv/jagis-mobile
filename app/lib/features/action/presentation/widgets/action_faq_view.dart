@@ -30,7 +30,7 @@ class ActionFAQView extends StatelessWidget {
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
               child: DsfrLink.md(
-                label: Localisation.poserVotreQuestion,
+                label: Localisation.posezVotreQuestion,
                 onTap: () async {
                   await GoRouter.of(context).pushNamed(
                     ActionAskQuestionPage.name,

@@ -1,4 +1,3 @@
-// ignore_for_file: prefer-correct-callback-field-name
 import 'package:dsfr/src/fondamentaux/colors.g.dart';
 import 'package:dsfr/src/fondamentaux/fonts.dart';
 import 'package:dsfr/src/fondamentaux/spacing.g.dart';
@@ -12,6 +11,7 @@ class DsfrInputHeadless extends StatefulWidget {
     this.focusNode,
     this.controller,
     this.suffixText,
+    this.suffixIcon,
     this.onChanged,
     this.onTap,
     this.onFieldSubmitted,
@@ -40,12 +40,13 @@ class DsfrInputHeadless extends StatefulWidget {
     this.inputFormatters,
     this.scrollPadding = const EdgeInsets.all(20),
     this.autofillHints,
-  });
+  }) : assert(suffixText == null || suffixIcon == null, 'You cannot use both suffixText and suffixIcon at the same time.');
 
   final String? initialValue;
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final String? suffixText;
+  final Icon? suffixIcon;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
   final ValueChanged<String>? onFieldSubmitted;
@@ -135,6 +136,7 @@ class _DsfrInputHeadlessState extends State<DsfrInputHeadless> {
             focusNode: _focusNode,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: widget.suffixIcon,
               suffixText: widget.suffixText,
               suffixStyle: widget.inputStyle,
               counterStyle: const DsfrTextStyle.bodyXs(color: DsfrColors.grey200),

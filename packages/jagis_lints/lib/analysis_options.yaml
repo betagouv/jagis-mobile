@@ -121,6 +121,7 @@ dart_code_metrics:
     - prefer-class-destructuring: false # NOTE(lsaudon): Trop vieux pour ça
     - prefer-commenting-analyzer-ignores: false # NOTE(lsaudon): C'est chiant
     - prefer-container: false # NOTE(lsaudon): Je prèfere limiter container pour avoir uniquement ce que je veux
+    - prefer-correct-callback-field-name: false
     - prefer-correct-identifier-length: false # NOTE(lsaudon): Je nomme comme je veux.
     - prefer-correct-handler-name: false # NOTE(lsaudon): Je nomme comme je veux.
     - prefer-correct-switch-length: false # NOTE(lsaudon): Il y a une bonne taille de switch ?
@@ -135,6 +136,7 @@ dart_code_metrics:
     - prefer-for-loop-in-children: false # NOTE(lsaudon): Vraiment ?
     - prefer-getter-over-method: false # NOTE(lsaudon): Pourquoi pas mais moins que les autres
     - prefer-type-over-var: false # NOTE(lsaudon): var c'est bien
+    - prefer-typedefs-for-callbacks: false
     - prefer-match-file-name: false
     - prefer-moving-to-variable:
         exclude:

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer-correct-callback-field-name
-
 import 'package:dsfr/src/composants/checkbox.dart';
 import 'package:dsfr/src/composants/input_headless.dart';
 import 'package:dsfr/src/fondamentaux/colors.g.dart';

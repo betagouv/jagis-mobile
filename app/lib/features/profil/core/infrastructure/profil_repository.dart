@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:app/core/address/address.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -116,5 +117,23 @@ class ProfilRepository {
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du code postal et de la commune'));
+  }
+
+  Future<Either<Exception, Unit>> modifyAddress(final Address address) async {
+    final response = await _client.patch(
+      Endpoints.logement,
+      data: {
+        'rue': address.street,
+        'numero_rue': address.houseNumber,
+        'code_postal': address.postCode,
+        'code_commune': address.cityCode,
+        'latitude': address.latitude,
+        'longitude': address.longitude,
+      },
+    );
+
+    return isResponseSuccessful(response.statusCode)
+        ? const Right(unit)
+        : Left(Exception('Erreur lors de la mise à jour de l’adresse'));
   }
 }

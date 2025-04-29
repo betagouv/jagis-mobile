@@ -8,7 +8,6 @@ abstract final class EnvironmentalPerformanceSummaryL10n {
   static const vosReponses = 'vos réponses';
   static const monEstimation = 'mon estimation';
   static const affinerMonEstimationSousTitre = 'Et obtenez un bilan détaillé de votre impact sur l’environnement';
-  static const proposePar = 'Proposé par';
   static const nosGestesClimat = 'Nos Gestes Climat';
   static const nosGestesClimatDescription =
       'Basé sur le calculateur carbone développé par l’Agence de la transition écologique (ADEME) et beta.gouv.fr, en partenariat avec l’Association Bilan Carbone (ABC).';

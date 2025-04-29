@@ -1,5 +1,3 @@
-// ignore_for_file: prefer-correct-callback-field-name
-
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
@@ -48,6 +46,10 @@ abstract final class Localisation {
   static const cestPresqueTermine = 'C’est presque terminé !';
   static const changerMonMotDePasse = 'Changer mon mot de passe';
   static const changerVotreMotDePasseConfirmation = 'Votre mot de passe a été changé.';
+  static const choisirCommeAdressePrincipale = 'Choisir';
+  static const choisirCommeAdressePrincipaleDescription =
+      'Voulez-vous choisir cette adresse comme votre adresse principale à l’avenir ?';
+  static const choisissezUneAdresse = 'Choisissez une adresse';
   static const codeDeVerification = 'Code de vérification';
   static const codePostal = 'Code postal';
   static const combienEtesVousDansVotreLogement = 'Combien êtes-vous dans votre logement (vous inclus) ?';
@@ -158,6 +160,10 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const maDateDeNaissance = 'Ma date de naissance';
   static const maReponse = 'Ma réponse';
   static const maResidencePrincipaleEst = 'Ma résidence principale est …';
+  static const maifDescription =
+      'Exposition aux risques climatiques, services de proximité, prix de l’immobilier… Retrouvez toutes les informations utiles aux alentours de votre adresse !';
+  static const maifNom = 'MAIF - Aux alentours';
+  static const maifUrl = 'https://auxalentours.maif.fr/';
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';
   static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus/';
@@ -304,7 +310,12 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirMesResultats = 'Voir mes résultats';
   static const voirPlusActions = 'Voir plus d’actions';
   static const voirTout = 'Voir tout';
+  static const vosRisques = 'Vos risques';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
+  static const votreKitDePrevention = 'Votre kit de prévention';
+  static const votreKitDePreventionDescription =
+      'Vous habitez dans une zone inondable ou argileuse, découvrez votre kit de prévention pour agir - vous aussi - à votre échelle.';
+  static const votreKitDePreventionBouton = 'Télécharger mon kit de prévention';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
   static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
@@ -351,6 +362,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
       'Pour vérifier votre identité et vous permettre d’accéder à votre compte, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
 
   static String euro(final int value) => '$value €';
+
+  static String lesChiffresClesDe(final String city) => 'Les chiffres clés de **$city**';
 
   static String nombreAction(final int value) => value <= 1 ? '$value action' : '$value actions';
 

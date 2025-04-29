@@ -61,6 +61,8 @@ dev_dependencies:
   mocktail: 1.0.4
   mocktail_image_network: 1.2.0
   nested: 1.0.0
+  plugin_platform_interface: 2.1.8
+  url_launcher_platform_interface: 2.3.2
 
 flutter:
   uses-material-design: true

@@ -27,9 +27,9 @@ class ActionRepository {
     final json = response.data! as Map<String, dynamic>;
 
     final value = switch (type) {
-      ActionType.simulator => ActionSimulatorMapper.fromJson(json),
       ActionType.classic => ActionClassicMapper.fromJson(json),
       ActionType.quiz => ActionQuizMapper.fromJson(json),
+      ActionType.simulator => ActionSimulatorMapper.fromJson(json),
       ActionType.performance => ActionPerformanceMapper.fromJson(json),
     };
 

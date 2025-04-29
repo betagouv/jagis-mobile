@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/app/router/app_router.dart';
+import 'package:app/core/address/address_repository.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/infrastructure/authentication_injection.dart';
 import 'package:app/core/authentication/infrastructure/authentication_redirection.dart';
@@ -44,6 +45,7 @@ import 'package:app/features/quiz/infrastructure/quizzes_repository.dart';
 import 'package:app/features/ranking/infrastructure/ranking_repository.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/services/lvao/infrastructure/lvao_repository.dart';
+import 'package:app/features/services/maif/infrastructure/maif_repository.dart';
 import 'package:app/features/services/pres_de_chez_vous/infrastructure/action_pres_de_chez_vous_repository.dart';
 import 'package:app/features/services/recipes/action/infrastructure/action_recipes_repository.dart';
 import 'package:app/features/services/recipes/item/infrastructure/recipe_repository.dart';
@@ -61,6 +63,7 @@ import 'package:app/features/version/infrastructure/version_repository.dart';
 import 'package:app/features/version/presentation/bloc/version_bloc.dart';
 import 'package:app/features/version/presentation/bloc/version_event.dart';
 import 'package:clock/clock.dart';
+import 'package:dio/dio.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +77,8 @@ class App extends StatefulWidget {
     required this.clock,
     required this.tracker,
     required this.messageBus,
-    required this.dioHttpClient,
+    required this.apiClient,
+    required this.addressClient,
     required this.packageInfo,
     required this.notificationService,
     required this.authenticationService,
@@ -84,7 +88,8 @@ class App extends StatefulWidget {
   final Clock clock;
   final Tracker tracker;
   final MessageBus messageBus;
-  final DioHttpClient dioHttpClient;
+  final DioHttpClient apiClient;
+  final Dio addressClient;
   final PackageInfo packageInfo;
   final NotificationService notificationService;
   final AuthenticationService authenticationService;
@@ -138,11 +143,11 @@ class _AppState extends State<App> {
     const locale = Locale('fr', 'FR');
 
     final upgradeBloc = UpgradeBloc();
-    widget.dioHttpClient.add(UpgradeInterceptor(upgradeBloc));
+    widget.apiClient.add(UpgradeInterceptor(upgradeBloc));
 
-    final communesRepository = CommunesRepository(widget.dioHttpClient);
-    final profilRepository = ProfilRepository(widget.dioHttpClient);
-    final environmentalPerformanceSummaryRepository = EnvironmentalPerformanceSummaryRepository(widget.dioHttpClient);
+    final communesRepository = CommunesRepository(widget.apiClient);
+    final profilRepository = ProfilRepository(widget.apiClient);
+    final environmentalPerformanceSummaryRepository = EnvironmentalPerformanceSummaryRepository(widget.apiClient);
 
     return InheritedGoRouter(
       goRouter: _goRouter,
@@ -155,52 +160,54 @@ class _AppState extends State<App> {
                 RepositoryProvider.value(value: widget.clock),
                 RepositoryProvider.value(value: widget.timedDelay),
                 RepositoryProvider.value(value: widget.messageBus),
-                RepositoryProvider.value(value: widget.dioHttpClient),
+                RepositoryProvider.value(value: widget.apiClient),
                 RepositoryProvider.value(value: widget.notificationService),
                 RepositoryProvider.value(value: widget.tracker),
                 RepositoryProvider.value(value: communesRepository),
                 RepositoryProvider.value(value: profilRepository),
                 RepositoryProvider.value(value: environmentalPerformanceSummaryRepository),
-                RepositoryProvider(create: (final context) => AidsRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ActionsRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => RecommandationsRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => RankingRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => QuizRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => QuestionRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => KnowYourCustomersRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(widget.dioHttpClient)),
+                RepositoryProvider(create: (final context) => AddressRepository(widget.addressClient)),
+                RepositoryProvider(create: (final context) => AidsRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ActionsRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => RecommandationsRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => RankingRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => QuizRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => QuestionRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => KnowYourCustomersRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(widget.apiClient)),
                 RepositoryProvider(
                   create:
                       (final context) => AuthentificationRepository(
-                        client: widget.dioHttpClient,
+                        client: widget.apiClient,
                         authenticationService: widget.authenticationService,
                       ),
                 ),
-                RepositoryProvider(create: (final context) => ThemeRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ActionRepository(widget.dioHttpClient, widget.messageBus)),
-                RepositoryProvider(create: (final context) => LvaoRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ActionPresDeChezVousRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ActionRecipesRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => RecipesRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => RecipeRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ArticlesRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => QuizzesRepository(widget.dioHttpClient)),
+                RepositoryProvider(create: (final context) => ThemeRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ActionRepository(widget.apiClient, widget.messageBus)),
+                RepositoryProvider(create: (final context) => LvaoRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ActionPresDeChezVousRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ActionRecipesRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => RecipesRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => RecipeRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => MaifRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ArticlesRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => QuizzesRepository(widget.apiClient)),
                 RepositoryProvider(
                   create:
                       (final context) =>
-                          NotificationRepository(client: widget.dioHttpClient, notificationService: widget.notificationService),
+                          NotificationRepository(client: widget.apiClient, notificationService: widget.notificationService),
                 ),
-                RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ActionPerformanceRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => ResetRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => HomeDashboardRepository(widget.dioHttpClient)),
-                RepositoryProvider(create: (final context) => LibraryRepository(widget.dioHttpClient)),
+                RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ActionPerformanceRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => ResetRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => HomeDashboardRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => LibraryRepository(widget.apiClient)),
               ],
               child: MultiBlocProvider(
                 providers: [
                   BlocProvider.value(value: upgradeBloc),
                   BlocProvider(create: (final context) => AidsDisclaimerCubit()),
-                  BlocProvider(create: (final context) => UserBloc(repository: UserRepository(widget.dioHttpClient))),
+                  BlocProvider(create: (final context) => UserBloc(repository: UserRepository(widget.apiClient))),
                   BlocProvider(
                     create:
                         (final context) =>
@@ -212,21 +219,20 @@ class _AppState extends State<App> {
                         (final context) => AideVeloBloc(
                           profilRepository: profilRepository,
                           communesRepository: communesRepository,
-                          aideVeloRepository: AideVeloRepository(widget.dioHttpClient),
+                          aideVeloRepository: AideVeloRepository(widget.apiClient),
                         ),
                   ),
-
                   BlocProvider(
                     create:
                         (final context) => GamificationBloc(
-                          GamificationRepository(client: widget.dioHttpClient, messageBus: widget.messageBus),
+                          GamificationRepository(client: widget.apiClient, messageBus: widget.messageBus),
                           widget.authenticationService,
                         )..add(const GamificationSubscriptionRequested()),
                   ),
                   BlocProvider(
                     create:
                         (final context) => EnvironmentalPerformanceQuestionBloc(
-                          repository: EnvironmentalPerformanceQuestionRepository(widget.dioHttpClient),
+                          repository: EnvironmentalPerformanceQuestionRepository(widget.apiClient),
                         ),
                   ),
                   BlocProvider(
@@ -238,7 +244,7 @@ class _AppState extends State<App> {
                   BlocProvider(
                     create:
                         (final context) =>
-                            CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.dioHttpClient)),
+                            CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.apiClient)),
                   ),
                 ],
                 child: MaterialApp.router(

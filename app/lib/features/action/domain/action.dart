@@ -219,7 +219,8 @@ final class ActionSimulator extends ActionPerformance {
 
 enum ActionSimulatorId {
   carSimulator('action_simulateur_voiture'),
-  mesAidesReno('simu_aides_reno');
+  mesAidesReno('simu_aides_reno'),
+  maif('action_simulateur_maif');
 
   const ActionSimulatorId(this.apiString);
   final String apiString;

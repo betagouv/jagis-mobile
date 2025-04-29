@@ -41,6 +41,7 @@ class _AppSetupState extends State<AppSetup> {
   /// Pour que la FutureBuilder soit appelée une seule fois
   late final _initializeDependenciesFuture = _initializeApp();
   final _messageBus = MessageBus();
+  final _dio = Dio(BaseOptions(validateStatus: (final status) => true));
 
   Future<void> _initializeApp() async {
     _packageInfo = await PackageInfo.fromPlatform();
@@ -92,6 +93,7 @@ class _AppSetupState extends State<AppSetup> {
   @override
   Future<void> dispose() async {
     _tracker.dispose();
+    _dio.close();
     await _authenticationService.dispose();
     await _messageBus.close();
     await CrashReporting.dispose();
@@ -128,7 +130,8 @@ class _AppSetupState extends State<AppSetup> {
         clock: _clock,
         tracker: _tracker,
         messageBus: _messageBus,
-        dioHttpClient: client,
+        apiClient: client,
+        addressClient: _dio,
         packageInfo: _packageInfo,
         notificationService: _notificationService,
         authenticationService: _authenticationService,

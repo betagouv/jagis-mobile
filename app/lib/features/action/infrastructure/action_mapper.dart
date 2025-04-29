@@ -23,9 +23,9 @@ abstract final class ActionMapper {
   static int nbActionsDoneFromJson(final Map<String, dynamic> json) => json['nombre_actions_faites'] as int;
   static int scoreFromJson(final Map<String, dynamic> json) => json['points'] as int;
   static List<AidSummary> aidSummariesFromJson(final Map<String, dynamic> json) =>
-      JsonListMapper.fromJsonList(json['aides'], AidSummaryMapper.fromJson);
+      JsonHelpers.fromJsonList(json['aides'], AidSummaryMapper.fromJson);
   static List<FAQItem>? faqFromJson(final Map<String, dynamic> json) =>
-      json['faqs'] == null ? null : JsonListMapper.fromJsonList(json['faqs'], FAQItemMapper.fromJson);
+      json['faqs'] == null ? null : JsonHelpers.fromJsonList(json['faqs'], FAQItemMapper.fromJson);
 }
 
 abstract final class ActionClassicMapper {
@@ -43,13 +43,13 @@ abstract final class ActionClassicMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
-    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
-    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
+    sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
     scoreLabel: json['label_compteur'] as String,
     how: json['comment'] as String,
-    services: JsonListMapper.fromJsonList(json['services'], ActionServiceMapper.fromJson),
+    services: JsonHelpers.fromJsonList(json['services'], ActionServiceMapper.fromJson),
   );
 }
 
@@ -68,9 +68,9 @@ abstract final class ActionQuizMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
-    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
-    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
-    quizzes: JsonListMapper.fromJsonList(json['quizzes'], QuizMapper.fromJson),
+    sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
+    quizzes: JsonHelpers.fromJsonList(json['quizzes'], QuizMapper.fromJson),
     congratulatoryText: json['quizz_felicitations'] as String,
   );
 }
@@ -91,8 +91,8 @@ abstract final class ActionSimulatorMapper {
     score: ActionMapper.scoreFromJson(json),
     sequenceId: json['enchainement_id'] as String,
     rate: (json['like_level'] as num?)?.toInt(),
-    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
-    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
+    sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
   );
 }
@@ -112,8 +112,8 @@ abstract final class ActionPerformanceMapper {
     score: ActionMapper.scoreFromJson(json),
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
-    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
-    articles: JsonListMapper.fromJsonList(json['articles'], RecommandationMapper.fromJson),
+    sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     sequenceId: json['enchainement_id'] as String,
   );
 }

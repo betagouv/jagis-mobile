@@ -20,6 +20,7 @@ abstract final class Endpoints {
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';
+  static const maifSearch = '/utilisateurs/{userId}/recherche_services/maif/search2';
   static const modifierMotDePasse = '/utilisateurs/modifier_mot_de_passe';
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';

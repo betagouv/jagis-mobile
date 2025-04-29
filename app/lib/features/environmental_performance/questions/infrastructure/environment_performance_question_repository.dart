@@ -17,6 +17,6 @@ class EnvironmentalPerformanceQuestionRepository {
       return Left(Exception('Erreur lors de la récupération les questions du bilan'));
     }
 
-    return Right(JsonListMapper.fromJsonList(response.data, QuestionMapper.fromJson));
+    return Right(JsonHelpers.fromJsonList(response.data, QuestionMapper.fromJson));
   }
 }

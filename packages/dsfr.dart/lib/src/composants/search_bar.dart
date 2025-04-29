@@ -1,4 +1,3 @@
-// ignore_for_file: prefer-correct-callback-field-name
 import 'dart:async';
 
 import 'package:dsfr/src/fondamentaux/colors.g.dart';

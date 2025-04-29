@@ -1,5 +1,3 @@
-// ignore_for_file: prefer-typedefs-for-callbacks
-
 import 'package:app/features/car_simulator/domain/car_simulator.dart';
 
 abstract final class CarInfosMapper {

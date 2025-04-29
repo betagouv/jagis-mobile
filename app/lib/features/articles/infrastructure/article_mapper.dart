@@ -21,7 +21,7 @@ abstract final class ArticleMapper {
               logo: json['partenaire_logo_url'] as String,
               url: json['partenaire_url'] as String,
             ),
-    sources: JsonListMapper.fromJsonList(json['sources'], SourceMapper.fromJson),
+    sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
     isFavorite: json['favoris'] as bool,
     isRead: json['read_date'] != null,
   );

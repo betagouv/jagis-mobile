@@ -8,11 +8,18 @@ Future<void> theApiWillReturn(final WidgetTester tester, final bdd.DataTable dat
   dataTable.asMaps().forEach((final e) {
     final path = e['path'] as String;
     final statusCode = e['statusCode'] as int;
+    final requestData = e.containsKey('requestData') ? e['requestData'] : null;
     final responseData = e['responseData'];
     final methodHandlers = {
       'GET': () => FeatureContext.instance.dioMock.getM(path, statusCode: statusCode, responseData: responseData),
       'PATCH': () => FeatureContext.instance.dioMock.patchM(path, statusCode: statusCode, responseData: responseData),
-      'POST': () => FeatureContext.instance.dioMock.postM(path, statusCode: statusCode, responseData: responseData),
+      'POST':
+          () => FeatureContext.instance.dioMock.postM(
+            path,
+            statusCode: statusCode,
+            requestData: requestData,
+            responseData: responseData,
+          ),
       'PUT': () => FeatureContext.instance.dioMock.putM(path, statusCode: statusCode),
     };
 

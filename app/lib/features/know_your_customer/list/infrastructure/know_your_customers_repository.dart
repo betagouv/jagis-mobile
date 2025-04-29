@@ -14,9 +14,7 @@ class KnowYourCustomersRepository {
   Future<Either<Exception, List<Question>>> fetchQuestions() async {
     final response = await _client.get(Endpoints.questionsKyc);
     if (isResponseSuccessful(response.statusCode)) {
-      return Right(
-        JsonListMapper.fromJsonList(response.data, QuestionMapper.fromJson).filter((final e) => e.isAnswered).toList(),
-      );
+      return Right(JsonHelpers.fromJsonList(response.data, QuestionMapper.fromJson).filter((final e) => e.isAnswered).toList());
     }
 
     return Left(Exception('Erreur lors de la récupération des questions'));

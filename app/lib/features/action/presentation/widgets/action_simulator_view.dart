@@ -2,6 +2,7 @@ import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/car_simulator/presentation/widgets/car_simulator_widget.dart';
 import 'package:app/features/mes_aides_reno/presentation/mes_aides_reno_widget.dart';
+import 'package:app/features/services/maif/presentation/widgets/maif_widget.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class ActionSimulatorView extends StatelessWidget {
       switch (action.getId()) {
         ActionSimulatorId.carSimulator => CarSimulatorWidget(sequenceId: action.sequenceId, isDone: action.isDone),
         ActionSimulatorId.mesAidesReno => const MesAidesRenoWidget(),
+        ActionSimulatorId.maif => const MaifWidget(),
       },
     ],
   );

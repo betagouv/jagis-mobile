@@ -97,13 +97,15 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
     )
     ..getM(Endpoints.questions('ENCHAINEMENT_KYC_personnalisation_alimentation'), responseData: <dynamic>[]);
 
+  final dioMock = ScenarioContext().dioMock!;
   await mockNetworkImages(() async {
     await tester.pumpFrames(
       App(
         clock: clock,
         tracker: tracker,
         messageBus: MessageBus(),
-        dioHttpClient: DioHttpClient(dio: ScenarioContext().dioMock!, authenticationService: authenticationService),
+        apiClient: DioHttpClient(dio: dioMock, authenticationService: authenticationService),
+        addressClient: dioMock,
         packageInfo: const PackageInfoFake(version: '1.2.3', buildNumber: '4'),
         notificationService: const NotificationServiceFake(AuthorizationStatus.denied),
         authenticationService: authenticationService,

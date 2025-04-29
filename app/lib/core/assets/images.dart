@@ -28,6 +28,13 @@ abstract final class AssetImages {
   static const leaf = 'assets/images/leaf.svg';
   static const logement = 'assets/images/logement.svg';
   static const lvaoStore = 'assets/images/lvao_store.svg';
+  static const maifArgile = 'assets/images/maif_argile.svg';
+  static const maifImage = 'assets/images/maif_image.webp';
+  static const maifInondation = 'assets/images/maif_inondation.svg';
+  static const maifRadon = 'assets/images/maif_radon.svg';
+  static const maifSeisme = 'assets/images/maif_seisme.svg';
+  static const maifSubmersion = 'assets/images/maif_submersion.svg';
+  static const maifTempete = 'assets/images/maif_tempete.svg';
   static const mangerBouger = 'assets/images/manger_bouger.webp';
   static const mangerBougerLogo = 'assets/images/logo_manger_bouger.svg';
   static const mesAidesVeloLogo = 'assets/images/mesaidesvelo_logo.svg';

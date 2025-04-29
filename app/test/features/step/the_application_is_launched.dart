@@ -23,7 +23,8 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
   final clock = Clock.fixed(DateTime(1992, 9));
   final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: clock);
   await authenticationService.checkAuthenticationStatus();
-  final dioHttpClient = DioHttpClient(dio: FeatureContext.instance.dioMock, authenticationService: authenticationService);
+  final dioMock = FeatureContext.instance.dioMock;
+  final dioHttpClient = DioHttpClient(dio: dioMock, authenticationService: authenticationService);
   final tracker = _TrackerMock();
   when(() => tracker.navigatorObserver).thenAnswer((final _) => RouteObserver<ModalRoute<void>>());
   final messageBus = MessageBus();
@@ -33,7 +34,8 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
       clock: clock,
       tracker: tracker,
       messageBus: messageBus,
-      dioHttpClient: dioHttpClient,
+      apiClient: dioHttpClient,
+      addressClient: dioMock,
       packageInfo: FeatureContext.instance.packageInfo,
       notificationService: const NotificationServiceFake(AuthorizationStatus.authorized),
       authenticationService: authenticationService,

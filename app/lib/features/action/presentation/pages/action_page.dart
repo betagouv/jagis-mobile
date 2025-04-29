@@ -91,8 +91,8 @@ class _Success extends StatelessWidget {
               const SizedBox(height: DsfrSpacings.s1w),
               switch (action) {
                 final ActionClassic a => ActionClassicView(action: a),
-                final ActionSimulator a => ActionSimulatorView(action: a),
                 final ActionQuiz a => ActionQuizView(action: a),
+                final ActionSimulator a => ActionSimulatorView(action: a),
                 final ActionPerformance a => ActionPerformanceView(action: a),
               },
               if (action.aidSummaries.isNotEmpty) _PaddingHorizontal(child: ActionAidsView(aidSummaries: action.aidSummaries)),

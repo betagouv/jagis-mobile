@@ -125,7 +125,7 @@ class _DsfrRawButtonState extends State<DsfrRawButton> with MaterialStateMixin<D
                             return;
                           }
                           widget.onPressed!();
-                          _timer = Timer(const Duration(milliseconds: 500), () {});
+                          _timer = Timer(Durations.long2, () {});
                         },
                 onHighlightChanged: updateMaterialState(WidgetState.pressed),
                 onHover: updateMaterialState(WidgetState.hovered),

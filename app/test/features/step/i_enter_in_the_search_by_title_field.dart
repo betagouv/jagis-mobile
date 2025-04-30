@@ -1,4 +1,5 @@
 import 'package:app/l10n/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
@@ -36,5 +37,5 @@ Future<void> iEnterInTheSearchByTitleField(final WidgetTester tester, final Stri
     },
   );
   await iEnterInTheField(tester, text, Localisation.rechercherParTitre);
-  await tester.pumpAndSettle(const Duration(milliseconds: 500));
+  await tester.pumpAndSettle(Durations.long2);
 }

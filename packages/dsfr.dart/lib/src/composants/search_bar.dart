@@ -86,7 +86,7 @@ class _DsfrSearchBarState extends State<DsfrSearchBar> {
             if (_timer?.isActive ?? false) {
               _timer?.cancel();
             }
-            _timer = Timer(const Duration(milliseconds: 500), () => widget.onChanged(value));
+            _timer = Timer(Durations.long2, () => widget.onChanged(value));
           },
           onTapOutside: (final event) => FocusManager.instance.primaryFocus?.unfocus(),
         ),

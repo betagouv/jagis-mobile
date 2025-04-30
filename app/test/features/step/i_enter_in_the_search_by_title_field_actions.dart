@@ -2,6 +2,7 @@ import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
@@ -35,5 +36,5 @@ Future<void> iEnterInTheSearchByTitleFieldActions(final WidgetTester tester, fin
     },
   );
   await iEnterInTheField(tester, text, Localisation.rechercherParTitre);
-  await tester.pumpAndSettle(const Duration(milliseconds: 500));
+  await tester.pumpAndSettle(Durations.long2);
 }

@@ -79,7 +79,7 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: recommandationOmbre),
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
       child: Material(
         color: FnvColors.transparent,
         child: InkWell(

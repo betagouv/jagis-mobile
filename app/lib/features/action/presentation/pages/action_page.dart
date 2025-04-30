@@ -83,7 +83,7 @@ class _Success extends StatelessWidget {
         _PaddingHorizontal(child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type)),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: actionOmbre),
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DsfrSpacings.s3w,

@@ -29,7 +29,7 @@ class ProfilPage extends StatelessWidget {
         const FnvTitle(title: Localisation.monProfil),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(
-          decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+          decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
           child: Column(
             children: [
               _MenuElement(

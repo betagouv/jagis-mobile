@@ -219,5 +219,5 @@ class _PlantCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) =>
-      DecoratedBox(decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow), child: child);
+      DecoratedBox(decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow), child: child);
 }

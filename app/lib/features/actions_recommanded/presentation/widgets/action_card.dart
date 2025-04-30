@@ -19,7 +19,7 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
     child: IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

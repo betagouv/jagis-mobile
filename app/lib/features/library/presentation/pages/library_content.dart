@@ -26,7 +26,7 @@ class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin
     return DsfrFocusWidget(
       isFocused: isFocused,
       child: DecoratedBox(
-        decoration: const BoxDecoration(color: Colors.white, boxShadow: recommandationOmbre),
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
         child: Material(
           color: FnvColors.transparent,
           child: InkWell(

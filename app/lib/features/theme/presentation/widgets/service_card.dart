@@ -95,7 +95,7 @@ class _ServiceCardBaseState extends State<_ServiceCardBase> with MaterialStateMi
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         border: Border.all(color: widget.borderColor),
-        boxShadow: cardBoxShadow,
+        boxShadow: cardShadow,
       ),
       child: Material(
         color: FnvColors.transparent,

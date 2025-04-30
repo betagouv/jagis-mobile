@@ -22,7 +22,7 @@ class ActionScoreInstructionView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(boxShadow: cardBoxShadow),
+    decoration: const BoxDecoration(boxShadow: cardShadow),
     child: Column(
       children: [
         ColoredBox(

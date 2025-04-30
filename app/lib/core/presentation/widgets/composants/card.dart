@@ -22,7 +22,7 @@ class _FnvCardState extends State<FnvCard> with MaterialStateMixin<FnvCard> {
       decoration: BoxDecoration(
         color: FnvColors.carteFond,
         border: widget.borderColor == null ? null : Border.all(color: widget.borderColor!, width: DsfrSpacings.s0v5),
-        boxShadow: cardBoxShadow,
+        boxShadow: cardShadow,
       ),
       child: Material(
         color: FnvColors.transparent,

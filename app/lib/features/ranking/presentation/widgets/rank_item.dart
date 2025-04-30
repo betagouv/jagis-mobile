@@ -18,7 +18,7 @@ class RankItem extends StatelessWidget {
     final pseudo = userRank.pseudo;
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: backgroundColor, border: Border.all(color: borderColor), boxShadow: cardBoxShadow),
+      decoration: BoxDecoration(color: backgroundColor, border: Border.all(color: borderColor), boxShadow: cardShadow),
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: Row(

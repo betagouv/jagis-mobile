@@ -73,7 +73,7 @@ class _Success extends StatelessWidget {
                 state.actors
                     .map(
                       (final e) => DecoratedBox(
-                        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+                        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
                         child: SizedBox(
                           width: 346,
                           child: Padding(

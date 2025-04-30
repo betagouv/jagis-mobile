@@ -41,7 +41,7 @@ class EnvironmentalPerformanceCard extends StatelessWidget {
     ];
 
     return DecoratedBox(
-      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: recommandationOmbre),
+      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v, horizontal: DsfrSpacings.s2w),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: DsfrSpacings.s2w, children: items),

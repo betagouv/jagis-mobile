@@ -177,7 +177,7 @@ class _CarSimulatorOptionView extends StatelessWidget {
         kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: SizedBox(
@@ -301,7 +301,7 @@ class _CurrentCarResultView extends StatelessWidget {
     children: [
       const Text(Localisation.votreVehiculeActuel, style: DsfrTextStyle.headline2()),
       DecoratedBox(
-        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
         child: Padding(
           padding: const EdgeInsets.all(DsfrSpacings.s2w),
           child: Column(

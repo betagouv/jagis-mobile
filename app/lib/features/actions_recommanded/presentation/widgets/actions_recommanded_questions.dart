@@ -108,7 +108,7 @@ class _GetStarted extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardBoxShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
     child: Padding(
       padding: const EdgeInsets.only(
         left: DsfrSpacings.s3w,

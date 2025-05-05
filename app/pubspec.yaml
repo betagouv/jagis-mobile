@@ -22,7 +22,7 @@ dependencies:
   firebase_messaging: 15.2.5
   flutter:
     sdk: flutter
-  flutter_bloc: 9.1.0
+  flutter_bloc: 9.1.1
   flutter_inappwebview: 6.1.5
   flutter_inset_shadow: 2.0.3
   flutter_localizations:

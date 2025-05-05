@@ -4,7 +4,6 @@ import 'package:app/features/environmental_performance/questions/infrastructure/
 import 'package:app/features/environmental_performance/questions/presentation/bloc/environmental_performance_question_bloc.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
 import 'package:app/features/environmental_performance/summary/application/fetch_environmental_performance.dart';
-import 'package:app/features/environmental_performance/summary/environmental_performance_summary_l10n.dart';
 import 'package:app/features/environmental_performance/summary/infrastructure/environmental_performance_summary_repository.dart';
 import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
@@ -53,34 +52,6 @@ Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final D
 
 void main() {
   group('Mon empreinte écologique', () {
-    for (final testCase in [
-      (
-        header: EnvironmentalPerformanceSummaryL10n.quEstCeQuUn,
-        expected: 'Que l’on se rende dans un magasin de quartier pour faire ses courses',
-      ),
-      (
-        header: EnvironmentalPerformanceSummaryL10n.commentEstCalcule,
-        expected: 'Votre empreinte écologique est calculée à partir',
-      ),
-    ]) {
-      testWidgets('Voir le contenu de ${testCase.header}', (final tester) async {
-        await mockNetworkImages(() async {
-          final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData);
-
-          await pumpEnvironmentalPerformancePage(tester, dio);
-          await tester.scrollUntilVisible(
-            find.text(testCase.header),
-            300,
-            scrollable: find.descendant(of: find.byType(ListView), matching: find.byType(Scrollable).first),
-          );
-          await tester.pumpAndSettle();
-          await tester.tap(find.text(testCase.header));
-          await tester.pumpAndSettle();
-          expect(find.textContaining(testCase.expected), findsOneWidget);
-        });
-      });
-    }
-
     testWidgets('Voir le contenu de Estimer mon empreinte écologique avec un bilan partiel', (final tester) async {
       await mockNetworkImages(() async {
         final dio = DioMock()..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData);

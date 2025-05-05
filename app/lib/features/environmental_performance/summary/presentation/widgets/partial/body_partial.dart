@@ -4,7 +4,6 @@ import 'package:app/features/environmental_performance/summary/environmental_per
 import 'package:app/features/environmental_performance/summary/presentation/widgets/environmental_performance_partner_card.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_card.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_categories.dart';
-import 'package:app/features/environmental_performance/summary/presentation/widgets/question_section.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -76,8 +75,6 @@ class BodyPartial extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
         child: EnvironmentalPerformanceCategories(categories: data.categories),
       ),
-      const SizedBox(height: DsfrSpacings.s7w),
-      const QuestionSection(),
       const SizedBox(height: DsfrSpacings.s4w),
       const Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: EnvironmentalPerformancePartnerCard()),
       const SafeArea(child: SizedBox.shrink()),

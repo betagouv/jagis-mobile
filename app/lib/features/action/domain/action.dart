@@ -224,6 +224,8 @@ enum ActionSimulatorId {
   const ActionSimulatorId(this.apiString);
   final String apiString;
 
+  static bool isSimulatorId(final String id) => values.any((final element) => element.apiString == id);
+
   static ActionSimulatorId fromApiString(final String id) => values.firstWhere(
     (final element) => element.apiString == id,
     orElse: () => throw UnimplementedError('Unknown simulator id: $id'),

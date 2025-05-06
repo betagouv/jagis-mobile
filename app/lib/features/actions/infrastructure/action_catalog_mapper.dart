@@ -1,9 +1,7 @@
-import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/actions/domain/action_catalog.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions/infrastructure/action_summary_mapper.dart';
-import 'package:fpdart/fpdart.dart';
 
 abstract final class ActionCatalogMapper {
   const ActionCatalogMapper._();

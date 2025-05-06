@@ -4,5 +4,5 @@ abstract final class MesAidesRenoDataMapper {
   const MesAidesRenoDataMapper._();
 
   static MesAidesRenoData fromJson(final Map<String, dynamic> json) =>
-      MesAidesRenoData(iframeUrl: json['iframe_url'] as String, iframeUrlWhenDone: json['iframe_url_deja_faite'] as String);
+      MesAidesRenoData(iframeUrl: json['iframe_url'] as String, iframeUrlWhenIsDone: json['iframe_url_deja_faite'] as String);
 }

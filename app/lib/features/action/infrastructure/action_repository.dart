@@ -7,7 +7,6 @@ import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/infrastructure/action_mapper.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ActionRepository {
@@ -16,29 +15,7 @@ class ActionRepository {
   final DioHttpClient _client;
   final MessageBus _messageBus;
 
-  static ActionSimulator mesAidesReno(final bool? isDone) => ActionSimulator(
-    themeType: ThemeType.transport,
-    id: ActionSimulatorId.mesAidesReno.apiString,
-    title: 'Simulateur Mes Aides Reno',
-    subTitle: '',
-    alreadySeen: true,
-    isDone: true,
-    faq: const [],
-    nbActionsDone: 10,
-    aidSummaries: const [],
-    score: 10,
-    rate: 0,
-    why: 'Pourquoi',
-    sequenceId: '',
-    sources: const [],
-    articles: const [],
-  );
-
   Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {
-    if (id == ActionSimulatorId.mesAidesReno.apiString) {
-      return Right(mesAidesReno(false));
-    }
-
     final actionTypeAPI = actionTypeToAPIString(type);
 
     final response = await _client.get(Endpoints.action(type: actionTypeAPI, code: id));

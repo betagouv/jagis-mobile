@@ -66,7 +66,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
 
   @override
   Widget build(final BuildContext context) {
-    final url = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
+    final iframeUrl = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +74,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
       children: [
         if (widget.isDone && !_isAtEllibilityResult)
           Padding(
-            padding: const EdgeInsets.only(bottom: DsfrSpacings.s4w, left: DsfrSpacings.s2w, right: DsfrSpacings.s2w),
+            padding: const EdgeInsets.only(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w, bottom: DsfrSpacings.s4w),
             child: DsfrAlert(
               type: DsfrAlertType.info,
               description: Column(
@@ -99,7 +99,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
           height: _webViewHeight,
           child: InAppWebView(
             initialSettings: InAppWebViewSettings(isInspectable: kDebugMode, iframeAllow: 'clipboard-read; clipboard-write'),
-            initialUrlRequest: URLRequest(url: WebUri.uri(url)),
+            initialUrlRequest: URLRequest(url: WebUri.uri(iframeUrl)),
             onLoadStop: (final controller, final url) async {
               await controller.evaluateJavascript(source: _injectEventListeners);
             },

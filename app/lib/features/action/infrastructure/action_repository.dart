@@ -27,9 +27,11 @@ class ActionRepository {
     nbActionsDone: 10,
     aidSummaries: const [],
     score: 10,
-    questions: const [],
     rate: 0,
     why: 'Pourquoi',
+    sequenceId: '',
+    sources: const [],
+    articles: const [],
   );
 
   Future<Either<Exception, Action>> fetch({required final ActionType type, required final String id}) async {

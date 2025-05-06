@@ -3,6 +3,7 @@ import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_event.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_state.dart';
+import 'package:app/features/mes_aides_reno/infrastructure/mes_aides_reno_mapper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
@@ -10,14 +11,15 @@ class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
     on<MesAidesRenoIframeUrlRequested>((final event, final emit) async {
       emit(const MesAidesRenoState.loading());
 
-      final result = await client.get(Endpoints.mesAidesRenoGetIframeUrl);
+      final result = await client.get(Endpoints.mesAidesRenoGetIframes);
 
       if (isResponseSuccessful(result.statusCode)) {
-        emit(MesAidesRenoState.success(result.data as String));
+        final json = result.data! as Map<String, dynamic>;
+        emit(MesAidesRenoState.success(MesAidesRenoDataMapper.fromJson(json).iframeUrlWhenDone));
       } else {
         emit(
           MesAidesRenoState.failure(
-            'Error while fetching data:\n  url: ${Endpoints.mesAidesRenoGetIframeUrl}\n  code: ${result.statusCode ?? 'unknown'}',
+            'Error while fetching data:\n  url: ${Endpoints.mesAidesRenoGetIframes}\n  code: ${result.statusCode ?? 'unknown'}',
           ),
         );
       }

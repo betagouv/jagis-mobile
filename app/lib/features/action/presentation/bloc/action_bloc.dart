@@ -49,8 +49,10 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
     nbActionsDone: 10,
     aidSummaries: const [],
     score: 10,
-    questions: const [],
     why: '## En quelques mots',
     rate: 0,
+    sequenceId: '',
+    sources: const [],
+    articles: const [],
   );
 }

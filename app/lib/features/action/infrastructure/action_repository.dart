@@ -22,7 +22,7 @@ class ActionRepository {
     title: 'Simulateur Mes Aides Reno',
     subTitle: '',
     alreadySeen: true,
-    isDone: isDone ?? false,
+    isDone: true,
     faq: const [],
     nbActionsDone: 10,
     aidSummaries: const [],

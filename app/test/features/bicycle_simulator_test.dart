@@ -144,8 +144,8 @@ void main() {
             '''When the form is completed then button is enabled''');
         await bddSetUp(tester);
         await iTapOn(tester, 'Accéder au simulateur');
-        await iTapOn(tester, 'Vélo pliant standard : 500 €');
         await iScrollDown(tester);
+        await iTapOn(tester, 'Vélo pliant standard : 500 €');
         await iEnterInTheField(tester, '39100', 'Code postal');
         await iTapOnDropdownMenu(tester);
         await iTapOn(tester, 'DOLE');

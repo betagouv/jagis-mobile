@@ -15,6 +15,7 @@ import './step/i_enter_in_the_search_by_title_field.dart';
 import './step/i_dont_see.dart';
 import './step/i_filter_with_theme.dart';
 import './step/i_filter_by_favorites.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_filter_by_articles_already_read.dart';
 import './step/i_tap_on_the_first_article.dart';
 
@@ -148,6 +149,7 @@ void main() {
         await iTapOn(tester, 'Bibliothèque');
         await iFilterByFavorites(tester);
         await iSee(tester, '1 article');
+        await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iDontSee(tester, "Comment réduire l'impact de ses vêtements ?");
       } on TestFailure {
@@ -170,6 +172,7 @@ void main() {
         await iTapOn(tester, 'Bibliothèque');
         await iFilterByArticlesAlreadyRead(tester);
         await iSee(tester, '1 article');
+        await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iDontSee(tester, "Comment réduire l'impact de ses vêtements ?");
       } on TestFailure {
@@ -190,6 +193,7 @@ void main() {
         await iHaveArticlesInMyLibrary(tester, 2);
         await iTapOn(tester, 'Bibliothèque');
         await iTapOnTheFirstArticle(tester);
+        await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester,
             "Comment réduire l'impact de notre alimentation sur le climat ?");

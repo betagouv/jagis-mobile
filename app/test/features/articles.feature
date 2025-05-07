@@ -42,6 +42,7 @@ Feature: Articles
     When I tap on {'Bibliothèque'}
     When I filter by favorites
     Then I see {'1 article'}
+    When I scroll down to {"Qu'est-ce qu'une alimentation durable ?"}
     Then I see {"Qu'est-ce qu'une alimentation durable ?"}
     Then I don't see {"Comment réduire l'impact de ses vêtements ?"}
 
@@ -50,6 +51,7 @@ Feature: Articles
     When I tap on {'Bibliothèque'}
     When I filter by articles already read
     Then I see {'1 article'}
+    When I scroll down to {"Qu'est-ce qu'une alimentation durable ?"}
     Then I see {"Qu'est-ce qu'une alimentation durable ?"}
     Then I don't see {"Comment réduire l'impact de ses vêtements ?"}
 
@@ -57,5 +59,6 @@ Feature: Articles
     Given I have {2} articles in my library
     When I tap on {'Bibliothèque'}
     When I tap on the first article
+    When I scroll down to {"Qu'est-ce qu'une alimentation durable ?"}
     Then I see {"Qu'est-ce qu'une alimentation durable ?"}
     Then I see {"Comment réduire l'impact de notre alimentation sur le climat ?"}

@@ -1,8 +1,8 @@
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeDashboardCounter extends StatelessWidget {
@@ -44,7 +44,7 @@ class HomeDashboardCounter extends StatelessWidget {
                     ),
                     Text(
                       Localisation.actionsTerminees(nbActionsDone),
-                      style: const DsfrTextStyle.bodySm(),
+                      style: const DsfrTextStyle.bodySm(color: DsfrColors.grey50),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -97,14 +97,13 @@ class HomeDashboardCounter extends StatelessWidget {
                         if (!bilanIsDone)
                           const Text(
                             Localisation.monEmpreinteEcologique,
-                            style: DsfrTextStyle.bodySm(),
+                            style: DsfrTextStyle.bodySm(color: DsfrColors.grey50),
                             textAlign: TextAlign.center,
                           ),
-                        DsfrLink.sm(
+                        DsfrLink(
                           label: bilanIsDone ? Localisation.monEmpreinteEcologique : Localisation.completer,
-                          textAlign: TextAlign.center,
-                          icon: DsfrIcons.systemArrowRightSLine,
                           iconPosition: DsfrLinkIconPosition.end,
+                          icon: DsfrIcons.systemArrowRightSLine,
                           onTap: () async {
                             await GoRouter.of(context).pushNamed(EnvironmentalPerformanceSummaryPage.name);
                           },

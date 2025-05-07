@@ -1,8 +1,8 @@
 import 'package:app/core/presentation/widgets/composants/mot_de_passe/cubit/mot_de_passe_cubit.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvMotDePasse extends StatelessWidget {
   const FnvMotDePasse({super.key, required this.onChanged});
@@ -31,8 +31,8 @@ class _MotDePasse extends StatelessWidget {
             onChanged(value);
           }
         },
-        keyboardType: TextInputType.visiblePassword,
         isPasswordMode: true,
+        keyboardType: TextInputType.visiblePassword,
         scrollPadding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom + 190),
         autofillHints: const [AutofillHints.password],
       ),
@@ -92,6 +92,8 @@ class _DoitContenir extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(final BuildContext context) =>
-      DsfrFormMessage(type: valid ? DsfrFormMessageType.valid : DsfrFormMessageType.info, text: text);
+  Widget build(final BuildContext context) => DsfrComponentStateWidget(
+    // TODO(dsfr): Les icones sont trop gros (16px) https://www.figma.com/design/2lo1s4Dj9fwt8m2O6P7Pkd/DSFR---Composants---v1.13.1--Community-?node-id=1116-58252
+    componentState: valid ? DsfrComponentState.success(message: text) : DsfrComponentState.info(message: text),
+  );
 }

@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';

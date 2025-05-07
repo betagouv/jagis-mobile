@@ -5,8 +5,8 @@ import 'package:app/features/authentification/creer_compte/presentation/pages/cr
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/features/version/presentation/widgets/version_label.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class PreOnboardingPage extends StatelessWidget {
@@ -28,7 +28,11 @@ class PreOnboardingPage extends StatelessWidget {
             Column(
               children: [
                 const SizedBox(height: DsfrSpacings.s9w),
-                const Text(Localisation.preOnboardingTitre, style: DsfrTextStyle.displayXs(), textScaler: TextScaler.noScaling),
+                const Text(
+                  Localisation.preOnboardingTitre,
+                  style: DsfrTextStyle.displayXs(color: DsfrColors.grey50),
+                  textScaler: TextScaler.noScaling,
+                ),
                 const SizedBox(height: DsfrSpacings.s3w),
                 Row(
                   children: [
@@ -45,6 +49,7 @@ class PreOnboardingPage extends StatelessWidget {
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 DsfrButton(
                   label: Localisation.jeCreeMonCompte,
@@ -56,7 +61,7 @@ class PreOnboardingPage extends StatelessWidget {
                 ),
                 const SizedBox(height: DsfrSpacings.s2w),
                 Center(
-                  child: DsfrLink.md(
+                  child: DsfrLink(
                     label: Localisation.jaiDejaUnCompte,
                     onTap: () async {
                       await GoRouter.of(context).pushNamed(SeConnecterPage.name);

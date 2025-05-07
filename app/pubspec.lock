@@ -313,13 +313,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  dsfr:
-    dependency: "direct main"
-    description:
-      path: "../packages/dsfr.dart"
-      relative: true
-    source: path
-    version: "0.0.1"
   easy_image_viewer:
     dependency: "direct main"
     description:
@@ -437,6 +430,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.1"
+  flutter_dsfr:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "10a14997564e4ca3b68a28ea8567f73fab682cf6"
+      url: "https://github.com/Octo-Open-Source/flutter-dsfr.git"
+    source: git
+    version: "0.3.0"
   flutter_inappwebview:
     dependency: "direct main"
     description:

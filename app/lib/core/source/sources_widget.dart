@@ -1,8 +1,8 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/source/source.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class SourcesWidget extends StatelessWidget {
   const SourcesWidget({super.key, required this.sources});
@@ -13,7 +13,7 @@ class SourcesWidget extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      const Text(Localisation.sources, style: DsfrTextStyle.bodySmBold()),
+      const Text(Localisation.sources, style: DsfrTextStyle.bodySmBold(color: DsfrColors.grey50)),
       const SizedBox(height: DsfrSpacings.s1w),
       ...sources.map(
         (final source) => Padding(
@@ -22,10 +22,10 @@ class SourcesWidget extends StatelessWidget {
             children: [
               const Text('• '),
               Flexible(
-                child: DsfrLink.md(
+                child: DsfrLink(
                   label: source.label,
-                  icon: DsfrIcons.systemExternalLinkLine,
                   iconPosition: DsfrLinkIconPosition.end,
+                  icon: DsfrIcons.systemExternalLinkLine,
                   onTap: () async {
                     await FnvUrlLauncher.launch(source.url);
                   },

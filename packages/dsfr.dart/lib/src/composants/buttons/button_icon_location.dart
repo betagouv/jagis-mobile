@@ -1,1 +1,0 @@
-enum DsfrButtonIconLocation { left, right }

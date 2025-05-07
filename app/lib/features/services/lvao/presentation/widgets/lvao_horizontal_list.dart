@@ -7,9 +7,9 @@ import 'package:app/features/services/lvao/presentation/bloc/lvao_bloc.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_event.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class LvaoHorizontalList extends StatelessWidget {
   const LvaoHorizontalList({super.key, required this.category});
@@ -89,19 +89,19 @@ class _Success extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
+                                      Text(e.name, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
                                       Text(
                                         e.address,
-                                        style: const DsfrTextStyle.bodyXs(),
+                                        style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50),
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 3,
                                       ),
                                       const Spacer(),
-                                      DsfrTag.sm(
-                                        label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
-                                        backgroundColor: const Color(0xffEAEAEA),
-                                        foregroundColor: const Color(0xff3F3F3F),
-                                        textStyle: const DsfrTextStyle.bodyXsMedium(),
+                                      DsfrTag(
+                                        label: Localisation.distance(e.distanceInMeters),
+                                        size: DsfrComponentSize.sm,
+                                        backgroundColor: const Color(0xFFEAEAEA),
+                                        textColor: const Color(0xFF3F3F3F),
                                       ),
                                     ],
                                   ),

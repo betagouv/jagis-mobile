@@ -1,6 +1,6 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:gpt_markdown/custom_widgets/markdown_config.dart';
 
 @immutable
@@ -29,7 +29,12 @@ class ActionMarkdownHeading extends FNVHTag {
         spacing: DsfrSpacings.s1w,
         children: [
           Icon(icon, size: 30, color: color),
-          Expanded(child: Text(namedGroup.replaceAll(RegExp(r'#+$'), ''), style: const DsfrTextStyle.headline3())),
+          Expanded(
+            child: Text(
+              namedGroup.replaceAll(RegExp(r'#+$'), ''),
+              style: const DsfrTextStyle.headline3(color: DsfrColors.grey50),
+            ),
+          ),
         ],
       ),
     );

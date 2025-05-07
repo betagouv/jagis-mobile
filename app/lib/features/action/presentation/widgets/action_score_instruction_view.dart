@@ -11,9 +11,9 @@ import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action_feedback/presentation/widgets/action_feedback_widget.dart';
 import 'package:app/features/gamification/presentation/widgets/points.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionScoreInstructionView extends StatelessWidget {
   const ActionScoreInstructionView({super.key, required this.action});
@@ -40,11 +40,13 @@ class ActionScoreInstructionView extends StatelessWidget {
                       Row(
                         spacing: DsfrSpacings.s1v,
                         children: [
-                          const Expanded(child: Text(Localisation.actionBravo, style: DsfrTextStyle.headline3())),
+                          const Expanded(
+                            child: Text(Localisation.actionBravo, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
+                          ),
                           Points(points: action.score, alreadyEarned: true),
                         ],
                       ),
-                      Text(action.instructionWhenDone, style: const DsfrTextStyle.bodyMd()),
+                      Text(action.instructionWhenDone, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
                     ],
                   )
                 else
@@ -52,13 +54,15 @@ class ActionScoreInstructionView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: DsfrSpacings.s1w,
                     children: [
-                      const Text(Localisation.onSeLanceLeDefi, style: DsfrTextStyle.headline3()),
+                      const Text(Localisation.onSeLanceLeDefi, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
                       switch (action) {
                         ActionClassic() => _Classic(action: action),
                         ActionSimulator() || ActionQuiz() || ActionPerformance() => Row(
                           spacing: DsfrSpacings.s1v,
                           children: [
-                            Expanded(child: Text(action.instruction, style: const DsfrTextStyle.bodyMd())),
+                            Expanded(
+                              child: Text(action.instruction, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+                            ),
                             Points(points: action.score),
                           ],
                         ),
@@ -98,7 +102,7 @@ class _Classic extends StatelessWidget {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(action.instruction, style: const DsfrTextStyle.bodyMd()),
+      Text(action.instruction, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
       const SizedBox(height: DsfrSpacings.s3w),
       DsfrRawButton(
         variant: DsfrButtonVariant.primary,

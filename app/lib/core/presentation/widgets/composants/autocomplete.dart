@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 typedef OnSearch<T> = Future<Iterable<T>> Function(String query);
 
@@ -83,9 +83,11 @@ class _FnvAutocompleteState<T extends Object> extends State<FnvAutocomplete<T>> 
     displayStringForOption: (final option) => widget.displayStringForOption(option),
     fieldViewBuilder:
         (final context, final textEditingController, final focusNode, final onFieldSubmitted) => DsfrInputHeadless(
-          focusNode: focusNode,
+          // TODO(dsfr): ajouter focusNode, suffixIcon, enlever required pour onChanged
+          // focusNode: focusNode,
+          // suffixIcon: const Icon(DsfrIcons.systemSearchLine, color: DsfrColors.grey50),
           controller: textEditingController,
-          suffixIcon: const Icon(DsfrIcons.systemSearchLine, color: DsfrColors.grey50),
+          onChanged: (final value) {},
           onFieldSubmitted: (final value) => onFieldSubmitted(),
           keyboardType: TextInputType.streetAddress,
           autocorrect: false,

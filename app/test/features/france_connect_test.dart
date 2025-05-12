@@ -6,6 +6,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../features/bdd_hooks/hooks.dart';
 import './step/the_application_is_launched.dart';
+import './step/i_tap_on.dart';
+import './step/im_redirect_to_franceconnect_callback.dart';
+import './step/i_see.dart';
+import './step/im_redirect_to_franceconnect_callback_cancelled.dart';
 
 void main() {
   setUpAll(() async {
@@ -30,6 +34,10 @@ void main() {
       try {
         await beforeEach('''Login with FranceConnect is successful''');
         await theApplicationIsLaunched(tester);
+        await iTapOn(tester, "J’ai déjà un compte");
+        await iTapOn(tester, "FranceConnect");
+        await imRedirectToFranceconnectCallback(tester);
+        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
       } on TestFailure {
         success = false;
         rethrow;
@@ -45,6 +53,10 @@ void main() {
       try {
         await beforeEach('''Login with FranceConnect is cancelled''');
         await theApplicationIsLaunched(tester);
+        await iTapOn(tester, "J’ai déjà un compte");
+        await iTapOn(tester, "FranceConnect");
+        await imRedirectToFranceconnectCallbackCancelled(tester);
+        await iSee(tester, 'J’ai déjà un compte');
       } on TestFailure {
         success = false;
         rethrow;

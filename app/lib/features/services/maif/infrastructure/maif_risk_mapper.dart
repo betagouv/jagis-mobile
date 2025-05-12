@@ -10,6 +10,7 @@ abstract final class MaifRiskMapper {
   );
 
   static RiskLevel toLevel(final String level) => switch (level) {
+    'inconnu' => RiskLevel.unknown,
     'tres_faible' => RiskLevel.veryLow,
     'faible' => RiskLevel.low,
     'moyen' => RiskLevel.medium,

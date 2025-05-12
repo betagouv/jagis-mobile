@@ -16,6 +16,7 @@ class FetchRiskInfoForAddress {
       Left.new,
       (final r) async => Right(
         r
+            .whereNot((final element) => element.level == RiskLevel.unknown)
             .whereNot((final element) => element.level == RiskLevel.veryLow)
             .sorted((final a, final b) => b.level.index.compareTo(a.level.index))
             .toList(),

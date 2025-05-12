@@ -176,11 +176,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => KnowYourCustomersRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(widget.apiClient)),
                 RepositoryProvider(
-                  create:
-                      (final context) => AuthentificationRepository(
-                        client: widget.apiClient,
-                        authenticationService: widget.authenticationService,
-                      ),
+                  create: (final context) => AuthentificationRepository(widget.apiClient, widget.authenticationService),
                 ),
                 RepositoryProvider(create: (final context) => ThemeRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => ActionRepository(widget.apiClient, widget.messageBus)),

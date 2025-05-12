@@ -1,12 +1,9 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/alert.dart';
-import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/authentification/core/presentation/widgets/divider_with_text.dart';
+import 'package:app/features/authentification/check_inbox/check_inbox_page.dart';
 import 'package:app/features/authentification/creer_compte/presentation/pages/creer_compte_page.dart';
 import 'package:app/features/authentification/france_connect/presentation/widgets/france_connect_section.dart';
-import 'package:app/features/authentification/mot_de_passe_oublie/pages/mot_de_passe_oublie_page.dart';
-import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_bloc.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_event.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_state.dart';
@@ -23,20 +20,20 @@ class SeConnecterView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocListener<SeConnecterBloc, SeConnecterState>(
     listener: (final context, final state) async {
-      await GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail});
+      await GoRouter.of(context).pushNamed(CheckInboxPage.name, pathParameters: {'email': state.email});
     },
-    listenWhen: (final previous, final current) => previous.connexionFaite != current.connexionFaite && current.connexionFaite,
-    child: FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+    listenWhen: (final previous, final current) => previous.isConnected != current.isConnected && current.isConnected,
+    child: Scaffold(
+      appBar: AppBar(iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
+          const FnvMarkdown(data: Localisation.pageConnexionTitre, p: DsfrTextStyle.headline2()),
+          const SizedBox(height: DsfrSpacings.s3w),
           const FranceConnectSection(),
           const SizedBox(height: DsfrSpacings.s3w),
-          const DividerWithText(),
-          const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.pageConnexionTitre, style: DsfrTextStyle.headline2()),
-          const SizedBox(height: DsfrSpacings.s3w),
+          const Text(Localisation.avecMonAdresseEmail, style: DsfrTextStyle.headline3()),
+          const SizedBox(height: DsfrSpacings.s2w),
           DsfrInput(
             label: Localisation.adresseEmail,
             hintText: Localisation.adresseEmailHint,
@@ -46,28 +43,10 @@ class SeConnecterView extends StatelessWidget {
             autocorrect: false,
             autofillHints: const [AutofillHints.email],
           ),
-          const SizedBox(height: DsfrSpacings.s2w),
-          DsfrInput(
-            label: Localisation.motDePasse,
-            onChanged: (final value) => context.read<SeConnecterBloc>().add(SeConnecterMotDePasseAChange(value)),
-            keyboardType: TextInputType.visiblePassword,
-            isPasswordMode: true,
-            autofillHints: const [AutofillHints.password],
-          ),
           const _MessageErreur(),
-          const SizedBox(height: DsfrSpacings.s1w),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: DsfrLink.md(
-              label: Localisation.motDePasseOublie,
-              onTap: () async {
-                await GoRouter.of(context).pushNamed(MotDePasseOubliePage.name);
-              },
-            ),
-          ),
           const SizedBox(height: DsfrSpacings.s3w),
           BlocSelector<SeConnecterBloc, SeConnecterState, bool>(
-            selector: (final state) => state.estValide,
+            selector: (final state) => state.isValid,
             builder:
                 (final context, final state) => DsfrButton(
                   label: Localisation.meConnecter,
@@ -76,14 +55,16 @@ class SeConnecterView extends StatelessWidget {
                   onPressed: state ? () => context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee()) : null,
                 ),
           ),
-          const SizedBox(height: DsfrSpacings.s2w),
-          Center(
-            child: DsfrLink.md(
-              label: Localisation.premiereFoisSur,
-              onTap: () async {
-                await GoRouter.of(context).pushReplacementNamed(CreerComptePage.name);
-              },
-            ),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const DsfrDivider(color: Color(0xFFE8E9F2)),
+          const SizedBox(height: DsfrSpacings.s4w),
+          DsfrButton(
+            label: Localisation.creerUnCompte,
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrComponentSize.lg,
+            onPressed: () async {
+              await GoRouter.of(context).pushReplacementNamed(CreerComptePage.name);
+            },
           ),
           const SafeArea(child: SizedBox.shrink()),
         ],
@@ -97,7 +78,7 @@ class _MessageErreur extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => context
-      .select<SeConnecterBloc, Option<String>>((final bloc) => bloc.state.erreur)
+      .select<SeConnecterBloc, Option<String>>((final bloc) => bloc.state.errorMessage)
       .fold(
         () => const SizedBox.shrink(),
         (final t) => Column(children: [const SizedBox(height: DsfrSpacings.s2w), FnvAlert.error(label: t)]),

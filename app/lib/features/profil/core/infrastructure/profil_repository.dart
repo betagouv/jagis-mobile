@@ -101,14 +101,6 @@ class ProfilRepository {
         : Left(Exception('Erreur lors de la suppression du compte'));
   }
 
-  Future<Either<Exception, Unit>> changerMotDePasse({required final String motDePasse}) async {
-    final response = await _client.patch(Endpoints.profile, data: jsonEncode({'mot_de_passe': motDePasse}));
-
-    return isResponseSuccessful(response.statusCode)
-        ? const Right(unit)
-        : Left(Exception('Erreur lors de la mise à jour du mot de passe'));
-  }
-
   Future<Either<Exception, Unit>> mettreAJourCodePostalEtCommune({
     required final String codePostal,
     required final String commune,

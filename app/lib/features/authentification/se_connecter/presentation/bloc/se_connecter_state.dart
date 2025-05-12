@@ -5,36 +5,25 @@ import 'package:meta/meta.dart';
 
 @immutable
 final class SeConnecterState extends Equatable {
-  const SeConnecterState({
-    required this.adresseMail,
-    required this.motDePasse,
-    required this.erreur,
-    required this.connexionFaite,
-  });
+  const SeConnecterState({required this.email, required this.errorMessage, required this.isConnected});
 
-  const SeConnecterState.empty() : this(adresseMail: '', motDePasse: '', erreur: const None(), connexionFaite: false);
+  const SeConnecterState.empty() : this(email: '', errorMessage: const None(), isConnected: false);
 
-  final String adresseMail;
-  final String motDePasse;
-  final Option<String> erreur;
+  final String email;
+  final Option<String> errorMessage;
 
-  bool get adresseMailEstValide => mailRegex.hasMatch(adresseMail);
-  bool get estValide => adresseMailEstValide && motDePasse.isNotEmpty;
+  bool get isEmailValid => mailRegex.hasMatch(email);
+  bool get isValid => isEmailValid;
 
-  final bool connexionFaite;
+  final bool isConnected;
 
-  SeConnecterState copyWith({
-    final String? adresseMail,
-    final String? motDePasse,
-    final Option<String>? erreur,
-    final bool? connexionFaite,
-  }) => SeConnecterState(
-    adresseMail: adresseMail ?? this.adresseMail,
-    motDePasse: motDePasse ?? this.motDePasse,
-    erreur: erreur ?? this.erreur,
-    connexionFaite: connexionFaite ?? this.connexionFaite,
-  );
+  SeConnecterState copyWith({final String? email, final Option<String>? errorMessage, final bool? isConnected}) =>
+      SeConnecterState(
+        email: email ?? this.email,
+        errorMessage: errorMessage ?? this.errorMessage,
+        isConnected: isConnected ?? this.isConnected,
+      );
 
   @override
-  List<Object?> get props => [adresseMail, motDePasse, connexionFaite, erreur];
+  List<Object?> get props => [email, isConnected, errorMessage];
 }

@@ -11,6 +11,7 @@ import './step/i_see.dart';
 import './step/i_enter_in_the_field.dart';
 import './step/i_tap_on_login_button.dart';
 import './step/i_enter_in_the_pin_field.dart';
+import './step/im_redirect_to_magic_link_callback.dart';
 import './step/i_am_logged_in.dart';
 import './step/i_see_the_home_page.dart';
 import './step/i_tap_on_the_menu_button.dart';
@@ -39,10 +40,11 @@ void main() {
         await beforeEach('''Login to my account is successful''');
         await theApplicationIsLaunched(tester);
         await iTapOn(tester, "J’ai déjà un compte");
-        await iSee(tester, 'Accédez à mon compte J’agis');
+        await iSee(tester, 'Connexion à J’agis');
         await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
-        await iEnterInTheField(tester, 'Azertyuiop1&', 'Mot de passe');
         await iTapOnLoginButton(tester);
+        await iSee(tester, 'Vérifiez votre boîte e-mail');
+        await iTapOn(tester, "Rentrer le code manuellement");
         await iSee(tester, 'Entrez le code reçu par e-mail !');
         await iEnterInThePinField(tester, '999999');
         await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
@@ -52,6 +54,27 @@ void main() {
       } finally {
         await afterEach(
           '''Login to my account is successful''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Login with magic link''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Login with magic link''');
+        await theApplicationIsLaunched(tester);
+        await iTapOn(tester, "J’ai déjà un compte");
+        await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
+        await iTapOnLoginButton(tester);
+        await iSee(tester, 'Vérifiez votre boîte e-mail');
+        await imRedirectToMagicLinkCallback(tester);
+        await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Login with magic link''',
           success,
         );
       }

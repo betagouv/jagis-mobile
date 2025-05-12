@@ -41,10 +41,12 @@ abstract final class AssetImages {
   static const mesAidesVeloTexte = 'assets/images/mesaidesvelo_texte.svg';
   static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
-  static const presDeChezVousStore = 'assets/images/pres_de_chez_vous_store.svg';
+  static const pdcnIllustration = 'assets/images/pdcn.webp';
+  static const pdcnStore = 'assets/images/pdcn_store.svg';
   static const republiqueFrancaise = 'assets/images/logo_rf.svg';
   static const republiqueFrancaiseSemantic = 'Logo officiel de la République Française';
   static const resetPointsIllustrations1 = 'assets/images/reset_points_1.webp';
   static const resetPointsIllustrations2 = 'assets/images/reset_points_2.webp';
+  static const serviceAucunResultat = 'assets/images/service_aucun_resultat.svg';
   static const transport = 'assets/images/transport.svg';
 }

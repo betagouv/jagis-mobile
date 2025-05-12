@@ -4,6 +4,7 @@ import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
+import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_list_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_page.dart';
@@ -21,7 +22,6 @@ final class ThemeSummary extends Equatable {
 
   static List<ThemeSummaryLink> buildThemeLinksFor({
     required final ThemeType themeType,
-    required final String commune,
     required final int aidCount,
     required final int? recipeCount,
   }) {
@@ -29,17 +29,14 @@ final class ThemeSummary extends Equatable {
       ThemeType.alimentation => [
         if (recipeCount != null)
           ThemeSummaryInternalLink(
-            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
+            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
             route: RecipesPage.name,
           ),
         const ThemeSummaryInternalLink(
-          label: '🍓 **1** calendrier de fruits et légumes de saison',
+          label: '🍓 **1** calendrier de fruits et légumes de saison',
           route: SeasonalFruitsAndVegetablesPage.name,
         ),
-        ThemeSummaryExternalLink(
-          label: '🛒 Des adresses pour manger local',
-          url: 'https://presdecheznous.fr/map#/carte/$commune',
-        ),
+        const ThemeSummaryInternalLink(label: '🛒 Des adresses pour manger local', route: PdcnListPage.name),
       ],
       ThemeType.logement => [
         const ThemeSummaryExternalLink(label: '🧱 **1** simulateur *Mes aides Réno*', url: 'https://mesaidesreno.beta.gouv.fr/'),

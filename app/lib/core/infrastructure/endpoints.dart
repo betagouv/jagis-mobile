@@ -25,7 +25,6 @@ abstract final class Endpoints {
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
   static const oubliMotDePasse = '/utilisateurs/oubli_mot_de_passe';
-  static const presDeChezVousSearch = '/utilisateurs/{userId}/recherche_services/proximite/search2';
   static const profile = '/utilisateurs/{userId}/profile';
   static const questionsKyc = '/utilisateurs/{userId}/questionsKYC_v2';
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';
@@ -37,6 +36,11 @@ abstract final class Endpoints {
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';
   static const validerCode = '/utilisateurs/valider';
+
+  static String _service(final String service) => '/utilisateurs/{userId}/recherche_services/$service';
+  static String serviceCategories(final String service) => '${_service(service)}/categories';
+  static String serviceSearch(final String service) => '${_service(service)}/search2';
+  static String serviceDetail(final String service, final String id) => '${_service(service)}/last_results/$id';
   static String action({required final String type, required final String code}) => '/utilisateurs/{userId}/actions/$type/$code';
   static String actionFaite({required final String type, required final String code}) =>
       '${action(type: type, code: code)}/faite';

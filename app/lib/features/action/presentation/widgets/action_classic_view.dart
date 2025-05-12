@@ -4,7 +4,7 @@ import 'package:app/features/action/presentation/widgets/action_markdown.dart';
 import 'package:app/features/action/presentation/widgets/action_markdown_heading.dart';
 import 'package:app/features/action/presentation/widgets/action_why_section_view.dart';
 import 'package:app/features/services/lvao/presentation/widgets/lvao_horizontal_list.dart';
-import 'package:app/features/services/pres_de_chez_vous/presentation/widgets/pres_de_chez_vous_horizontal_list.dart';
+import 'package:app/features/services/pdcn/presentation/widgets/pdcn_horizontal_list.dart';
 import 'package:app/features/services/recipes/action/presentation/widgets/recipe_horizontal_list.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +32,9 @@ class ActionClassicView extends StatelessWidget {
         const SizedBox(height: DsfrSpacings.s4w),
         RecipeHorizontalList(category: action.mangerBougerService.category),
       ],
-      if (action.hasPresDeChezVousService) ...[
+      if (action.hasPdcnService) ...[
         const SizedBox(height: DsfrSpacings.s4w),
-        PresDeChezVousHorizontalList(category: action.presDeChezVousService.category),
+        PdcnHorizontalList(category: action.pdcnService.category),
       ],
       const SizedBox(height: DsfrSpacings.s4w),
       Padding(

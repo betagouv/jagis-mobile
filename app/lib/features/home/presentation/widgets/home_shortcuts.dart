@@ -8,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeShortcuts extends StatelessWidget {
-  const HomeShortcuts({super.key, required this.commune, required this.nbAids, required this.nbRecipies});
+  const HomeShortcuts({super.key, required this.nbAids, required this.nbRecipies});
 
-  final String commune;
   final int nbAids;
   final int nbRecipies;
 
@@ -33,12 +32,8 @@ class HomeShortcuts extends StatelessWidget {
                 children:
                     ThemeType.values
                         .flatMap(
-                          (final themeType) => ThemeSummary.buildThemeLinksFor(
-                            themeType: themeType,
-                            commune: commune,
-                            aidCount: nbAids,
-                            recipeCount: nbRecipies,
-                          ),
+                          (final themeType) =>
+                              ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipies),
                         )
                         .toSet()
                         .map(

@@ -41,7 +41,7 @@ class ActionClassicView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
         child: ActionMarkdown(
           data: action.how,
-          hTag: ActionMarkdownHeading(icon: DsfrIcons.othersLeafLine, color: const Color(0xFF39826C)),
+          hTag: ActionMarkdownHeading(icon: DsfrIcons.othersLeafLine, iconColor: const Color(0xFF39826C)),
         ),
       ),
       const SizedBox(height: DsfrSpacings.s2w),

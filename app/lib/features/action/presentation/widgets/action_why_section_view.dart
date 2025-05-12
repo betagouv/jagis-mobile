@@ -13,7 +13,7 @@ class ActionWhySectionView extends StatelessWidget {
     padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w, horizontal: DsfrSpacings.s2w),
     child: ActionMarkdown(
       data: why,
-      hTag: ActionMarkdownHeading(icon: DsfrIcons.editorFrQuoteLine, color: DsfrColors.blueFranceSun113),
+      hTag: ActionMarkdownHeading(icon: DsfrIcons.editorFrQuoteLine, iconColor: DsfrColors.blueFranceSun113),
     ),
   );
 }

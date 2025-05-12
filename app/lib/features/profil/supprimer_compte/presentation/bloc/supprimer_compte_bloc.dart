@@ -11,7 +11,7 @@ class SupprimerCompteBloc extends Bloc<SupprimerCompteEvent, SupprimerCompteStat
   }) : super(const SupprimerCompteState()) {
     on<SupprimerCompteSuppressionDemandee>((final event, final emit) async {
       await profilRepository.supprimerLeCompte();
-      await authentificationRepository.deconnexionDemandee();
+      await authentificationRepository.logoutRequested();
     });
   }
 }

@@ -10,6 +10,7 @@ abstract final class AssetImages {
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
   static const bibliothequeEmpty = 'assets/images/bibliotheque_illustration.svg';
+  static const checkInbox = 'assets/images/check_inbox.svg';
   static const consommation = 'assets/images/consommation.svg';
   static const errorIllustration = 'assets/images/error_illustration.svg';
   static const feedback = 'assets/images/feedback.webp';

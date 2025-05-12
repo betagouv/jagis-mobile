@@ -5,10 +5,8 @@ Feature: Onboarding
     Given the email don't exists
     When I tap on {'Je crée mon compte'}
     When I enter {'joe@doe.fr'} in the {'Mon adresse email'} field
-    When I enter {'Azertyuiop1&'} in the {'Mot de passe'} field
-    When I accept the terms of use
     When I tap on create my account button
-    When I enter {'999999'} in the pin field
+    When I'm redirect to magic link callback
 
   Scenario: Répondre aux premieres questions
     When I enter {'Joe123'} in the {'Mon pseudonyme'} field

@@ -28,7 +28,6 @@ Future<void> initializeContext() async {
   setFirstName();
   setProfile();
   setDeleteAccount();
-  setForgotPassword();
   setCommunes();
   setLogement();
   setPreferences();
@@ -222,11 +221,6 @@ void setPreferences() =>
       ..putM(Endpoints.question('KYC_preference'));
 
 void setDeleteAccount() => FeatureContext.instance.dioMock.deleteM(Endpoints.utilisateur);
-
-void setForgotPassword() =>
-    FeatureContext.instance.dioMock
-      ..postM(Endpoints.oubliMotDePasse)
-      ..postM(Endpoints.modifierMotDePasse);
 
 void setCommunes() => FeatureContext.instance.dioMock.getM(
   Endpoints.communes('39100'),

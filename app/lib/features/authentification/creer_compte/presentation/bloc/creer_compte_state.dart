@@ -5,40 +5,23 @@ import 'package:meta/meta.dart';
 
 @immutable
 final class CreerCompteState extends Equatable {
-  const CreerCompteState({
-    required this.adresseMail,
-    required this.motDePasse,
-    required this.aCguAcceptees,
-    required this.erreur,
-    required this.compteCree,
-  });
+  const CreerCompteState({required this.email, required this.errorMessage, required this.isAccountCreated});
 
-  const CreerCompteState.empty()
-    : this(adresseMail: '', motDePasse: '', aCguAcceptees: false, erreur: const None(), compteCree: false);
+  const CreerCompteState.empty() : this(email: '', errorMessage: const None(), isAccountCreated: false);
 
-  final String adresseMail;
-  final String motDePasse;
-  final bool aCguAcceptees;
-  final Option<String> erreur;
-  bool get adresseMailEstValide => mailRegex.hasMatch(adresseMail);
-  bool get estValide => adresseMailEstValide && motDePasse.isNotEmpty && aCguAcceptees;
+  final String email;
+  final Option<String> errorMessage;
+  bool get isEmailValid => mailRegex.hasMatch(email);
+  bool get isAccountValid => isEmailValid;
+  final bool isAccountCreated;
 
-  final bool compteCree;
-
-  CreerCompteState copyWith({
-    final String? adresseMail,
-    final String? motDePasse,
-    final bool? aCguAcceptees,
-    final Option<String>? erreur,
-    final bool? compteCree,
-  }) => CreerCompteState(
-    adresseMail: adresseMail ?? this.adresseMail,
-    motDePasse: motDePasse ?? this.motDePasse,
-    aCguAcceptees: aCguAcceptees ?? this.aCguAcceptees,
-    erreur: erreur ?? this.erreur,
-    compteCree: compteCree ?? this.compteCree,
-  );
+  CreerCompteState copyWith({final String? email, final Option<String>? errorMessage, final bool? isAccountCreated}) =>
+      CreerCompteState(
+        email: email ?? this.email,
+        errorMessage: errorMessage ?? this.errorMessage,
+        isAccountCreated: isAccountCreated ?? this.isAccountCreated,
+      );
 
   @override
-  List<Object> get props => [adresseMail, motDePasse, erreur, aCguAcceptees, compteCree];
+  List<Object> get props => [email, errorMessage, isAccountCreated];
 }

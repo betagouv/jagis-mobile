@@ -11,22 +11,12 @@ sealed class SeConnecterEvent extends Equatable {
 
 @immutable
 final class SeConnecterAdresseMailAChange extends SeConnecterEvent {
-  const SeConnecterAdresseMailAChange(this.valeur);
+  const SeConnecterAdresseMailAChange(this.value);
 
-  final String valeur;
-
-  @override
-  List<Object?> get props => [valeur];
-}
-
-@immutable
-final class SeConnecterMotDePasseAChange extends SeConnecterEvent {
-  const SeConnecterMotDePasseAChange(this.valeur);
-
-  final String valeur;
+  final String value;
 
   @override
-  List<Object?> get props => [valeur];
+  List<Object?> get props => [value];
 }
 
 @immutable

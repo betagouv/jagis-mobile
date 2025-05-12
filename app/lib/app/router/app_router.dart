@@ -9,10 +9,9 @@ import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/aids/item/presentation/pages/aid_page.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
+import 'package:app/features/authentification/check_inbox/check_inbox_page.dart';
 import 'package:app/features/authentification/creer_compte/presentation/pages/creer_compte_page.dart';
 import 'package:app/features/authentification/france_connect/presentation/pages/france_connect_page.dart';
-import 'package:app/features/authentification/mot_de_passe_oublie/pages/mot_de_passe_oublie_page.dart';
-import 'package:app/features/authentification/mot_de_passe_oublie_code/pages/mot_de_passe_oublie_code_page.dart';
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
@@ -54,15 +53,10 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
       redirect:
           (final context, final state) =>
               state.uri.path == '/unauthenticated' ? '/unauthenticated/${PreOnboardingPage.path}' : null,
-      routes: [
-        PreOnboardingPage.route,
-        CreerComptePage.route,
-        MotDePasseOubliePage.route,
-        MotDePasseOublieCodePage.route,
-        SeConnecterPage.route,
-        SaisieCodePage.route,
-      ],
+      routes: [PreOnboardingPage.route, CreerComptePage.route, SeConnecterPage.route, SaisieCodePage.route],
     ),
+    CheckInboxPage.route,
+    SaisieCodePage.route,
     FranceConnectPage.route,
     HomePage.route(
       routes: [
@@ -98,18 +92,19 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
     ),
   ],
   errorPageBuilder: (final context, final state) => const NoTransitionPage(child: FnvErrorRoutePage()),
-  redirect:
-      (final context, final state) => switch (context.read<AuthenticationBloc>().state) {
-        AuthenticationInitial() => null,
-        AuthenticationUnauthenticated() =>
-          state.uri.path.startsWith('/unauthenticated') || state.uri.path.startsWith(FranceConnectPage.path)
-              ? null
-              : '/unauthenticated/${PreOnboardingPage.path}',
-        AuthenticationAuthenticated() =>
-          state.uri.path.startsWith('/unauthenticated') || state.uri.path.startsWith(FranceConnectPage.path)
-              ? HomePage.path
-              : null,
-      },
+  redirect: (final context, final state) {
+    final isUnauthenticatedPath =
+        state.uri.path.startsWith('/unauthenticated') ||
+        state.uri.path.startsWith(CheckInboxPage.path) ||
+        state.uri.path.startsWith(SaisieCodePage.path) ||
+        state.uri.path.startsWith(FranceConnectPage.path);
+
+    return switch (context.read<AuthenticationBloc>().state) {
+      AuthenticationInitial() => null,
+      AuthenticationUnauthenticated() => isUnauthenticatedPath ? null : '/unauthenticated/${PreOnboardingPage.path}',
+      AuthenticationAuthenticated() => isUnauthenticatedPath ? HomePage.path : null,
+    };
+  },
   initialLocation: '/loading',
   observers: [themeRouteObserver, tracker.navigatorObserver],
   navigatorKey: navigatorKey,

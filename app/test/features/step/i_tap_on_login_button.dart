@@ -12,9 +12,9 @@ import 'i_tap_on.dart';
 Future<void> iTapOnLoginButton(final WidgetTester tester) async {
   const user = 'user123';
   FeatureContext.instance.dioMock
-    ..postM(Endpoints.login)
+    ..postM(Endpoints.magicLinkSend)
     ..postM(
-      Endpoints.loginCode,
+      Endpoints.magicLinkLogin,
       responseData: {
         'token': "header.${base64Encode(jsonEncode({'exp': 1727698718, 'utilisateurId': user}).codeUnits)}.signature",
         'utilisateur': {'id': user},

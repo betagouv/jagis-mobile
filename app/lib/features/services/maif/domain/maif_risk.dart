@@ -11,7 +11,7 @@ final class MaifRisk extends Equatable {
   List<Object?> get props => [title, level, type];
 }
 
-enum RiskLevel { veryLow, low, medium, high, veryHigh }
+enum RiskLevel { unknown, veryLow, low, medium, high, veryHigh }
 
 enum RiskType {
   /// Séisme

@@ -209,6 +209,11 @@ class _RiskLevel extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (riskLevel) {
+    RiskLevel.unknown => const DsfrTag.md(
+      label: TextSpan(text: 'Inconnu'),
+      backgroundColor: Color(0xFFF1FAF2),
+      foregroundColor: Color(0xFF006207),
+    ),
     RiskLevel.veryLow => const DsfrTag.md(
       label: TextSpan(text: 'Très faible'),
       backgroundColor: Color(0xFFF1FAF2),

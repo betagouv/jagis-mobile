@@ -19,7 +19,7 @@ class ActionSimulatorView extends StatelessWidget {
       switch (action.getId()) {
         ActionSimulatorId.carSimulator => CarSimulatorWidget(sequenceId: action.sequenceId, isDone: action.isDone),
         ActionSimulatorId.mesAidesReno => const MesAidesRenoWidget(),
-        ActionSimulatorId.maif => const MaifWidget(),
+        ActionSimulatorId.maif => MaifWidget(action: action),
       },
     ],
   );

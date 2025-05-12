@@ -13,9 +13,9 @@ import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
 import './step/i_dont_see.dart';
 import './step/i_see.dart';
+import './step/the_api_receives.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
-import './step/the_api_receives.dart';
 import './step/url_launcher_launches.dart';
 
 void main() {
@@ -139,7 +139,7 @@ void main() {
                   "nom_commune": "Dole",
                   "quizz_felicitations": null,
                   "deja_vue": true,
-                  "deja_faite": true,
+                  "deja_faite": false,
                   "faqs": [],
                   "points": 30,
                   "sources": [],
@@ -222,13 +222,20 @@ void main() {
                   "nom_commune": "Dole",
                   "quizz_felicitations": null,
                   "deja_vue": true,
-                  "deja_faite": true,
+                  "deja_faite": false,
                   "faqs": [],
                   "points": 30,
                   "sources": [],
                   "articles": [],
                   "enchainement_id": ""
                 }
+              ],
+              [
+                'POST',
+                "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite",
+                200,
+                null,
+                {}
               ],
               [
                 'GET',
@@ -341,6 +348,17 @@ void main() {
         await iSee(tester, 'Risques retrait/gonflement des sols argileux');
         await iSee(tester, 'Risques sismiques');
         await iSee(tester, "Risques d'exposition au radon");
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite",
+                200,
+                null
+              ]
+            ]));
       } on TestFailure {
         success = false;
         rethrow;
@@ -389,7 +407,7 @@ void main() {
                   "nom_commune": "Dole",
                   "quizz_felicitations": null,
                   "deja_vue": true,
-                  "deja_faite": true,
+                  "deja_faite": false,
                   "faqs": [],
                   "points": 30,
                   "sources": [],
@@ -970,13 +988,20 @@ void main() {
                   "nom_commune": "Dole",
                   "quizz_felicitations": null,
                   "deja_vue": true,
-                  "deja_faite": true,
+                  "deja_faite": false,
                   "faqs": [],
                   "points": 30,
                   "sources": [],
                   "articles": [],
                   "enchainement_id": ""
                 }
+              ],
+              [
+                'POST',
+                "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite",
+                200,
+                null,
+                {}
               ],
               [
                 'GET',
@@ -1511,6 +1536,12 @@ void main() {
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite",
+                200,
+                null
+              ],
               [
                 'PATCH',
                 "/utilisateurs/{userId}/logement",

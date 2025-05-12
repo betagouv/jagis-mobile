@@ -7,8 +7,8 @@ abstract final class MaifCommuneDataMapper {
   static MaifCommuneData fromJson(final Map<String, dynamic> json) => MaifCommuneData(
     latitude: JsonHelpers.toNullable<num>(json, 'latitude')?.toDouble(),
     longitude: JsonHelpers.toNullable<num>(json, 'longitude')?.toDouble(),
-    houseNumber: JsonHelpers.toNullable(json, 'numero_voie'),
-    street: JsonHelpers.toNullable(json, 'nom_voie'),
+    houseNumber: JsonHelpers.toNullable(json, 'numero_rue'),
+    street: JsonHelpers.toNullable(json, 'rue'),
     postCode: json['code_postal'] as String,
     city: json['commune_label'] as String,
     cityCode: json['code_commune'] as String,

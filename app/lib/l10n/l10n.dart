@@ -61,6 +61,7 @@ abstract final class Localisation {
   static const confirmer = 'Confirmer';
   static const consommationsEnergetiques = 'Consommations énergétiques';
   static const continuer = 'Continuer';
+  static const contributeursOpenStreetMap = 'Contributeurs OpenStreetMap';
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
   static const creerMonCompteApp = 'Créez votre compte J’agis';
@@ -70,6 +71,7 @@ abstract final class Localisation {
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const dejaConsultees = 'Déjà consultées';
+  static const details = 'Détails';
   static const donneesPersonnelles = 'Données personnelles';
   static const donneesUtiliseesPart1 = 'Données utilisées : code postal ';
   static const donneesUtiliseesPart2 = ', revenu fiscal de référence ';
@@ -92,6 +94,7 @@ abstract final class Localisation {
   static const enchanteDetails =
       'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.';
   static const enfants = 'Enfant(s) de moins de 18 ans';
+  static const enSavoirPlus = 'En savoir plus';
   static const entre100et150m2 = 'Entre 100 et 150 m²';
   static const entre35et70m2 = 'Entre 35 et 70 m²';
   static const entre70et100m2 = 'Entre 70 et 100 m²';
@@ -167,6 +170,11 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';
   static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus/';
+  static const pdcnSousTitre = 'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
+  static const pdcnDescription =
+      'Près de chez nous est une cartographie collaborative qui recense l’ensemble des structures qui proposent des produits bio, équitables et locaux.';
+  static const pdcnNom = 'Près de chez nous';
+  static const pdcnUrl = 'https://presdecheznous.fr/';
   static const meConnecter = 'Me connecter';
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
@@ -184,8 +192,6 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
   static const mesAidesDisponibles = 'Mes aides disponibles';
   static const mesCommerces = 'Mes commerces';
-  static const mesCommercesDescription =
-      'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
@@ -273,6 +279,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';
   static const rechargeElectriqueQuestion = 'J’ai la possibilité de recharger un véhicule électrique au quotidien.';
+  static const rechercherParAdresse = 'Rechercher par adresse';
+  static const serviceAucunResultat = '😢 Aucun résultat n’est encore disponible pour votre localisation';
   static const rechercherParTitre = 'Rechercher par titre';
   static const recolter = 'Récolter';
   static const recommencerLeBilan = 'Recommmencer le bilan';
@@ -295,6 +303,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const sources = 'Sources :';
   static const statistiques = 'Statistiques';
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
+  static const suggestions = 'Suggestions';
   static const supprimerVotreCompte = 'Supprimer mon compte';
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =

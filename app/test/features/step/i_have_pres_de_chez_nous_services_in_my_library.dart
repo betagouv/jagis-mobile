@@ -6,7 +6,7 @@ import '../helper/feature_context.dart';
 /// Usage: I have Près de chez nous services in my library
 Future<void> iHavePresDeChezNousServicesInMyLibrary(final WidgetTester tester) async {
   FeatureContext.instance.dioMock.postM(
-    Endpoints.presDeChezVousSearch,
+    Endpoints.serviceSearch('proximite'),
     requestData: {'categorie': 'zero_dechet', 'nombre_max_resultats': 4, 'rayon_metres': 5000},
     responseData: {
       'encore_plus_resultats_dispo': true,

@@ -70,7 +70,7 @@ class _Success extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s6w),
           HomeRecommendations(recommendations),
           const SizedBox(height: DsfrSpacings.s6w),
-          HomeShortcuts(commune: homeDashboard.communeName, nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
+          HomeShortcuts(nbAids: homeDashboard.nbAids, nbRecipies: homeDashboard.nbRecipies),
           const SizedBox(height: DsfrSpacings.s6w),
           _HomeCounterSection(homeDashboard.nbActionsDoneNational),
         ],

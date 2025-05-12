@@ -46,7 +46,7 @@ import 'package:app/features/ranking/infrastructure/ranking_repository.dart';
 import 'package:app/features/recommandations/infrastructure/recommandations_repository.dart';
 import 'package:app/features/services/lvao/infrastructure/lvao_repository.dart';
 import 'package:app/features/services/maif/infrastructure/maif_repository.dart';
-import 'package:app/features/services/pres_de_chez_vous/infrastructure/action_pres_de_chez_vous_repository.dart';
+import 'package:app/features/services/pdcn/infrastructure/pdcn_repository.dart';
 import 'package:app/features/services/recipes/action/infrastructure/action_recipes_repository.dart';
 import 'package:app/features/services/recipes/item/infrastructure/recipe_repository.dart';
 import 'package:app/features/services/recipes/list/infrastructure/recipes_repository.dart';
@@ -185,7 +185,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => ThemeRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => ActionRepository(widget.apiClient, widget.messageBus)),
                 RepositoryProvider(create: (final context) => LvaoRepository(widget.apiClient)),
-                RepositoryProvider(create: (final context) => ActionPresDeChezVousRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => PdcnRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => ActionRecipesRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => RecipesRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => RecipeRepository(widget.apiClient)),

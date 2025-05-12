@@ -27,6 +27,7 @@ dependencies:
   flutter_inset_shadow: 2.0.3
   flutter_localizations:
     sdk: flutter
+  flutter_map: 8.1.1
   flutter_native_splash: 2.4.6
   flutter_secure_storage: 9.2.4
   flutter_widget_from_html_core: 0.16.0
@@ -37,6 +38,7 @@ dependencies:
   html: 0.15.6
   intl: 0.19.0 # Bloqué en 0.19.0 par flutter_localizations
   jovial_svg: 1.1.25
+  latlong2: 0.9.1
   matomo_tracker: 6.0.0
   meta: 1.16.0
   native_dio_adapter: 1.4.0

@@ -31,10 +31,10 @@ class CreerCompteView extends StatelessWidget {
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
           const Text(Localisation.creerMonCompte, style: DsfrTextStyle.headline2()),
-          const SizedBox(height: DsfrSpacings.s3w),
-          const FranceConnectSection(),
           const SizedBox(height: DsfrSpacings.s1w),
           const _Cgu(),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const FranceConnectSection(),
           const SizedBox(height: DsfrSpacings.s3w),
           const Text(Localisation.avecMonAdresseEmail, style: DsfrTextStyle.headline3()),
           const SizedBox(height: DsfrSpacings.s2w),

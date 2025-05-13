@@ -162,7 +162,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const maResidencePrincipaleEst = 'Ma résidence principale est …';
   static const maifDescription =
       'Exposition aux risques climatiques, services de proximité, prix de l’immobilier… Retrouvez toutes les informations utiles aux alentours de votre adresse !';
-  static const maifNom = 'MAIF - Aux alentours';
+  static const maifNom = 'Aux Alentours par MAIF';
   static const maifUrl = 'https://auxalentours.maif.fr/';
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';

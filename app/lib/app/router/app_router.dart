@@ -53,7 +53,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
       redirect:
           (final context, final state) =>
               state.uri.path == '/unauthenticated' ? '/unauthenticated/${PreOnboardingPage.path}' : null,
-      routes: [PreOnboardingPage.route, CreerComptePage.route, SeConnecterPage.route, SaisieCodePage.route],
+      routes: [PreOnboardingPage.route, CreerComptePage.route, SeConnecterPage.route],
     ),
     CheckInboxPage.route,
     SaisieCodePage.route,

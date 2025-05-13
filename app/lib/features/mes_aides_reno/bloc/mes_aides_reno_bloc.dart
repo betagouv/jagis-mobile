@@ -17,7 +17,12 @@ class MesAidesRenoBloc extends Bloc<MesAidesRenoEvent, MesAidesRenoState> {
         final json = result.data! as Map<String, dynamic>;
         final urls = MesAidesRenoDataMapper.fromJson(json);
 
-        emit(MesAidesRenoState.success(event.whenIsDone ? urls.iframeUrlWhenIsDone : urls.iframeUrl));
+        emit(
+          MesAidesRenoState.success(
+            event.skipQuestions ? urls.iframeUrlWhenIsDone : urls.iframeUrl,
+            skipQuestions: event.skipQuestions,
+          ),
+        );
       } else {
         emit(
           MesAidesRenoState.failure(

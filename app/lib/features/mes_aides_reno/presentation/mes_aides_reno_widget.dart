@@ -34,17 +34,22 @@ class _View extends StatelessWidget {
     builder:
         (final context, final state) => switch (state.status) {
           MesAidesRenoStateStatus.initial || MesAidesRenoStateStatus.loading => const Center(child: CircularProgressIndicator()),
-          MesAidesRenoStateStatus.success => _Success(iframeUrl: state.iframeUrl!, isDone: isDone),
+          MesAidesRenoStateStatus.success => _Success(
+            iframeUrl: state.iframeUrl!,
+            isDone: isDone,
+            skipQuestions: state.whenIsDone ?? false,
+          ),
           MesAidesRenoStateStatus.failure => Center(child: Text(state.errorMessage ?? 'Erreur inconnue')),
         },
   );
 }
 
 class _Success extends StatefulWidget {
-  const _Success({required this.iframeUrl, required this.isDone});
+  const _Success({required this.iframeUrl, required this.isDone, required this.skipQuestions});
 
   final String iframeUrl;
   final bool isDone;
+  final bool skipQuestions;
 
   @override
   State<_Success> createState() => _MesAidesRenoWidgetState();
@@ -66,13 +71,20 @@ class _MesAidesRenoWidgetState extends State<_Success> {
 
   @override
   Widget build(final BuildContext context) {
-    final iframeUrl = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
+    var iframeUrl = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
+    if (!widget.skipQuestions) {
+      iframeUrl = iframeUrl.replace(
+        queryParameters: {'sendDataToHost': 'true', 'hostName': "J'agis", ...iframeUrl.queryParameters},
+      );
+    }
+
+    print(iframeUrl);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s1v,
       children: [
-        if (widget.isDone && !_isAtEllibilityResult)
+        if (widget.isDone && !_isAtEllibilityResult && !widget.skipQuestions)
           Padding(
             padding: const EdgeInsets.only(left: DsfrSpacings.s2w, right: DsfrSpacings.s2w, bottom: DsfrSpacings.s4w),
             child: DsfrAlert(
@@ -88,7 +100,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                           setState(() {
                             _isAtEllibilityResult = true;
                           }),
-                          context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(whenIsDone: true)),
+                          context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(skipQuestions: true)),
                         },
                   ),
                 ],
@@ -120,13 +132,16 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                       }
                     case 'mesaidesreno-eligibility-done':
                       {
+                        print('resultat : $data');
                         setState(() {
                           _isAtEllibilityResult = true;
                         });
                         context.read<ActionBloc>().add(
                           ActionMarkAsDone(id: ActionSimulatorId.mesAidesReno.apiString, type: ActionType.simulator),
                         );
-                        context.read<MesAidesRenoBloc>().add(MesAidesRenoSendSituation(data));
+                        if (data['value'].toString().length > 2) {
+                          context.read<MesAidesRenoBloc>().add(MesAidesRenoSendSituation(data));
+                        }
                         break;
                       }
                   }

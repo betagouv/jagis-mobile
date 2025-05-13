@@ -11,12 +11,12 @@ sealed class MesAidesRenoEvent extends Equatable {
 
 @immutable
 final class MesAidesRenoIframeUrlRequested extends MesAidesRenoEvent {
-  const MesAidesRenoIframeUrlRequested({this.whenIsDone = false});
+  const MesAidesRenoIframeUrlRequested({this.skipQuestions = false});
 
-  final bool whenIsDone;
+  final bool skipQuestions;
 
   @override
-  List<Object> get props => [whenIsDone];
+  List<Object> get props => [skipQuestions];
 }
 
 @immutable

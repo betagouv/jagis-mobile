@@ -2,8 +2,8 @@ import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class EnvironmentalPerformanceCategoryWidget extends StatelessWidget {
   const EnvironmentalPerformanceCategoryWidget({
@@ -111,7 +111,7 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
                     borderRadius: const BorderRadius.all(Radius.circular(DsfrSpacings.s1v)),
                   ),
                   const SizedBox(height: DsfrSpacings.s1w),
-                  Text(widget.label, style: const DsfrTextStyle.bodyLgMedium()),
+                  Text(widget.label, style: const DsfrTextStyle.bodyLgMedium(color: DsfrColors.grey50)),
                   Text('${widget.numberOfQuestions} questions', style: DsfrTextStyle.bodySm(color: widget.color)),
                 ],
               ),

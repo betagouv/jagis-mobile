@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvAlert extends StatelessWidget {
   const FnvAlert._({super.key, required this.icon, required this.label, required this.color});

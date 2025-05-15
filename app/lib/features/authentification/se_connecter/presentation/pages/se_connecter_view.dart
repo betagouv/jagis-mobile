@@ -9,9 +9,9 @@ import 'package:app/features/authentification/se_connecter/presentation/bloc/se_
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_event.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_state.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,30 +34,30 @@ class SeConnecterView extends StatelessWidget {
           // const SizedBox(height: DsfrSpacings.s3w),
           // const DividerWithText(),
           // const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.pageConnexionTitre, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.pageConnexionTitre, style: DsfrTextStyle.headline2(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s3w),
           DsfrInput(
             label: Localisation.adresseEmail,
             hintText: Localisation.adresseEmailHint,
             onChanged: (final value) => context.read<SeConnecterBloc>().add(SeConnecterAdresseMailAChange(value)),
+            autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            autocorrect: false,
             autofillHints: const [AutofillHints.email],
           ),
           const SizedBox(height: DsfrSpacings.s2w),
           DsfrInput(
             label: Localisation.motDePasse,
             onChanged: (final value) => context.read<SeConnecterBloc>().add(SeConnecterMotDePasseAChange(value)),
-            keyboardType: TextInputType.visiblePassword,
             isPasswordMode: true,
+            keyboardType: TextInputType.visiblePassword,
             autofillHints: const [AutofillHints.password],
           ),
           const _MessageErreur(),
           const SizedBox(height: DsfrSpacings.s1w),
           Align(
             alignment: Alignment.centerLeft,
-            child: DsfrLink.md(
+            child: DsfrLink(
               label: Localisation.motDePasseOublie,
               onTap: () async {
                 await GoRouter.of(context).pushNamed(MotDePasseOubliePage.name);
@@ -77,7 +77,7 @@ class SeConnecterView extends StatelessWidget {
           ),
           const SizedBox(height: DsfrSpacings.s2w),
           Center(
-            child: DsfrLink.md(
+            child: DsfrLink(
               label: Localisation.premiereFoisSur,
               onTap: () async {
                 await GoRouter.of(context).pushReplacementNamed(CreerComptePage.name);

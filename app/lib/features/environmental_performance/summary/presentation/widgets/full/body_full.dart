@@ -11,8 +11,8 @@ import 'package:app/features/environmental_performance/summary/presentation/widg
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_categories.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:collection/collection.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class BodyFull extends StatelessWidget {
   const BodyFull({super.key, required this.data});
@@ -35,7 +35,10 @@ class BodyFull extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s4w),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: Text(EnvironmentalPerformanceSummaryL10n.mesPrincipauxPostesDemission, style: DsfrTextStyle.headline4()),
+        child: Text(
+          EnvironmentalPerformanceSummaryL10n.mesPrincipauxPostesDemission,
+          style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+        ),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       ...data.top
@@ -54,7 +57,10 @@ class BodyFull extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s4w),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: Text(EnvironmentalPerformanceSummaryL10n.voirDetailHebdomadaire, style: DsfrTextStyle.headline4()),
+        child: Text(
+          EnvironmentalPerformanceSummaryL10n.voirDetailHebdomadaire,
+          style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+        ),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       FnvAccordionsGroup(
@@ -99,8 +105,11 @@ class BodyFull extends StatelessWidget {
         child: Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: EnvironmentalPerformanceSummaryL10n.modifier, style: DsfrTextStyle.headline4()),
-              TextSpan(text: ' ', style: DsfrTextStyle.headline4()),
+              TextSpan(
+                text: EnvironmentalPerformanceSummaryL10n.modifier,
+                style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+              ),
+              TextSpan(text: ' ', style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
               TextSpan(
                 text: EnvironmentalPerformanceSummaryL10n.vosReponses,
                 style: DsfrTextStyle.headline4(color: DsfrColors.blueFranceSun113),
@@ -112,7 +121,10 @@ class BodyFull extends StatelessWidget {
       const SizedBox(height: DsfrSpacings.s1v5),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-        child: Text(EnvironmentalPerformanceSummaryL10n.affinerMonEstimationSousTitre, style: DsfrTextStyle.bodyMd()),
+        child: Text(
+          EnvironmentalPerformanceSummaryL10n.affinerMonEstimationSousTitre,
+          style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
+        ),
       ),
       const SizedBox(height: DsfrSpacings.s3v),
       Padding(
@@ -140,8 +152,8 @@ class _DetailHeader extends StatelessWidget {
     return Row(
       spacing: DsfrSpacings.s1w,
       children: [
-        Text(emoji, style: const DsfrTextStyle.bodyMdMedium()),
-        Expanded(child: Text(label, style: const DsfrTextStyle.bodyMdMedium())),
+        Text(emoji, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50)),
+        Expanded(child: Text(label, style: const DsfrTextStyle.bodyMdMedium(color: DsfrColors.grey50))),
         Text.rich(
           TextSpan(
             children: [

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer-spacing
 
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FeedbackStars extends StatelessWidget {
   const FeedbackStars({super.key, required this.size, required this.value, required this.onChanged});

@@ -9,9 +9,9 @@ import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionsRecommandedSection extends StatelessWidget {
   const ActionsRecommandedSection({super.key, required this.theme});
@@ -31,10 +31,10 @@ class ActionsRecommandedSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(Localisation.mesActionsRecommandees, style: DsfrTextStyle.headline3()),
+          const Text(Localisation.mesActionsRecommandees, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
           if (theme.isQuestionsNeeded) ...[
             const SizedBox(height: DsfrSpacings.s1w),
-            const Text(Localisation.mesActionsRecommandeesDescription, style: DsfrTextStyle.bodyMd()),
+            const Text(Localisation.mesActionsRecommandeesDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
           ],
           const SizedBox(height: DsfrSpacings.s3w),
           switch (theme) {
@@ -59,15 +59,20 @@ class _ActionsEmpty extends StatelessWidget {
     children: [
       const FnvImage.asset(AssetImages.actionsRecommandedEmpty, height: 148),
       const SizedBox(height: DsfrSpacings.s2w),
-      const Text(Localisation.mesActionsRecommandeesEpuiseeTitre, style: DsfrTextStyle.headline4(), textAlign: TextAlign.center),
+      const Text(
+        Localisation.mesActionsRecommandeesEpuiseeTitre,
+        style: DsfrTextStyle.headline4(color: DsfrColors.grey50),
+        textAlign: TextAlign.center,
+      ),
       const SizedBox(height: DsfrSpacings.s1v),
       const Text(
         Localisation.mesActionsRecommandeesEpuiseeDescription,
-        style: DsfrTextStyle.bodyMd(),
+        style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
         textAlign: TextAlign.center,
       ),
       const SizedBox(height: DsfrSpacings.s3w),
       Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: DsfrSpacings.s2w,
         children: [
           _ExploreAnotherTheme(themeType: themeType),
@@ -127,6 +132,7 @@ class _ActionsState extends State<_Actions> {
     final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       spacing: DsfrSpacings.s2w,
       children: [
         ...visibleActions.map((final e) => ActionCard(action: e)),

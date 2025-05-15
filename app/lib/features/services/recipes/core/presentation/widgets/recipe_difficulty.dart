@@ -1,5 +1,5 @@
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class RecipeDifficulty extends StatelessWidget {
   const RecipeDifficulty({super.key, required this.value});
@@ -7,10 +7,10 @@ class RecipeDifficulty extends StatelessWidget {
   final String value;
 
   @override
-  Widget build(final BuildContext context) => DsfrTag.md(
-    label: TextSpan(text: value),
+  Widget build(final BuildContext context) => DsfrTag(
+    label: value,
+    size: DsfrComponentSize.md,
     backgroundColor: const Color(0xffEAEAEA),
-    foregroundColor: const Color(0xff3F3F3F),
-    textStyle: const DsfrTextStyle.bodyXsMedium(),
+    textColor: const Color(0xff3F3F3F),
   );
 }

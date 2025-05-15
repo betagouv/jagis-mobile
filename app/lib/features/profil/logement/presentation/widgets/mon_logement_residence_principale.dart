@@ -3,9 +3,9 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_even
 import 'package:app/features/profil/logement/presentation/bloc/mon_logement_state.dart';
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementResidencePrincipale extends StatelessWidget {
   const MonLogementResidencePrincipale({super.key});
@@ -16,15 +16,16 @@ class MonLogementResidencePrincipale extends StatelessWidget {
 
     return MonLogementTitreEtContenu(
       titre: Localisation.maResidencePrincipaleEst,
-      contenu: DsfrRadioButtonGroupHeadless(
+      contenu: DsfrRadioButtonGroup.simple(
+        title: '',
         values: const {TypeDeLogement.appartement: Localisation.unAppartement, TypeDeLogement.maison: Localisation.uneMaison},
-        onChanged: (final value) {
+        initialValue: typeDeLogement,
+        onCallback: (final value) {
           if (value == null) {
             return;
           }
           context.read<MonLogementBloc>().add(MonLogementTypeDeLogementChange(value));
         },
-        initialValue: typeDeLogement,
       ),
     );
   }

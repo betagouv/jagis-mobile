@@ -1,8 +1,8 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class Jaccepte extends StatefulWidget {
   const Jaccepte({super.key, required this.label, required this.url, required this.value, required this.onChanged});
@@ -35,7 +35,7 @@ class _JaccepteState extends State<Jaccepte> {
 
   @override
   Widget build(final BuildContext context) {
-    const style = DsfrTextStyle.bodyMd();
+    const style = DsfrTextStyle.bodyMd(color: DsfrColors.grey50);
     const jaccepte = Localisation.jaccepte;
 
     return GestureDetector(

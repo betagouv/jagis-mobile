@@ -7,6 +7,7 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
   ActionBloc({required final ActionRepository repository}) : super(const ActionState.initial()) {
     on<ActionLoadRequested>((final event, final emit) async {
       emit(const ActionState.inProgress());
+
       final result = await repository.fetch(type: event.type, id: event.id);
 
       emit(

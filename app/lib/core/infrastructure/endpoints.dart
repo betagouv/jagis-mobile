@@ -9,6 +9,7 @@ abstract final class Endpoints {
   // FIXME(erolley): Should we have sub classes for each endpoint type (eg: Endpoints.CarSimulator.getCurrentCarResult)?
   static const carSimulatorComputeCurrentCar = '/utilisateurs/{userId}/simulateur_voiture/resultat/voiture_actuelle';
   static const carSimulatorComputeOptions = '/utilisateurs/{userId}/simulateur_voiture/resultat/alternatives';
+
   static const creationCompte = '/utilisateurs_v2';
   static const events = '/utilisateurs/{userId}/events';
   static const franceConnectStep2 = '/login_france_connect_step_2';
@@ -20,7 +21,6 @@ abstract final class Endpoints {
   static const loginCode = '/utilisateurs/login_v2_code';
   static const logout = '/utilisateurs/{userId}/logout';
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';
-  static const maifSearch = '/utilisateurs/{userId}/recherche_services/maif/search2';
   static const modifierMotDePasse = '/utilisateurs/modifier_mot_de_passe';
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
@@ -31,6 +31,8 @@ abstract final class Endpoints {
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
   static const recommandationsV3 = '/utilisateurs/{userId}/recommandations_v3';
   static const renvoyerCode = '/utilisateurs/renvoyer_code';
+  static const riskCity = '/utilisateurs/{userId}/risques_commune';
+  static const riskStreet = '/utilisateurs/{userId}/risques_adresse';
   static const seasonalFruitsAndVegetablesCategories = '/utilisateurs/{userId}/recherche_services/fruits_legumes/categories';
   static const seasonalFruitsAndVegetablesSearch = '/utilisateurs/{userId}/recherche_services/fruits_legumes/search2';
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';

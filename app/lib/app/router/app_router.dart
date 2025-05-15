@@ -32,6 +32,7 @@ import 'package:app/features/profil/informations/presentation/pages/mes_informat
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
 import 'package:app/features/ranking/presentation/pages/ranking_page.dart';
+import 'package:app/features/services/lvao/presentation/lvao_list/pages/lvao_list_page.dart';
 import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_list_page.dart';
 import 'package:app/features/services/recipes/item/presentation/pages/recipe_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
@@ -84,6 +85,7 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
         OnboardingPseudonymPage.route,
         OptionsAvanceesPage.route,
         PdcnListPage.route,
+        LvaoListPage.route,
         ProfilPage.route,
         QuestionCodePostalPage.route,
         QuestionThemesPage.route,

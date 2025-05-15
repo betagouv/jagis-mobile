@@ -4,6 +4,7 @@ import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/list/presentation/pages/aids_page.dart';
+import 'package:app/features/services/lvao/presentation/lvao_list/pages/lvao_list_page.dart';
 import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_list_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
@@ -50,10 +51,7 @@ final class ThemeSummary extends Equatable {
         const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
       ],
       ThemeType.consommation => [
-        const ThemeSummaryExternalLink(
-          label: '🔧 Des adresses de réparateur près de chez vous',
-          url: 'https://longuevieauxobjets.ademe.fr/lacarte/',
-        ),
+        const ThemeSummaryInternalLink(label: '🔧 Des adresses de réparateur près de chez vous', route: LvaoListPage.name),
       ],
       ThemeType.decouverte => [],
     };

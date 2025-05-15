@@ -3,31 +3,31 @@ import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/fnv_map.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/features/services/core/infrastructure/service_repository.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_detail/bloc/pdcn_detail_bloc.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_detail/bloc/pdcn_detail_event.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_detail/bloc/pdcn_detail_state.dart';
+import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_detail_bloc.dart';
+import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_detail_event.dart';
+import 'package:app/features/services/lvao/presentation/lvao_detail/bloc/lvao_detail_state.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class PdcnDetailPage extends StatelessWidget {
-  const PdcnDetailPage({super.key, required this.id});
+class LvaoDetailPage extends StatelessWidget {
+  const LvaoDetailPage({super.key, required this.id});
 
-  static const name = 'pres-de-chez-nous-detail';
+  static const name = 'longue-vie-aux-objets-detail';
   static const path = ':id';
 
   final String id;
 
   static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => PdcnDetailPage(id: state.pathParameters['id']!));
+      GoRoute(path: path, name: name, builder: (final context, final state) => LvaoDetailPage(id: state.pathParameters['id']!));
 
   @override
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
-      create: (final context) => PdcnDetailBloc(ServiceRepository(context.read()))..add(PdcnDetailLoadRequested(id)),
+      create: (final context) => LvaoDetailBloc(ServiceRepository(context.read()))..add(LvaoDetailLoadRequested(id)),
       child: const _Body(),
     ),
   );
@@ -37,12 +37,12 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(final BuildContext context) => BlocBuilder<PdcnDetailBloc, PdcnDetailState>(
+  Widget build(final BuildContext context) => BlocBuilder<LvaoDetailBloc, LvaoDetailState>(
     builder:
         (final context, final state) => switch (state) {
-          PdcnDetailInitial() || PdcnDetailLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          PdcnDetailLoadFailure() => const Center(child: Text('Une erreur est survenue')),
-          PdcnDetailLoadSuccess() => _Success(success: state),
+          LvaoDetailInitial() || LvaoDetailLoadInProgress() => const Center(child: CircularProgressIndicator()),
+          LvaoDetailLoadFailure() => const Center(child: Text('Une erreur est survenue')),
+          LvaoDetailLoadSuccess() => _Success(success: state),
         },
   );
 }
@@ -50,7 +50,7 @@ class _Body extends StatelessWidget {
 class _Success extends StatelessWidget {
   const _Success({required this.success});
 
-  final PdcnDetailLoadSuccess success;
+  final LvaoDetailLoadSuccess success;
 
   @override
   Widget build(final BuildContext context) {
@@ -68,8 +68,7 @@ class _Success extends StatelessWidget {
             textStyle: const DsfrTextStyle.bodyXsMedium(),
           ),
         ),
-        Text(detail.title, style: const DsfrTextStyle.headline2()),
-        Text(detail.description, style: const DsfrTextStyle.bodyMd()),
+        Text(detail.name, style: const DsfrTextStyle.headline2()),
         const SizedBox(height: DsfrSpacings.s2w),
         SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.5,
@@ -78,23 +77,31 @@ class _Success extends StatelessWidget {
         const SizedBox(height: DsfrSpacings.s3w),
         const Text(Localisation.details, style: DsfrTextStyle.headline4()),
         const SizedBox(height: DsfrSpacings.s2w),
-        ...[
-          if (detail.openingHours != null) _DetailInfo(icon: DsfrIcons.systemTimeLine, text: detail.openingHours!),
-          _DetailInfo(icon: DsfrIcons.mapMapPin2Line, text: detail.address),
-          if (detail.phone != null) _DetailInfo(icon: DsfrIcons.devicePhoneLine, text: detail.phone!),
-        ].separator(const SizedBox(height: DsfrSpacings.s1w)),
-        if (detail.website != null) ...[
-          const SizedBox(height: DsfrSpacings.s2w),
-          DsfrLink.md(
-            label: Localisation.enSavoirPlus,
-            icon: DsfrIcons.systemExternalLinkLine,
-            iconPosition: DsfrLinkIconPosition.end,
-            onTap: () async {
-              await FnvUrlLauncher.launch(detail.website!);
-            },
+        _DetailInfo(icon: DsfrIcons.mapMapPin2Line, text: detail.address),
+        const SizedBox(height: DsfrSpacings.s3w),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FittedBox(
+            child: DsfrButton(
+              label: Localisation.proposerUneModification,
+              icon: DsfrIcons.systemExternalLinkLine,
+              iconLocation: DsfrButtonIconLocation.right,
+              variant: DsfrButtonVariant.secondary,
+              size: DsfrComponentSize.lg,
+              onPressed: () async {
+                await FnvUrlLauncher.launch('https://tally.so/r/3xMqd9?Nom=${detail.name}&Adresse=${detail.address}');
+              },
+            ),
           ),
+        ),
+        if (detail.sources.isNotEmpty) ...[
+          const SizedBox(height: DsfrSpacings.s3w),
+          const DsfrDivider(),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const Text(Localisation.sources, style: DsfrTextStyle.bodyXsBold()),
+          ...detail.sources.map((final e) => Text('· $e', style: const DsfrTextStyle.bodyXs())),
         ],
-        const SafeArea(child: SizedBox.shrink()),
+        const SafeArea(child: SizedBox(height: DsfrSpacings.s2w)),
       ],
     );
   }

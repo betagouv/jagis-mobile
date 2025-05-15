@@ -1,6 +1,6 @@
 import 'package:app/features/services/pdcn/infrastructure/pdcn_repository.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_list/bloc/pdcn_event.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_list/bloc/pdcn_state.dart';
+import 'package:app/features/services/pdcn/presentation/bloc/pdcn_event.dart';
+import 'package:app/features/services/pdcn/presentation/bloc/pdcn_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // TODO(lsaudon): Factoriser les blocs pour les différents services

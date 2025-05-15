@@ -28,6 +28,7 @@ abstract final class AssetImages {
   static const leaf = 'assets/images/leaf.svg';
   static const logement = 'assets/images/logement.svg';
   static const lvaoStore = 'assets/images/lvao_store.svg';
+  static const lvaoIllustration = 'assets/images/lvao.webp';
   static const maifArgile = 'assets/images/maif_argile.svg';
   static const maifImage = 'assets/images/maif_image.webp';
   static const maifInondation = 'assets/images/maif_inondation.svg';

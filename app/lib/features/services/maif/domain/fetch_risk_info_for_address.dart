@@ -10,7 +10,7 @@ class FetchRiskInfoForAddress {
   final MaifRepository _port;
 
   Future<Either<Exception, List<MaifRisk>>> run(final Address address) async {
-    final result = await _port.fetchScore(address.latitude!, address.longitude!);
+    final result = await _port.fetchStreetRisks(address.latitude!, address.longitude!);
 
     return result.fold(
       Left.new,

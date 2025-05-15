@@ -1,6 +1,5 @@
-import 'package:app/core/address/address.dart';
+import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/services/maif/domain/fetch_risk_info_for_address.dart';
-import 'package:app/features/services/maif/domain/modify_address.dart';
 import 'package:app/features/services/maif/infrastructure/maif_repository.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_event.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_state.dart';
@@ -8,42 +7,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MaifBloc extends Bloc<MaifEvent, MaifState> {
   MaifBloc(
+    final ProfilRepository profilRepository,
     final MaifRepository repository,
     final FetchRiskInfoForAddress fetchRiskInfoForAddress,
-    final ModifyAddress updateAddress,
   ) : super(const MaifInitial()) {
     on<MaifLoadRequested>((final event, final emit) async {
       emit(const MaifLoadInProgress());
-      final result = await repository.fetch();
+      final addressResult = await profilRepository.fetchAddress();
+      await addressResult.fold((final failure) async => emit(const MaifLoadFailure()), (final address) async {
+        final cityRiskResult = await repository.fetchCityRisk(address.cityCode);
+        await cityRiskResult.fold((final failure) async => emit(const MaifLoadFailure()), (final cityRisk) async {
+          final initialState = MaifLoadSuccess(
+            userAddress: address,
+            searchAddress: address,
+            risks: const [],
+            numberOfCatNat: cityRisk.numberOfCatNat,
+            droughtPercentage: cityRisk.droughtPercentage,
+            floodPercentage: cityRisk.floodPercentage,
+            isLoading: false,
+          );
 
-      await result.fold((final failure) async => emit(const MaifLoadFailure()), (final data) async {
-        final address = Address(
-          latitude: data.latitude,
-          longitude: data.longitude,
-          houseNumber: data.houseNumber,
-          street: data.street,
-          postCode: data.postCode,
-          city: data.city,
-          cityCode: data.cityCode,
-        );
-        final initialState = MaifLoadSuccess(
-          userAddress: address,
-          searchAddress: address,
-          risks: const [],
-          numberOfCatNat: data.numberOfCatNat,
-          droughtPercentage: data.droughtPercentage,
-          floodPercentage: data.floodPercentage,
-        );
+          if (!address.isFull) {
+            emit(initialState);
 
-        if (!initialState.searchAddress.isFull) {
-          emit(initialState);
+            return;
+          }
 
-          return;
-        }
-
-        final scoreResult = await fetchRiskInfoForAddress.run(initialState.searchAddress);
-        scoreResult.fold((final failure) => emit(const MaifLoadFailure()), (final risks) {
-          emit(initialState.copyWith(risks: risks));
+          final addressRiskResult = await fetchRiskInfoForAddress.run(initialState.searchAddress);
+          addressRiskResult.fold((final failure) => emit(const MaifLoadFailure()), (final risks) {
+            emit(initialState.copyWith(risks: risks));
+          });
         });
       });
     });
@@ -52,27 +45,22 @@ class MaifBloc extends Bloc<MaifEvent, MaifState> {
       if (currentState is! MaifLoadSuccess) {
         return;
       }
+      emit(currentState.copyWith(isLoading: true));
       final address = event.value;
-      final result = await fetchRiskInfoForAddress.run(address);
-      final cityCode = address.cityCode;
-      final catNatResult = await repository.fetchCatNat(cityCode);
-      final droughtResult = await repository.fetchDroughtPercentage(cityCode);
-      final floodResult = await repository.fetchFloodPercentage(cityCode);
-      result.fold((final failure) => emit(const MaifLoadFailure()), (final risks) {
-        catNatResult.fold((final failure) => emit(const MaifLoadFailure()), (final numberOfCatNat) {
-          droughtResult.fold((final failure) => emit(const MaifLoadFailure()), (final droughtPercentage) {
-            floodResult.fold((final failure) => emit(const MaifLoadFailure()), (final floodPercentage) {
-              emit(
-                currentState.copyWith(
-                  searchAddress: address,
-                  risks: risks,
-                  numberOfCatNat: numberOfCatNat,
-                  droughtPercentage: droughtPercentage,
-                  floodPercentage: floodPercentage,
-                ),
-              );
-            });
-          });
+      final cityRiskResult = await repository.fetchCityRisk(address.cityCode);
+      final addressRiskResult = await fetchRiskInfoForAddress.run(address);
+      cityRiskResult.fold((final failure) => emit(const MaifLoadFailure()), (final cityRisk) {
+        addressRiskResult.fold((final failure) => emit(const MaifLoadFailure()), (final risks) {
+          emit(
+            currentState.copyWith(
+              searchAddress: address,
+              risks: risks,
+              numberOfCatNat: cityRisk.numberOfCatNat,
+              droughtPercentage: cityRisk.droughtPercentage,
+              floodPercentage: cityRisk.floodPercentage,
+              isLoading: false,
+            ),
+          );
         });
       });
     });
@@ -82,7 +70,7 @@ class MaifBloc extends Bloc<MaifEvent, MaifState> {
         return;
       }
       final address = event.value;
-      await updateAddress.run(address);
+      await profilRepository.modifyAddress(address);
       emit(currentState.copyWith(userAddress: address));
     });
   }

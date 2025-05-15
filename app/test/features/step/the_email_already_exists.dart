@@ -8,7 +8,7 @@ import '../helper/feature_context.dart';
 /// Usage: the email already exists
 Future<void> theEmailAlreadyExists(final WidgetTester tester) async {
   FeatureContext.instance.dioMock.postM(
-    Endpoints.creationCompte,
+    Endpoints.magicLinkSend,
     statusCode: HttpStatus.badRequest,
     responseData: {
       'statusCode': HttpStatus.badRequest,

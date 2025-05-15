@@ -12,7 +12,7 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     on<LogoutRequested>((final event, final emit) async {
       emit(const LogoutLoadInProgress());
       await notificationRepository.deleteNotificationToken();
-      await authentificationRepository.deconnexionDemandee();
+      await authentificationRepository.logoutRequested();
       emit(const LogoutLoadSuccess());
     });
   }

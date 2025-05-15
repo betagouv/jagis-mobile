@@ -20,26 +20,6 @@ final class CreerCompteAdresseMailAChangee extends CreerCompteEvent {
 }
 
 @immutable
-final class CreerCompteMotDePasseAChange extends CreerCompteEvent {
-  const CreerCompteMotDePasseAChange(this.valeur);
-
-  final String valeur;
-
-  @override
-  List<Object> get props => [valeur];
-}
-
-@immutable
-final class CreerCompteCguAChange extends CreerCompteEvent {
-  const CreerCompteCguAChange(this.valeur);
-
-  final bool valeur;
-
-  @override
-  List<Object> get props => [valeur];
-}
-
-@immutable
 final class CreerCompteCreationDemandee extends CreerCompteEvent {
   const CreerCompteCreationDemandee();
 }

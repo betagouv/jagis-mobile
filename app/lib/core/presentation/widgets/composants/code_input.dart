@@ -3,10 +3,30 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pinput/pinput.dart';
 
-class FnvCodeInput extends StatelessWidget {
-  const FnvCodeInput({super.key, required this.onChanged});
+class FnvCodeInput extends StatefulWidget {
+  const FnvCodeInput({super.key, required this.initialValue, required this.onChanged});
 
+  final String initialValue;
   final ValueChanged<String> onChanged;
+
+  @override
+  State<FnvCodeInput> createState() => _FnvCodeInputState();
+}
+
+class _FnvCodeInputState extends State<FnvCodeInput> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -28,7 +48,8 @@ class FnvCodeInput extends StatelessWidget {
         length: 6,
         defaultPinTheme: pinTheme,
         focusedPinTheme: pinTheme.copyBorderWith(border: const Border.fromBorderSide(BorderSide(color: DsfrColors.focus525))),
-        onChanged: onChanged,
+        onChanged: widget.onChanged,
+        controller: _controller,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
         scrollPadding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom + 130),
       ),

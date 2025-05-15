@@ -28,6 +28,7 @@ abstract final class Localisation {
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
   static const aucuneDeCesPropositions = 'Aucune de ces propositions';
+  static const avecMonAdresseEmail = 'Avec mon adresse email';
   static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
   static const avezVousAimeCettePageDescription =
       'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
@@ -44,8 +45,6 @@ abstract final class Localisation {
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
-  static const changerMonMotDePasse = 'Changer mon mot de passe';
-  static const changerVotreMotDePasseConfirmation = 'Votre mot de passe a été changé.';
   static const choisirCommeAdressePrincipale = 'Choisir';
   static const choisirCommeAdressePrincipaleDescription =
       'Voulez-vous choisir cette adresse comme votre adresse principale à l’avenir ?';
@@ -64,7 +63,7 @@ abstract final class Localisation {
   static const contributeursOpenStreetMap = 'Contributeurs OpenStreetMap';
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
-  static const creerMonCompteApp = 'Créez votre compte J’agis';
+  static const creerUnCompte = 'Créer un compte';
   static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const dateDeNaissance = 'Date de naissance';
   static const dateDeNaissanceDescription = 'Nécessaire pour faciliter votre identification';
@@ -88,7 +87,6 @@ abstract final class Localisation {
   static const dpeG = 'G';
   static const dpeJeNeSaisPas = 'Je ne sais pas';
   static const elementsNecessaireAuCalcul = 'Éléments nécessaires au calcul';
-  static const emailDeConnexionRenvoye = 'Email de connexion renvoyé';
   static const emissionsAnnuelles = 'Émissions annuelles';
   static const enchante = 'Enchanté, ';
   static const enchanteDetails =
@@ -123,7 +121,7 @@ abstract final class Localisation {
   static const franceConnectEnSavoirPlus = 'Qu’est-ce que FranceConnect ?';
   static const franceConnectEnSavoirPlusUrl = 'https://franceconnect.gouv.fr';
   static const franceConnectPrefix = 'S’identifier avec';
-  static const franceConnectTitle = 'Utilisez FranceConnect';
+  static const franceConnectTitle = 'Utiliser FranceConnect';
   static const fruits = 'Fruits';
   static const fruitsEtLegumesConsommateurs = 'Consommateurs';
   static const fruitsEtLegumesConsommateursDescription = 'Plus de 5 kg CO₂e par kg';
@@ -143,7 +141,6 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
   static const impactCo2Url = 'https://impactco2.fr';
   static const ingredients = 'Ingrédients';
-  static const jaccepte = 'J’accepte ';
   static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
@@ -156,9 +153,10 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const leServiveNeCouvrePasEncoreVotreVilleDescription = 'Nous mettons les informations à jour progressivement.';
   static const legumes = 'Légumes';
   static const lesCategories = 'Les catégories';
-  static const lesCgu = 'les conditions générales d’utilisation';
   static const lesCguMenu = 'CGU';
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
+  static const lesCguTitrePart1 = 'En m’inscrivant j’accepte les ';
+  static const lesCguTitrePart2 = 'Conditions générales d’utilisation';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
   static const lvaoDescription =
       'L’ADEME vous aide à prolonger la vie de vos objets. Pour préserver les ressources de la planète… et de votre porte-monnaie !';
@@ -211,18 +209,8 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const monIdentite = 'Mon identité';
   static const monLogement = 'Mon logement';
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';
-  static const monMotDePasseDoitContenir = 'Mon mot de passe doit contenir :';
   static const monProfil = 'Mon profil';
   static const monPseudonyme = 'Mon pseudonyme';
-  static const motDePasse = 'Mot de passe';
-  static const motDePasse12CaractresMinimum = '12 caractères minimum';
-  static const motDePasse1CaractreSpecialMinimum = '1 caractère spécial minimum';
-  static const motDePasse1ChiffreMinimum = '1 chiffre minimum';
-  static const motDePasse1MajusculeEt1Minuscule = 'Au moins 1 majuscule et 1 minuscule';
-  static const motDePasseOublie = 'Mot de passe oublié ?';
-  static const motDePasseOublieDetails = 'Saisissez l’adresse électronique associé à votre compte.';
-  static const motDePasseOublieTitre = 'Mot de passe oublié - 1/2';
-  static const motDePasseOublieTitre2 = 'Mot de passe oublié - 2/2';
   static const nom = 'Nom';
   static const nombreDePartsFiscales = 'Nombre de parts fiscales de votre foyer';
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
@@ -245,7 +233,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez 1 part pour
 
 Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme des revenus de toutes les personnes avec lequelles vous partagez vos déclarations d’impôts (pour toute l’année) pour vous faire une première idée.''';
   static const oui = 'Oui';
-  static const pageConnexionTitre = 'Accédez à mon compte J’agis';
+  static const pageConnexionTitre = 'Connexion à *J’agis*';
   static const partagerLArticle = 'Partager l’article';
   static const passerLaQuestion = 'Passer la question';
   static const pionnier = 'Pionnier';
@@ -264,7 +252,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
   static const preOnboardingTitre = 'Ensemble, améliorons nos habitudes au jour le jour';
-  static const premiereFoisSur = 'Première fois sur J’agis ?';
   static const prenom = 'Prénom';
   static const prixDuVelo = 'Prix du vélo';
   static const prixDuVeloExplications = 'À titre indicatif, voici quelques prix moyens';
@@ -292,9 +279,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
-  static const renvoyerCode = 'Renvoyer le code';
-  static const renvoyerEmailDeConnexion = 'Renvoyer l’e-mail de connexion';
   static const reponse = 'Réponse';
+  static const rentrerLeCodeManuellement = 'Rentrer le code manuellement';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retirerDesFavoris = 'Retirer des favoris';
   static const retour = 'Retour';
@@ -317,8 +303,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';
+  static const unProblemeAvecLeLien = 'Un problème avec le lien ?';
   static const uneMaison = 'Une maison';
-  static const valider = 'Valider';
+  static const verifiezVotreBoiteEmail = 'Vérifiez votre boîte e-mail';
   static const voirLaReponse = 'Voir la réponse';
   static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
@@ -335,7 +322,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
   static const vousAvezDejaLOptionLaPlusEconomique = 'Vous avez déjà l’option la plus économique !';
-  static const vousAvezDejaUnCompte = 'Vous avez déjà un compte ?';
   static const vousAvezObtenuUnScoreKoDe = '😬 Vous avez obtenu un score de';
   static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
   static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
@@ -370,9 +356,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String donneesUtiliseesRevenuFiscal(final int? value) => '(${value == null ? '' : euro(value)})';
 
-  static String entrezLeCodeRecuOublieMotDePasseParMailDetails(final String value) =>
-      'Pour vérifier votre identité et vous permettre de modifier votre mot de passe, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
-
   static String entrezLeCodeRecuParMailDetails(final String value) =>
       'Pour vérifier votre identité et vous permettre d’accéder à votre compte, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
 
@@ -394,6 +377,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String tempsDePreparation(final int value) => 'Temps de préparation : $value min';
 
   static String veloLabel(final String text) => '$text : ';
+
+  static String verifiezVotreBoiteEmailDescription(final String email) =>
+      'Un lien de connexion vous a été envoyé à l’adresse : **$email** pour vous permettre d’accéder à votre compte';
 
   static String votreReponse(final bool isCorrect) => '${isCorrect ? '✅' : '❌'} Votre réponse : ';
 }

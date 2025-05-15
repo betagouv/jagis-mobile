@@ -5,5 +5,5 @@ import '../helper/feature_context.dart';
 
 /// Usage: the email don't exists
 Future<void> theEmailDontExists(final WidgetTester tester) async {
-  FeatureContext.instance.dioMock.postM(Endpoints.creationCompte);
+  FeatureContext.instance.dioMock.postM(Endpoints.magicLinkSend);
 }

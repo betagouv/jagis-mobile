@@ -1,4 +1,3 @@
-import 'package:app/features/authentification/core/domain/information_de_connexion.dart';
 import 'package:app/features/authentification/core/infrastructure/authentification_repository.dart';
 import 'package:app/features/authentification/creer_compte/presentation/bloc/creer_compte_event.dart';
 import 'package:app/features/authentification/creer_compte/presentation/bloc/creer_compte_state.dart';
@@ -9,22 +8,14 @@ class CreerCompteBloc extends Bloc<CreerCompteEvent, CreerCompteState> {
   CreerCompteBloc({required final AuthentificationRepository authentificationRepository})
     : super(const CreerCompteState.empty()) {
     on<CreerCompteAdresseMailAChangee>((final event, final emit) {
-      emit(state.copyWith(adresseMail: event.valeur));
-    });
-    on<CreerCompteMotDePasseAChange>((final event, final emit) {
-      emit(state.copyWith(motDePasse: event.valeur));
-    });
-    on<CreerCompteCguAChange>((final event, final emit) {
-      emit(state.copyWith(aCguAcceptees: event.valeur));
+      emit(state.copyWith(email: event.valeur));
     });
     on<CreerCompteCreationDemandee>((final event, final emit) async {
-      emit(state.copyWith(compteCree: false));
-      final result = await authentificationRepository.creationDeCompteDemandee(
-        InformationDeConnexion(adresseMail: state.adresseMail, motDePasse: state.motDePasse),
-      );
+      emit(state.copyWith(isAccountCreated: false));
+      final result = await authentificationRepository.accountCreationRequested(state.email);
       result.fold(
-        (final exception) => emit(state.copyWith(erreur: Some(exception.message))),
-        (final _) => emit(state.copyWith(compteCree: true)),
+        (final exception) => emit(state.copyWith(errorMessage: Some(exception.message))),
+        (final _) => emit(state.copyWith(isAccountCreated: true)),
       );
     });
   }

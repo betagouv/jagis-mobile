@@ -1,8 +1,8 @@
 // ignore_for_file: prefer-single-widget-per-file
 
-import 'package:app/features/services/pdcn/presentation/pdcn_list/bloc/pdcn_bloc.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_list/bloc/pdcn_event.dart';
-import 'package:app/features/services/pdcn/presentation/pdcn_list/bloc/pdcn_state.dart';
+import 'package:app/features/services/pdcn/presentation/bloc/pdcn_bloc.dart';
+import 'package:app/features/services/pdcn/presentation/bloc/pdcn_event.dart';
+import 'package:app/features/services/pdcn/presentation/bloc/pdcn_state.dart';
 import 'package:app/features/services/pdcn/presentation/widgets/pdcn_card.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';

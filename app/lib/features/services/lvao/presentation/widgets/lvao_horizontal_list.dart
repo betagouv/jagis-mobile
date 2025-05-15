@@ -1,15 +1,16 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_bloc.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_event.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_state.dart';
+import 'package:app/features/services/lvao/presentation/lvao_detail/pages/lvao_detail_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LvaoHorizontalList extends StatelessWidget {
   const LvaoHorizontalList({super.key, required this.category});
@@ -72,8 +73,10 @@ class _Success extends StatelessWidget {
             children:
                 state.actors
                     .map(
-                      (final e) => DecoratedBox(
-                        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+                      (final e) => FnvCard(
+                        onTap: () async {
+                          await GoRouter.of(context).pushNamed(LvaoDetailPage.name, pathParameters: {'id': e.id});
+                        },
                         child: SizedBox(
                           width: 346,
                           child: Padding(

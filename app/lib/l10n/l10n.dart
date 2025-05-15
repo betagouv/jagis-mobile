@@ -121,7 +121,7 @@ abstract final class Localisation {
   static const franceConnectDescription =
       'FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.';
   static const franceConnectEnSavoirPlus = 'Qu’est-ce que FranceConnect ?';
-  static const franceConnectEnSavoirPlusUrl = 'https://franceconnect.gouv.fr/';
+  static const franceConnectEnSavoirPlusUrl = 'https://franceconnect.gouv.fr';
   static const franceConnectPrefix = 'S’identifier avec';
   static const franceConnectTitle = 'Utilisez FranceConnect';
   static const fruits = 'Fruits';
@@ -141,7 +141,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
 **Personnalisez votre expérience** en quelques questions et obtenez des **idées d’actions** concrètes, avec tous les **outils**, **adresses** et **aides financières** pour y arriver !''';
   static const impactCo2 = 'Impact CO₂';
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
-  static const impactCo2Url = 'https://impactco2.fr/';
+  static const impactCo2Url = 'https://impactco2.fr';
   static const ingredients = 'Ingrédients';
   static const jaccepte = 'J’accepte ';
   static const jaiCompris = 'J’ai compris';
@@ -160,21 +160,26 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCguMenu = 'CGU';
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
+  static const lvaoDescription =
+      'L’ADEME vous aide à prolonger la vie de vos objets. Pour préserver les ressources de la planète… et de votre porte-monnaie !';
+  static const lvaoNom = 'Que faire de mes objets - ADEME';
+  static const lvaoSousTitre = 'Redonnez vie à vos objets et trouvez les nouveaux en seconde main';
+  static const lvaoUrl = 'https://quefairedemesobjets.ademe.fr';
   static const maDateDeNaissance = 'Ma date de naissance';
   static const maReponse = 'Ma réponse';
   static const maResidencePrincipaleEst = 'Ma résidence principale est …';
   static const maifDescription =
       'Exposition aux risques climatiques, services de proximité, prix de l’immobilier… Retrouvez toutes les informations utiles aux alentours de votre adresse !';
   static const maifNom = 'Aux Alentours par MAIF';
-  static const maifUrl = 'https://auxalentours.maif.fr/';
+  static const maifUrl = 'https://auxalentours.maif.fr';
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';
-  static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus/';
+  static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus';
   static const pdcnSousTitre = 'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
   static const pdcnDescription =
       'Près de chez nous est une cartographie collaborative qui recense l’ensemble des structures qui proposent des produits bio, équitables et locaux.';
   static const pdcnNom = 'Près de chez nous';
-  static const pdcnUrl = 'https://presdecheznous.fr/';
+  static const pdcnUrl = 'https://presdecheznous.fr';
   static const meConnecter = 'Me connecter';
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
@@ -265,6 +270,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const prixDuVeloExplications = 'À titre indicatif, voici quelques prix moyens';
   static const prixDuVeloObligatoire = 'Le prix du vélo ne peux pas être vide';
   static const proposePar = 'Proposé par';
+  static const proposerUneModification = 'Proposer une modification';
   static const proposezMoiAutreChose = 'Proposez-moi autre chose';
   static const propulsePar = 'Propulsé par ';
   static const pseudonymEmpty = 'Le pseudonyme ne peut pas être vide.';

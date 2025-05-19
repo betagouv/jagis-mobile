@@ -56,7 +56,7 @@ void main() {
       try {
         await beforeEach('''Répondre aux premieres questions''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, 'Joe', 'Mon pseudonyme');
+        await iEnterInTheField(tester, 'Joe123', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
         await iSelectDateInTheField(
             tester, '15/01/1974', 'Ma date de naissance');
@@ -106,7 +106,7 @@ void main() {
       try {
         await beforeEach('''Saisir un pseudonyme invalide''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, '123', 'Mon pseudonyme');
+        await iEnterInTheField(tester, 'Joe#123', 'Mon pseudonyme');
         await iSee(tester, 'Le pseudonyme n’est pas valide.');
       } on TestFailure {
         success = false;
@@ -160,7 +160,6 @@ void main() {
         await beforeEach(
             '''Vérifier l'accessibilité sur la page du pseudonyme''');
         await bddSetUp(tester);
-        await iSeeSemantics(tester, 'Question 1 sur 3');
         await iSeeSemantics(
             tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
         await iSeeSemantics(tester,

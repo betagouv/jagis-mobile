@@ -71,6 +71,7 @@ class _Content extends StatelessWidget {
             const SizedBox(height: DsfrSpacings.s3w),
             DsfrInput(
               label: Localisation.monPseudonyme,
+              hintText: Localisation.monPseudonymeIndice,
               onChanged: (final value) {
                 context.read<OnboardingPseudonymBloc>().add(OnboardingPseudonymChanged(value));
               },

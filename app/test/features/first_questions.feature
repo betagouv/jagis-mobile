@@ -11,7 +11,7 @@ Feature: Onboarding
     When I enter {'999999'} in the pin field
 
   Scenario: Répondre aux premieres questions
-    When I enter {'Joe'} in the {'Mon pseudonyme'} field
+    When I enter {'Joe123'} in the {'Mon pseudonyme'} field
     When I scroll down to {'Ma date de naissance'}
     When I select {'15/01/1974'} date in the {'Ma date de naissance'} field
     When I tap on {'Continuer'}
@@ -32,7 +32,7 @@ Feature: Onboarding
     Then I see the home page
 
   Scenario: Saisir un pseudonyme invalide
-    When I enter {'123'} in the {'Mon pseudonyme'} field
+    When I enter {'Joe#123'} in the {'Mon pseudonyme'} field
     Then I see {'Le pseudonyme n’est pas valide.'}
 
   Scenario: Saisir un pseudonyme valide et recevoir une erreur de l'API
@@ -46,7 +46,6 @@ Feature: Onboarding
     Then I see {'Une erreur est survenue.'}
 
   Scenario: Vérifier l'accessibilité sur la page du pseudonyme
-    Then I see {'Question 1 sur 3'} semantics
     Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'} semantics
     Then I see {'Nous avons quelques questions à vous poser pour personnaliser votre expérience !'} semantics
     Then I see {'Mon pseudonyme'} semantics

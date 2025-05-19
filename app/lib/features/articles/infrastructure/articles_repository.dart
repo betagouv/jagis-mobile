@@ -35,4 +35,10 @@ class ArticlesRepository {
         ? const Right(unit)
         : Left(Exception("Erreur lors du retrait de l'article aux favoris"));
   }
+
+  Future<Either<Exception, Unit>> share(final String id) async {
+    final response = await _client.post(Endpoints.articleShare(id));
+
+    return isResponseSuccessful(response.statusCode) ? const Right(unit) : Left(Exception("Erreur lors du partage de l'article"));
+  }
 }

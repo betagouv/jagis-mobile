@@ -10,6 +10,7 @@ abstract final class ArticleMapper {
 
   static Article fromJson({required final Map<String, dynamic> json}) => Article(
     id: json['content_id'] as String,
+    imageUrl: json['image_url'] as String,
     titre: json['titre'] as String,
     sousTitre: json['soustitre'] as String?,
     contenu: json['contenu'] as String,

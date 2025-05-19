@@ -46,12 +46,17 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final article = context.select<ArticleBloc, Article>((final v) => v.state.article);
+    final article = context.select<ArticleBloc, Article?>((final v) => v.state.article);
+
+    if (article == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
     return SingleChildScrollView(
       child: Column(
         spacing: DsfrSpacings.s2w,
         children: [
+          FnvImage.network(article.imageUrl, width: double.infinity, height: 147, fit: BoxFit.cover),
           Padding(
             padding: const EdgeInsets.all(DsfrSpacings.s2w),
             child: Column(
@@ -64,12 +69,6 @@ class _Content extends StatelessWidget {
                 ],
                 const SizedBox(height: DsfrSpacings.s2w),
                 FnvHtmlWidget(article.contenu),
-                if (article.partner != null) ...[
-                  const SizedBox(height: DsfrSpacings.s4w),
-                  const Text(Localisation.proposePar, style: DsfrTextStyle.bodySm()),
-                  const SizedBox(height: DsfrSpacings.s1w),
-                  _LogoWidget(article: article),
-                ],
                 if (article.sources.isNotEmpty) ...[
                   const SizedBox(height: DsfrSpacings.s2w),
                   SourcesWidget(sources: article.sources),
@@ -82,9 +81,38 @@ class _Content extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(DsfrSpacings.s2w),
               child: Column(
-                spacing: DsfrSpacings.s2w,
                 children: [
+                  if (article.partner != null) ...[
+                    Row(
+                      spacing: DsfrSpacings.s1w,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                Localisation.proposePar,
+                                style: const DsfrTextStyle.bodySm(
+                                  color: DsfrColors.blueFranceSun113,
+                                ).copyWith(fontStyle: FontStyle.italic),
+                              ),
+                              Text(
+                                article.partner!.name,
+                                style: const DsfrTextStyle.bodyXlBold(),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                        FnvImage.network(article.partner!.logo, width: 60),
+                      ],
+                    ),
+                    const SizedBox(height: DsfrSpacings.s2w),
+                    const DsfrDivider(),
+                    const SizedBox(height: DsfrSpacings.s4w),
+                  ],
                   _FavoriteButton(isFavorite: article.isFavorite),
+                  const SizedBox(height: DsfrSpacings.s2w),
                   DsfrButton(
                     label: Localisation.partagerLArticle,
                     icon: DsfrIcons.systemShareLine,
@@ -95,7 +123,10 @@ class _Content extends StatelessWidget {
                       final uri = Uri.parse(
                         'https://jagis.beta.gouv.fr/article/${titleToKebabCase(article.titre)}/${article.id}',
                       );
-                      await SharePlus.instance.share(ShareParams(uri: uri));
+                      final shareResult = await SharePlus.instance.share(ShareParams(uri: uri));
+                      if (shareResult.status == ShareResultStatus.success && context.mounted) {
+                        context.read<ArticleBloc>().add(const ArticleSharePressed());
+                      }
                     },
                   ),
                   const SafeArea(child: SizedBox(height: DsfrSpacings.s2w)),
@@ -140,24 +171,5 @@ class _FavoriteButton extends StatelessWidget {
       size: size,
       onPressed: () => context.read<ArticleBloc>().add(const ArticleAddToFavoritesPressed()),
     );
-  }
-}
-
-class _LogoWidget extends StatelessWidget {
-  const _LogoWidget({required this.article});
-
-  final Article article;
-
-  @override
-  Widget build(final BuildContext context) {
-    if (article.partner == null) {
-      return const SizedBox.shrink();
-    }
-
-    final partner = article.partner!;
-    final logoUrl = partner.logo;
-    final logoName = partner.name;
-
-    return FnvImage.network(logoUrl, semanticLabel: logoName);
   }
 }

@@ -4,7 +4,7 @@ import 'package:app/features/articles/presentation/bloc/article_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
-  ArticleBloc({required final ArticlesRepository articlesRepository}) : super(const ArticleState.empty()) {
+  ArticleBloc({required final ArticlesRepository articlesRepository}) : super(const ArticleState(article: null)) {
     on<ArticleRecuperationDemandee>((final event, final emit) async {
       final result = await articlesRepository.recupererArticle(event.id);
       await result.fold((final l) {}, (final r) async {
@@ -12,15 +12,29 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
       });
     });
     on<ArticleAddToFavoritesPressed>((final event, final emit) async {
-      await articlesRepository.addToFavorites(state.article.id);
-      final article = state.article.copyWith(isFavorite: true);
-      emit(state.copyWith(article: article));
+      final article = state.article;
+      if (article == null) {
+        return;
+      }
+      await articlesRepository.addToFavorites(article.id);
+      final updatedArticle = article.copyWith(isFavorite: true);
+      emit(ArticleState(article: updatedArticle));
     });
-
     on<ArticleRemoveToFavoritesPressed>((final event, final emit) async {
-      await articlesRepository.removeToFavorites(state.article.id);
-      final article = state.article.copyWith(isFavorite: false);
-      emit(state.copyWith(article: article));
+      final article = state.article;
+      if (article == null) {
+        return;
+      }
+      await articlesRepository.removeToFavorites(article.id);
+      final updatedArticle = article.copyWith(isFavorite: false);
+      emit(ArticleState(article: updatedArticle));
+    });
+    on<ArticleSharePressed>((final event, final emit) async {
+      final article = state.article;
+      if (article == null) {
+        return;
+      }
+      await articlesRepository.share(article.id);
     });
   }
 }

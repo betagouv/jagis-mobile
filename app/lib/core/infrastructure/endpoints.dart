@@ -52,6 +52,7 @@ abstract final class Endpoints {
       '${action(type: type, code: code)}/question';
   static String aid(final String code) => '/utilisateurs/{userId}/aides/$code';
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';
+  static String articleShare(final String contentId) => '${article(contentId)}/share';
   static String bilanByTheme(final String type) => '/utilisateurs/{userId}/bilans/last_v3/$type';
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';

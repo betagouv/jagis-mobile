@@ -28,3 +28,8 @@ final class ArticleAddToFavoritesPressed extends ArticleEvent {
 final class ArticleRemoveToFavoritesPressed extends ArticleEvent {
   const ArticleRemoveToFavoritesPressed();
 }
+
+@immutable
+final class ArticleSharePressed extends ArticleEvent {
+  const ArticleSharePressed();
+}

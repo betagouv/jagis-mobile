@@ -7,7 +7,7 @@ Feature: Login to my account
     When I enter {'joe@doe.fr'} in the {'Mon adresse email'} field
     When I tap on login button
     Then I see {'Vérifiez votre boîte e-mail'}
-    When I tap on {"Rentrer le code manuellement"}
+    When I tap on {"Je préfère rentrer le code manuellement"}
     Then I see {'Entrez le code reçu par e-mail !'}
     When I enter {'999999'} in the pin field
     Then I see {'Bienvenue sur J’agis ! Faisons connaissance…'}

@@ -44,7 +44,7 @@ void main() {
         await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
         await iTapOnLoginButton(tester);
         await iSee(tester, 'Vérifiez votre boîte e-mail');
-        await iTapOn(tester, "Rentrer le code manuellement");
+        await iTapOn(tester, "Je préfère rentrer le code manuellement");
         await iSee(tester, 'Entrez le code reçu par e-mail !');
         await iEnterInThePinField(tester, '999999');
         await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');

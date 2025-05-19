@@ -281,7 +281,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
   static const reponse = 'Réponse';
-  static const rentrerLeCodeManuellement = 'Rentrer le code manuellement';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retirerDesFavoris = 'Retirer des favoris';
   static const retour = 'Retour';
@@ -298,13 +297,13 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
   static const suggestions = 'Suggestions';
   static const supprimerVotreCompte = 'Supprimer mon compte';
+  static const jePrefereRentrerLeCodeManuellement = 'Je préfère rentrer le code manuellement';
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';
-  static const unProblemeAvecLeLien = 'Un problème avec le lien ?';
   static const uneMaison = 'Une maison';
   static const verifiezVotreBoiteEmail = 'Vérifiez votre boîte e-mail';
   static const voirLaReponse = 'Voir la réponse';

@@ -38,21 +38,13 @@ class CheckInboxPage extends StatelessWidget {
         const Text(Localisation.verifiezVotreBoiteEmail, style: DsfrTextStyle.headline3()),
         const SizedBox(height: DsfrSpacings.s1w),
         FnvMarkdown(data: Localisation.verifiezVotreBoiteEmailDescription(email)),
-        const SizedBox(height: DsfrSpacings.s4w),
-        const DsfrDivider(),
-        const SizedBox(height: DsfrSpacings.s4w),
-        Column(
-          spacing: DsfrSpacings.s1w,
-          children: [
-            const Text(Localisation.unProblemeAvecLeLien, style: DsfrTextStyle.headline5()),
-            DsfrLink.md(
-              label: Localisation.rentrerLeCodeManuellement,
-              icon: DsfrIcons.designEditFill,
-              onTap: () async {
-                await GoRouter.of(context).pushNamed(SaisieCodePage.name, queryParameters: {'email': email});
-              },
-            ),
-          ],
+        const SizedBox(height: DsfrSpacings.s1w),
+        DsfrLink.md(
+          label: Localisation.jePrefereRentrerLeCodeManuellement,
+          icon: DsfrIcons.designEditFill,
+          onTap: () async {
+            await GoRouter.of(context).pushNamed(SaisieCodePage.name, queryParameters: {'email': email});
+          },
         ),
         const SafeArea(child: SizedBox.shrink()),
       ],

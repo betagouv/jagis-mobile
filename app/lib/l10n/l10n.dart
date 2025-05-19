@@ -214,6 +214,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const monMotDePasseDoitContenir = 'Mon mot de passe doit contenir :';
   static const monProfil = 'Mon profil';
   static const monPseudonyme = 'Mon pseudonyme';
+  static const monPseudonymeIndice = 'Doit être composés de 3 à 21 caractères. Lettres et chiffres uniquement.';
   static const motDePasse = 'Mot de passe';
   static const motDePasse12CaractresMinimum = '12 caractères minimum';
   static const motDePasse1CaractreSpecialMinimum = '1 caractère spécial minimum';

@@ -30,6 +30,15 @@
 		<string>xx-XX</string>
 		<key>FlutterDeepLinkingEnabled</key>
 		<true/>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>jagis</string>
+				</array>
+			</dict>
+		</array>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
 		<key>LSRequiresIPhoneOS</key>

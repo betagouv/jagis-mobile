@@ -40,6 +40,7 @@
                 <data
                     android:host="${hostName}"
                     android:scheme="https" />
+                <data android:scheme="jagis" />
             </intent-filter>
         </activity>
         <meta-data

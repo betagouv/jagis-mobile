@@ -33,7 +33,7 @@ void main() {
     await repository.loginRequested(email);
 
     // Assert.
-    verify(() => dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email"}'));
+    verify(() => dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email","origin":"mobile"}'));
   });
 
   test(
@@ -114,7 +114,10 @@ void main() {
 
     await repository.accountCreationRequested(email);
 
-    verify(() => dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email","source_inscription":"mobile"}'));
+    verify(
+      () =>
+          dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email","source_inscription":"mobile","origin":"mobile"}'),
+    );
   });
 
   test('validationDemandee', () async {

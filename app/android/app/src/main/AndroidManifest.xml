@@ -38,10 +38,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="jagis.beta.gouv.fr"
-                    android:scheme="https" />
-                <data
-                    android:host="agir-front-dev.osc-fr1.scalingo.io"
+                    android:host="${hostName}"
                     android:scheme="https" />
             </intent-filter>
         </activity>

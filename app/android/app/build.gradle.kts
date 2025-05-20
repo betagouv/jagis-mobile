@@ -12,7 +12,7 @@ android {
     namespace = "fr.gouv.agir"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973" // flutter.ndkVersion
-    
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -52,16 +52,19 @@ android {
         create("production") {
             dimension = "default"
             manifestPlaceholders["appName"] = "J’agis"
+            manifestPlaceholders["hostName"] = "jagis.beta.gouv.fr"
         }
         create("development") {
             dimension = "default"
             applicationIdSuffix = ".dev2"
             manifestPlaceholders["appName"] = "[D] J’agis"
+            manifestPlaceholders["hostName"] = "agir-front-dev.osc-fr1.scalingo.io"
         }
         create("local") {
             dimension = "default"
             applicationIdSuffix = ".local"
             manifestPlaceholders["appName"] = "[L] J’agis"
+            manifestPlaceholders["hostName"] = "agir-front-dev.osc-fr1.scalingo.io"
         }
     }
 

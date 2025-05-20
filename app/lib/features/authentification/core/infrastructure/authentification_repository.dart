@@ -20,7 +20,7 @@ class AuthentificationRepository {
   final AuthenticationService _authenticationService;
 
   Future<Either<ApiErreur, Unit>> loginRequested(final String email) async {
-    final response = await _client.post(Endpoints.magicLinkSend, data: jsonEncode({'email': email}));
+    final response = await _client.post(Endpoints.magicLinkSend, data: jsonEncode({'email': email, 'origin': 'mobile'}));
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return handleError(jsonEncode(response.data), defaultMessage: 'Erreur lors de la connexion');
@@ -32,7 +32,7 @@ class AuthentificationRepository {
   Future<Either<ApiErreur, Unit>> accountCreationRequested(final String email) async {
     final response = await _client.post(
       Endpoints.magicLinkSend,
-      data: jsonEncode({'email': email, 'source_inscription': 'mobile'}),
+      data: jsonEncode({'email': email, 'source_inscription': 'mobile', 'origin': 'mobile'}),
     );
 
     return isResponseUnsuccessful(response.statusCode)

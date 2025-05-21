@@ -100,13 +100,17 @@ class _DsfrLinkState extends State<DsfrLink> with MaterialStateMixin<DsfrLink> {
     final resolveForegroundColor = _foregroundColor.resolve(materialStates);
 
     final list = [
-      if (widget.icon != null) ...[
+      if (widget.icon != null)
         WidgetSpan(
           alignment: PlaceholderAlignment.middle,
-          child: Icon(widget.icon, size: widget.iconSize, color: resolveForegroundColor),
+          child: Padding(
+            padding:
+                widget.iconPosition == DsfrLinkIconPosition.start
+                    ? const EdgeInsets.only(right: 4)
+                    : const EdgeInsets.only(left: 4),
+            child: Icon(widget.icon, size: widget.iconSize, color: resolveForegroundColor),
+          ),
         ),
-        const TextSpan(text: ' '),
-      ],
       TextSpan(text: widget.label),
     ];
 

@@ -6,23 +6,21 @@ appId: "fr.gouv.agir.dev2"
     clearKeychain: true 
 - tapOn: "Je crée mon compte"
 - tapOn:
-    id: Mon adresse email
+    id: "Mon adresse email"
 - inputText: "lucas9@agir.dev"
 - tapOn: "Suiv."
-- waitForAnimationToEnd:
-    timeout: 5000
-- inputText: "Azertyuiop1&"
-- tapOn: "OK"
-- tapOn: "J’accepte " 
 - tapOn: "Créer mon compte"
+- tapOn: "Je préfère rentrer le code manuellement"
 - tapOn: "Code de vérification"
 - inputText: "999999"
-- tapOn: "Mon pseudonyme"
+- tapOn:
+    id: "Mon pseudonyme"
 - inputText: "Lucas"
-- tapOn: "OK"
-- tapOn: "Code postal"
+- tapOn: "Suiv."
+- tapOn: "Ok"
+- tapOn: "Continuer"
 - inputText: "39100"
-- tapOn: "OK"
+- tapOn: "Ok"
 - tapOn: "Commune"
 - tapOn: "DOLE"
 - tapOn: "Continuer"

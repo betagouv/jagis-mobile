@@ -20,9 +20,16 @@ class OptionsAvanceesPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
-    body: ListView(
-      padding: const EdgeInsets.all(paddingVerticalPage),
-      children: const [FnvTitle(title: Localisation.optionsAvancees), SizedBox(height: DsfrSpacings.s3w), SupprimerCompte()],
+    body: const SingleChildScrollView(
+      primary: true,
+      child: Padding(
+        padding: EdgeInsets.all(paddingVerticalPage),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: DsfrSpacings.s3w,
+          children: [FnvTitle(title: Localisation.optionsAvancees), SupprimerCompte()],
+        ),
+      ),
     ),
   );
 }

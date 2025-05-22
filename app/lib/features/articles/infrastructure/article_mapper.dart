@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_dynamic_calls
-
 import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/source/source_mapper.dart';
 import 'package:app/features/articles/domain/article.dart';

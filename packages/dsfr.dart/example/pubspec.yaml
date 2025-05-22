@@ -4,10 +4,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: 3.7.2
+  sdk: 3.8.0
 
 dependencies:
-  accessibility_tools: 2.4.1
+  accessibility_tools: 2.5.0
   cupertino_icons: 1.0.8
   dsfr:
     path: ../

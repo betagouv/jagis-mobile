@@ -4,14 +4,14 @@ import 'package:meta/meta.dart';
 @immutable
 final class QuestionCodePostalState extends Equatable {
   const QuestionCodePostalState({
-    required this.prenom,
+    required this.pseudonym,
     required this.codePostal,
     required this.communes,
     required this.commune,
     required this.aEteChange,
   });
 
-  final String prenom;
+  final String pseudonym;
   final String codePostal;
   final List<String> communes;
   final String commune;
@@ -19,13 +19,13 @@ final class QuestionCodePostalState extends Equatable {
   bool get estRempli => codePostal.isNotEmpty && commune.isNotEmpty;
 
   QuestionCodePostalState copyWith({
-    final String? prenom,
+    final String? pseudonym,
     final String? codePostal,
     final List<String>? communes,
     final String? commune,
     final bool? aEteChange,
   }) => QuestionCodePostalState(
-    prenom: prenom ?? this.prenom,
+    pseudonym: pseudonym ?? this.pseudonym,
     codePostal: codePostal ?? this.codePostal,
     communes: communes ?? this.communes,
     commune: commune ?? this.commune,
@@ -33,5 +33,5 @@ final class QuestionCodePostalState extends Equatable {
   );
 
   @override
-  List<Object> get props => [prenom, codePostal, communes, commune, aEteChange];
+  List<Object> get props => [pseudonym, codePostal, communes, commune, aEteChange];
 }

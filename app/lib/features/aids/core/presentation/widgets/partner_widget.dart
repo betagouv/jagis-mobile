@@ -1,8 +1,8 @@
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class PartnerWidget extends StatelessWidget {
   const PartnerWidget({super.key, required this.partner});
@@ -27,7 +27,12 @@ class PartnerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(Localisation.proposePar, style: DsfrTextStyle.bodySmItalic(color: DsfrColors.blueFranceSun113)),
-              Text(partner.name, style: const DsfrTextStyle.bodySm(), overflow: TextOverflow.ellipsis, maxLines: 1),
+              Text(
+                partner.name,
+                style: const DsfrTextStyle.bodySm(color: DsfrColors.grey50),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ],
           ),
         ),

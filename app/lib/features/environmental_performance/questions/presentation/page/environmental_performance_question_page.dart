@@ -8,9 +8,9 @@ import 'package:app/core/question_flow/bloc/question_flow_state.dart';
 import 'package:app/core/question_flow/infrastructure/question_flow_manager.dart';
 import 'package:app/core/question_flow/presentation/questions_manager_question_view.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class EnvironmentalPerformanceQuestionPage extends StatelessWidget {

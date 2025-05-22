@@ -8,9 +8,9 @@ import 'package:app/features/profil/logement/presentation/bloc/mon_logement_stat
 import 'package:app/features/profil/logement/presentation/widgets/mon_logement_titre_et_contenu.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:collection/collection.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class MonLogementDpe extends StatelessWidget {
   const MonLogementDpe({super.key});
@@ -28,7 +28,10 @@ class MonLogementDpe extends StatelessWidget {
             initialValue: dpe,
             onChanged: (final value) => context.read<MonLogementBloc>().add(MonLogementDpeChange(value)),
           ),
-          const FnvAlertInfo(label: Localisation.dpeExplication, content: FnvMarkdown(data: Localisation.dpeExplicationDetails)),
+          const FnvAlertInfo(
+            label: Localisation.dpeExplication,
+            content: FnvMarkdown(data: Localisation.dpeExplicationDetails),
+          ),
         ],
       ),
     );
@@ -77,19 +80,18 @@ class _FnvDpeState extends State<_FnvDpe> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s1w,
-      children:
-          labels
-              .mapIndexed(
-                (final index, final e) => _FvnDpeEtiquette(
-                  label: e.name,
-                  value: e.value,
-                  groupValue: _value,
-                  onChanged: _handleChange,
-                  color: e.color,
-                  width: width * ((index + 1) * 10 + 17),
-                ),
-              )
-              .toList(),
+      children: labels
+          .mapIndexed(
+            (final index, final e) => _FvnDpeEtiquette(
+              label: e.name,
+              value: e.value,
+              groupValue: _value,
+              onChanged: _handleChange,
+              color: e.color,
+              width: width * ((index + 1) * 10 + 17),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -123,7 +125,7 @@ class _FvnDpeEtiquette extends StatelessWidget {
   Widget build(final BuildContext context) {
     Widget customPaint = Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
-      child: Text(label, style: const DsfrTextStyle.bodyMdBold()),
+      child: Text(label, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
     );
 
     if (color != null) {
@@ -143,7 +145,10 @@ class _FvnDpeEtiquette extends StatelessWidget {
         width: width,
         child: Row(
           spacing: DsfrSpacings.s1w,
-          children: [RadioIcon(key: ValueKey(label), value: value, groupValue: groupValue), Expanded(child: customPaint)],
+          children: [
+            DsfrRadioIcon(key: ValueKey(label), value: value, groupValue: groupValue, size: 24),
+            Expanded(child: customPaint),
+          ],
         ),
       ),
     );
@@ -158,27 +163,24 @@ class _Painter extends CustomPainter {
 
   @override
   void paint(final Canvas canvas, final Size size) {
-    final path =
-        Path()
-          ..moveTo(0, 0)
-          ..lineTo(size.width - 20, 0)
-          ..lineTo(size.width, size.height / 2)
-          ..lineTo(size.width - 20, size.height)
-          ..lineTo(0, size.height)
-          ..close();
+    final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(size.width - 20, 0)
+      ..lineTo(size.width, size.height / 2)
+      ..lineTo(size.width - 20, size.height)
+      ..lineTo(0, size.height)
+      ..close();
 
-    final fillPaint =
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.fill;
+    final fillPaint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
     canvas.drawPath(path, fillPaint);
 
     if (isSelected) {
-      final strokePaint =
-          Paint()
-            ..color = DsfrColors.blueFranceSun113
-            ..strokeWidth = 2
-            ..style = PaintingStyle.stroke;
+      final strokePaint = Paint()
+        ..color = DsfrColors.blueFranceSun113
+        ..strokeWidth = 2
+        ..style = PaintingStyle.stroke;
       canvas.drawPath(path, strokePaint);
     }
   }

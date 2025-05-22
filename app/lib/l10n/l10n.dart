@@ -115,7 +115,6 @@ abstract final class Localisation {
   static const euroSymbol = '€';
   static const facultatif = 'facultatif';
   static const fermer = 'Fermer';
-  static const franceConnect = 'FranceConnect';
   static const franceConnectDescription =
       'FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.';
   static const franceConnectEnSavoirPlus = 'Qu’est-ce que FranceConnect ?';

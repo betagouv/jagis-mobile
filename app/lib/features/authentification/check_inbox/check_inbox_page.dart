@@ -4,8 +4,8 @@ import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:dsfr/dsfr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class CheckInboxPage extends StatelessWidget {
@@ -35,11 +35,11 @@ class CheckInboxPage extends StatelessWidget {
         const SizedBox(height: DsfrSpacings.s2w),
         const Align(alignment: Alignment.centerLeft, child: FnvImage.asset(AssetImages.checkInbox, height: 108)),
         const SizedBox(height: DsfrSpacings.s1w),
-        const Text(Localisation.verifiezVotreBoiteEmail, style: DsfrTextStyle.headline3()),
+        const Text(Localisation.verifiezVotreBoiteEmail, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s1w),
         FnvMarkdown(data: Localisation.verifiezVotreBoiteEmailDescription(email)),
         const SizedBox(height: DsfrSpacings.s1w),
-        DsfrLink.md(
+        DsfrLink(
           label: Localisation.jePrefereRentrerLeCodeManuellement,
           icon: DsfrIcons.designEditFill,
           onTap: () async {

@@ -4,8 +4,8 @@ publish_to: "none"
 version: 1.4.3+0
 
 environment:
-  sdk: 3.7.2
-  flutter: 3.29.3
+  sdk: 3.8.0
+  flutter: 3.32.0
 
 dependencies:
   animated_digit: 3.2.3
@@ -36,7 +36,7 @@ dependencies:
   go_router: 15.1.2
   gpt_markdown: 1.0.19
   html: 0.15.6
-  intl: 0.19.0 # Bloqué en 0.19.0 par flutter_localizations
+  intl: 0.20.2
   jovial_svg: 1.1.25
   latlong2: 0.9.1
   matomo_tracker: 6.0.0

@@ -29,7 +29,7 @@ Future<void> pumpPage({
               builder: (final context, final state) => const Text('pop'),
               routes: [
                 page!,
-                if (realRoutes != null) realRoutes,
+                ?realRoutes,
                 if (realRoutes == null)
                   ...?routes?.entries.map(
                     (final e) =>

@@ -30,7 +30,7 @@ class QuestionCodePostalPage extends StatelessWidget {
     create:
         (final context) =>
             QuestionCodePostalBloc(profilRepository: context.read(), communesRepository: context.read())
-              ..add(const QuestionCodePostalPrenomDemande()),
+              ..add(const QuestionCodePostalPseudonymDemande()),
     child: const _View(),
   );
 }
@@ -74,8 +74,8 @@ class _Prenom extends StatelessWidget {
       TextSpan(
         text: Localisation.enchante,
         children: [
-          TextSpan(text: state.prenom, style: dsfrTextStyle.copyWith(color: DsfrColors.blueFranceSun113)),
-          const TextSpan(text: ' !'),
+          TextSpan(text: state.pseudonym, style: dsfrTextStyle.copyWith(color: DsfrColors.blueFranceSun113)),
+          const TextSpan(text: ' !'),
         ],
       ),
       style: dsfrTextStyle,

@@ -10,8 +10,8 @@ sealed class QuestionCodePostalEvent extends Equatable {
 }
 
 @immutable
-final class QuestionCodePostalPrenomDemande extends QuestionCodePostalEvent {
-  const QuestionCodePostalPrenomDemande();
+final class QuestionCodePostalPseudonymDemande extends QuestionCodePostalEvent {
+  const QuestionCodePostalPseudonymDemande();
 }
 
 @immutable

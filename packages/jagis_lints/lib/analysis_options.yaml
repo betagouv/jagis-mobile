@@ -34,7 +34,6 @@ linter:
     prefer_double_quotes: false # incompatible with `prefer_single_quotes`.
     prefer_relative_imports: false # incompatible with `always_use_package_imports`.
     public_member_api_docs: false
-    require_trailing_commas: false # false positive
     specify_nonobvious_property_types: false
     specify_nonobvious_local_variable_types: false
     type_annotate_public_apis: false
@@ -150,7 +149,7 @@ dart_code_metrics:
         ignore-private-widgets: true
     - prefer-static-class: false # NOTE(lsaudon): Pourquoi pas
     - prefer-static-method: false # NOTE(lsaudon): C'est mieux dans une classe pour pouvoir mock/fake
-    - prefer-trailing-comma: false # TODO(lsaudon): false positive
+    - prefer-trailing-comma: false # NOTE(lsaudon): dartfmt le gère maintenant
     - prefer-widget-private-members:
         ignore-static: true
-    - unnecessary-trailing-comma: false # TODO(lsaudon): à réactiver après une maj de dcm
+    - unnecessary-trailing-comma: false # NOTE(lsaudon): dartfmt le gère maintenant

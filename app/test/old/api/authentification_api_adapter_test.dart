@@ -33,23 +33,25 @@ void main() {
     await repository.loginRequested(email);
 
     // Assert.
-    verify(() => dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email","origin":"mobile"}'));
+    verify(
+      () =>
+          dio.post<dynamic>(Endpoints.magicLinkSend, data: '{"email":"$email","source_inscription":"mobile","origin":"mobile"}'),
+    );
   });
 
   test(
     "validationCodeConnexionDemandee ajoute le token et l'utisateurId dans le secure storage et modifie le statut a connecté",
     () async {
-      final dio =
-          DioMock()
-            ..postM(Endpoints.magicLinkSend, statusCode: HttpStatus.created)
-            ..postM(
-              Endpoints.magicLinkLogin,
-              statusCode: HttpStatus.created,
-              responseData: {
-                'token': token,
-                'utilisateur': {'id': 'user123'},
-              },
-            );
+      final dio = DioMock()
+        ..postM(Endpoints.magicLinkSend, statusCode: HttpStatus.created)
+        ..postM(
+          Endpoints.magicLinkLogin,
+          statusCode: HttpStatus.created,
+          responseData: {
+            'token': token,
+            'utilisateur': {'id': 'user123'},
+          },
+        );
 
       final flutterSecureStorage = FlutterSecureStorageFake();
 
@@ -97,15 +99,16 @@ void main() {
   );
 
   test('creationDeCompteDemandee', () async {
-    final dio =
-        DioMock()..postM(
-          Endpoints.magicLinkSend,
-          statusCode: HttpStatus.created,
-          responseData: '''
+    final dio = DioMock()
+      ..postM(
+        Endpoints.magicLinkSend,
+        statusCode: HttpStatus.created,
+        responseData:
+            '''
 {
   "email": "$email",
 }''',
-        );
+      );
 
     final repository = AuthentificationRepository(
       DioHttpClient(dio: dio, authenticationService: authenticationService),
@@ -121,15 +124,15 @@ void main() {
   });
 
   test('validationDemandee', () async {
-    final dio =
-        DioMock()..postM(
-          Endpoints.magicLinkLogin,
-          statusCode: HttpStatus.created,
-          responseData: {
-            'token': token,
-            'utilisateur': {'id': utilisateurId},
-          },
-        );
+    final dio = DioMock()
+      ..postM(
+        Endpoints.magicLinkLogin,
+        statusCode: HttpStatus.created,
+        responseData: {
+          'token': token,
+          'utilisateur': {'id': utilisateurId},
+        },
+      );
 
     final flutterSecureStorageMock = FlutterSecureStorageFake();
     final authenticationService = AuthenticationService(

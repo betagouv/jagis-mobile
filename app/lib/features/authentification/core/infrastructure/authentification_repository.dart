@@ -10,6 +10,7 @@ import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/features/authentification/core/domain/information_de_code.dart';
 import 'package:app/features/authentification/france_connect/domain/open_id.dart';
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -20,25 +21,27 @@ class AuthentificationRepository {
   final AuthenticationService _authenticationService;
 
   Future<Either<ApiErreur, Unit>> loginRequested(final String email) async {
-    final response = await _client.post(Endpoints.magicLinkSend, data: jsonEncode({'email': email, 'origin': 'mobile'}));
+    final response = await _connectionRequested(email);
 
-    if (isResponseUnsuccessful(response.statusCode)) {
-      return handleError(jsonEncode(response.data), defaultMessage: 'Erreur lors de la connexion');
-    }
-
-    return const Right(unit);
+    return isResponseUnsuccessful(response.statusCode)
+        ? handleError(jsonEncode(response.data), defaultMessage: 'Erreur lors de la connexion')
+        : const Right(unit);
   }
 
   Future<Either<ApiErreur, Unit>> accountCreationRequested(final String email) async {
-    final response = await _client.post(
-      Endpoints.magicLinkSend,
-      data: jsonEncode({'email': email, 'source_inscription': 'mobile', 'origin': 'mobile'}),
-    );
+    final response = await _connectionRequested(email);
 
     return isResponseUnsuccessful(response.statusCode)
         ? handleError(jsonEncode(response.data), defaultMessage: 'Erreur lors de la création du compte')
         : const Right(unit);
   }
+
+  /// On envoie la même requête pour la connexion et la création de compte,
+  /// car le backend ne fait pas la différence entre les deux.
+  Future<Response<dynamic>> _connectionRequested(final String email) => _client.post(
+    Endpoints.magicLinkSend,
+    data: jsonEncode({'email': email, 'source_inscription': 'mobile', 'origin': 'mobile'}),
+  );
 
   Future<Either<ApiErreur, Unit>> validationRequested(final InformationDeCode informationDeConnexion) async {
     final response = await _client.post(

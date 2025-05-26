@@ -1,6 +1,7 @@
 import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/domain/geographical_scale.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -28,6 +29,7 @@ void main() {
       maxAmount: 3500,
       isFree: false,
       partner: null,
+      scale: GeographicalScale.country,
       themeType: ThemeType.transport,
       content: '<p>Contenu</p>',
       simulatorUrl: '/aides/velo',

@@ -1,3 +1,4 @@
+import 'package:app/features/aids/core/domain/geographical_scale.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:equatable/equatable.dart';
 
@@ -22,24 +23,4 @@ class AidSummary extends Equatable {
 
   @override
   List<Object?> get props => [id, title, scale, maxAmount, isFree, partner, hasSimulator];
-}
-
-// TODO(erolley): should we move this to a separate file?
-enum GeographicalScale {
-  country(label: 'National'),
-  region(label: 'Région'),
-  departement(label: 'Département'),
-  metropole(label: 'Métropole'),
-  agglomeration(label: 'Agglomération'),
-  cc(label: 'Communauté de communes'),
-  cu(label: 'Communauté urbaine'),
-  ca(label: "Communauté d'agglomération"),
-  city(label: 'Commune');
-
-  const GeographicalScale({required this.label});
-
-  // ignore: unused-code
-  final String label;
-
-  int compareTo(final GeographicalScale? other) => other == null ? 1 : index.compareTo(other.index);
 }

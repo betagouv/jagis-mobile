@@ -8,20 +8,19 @@ import '../helper/feature_context.dart';
 
 /// Usage: I have actions in my library
 Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTable dataTable) async {
-  final actions =
-      dataTable
-          .asMaps()
-          .map(
-            (final e) => {
-              'type': e['type'],
-              'code': e['code'],
-              'titre': e['title'],
-              'sous_titre': Faker().lorem.sentence(),
-              'nombre_aides_disponibles': e['nb_aids_available'],
-              'aides': <Aid>[],
-            },
-          )
-          .toList();
+  final actions = dataTable
+      .asMaps()
+      .map(
+        (final e) => {
+          'type': e['type'],
+          'code': e['code'],
+          'titre': e['title'],
+          'sous_titre': Faker().lorem.sentence(),
+          'nombre_aides_disponibles': e['nb_aids_available'],
+          'aides': <Aid>[],
+        },
+      )
+      .toList();
   FeatureContext.instance.dioMock.getM(
     Uri(path: Endpoints.actions).toString(),
     responseData: {

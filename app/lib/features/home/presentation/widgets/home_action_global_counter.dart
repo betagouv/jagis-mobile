@@ -45,7 +45,11 @@ class _Digit extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final border = isLast ? const BoxDecoration() : const BoxDecoration(border: Border(right: BorderSide(color: Colors.white)));
+    final border = isLast
+        ? const BoxDecoration()
+        : const BoxDecoration(
+            border: Border(right: BorderSide(color: Colors.white)),
+          );
 
     return DecoratedBox(
       decoration: border,

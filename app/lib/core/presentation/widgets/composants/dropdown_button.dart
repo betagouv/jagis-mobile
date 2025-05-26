@@ -19,7 +19,10 @@ class FnvDropdown<T> extends StatelessWidget {
             height: 48,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Align(alignment: Alignment.centerLeft, child: Text(entry.value, style: const DsfrTextStyle.bodyMd())),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(entry.value, style: const DsfrTextStyle.bodyMd()),
+              ),
             ),
           ),
         ),
@@ -66,11 +69,10 @@ class _DottedLinePainter extends CustomPainter {
   const _DottedLinePainter();
   @override
   void paint(final Canvas canvas, final Size size) {
-    final paint =
-        Paint()
-          ..color = DsfrColors.blueFranceSun113
-          ..strokeWidth = 1
-          ..style = PaintingStyle.stroke;
+    final paint = Paint()
+      ..color = DsfrColors.blueFranceSun113
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
 
     const dashWidth = 3.0;
     const dashSpace = 1.0;

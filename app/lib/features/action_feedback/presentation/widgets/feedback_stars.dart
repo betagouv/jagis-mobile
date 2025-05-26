@@ -45,8 +45,7 @@ class _Star extends StatelessWidget {
   final int starValue;
 
   @override
-  Widget build(final BuildContext context) =>
-      value >= starValue
-          ? Icon(DsfrIcons.systemStarFill, size: size, color: DsfrColors.blueFranceSun113)
-          : Icon(DsfrIcons.systemStarLine, size: size, color: const Color(0xFF636774));
+  Widget build(final BuildContext context) => value >= starValue
+      ? Icon(DsfrIcons.systemStarFill, size: size, color: DsfrColors.blueFranceSun113)
+      : Icon(DsfrIcons.systemStarLine, size: size, color: const Color(0xFF636774));
 }

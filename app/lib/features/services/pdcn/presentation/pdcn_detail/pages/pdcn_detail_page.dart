@@ -20,8 +20,11 @@ class PdcnDetailPage extends StatelessWidget {
 
   final String id;
 
-  static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => PdcnDetailPage(id: state.pathParameters['id']!));
+  static GoRoute get route => GoRoute(
+    path: path,
+    name: name,
+    builder: (final context, final state) => PdcnDetailPage(id: state.pathParameters['id']!),
+  );
 
   @override
   Widget build(final BuildContext context) => FnvScaffold(
@@ -38,12 +41,11 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<PdcnDetailBloc, PdcnDetailState>(
-    builder:
-        (final context, final state) => switch (state) {
-          PdcnDetailInitial() || PdcnDetailLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          PdcnDetailLoadFailure() => const Center(child: Text('Une erreur est survenue')),
-          PdcnDetailLoadSuccess() => _Success(success: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      PdcnDetailInitial() || PdcnDetailLoadInProgress() => const Center(child: CircularProgressIndicator()),
+      PdcnDetailLoadFailure() => const Center(child: Text('Une erreur est survenue')),
+      PdcnDetailLoadSuccess() => _Success(success: state),
+    },
   );
 }
 
@@ -109,6 +111,9 @@ class _DetailInfo extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Row(
     spacing: DsfrSpacings.s1w,
-    children: [Icon(icon, color: DsfrColors.blueFranceSun113), Expanded(child: Text(text, style: const DsfrTextStyle.bodyMd()))],
+    children: [
+      Icon(icon, color: DsfrColors.blueFranceSun113),
+      Expanded(child: Text(text, style: const DsfrTextStyle.bodyMd())),
+    ],
   );
 }

@@ -6,10 +6,9 @@ abstract final class CarInfosMapper {
     emissions: json['empreinte'] as double,
     size: ComputedValueMapper.fromJson(json['gabarit'] as Map<String, dynamic>, CarSizeMapper.fromJson),
     motorisation: ComputedValueMapper.fromJson(json['motorisation'] as Map<String, dynamic>, CarMotorisationMapper.fromJson),
-    fuel:
-        json['carburant'] == null
-            ? null
-            : ComputedValueMapper.fromJson(json['carburant'] as Map<String, dynamic>, CarFuelMapper.fromJson),
+    fuel: json['carburant'] == null
+        ? null
+        : ComputedValueMapper.fromJson(json['carburant'] as Map<String, dynamic>, CarFuelMapper.fromJson),
   );
 }
 

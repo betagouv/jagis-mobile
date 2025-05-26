@@ -75,8 +75,14 @@ class FNVHTag extends HTag {
 
     final theme = GptMarkdownTheme.of(context);
     final conf = config.copyWith(
-      style: [theme.h1, theme.h2, theme.h3, theme.h4, theme.h5, theme.h6][match![1]!.length -
-          1]?.copyWith(color: config.style?.color),
+      style: [
+        theme.h1,
+        theme.h2,
+        theme.h3,
+        theme.h4,
+        theme.h5,
+        theme.h6,
+      ][match![1]!.length - 1]?.copyWith(color: config.style?.color),
     );
 
     return Padding(

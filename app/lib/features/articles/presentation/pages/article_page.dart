@@ -26,8 +26,11 @@ class ArticlePage extends StatelessWidget {
     required final String id,
   }) => {'title': title, 'id': id};
 
-  static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => ArticlePage(id: state.pathParameters['id']!));
+  static GoRoute get route => GoRoute(
+    path: path,
+    name: name,
+    builder: (final context, final state) => ArticlePage(id: state.pathParameters['id']!),
+  );
 
   final String id;
 

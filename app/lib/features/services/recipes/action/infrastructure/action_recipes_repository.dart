@@ -19,10 +19,10 @@ class ActionRecipesRepository {
     return isResponseUnsuccessful(response.statusCode)
         ? Left(Exception('Erreur lors de la récupération des recettes'))
         : Right(
-          ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
-              .cast<Map<String, dynamic>>()
-              .map(ActionRecipeSummaryMapper.fromJson)
-              .toList(),
-        );
+            ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
+                .cast<Map<String, dynamic>>()
+                .map(ActionRecipeSummaryMapper.fromJson)
+                .toList(),
+          );
   }
 }

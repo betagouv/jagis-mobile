@@ -33,12 +33,11 @@ class ActionFeedbackPage extends StatelessWidget {
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
-    builder:
-        (final context, final state) => ActionFeedbackPage(
-          type: actionTypeFromAPIString(state.pathParameters['type']!),
-          id: state.pathParameters['id']!,
-          rate: int.parse(state.pathParameters['rate']!),
-        ),
+    builder: (final context, final state) => ActionFeedbackPage(
+      type: actionTypeFromAPIString(state.pathParameters['type']!),
+      id: state.pathParameters['id']!,
+      rate: int.parse(state.pathParameters['rate']!),
+    ),
   );
 
   @override
@@ -55,54 +54,53 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocConsumer<ActionFeedbackBloc, ActionFeedbackState>(
-      builder:
-          (final context, final state) => ListView(
-            padding: const EdgeInsets.only(
-              left: DsfrSpacings.s2w,
-              top: DsfrSpacings.s2w,
-              right: DsfrSpacings.s2w,
-              bottom: DsfrSpacings.s4w,
-            ),
+      builder: (final context, final state) => ListView(
+        padding: const EdgeInsets.only(
+          left: DsfrSpacings.s2w,
+          top: DsfrSpacings.s2w,
+          right: DsfrSpacings.s2w,
+          bottom: DsfrSpacings.s4w,
+        ),
 
-            children: [
-              const Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.headline3()),
-              const SizedBox(height: DsfrSpacings.s2w),
-              const Align(alignment: Alignment.centerLeft, child: FnvImage.asset(AssetImages.feedback, width: 156, height: 156)),
-              const SizedBox(height: DsfrSpacings.s1w),
-              const Text(Localisation.avezVousAimeCettePageDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey200)),
-              const SizedBox(height: DsfrSpacings.s3w),
-              const Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.bodyMd()),
-              const SizedBox(height: DsfrSpacings.s1w),
-              FeedbackStars(
-                size: 32,
-                value: state.rate,
-                onChanged: (final value) => context.read<ActionFeedbackBloc>().add(ActionFeedbackRateChanged(value)),
-              ),
-              const SizedBox(height: DsfrSpacings.s3w),
-              DsfrInput(
-                label: Localisation.commentPourrionsNousLAmeliorer,
-                onChanged: (final value) {
-                  context.read<ActionFeedbackBloc>().add(ActionFeedbackMessageChanged(value));
-                },
-                maxLines: 6,
-                maxLength: 500,
-              ),
-              const SizedBox(height: DsfrSpacings.s2w),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: FittedBox(
-                  child: DsfrButton(
-                    label: Localisation.envoyer,
-                    icon: DsfrIcons.systemArrowRightSLine,
-                    iconLocation: DsfrButtonIconLocation.right,
-                    variant: DsfrButtonVariant.secondary,
-                    size: DsfrComponentSize.lg,
-                    onPressed: () => context.read<ActionFeedbackBloc>().add(const ActionFeedbackSendRequested()),
-                  ),
-                ),
-              ),
-            ],
+        children: [
+          const Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.headline3()),
+          const SizedBox(height: DsfrSpacings.s2w),
+          const Align(alignment: Alignment.centerLeft, child: FnvImage.asset(AssetImages.feedback, width: 156, height: 156)),
+          const SizedBox(height: DsfrSpacings.s1w),
+          const Text(Localisation.avezVousAimeCettePageDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey200)),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.bodyMd()),
+          const SizedBox(height: DsfrSpacings.s1w),
+          FeedbackStars(
+            size: 32,
+            value: state.rate,
+            onChanged: (final value) => context.read<ActionFeedbackBloc>().add(ActionFeedbackRateChanged(value)),
           ),
+          const SizedBox(height: DsfrSpacings.s3w),
+          DsfrInput(
+            label: Localisation.commentPourrionsNousLAmeliorer,
+            onChanged: (final value) {
+              context.read<ActionFeedbackBloc>().add(ActionFeedbackMessageChanged(value));
+            },
+            maxLines: 6,
+            maxLength: 500,
+          ),
+          const SizedBox(height: DsfrSpacings.s2w),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: FittedBox(
+              child: DsfrButton(
+                label: Localisation.envoyer,
+                icon: DsfrIcons.systemArrowRightSLine,
+                iconLocation: DsfrButtonIconLocation.right,
+                variant: DsfrButtonVariant.secondary,
+                size: DsfrComponentSize.lg,
+                onPressed: () => context.read<ActionFeedbackBloc>().add(const ActionFeedbackSendRequested()),
+              ),
+            ),
+          ),
+        ],
+      ),
       listener: (final context, final state) {
         if (state.isSend) {
           ScaffoldMessenger.of(

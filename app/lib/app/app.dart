@@ -128,7 +128,10 @@ class _AppState extends State<App> {
   }
 
   Future<void> _handleActionNotification(final GoRouter goRouter, final ActionNotificationData data) async {
-    await goRouter.pushNamed(ActionPage.name, pathParameters: ActionPage.pathParameters(type: data.actionType, id: data.pageId));
+    await goRouter.pushNamed(
+      ActionPage.name,
+      pathParameters: ActionPage.pathParameters(type: data.actionType, id: data.pageId),
+    );
   }
 
   @override
@@ -189,9 +192,8 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => ArticlesRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => QuizzesRepository(widget.apiClient)),
                 RepositoryProvider(
-                  create:
-                      (final context) =>
-                          NotificationRepository(client: widget.apiClient, notificationService: widget.notificationService),
+                  create: (final context) =>
+                      NotificationRepository(client: widget.apiClient, notificationService: widget.notificationService),
                 ),
                 RepositoryProvider(create: (final context) => SeasonalFruitsAndVegetablesRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => ActionPerformanceRepository(widget.apiClient)),
@@ -205,51 +207,41 @@ class _AppState extends State<App> {
                   BlocProvider(create: (final context) => AidsDisclaimerCubit()),
                   BlocProvider(create: (final context) => UserBloc(repository: UserRepository(widget.apiClient))),
                   BlocProvider(
-                    create:
-                        (final context) =>
-                            VersionBloc(repository: VersionRepository(packageInfo: widget.packageInfo))
-                              ..add(const VersionFetched()),
+                    create: (final context) =>
+                        VersionBloc(repository: VersionRepository(packageInfo: widget.packageInfo))..add(const VersionFetched()),
                   ),
                   BlocProvider(
-                    create:
-                        (final context) => AideVeloBloc(
-                          profilRepository: profilRepository,
-                          communesRepository: communesRepository,
-                          aideVeloRepository: AideVeloRepository(widget.apiClient),
-                        ),
+                    create: (final context) => AideVeloBloc(
+                      profilRepository: profilRepository,
+                      communesRepository: communesRepository,
+                      aideVeloRepository: AideVeloRepository(widget.apiClient),
+                    ),
                   ),
                   BlocProvider(
-                    create:
-                        (final context) => GamificationBloc(
-                          GamificationRepository(client: widget.apiClient, messageBus: widget.messageBus),
-                          widget.authenticationService,
-                        )..add(const GamificationSubscriptionRequested()),
+                    create: (final context) => GamificationBloc(
+                      GamificationRepository(client: widget.apiClient, messageBus: widget.messageBus),
+                      widget.authenticationService,
+                    )..add(const GamificationSubscriptionRequested()),
                   ),
                   BlocProvider(
-                    create:
-                        (final context) => EnvironmentalPerformanceQuestionBloc(
-                          repository: EnvironmentalPerformanceQuestionRepository(widget.apiClient),
-                        ),
+                    create: (final context) => EnvironmentalPerformanceQuestionBloc(
+                      repository: EnvironmentalPerformanceQuestionRepository(widget.apiClient),
+                    ),
                   ),
                   BlocProvider(
-                    create:
-                        (final context) => EnvironmentalPerformanceBloc(
-                          useCase: FetchEnvironmentalPerformance(environmentalPerformanceSummaryRepository),
-                        ),
+                    create: (final context) => EnvironmentalPerformanceBloc(
+                      useCase: FetchEnvironmentalPerformance(environmentalPerformanceSummaryRepository),
+                    ),
                   ),
                   BlocProvider(
-                    create:
-                        (final context) =>
-                            CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.apiClient)),
+                    create: (final context) =>
+                        CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.apiClient)),
                   ),
                 ],
                 child: MaterialApp.router(
                   routerConfig: _goRouter,
-                  builder:
-                      (final context, final child) => UpgradeWidget(
-                        navigatorKey: _goRouter.routerDelegate.navigatorKey,
-                        child: child ?? const SizedBox.shrink(),
-                      ),
+                  builder: (final context, final child) =>
+                      UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox.shrink()),
                   theme: ThemeData(
                     colorSchemeSeed: DsfrColors.blueFranceSun113,
                     scaffoldBackgroundColor: Colors.white,

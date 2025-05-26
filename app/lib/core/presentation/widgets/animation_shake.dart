@@ -22,13 +22,34 @@ class _AnimationShakeState extends State<AnimationShake> with SingleTickerProvid
     const zero = 0.0;
     const maxAngle = 2.0;
     final tweenSequence = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: zero, end: zero), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: zero, end: maxAngle), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: maxAngle, end: -maxAngle), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: -maxAngle, end: maxAngle), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: maxAngle, end: -maxAngle), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: -maxAngle, end: zero), weight: 10),
-      TweenSequenceItem(tween: Tween(begin: zero, end: zero), weight: 40),
+      TweenSequenceItem(
+        tween: Tween(begin: zero, end: zero),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: zero, end: maxAngle),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: maxAngle, end: -maxAngle),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: -maxAngle, end: maxAngle),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: maxAngle, end: -maxAngle),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: -maxAngle, end: zero),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: zero, end: zero),
+        weight: 40,
+      ),
     ]);
 
     _controller = AnimationController(duration: const Duration(seconds: 3), vsync: this)..repeat();
@@ -44,9 +65,8 @@ class _AnimationShakeState extends State<AnimationShake> with SingleTickerProvid
   @override
   Widget build(final BuildContext context) => AnimatedBuilder(
     animation: _animation,
-    builder:
-        (final context, final child) =>
-            Transform.rotate(angle: _animation.value * _degreesFromRadians, alignment: Alignment.bottomCenter, child: child),
+    builder: (final context, final child) =>
+        Transform.rotate(angle: _animation.value * _degreesFromRadians, alignment: Alignment.bottomCenter, child: child),
     child: widget.child,
   );
 }

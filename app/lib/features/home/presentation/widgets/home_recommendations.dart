@@ -39,17 +39,16 @@ class HomeRecommendations extends StatelessWidget {
           child: IntrinsicHeight(
             child: Row(
               spacing: DsfrSpacings.s2w,
-              children:
-                  recommendations
-                      .map(
-                        (final e) => RecommendationWidget(
-                          id: e.id,
-                          imageUrl: e.imageUrl,
-                          titre: e.titre,
-                          onPop: () => context.read<HomeDashboardBloc>().add(const HomeDashboardRecommandationsUpdated()),
-                        ),
-                      )
-                      .toList(),
+              children: recommendations
+                  .map(
+                    (final e) => RecommendationWidget(
+                      id: e.id,
+                      imageUrl: e.imageUrl,
+                      titre: e.titre,
+                      onPop: () => context.read<HomeDashboardBloc>().add(const HomeDashboardRecommandationsUpdated()),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ),

@@ -22,7 +22,10 @@ class ActionClassicView extends StatelessWidget {
         const SizedBox(height: DsfrSpacings.s1w),
         const DsfrDivider(),
         const SizedBox(height: DsfrSpacings.s3w),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: SourcesWidget(sources: action.sources)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: SourcesWidget(sources: action.sources),
+        ),
       ],
       if (action.hasLvaoService) ...[
         const SizedBox(height: DsfrSpacings.s4w),

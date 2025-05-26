@@ -21,10 +21,9 @@ class MonLogementPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            MonLogementBloc(profilRepository: context.read(), communesRepository: context.read())
-              ..add(const MonLogementRecuperationDemandee()),
+    create: (final context) =>
+        MonLogementBloc(profilRepository: context.read(), communesRepository: context.read())
+          ..add(const MonLogementRecuperationDemandee()),
     child: const _MonLogementView(),
   );
 }

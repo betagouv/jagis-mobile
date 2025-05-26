@@ -16,10 +16,9 @@ class QuestionCodePostalBloc extends Bloc<QuestionCodePostalEvent, QuestionCodeP
       }
     });
     on<QuestionCodePostalAChange>((final event, final emit) async {
-      final result =
-          (event.valeur.length == 5
-              ? await communesRepository.recupererLesCommunes(event.valeur)
-              : Either<Exception, List<String>>.right(<String>[]));
+      final result = (event.valeur.length == 5
+          ? await communesRepository.recupererLesCommunes(event.valeur)
+          : Either<Exception, List<String>>.right(<String>[]));
       if (result.isRight()) {
         final communes = result.getRight().getOrElse(() => throw Exception());
         emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));

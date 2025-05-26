@@ -44,47 +44,43 @@ class _View extends StatelessWidget {
         const Text(Localisation.catalogueActions, style: DsfrTextStyle.headline2()),
         const SizedBox(height: DsfrSpacings.s3w),
         BlocBuilder<ActionsBloc, ActionsState>(
-          builder:
-              (final context, final state) => _ThemesFilter(
-                activeThemes: switch (state) {
-                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => const [],
-                  ActionsLoadSuccess(:final themeFilters) => themeFilters,
-                },
-              ),
+          builder: (final context, final state) => _ThemesFilter(
+            activeThemes: switch (state) {
+              ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => const [],
+              ActionsLoadSuccess(:final themeFilters) => themeFilters,
+            },
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         BlocBuilder<ActionsBloc, ActionsState>(
-          builder:
-              (final context, final state) => DsfrSearchBar(
-                initialValue: switch (state) {
-                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => null,
-                  ActionsLoadSuccess(:final titleFilter) => titleFilter,
-                },
-                onChanged: (final value) {
-                  context.read<ActionsBloc>().add(ActionsFilterByTitleRequested(value));
-                },
-              ),
+          builder: (final context, final state) => DsfrSearchBar(
+            initialValue: switch (state) {
+              ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => null,
+              ActionsLoadSuccess(:final titleFilter) => titleFilter,
+            },
+            onChanged: (final value) {
+              context.read<ActionsBloc>().add(ActionsFilterByTitleRequested(value));
+            },
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s2w),
         BlocBuilder<ActionsBloc, ActionsState>(
-          builder:
-              (final context, final state) => DsfrToggleSwitch(
-                label: Localisation.dejaConsultees,
-                value: switch (state) {
-                  ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => false,
-                  ActionsLoadSuccess(:final alreadyConsulted) => alreadyConsulted,
-                },
-                onChanged: (final value) => context.read<ActionsBloc>().add(ActionsFilterByConsultedRequested(value)),
-              ),
+          builder: (final context, final state) => DsfrToggleSwitch(
+            label: Localisation.dejaConsultees,
+            value: switch (state) {
+              ActionsInitial() || ActionsLoadInProgress() || ActionsLoadFailure() => false,
+              ActionsLoadSuccess(:final alreadyConsulted) => alreadyConsulted,
+            },
+            onChanged: (final value) => context.read<ActionsBloc>().add(ActionsFilterByConsultedRequested(value)),
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s3w),
         BlocBuilder<ActionsBloc, ActionsState>(
-          builder:
-              (final context, final state) => switch (state) {
-                ActionsInitial() || ActionsLoadInProgress() => const Center(child: CircularProgressIndicator()),
-                ActionsLoadSuccess() => _Success(state: state),
-                ActionsLoadFailure() => const Center(child: Text('Erreur lors du chargement des actions')),
-              },
+          builder: (final context, final state) => switch (state) {
+            ActionsInitial() || ActionsLoadInProgress() => const Center(child: CircularProgressIndicator()),
+            ActionsLoadSuccess() => _Success(state: state),
+            ActionsLoadFailure() => const Center(child: Text('Erreur lors du chargement des actions')),
+          },
         ),
       ],
     ),
@@ -103,16 +99,15 @@ class _ThemesFilter extends StatelessWidget {
     return Wrap(
       spacing: spacing,
       runSpacing: spacing,
-      children:
-          activeThemes
-              .map(
-                (final thematique) => FnvTag(
-                  label: thematique.label,
-                  selected: thematique.selected,
-                  onTap: () => context.read<ActionsBloc>().add(ActionsFilterByThemeRequested(thematique.code)),
-                ),
-              )
-              .toList(),
+      children: activeThemes
+          .map(
+            (final thematique) => FnvTag(
+              label: thematique.label,
+              selected: thematique.selected,
+              onTap: () => context.read<ActionsBloc>().add(ActionsFilterByThemeRequested(thematique.code)),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -220,21 +215,20 @@ class _Information extends StatelessWidget {
   final String suffix;
 
   @override
-  Widget build(final BuildContext context) =>
-      value == 0
-          ? const SizedBox.shrink()
-          : ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 24),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: DsfrSpacings.s1w,
-              children: [
-                ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
-                FnvMarkdown(
-                  data: '**$value** $suffix${value > 1 ? 's' : ''}',
-                  p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
-                ),
-              ],
-            ),
-          );
+  Widget build(final BuildContext context) => value == 0
+      ? const SizedBox.shrink()
+      : ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 24),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: DsfrSpacings.s1w,
+            children: [
+              ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
+              FnvMarkdown(
+                data: '**$value** $suffix${value > 1 ? 's' : ''}',
+                p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
+              ),
+            ],
+          ),
+        );
 }

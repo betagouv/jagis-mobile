@@ -24,8 +24,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -42,10 +41,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Login with FranceConnect is successful''',
-          success,
-        );
+        await afterEach('''Login with FranceConnect is successful''', success);
       }
     });
     testWidgets('''Login with FranceConnect is cancelled''', (tester) async {
@@ -61,10 +57,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Login with FranceConnect is cancelled''',
-          success,
-        );
+        await afterEach('''Login with FranceConnect is cancelled''', success);
       }
     });
   });

@@ -40,14 +40,10 @@ abstract final class QuestionMapper {
     points: (json['points'] as num).toInt(),
   );
 
-  static List<ResponseChoice> _responseChoices(final List<dynamic> json) =>
-      json
-          .cast<Map<String, dynamic>>()
-          .map(
-            (final e) =>
-                ResponseChoice(code: e['code'] as String, label: e['label'] as String, isSelected: e['selected'] as bool),
-          )
-          .toList();
+  static List<ResponseChoice> _responseChoices(final List<dynamic> json) => json
+      .cast<Map<String, dynamic>>()
+      .map((final e) => ResponseChoice(code: e['code'] as String, label: e['label'] as String, isSelected: e['selected'] as bool))
+      .toList();
 
   static QuestionOpen _questionOpen(final Map<String, dynamic> json) => QuestionOpen(
     code: QuestionCode(json['code'] as String),
@@ -93,17 +89,16 @@ abstract final class QuestionMapper {
     points: (json['points'] as num).toInt(),
   );
 
-  static List<ResponseMosaic> _responseMosaics(final List<dynamic> json) =>
-      json
-          .cast<Map<String, dynamic>>()
-          .map(
-            (final e) => ResponseMosaic(
-              code: e['code'] as String,
-              label: e['label'] as String,
-              emoji: e['emoji'] as String?,
-              imageUrl: e['image_url'] as String,
-              isSelected: e['selected'] as bool,
-            ),
-          )
-          .toList();
+  static List<ResponseMosaic> _responseMosaics(final List<dynamic> json) => json
+      .cast<Map<String, dynamic>>()
+      .map(
+        (final e) => ResponseMosaic(
+          code: e['code'] as String,
+          label: e['label'] as String,
+          emoji: e['emoji'] as String?,
+          imageUrl: e['image_url'] as String,
+          isSelected: e['selected'] as bool,
+        ),
+      )
+      .toList();
 }

@@ -43,11 +43,10 @@ class _FnvAccordionsGroupState extends State<FnvAccordionsGroup> {
                 index: index,
                 item: e.$2,
                 isExpanded: _panelIndex == index && _isExpanded,
-                onAccordionCallback:
-                    (final panelIndex, final isExpanded) => setState(() {
-                      _panelIndex = panelIndex;
-                      _isExpanded = isExpanded;
-                    }),
+                onAccordionCallback: (final panelIndex, final isExpanded) => setState(() {
+                  _panelIndex = panelIndex;
+                  _isExpanded = isExpanded;
+                }),
               );
             })
             .separator(divider),
@@ -97,7 +96,10 @@ class _FnvAccordion extends StatelessWidget {
             color: Color(0xFFF2F2F2),
             boxShadow: [BoxShadow(color: Color(0x0D150323), offset: Offset(0, 6), blurRadius: 6, inset: true)],
           ),
-          child: Padding(padding: const EdgeInsets.only(top: DsfrSpacings.s2w, bottom: DsfrSpacings.s3w), child: item.body),
+          child: Padding(
+            padding: const EdgeInsets.only(top: DsfrSpacings.s2w, bottom: DsfrSpacings.s3w),
+            child: item.body,
+          ),
         ),
         crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         duration: Durations.short4,

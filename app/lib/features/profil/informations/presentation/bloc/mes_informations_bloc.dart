@@ -11,10 +11,9 @@ class MesInformationsBloc extends Bloc<MesInformationsEvent, MesInformationsStat
       final result = await profilRepository.recupererProfil();
       if (result.isRight()) {
         final profil = result.getRight().getOrElse(() => throw Exception());
-        final dateTime =
-            profil.anneeDeNaissance != null && profil.moisDeNaissance != null && profil.jourDeNaissance != null
-                ? DateTime(profil.anneeDeNaissance!, profil.moisDeNaissance!, profil.jourDeNaissance!)
-                : null;
+        final dateTime = profil.anneeDeNaissance != null && profil.moisDeNaissance != null && profil.jourDeNaissance != null
+            ? DateTime(profil.anneeDeNaissance!, profil.moisDeNaissance!, profil.jourDeNaissance!)
+            : null;
         emit(
           MesInformationsState(
             isUserFranceConnect: profil.isUserFranceConnect,

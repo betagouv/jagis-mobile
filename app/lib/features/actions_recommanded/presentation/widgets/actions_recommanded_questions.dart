@@ -27,10 +27,8 @@ class ActionsRecommandedQuestions extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: sequenceId))
-              ..add(const QuestionFlowFirstRequested()),
+    create: (final context) =>
+        QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: sequenceId))..add(const QuestionFlowFirstRequested()),
     child: const _Questions(),
   );
 }
@@ -40,12 +38,11 @@ class _Questions extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<QuestionFlowBloc, QuestionFlowState>(
-    builder:
-        (final context, final state) => switch (state) {
-          QuestionFlowInitial() => const SizedBox.shrink(),
-          QuestionFlowLoadSuccess() => _QuestionsSuccess(data: state),
-          QuestionFlowFinished() => const _Loader(),
-        },
+    builder: (final context, final state) => switch (state) {
+      QuestionFlowInitial() => const SizedBox.shrink(),
+      QuestionFlowLoadSuccess() => _QuestionsSuccess(data: state),
+      QuestionFlowFinished() => const _Loader(),
+    },
     listener: (final context, final state) {
       if (state is QuestionFlowFinished) {
         context.read<ThemeBloc>().add(const ThemeRefreshRequested());
@@ -67,15 +64,14 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   var _isExpanded = true;
 
   @override
-  Widget build(final BuildContext context) =>
-      _isExpanded
-          ? _GetStarted(
-            onPressed: () {
-              context.read<MessageBus>().publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
-              setState(() => _isExpanded = false);
-            },
-          )
-          : _Question(element: widget.data.cursor.element, cursor: widget.data.cursor);
+  Widget build(final BuildContext context) => _isExpanded
+      ? _GetStarted(
+          onPressed: () {
+            context.read<MessageBus>().publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
+            setState(() => _isExpanded = false);
+          },
+        )
+      : _Question(element: widget.data.cursor.element, cursor: widget.data.cursor);
 }
 
 class _Loader extends StatelessWidget {

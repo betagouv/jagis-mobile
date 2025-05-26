@@ -15,7 +15,10 @@ class Panel extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(color: backgroundColor, border: Border.all(color: borderColor)),
+    decoration: BoxDecoration(
+      color: backgroundColor,
+      border: Border.all(color: borderColor),
+    ),
     child: Padding(padding: const EdgeInsets.all(DsfrSpacings.s2w), child: child),
   );
 }

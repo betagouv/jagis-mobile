@@ -74,7 +74,10 @@ class _MenuItems extends StatelessWidget {
         _MenuItem(label: Localisation.monProfil, value: ProfilPage.name, groupValue: groupValue),
         const LogoutWidget(),
         const SizedBox(height: DsfrSpacings.s2w),
-        const Padding(padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: VersionLabel()),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+          child: VersionLabel(),
+        ),
         const SizedBox(height: DsfrSpacings.s3w),
       ],
     );
@@ -97,12 +100,11 @@ class _MenuItem extends StatelessWidget {
       child: Material(
         color: FnvColors.transparent,
         child: InkWell(
-          onTap:
-              isCurrentPage
-                  ? null
-                  : () async {
-                    await GoRouter.of(context).pushReplacementNamed(value);
-                  },
+          onTap: isCurrentPage
+              ? null
+              : () async {
+                  await GoRouter.of(context).pushReplacementNamed(value);
+                },
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
@@ -115,10 +117,9 @@ class _MenuItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
                 child: Text(
                   label,
-                  style:
-                      isCurrentPage
-                          ? const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113)
-                          : const DsfrTextStyle.bodyLg(),
+                  style: isCurrentPage
+                      ? const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113)
+                      : const DsfrTextStyle.bodyLg(),
                 ),
               ),
             ],

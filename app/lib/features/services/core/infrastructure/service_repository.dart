@@ -21,17 +21,16 @@ class ServiceRepository {
 
     return Right(
       ServiceCategories(
-        elements:
-            (response.data as List<dynamic>)
-                .cast<Map<String, dynamic>>()
-                .map(
-                  (final json) => ServiceCategory(
-                    code: json['code'] as String,
-                    label: json['label'] as String,
-                    isDefault: json['is_default'] as bool,
-                  ),
-                )
-                .toList(),
+        elements: (response.data as List<dynamic>)
+            .cast<Map<String, dynamic>>()
+            .map(
+              (final json) => ServiceCategory(
+                code: json['code'] as String,
+                label: json['label'] as String,
+                isDefault: json['is_default'] as bool,
+              ),
+            )
+            .toList(),
       ),
     );
   }
@@ -55,11 +54,11 @@ class ServiceRepository {
     return isResponseUnsuccessful(response.statusCode)
         ? Left(Exception('Erreur lors de la récupération des résultats du service'))
         : Right(
-          ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
-              .cast<Map<String, dynamic>>()
-              .map(fromJson)
-              .toList(),
-        );
+            ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
+                .cast<Map<String, dynamic>>()
+                .map(fromJson)
+                .toList(),
+          );
   }
 
   Future<Either<Exception, T>> fetchOne<T extends Object>({

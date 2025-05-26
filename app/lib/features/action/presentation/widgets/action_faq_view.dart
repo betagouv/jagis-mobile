@@ -18,10 +18,14 @@ class ActionFAQView extends StatelessWidget {
     children: [
       const Text(Localisation.onRepondAVosQuestions, style: DsfrTextStyle.headline3()),
       DsfrAccordionsGroup(
-        values:
-            action.faq!
-                .map((final faqItem) => DsfrAccordion.simple(label: faqItem.question, body: FnvMarkdown(data: faqItem.answer)))
-                .toList(),
+        values: action.faq!
+            .map(
+              (final faqItem) => DsfrAccordion.simple(
+                label: faqItem.question,
+                body: FnvMarkdown(data: faqItem.answer),
+              ),
+            )
+            .toList(),
       ),
       Text.rich(
         TextSpan(

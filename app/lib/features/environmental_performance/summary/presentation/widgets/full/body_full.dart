@@ -58,40 +58,32 @@ class BodyFull extends StatelessWidget {
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       FnvAccordionsGroup(
-        values:
-            data.detail
-                .map(
-                  (final e) => FnvAccordion(
-                    headerBuilder:
-                        (final isExpanded) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s3w),
-                          child: _DetailHeader(
-                            emoji: e.emoji,
-                            label: e.label,
-                            value: e.footprintInKgOfCO2ePerYear.tonnesRepresentation,
+        values: data.detail
+            .map(
+              (final e) => FnvAccordion(
+                headerBuilder: (final isExpanded) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s3w),
+                  child: _DetailHeader(emoji: e.emoji, label: e.label, value: e.footprintInKgOfCO2ePerYear.tonnesRepresentation),
+                ),
+                body: Padding(
+                  padding: const EdgeInsets.all(DsfrSpacings.s3w),
+                  child: Column(
+                    children: e.subItems
+                        .map(
+                          (final f) => PerformanceDetailBody(
+                            emoji: f.emoji,
+                            label: f.label,
+                            value: f.footprintInKgOfCO2ePerYear.kilogramsRepresentation,
+                            progress: (f.percentage?.toDouble() ?? 0.0) / (e.subItems.first.percentage?.toDouble() ?? 100.0),
                           ),
-                        ),
-                    body: Padding(
-                      padding: const EdgeInsets.all(DsfrSpacings.s3w),
-                      child: Column(
-                        children:
-                            e.subItems
-                                .map(
-                                  (final f) => PerformanceDetailBody(
-                                    emoji: f.emoji,
-                                    label: f.label,
-                                    value: f.footprintInKgOfCO2ePerYear.kilogramsRepresentation,
-                                    progress:
-                                        (f.percentage?.toDouble() ?? 0.0) / (e.subItems.first.percentage?.toDouble() ?? 100.0),
-                                  ),
-                                )
-                                .separator(const SizedBox(height: DsfrSpacings.s3w))
-                                .toList(),
-                      ),
-                    ),
+                        )
+                        .separator(const SizedBox(height: DsfrSpacings.s3w))
+                        .toList(),
                   ),
-                )
-                .toList(),
+                ),
+              ),
+            )
+            .toList(),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
       const Padding(
@@ -120,7 +112,10 @@ class BodyFull extends StatelessWidget {
         child: EnvironmentalPerformanceCategories(categories: data.categories),
       ),
       const SizedBox(height: DsfrSpacings.s7w),
-      const Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: EnvironmentalPerformancePartnerCard()),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
+        child: EnvironmentalPerformancePartnerCard(),
+      ),
       const SafeArea(child: SizedBox.shrink()),
     ],
   );
@@ -145,7 +140,10 @@ class _DetailHeader extends StatelessWidget {
         Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: value, style: const DsfrTextStyle.bodyMdBold(color: color)),
+              TextSpan(
+                text: value,
+                style: const DsfrTextStyle.bodyMdBold(color: color),
+              ),
               const TextSpan(text: ' '),
               const TextSpan(text: EnvironmentalPerformanceSummaryL10n.tonnes),
             ],

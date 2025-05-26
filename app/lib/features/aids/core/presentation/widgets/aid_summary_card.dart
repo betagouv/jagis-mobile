@@ -20,9 +20,10 @@ class AidSummaryCard extends StatelessWidget {
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
       context.read<Tracker>().trackClick('Aides', aidSummary.title);
-      await GoRouter.of(
-        context,
-      ).pushNamed(AidPage.name, pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id));
+      await GoRouter.of(context).pushNamed(
+        AidPage.name,
+        pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id),
+      );
     },
     child: SizedBox(
       width: width ?? double.infinity,
@@ -53,7 +54,11 @@ class AidSummaryCard extends StatelessWidget {
               ],
             ),
           ),
-          if (aidSummary.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aidSummary.partner!)),
+          if (aidSummary.partner != null)
+            Ink(
+              color: const Color(0xffeef2ff),
+              child: PartnerWidget(partner: aidSummary.partner!),
+            ),
         ],
       ),
     ),

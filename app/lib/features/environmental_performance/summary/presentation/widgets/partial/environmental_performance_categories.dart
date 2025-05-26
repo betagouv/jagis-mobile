@@ -23,32 +23,29 @@ class EnvironmentalPerformanceCategories extends StatelessWidget {
     child: IntrinsicHeight(
       child: Row(
         spacing: DsfrSpacings.s2w,
-        children:
-            categories
-                .map(
-                  (final e) => EnvironmentalPerformanceCategoryWidget(
-                    imageUrl: e.imageUrl,
-                    completion: e.percentageCompletion,
-                    label: e.label,
-                    numberOfQuestions: e.totalNumberQuestions,
-                    onTap: () async {
-                      // TODO(lsaudon): Refacto cette partie pourquoi on fait ça.
-                      context.read<EnvironmentalPerformanceQuestionBloc>().add(
-                        EnvironmentalPerformanceQuestionIdListRequested(e.id),
-                      );
-                      await GoRouter.of(
-                        context,
-                      ).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'categoryId': e.id});
+        children: categories
+            .map(
+              (final e) => EnvironmentalPerformanceCategoryWidget(
+                imageUrl: e.imageUrl,
+                completion: e.percentageCompletion,
+                label: e.label,
+                numberOfQuestions: e.totalNumberQuestions,
+                onTap: () async {
+                  // TODO(lsaudon): Refacto cette partie pourquoi on fait ça.
+                  context.read<EnvironmentalPerformanceQuestionBloc>().add(EnvironmentalPerformanceQuestionIdListRequested(e.id));
+                  await GoRouter.of(
+                    context,
+                  ).pushNamed(EnvironmentalPerformanceQuestionPage.name, pathParameters: {'categoryId': e.id});
 
-                      if (!context.mounted) {
-                        return;
-                      }
+                  if (!context.mounted) {
+                    return;
+                  }
 
-                      context.read<EnvironmentalPerformanceBloc>().add(const EnvironmentalPerformanceStarted());
-                    },
-                  ),
-                )
-                .toList(),
+                  context.read<EnvironmentalPerformanceBloc>().add(const EnvironmentalPerformanceStarted());
+                },
+              ),
+            )
+            .toList(),
       ),
     ),
   );

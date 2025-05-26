@@ -25,7 +25,10 @@ class SupprimerCompte extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: DsfrSpacings.s1v,
           children: [
-            Padding(padding: EdgeInsets.only(top: 3), child: Icon(DsfrIcons.systemFrInfoFill, size: 16, color: color)),
+            Padding(
+              padding: EdgeInsets.only(top: 3),
+              child: Icon(DsfrIcons.systemFrInfoFill, size: 16, color: color),
+            ),
             Expanded(
               child: Text.rich(
                 TextSpan(

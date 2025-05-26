@@ -21,14 +21,20 @@ class PerformanceDetailBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: DsfrSpacings.s1v5,
-          children: [Text(label, style: const DsfrTextStyle.bodyMdMedium()), ProgressBar(value: progress)],
+          children: [
+            Text(label, style: const DsfrTextStyle.bodyMdMedium()),
+            ProgressBar(value: progress),
+          ],
         ),
       ),
       const SizedBox(width: DsfrSpacings.s2w),
       Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: value, style: const DsfrTextStyle.bodyMdBold(color: Color(0xff3636A1))),
+            TextSpan(
+              text: value,
+              style: const DsfrTextStyle.bodyMdBold(color: Color(0xff3636A1)),
+            ),
             const TextSpan(text: ' '),
             const TextSpan(text: EnvironmentalPerformanceSummaryL10n.kg),
           ],

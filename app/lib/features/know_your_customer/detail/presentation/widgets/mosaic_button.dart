@@ -69,7 +69,10 @@ class MosaicButton extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: DsfrSpacings.s1v,
-                    children: [emoji, Text(title, style: style.textStyle, textAlign: TextAlign.center)],
+                    children: [
+                      emoji,
+                      Text(title, style: style.textStyle, textAlign: TextAlign.center),
+                    ],
                   ),
                 ),
               ),

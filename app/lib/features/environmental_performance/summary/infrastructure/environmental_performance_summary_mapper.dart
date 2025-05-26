@@ -21,21 +21,22 @@ abstract final class EnvironmentalPerformanceSummaryMapper {
 
   static EnvironmentalPerformancePartial _fromPartialJson(final Map<String, dynamic> json) {
     final percentageCompletion = (json['pourcentage_completion_totale'] as num).toInt();
-    final categories =
-        (json['liens_bilans_thematique'] as List<dynamic>).cast<Map<String, dynamic>>().map(_categoryFromJson).toList();
+    final categories = (json['liens_bilans_thematique'] as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map(_categoryFromJson)
+        .toList();
 
     final partial = json['bilan_approximatif'] as Map<String, dynamic>?;
 
     return EnvironmentalPerformancePartial(
-      partialData:
-          partial == null
-              ? null
-              : EnvironmentalPerformancePartialLevel(
-                performanceOnTransport: _mapLevelFromJson(partial['impact_transport'] as String?),
-                performanceOnFood: _mapLevelFromJson(partial['impact_alimentation'] as String?),
-                performanceOnHousing: _mapLevelFromJson(partial['impact_logement'] as String?),
-                performanceOnConsumption: _mapLevelFromJson(partial['impact_consommation'] as String?),
-              ),
+      partialData: partial == null
+          ? null
+          : EnvironmentalPerformancePartialLevel(
+              performanceOnTransport: _mapLevelFromJson(partial['impact_transport'] as String?),
+              performanceOnFood: _mapLevelFromJson(partial['impact_alimentation'] as String?),
+              performanceOnHousing: _mapLevelFromJson(partial['impact_logement'] as String?),
+              performanceOnConsumption: _mapLevelFromJson(partial['impact_consommation'] as String?),
+            ),
       percentageCompletion: percentageCompletion,
       categories: categories,
     );
@@ -43,8 +44,10 @@ abstract final class EnvironmentalPerformanceSummaryMapper {
 
   static EnvironmentalPerformanceFull _fromFullJson(final Map<String, dynamic> json) {
     final full = json['bilan_complet'] as Map<String, dynamic>;
-    final categories =
-        (json['liens_bilans_thematique'] as List<dynamic>).cast<Map<String, dynamic>>().map(_categoryFromJson).toList();
+    final categories = (json['liens_bilans_thematique'] as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map(_categoryFromJson)
+        .toList();
 
     return EnvironmentalPerformanceFull(
       footprintInKgOfCO2ePerYear: Footprint((full['impact_kg_annee'] as num).toDouble()),

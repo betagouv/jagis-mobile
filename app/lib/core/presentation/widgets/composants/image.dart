@@ -33,10 +33,9 @@ class FnvImage extends StatelessWidget {
   final BoxFit fit;
 
   @override
-  Widget build(final BuildContext context) =>
-      _imageUrl == null
-          ? _assetName!.endsWith('.svg')
-              ? FnvSvg.asset(
+  Widget build(final BuildContext context) => _imageUrl == null
+      ? _assetName!.endsWith('.svg')
+            ? FnvSvg.asset(
                 _assetName,
                 width: width,
                 height: height,
@@ -44,25 +43,17 @@ class FnvImage extends StatelessWidget {
                 alignment: alignment,
                 semanticsLabel: semanticLabel,
               )
-              : Image.asset(
-                _assetName,
-                semanticLabel: semanticLabel,
-                width: width,
-                height: height,
-                fit: fit,
-                alignment: alignment,
-              )
-          : _imageUrl.endsWith('.svg')
-          ? FnvSvg.network(_imageUrl, width: width, height: height, fit: fit, alignment: alignment, semanticsLabel: semanticLabel)
-          : Image.network(
-            _imageUrl,
-            loadingBuilder:
-                (final context, final child, final loadingProgress) =>
-                    loadingProgress == null ? child : SizedBox(width: width, height: height),
-            semanticLabel: semanticLabel,
-            width: width,
-            height: height,
-            fit: fit,
-            alignment: alignment,
-          );
+            : Image.asset(_assetName, semanticLabel: semanticLabel, width: width, height: height, fit: fit, alignment: alignment)
+      : _imageUrl.endsWith('.svg')
+      ? FnvSvg.network(_imageUrl, width: width, height: height, fit: fit, alignment: alignment, semanticsLabel: semanticLabel)
+      : Image.network(
+          _imageUrl,
+          loadingBuilder: (final context, final child, final loadingProgress) =>
+              loadingProgress == null ? child : SizedBox(width: width, height: height),
+          semanticLabel: semanticLabel,
+          width: width,
+          height: height,
+          fit: fit,
+          alignment: alignment,
+        );
 }

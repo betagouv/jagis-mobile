@@ -43,8 +43,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -55,11 +54,12 @@ void main() {
         await bddSetUp(tester);
         await iEnterInTheField(tester, 'Joe123', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
-        await iSelectDateInTheField(
-            tester, '15/01/1974', 'Ma date de naissance');
+        await iSelectDateInTheField(tester, '15/01/1974', 'Ma date de naissance');
         await iTapOn(tester, 'Continuer');
-        await iSee(tester,
-            'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.');
+        await iSee(
+          tester,
+          'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.',
+        );
         await iEnterInTheField(tester, '39100', 'Code postal');
         await iSelectInTheField(tester, 'DOLE', 'Commune');
         await iTapOn(tester, 'Continuer');
@@ -69,22 +69,23 @@ void main() {
         await iTapOn(tester, 'La cuisine et l’alimentation');
         await iTapOn(tester, 'Continuer');
         await theApiReceives(
-            tester,
-            const bdd.DataTable([
-              ['method', 'path', 'statusCode', 'requestData'],
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'requestData'],
+            [
+              "PUT",
+              "/utilisateurs/{userId}/questionsKYC_v2/KYC_preference",
+              200,
               [
-                "PUT",
-                "/utilisateurs/{userId}/questionsKYC_v2/KYC_preference",
-                200,
-                [
-                  {"code": "alimentation", "selected": true},
-                  {"code": "transport", "selected": false},
-                  {"code": "logement", "selected": false},
-                  {"code": "consommation", "selected": false},
-                  {"code": "ne_sais_pas", "selected": false}
-                ]
-              ]
-            ]));
+                {"code": "alimentation", "selected": true},
+                {"code": "transport", "selected": false},
+                {"code": "logement", "selected": false},
+                {"code": "consommation", "selected": false},
+                {"code": "ne_sais_pas", "selected": false},
+              ],
+            ],
+          ]),
+        );
         await iSee(tester, 'Tout est prêt !');
         await iTapOn(tester, 'C’est parti !');
         await iSeeTheHomePage(tester);
@@ -92,10 +93,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Répondre aux premieres questions''',
-          success,
-        );
+        await afterEach('''Répondre aux premieres questions''', success);
       }
     });
     testWidgets('''Saisir un pseudonyme invalide''', (tester) async {
@@ -109,68 +107,52 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Saisir un pseudonyme invalide''',
-          success,
-        );
+        await afterEach('''Saisir un pseudonyme invalide''', success);
       }
     });
-    testWidgets(
-        '''Saisir un pseudonyme valide et recevoir une erreur de l'API''',
-        (tester) async {
+    testWidgets('''Saisir un pseudonyme valide et recevoir une erreur de l'API''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''Saisir un pseudonyme valide et recevoir une erreur de l'API''');
+        await beforeEach('''Saisir un pseudonyme valide et recevoir une erreur de l'API''');
         await bddSetUp(tester);
         await theApiWillReturn(
-            tester,
-            const bdd.DataTable([
-              ['method', 'path', 'statusCode', 'responseData'],
-              [
-                "PATCH",
-                "/utilisateurs/{userId}/profile",
-                400,
-                {"message": "Une erreur est survenue."}
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'responseData'],
+            [
+              "PATCH",
+              "/utilisateurs/{userId}/profile",
+              400,
+              {"message": "Une erreur est survenue."},
+            ],
+          ]),
+        );
         await iEnterInTheField(tester, 'Lucas', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
-        await iSelectDateInTheField(
-            tester, '15/01/1974', 'Ma date de naissance');
+        await iSelectDateInTheField(tester, '15/01/1974', 'Ma date de naissance');
         await iTapOn(tester, 'Continuer');
         await iSee(tester, 'Une erreur est survenue.');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Saisir un pseudonyme valide et recevoir une erreur de l'API''',
-          success,
-        );
+        await afterEach('''Saisir un pseudonyme valide et recevoir une erreur de l'API''', success);
       }
     });
-    testWidgets('''Vérifier l'accessibilité sur la page du pseudonyme''',
-        (tester) async {
+    testWidgets('''Vérifier l'accessibilité sur la page du pseudonyme''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''Vérifier l'accessibilité sur la page du pseudonyme''');
+        await beforeEach('''Vérifier l'accessibilité sur la page du pseudonyme''');
         await bddSetUp(tester);
-        await iSeeSemantics(
-            tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
-        await iSeeSemantics(tester,
-            'Nous avons quelques questions à vous poser pour personnaliser votre expérience !');
+        await iSeeSemantics(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
+        await iSeeSemantics(tester, 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !');
         await iSeeSemantics(tester, 'Mon pseudonyme');
         await iSeeSemantics(tester, 'Continuer');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Vérifier l'accessibilité sur la page du pseudonyme''',
-          success,
-        );
+        await afterEach('''Vérifier l'accessibilité sur la page du pseudonyme''', success);
       }
     });
   });

@@ -30,9 +30,8 @@ class OnboardingPseudonymPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            OnboardingPseudonymBloc(context.read(), context.read<UserBloc>().state.user?.isUserFranceConnect ?? false),
+    create: (final context) =>
+        OnboardingPseudonymBloc(context.read(), context.read<UserBloc>().state.user?.isUserFranceConnect ?? false),
     child: const _Content(),
   );
 }
@@ -64,7 +63,10 @@ class _Content extends StatelessWidget {
               p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
             ),
             const SizedBox(height: DsfrSpacings.s3v),
-            const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration1)),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: OnboardingIllustration(assetName: AssetImages.illustration1),
+            ),
             const Text(Localisation.bienvenueSur, style: DsfrTextStyle.headline2()),
             const SizedBox(height: DsfrSpacings.s2w),
             const Text(Localisation.bienvenueSurDetails, style: DsfrTextStyle.bodyLg()),
@@ -91,7 +93,12 @@ class _Content extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
 
-                return Column(children: [const SizedBox(height: DsfrSpacings.s2w), FnvAlert.error(label: errorMessage)]);
+                return Column(
+                  children: [
+                    const SizedBox(height: DsfrSpacings.s2w),
+                    FnvAlert.error(label: errorMessage),
+                  ],
+                );
               },
             ),
             if (!isUserFranceConnect) ...[
@@ -111,16 +118,14 @@ class _Content extends StatelessWidget {
         ),
         bottomNavigationBar: BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, bool>(
           selector: (final state) => state.isValid,
-          builder:
-              (final context, final isValid) => FnvBottomBar(
-                child: DsfrButton(
-                  label: Localisation.continuer,
-                  variant: DsfrButtonVariant.primary,
-                  size: DsfrComponentSize.lg,
-                  onPressed:
-                      isValid ? () => context.read<OnboardingPseudonymBloc>().add(const OnboardingPseudonymSubmitted()) : null,
-                ),
-              ),
+          builder: (final context, final isValid) => FnvBottomBar(
+            child: DsfrButton(
+              label: Localisation.continuer,
+              variant: DsfrButtonVariant.primary,
+              size: DsfrComponentSize.lg,
+              onPressed: isValid ? () => context.read<OnboardingPseudonymBloc>().add(const OnboardingPseudonymSubmitted()) : null,
+            ),
+          ),
         ),
       ),
     );

@@ -73,17 +73,15 @@ class _Content extends StatelessWidget {
       }
     },
     child: BlocBuilder<QuestionEditBloc, QuestionEditState>(
-      builder:
-          (final context, final state) => switch (state) {
-            QuestionEditInitial() => const SizedBox(height: 550),
-            QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: questionController, state: state),
-            QuestionEditError() => FnvFailureWidget(
-              onPressed: () => context.read<QuestionEditBloc>().add(QuestionEditRecuperationDemandee(state.id)),
-            ),
-          },
-      buildWhen:
-          (final oldState, final newState) =>
-              (oldState is! QuestionEditLoaded || newState is! QuestionEditLoaded) || oldState.question != newState.question,
+      builder: (final context, final state) => switch (state) {
+        QuestionEditInitial() => const SizedBox(height: 550),
+        QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: questionController, state: state),
+        QuestionEditError() => FnvFailureWidget(
+          onPressed: () => context.read<QuestionEditBloc>().add(QuestionEditRecuperationDemandee(state.id)),
+        ),
+      },
+      buildWhen: (final oldState, final newState) =>
+          (oldState is! QuestionEditLoaded || newState is! QuestionEditLoaded) || oldState.question != newState.question,
     ),
   );
 }

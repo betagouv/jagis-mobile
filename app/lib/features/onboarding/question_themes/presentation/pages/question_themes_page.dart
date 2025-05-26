@@ -27,9 +27,8 @@ class QuestionThemesPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionThemesBloc(questionRepository: context.read())..add(const QuestionThemesRecuperationDemandee()),
+    create: (final context) =>
+        QuestionThemesBloc(questionRepository: context.read())..add(const QuestionThemesRecuperationDemandee()),
     child: const _View(),
   );
 }
@@ -39,7 +38,10 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => FnvScaffold(
-    appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+    appBar: AppBar(
+      backgroundColor: FnvColors.background,
+      iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
+    ),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
@@ -48,7 +50,10 @@ class _View extends StatelessWidget {
           p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3v),
-        const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration4)),
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: OnboardingIllustration(assetName: AssetImages.illustration4),
+        ),
         const Text(Localisation.cestPresqueTermine, style: DsfrTextStyle.headline2()),
         const SizedBox(height: DsfrSpacings.s2w),
         const _Question(),
@@ -68,16 +73,16 @@ class _Question extends StatelessWidget {
     return question == null
         ? const SizedBox.shrink()
         : Column(
-          spacing: DsfrSpacings.s3w,
-          children: [
-            Text(question.label, style: const DsfrTextStyle.bodyLg()),
-            FnvCheckboxSet(
-              options: question.responses.map((final e) => e.label).toList(),
-              selectedOptions: question.responses.where((final e) => e.isSelected).map((final e) => e.label).toList(),
-              onChanged: (final value) => context.read<QuestionThemesBloc>().add(QuestionThemesOntChange(value)),
-            ),
-          ],
-        );
+            spacing: DsfrSpacings.s3w,
+            children: [
+              Text(question.label, style: const DsfrTextStyle.bodyLg()),
+              FnvCheckboxSet(
+                options: question.responses.map((final e) => e.label).toList(),
+                selectedOptions: question.responses.where((final e) => e.isSelected).map((final e) => e.label).toList(),
+                onChanged: (final value) => context.read<QuestionThemesBloc>().add(QuestionThemesOntChange(value)),
+              ),
+            ],
+          );
   }
 }
 
@@ -92,13 +97,12 @@ class _ButtonContinuer extends StatelessWidget {
       label: Localisation.continuer,
       variant: DsfrButtonVariant.primary,
       size: DsfrComponentSize.lg,
-      onPressed:
-          estRempli
-              ? () async {
-                context.read<QuestionThemesBloc>().add(const QuestionThemesMiseAJourDemandee());
-                await GoRouter.of(context).pushNamed(ToutEstPretPage.name);
-              }
-              : null,
+      onPressed: estRempli
+          ? () async {
+              context.read<QuestionThemesBloc>().add(const QuestionThemesMiseAJourDemandee());
+              await GoRouter.of(context).pushNamed(ToutEstPretPage.name);
+            }
+          : null,
     );
   }
 }

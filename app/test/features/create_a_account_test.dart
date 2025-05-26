@@ -32,8 +32,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -53,18 +52,13 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Successful account creation''',
-          success,
-        );
+        await afterEach('''Successful account creation''', success);
       }
     });
-    testWidgets('''See the error message when the email already exists''',
-        (tester) async {
+    testWidgets('''See the error message when the email already exists''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''See the error message when the email already exists''');
+        await beforeEach('''See the error message when the email already exists''');
         await bddSetUp(tester);
         await theEmailAlreadyExists(tester);
         await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
@@ -74,10 +68,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''See the error message when the email already exists''',
-          success,
-        );
+        await afterEach('''See the error message when the email already exists''', success);
       }
     });
   });

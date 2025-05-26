@@ -18,7 +18,11 @@ class RankItem extends StatelessWidget {
     final pseudo = userRank.pseudo;
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: backgroundColor, border: Border.all(color: borderColor), boxShadow: cardShadow),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border.all(color: borderColor),
+        boxShadow: cardShadow,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: Row(
@@ -73,7 +77,10 @@ class _Rank extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(color: backgroundColor, border: Border.fromBorderSide(BorderSide(color: borderColor))),
+    decoration: BoxDecoration(
+      color: backgroundColor,
+      border: Border.fromBorderSide(BorderSide(color: borderColor)),
+    ),
     child: SizedBox.square(dimension: 38, child: Center(child: child)),
   );
 }

@@ -23,8 +23,8 @@ class CreerCompteView extends StatelessWidget {
     listener: (final context, final state) async {
       await GoRouter.of(context).pushNamed(CheckInboxPage.name, pathParameters: {'email': state.email});
     },
-    listenWhen:
-        (final previous, final current) => previous.isAccountCreated != current.isAccountCreated && current.isAccountCreated,
+    listenWhen: (final previous, final current) =>
+        previous.isAccountCreated != current.isAccountCreated && current.isAccountCreated,
     child: Scaffold(
       appBar: AppBar(iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
       body: ListView(
@@ -126,7 +126,12 @@ class _MessageErreur extends StatelessWidget {
       .select<CreerCompteBloc, Option<String>>((final bloc) => bloc.state.errorMessage)
       .fold(
         () => const SizedBox.shrink(),
-        (final t) => Column(children: [const SizedBox(height: DsfrSpacings.s2w), FnvAlert.error(label: t)]),
+        (final t) => Column(
+          children: [
+            const SizedBox(height: DsfrSpacings.s2w),
+            FnvAlert.error(label: t),
+          ],
+        ),
       );
 }
 

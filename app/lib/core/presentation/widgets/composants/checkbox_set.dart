@@ -61,31 +61,29 @@ class _FnvCheckboxSetState extends State<FnvCheckboxSet> {
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s2w,
-    children:
-        widget.options
-            .map(
-              (final option) => GestureDetector(
-                onTap:
-                    () => _handleChanged(
-                      options: widget.options,
-                      selectedOptions: _selectedOptions,
-                      option: option,
-                      value: !_selectedOptions.contains(option),
-                    ),
-                behavior: HitTestBehavior.opaque,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: Border.fromBorderSide(
-                      BorderSide(color: _selectedOptions.contains(option) ? DsfrColors.blueFranceSun113 : DsfrColors.grey900),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(DsfrSpacings.s2w),
-                    child: DsfrCheckbox.md(label: option, value: _selectedOptions.contains(option)),
-                  ),
+    children: widget.options
+        .map(
+          (final option) => GestureDetector(
+            onTap: () => _handleChanged(
+              options: widget.options,
+              selectedOptions: _selectedOptions,
+              option: option,
+              value: !_selectedOptions.contains(option),
+            ),
+            behavior: HitTestBehavior.opaque,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.fromBorderSide(
+                  BorderSide(color: _selectedOptions.contains(option) ? DsfrColors.blueFranceSun113 : DsfrColors.grey900),
                 ),
               ),
-            )
-            .toList(),
+              child: Padding(
+                padding: const EdgeInsets.all(DsfrSpacings.s2w),
+                child: DsfrCheckbox.md(label: option, value: _selectedOptions.contains(option)),
+              ),
+            ),
+          ),
+        )
+        .toList(),
   );
 }

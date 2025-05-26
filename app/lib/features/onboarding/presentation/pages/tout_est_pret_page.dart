@@ -28,14 +28,23 @@ class ToutEstPretPage extends StatelessWidget {
     const bodyLg = DsfrTextStyle.bodyLg();
     const bodyLgBold = DsfrTextStyle.bodyLgBold();
 
-    final arrow = TextSpan(text: '→ ', style: bodyLgBold.copyWith(color: blueFranceSun113));
+    final arrow = TextSpan(
+      text: '→ ',
+      style: bodyLgBold.copyWith(color: blueFranceSun113),
+    );
 
     return FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: blueFranceSun113)),
+      appBar: AppBar(
+        backgroundColor: FnvColors.background,
+        iconTheme: const IconThemeData(color: blueFranceSun113),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration5)),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: OnboardingIllustration(assetName: AssetImages.illustration5),
+          ),
           const Text(Localisation.toutEstPret, style: DsfrTextStyle.headline2()),
           const SizedBox(height: DsfrSpacings.s2w),
           Text.rich(

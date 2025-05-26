@@ -19,7 +19,10 @@ void main() {
     mockSecureStorage = MockFlutterSecureStorage();
     when(() => mockSecureStorage.read(key: 'token')).thenAnswer((final answer) async => null);
     when(
-      () => mockSecureStorage.write(key: any(named: 'key'), value: any(named: 'value')),
+      () => mockSecureStorage.write(
+        key: any(named: 'key'),
+        value: any(named: 'value'),
+      ),
     ).thenAnswer((final answer) async => Future<void>.value());
     when(() => mockSecureStorage.delete(key: any(named: 'key'))).thenAnswer((final answer) async => Future<void>.value());
     repository = AuthenticationStorage(mockSecureStorage);

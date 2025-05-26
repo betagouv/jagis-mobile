@@ -16,10 +16,9 @@ class RankingDto extends Ranking {
   factory RankingDto.fromJson(final Map<String, dynamic> json) => RankingDto(
     topThree: (json['top_trois'] as List<dynamic>).map((final e) => UserRankDto.fromJson(e as Map<String, dynamic>)).toList(),
     user: UserRankDto.fromJson(json['utilisateur'] as Map<String, dynamic>),
-    userRanking:
-        (json['classement_utilisateur'] as List<dynamic>)
-            .map((final e) => UserRankDto.fromJson(e as Map<String, dynamic>))
-            .toList(),
+    userRanking: (json['classement_utilisateur'] as List<dynamic>)
+        .map((final e) => UserRankDto.fromJson(e as Map<String, dynamic>))
+        .toList(),
     percentile: json['pourcentile'] as String,
     postalCode: json['code_postal'] as String?,
     communeLabel: json['commune_label'] as String?,

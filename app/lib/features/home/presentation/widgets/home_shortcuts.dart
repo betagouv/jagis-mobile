@@ -29,21 +29,20 @@ class HomeShortcuts extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 spacing: DsfrSpacings.s3v,
-                children:
-                    ThemeType.values
-                        .flatMap(
-                          (final themeType) =>
-                              ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipies),
-                        )
-                        .toSet()
-                        .map(
-                          (final link) => SizedBox(
-                            width: screenWidth(context, percentage: 0.8),
-                            height: double.infinity,
-                            child: ThemeServiceInfo(link: link),
-                          ),
-                        )
-                        .toList(),
+                children: ThemeType.values
+                    .flatMap(
+                      (final themeType) =>
+                          ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipies),
+                    )
+                    .toSet()
+                    .map(
+                      (final link) => SizedBox(
+                        width: screenWidth(context, percentage: 0.8),
+                        height: double.infinity,
+                        child: ThemeServiceInfo(link: link),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
           ),

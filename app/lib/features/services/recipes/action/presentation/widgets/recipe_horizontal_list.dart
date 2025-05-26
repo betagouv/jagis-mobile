@@ -47,7 +47,6 @@ class _Success extends StatelessWidget {
       spacing: DsfrSpacings.s2w,
       children: [
         const FnvMarkdown(data: Localisation.besoinDInspiration, p: DsfrTextStyle(fontSize: 22)),
-
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,

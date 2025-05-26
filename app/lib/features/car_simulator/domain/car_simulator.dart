@@ -19,7 +19,6 @@ class CarInfos extends Equatable {
   List<Object?> get props => [cost, emissions, size, motorisation, fuel];
 }
 
-// TODO(erolley): For now, there is only car alternatives, however, we should be able to add other types of alternatives in the future.
 class CarSimulatorOption extends CarInfos {
   const CarSimulatorOption({
     required super.cost,

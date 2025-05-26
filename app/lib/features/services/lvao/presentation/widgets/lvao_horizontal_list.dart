@@ -56,7 +56,7 @@ class _Success extends StatelessWidget {
               p: DsfrTextStyle(fontSize: 22),
             ),
             Text(
-              'Trouvez les cordonniers et réparateurs agréés près de chez vous pour bénéficier d’une aide d’État', // TODO(lsaudon): Texte pour réparation
+              'Trouvez les cordonniers et réparateurs agréés près de chez vous pour bénéficier d’une aide d’État',
               style: DsfrTextStyle(fontSize: 16),
             ),
           ],

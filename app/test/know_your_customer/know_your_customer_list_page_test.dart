@@ -26,9 +26,8 @@ Future<void> _pumpPage(final WidgetTester tester, {required final DioMock dio}) 
     ],
     blocProviders: [
       BlocProvider(
-        create:
-            (final context) =>
-                GamificationBloc(GamificationRepository(client: client, messageBus: MessageBus()), authenticationService),
+        create: (final context) =>
+            GamificationBloc(GamificationRepository(client: client, messageBus: MessageBus()), authenticationService),
       ),
     ],
     page: KnowYourCustomersPage.route,

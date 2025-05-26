@@ -32,8 +32,11 @@ class AidPage extends StatelessWidget {
 
   final String id;
 
-  static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => AidPage(id: state.pathParameters['id']!));
+  static GoRoute get route => GoRoute(
+    path: path,
+    name: name,
+    builder: (final context, final state) => AidPage(id: state.pathParameters['id']!),
+  );
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
@@ -59,32 +62,31 @@ class _View extends StatelessWidget {
       AidStateSuccess(:final aid) =>
         aid.aidUrl == null
             ? aid.hasSimulator
-                ? FnvBottomBar(
-                  child: DsfrButton(
-                    label: Localisation.accederAuSimulateur,
-                    variant: DsfrButtonVariant.primary,
-                    size: DsfrComponentSize.lg,
-                    onPressed:
-                        aid.hasBikeSimulator
+                  ? FnvBottomBar(
+                      child: DsfrButton(
+                        label: Localisation.accederAuSimulateur,
+                        variant: DsfrButtonVariant.primary,
+                        size: DsfrComponentSize.lg,
+                        onPressed: aid.hasBikeSimulator
                             ? () async {
-                              await GoRouter.of(context).pushNamed(AideSimulateurVeloPage.name);
-                            }
+                                await GoRouter.of(context).pushNamed(AideSimulateurVeloPage.name);
+                              }
                             : null,
-                  ),
-                )
-                : null
+                      ),
+                    )
+                  : null
             : FnvBottomBar(
-              child: DsfrButton(
-                label: Localisation.commencerVotreDemarche,
-                icon: DsfrIcons.systemExternalLinkLine,
-                iconLocation: DsfrButtonIconLocation.right,
-                variant: DsfrButtonVariant.primary,
-                size: DsfrComponentSize.lg,
-                onPressed: () async {
-                  await FnvUrlLauncher.launch(aid.aidUrl!);
-                },
+                child: DsfrButton(
+                  label: Localisation.commencerVotreDemarche,
+                  icon: DsfrIcons.systemExternalLinkLine,
+                  iconLocation: DsfrButtonIconLocation.right,
+                  variant: DsfrButtonVariant.primary,
+                  size: DsfrComponentSize.lg,
+                  onPressed: () async {
+                    await FnvUrlLauncher.launch(aid.aidUrl!);
+                  },
+                ),
               ),
-            ),
       _ => null,
     },
   );
@@ -99,7 +101,10 @@ class _AidPageContent extends StatelessWidget {
   Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.all(paddingVerticalPage),
     children: [
-      Align(alignment: Alignment.centerLeft, child: ThemeTypeTag(themeType: aid.themeType)),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: ThemeTypeTag(themeType: aid.themeType),
+      ),
       const SizedBox(height: DsfrSpacings.s2w),
       Text(aid.title, style: const DsfrTextStyle.headline2()),
       if (aid.hasSimulator || aid.maxAmount != null) ...[

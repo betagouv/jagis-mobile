@@ -10,7 +10,10 @@ abstract final class InputFormatter {
     final number = int.parse(text);
     final newString = formatCurrency(number);
 
-    return TextEditingValue(text: newString, selection: TextSelection.collapsed(offset: newString.length));
+    return TextEditingValue(
+      text: newString,
+      selection: TextSelection.collapsed(offset: newString.length),
+    );
   });
 }
 

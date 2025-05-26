@@ -29,9 +29,8 @@ class SeasonalFruitsAndVegetablesPage extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
-      create:
-          (final context) =>
-              SeasonalFruitsAndVegetablesBloc(repository: context.read())..add(const SeasonalFruitsAndVegetablesFetch()),
+      create: (final context) =>
+          SeasonalFruitsAndVegetablesBloc(repository: context.read())..add(const SeasonalFruitsAndVegetablesFetch()),
       child: const _Body(),
     ),
   );
@@ -65,7 +64,10 @@ class _Success extends StatelessWidget {
     child: Column(
       children: [
         const SizedBox(height: DsfrSpacings.s4w),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: _Header(value: value)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: paddingVerticalPage),
+          child: _Header(value: value),
+        ),
         const SizedBox(height: DsfrSpacings.s4w),
         const DecoratedBox(
           decoration: BoxDecoration(
@@ -73,7 +75,10 @@ class _Success extends StatelessWidget {
             boxShadow: [BoxShadow(color: Color(0x08000068), offset: Offset(0, 5), blurRadius: 10)],
           ),
           child: TabBar(
-            tabs: [Tab(text: Localisation.fruits), Tab(text: Localisation.legumes)],
+            tabs: [
+              Tab(text: Localisation.fruits),
+              Tab(text: Localisation.legumes),
+            ],
             indicator: DsfrTabIndicator(borderSide: BorderSide(color: DsfrColors.blueFranceSun113, width: 3)),
             indicatorSize: TabBarIndicatorSize.tab,
             dividerHeight: 0,
@@ -120,9 +125,8 @@ class _Header extends StatelessWidget {
           child: FnvDropdown(
             items: Map.fromEntries(value.months.map((final e) => MapEntry(e.code, e.label))),
             value: value.monthSelected,
-            onChanged:
-                (final value) =>
-                    context.read<SeasonalFruitsAndVegetablesBloc>().add(SeasonalFruitsAndVegetablesMonthSelected(value)),
+            onChanged: (final value) =>
+                context.read<SeasonalFruitsAndVegetablesBloc>().add(SeasonalFruitsAndVegetablesMonthSelected(value)),
           ),
         ),
       ],
@@ -200,7 +204,9 @@ class _Section extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: Text(e.title, style: const DsfrTextStyle.bodyMd(), overflow: TextOverflow.ellipsis)),
+                  Expanded(
+                    child: Text(e.title, style: const DsfrTextStyle.bodyMd(), overflow: TextOverflow.ellipsis),
+                  ),
                   FnvImage.network(e.imageUrl, width: 24, height: 24),
                 ],
               ),
@@ -218,6 +224,8 @@ class _PlantCard extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) =>
-      DecoratedBox(decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow), child: child);
+  Widget build(final BuildContext context) => DecoratedBox(
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    child: child,
+  );
 }

@@ -29,9 +29,8 @@ class MaifWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            MaifBloc(context.read(), context.read(), FetchRiskInfoForAddress(context.read()))..add(const MaifLoadRequested()),
+    create: (final context) =>
+        MaifBloc(context.read(), context.read(), FetchRiskInfoForAddress(context.read()))..add(const MaifLoadRequested()),
     child: _View(action),
   );
 }
@@ -43,15 +42,14 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<MaifBloc, MaifState>(
-    builder:
-        (final context, final state) => switch (state) {
-          MaifInitial() => const SizedBox.shrink(),
-          MaifLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          MaifLoadSuccess() => _Success(data: state),
-          MaifLoadFailure() => const Center(
-            child: Text('Une erreur est survenue lors du chargement des données.', style: TextStyle(color: DsfrColors.error425)),
-          ),
-        },
+    builder: (final context, final state) => switch (state) {
+      MaifInitial() => const SizedBox.shrink(),
+      MaifLoadInProgress() => const Center(child: CircularProgressIndicator()),
+      MaifLoadSuccess() => _Success(data: state),
+      MaifLoadFailure() => const Center(
+        child: Text('Une erreur est survenue lors du chargement des données.', style: TextStyle(color: DsfrColors.error425)),
+      ),
+    },
     listener: (final context, final state) {
       if (state is MaifLoadSuccess && !action.isDone && state.userAddress.isFull) {
         context.read<ActionBloc>().add(ActionMarkAsDone(id: action.id, type: action.type));
@@ -142,12 +140,11 @@ class _Success extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 spacing: DsfrSpacings.s2w,
-                children:
-                    [
-                      _NaturalDisastersWidget(data.numberOfCatNat),
-                      _DroughtWidget(data.droughtPercentage),
-                      _FloodWidget(data.floodPercentage),
-                    ].map((final e) => SizedBox(width: 213, child: e)).toList(),
+                children: [
+                  _NaturalDisastersWidget(data.numberOfCatNat),
+                  _DroughtWidget(data.droughtPercentage),
+                  _FloodWidget(data.floodPercentage),
+                ].map((final e) => SizedBox(width: 213, child: e)).toList(),
               ),
             ),
           ),
@@ -176,7 +173,10 @@ class _Risks extends StatelessWidget {
     spacing: DsfrSpacings.s1w,
     children: [
       const Text(Localisation.vosRisques, style: DsfrTextStyle.headline3()),
-      Column(spacing: DsfrSpacings.s2w, children: risks.map((final e) => _Risk(risk: e)).toList()),
+      Column(
+        spacing: DsfrSpacings.s2w,
+        children: risks.map((final e) => _Risk(risk: e)).toList(),
+      ),
     ],
   );
 }
@@ -270,7 +270,11 @@ class _NaturalDisastersWidget extends StatelessWidget {
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Column(
         children: [
-          Text('$value', style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125), textAlign: TextAlign.center),
+          Text(
+            '$value',
+            style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
+            textAlign: TextAlign.center,
+          ),
           const Text('arrêtés CATNAT', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
           const Text('depuis 1982', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
         ],
@@ -293,7 +297,11 @@ class _DroughtWidget extends StatelessWidget {
           padding: const EdgeInsets.all(DsfrSpacings.s2w),
           child: Column(
             children: [
-              Text('$value%', style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125), textAlign: TextAlign.center),
+              Text(
+                '$value%',
+                style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
+                textAlign: TextAlign.center,
+              ),
               const Text('de la surface exposée', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
               const Text('à la sécheresse géotechnique', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
             ],
@@ -322,7 +330,11 @@ class _FloodWidget extends StatelessWidget {
           padding: const EdgeInsets.all(DsfrSpacings.s2w),
           child: Column(
             children: [
-              Text('$value%', style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125), textAlign: TextAlign.center),
+              Text(
+                '$value%',
+                style: const DsfrTextStyle.displayXs(color: DsfrColors.blueFrance125),
+                textAlign: TextAlign.center,
+              ),
               const Text('de la surface exposée', style: DsfrTextStyle.bodyMd(), textAlign: TextAlign.center),
               const Text('à l’inondation', style: DsfrTextStyle.bodyMdBold(), textAlign: TextAlign.center),
             ],

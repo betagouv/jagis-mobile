@@ -34,18 +34,13 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<QuizzesBloc, QuizzesState>(
-    builder:
-        (final context, final state) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
-          child: switch (state) {
-            QuizzesInProgress() => QuizzesInProgressWidget(inProgressState: state),
-            QuizzesCompleted() => QuizzesCompletedWidget(
-              completedState: state,
-              name: name,
-              congratulatoryText: congratulatoryText,
-            ),
-          },
-        ),
+    builder: (final context, final state) => Padding(
+      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
+      child: switch (state) {
+        QuizzesInProgress() => QuizzesInProgressWidget(inProgressState: state),
+        QuizzesCompleted() => QuizzesCompletedWidget(completedState: state, name: name, congratulatoryText: congratulatoryText),
+      },
+    ),
     listener: (final context, final state) {
       if (state is QuizzesCompleted && state.isCompleted) {
         context.read<ActionBloc>().add(ActionMarkAsDone(id: id, type: ActionType.quiz));

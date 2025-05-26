@@ -36,10 +36,9 @@ class LvaoListPage extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
-      create:
-          (final context) =>
-              ServiceBloc<LvaoActor>(ServiceRepository(context.read()), 'longue_vie_objets', 9, LvaoActor.fromJson)
-                ..add(const ServiceLoadRequested()),
+      create: (final context) =>
+          ServiceBloc<LvaoActor>(ServiceRepository(context.read()), 'longue_vie_objets', 9, LvaoActor.fromJson)
+            ..add(const ServiceLoadRequested()),
       child: const _Body(),
     ),
   );
@@ -50,55 +49,54 @@ final class _Body extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<ServiceBloc<LvaoActor>, ServiceState<LvaoActor>>(
-    builder:
-        (final context, final state) => switch (state.status) {
-          ServiceStatus.initial => const SizedBox(),
-          ServiceStatus.loading => const Center(child: CircularProgressIndicator()),
-          ServiceStatus.failure => const Center(child: Text('Erreur de chargement')),
-          ServiceStatus.success => ListView(
-            padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
-            children: [
-              _ServiceCategoriesInput(categories: state.categories, selected: state.categorySelected),
-              const SizedBox(height: DsfrSpacings.s1w),
-              const Text(Localisation.lvaoSousTitre, style: DsfrTextStyle.bodyMd()),
-              const SizedBox(height: DsfrSpacings.s3w),
-              ColoredBox(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3()),
-                      FnvAutocomplete(
-                        displayStringForOption: (final option) => option.label,
-                        onSearch: (final query) => context.read<AddressRepository>().search(query),
-                        onSelected:
-                            (final option) => context.read<ServiceBloc<LvaoActor>>().add(ServiceAddressChanged(address: option)),
-                      ),
-                    ],
+    builder: (final context, final state) => switch (state.status) {
+      ServiceStatus.initial => const SizedBox(),
+      ServiceStatus.loading => const Center(child: CircularProgressIndicator()),
+      ServiceStatus.failure => const Center(child: Text('Erreur de chargement')),
+      ServiceStatus.success => ListView(
+        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
+        children: [
+          _ServiceCategoriesInput(categories: state.categories, selected: state.categorySelected),
+          const SizedBox(height: DsfrSpacings.s1w),
+          const Text(Localisation.lvaoSousTitre, style: DsfrTextStyle.bodyMd()),
+          const SizedBox(height: DsfrSpacings.s3w),
+          ColoredBox(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3()),
+                  FnvAutocomplete(
+                    displayStringForOption: (final option) => option.label,
+                    onSearch: (final query) => context.read<AddressRepository>().search(query),
+                    onSelected: (final option) =>
+                        context.read<ServiceBloc<LvaoActor>>().add(ServiceAddressChanged(address: option)),
                   ),
-                ),
+                ],
               ),
-              const SizedBox(height: DsfrSpacings.s3w),
-              if (state.suggestions.isEmpty) ...[
-                const FnvImage.asset(AssetImages.serviceAucunResultat),
-                const Text(Localisation.serviceAucunResultat, style: DsfrTextStyle.bodyLg(), textAlign: TextAlign.center),
-              ] else ...[
-                const Text(Localisation.suggestions, style: DsfrTextStyle.headline3()),
-                const SizedBox(height: DsfrSpacings.s3w),
-                ...state.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
-              ],
-              const SizedBox(height: DsfrSpacings.s3w),
-              const PartnerCard(
-                image: AssetImages.lvaoIllustration,
-                name: Localisation.lvaoNom,
-                description: Localisation.lvaoDescription,
-                url: Localisation.lvaoUrl,
-              ),
-            ],
+            ),
           ),
-        },
+          const SizedBox(height: DsfrSpacings.s3w),
+          if (state.suggestions.isEmpty) ...[
+            const FnvImage.asset(AssetImages.serviceAucunResultat),
+            const Text(Localisation.serviceAucunResultat, style: DsfrTextStyle.bodyLg(), textAlign: TextAlign.center),
+          ] else ...[
+            const Text(Localisation.suggestions, style: DsfrTextStyle.headline3()),
+            const SizedBox(height: DsfrSpacings.s3w),
+            ...state.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
+          ],
+          const SizedBox(height: DsfrSpacings.s3w),
+          const PartnerCard(
+            image: AssetImages.lvaoIllustration,
+            name: Localisation.lvaoNom,
+            description: Localisation.lvaoDescription,
+            url: Localisation.lvaoUrl,
+          ),
+        ],
+      ),
+    },
   );
 }
 

@@ -97,13 +97,11 @@ class CarSimulatorResultBloc extends Bloc<CarSimulatorResultEvent, CarSimulatorR
     final CarSize selectedSize,
     final bool hasChargingStation,
     final double Function(CarSimulatorOption option) comparator,
-  ) =>
-      carOptions
-          .filter(
-            (final option) =>
-                option.size.value == selectedSize &&
-                (hasChargingStation || option.motorisation.value != CarMotorisation.electric),
-          )
-          .sorted((final a, final b) => comparator(a).compareTo(comparator(b)))
-          .first;
+  ) => carOptions
+      .filter(
+        (final option) =>
+            option.size.value == selectedSize && (hasChargingStation || option.motorisation.value != CarMotorisation.electric),
+      )
+      .sorted((final a, final b) => comparator(a).compareTo(comparator(b)))
+      .first;
 }

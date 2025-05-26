@@ -20,10 +20,8 @@ class CarSimulatorWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: sequenceId))
-              ..add(const QuestionFlowFirstRequested()),
+    create: (final context) =>
+        QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: sequenceId))..add(const QuestionFlowFirstRequested()),
     child: _View(isDone: isDone),
   );
 }
@@ -35,12 +33,11 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<QuestionFlowBloc, QuestionFlowState>(
-    builder:
-        (final context, final state) => switch (state) {
-          QuestionFlowInitial() => const SizedBox.shrink(),
-          QuestionFlowLoadSuccess() => _Success(questionManager: state, isDone: isDone),
-          QuestionFlowFinished() => const CarSimulatorResult(),
-        },
+    builder: (final context, final state) => switch (state) {
+      QuestionFlowInitial() => const SizedBox.shrink(),
+      QuestionFlowLoadSuccess() => _Success(questionManager: state, isDone: isDone),
+      QuestionFlowFinished() => const CarSimulatorResult(),
+    },
     listener: (final context, final state) {
       if (state is QuestionFlowFinished) {
         context.read<CarSimulatorResultBloc>().add(const CarSimulatorGetCurrentCarResult());

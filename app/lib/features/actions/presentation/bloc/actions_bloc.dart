@@ -24,8 +24,10 @@ class ActionsBloc extends Bloc<ActionsEvent, ActionsState> {
         case ActionsLoadFailure():
           break;
         case ActionsLoadSuccess():
-          final currentThemes =
-              (state as ActionsLoadSuccess).themeFilters.where((final e) => e.selected).map((final e) => e.code).toList();
+          final currentThemes = (state as ActionsLoadSuccess).themeFilters
+              .where((final e) => e.selected)
+              .map((final e) => e.code)
+              .toList();
           final result = await repository.fetch(themes: currentThemes, title: event.value);
 
           emit(

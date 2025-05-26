@@ -28,25 +28,27 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<CarSimulatorResultBloc, CarSimulatorResultState>(
-    builder:
-        (final context, final state) => switch (state) {
-          CarSimulatorInit() => const Center(
-            child: Padding(padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w), child: FnvLoader()),
-          ),
-          CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
-            currentCar: state.currentCar,
-            selectedSize: state.currentCar.size.value.smaller,
-            hasChargingStation: true,
-          ),
-          CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
-            currentCar: state.currentCar,
-            selectedSize: state.selectedSize,
-            hasChargingStation: state.hasChargingStation,
-            bestCostOption: state.bestCostOption,
-            bestEmissionsOption: state.bestEmissionOption,
-          ),
-          CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
-        },
+    builder: (final context, final state) => switch (state) {
+      CarSimulatorInit() => const Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
+          child: FnvLoader(),
+        ),
+      ),
+      CarSimulatorGetCurrentCarSuccess() => _CarSimulatorResultView(
+        currentCar: state.currentCar,
+        selectedSize: state.currentCar.size.value.smaller,
+        hasChargingStation: true,
+      ),
+      CarSimulatorGetCarOptionsSuccess() => _CarSimulatorResultView(
+        currentCar: state.currentCar,
+        selectedSize: state.selectedSize,
+        hasChargingStation: state.hasChargingStation,
+        bestCostOption: state.bestCostOption,
+        bestEmissionsOption: state.bestEmissionOption,
+      ),
+      CarSimulatorLoadFailure(:final errorMessage) => Center(child: Text(errorMessage)),
+    },
     listener: (final context, final state) {
       if (state is CarSimulatorGetCurrentCarSuccess) {
         context.read<ActionBloc>().add(
@@ -140,7 +142,12 @@ class _BestCarOptionView extends StatelessWidget {
         ),
       ),
       if (bestEmissionsOption == null || bestCostOption == null)
-        const Center(child: Padding(padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w), child: FnvLoader()))
+        const Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: DsfrSpacings.s4w),
+            child: FnvLoader(),
+          ),
+        )
       else
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -173,8 +180,9 @@ class _CarSimulatorOptionView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final currentCarIsBest =
-        kind == CarSimulatorOptionKind.bestCost ? currentCar.cost <= option.cost : currentCar.emissions <= option.emissions;
+    final currentCarIsBest = kind == CarSimulatorOptionKind.bestCost
+        ? currentCar.cost <= option.cost
+        : currentCar.emissions <= option.emissions;
 
     return DecoratedBox(
       decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
@@ -269,23 +277,22 @@ class _DiffInTag extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final diff = unit == '%' ? (to - from) / from * 100 : to - from;
-    final colors =
-        diff > 0
-            ? (fg: DsfrColors.textDefaultError, bg: DsfrColors.backgroundConstrastError)
-            : (fg: DsfrColors.textDefaultSuccess, bg: DsfrColors.backgroundConstrastSuccess);
+    final colors = diff > 0
+        ? (fg: DsfrColors.textDefaultError, bg: DsfrColors.backgroundConstrastError)
+        : (fg: DsfrColors.textDefaultSuccess, bg: DsfrColors.backgroundConstrastSuccess);
     final sign = diff > 0 ? '+' : '-';
 
     return diff == 0
         ? const SizedBox.shrink()
         : DsfrTag.md(
-          label: TextSpan(
-            text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
-            style: DsfrTextStyle.bodyMdBold(color: colors.fg),
-            children: [TextSpan(text: ' $unit')],
-          ),
-          backgroundColor: colors.bg,
-          foregroundColor: colors.fg,
-        );
+            label: TextSpan(
+              text: sign + FnvNumberFormat.formatNumberAfterRounding(diff.abs()),
+              style: DsfrTextStyle.bodyMdBold(color: colors.fg),
+              children: [TextSpan(text: ' $unit')],
+            ),
+            backgroundColor: colors.bg,
+            foregroundColor: colors.fg,
+          );
   }
 }
 
@@ -333,7 +340,10 @@ class _NumberWithUnit extends StatelessWidget {
     TextSpan(
       text: FnvNumberFormat.formatNumberAfterRounding(num),
       style: const DsfrTextStyle.bodyXlBold(),
-      children: [const TextSpan(text: ' '), TextSpan(text: unit, style: const DsfrTextStyle.bodyLg())],
+      children: [
+        const TextSpan(text: ' '),
+        TextSpan(text: unit, style: const DsfrTextStyle.bodyLg()),
+      ],
     ),
   );
 }
@@ -346,7 +356,9 @@ class _ContextInfosView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Container(
     padding: const EdgeInsets.only(top: DsfrSpacings.s2w),
-    decoration: const ShapeDecoration(shape: Border(top: BorderSide(color: DsfrColors.blueFrance950))),
+    decoration: const ShapeDecoration(
+      shape: Border(top: BorderSide(color: DsfrColors.blueFrance950)),
+    ),
     width: 270,
     child: Wrap(
       spacing: DsfrSpacings.s1w,

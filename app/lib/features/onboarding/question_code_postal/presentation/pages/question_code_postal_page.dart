@@ -27,10 +27,9 @@ class QuestionCodePostalPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            QuestionCodePostalBloc(profilRepository: context.read(), communesRepository: context.read())
-              ..add(const QuestionCodePostalPseudonymDemande()),
+    create: (final context) =>
+        QuestionCodePostalBloc(profilRepository: context.read(), communesRepository: context.read())
+          ..add(const QuestionCodePostalPseudonymDemande()),
     child: const _View(),
   );
 }
@@ -40,7 +39,10 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => FnvScaffold(
-    appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+    appBar: AppBar(
+      backgroundColor: FnvColors.background,
+      iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
+    ),
     body: ListView(
       padding: const EdgeInsets.all(paddingVerticalPage),
       children: [
@@ -49,7 +51,10 @@ class _View extends StatelessWidget {
           p: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),
         ),
         const SizedBox(height: DsfrSpacings.s3v),
-        const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration2)),
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: OnboardingIllustration(assetName: AssetImages.illustration2),
+        ),
         const _Prenom(),
         const SizedBox(height: DsfrSpacings.s2w),
         const Text(Localisation.enchanteDetails, style: DsfrTextStyle.bodyLg()),
@@ -74,7 +79,10 @@ class _Prenom extends StatelessWidget {
       TextSpan(
         text: Localisation.enchante,
         children: [
-          TextSpan(text: state.pseudonym, style: dsfrTextStyle.copyWith(color: DsfrColors.blueFranceSun113)),
+          TextSpan(
+            text: state.pseudonym,
+            style: dsfrTextStyle.copyWith(color: DsfrColors.blueFranceSun113),
+          ),
           const TextSpan(text: ' !'),
         ],
       ),
@@ -161,16 +169,15 @@ class _ButtonContinuer extends StatelessWidget {
       label: Localisation.continuer,
       variant: DsfrButtonVariant.primary,
       size: DsfrComponentSize.lg,
-      onPressed:
-          estRempli
-              ? () async {
-                final bloc = context.read<QuestionCodePostalBloc>()..add(const QuestionCodePostalMiseAJourDemandee());
+      onPressed: estRempli
+          ? () async {
+              final bloc = context.read<QuestionCodePostalBloc>()..add(const QuestionCodePostalMiseAJourDemandee());
 
-                await GoRouter.of(
-                  context,
-                ).pushNamed(AppEstEncoreEnExperimentationPage.name, pathParameters: {'commune': bloc.state.commune});
-              }
-              : null,
+              await GoRouter.of(
+                context,
+              ).pushNamed(AppEstEncoreEnExperimentationPage.name, pathParameters: {'commune': bloc.state.commune});
+            }
+          : null,
     );
   }
 }

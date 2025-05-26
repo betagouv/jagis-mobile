@@ -38,8 +38,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -49,28 +48,14 @@ void main() {
         await beforeEach('''See all actions''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              ['type', 'code', 'title', 'nb_aids_available'],
-              [
-                'classique',
-                '1',
-                'Faire réparer une **paire de chaussures**',
-                2
-              ],
-              [
-                'classique',
-                '2',
-                'Contribuer à la **bonne santé de son sol**',
-                0
-              ],
-              [
-                'classique',
-                '3',
-                'Tester une **nouvelle recette végétarienne**',
-                1
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            ['classique', '1', 'Faire réparer une **paire de chaussures**', 2],
+            ['classique', '2', 'Contribuer à la **bonne santé de son sol**', 0],
+            ['classique', '3', 'Tester une **nouvelle recette végétarienne**', 1],
+          ]),
+        );
         await iTapOn(tester, 'Actions');
         await iSee(tester, 'Contribuer à la bonne santé de son sol');
         await iSee(tester, 'Tester une nouvelle recette végétarienne');
@@ -82,10 +67,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''See all actions''',
-          success,
-        );
+        await afterEach('''See all actions''', success);
       }
     });
     testWidgets('''Filter actions by title''', (tester) async {
@@ -94,28 +76,14 @@ void main() {
         await beforeEach('''Filter actions by title''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              ['type', 'code', 'title', 'nb_aids_available'],
-              [
-                'classique',
-                '1',
-                'Faire réparer une **paire de chaussures**',
-                2
-              ],
-              [
-                'classique',
-                '2',
-                'Contribuer à la **bonne santé de son sol**',
-                0
-              ],
-              [
-                'classique',
-                '3',
-                'Tester une **nouvelle recette végétarienne**',
-                1
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            ['classique', '1', 'Faire réparer une **paire de chaussures**', 2],
+            ['classique', '2', 'Contribuer à la **bonne santé de son sol**', 0],
+            ['classique', '3', 'Tester une **nouvelle recette végétarienne**', 1],
+          ]),
+        );
         await iTapOn(tester, 'Actions');
         await iSee(tester, 'Tester une nouvelle recette végétarienne');
         await iSee(tester, 'Faire réparer une paire de chaussures');
@@ -126,10 +94,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Filter actions by title''',
-          success,
-        );
+        await afterEach('''Filter actions by title''', success);
       }
     });
     testWidgets('''Filter actions by theme''', (tester) async {
@@ -138,28 +103,14 @@ void main() {
         await beforeEach('''Filter actions by theme''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              ['type', 'code', 'title', 'nb_aids_available'],
-              [
-                'classique',
-                '1',
-                'Faire réparer une **paire de chaussures**',
-                2
-              ],
-              [
-                'classique',
-                '2',
-                'Contribuer à la **bonne santé de son sol**',
-                0
-              ],
-              [
-                'classique',
-                '3',
-                'Tester une **nouvelle recette végétarienne**',
-                1
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            ['classique', '1', 'Faire réparer une **paire de chaussures**', 2],
+            ['classique', '2', 'Contribuer à la **bonne santé de son sol**', 0],
+            ['classique', '3', 'Tester une **nouvelle recette végétarienne**', 1],
+          ]),
+        );
         await iTapOn(tester, 'Actions');
         await iSee(tester, 'Tester une nouvelle recette végétarienne');
         await iSee(tester, 'Faire réparer une paire de chaussures');
@@ -170,10 +121,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Filter actions by theme''',
-          success,
-        );
+        await afterEach('''Filter actions by theme''', success);
       }
     });
     testWidgets('''Filter actions by already consulted''', (tester) async {
@@ -182,28 +130,14 @@ void main() {
         await beforeEach('''Filter actions by already consulted''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              ['type', 'code', 'title', 'nb_aids_available'],
-              [
-                'classique',
-                '1',
-                'Faire réparer une **paire de chaussures**',
-                2
-              ],
-              [
-                'classique',
-                '2',
-                'Contribuer à la **bonne santé de son sol**',
-                0
-              ],
-              [
-                'classique',
-                '3',
-                'Tester une **nouvelle recette végétarienne**',
-                1
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            ['classique', '1', 'Faire réparer une **paire de chaussures**', 2],
+            ['classique', '2', 'Contribuer à la **bonne santé de son sol**', 0],
+            ['classique', '3', 'Tester une **nouvelle recette végétarienne**', 1],
+          ]),
+        );
         await iTapOn(tester, 'Actions');
         await iSee(tester, 'Tester une nouvelle recette végétarienne');
         await iSee(tester, 'Faire réparer une paire de chaussures');
@@ -214,10 +148,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Filter actions by already consulted''',
-          success,
-        );
+        await afterEach('''Filter actions by already consulted''', success);
       }
     });
     testWidgets('''Go to details action classic''', (tester) async {
@@ -226,46 +157,36 @@ void main() {
         await beforeEach('''Go to details action classic''');
         await bddSetUp(tester);
         await iHaveActionsInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              ['type', 'code', 'title', 'nb_aids_available'],
-              ['classique', '1', 'Faire réparer une **paire de chaussures**', 2]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            ['classique', '1', 'Faire réparer une **paire de chaussures**', 2],
+          ]),
+        );
         await iHaveActionDetailInMyLibrary(
-            tester,
-            const bdd.DataTable([
-              [
-                'id',
-                'title',
-                'subTitle',
-                'how',
-                'why',
-                'service_id',
-                'service_category'
-              ],
-              [
-                '1',
-                'Faire réparer une **paire de chaussures**',
-                'Faites des économies en donnant une seconde vie à vos paires de chaussures',
-                '# Nos astuces\n\n- **Choisissez un cordonnier agréé** : pour profiter de l’aide d’État sur vos réparations\n\n- **Bottes, chaussures de ski, baskets** : toutes les chaussures sont éligibles\n\n- **Si vos chaussures sont trop abimées** : Déposez-les dans un point de collecte pour que valoriser les matériaux utilisés',
-                '# En quelques mots\n\n- Pour chaque paire de chaussure réparée, vous économisez **entre 20 et 60€**\n\n- Les paires de chaussures jetées représentent plusieurs **milliers de tonnes** de déchets généralement non recyclables. \n\n- Chaque année, un Français achète en moyenne 4 paires de chaussures.',
-                'longue_vie_objets',
-                'reparer'
-              ]
-            ]));
+          tester,
+          const bdd.DataTable([
+            ['id', 'title', 'subTitle', 'how', 'why', 'service_id', 'service_category'],
+            [
+              '1',
+              'Faire réparer une **paire de chaussures**',
+              'Faites des économies en donnant une seconde vie à vos paires de chaussures',
+              '# Nos astuces\n\n- **Choisissez un cordonnier agréé** : pour profiter de l’aide d’État sur vos réparations\n\n- **Bottes, chaussures de ski, baskets** : toutes les chaussures sont éligibles\n\n- **Si vos chaussures sont trop abimées** : Déposez-les dans un point de collecte pour que valoriser les matériaux utilisés',
+              '# En quelques mots\n\n- Pour chaque paire de chaussure réparée, vous économisez **entre 20 et 60€**\n\n- Les paires de chaussures jetées représentent plusieurs **milliers de tonnes** de déchets généralement non recyclables. \n\n- Chaque année, un Français achète en moyenne 4 paires de chaussures.',
+              'longue_vie_objets',
+              'reparer',
+            ],
+          ]),
+        );
         await iHaveLvaoServicesInMyLibrary(tester);
         await iTapOn(tester, 'Actions');
         await iTapOn(tester, 'Faire réparer une paire de chaussures');
-        await iSee(tester,
-            'Faites des économies en donnant une seconde vie à vos paires de chaussures');
+        await iSee(tester, 'Faites des économies en donnant une seconde vie à vos paires de chaussures');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Go to details action classic''',
-          success,
-        );
+        await afterEach('''Go to details action classic''', success);
       }
     });
   });

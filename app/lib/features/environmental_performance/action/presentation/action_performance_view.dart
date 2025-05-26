@@ -22,10 +22,9 @@ class ActionPerformanceView extends StatelessWidget {
   Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: BlocProvider(
-      create:
-          (final context) =>
-              QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: action.sequenceId))
-                ..add(const QuestionFlowFirstRequested()),
+      create: (final context) =>
+          QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: action.sequenceId))
+            ..add(const QuestionFlowFirstRequested()),
       child: _View(themeType: action.themeType, type: action.type, code: action.id),
     ),
   );
@@ -40,12 +39,11 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<QuestionFlowBloc, QuestionFlowState>(
-    builder:
-        (final context, final state) => switch (state) {
-          QuestionFlowInitial() => const SizedBox.shrink(),
-          QuestionFlowLoadSuccess() => ActionPerformanceSuccess(questionManager: state),
-          QuestionFlowFinished() => ActionPerformanceFinished(themeType: themeType),
-        },
+    builder: (final context, final state) => switch (state) {
+      QuestionFlowInitial() => const SizedBox.shrink(),
+      QuestionFlowLoadSuccess() => ActionPerformanceSuccess(questionManager: state),
+      QuestionFlowFinished() => ActionPerformanceFinished(themeType: themeType),
+    },
     listener: (final context, final state) {
       if (state is QuestionFlowFinished) {
         context.read<ActionBloc>().add(ActionMarkAsDone(id: code, type: type));

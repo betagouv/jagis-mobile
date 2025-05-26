@@ -24,11 +24,10 @@ class _Part extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<PdcnBloc, PdcnState>(
-    builder:
-        (final context, final state) => switch (state) {
-          PdcnInitial() || PdcnLoadInProgress() || PdcnLoadFailure() => const SizedBox.shrink(),
-          PdcnLoadSuccess() => _Success(success: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      PdcnInitial() || PdcnLoadInProgress() || PdcnLoadFailure() => const SizedBox.shrink(),
+      PdcnLoadSuccess() => _Success(success: state),
+    },
   );
 }
 
@@ -62,7 +61,10 @@ class _Success extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
           clipBehavior: Clip.none,
           child: IntrinsicHeight(
-            child: Row(spacing: DsfrSpacings.s2w, children: success.list.map((final e) => PdcnCard(e: e)).toList()),
+            child: Row(
+              spacing: DsfrSpacings.s2w,
+              children: success.list.map((final e) => PdcnCard(e: e)).toList(),
+            ),
           ),
         ),
       ],

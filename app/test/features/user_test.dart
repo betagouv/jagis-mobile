@@ -22,13 +22,11 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''On voit le pseudonyme sur la page d'accueil''',
-        (tester) async {
+    testWidgets('''On voit le pseudonyme sur la page d'accueil''', (tester) async {
       var success = true;
       try {
         await beforeEach('''On voit le pseudonyme sur la page d'accueil''');
@@ -39,10 +37,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''On voit le pseudonyme sur la page d'accueil''',
-          success,
-        );
+        await afterEach('''On voit le pseudonyme sur la page d'accueil''', success);
       }
     });
   });

@@ -27,11 +27,10 @@ class _Part extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<ActionRecipesBloc, ActionRecipesState>(
-    builder:
-        (final context, final state) => switch (state) {
-          ActionRecipesInitial() || ActionRecipesLoadInProgress() || ActionRecipesLoadFailure() => const SizedBox.shrink(),
-          ActionRecipesLoadSuccess() => _Success(state: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      ActionRecipesInitial() || ActionRecipesLoadInProgress() || ActionRecipesLoadFailure() => const SizedBox.shrink(),
+      ActionRecipesLoadSuccess() => _Success(state: state),
+    },
   );
 }
 
@@ -55,18 +54,17 @@ class _Success extends StatelessWidget {
           child: IntrinsicHeight(
             child: Row(
               spacing: DsfrSpacings.s2w,
-              children:
-                  state.recipes
-                      .map(
-                        (final e) => RecipeCard(
-                          id: e.id,
-                          imageUrl: e.imageUrl,
-                          title: e.title,
-                          difficulty: e.difficulty,
-                          preparationTime: e.preparationTime,
-                        ),
-                      )
-                      .toList(),
+              children: state.recipes
+                  .map(
+                    (final e) => RecipeCard(
+                      id: e.id,
+                      imageUrl: e.imageUrl,
+                      title: e.title,
+                      difficulty: e.difficulty,
+                      preparationTime: e.preparationTime,
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ),

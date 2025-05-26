@@ -49,7 +49,10 @@ abstract final class ErrorHandler {
   static Widget _buildErrorWidget(final FlutterErrorDetails details) => MaterialApp(
     home: FnvScaffold(
       appBar: AppBar(title: const Text(Localisation.erreurInattendue), backgroundColor: FnvColors.appBarFond),
-      body: Padding(padding: const EdgeInsets.all(paddingVerticalPage), child: Center(child: Text(details.exceptionAsString()))),
+      body: Padding(
+        padding: const EdgeInsets.all(paddingVerticalPage),
+        child: Center(child: Text(details.exceptionAsString())),
+      ),
     ),
   );
 }

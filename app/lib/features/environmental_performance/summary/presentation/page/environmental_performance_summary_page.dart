@@ -32,16 +32,15 @@ class _View extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => RootPage(
     body: BlocBuilder<EnvironmentalPerformanceBloc, EnvironmentalPerformanceState>(
-      builder:
-          (final context, final state) => switch (state) {
-            EnvironmentalPerformanceInitial() => const SizedBox.shrink(),
-            EnvironmentalPerformanceLoading() => const Center(child: CircularProgressIndicator()),
-            EnvironmentalPerformanceSuccess() => switch (state.data) {
-              (final EnvironmentalPerformancePartial a) => BodyPartial(data: a),
-              (final EnvironmentalPerformanceFull a) => BodyFull(data: a),
-            },
-            EnvironmentalPerformanceFailure() => Text(state.errorMessage),
-          },
+      builder: (final context, final state) => switch (state) {
+        EnvironmentalPerformanceInitial() => const SizedBox.shrink(),
+        EnvironmentalPerformanceLoading() => const Center(child: CircularProgressIndicator()),
+        EnvironmentalPerformanceSuccess() => switch (state.data) {
+          (final EnvironmentalPerformancePartial a) => BodyPartial(data: a),
+          (final EnvironmentalPerformanceFull a) => BodyFull(data: a),
+        },
+        EnvironmentalPerformanceFailure() => Text(state.errorMessage),
+      },
     ),
   );
 }

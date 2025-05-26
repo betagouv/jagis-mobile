@@ -18,8 +18,8 @@ class ActionPerformanceFinished extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) => ActionPerformanceFinishedBloc(context.read())..add(ActionPerformanceFinishedLoadRequested(themeType)),
+    create: (final context) =>
+        ActionPerformanceFinishedBloc(context.read())..add(ActionPerformanceFinishedLoadRequested(themeType)),
     child: const _View(),
   );
 }
@@ -29,13 +29,12 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<ActionPerformanceFinishedBloc, ActionPerformanceFinishedState>(
-    builder:
-        (final context, final state) => switch (state) {
-          ActionPerformanceFinishedInitial() => const SizedBox.shrink(),
-          ActionPerformanceFinishedLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          ActionPerformanceFinishedLoadFailure() => const Center(child: Text('Erreur de chargement')),
-          ActionPerformanceFinishedLoadSuccess() => _Success(data: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      ActionPerformanceFinishedInitial() => const SizedBox.shrink(),
+      ActionPerformanceFinishedLoadInProgress() => const Center(child: CircularProgressIndicator()),
+      ActionPerformanceFinishedLoadFailure() => const Center(child: Text('Erreur de chargement')),
+      ActionPerformanceFinishedLoadSuccess() => _Success(data: state),
+    },
   );
 }
 

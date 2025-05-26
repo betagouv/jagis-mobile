@@ -31,15 +31,11 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<HomeDashboardBloc, HomeDashboardState>(
-    builder:
-        (final context, final state) => switch (state.statut) {
-          HomeDashboardStateStatus.init || HomeDashboardStateStatus.loading => const Center(child: CircularProgressIndicator()),
-          HomeDashboardStateStatus.failure => Center(child: Text(state.errorMessage!)),
-          HomeDashboardStateStatus.success => _Success(
-            homeDashboard: state.homeDashboard!,
-            recommendations: state.recommendations!,
-          ),
-        },
+    builder: (final context, final state) => switch (state.statut) {
+      HomeDashboardStateStatus.init || HomeDashboardStateStatus.loading => const Center(child: CircularProgressIndicator()),
+      HomeDashboardStateStatus.failure => Center(child: Text(state.errorMessage!)),
+      HomeDashboardStateStatus.success => _Success(homeDashboard: state.homeDashboard!, recommendations: state.recommendations!),
+    },
   );
 }
 
@@ -125,17 +121,16 @@ class _WhichDomainButtonsSection extends StatelessWidget {
             crossAxisSpacing: DsfrSpacings.s1w,
             childAspectRatio: 3,
           ),
-          children:
-              [ThemeType.alimentation, ThemeType.logement, ThemeType.transport, ThemeType.consommation]
-                  .map(
-                    (final theme) => DsfrButton(
-                      label: theme.displayName,
-                      variant: DsfrButtonVariant.primary,
-                      size: DsfrComponentSize.md,
-                      onPressed: () => navigateToTheme(context, theme),
-                    ),
-                  )
-                  .toList(),
+          children: [ThemeType.alimentation, ThemeType.logement, ThemeType.transport, ThemeType.consommation]
+              .map(
+                (final theme) => DsfrButton(
+                  label: theme.displayName,
+                  variant: DsfrButtonVariant.primary,
+                  size: DsfrComponentSize.md,
+                  onPressed: () => navigateToTheme(context, theme),
+                ),
+              )
+              .toList(),
         ),
       ),
     ],

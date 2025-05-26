@@ -24,9 +24,10 @@ class _RecommendationWidgetState extends State<RecommendationWidget> with Materi
 
     return FnvCard(
       onTap: () async {
-        await GoRouter.of(
-          context,
-        ).pushNamed(ArticlePage.name, pathParameters: ArticlePage.pathParameters(title: widget.titre, id: widget.id));
+        await GoRouter.of(context).pushNamed(
+          ArticlePage.name,
+          pathParameters: ArticlePage.pathParameters(title: widget.titre, id: widget.id),
+        );
         widget.onPop?.call();
       },
       child: SizedBox(

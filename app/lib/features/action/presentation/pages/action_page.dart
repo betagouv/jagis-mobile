@@ -39,9 +39,8 @@ class ActionPage extends StatelessWidget {
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
-    builder:
-        (final context, final state) =>
-            ActionPage(id: state.pathParameters['id']!, type: actionTypeFromAPIString(state.pathParameters['type']!)),
+    builder: (final context, final state) =>
+        ActionPage(id: state.pathParameters['id']!, type: actionTypeFromAPIString(state.pathParameters['type']!)),
   );
 
   @override
@@ -58,12 +57,11 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<ActionBloc, ActionState>(
-      builder:
-          (final context, final state) => switch (state.status) {
-            ActionStatus.initial || ActionStatus.inProgress => const Center(child: CircularProgressIndicator()),
-            ActionStatus.success => _Success(state.action!),
-            ActionStatus.failure => Center(child: Text(state.errorMessage!)),
-          },
+      builder: (final context, final state) => switch (state.status) {
+        ActionStatus.initial || ActionStatus.inProgress => const Center(child: CircularProgressIndicator()),
+        ActionStatus.success => _Success(state.action!),
+        ActionStatus.failure => Center(child: Text(state.errorMessage!)),
+      },
     ),
   );
 }
@@ -80,7 +78,9 @@ class _Success extends StatelessWidget {
     child: Column(
       children: [
         const SizedBox(height: DsfrSpacings.s3w),
-        _PaddingHorizontal(child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type)),
+        _PaddingHorizontal(
+          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
+        ),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(
           decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
@@ -119,6 +119,8 @@ class _PaddingHorizontal extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) =>
-      Padding(padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w), child: child);
+  Widget build(final BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
+    child: child,
+  );
 }

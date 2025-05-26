@@ -33,15 +33,13 @@ Future<void> pumpEnvironmentalPerformancePage(final WidgetTester tester, final D
     blocProviders: [
       BlocProvider<GamificationBloc>(create: (final context) => GamificationBlocFake()),
       BlocProvider(
-        create:
-            (final context) => EnvironmentalPerformanceBloc(
-              useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(dioHttpClient)),
-            ),
+        create: (final context) => EnvironmentalPerformanceBloc(
+          useCase: FetchEnvironmentalPerformance(EnvironmentalPerformanceSummaryRepository(dioHttpClient)),
+        ),
       ),
       BlocProvider(
-        create:
-            (final context) =>
-                EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(dioHttpClient)),
+        create: (final context) =>
+            EnvironmentalPerformanceQuestionBloc(repository: EnvironmentalPerformanceQuestionRepository(dioHttpClient)),
       ),
     ],
     page: EnvironmentalPerformanceSummaryPage.route,
@@ -68,107 +66,106 @@ void main() {
 
     testWidgets('Aller sur les questions du Mes déplacements avec un bilan partiel', (final tester) async {
       await mockNetworkImages(() async {
-        final dio =
-            DioMock()
-              ..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData)
-              ..getM(
-                Endpoints.questions('ENCHAINEMENT_KYC_bilan_transport'),
-                responseData: [
+        final dio = DioMock()
+          ..getM(Endpoints.bilan, responseData: environmentalPerformancePartialData)
+          ..getM(
+            Endpoints.questions('ENCHAINEMENT_KYC_bilan_transport'),
+            responseData: [
+              {
+                'code': 'KYC_transport_avion_3_annees',
+                'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
+                'reponse_multiple': [
+                  {'code': 'oui', 'label': 'Oui', 'selected': false},
+                  {'code': 'non', 'label': 'Non', 'selected': false},
+                  {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
+                ],
+                'is_answered': false,
+                'categorie': 'mission',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_type_utilisateur',
+                'question': 'Utilisez-vous majoritairement la même voiture pour vous déplacer ?',
+                'reponse_multiple': [
+                  {'code': 'proprio', 'label': "Oui et j'en suis propriétaire", 'selected': false},
+                  {'code': 'pas_la_mienne', 'label': "Oui mais ce n'est pas la mienne", 'selected': false},
                   {
-                    'code': 'KYC_transport_avion_3_annees',
-                    'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
-                    'reponse_multiple': [
-                      {'code': 'oui', 'label': 'Oui', 'selected': false},
-                      {'code': 'non', 'label': 'Non', 'selected': false},
-                      {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
-                    ],
-                    'is_answered': false,
-                    'categorie': 'mission',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_type_utilisateur',
-                    'question': 'Utilisez-vous majoritairement la même voiture pour vous déplacer ?',
-                    'reponse_multiple': [
-                      {'code': 'proprio', 'label': "Oui et j'en suis propriétaire", 'selected': false},
-                      {'code': 'pas_la_mienne', 'label': "Oui mais ce n'est pas la mienne", 'selected': false},
-                      {
-                        'code': 'change_souvent',
-                        'label': 'Non, je change souvent (autopartage, proches, taxi...)',
-                        'selected': false,
-                      },
-                    ],
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_voiture_nbr_voyageurs',
-                    'question': 'Quel est le nombre moyen de voyageurs dans la voiture ?',
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_court',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols de moins de 2h (court-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_moyen',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols entre 2 et 6h (moyen-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_long',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols de plus de 6h (long-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'recommandation',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_2roues_usager',
-                    'question': 'Utilisez-vous un scooter ou une moto ?',
-                    'reponse_multiple': [
-                      {'code': 'oui', 'label': 'Oui', 'selected': false},
-                      {'code': 'non', 'label': 'Non', 'selected': false},
-                      {'code': 'ne_sais_pas', 'label': 'Je ne souhaite pas répondre', 'selected': false},
-                    ],
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
+                    'code': 'change_souvent',
+                    'label': 'Non, je change souvent (autopartage, proches, taxi...)',
+                    'selected': false,
                   },
                 ],
-              );
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_voiture_nbr_voyageurs',
+                'question': 'Quel est le nombre moyen de voyageurs dans la voiture ?',
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_court',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols de moins de 2h (court-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_moyen',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols entre 2 et 6h (moyen-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_long',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols de plus de 6h (long-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'recommandation',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_2roues_usager',
+                'question': 'Utilisez-vous un scooter ou une moto ?',
+                'reponse_multiple': [
+                  {'code': 'oui', 'label': 'Oui', 'selected': false},
+                  {'code': 'non', 'label': 'Non', 'selected': false},
+                  {'code': 'ne_sais_pas', 'label': 'Je ne souhaite pas répondre', 'selected': false},
+                ],
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+            ],
+          );
         await pumpEnvironmentalPerformancePage(tester, dio);
         await tester.pumpAndSettle();
         await tester.scrollUntilVisible(
@@ -206,107 +203,106 @@ void main() {
 
     testWidgets('Aller sur les questions du Mes déplacements avec un bilan complet', (final tester) async {
       await mockNetworkImages(() async {
-        final dio =
-            DioMock()
-              ..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData)
-              ..getM(
-                Endpoints.questions('ENCHAINEMENT_KYC_bilan_transport'),
-                responseData: [
+        final dio = DioMock()
+          ..getM(Endpoints.bilan, responseData: environmentalPerformanceFullData)
+          ..getM(
+            Endpoints.questions('ENCHAINEMENT_KYC_bilan_transport'),
+            responseData: [
+              {
+                'code': 'KYC_transport_avion_3_annees',
+                'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
+                'reponse_multiple': [
+                  {'code': 'oui', 'label': 'Oui', 'selected': false},
+                  {'code': 'non', 'label': 'Non', 'selected': false},
+                  {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
+                ],
+                'is_answered': false,
+                'categorie': 'mission',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_type_utilisateur',
+                'question': 'Utilisez-vous majoritairement la même voiture pour vous déplacer ?',
+                'reponse_multiple': [
+                  {'code': 'proprio', 'label': "Oui et j'en suis propriétaire", 'selected': false},
+                  {'code': 'pas_la_mienne', 'label': "Oui mais ce n'est pas la mienne", 'selected': false},
                   {
-                    'code': 'KYC_transport_avion_3_annees',
-                    'question': "Avez-vous pris l'avion au moins une fois ces 3 dernières années ?",
-                    'reponse_multiple': [
-                      {'code': 'oui', 'label': 'Oui', 'selected': false},
-                      {'code': 'non', 'label': 'Non', 'selected': false},
-                      {'code': 'ne_sais_pas', 'label': 'Je ne sais pas', 'selected': false},
-                    ],
-                    'is_answered': false,
-                    'categorie': 'mission',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_type_utilisateur',
-                    'question': 'Utilisez-vous majoritairement la même voiture pour vous déplacer ?',
-                    'reponse_multiple': [
-                      {'code': 'proprio', 'label': "Oui et j'en suis propriétaire", 'selected': false},
-                      {'code': 'pas_la_mienne', 'label': "Oui mais ce n'est pas la mienne", 'selected': false},
-                      {
-                        'code': 'change_souvent',
-                        'label': 'Non, je change souvent (autopartage, proches, taxi...)',
-                        'selected': false,
-                      },
-                    ],
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_voiture_nbr_voyageurs',
-                    'question': 'Quel est le nombre moyen de voyageurs dans la voiture ?',
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_court',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols de moins de 2h (court-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_moyen',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols entre 2 et 6h (moyen-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_heures_avion_long',
-                    'question': "Sur une année, combien d'heures voyagez-vous sur des vols de plus de 6h (long-courrier) ?",
-                    'reponse_unique': <String, dynamic>{},
-                    'is_answered': false,
-                    'categorie': 'recommandation',
-                    'points': 5,
-                    'type': 'entier',
-                    'is_NGC': true,
-                    'thematique': 'transport',
-                  },
-                  {
-                    'code': 'KYC_transport_2roues_usager',
-                    'question': 'Utilisez-vous un scooter ou une moto ?',
-                    'reponse_multiple': [
-                      {'code': 'oui', 'label': 'Oui', 'selected': false},
-                      {'code': 'non', 'label': 'Non', 'selected': false},
-                      {'code': 'ne_sais_pas', 'label': 'Je ne souhaite pas répondre', 'selected': false},
-                    ],
-                    'is_answered': false,
-                    'categorie': 'test',
-                    'points': 5,
-                    'type': 'choix_unique',
-                    'is_NGC': true,
-                    'thematique': 'transport',
+                    'code': 'change_souvent',
+                    'label': 'Non, je change souvent (autopartage, proches, taxi...)',
+                    'selected': false,
                   },
                 ],
-              );
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_voiture_nbr_voyageurs',
+                'question': 'Quel est le nombre moyen de voyageurs dans la voiture ?',
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_court',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols de moins de 2h (court-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_moyen',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols entre 2 et 6h (moyen-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_heures_avion_long',
+                'question': "Sur une année, combien d'heures voyagez-vous sur des vols de plus de 6h (long-courrier) ?",
+                'reponse_unique': <String, dynamic>{},
+                'is_answered': false,
+                'categorie': 'recommandation',
+                'points': 5,
+                'type': 'entier',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+              {
+                'code': 'KYC_transport_2roues_usager',
+                'question': 'Utilisez-vous un scooter ou une moto ?',
+                'reponse_multiple': [
+                  {'code': 'oui', 'label': 'Oui', 'selected': false},
+                  {'code': 'non', 'label': 'Non', 'selected': false},
+                  {'code': 'ne_sais_pas', 'label': 'Je ne souhaite pas répondre', 'selected': false},
+                ],
+                'is_answered': false,
+                'categorie': 'test',
+                'points': 5,
+                'type': 'choix_unique',
+                'is_NGC': true,
+                'thematique': 'transport',
+              },
+            ],
+          );
         await pumpEnvironmentalPerformancePage(tester, dio);
         await tester.pumpAndSettle();
         await tester.scrollUntilVisible(

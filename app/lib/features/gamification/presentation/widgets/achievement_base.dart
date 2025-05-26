@@ -17,7 +17,10 @@ class AchievementBase extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           spacing: DsfrSpacings.s1v,
-          children: [Text('$value', style: const DsfrTextStyle.bodySmBold()), ExcludeSemantics(child: icon)],
+          children: [
+            Text('$value', style: const DsfrTextStyle.bodySmBold()),
+            ExcludeSemantics(child: icon),
+          ],
         ),
       ),
     ),

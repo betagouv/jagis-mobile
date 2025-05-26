@@ -29,8 +29,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -52,10 +51,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Login to my account is successful''',
-          success,
-        );
+        await afterEach('''Login to my account is successful''', success);
       }
     });
     testWidgets('''Login with magic link''', (tester) async {
@@ -73,10 +69,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Login with magic link''',
-          success,
-        );
+        await afterEach('''Login with magic link''', success);
       }
     });
     testWidgets('''Already logged in''', (tester) async {
@@ -90,10 +83,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Already logged in''',
-          success,
-        );
+        await afterEach('''Already logged in''', success);
       }
     });
     testWidgets('''Logout''', (tester) async {
@@ -104,16 +94,12 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iTapOnTheMenuButton(tester);
         await iTapOn(tester, 'Se déconnecter');
-        await iSee(
-            tester, 'Ensemble, améliorons nos habitudes au jour le jour');
+        await iSee(tester, 'Ensemble, améliorons nos habitudes au jour le jour');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Logout''',
-          success,
-        );
+        await afterEach('''Logout''', success);
       }
     });
   });

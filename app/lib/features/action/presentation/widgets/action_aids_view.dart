@@ -24,11 +24,10 @@ class ActionAidsView extends StatelessWidget {
         child: IntrinsicHeight(
           child: Row(
             spacing: DsfrSpacings.s2w,
-            children:
-                aidSummaries
-                    .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
-                    .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
-                    .toList(),
+            children: aidSummaries
+                .sorted((final a, final b) => a.scale == null ? 0 : a.scale!.compareTo(b.scale))
+                .map((final a) => AidSummaryCard(aidSummary: a, width: screenWidth(context, percentage: 0.8)))
+                .toList(),
           ),
         ),
       ),

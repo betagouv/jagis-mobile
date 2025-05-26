@@ -19,7 +19,10 @@ class FnvBottomBar extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v, horizontal: DsfrSpacings.s2w), child: child),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3v, horizontal: DsfrSpacings.s2w),
+            child: child,
+          ),
         ],
       ),
     ),

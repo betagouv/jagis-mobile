@@ -26,18 +26,17 @@ class _ResetModalState extends State<ResetModal> {
   }
 
   @override
-  Widget build(final BuildContext context) =>
-      _showStep2
-          ? _Step2View(
-            onResetPressed: () async {
-              await context.read<ResetRepository>().reset();
-              if (context.mounted) {
-                context.read<MessageBus>().publish(resetPointsTopic);
-                Navigator.of(context).pop();
-              }
-            },
-          )
-          : _Step1View(onContinuePressed: _goToStep2);
+  Widget build(final BuildContext context) => _showStep2
+      ? _Step2View(
+          onResetPressed: () async {
+            await context.read<ResetRepository>().reset();
+            if (context.mounted) {
+              context.read<MessageBus>().publish(resetPointsTopic);
+              Navigator.of(context).pop();
+            }
+          },
+        )
+      : _Step1View(onContinuePressed: _goToStep2);
 }
 
 class _Step1View extends StatelessWidget {
@@ -166,7 +165,10 @@ class _View extends StatelessWidget {
       FnvMarkdown(data: descriptionMarkdown),
       if (extra != null) ...[const SizedBox(height: DsfrSpacings.s2w), extra!],
       const SizedBox(height: DsfrSpacings.s5w),
-      Align(alignment: Alignment.centerRight, child: FittedBox(child: button)),
+      Align(
+        alignment: Alignment.centerRight,
+        child: FittedBox(child: button),
+      ),
     ],
   );
 }

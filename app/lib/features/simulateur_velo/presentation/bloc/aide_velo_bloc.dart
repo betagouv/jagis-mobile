@@ -51,10 +51,9 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onModificationDemandee(final AideVeloModificationDemandee event, final Emitter<AideVeloState> emit) async {
-    final result =
-        state.codePostal.length == 5
-            ? await _communesRepository.recupererLesCommunes(state.codePostal)
-            : Either<Exception, List<String>>.right(<String>[]);
+    final result = state.codePostal.length == 5
+        ? await _communesRepository.recupererLesCommunes(state.codePostal)
+        : Either<Exception, List<String>>.right(<String>[]);
 
     if (result.isRight()) {
       final communes = result.getRight().getOrElse(() => throw Exception());
@@ -75,10 +74,9 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onCodePostalChange(final AideVeloCodePostalChange event, final Emitter<AideVeloState> emit) async {
-    final result =
-        event.valeur.length == 5
-            ? await _communesRepository.recupererLesCommunes(event.valeur)
-            : Either<Exception, List<String>>.right(<String>[]);
+    final result = event.valeur.length == 5
+        ? await _communesRepository.recupererLesCommunes(event.valeur)
+        : Either<Exception, List<String>>.right(<String>[]);
     if (result.isRight()) {
       final communes = result.getRight().getOrElse(() => throw Exception());
       emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));

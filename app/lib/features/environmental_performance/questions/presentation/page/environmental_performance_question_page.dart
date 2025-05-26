@@ -22,8 +22,8 @@ class EnvironmentalPerformanceQuestionPage extends StatelessWidget {
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
-    builder:
-        (final context, final state) => EnvironmentalPerformanceQuestionPage(categoryId: state.pathParameters['categoryId']!),
+    builder: (final context, final state) =>
+        EnvironmentalPerformanceQuestionPage(categoryId: state.pathParameters['categoryId']!),
   );
 
   final String categoryId;
@@ -32,10 +32,8 @@ class EnvironmentalPerformanceQuestionPage extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocProvider(
-      create:
-          (final context) =>
-              QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: categoryId))
-                ..add(const QuestionFlowFirstRequested()),
+      create: (final context) =>
+          QuestionFlowBloc(QuestionFlowManager(context.read(), sequenceId: categoryId))..add(const QuestionFlowFirstRequested()),
       child: const _View(),
     ),
   );
@@ -46,11 +44,10 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocConsumer<QuestionFlowBloc, QuestionFlowState>(
-    builder:
-        (final context, final state) => switch (state) {
-          QuestionFlowInitial() || QuestionFlowFinished() => const SizedBox.shrink(),
-          QuestionFlowLoadSuccess() => _LoadSuccess(state),
-        },
+    builder: (final context, final state) => switch (state) {
+      QuestionFlowInitial() || QuestionFlowFinished() => const SizedBox.shrink(),
+      QuestionFlowLoadSuccess() => _LoadSuccess(state),
+    },
     listener: (final context, final state) {
       if (state is QuestionFlowFinished) {
         GoRouter.of(context).popUntilNamed<void>(EnvironmentalPerformanceSummaryPage.name);

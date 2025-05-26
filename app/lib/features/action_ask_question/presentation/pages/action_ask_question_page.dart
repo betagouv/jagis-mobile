@@ -30,14 +30,15 @@ class ActionAskQuestionPage extends StatelessWidget {
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
-    builder:
-        (final context, final state) =>
-            ActionAskQuestionPage(type: actionTypeFromAPIString(state.pathParameters['type']!), id: state.pathParameters['id']!),
+    builder: (final context, final state) =>
+        ActionAskQuestionPage(type: actionTypeFromAPIString(state.pathParameters['type']!), id: state.pathParameters['id']!),
   );
 
   @override
-  Widget build(final BuildContext context) =>
-      BlocProvider(create: (final context) => ActionAskQuestionBloc(context.read(), type: type, id: id), child: const _View());
+  Widget build(final BuildContext context) => BlocProvider(
+    create: (final context) => ActionAskQuestionBloc(context.read(), type: type, id: id),
+    child: const _View(),
+  );
 }
 
 class _View extends StatelessWidget {
@@ -80,18 +81,16 @@ class _View extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: FittedBox(
               child: BlocBuilder<ActionAskQuestionBloc, ActionAskQuestionState>(
-                builder:
-                    (final context, final state) => DsfrButton(
-                      label: Localisation.envoyer,
-                      icon: DsfrIcons.systemArrowRightSLine,
-                      iconLocation: DsfrButtonIconLocation.right,
-                      variant: DsfrButtonVariant.secondary,
-                      size: DsfrComponentSize.lg,
-                      onPressed:
-                          state.message.isNotEmpty
-                              ? () => context.read<ActionAskQuestionBloc>().add(const ActionAskQuestionSendRequested())
-                              : null,
-                    ),
+                builder: (final context, final state) => DsfrButton(
+                  label: Localisation.envoyer,
+                  icon: DsfrIcons.systemArrowRightSLine,
+                  iconLocation: DsfrButtonIconLocation.right,
+                  variant: DsfrButtonVariant.secondary,
+                  size: DsfrComponentSize.lg,
+                  onPressed: state.message.isNotEmpty
+                      ? () => context.read<ActionAskQuestionBloc>().add(const ActionAskQuestionSendRequested())
+                      : null,
+                ),
               ),
             ),
           ),

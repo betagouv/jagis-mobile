@@ -18,10 +18,10 @@ class LvaoRepository {
     return isResponseUnsuccessful(response.statusCode)
         ? Left(Exception('Erreur lors de la récupération des lieux de Que faire de mes objets'))
         : Right(
-          ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
-              .cast<Map<String, dynamic>>()
-              .map(LvaoActor.fromJson)
-              .toList(),
-        );
+            ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
+                .cast<Map<String, dynamic>>()
+                .map(LvaoActor.fromJson)
+                .toList(),
+          );
   }
 }

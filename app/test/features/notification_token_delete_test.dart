@@ -24,18 +24,14 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets(
-        '''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''',
-        (tester) async {
+    testWidgets('''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''');
+        await beforeEach('''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''');
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iTapOnTheMenuButton(tester);
@@ -45,10 +41,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''',
-          success,
-        );
+        await afterEach('''L'utilisateur se déconnecte de l'application alors le token de notification est supprimé''', success);
       }
     });
   });

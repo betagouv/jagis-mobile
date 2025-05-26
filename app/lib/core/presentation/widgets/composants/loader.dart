@@ -30,7 +30,10 @@ class _FnvLoaderState extends State<FnvLoader> with SingleTickerProviderStateMix
 
     return List.generate(
       colors.length - 1,
-      (final i) => TweenSequenceItem<Color?>(tween: ColorTween(begin: colors[i], end: colors[i + 1]), weight: weight),
+      (final i) => TweenSequenceItem<Color?>(
+        tween: ColorTween(begin: colors[i], end: colors[i + 1]),
+        weight: weight,
+      ),
       growable: false,
     );
   }
@@ -49,14 +52,15 @@ class _FnvLoaderState extends State<FnvLoader> with SingleTickerProviderStateMix
     return Center(
       child: AnimatedBuilder(
         animation: _controller,
-        builder:
-            (final context, final child) => Transform.translate(
-              offset: Offset(_offsetAnimation.value.dx * amplitude, 0),
-              child: SizedBox.square(
-                dimension: ballWidth,
-                child: DecoratedBox(decoration: BoxDecoration(color: _colorAnimation.value, shape: BoxShape.circle)),
-              ),
+        builder: (final context, final child) => Transform.translate(
+          offset: Offset(_offsetAnimation.value.dx * amplitude, 0),
+          child: SizedBox.square(
+            dimension: ballWidth,
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: _colorAnimation.value, shape: BoxShape.circle),
             ),
+          ),
+        ),
       ),
     );
   }

@@ -56,10 +56,9 @@ final class ThemeSummary extends Equatable {
       ThemeType.decouverte => [],
     };
 
-    List<ThemeSummaryLink> getAidLinks() =>
-        aidCount > 0
-            ? [ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name)]
-            : [];
+    List<ThemeSummaryLink> getAidLinks() => aidCount > 0
+        ? [ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name)]
+        : [];
 
     return [...getThemeSpecificLinks(), ...getAidLinks()];
   }

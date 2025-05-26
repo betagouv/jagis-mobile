@@ -29,11 +29,10 @@ class _Part extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<LvaoBloc, LvaoState>(
-    builder:
-        (final context, final state) => switch (state) {
-          LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox.shrink(),
-          LvaoLoadSuccess() => _Success(state: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox.shrink(),
+      LvaoLoadSuccess() => _Success(state: state),
+    },
   );
 }
 
@@ -70,52 +69,51 @@ class _Success extends StatelessWidget {
         child: IntrinsicHeight(
           child: Row(
             spacing: DsfrSpacings.s2w,
-            children:
-                state.actors
-                    .map(
-                      (final e) => FnvCard(
-                        onTap: () async {
-                          await GoRouter.of(context).pushNamed(LvaoDetailPage.name, pathParameters: {'id': e.id});
-                        },
-                        child: SizedBox(
-                          width: 346,
-                          child: Padding(
-                            padding: const EdgeInsets.all(DsfrSpacings.s1w),
-                            child: Row(
-                              spacing: DsfrSpacings.s2w,
-                              children: [
-                                const DecoratedBox(
-                                  decoration: BoxDecoration(color: Color(0xffF2EAF8)),
-                                  child: FnvImage.asset(AssetImages.lvaoStore, width: 72, height: 99),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
-                                      Text(
-                                        e.address,
-                                        style: const DsfrTextStyle.bodyXs(),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 3,
-                                      ),
-                                      const Spacer(),
-                                      DsfrTag.sm(
-                                        label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
-                                        backgroundColor: const Color(0xffEAEAEA),
-                                        foregroundColor: const Color(0xff3F3F3F),
-                                        textStyle: const DsfrTextStyle.bodyXsMedium(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+            children: state.actors
+                .map(
+                  (final e) => FnvCard(
+                    onTap: () async {
+                      await GoRouter.of(context).pushNamed(LvaoDetailPage.name, pathParameters: {'id': e.id});
+                    },
+                    child: SizedBox(
+                      width: 346,
+                      child: Padding(
+                        padding: const EdgeInsets.all(DsfrSpacings.s1w),
+                        child: Row(
+                          spacing: DsfrSpacings.s2w,
+                          children: [
+                            const DecoratedBox(
+                              decoration: BoxDecoration(color: Color(0xffF2EAF8)),
+                              child: FnvImage.asset(AssetImages.lvaoStore, width: 72, height: 99),
                             ),
-                          ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
+                                  Text(
+                                    e.address,
+                                    style: const DsfrTextStyle.bodyXs(),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 3,
+                                  ),
+                                  const Spacer(),
+                                  DsfrTag.sm(
+                                    label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
+                                    backgroundColor: const Color(0xffEAEAEA),
+                                    foregroundColor: const Color(0xff3F3F3F),
+                                    textStyle: const DsfrTextStyle.bodyXsMedium(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

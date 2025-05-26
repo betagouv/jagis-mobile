@@ -50,10 +50,9 @@ class _UpgradeModal extends StatelessWidget {
         variant: DsfrButtonVariant.primary,
         size: DsfrComponentSize.lg,
         onPressed: () async {
-          final url =
-              Platform.isIOS
-                  ? 'https://apps.apple.com/app/6504984321'
-                  : 'https://play.google.com/store/apps/details?id=fr.gouv.agir';
+          final url = Platform.isIOS
+              ? 'https://apps.apple.com/app/6504984321'
+              : 'https://play.google.com/store/apps/details?id=fr.gouv.agir';
           try {
             await FnvUrlLauncher.launch(url);
           } on PlatformException catch (_) {}

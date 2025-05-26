@@ -9,12 +9,7 @@ class Points extends StatelessWidget {
   final bool alreadyEarned;
 
   @override
-  Widget build(final BuildContext context) =>
-      alreadyEarned
-          ? PointsWidget(
-            points: points,
-            backgroundColor: DsfrColors.backgroundContrastGrey,
-            iconColor: DsfrColors.textDefaultGrey,
-          )
-          : PointsWidget(points: points);
+  Widget build(final BuildContext context) => alreadyEarned
+      ? PointsWidget(points: points, backgroundColor: DsfrColors.backgroundContrastGrey, iconColor: DsfrColors.textDefaultGrey)
+      : PointsWidget(points: points);
 }

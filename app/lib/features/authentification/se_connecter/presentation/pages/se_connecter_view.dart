@@ -47,13 +47,12 @@ class SeConnecterView extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s3w),
           BlocSelector<SeConnecterBloc, SeConnecterState, bool>(
             selector: (final state) => state.isValid,
-            builder:
-                (final context, final state) => DsfrButton(
-                  label: Localisation.meConnecter,
-                  variant: DsfrButtonVariant.primary,
-                  size: DsfrComponentSize.lg,
-                  onPressed: state ? () => context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee()) : null,
-                ),
+            builder: (final context, final state) => DsfrButton(
+              label: Localisation.meConnecter,
+              variant: DsfrButtonVariant.primary,
+              size: DsfrComponentSize.lg,
+              onPressed: state ? () => context.read<SeConnecterBloc>().add(const SeConnecterConnexionDemandee()) : null,
+            ),
           ),
           const SizedBox(height: DsfrSpacings.s3w),
           const DsfrDivider(color: Color(0xFFE8E9F2)),
@@ -81,6 +80,11 @@ class _MessageErreur extends StatelessWidget {
       .select<SeConnecterBloc, Option<String>>((final bloc) => bloc.state.errorMessage)
       .fold(
         () => const SizedBox.shrink(),
-        (final t) => Column(children: [const SizedBox(height: DsfrSpacings.s2w), FnvAlert.error(label: t)]),
+        (final t) => Column(
+          children: [
+            const SizedBox(height: DsfrSpacings.s2w),
+            FnvAlert.error(label: t),
+          ],
+        ),
       );
 }

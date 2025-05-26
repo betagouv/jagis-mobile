@@ -27,7 +27,10 @@ class OptionsAvanceesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: DsfrSpacings.s3w,
-          children: [FnvTitle(title: Localisation.optionsAvancees), SupprimerCompte()],
+          children: [
+            FnvTitle(title: Localisation.optionsAvancees),
+            SupprimerCompte(),
+          ],
         ),
       ),
     ),

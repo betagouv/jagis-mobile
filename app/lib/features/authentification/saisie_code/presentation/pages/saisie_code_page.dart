@@ -40,11 +40,13 @@ class SaisieCodePage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create:
-        (final context) =>
-            SaisieCodeBloc(authentificationRepository: context.read(), email: email)..add(SaisieCodeCodeSaisie(code)),
+    create: (final context) =>
+        SaisieCodeBloc(authentificationRepository: context.read(), email: email)..add(SaisieCodeCodeSaisie(code)),
     child: FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+      appBar: AppBar(
+        backgroundColor: FnvColors.background,
+        iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
@@ -68,6 +70,11 @@ class _MessageErreur extends StatelessWidget {
       .select<SaisieCodeBloc, Option<String>>((final bloc) => bloc.state.erreur)
       .fold(
         () => const SizedBox.shrink(),
-        (final t) => Column(children: [const SizedBox(height: DsfrSpacings.s3w), FnvAlert.error(label: t)]),
+        (final t) => Column(
+          children: [
+            const SizedBox(height: DsfrSpacings.s3w),
+            FnvAlert.error(label: t),
+          ],
+        ),
       );
 }

@@ -26,68 +26,64 @@ void main() {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApiWillReturn(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'responseData'],
-            [
-              'GET',
-              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_alimentation/first',
-              200,
-              {
-                "nombre_total_questions": 4,
-                "nombre_total_questions_effectives": 4,
-                "position_courante": 3,
-                "question_courante": {
-                  "code": "MOSAIC_REDUCTION_DECHETS",
-                  "question":
-                      "Quels éco-gestes mettez-vous en place pour réduire vos déchets ?",
-                  "reponse_multiple": [
-                    {
-                      "code": "KYC_alimentation_compostage",
-                      "label": "Compostage biodéchets",
-                      "emoji": null,
-                      "image_url":
-                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                      "selected": false
-                    },
-                    {
-                      "code": "KYC_alimentation_reduc_gaspi_alim",
-                      "label": "Réduire gaspillage alimentaire",
-                      "emoji": null,
-                      "image_url":
-                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                      "selected": false
-                    },
-                    {
-                      "code": "KYC_alimentation_stoppub",
-                      "label": "Stop pub",
-                      "emoji": null,
-                      "image_url":
-                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                      "selected": true
-                    },
-                    {
-                      "code": "KYC_alimentation_achat_vrac",
-                      "label": "Achat en vrac",
-                      "emoji": null,
-                      "image_url":
-                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                      "selected": false
-                    }
-                  ],
-                  "is_answered": true,
-                  "categorie": "mission",
-                  "points": 5,
-                  "type": "mosaic_boolean",
-                  "is_NGC": false,
-                  "thematique": "dechet"
-                },
-                "is_first": false,
-                "is_last": false,
-                "is_out_of_range": false
-              }
-            ]
-          ]));
+        tester,
+        const bdd.DataTable([
+          ['method', 'path', 'statusCode', 'responseData'],
+          [
+            'GET',
+            '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_alimentation/first',
+            200,
+            {
+              "nombre_total_questions": 4,
+              "nombre_total_questions_effectives": 4,
+              "position_courante": 3,
+              "question_courante": {
+                "code": "MOSAIC_REDUCTION_DECHETS",
+                "question": "Quels éco-gestes mettez-vous en place pour réduire vos déchets ?",
+                "reponse_multiple": [
+                  {
+                    "code": "KYC_alimentation_compostage",
+                    "label": "Compostage biodéchets",
+                    "emoji": null,
+                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                    "selected": false,
+                  },
+                  {
+                    "code": "KYC_alimentation_reduc_gaspi_alim",
+                    "label": "Réduire gaspillage alimentaire",
+                    "emoji": null,
+                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                    "selected": false,
+                  },
+                  {
+                    "code": "KYC_alimentation_stoppub",
+                    "label": "Stop pub",
+                    "emoji": null,
+                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                    "selected": true,
+                  },
+                  {
+                    "code": "KYC_alimentation_achat_vrac",
+                    "label": "Achat en vrac",
+                    "emoji": null,
+                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                    "selected": false,
+                  },
+                ],
+                "is_answered": true,
+                "categorie": "mission",
+                "points": 5,
+                "type": "mosaic_boolean",
+                "is_NGC": false,
+                "thematique": "dechet",
+              },
+              "is_first": false,
+              "is_last": false,
+              "is_out_of_range": false,
+            },
+          ],
+        ]),
+      );
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
       await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');
@@ -97,8 +93,7 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success,
-        [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -115,19 +110,13 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''See seasonal fruits and vegetables''',
-          success,
-        );
+        await afterEach('''See seasonal fruits and vegetables''', success);
       }
     });
-    testWidgets(
-        '''Change the month to view different seasonal fruits and vegetables''',
-        (tester) async {
+    testWidgets('''Change the month to view different seasonal fruits and vegetables''', (tester) async {
       var success = true;
       try {
-        await beforeEach(
-            '''Change the month to view different seasonal fruits and vegetables''');
+        await beforeEach('''Change the month to view different seasonal fruits and vegetables''');
         await bddSetUp(tester);
         await iTapOn(tester, 'janvier');
         await iTapOn(tester, 'juin');
@@ -137,10 +126,7 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach(
-          '''Change the month to view different seasonal fruits and vegetables''',
-          success,
-        );
+        await afterEach('''Change the month to view different seasonal fruits and vegetables''', success);
       }
     });
   });

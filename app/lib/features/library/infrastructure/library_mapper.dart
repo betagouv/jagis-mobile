@@ -5,10 +5,12 @@ abstract final class LibraryMapper {
   const LibraryMapper._();
 
   static Library fromJson(final Map<String, dynamic> json) => Library(
-    contents:
-        (json['contenu'] as List<dynamic>).map((final e) => RecommandationMapper.fromJson(e as Map<String, dynamic>)).toList(),
-    filters:
-        (json['filtres'] as List<dynamic>).map((final e) => LibraryFilterMapper.fromJson(e as Map<String, dynamic>)).toList(),
+    contents: (json['contenu'] as List<dynamic>)
+        .map((final e) => RecommandationMapper.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    filters: (json['filtres'] as List<dynamic>)
+        .map((final e) => LibraryFilterMapper.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 

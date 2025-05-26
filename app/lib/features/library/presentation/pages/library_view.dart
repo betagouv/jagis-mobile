@@ -43,8 +43,13 @@ class LibraryView extends StatelessWidget {
             ],
           ),
         ),
-        const SliverPadding(padding: EdgeInsets.symmetric(horizontal: padding), sliver: _SliverListe()),
-        const SliverSafeArea(sliver: SliverPadding(padding: EdgeInsets.only(bottom: padding))),
+        const SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: padding),
+          sliver: _SliverListe(),
+        ),
+        const SliverSafeArea(
+          sliver: SliverPadding(padding: EdgeInsets.only(bottom: padding)),
+        ),
       ],
     );
   }
@@ -83,16 +88,15 @@ class _Thematiques extends StatelessWidget {
     return Wrap(
       spacing: s1w,
       runSpacing: s1w,
-      children:
-          filtres
-              .map(
-                (final thematique) => FnvTag(
-                  label: thematique.title,
-                  selected: thematique.isSelected,
-                  onTap: () => context.read<LibraryBloc>().add(LibraryThemeSelected(thematique.code)),
-                ),
-              )
-              .toList(),
+      children: filtres
+          .map(
+            (final thematique) => FnvTag(
+              label: thematique.title,
+              selected: thematique.isSelected,
+              onTap: () => context.read<LibraryBloc>().add(LibraryThemeSelected(thematique.code)),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -117,19 +121,19 @@ class _SliverListe extends StatelessWidget {
 
     return contenus.isEmpty
         ? SliverFillRemaining(
-          hasScrollBody: false,
-          child: Column(
-            spacing: DsfrSpacings.s3w,
-            children: [
-              FnvSvg.asset(AssetImages.bibliothequeEmpty),
-              const Text(Localisation.bibliothequeAucunArticle, style: DsfrTextStyle.headline4()),
-            ],
-          ),
-        )
+            hasScrollBody: false,
+            child: Column(
+              spacing: DsfrSpacings.s3w,
+              children: [
+                FnvSvg.asset(AssetImages.bibliothequeEmpty),
+                const Text(Localisation.bibliothequeAucunArticle, style: DsfrTextStyle.headline4()),
+              ],
+            ),
+          )
         : SliverList.separated(
-          itemBuilder: (final context, final index) => LibraryContent(content: contenus[index]),
-          separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
-          itemCount: contenus.length,
-        );
+            itemBuilder: (final context, final index) => LibraryContent(content: contenus[index]),
+            separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
+            itemCount: contenus.length,
+          );
   }
 }

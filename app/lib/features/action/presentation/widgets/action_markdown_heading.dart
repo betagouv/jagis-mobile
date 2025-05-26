@@ -27,8 +27,14 @@ class ActionMarkdownHeading extends FNVHTag {
     final theme = GptMarkdownTheme.of(context);
     const dsfrTextStyle = DsfrTextStyle.headline3();
     final conf = config.copyWith(
-      style: [dsfrTextStyle, dsfrTextStyle, theme.h3, theme.h4, theme.h5, theme.h6][match[1]!.length -
-          1]?.copyWith(color: config.style?.color),
+      style: [
+        dsfrTextStyle,
+        dsfrTextStyle,
+        theme.h3,
+        theme.h4,
+        theme.h5,
+        theme.h6,
+      ][match[1]!.length - 1]?.copyWith(color: config.style?.color),
     );
 
     return Padding(

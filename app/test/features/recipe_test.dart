@@ -28,27 +28,38 @@ void main() {
   group('''Recipe''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iHaveActionsInMyLibrary(
-        tester,
-        const bdd.DataTable([
-          ['type', 'code', 'title', 'nb_aids_available'],
-          ['classique', '3', 'Tester une **nouvelle recette végétarienne**', 1],
-        ]),
-      );
+          tester,
+          const bdd.DataTable([
+            ['type', 'code', 'title', 'nb_aids_available'],
+            [
+              'classique',
+              '3',
+              'Tester une **nouvelle recette végétarienne**',
+              1
+            ]
+          ]));
       await iHaveActionDetailInMyLibrary(
-        tester,
-        const bdd.DataTable([
-          ['id', 'title', 'subTitle', 'how', 'why', 'service_id', 'service_category'],
-          [
-            '3',
-            'Tester une **nouvelle recette végétarienne**',
-            'Faites des économies et le plein de vitamines ! Cette semaine, on cuisine une recette saine et délicieuse !',
-            '# Nos astuces\n\n- **Revisitez vos classiques** : Lasagnes au légumes, chili sin carne, re-découvrez vos plats favoris en version végétariennes \n\n- **Protéines végétales** : Associez légumineuses (lentilles, pois chiches) et céréales (riz, quinoa) pour un plat complet.\n\n- **Variez les textures** : Alternez croquant (graines, noix) et fondant (avocats, patates douces)\n\n- **Épices et herbes** : Boostez les saveurs avec du curry, paprika fumé, curcuma, cumin ou herbes fraîches.',
-            '# En quelques mots\n\n- Les repas à base de légumes sont en moyenne **30% moins chers** que ceux à base de viande.\n\n- Les nutriments contenus dans les légumes de saison sont une grande aide pour passer l’hiver !\n\n![test alt](https://agir-cms-prod.osc-secnum-fr1.scalingo.io/admin/70674f63fc3904c20de0.svg)',
-            'recettes',
-            'vegan',
-          ],
-        ]),
-      );
+          tester,
+          const bdd.DataTable([
+            [
+              'id',
+              'title',
+              'subTitle',
+              'how',
+              'why',
+              'service_id',
+              'service_category'
+            ],
+            [
+              '3',
+              'Tester une **nouvelle recette végétarienne**',
+              'Faites des économies et le plein de vitamines ! Cette semaine, on cuisine une recette saine et délicieuse !',
+              '# Nos astuces\n\n- **Revisitez vos classiques** : Lasagnes au légumes, chili sin carne, re-découvrez vos plats favoris en version végétariennes \n\n- **Protéines végétales** : Associez légumineuses (lentilles, pois chiches) et céréales (riz, quinoa) pour un plat complet.\n\n- **Variez les textures** : Alternez croquant (graines, noix) et fondant (avocats, patates douces)\n\n- **Épices et herbes** : Boostez les saveurs avec du curry, paprika fumé, curcuma, cumin ou herbes fraîches.',
+              '# En quelques mots\n\n- Les repas à base de légumes sont en moyenne **30% moins chers** que ceux à base de viande.\n\n- Les nutriments contenus dans les légumes de saison sont une grande aide pour passer l’hiver !\n\n![test alt](https://agir-cms-prod.osc-secnum-fr1.scalingo.io/admin/70674f63fc3904c20de0.svg)',
+              'recettes',
+              'vegan'
+            ]
+          ]));
       await iAmLoggedIn(tester);
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
@@ -58,7 +69,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -70,12 +82,11 @@ void main() {
         await iTapOn(tester, 'Actions');
         await iHaveRecipeServicesInMyLibrary(tester);
         await iHaveRecipeDetailInMyLibrary(
-          tester,
-          const bdd.DataTable([
-            ['id', 'title', 'preparation_time'],
-            ['1', 'Salade de pâtes complètes et lentilles', 5],
-          ]),
-        );
+            tester,
+            const bdd.DataTable([
+              ['id', 'title', 'preparation_time'],
+              ['1', 'Salade de pâtes complètes et lentilles', 5]
+            ]));
         await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
         await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
         await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
@@ -84,7 +95,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''See recipe detail''', success);
+        await afterEach(
+          '''See recipe detail''',
+          success,
+        );
       }
     });
   });

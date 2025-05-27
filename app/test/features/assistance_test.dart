@@ -30,7 +30,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -49,7 +50,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Show assistances on the assistance page''', success);
+        await afterEach(
+          '''Show assistances on the assistance page''',
+          success,
+        );
       }
     });
     testWidgets('''Filter assistances by theme''', (tester) async {
@@ -67,7 +71,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Filter assistances by theme''', success);
+        await afterEach(
+          '''Filter assistances by theme''',
+          success,
+        );
       }
     });
     testWidgets('''Go on the assistance detail page''', (tester) async {
@@ -85,7 +92,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Go on the assistance detail page''', success);
+        await afterEach(
+          '''Go on the assistance detail page''',
+          success,
+        );
       }
     });
   });

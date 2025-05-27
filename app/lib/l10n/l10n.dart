@@ -314,10 +314,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirTout = 'Voir tout';
   static const vosRisques = 'Vos risques';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
-  static const votreKitDePrevention = 'Votre kit de prévention';
-  static const votreKitDePreventionDescription =
-      'Vous habitez dans une zone inondable ou argileuse, découvrez votre kit de prévention pour agir - vous aussi - à votre échelle.';
-  static const votreKitDePreventionBouton = 'Télécharger mon kit de prévention';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
   static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';

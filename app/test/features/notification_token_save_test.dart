@@ -22,14 +22,18 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''Login to my account is successful and notification token is saved''', (tester) async {
+    testWidgets(
+        '''Login to my account is successful and notification token is saved''',
+        (tester) async {
       var success = true;
       try {
-        await beforeEach('''Login to my account is successful and notification token is saved''');
+        await beforeEach(
+            '''Login to my account is successful and notification token is saved''');
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await theNotificationTokenSaveEndpointHasBeenCalled(tester);
@@ -37,7 +41,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Login to my account is successful and notification token is saved''', success);
+        await afterEach(
+          '''Login to my account is successful and notification token is saved''',
+          success,
+        );
       }
     });
   });

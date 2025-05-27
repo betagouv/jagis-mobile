@@ -38,7 +38,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -49,12 +50,16 @@ void main() {
         await bddSetUp(tester);
         await iTapOn(tester, 'Confirmer');
         await theAccountDeletionEndpointHasBeenCalled(tester);
-        await iSee(tester, 'Ensemble, améliorons nos habitudes au jour le jour');
+        await iSee(
+            tester, 'Ensemble, améliorons nos habitudes au jour le jour');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Confirm account deletion''', success);
+        await afterEach(
+          '''Confirm account deletion''',
+          success,
+        );
       }
     });
     testWidgets('''Cancel account deletion''', (tester) async {
@@ -69,7 +74,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Cancel account deletion''', success);
+        await afterEach(
+          '''Cancel account deletion''',
+          success,
+        );
       }
     });
   });

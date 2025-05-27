@@ -26,14 +26,64 @@ void main() {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApiWillReturn(
-        tester,
-        const bdd.DataTable([
-          ['method', 'path', 'statusCode', 'responseData'],
-          [
-            'GET',
-            '/utilisateurs/{userId}/questionsKYC_v2',
-            200,
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'responseData'],
             [
+              'GET',
+              '/utilisateurs/{userId}/questionsKYC_v2',
+              200,
+              [
+                {
+                  "code": "MOSAIC_CHAUFFAGE",
+                  "question": "Quels modes de chauffage existent chez vous ?",
+                  "reponse_multiple": [
+                    {
+                      "code": "KYC_chauffage_bois",
+                      "label": "Bois",
+                      "emoji": "🪵",
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1726497242/Screenshot_2024_09_16_at_16_22_55_4fcb2d1a5b.png",
+                      "selected": true
+                    },
+                    {
+                      "code": "KYC_chauffage_fioul",
+                      "label": "Fioul",
+                      "emoji": "🛢️",
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1726497260/Screenshot_2024_09_16_at_16_23_05_4103677680.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_chauffage_gaz",
+                      "label": "Gaz",
+                      "emoji": "🏭",
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1726497275/Screenshot_2024_09_16_at_16_23_19_1084c4bd18.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_chauffage_elec",
+                      "label": "Électricité",
+                      "emoji": "⚡️",
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1727275914/Screenshot_2024_09_25_at_16_51_08_876426bef9.png",
+                      "selected": false
+                    }
+                  ],
+                  "is_answered": true,
+                  "categorie": "mission",
+                  "points": 5,
+                  "type": "mosaic_boolean",
+                  "is_NGC": false,
+                  "thematique": "logement"
+                }
+              ]
+            ],
+            [
+              'GET',
+              '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
+              200,
               {
                 "code": "MOSAIC_CHAUFFAGE",
                 "question": "Quels modes de chauffage existent chez vous ?",
@@ -44,7 +94,7 @@ void main() {
                     "emoji": "🪵",
                     "image_url":
                         "https://res.cloudinary.com/dq023imd8/image/upload/v1726497242/Screenshot_2024_09_16_at_16_22_55_4fcb2d1a5b.png",
-                    "selected": true,
+                    "selected": true
                   },
                   {
                     "code": "KYC_chauffage_fioul",
@@ -52,7 +102,7 @@ void main() {
                     "emoji": "🛢️",
                     "image_url":
                         "https://res.cloudinary.com/dq023imd8/image/upload/v1726497260/Screenshot_2024_09_16_at_16_23_05_4103677680.png",
-                    "selected": false,
+                    "selected": false
                   },
                   {
                     "code": "KYC_chauffage_gaz",
@@ -60,7 +110,7 @@ void main() {
                     "emoji": "🏭",
                     "image_url":
                         "https://res.cloudinary.com/dq023imd8/image/upload/v1726497275/Screenshot_2024_09_16_at_16_23_19_1084c4bd18.png",
-                    "selected": false,
+                    "selected": false
                   },
                   {
                     "code": "KYC_chauffage_elec",
@@ -68,70 +118,24 @@ void main() {
                     "emoji": "⚡️",
                     "image_url":
                         "https://res.cloudinary.com/dq023imd8/image/upload/v1727275914/Screenshot_2024_09_25_at_16_51_08_876426bef9.png",
-                    "selected": false,
-                  },
+                    "selected": false
+                  }
                 ],
                 "is_answered": true,
                 "categorie": "mission",
                 "points": 5,
                 "type": "mosaic_boolean",
                 "is_NGC": false,
-                "thematique": "logement",
-              },
+                "thematique": "logement"
+              }
             ],
-          ],
-          [
-            'GET',
-            '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
-            200,
-            {
-              "code": "MOSAIC_CHAUFFAGE",
-              "question": "Quels modes de chauffage existent chez vous ?",
-              "reponse_multiple": [
-                {
-                  "code": "KYC_chauffage_bois",
-                  "label": "Bois",
-                  "emoji": "🪵",
-                  "image_url":
-                      "https://res.cloudinary.com/dq023imd8/image/upload/v1726497242/Screenshot_2024_09_16_at_16_22_55_4fcb2d1a5b.png",
-                  "selected": true,
-                },
-                {
-                  "code": "KYC_chauffage_fioul",
-                  "label": "Fioul",
-                  "emoji": "🛢️",
-                  "image_url":
-                      "https://res.cloudinary.com/dq023imd8/image/upload/v1726497260/Screenshot_2024_09_16_at_16_23_05_4103677680.png",
-                  "selected": false,
-                },
-                {
-                  "code": "KYC_chauffage_gaz",
-                  "label": "Gaz",
-                  "emoji": "🏭",
-                  "image_url":
-                      "https://res.cloudinary.com/dq023imd8/image/upload/v1726497275/Screenshot_2024_09_16_at_16_23_19_1084c4bd18.png",
-                  "selected": false,
-                },
-                {
-                  "code": "KYC_chauffage_elec",
-                  "label": "Électricité",
-                  "emoji": "⚡️",
-                  "image_url":
-                      "https://res.cloudinary.com/dq023imd8/image/upload/v1727275914/Screenshot_2024_09_25_at_16_51_08_876426bef9.png",
-                  "selected": false,
-                },
-              ],
-              "is_answered": true,
-              "categorie": "mission",
-              "points": 5,
-              "type": "mosaic_boolean",
-              "is_NGC": false,
-              "thematique": "logement",
-            },
-          ],
-          ["PUT", '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE', 200, {}],
-        ]),
-      );
+            [
+              "PUT",
+              '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
+              200,
+              {}
+            ]
+          ]));
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
       await iTapOn(tester, 'Mon profil');
@@ -142,40 +146,45 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''Question mosaique Répondre aucune de ces propostions''', (tester) async {
+    testWidgets('''Question mosaique Répondre aucune de ces propostions''',
+        (tester) async {
       var success = true;
       try {
-        await beforeEach('''Question mosaique Répondre aucune de ces propostions''');
+        await beforeEach(
+            '''Question mosaique Répondre aucune de ces propostions''');
         await bddSetUp(tester);
         await iTapOn(tester, 'Quels modes de chauffage existent chez vous ?');
         await iScrollDownTo(tester, 'Aucune de ces propositions');
         await iTapOn(tester, 'Aucune de ces propositions');
         await theApiReceives(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'requestData'],
-            [
-              "PUT",
-              '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
-              200,
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
               [
-                {"code": "KYC_chauffage_bois", "selected": false},
-                {"code": "KYC_chauffage_fioul", "selected": false},
-                {"code": "KYC_chauffage_gaz", "selected": false},
-                {"code": "KYC_chauffage_elec", "selected": false},
-              ],
-            ],
-          ]),
-        );
+                "PUT",
+                '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
+                200,
+                [
+                  {"code": "KYC_chauffage_bois", "selected": false},
+                  {"code": "KYC_chauffage_fioul", "selected": false},
+                  {"code": "KYC_chauffage_gaz", "selected": false},
+                  {"code": "KYC_chauffage_elec", "selected": false}
+                ]
+              ]
+            ]));
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Question mosaique Répondre aucune de ces propostions''', success);
+        await afterEach(
+          '''Question mosaique Répondre aucune de ces propostions''',
+          success,
+        );
       }
     });
   });

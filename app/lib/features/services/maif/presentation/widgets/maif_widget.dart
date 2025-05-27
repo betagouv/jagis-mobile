@@ -1,7 +1,6 @@
 import 'package:app/core/address/address_repository.dart';
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/autocomplete.dart';
 import 'package:app/core/presentation/widgets/composants/callout.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -104,28 +103,7 @@ class _Success extends StatelessWidget {
               ),
             ),
           ],
-          if (data.searchAddress.isFull) ...[
-            const SizedBox(height: DsfrSpacings.s3w),
-            _Risks(risks: data.risks),
-            const SizedBox(height: DsfrSpacings.s3w),
-            const Text(Localisation.votreKitDePrevention, style: DsfrTextStyle.headline3()),
-            const SizedBox(height: DsfrSpacings.s1w),
-            const Text(Localisation.votreKitDePreventionDescription, style: DsfrTextStyle.bodyMd()),
-            const SizedBox(height: DsfrSpacings.s2w),
-            DsfrButton(
-              label: Localisation.votreKitDePreventionBouton,
-              variant: DsfrButtonVariant.secondary,
-              size: DsfrComponentSize.lg,
-              onPressed: () async {
-                final searchAddress = data.searchAddress;
-                if (searchAddress.latitude != null && searchAddress.longitude != null) {
-                  await FnvUrlLauncher.launch(
-                    'https://api.aux-alentours.1934.io/report/pdf/v2/_byLatLon?lat=${searchAddress.latitude}&lon=${searchAddress.longitude}',
-                  );
-                }
-              },
-            ),
-          ],
+          if (data.searchAddress.isFull) ...[const SizedBox(height: DsfrSpacings.s3w), _Risks(risks: data.risks)],
           const SizedBox(height: DsfrSpacings.s3w),
           FnvMarkdown(
             data: Localisation.lesChiffresClesDe(data.searchAddress.city),

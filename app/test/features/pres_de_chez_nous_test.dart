@@ -27,106 +27,141 @@ void main() {
     Future<void> bddSetUp(WidgetTester tester) async {
       await iAmLoggedIn(tester);
       await theApiWillReturn(
-        tester,
-        const bdd.DataTable([
-          ['method', 'path', 'statusCode', 'responseData'],
-          [
-            'GET',
-            '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_alimentation/first',
-            200,
-            {
-              "nombre_total_questions": 4,
-              "nombre_total_questions_effectives": 4,
-              "position_courante": 3,
-              "question_courante": {
-                "code": "MOSAIC_REDUCTION_DECHETS",
-                "question": "Quels éco-gestes mettez-vous en place pour réduire vos déchets ?",
-                "reponse_multiple": [
-                  {
-                    "code": "KYC_alimentation_compostage",
-                    "label": "Compostage biodéchets",
-                    "emoji": null,
-                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                    "selected": false,
-                  },
-                  {
-                    "code": "KYC_alimentation_reduc_gaspi_alim",
-                    "label": "Réduire gaspillage alimentaire",
-                    "emoji": null,
-                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                    "selected": false,
-                  },
-                  {
-                    "code": "KYC_alimentation_stoppub",
-                    "label": "Stop pub",
-                    "emoji": null,
-                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                    "selected": true,
-                  },
-                  {
-                    "code": "KYC_alimentation_achat_vrac",
-                    "label": "Achat en vrac",
-                    "emoji": null,
-                    "image_url": "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
-                    "selected": false,
-                  },
-                ],
-                "is_answered": true,
-                "categorie": "mission",
-                "points": 5,
-                "type": "mosaic_boolean",
-                "is_NGC": false,
-                "thematique": "dechet",
-              },
-              "is_first": false,
-              "is_last": false,
-              "is_out_of_range": false,
-            },
-          ],
-          [
-            'GET',
-            '/utilisateurs/{userId}/recherche_services/proximite/categories',
-            200,
+          tester,
+          const bdd.DataTable([
+            ['method', 'path', 'statusCode', 'responseData'],
             [
-              {"code": "nourriture", "label": "Tous les commerces", "is_default": true},
-              {"code": "circuit_court", "label": "Les producteurs locaux", "is_default": false},
-              {"code": "epicerie_superette", "label": "Les épiceries et supérettes", "is_default": false},
-              {"code": "marche_local", "label": "Les marchés locaux", "is_default": false},
-              {"code": "zero_dechet", "label": "Les boutiques zéro déchet", "is_default": false},
-            ],
-          ],
-          [
-            'POST',
-            '/utilisateurs/{userId}/recherche_services/proximite/search2',
-            200,
-            {
-              "encore_plus_resultats_dispo": false,
-              "resultats": [
-                {
-                  "id": "BG1",
-                  "titre": "EARL les maraîchers du Val d'Amour",
-                  "adresse_code_postal": "39120",
-                  "adresse_nom_ville": "Rahon",
-                  "adresse_rue": "6, ruelle des Merles",
-                  "est_favoris": false,
-                  "nombre_favoris": 0,
-                  "distance_metres": 605,
-                  "image_url": null,
-                  "description": "Maraîcher bio en demi gros. Légumes de saison.",
-                  "phone": "09 61 48 96 07",
-                  "categories": ["Alimentation et Agriculture", "Légumes", "Circuits courts", "Producteur / Artisan"],
-                  "open_hours": [],
-                  "latitude": 46.99214,
-                  "longitude": 5.4661,
-                  "ingredients": [],
-                  "etapes_recette": [],
-                  "categories_labels": ["Alimentation et Agriculture", "Légumes", "Circuits courts", "Producteur / Artisan"],
+              'GET',
+              '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_alimentation/first',
+              200,
+              {
+                "nombre_total_questions": 4,
+                "nombre_total_questions_effectives": 4,
+                "position_courante": 3,
+                "question_courante": {
+                  "code": "MOSAIC_REDUCTION_DECHETS",
+                  "question":
+                      "Quels éco-gestes mettez-vous en place pour réduire vos déchets ?",
+                  "reponse_multiple": [
+                    {
+                      "code": "KYC_alimentation_compostage",
+                      "label": "Compostage biodéchets",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_alimentation_reduc_gaspi_alim",
+                      "label": "Réduire gaspillage alimentaire",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    },
+                    {
+                      "code": "KYC_alimentation_stoppub",
+                      "label": "Stop pub",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": true
+                    },
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "label": "Achat en vrac",
+                      "emoji": null,
+                      "image_url":
+                          "https://res.cloudinary.com/dq023imd8/image/upload/v1728749522/482602_8af4f622d9.png",
+                      "selected": false
+                    }
+                  ],
+                  "is_answered": true,
+                  "categorie": "mission",
+                  "points": 5,
+                  "type": "mosaic_boolean",
+                  "is_NGC": false,
+                  "thematique": "dechet"
                 },
-              ],
-            },
-          ],
-        ]),
-      );
+                "is_first": false,
+                "is_last": false,
+                "is_out_of_range": false
+              }
+            ],
+            [
+              'GET',
+              '/utilisateurs/{userId}/recherche_services/proximite/categories',
+              200,
+              [
+                {
+                  "code": "nourriture",
+                  "label": "Tous les commerces",
+                  "is_default": true
+                },
+                {
+                  "code": "circuit_court",
+                  "label": "Les producteurs locaux",
+                  "is_default": false
+                },
+                {
+                  "code": "epicerie_superette",
+                  "label": "Les épiceries et supérettes",
+                  "is_default": false
+                },
+                {
+                  "code": "marche_local",
+                  "label": "Les marchés locaux",
+                  "is_default": false
+                },
+                {
+                  "code": "zero_dechet",
+                  "label": "Les boutiques zéro déchet",
+                  "is_default": false
+                }
+              ]
+            ],
+            [
+              'POST',
+              '/utilisateurs/{userId}/recherche_services/proximite/search2',
+              200,
+              {
+                "encore_plus_resultats_dispo": false,
+                "resultats": [
+                  {
+                    "id": "BG1",
+                    "titre": "EARL les maraîchers du Val d'Amour",
+                    "adresse_code_postal": "39120",
+                    "adresse_nom_ville": "Rahon",
+                    "adresse_rue": "6, ruelle des Merles",
+                    "est_favoris": false,
+                    "nombre_favoris": 0,
+                    "distance_metres": 605,
+                    "image_url": null,
+                    "description":
+                        "Maraîcher bio en demi gros. Légumes de saison.",
+                    "phone": "09 61 48 96 07",
+                    "categories": [
+                      "Alimentation et Agriculture",
+                      "Légumes",
+                      "Circuits courts",
+                      "Producteur / Artisan"
+                    ],
+                    "open_hours": [],
+                    "latitude": 46.99214,
+                    "longitude": 5.4661,
+                    "ingredients": [],
+                    "etapes_recette": [],
+                    "categories_labels": [
+                      "Alimentation et Agriculture",
+                      "Légumes",
+                      "Circuits courts",
+                      "Producteur / Artisan"
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
       await iTapOn(tester, '🛒 Des adresses pour manger local');
@@ -136,7 +171,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -147,22 +183,28 @@ void main() {
         await bddSetUp(tester);
         await iSee(tester, "EARL les maraîchers du Val d'Amour");
         await theApiReceives(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'requestData'],
-            [
-              'POST',
-              "/utilisateurs/{userId}/recherche_services/proximite/search2",
-              200,
-              {"categorie": "nourriture", "nombre_max_resultats": 9, "rayon_metres": 5000},
-            ],
-          ]),
-        );
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "nourriture",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Voir les suggestions''', success);
+        await afterEach(
+          '''Voir les suggestions''',
+          success,
+        );
       }
     });
     testWidgets('''Choisir une catégorie''', (tester) async {
@@ -174,22 +216,28 @@ void main() {
         await iTapOn(tester, 'Les producteurs locaux');
         await iSee(tester, "EARL les maraîchers du Val d'Amour");
         await theApiReceives(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'requestData'],
-            [
-              'POST',
-              "/utilisateurs/{userId}/recherche_services/proximite/search2",
-              200,
-              {"categorie": "circuit_court", "nombre_max_resultats": 9, "rayon_metres": 5000},
-            ],
-          ]),
-        );
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "circuit_court",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Choisir une catégorie''', success);
+        await afterEach(
+          '''Choisir une catégorie''',
+          success,
+        );
       }
     });
     testWidgets('''Recherche avec une adresse''', (tester) async {
@@ -201,28 +249,30 @@ void main() {
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iSee(tester, "EARL les maraîchers du Val d'Amour");
         await theApiReceives(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'requestData'],
-            [
-              'POST',
-              "/utilisateurs/{userId}/recherche_services/proximite/search2",
-              200,
-              {
-                "categorie": "nourriture",
-                "nombre_max_resultats": 9,
-                "rayon_metres": 5000,
-                "latitude": 45.766368,
-                "longitude": 4.850666,
-              },
-            ],
-          ]),
-        );
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "nourriture",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000,
+                  "latitude": 45.766368,
+                  "longitude": 4.850666
+                }
+              ]
+            ]));
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Recherche avec une adresse''', success);
+        await afterEach(
+          '''Recherche avec une adresse''',
+          success,
+        );
       }
     });
     testWidgets('''Aller sur la page de détails''', (tester) async {
@@ -231,43 +281,56 @@ void main() {
         await beforeEach('''Aller sur la page de détails''');
         await bddSetUp(tester);
         await theApiWillReturn(
-          tester,
-          const bdd.DataTable([
-            ['method', 'path', 'statusCode', 'responseData'],
-            [
-              'GET',
-              '/utilisateurs/{userId}/recherche_services/proximite/last_results/BG1',
-              200,
-              {
-                "id": "BG1",
-                "titre": "EARL les maraîchers du Val d'Amour",
-                "adresse_code_postal": "39120",
-                "adresse_nom_ville": "Rahon",
-                "adresse_rue": "6, ruelle des Merles",
-                "est_favoris": false,
-                "nombre_favoris": 0,
-                "distance_metres": 605,
-                "image_url": null,
-                "description": "Maraîcher bio en demi gros. Légumes de saison.",
-                "phone": "09 61 48 96 07",
-                "categories": ["Alimentation et Agriculture", "Légumes", "Circuits courts", "Producteur / Artisan"],
-                "open_hours": [],
-                "latitude": 46.99214,
-                "longitude": 5.4661,
-                "ingredients": [],
-                "etapes_recette": [],
-                "categories_labels": ["Alimentation et Agriculture", "Légumes", "Circuits courts", "Producteur / Artisan"],
-              },
-            ],
-          ]),
-        );
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/last_results/BG1',
+                200,
+                {
+                  "id": "BG1",
+                  "titre": "EARL les maraîchers du Val d'Amour",
+                  "adresse_code_postal": "39120",
+                  "adresse_nom_ville": "Rahon",
+                  "adresse_rue": "6, ruelle des Merles",
+                  "est_favoris": false,
+                  "nombre_favoris": 0,
+                  "distance_metres": 605,
+                  "image_url": null,
+                  "description":
+                      "Maraîcher bio en demi gros. Légumes de saison.",
+                  "phone": "09 61 48 96 07",
+                  "categories": [
+                    "Alimentation et Agriculture",
+                    "Légumes",
+                    "Circuits courts",
+                    "Producteur / Artisan"
+                  ],
+                  "open_hours": [],
+                  "latitude": 46.99214,
+                  "longitude": 5.4661,
+                  "ingredients": [],
+                  "etapes_recette": [],
+                  "categories_labels": [
+                    "Alimentation et Agriculture",
+                    "Légumes",
+                    "Circuits courts",
+                    "Producteur / Artisan"
+                  ]
+                }
+              ]
+            ]));
         await iTapOn(tester, "EARL les maraîchers du Val d'Amour");
         await iSee(tester, "Maraîcher bio en demi gros. Légumes de saison.");
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Aller sur la page de détails''', success);
+        await afterEach(
+          '''Aller sur la page de détails''',
+          success,
+        );
       }
     });
   });

@@ -38,7 +38,8 @@ void main() {
       await Hooks.beforeEach(title, tags);
     }
 
-    Future<void> afterEach(String title, bool success, [List<String>? tags]) async {
+    Future<void> afterEach(String title, bool success,
+        [List<String>? tags]) async {
       await Hooks.afterEach(title, success, tags);
     }
 
@@ -54,7 +55,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''See 1 article''', success);
+        await afterEach(
+          '''See 1 article''',
+          success,
+        );
       }
     });
     testWidgets('''See articles''', (tester) async {
@@ -69,7 +73,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''See articles''', success);
+        await afterEach(
+          '''See articles''',
+          success,
+        );
       }
     });
     testWidgets('''See 0 article''', (tester) async {
@@ -85,7 +92,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''See 0 article''', success);
+        await afterEach(
+          '''See 0 article''',
+          success,
+        );
       }
     });
     testWidgets('''Filter articles by title''', (tester) async {
@@ -103,7 +113,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Filter articles by title''', success);
+        await afterEach(
+          '''Filter articles by title''',
+          success,
+        );
       }
     });
     testWidgets('''Filter articles by theme''', (tester) async {
@@ -121,7 +134,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Filter articles by theme''', success);
+        await afterEach(
+          '''Filter articles by theme''',
+          success,
+        );
       }
     });
     testWidgets('''Filter articles by favorites''', (tester) async {
@@ -140,10 +156,14 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Filter articles by favorites''', success);
+        await afterEach(
+          '''Filter articles by favorites''',
+          success,
+        );
       }
     });
-    testWidgets('''Fitlré les articles par articles déjà lus''', (tester) async {
+    testWidgets('''Fitlré les articles par articles déjà lus''',
+        (tester) async {
       var success = true;
       try {
         await beforeEach('''Fitlré les articles par articles déjà lus''');
@@ -159,7 +179,10 @@ void main() {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Fitlré les articles par articles déjà lus''', success);
+        await afterEach(
+          '''Fitlré les articles par articles déjà lus''',
+          success,
+        );
       }
     });
     testWidgets('''Go to an article''', (tester) async {
@@ -172,12 +195,16 @@ void main() {
         await iTapOnTheFirstArticle(tester);
         await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
-        await iSee(tester, "Comment réduire l'impact de notre alimentation sur le climat ?");
+        await iSee(tester,
+            "Comment réduire l'impact de notre alimentation sur le climat ?");
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
-        await afterEach('''Go to an article''', success);
+        await afterEach(
+          '''Go to an article''',
+          success,
+        );
       }
     });
   });

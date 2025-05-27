@@ -20,3 +20,5 @@ abstract final class InputFormatter {
 NumberFormat get currencyFormat => NumberFormat.currency(locale: 'fr_FR', symbol: '', decimalDigits: 0);
 
 String formatCurrency(final int value) => currencyFormat.format(value).trim();
+String formatCurrencyWithSymbol(final int? value) =>
+    NumberFormat.currency(locale: 'fr_FR', symbol: '€', decimalDigits: 0).format(value);

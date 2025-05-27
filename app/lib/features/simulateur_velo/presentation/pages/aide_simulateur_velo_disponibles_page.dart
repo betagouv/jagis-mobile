@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
@@ -109,7 +110,7 @@ class _Header extends StatelessWidget {
                 ? [const TextSpan(text: Localisation.aucuneAideDisponible, style: DsfrTextStyle.bodyMdBold())]
                 : [
                     const TextSpan(text: Localisation.jusqua),
-                    TextSpan(text: Localisation.euro(montantMax!), style: const DsfrTextStyle.bodyMdBold()),
+                    TextSpan(text: formatCurrencyWithSymbol(montantMax), style: const DsfrTextStyle.bodyMdBold()),
                   ],
           ),
           style: const DsfrTextStyle.bodyMd(),
@@ -153,7 +154,7 @@ class _Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(Localisation.euro(e.montant), style: const DsfrTextStyle.bodyMdBold()),
+                Text(formatCurrencyWithSymbol(e.montant), style: const DsfrTextStyle.bodyMdBold()),
               ],
             ),
           ),

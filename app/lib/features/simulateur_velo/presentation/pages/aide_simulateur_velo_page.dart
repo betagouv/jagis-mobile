@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/helpers/text_scaler.dart';
 import 'package:app/core/infrastructure/markdown.dart';
@@ -124,7 +125,7 @@ class _PrixInputState extends State<_PrixInput> {
                     text: Localisation.veloLabel(e.label),
                     children: [
                       TextSpan(
-                        text: Localisation.euro(e.prix),
+                        text: formatCurrencyWithSymbol(e.prix),
                         style: const TextStyle(decoration: TextDecoration.underline, decorationColor: foregroundColor),
                       ),
                     ],

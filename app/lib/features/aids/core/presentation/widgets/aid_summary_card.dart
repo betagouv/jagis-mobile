@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
@@ -80,7 +81,7 @@ class _AmountMax extends StatelessWidget {
         ),
         const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
         const TextSpan(text: Localisation.jusqua),
-        TextSpan(text: Localisation.euro(value), style: const DsfrTextStyle.bodySmBold()),
+        TextSpan(text: formatCurrencyWithSymbol(value), style: const DsfrTextStyle.bodySmBold()),
       ],
     ),
     style: const DsfrTextStyle.bodySm(),

@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
@@ -114,7 +115,7 @@ class _AidPageContent extends StatelessWidget {
           children: [
             if (aid.maxAmount != null)
               DsfrTag.sm(
-                label: TextSpan(text: Localisation.jusqua + Localisation.euro(aid.maxAmount!)),
+                label: TextSpan(text: '${Localisation.jusqua}${formatCurrencyWithSymbol(aid.maxAmount)}'),
                 backgroundColor: DsfrColors.purpleGlycine925Hover,
                 foregroundColor: const Color(0xFF432636),
               ),

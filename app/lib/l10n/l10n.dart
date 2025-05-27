@@ -354,12 +354,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String donneesUtiliseesNombreDeParts(final double value) => '($value)';
 
-  static String donneesUtiliseesRevenuFiscal(final int? value) => '(${value == null ? '' : euro(value)})';
+  static String donneesUtiliseesRevenuFiscal(final int? value) => '(${value == null ? '' : '$value €'})';
 
   static String entrezLeCodeRecuParMailDetails(final String value) =>
       'Pour vérifier votre identité et vous permettre d’accéder à votre compte, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
-
-  static String euro(final int value) => '$value €';
 
   static String lesChiffresClesDe(final String city) => 'Les chiffres clés de **$city**';
 

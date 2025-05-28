@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
@@ -20,9 +21,10 @@ class AidSummaryCard extends StatelessWidget {
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
       context.read<Tracker>().trackClick('Aides', aidSummary.title);
-      await GoRouter.of(
-        context,
-      ).pushNamed(AidPage.name, pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id));
+      await GoRouter.of(context).pushNamed(
+        AidPage.name,
+        pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id),
+      );
     },
     child: SizedBox(
       width: width ?? double.infinity,
@@ -53,7 +55,11 @@ class AidSummaryCard extends StatelessWidget {
               ],
             ),
           ),
-          if (aidSummary.partner != null) Ink(color: const Color(0xffeef2ff), child: PartnerWidget(partner: aidSummary.partner!)),
+          if (aidSummary.partner != null)
+            Ink(
+              color: const Color(0xffeef2ff),
+              child: PartnerWidget(partner: aidSummary.partner!),
+            ),
         ],
       ),
     ),
@@ -75,7 +81,7 @@ class _AmountMax extends StatelessWidget {
         ),
         const WidgetSpan(child: SizedBox(width: DsfrSpacings.s1w)),
         const TextSpan(text: Localisation.jusqua),
-        TextSpan(text: Localisation.euro(value), style: const DsfrTextStyle.bodySmBold()),
+        TextSpan(text: formatCurrencyWithSymbol(value), style: const DsfrTextStyle.bodySmBold()),
       ],
     ),
     style: const DsfrTextStyle.bodySm(),

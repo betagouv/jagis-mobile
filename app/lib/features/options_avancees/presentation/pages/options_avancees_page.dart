@@ -1,7 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/authentification/changer_mot_de_passe/presentation/widgets/changer_mot_de_passe.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/profil/supprimer_compte/presentation/widgets/supprimer_compte.dart';
 import 'package:app/l10n/l10n.dart';
@@ -21,15 +20,19 @@ class OptionsAvanceesPage extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
-    body: ListView(
-      padding: const EdgeInsets.all(paddingVerticalPage),
-      children: const [
-        FnvTitle(title: Localisation.optionsAvancees),
-        SizedBox(height: DsfrSpacings.s3w),
-        ChangerMotDePasse(),
-        SizedBox(height: DsfrSpacings.s5w),
-        SupprimerCompte(),
-      ],
+    body: const SingleChildScrollView(
+      primary: true,
+      child: Padding(
+        padding: EdgeInsets.all(paddingVerticalPage),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: DsfrSpacings.s3w,
+          children: [
+            FnvTitle(title: Localisation.optionsAvancees),
+            SupprimerCompte(),
+          ],
+        ),
+      ),
     ),
   );
 }

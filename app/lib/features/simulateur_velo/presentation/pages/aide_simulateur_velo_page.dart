@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/helpers/text_scaler.dart';
 import 'package:app/core/infrastructure/markdown.dart';
@@ -124,7 +125,7 @@ class _PrixInputState extends State<_PrixInput> {
                     text: Localisation.veloLabel(e.label),
                     children: [
                       TextSpan(
-                        text: Localisation.euro(e.prix),
+                        text: formatCurrencyWithSymbol(e.prix),
                         style: const TextStyle(decoration: TextDecoration.underline, decorationColor: foregroundColor),
                       ),
                     ],
@@ -190,65 +191,68 @@ class _ElementsNecessaireAuCalcul extends StatelessWidget {
 
     return state.veutModifierLesInformations
         ? const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _Avertissement(),
-            _CodePostalEtCommune(),
-            SizedBox(height: DsfrSpacings.s3w),
-            Text(Localisation.revenuQuestion, style: DsfrTextStyle.headline6()),
-            SizedBox(height: DsfrSpacings.s1v),
-            _NombreDePartsFiscales(),
-            SizedBox(height: DsfrSpacings.s3w),
-            _RevenuFiscal(),
-            SizedBox(height: DsfrSpacings.s3w),
-            _Questions(),
-          ],
-        )
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _Avertissement(),
+              _CodePostalEtCommune(),
+              SizedBox(height: DsfrSpacings.s3w),
+              Text(Localisation.revenuQuestion, style: DsfrTextStyle.headline6()),
+              SizedBox(height: DsfrSpacings.s1v),
+              _NombreDePartsFiscales(),
+              SizedBox(height: DsfrSpacings.s3w),
+              _RevenuFiscal(),
+              SizedBox(height: DsfrSpacings.s3w),
+              _Questions(),
+            ],
+          )
         : Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text.rich(
-              TextSpan(
-                children: [
-                  WidgetSpan(alignment: PlaceholderAlignment.middle, child: Icon(DsfrIcons.systemErrorWarningLine, size: 16)),
-                  WidgetSpan(child: SizedBox(width: DsfrSpacings.s1v)),
-                  TextSpan(text: Localisation.elementsNecessaireAuCalcul),
-                ],
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(alignment: PlaceholderAlignment.middle, child: Icon(DsfrIcons.systemErrorWarningLine, size: 16)),
+                    WidgetSpan(child: SizedBox(width: DsfrSpacings.s1v)),
+                    TextSpan(text: Localisation.elementsNecessaireAuCalcul),
+                  ],
+                ),
+                style: DsfrTextStyle.bodySmBold(),
               ),
-              style: DsfrTextStyle.bodySmBold(),
-            ),
-            const SizedBox(height: DsfrSpacings.s1v),
-            Text.rich(
-              TextSpan(
-                text: Localisation.donneesUtiliseesPart1,
-                children: [
-                  TextSpan(
-                    text: Localisation.donneesUtiliseesCodePostalEtCommune(codePostal: state.codePostal, commune: state.commune),
-                    style: bodySmMediumBlue,
-                  ),
-                  const TextSpan(text: Localisation.donneesUtiliseesPart2),
-                  TextSpan(text: Localisation.donneesUtiliseesRevenuFiscal(state.revenuFiscal), style: bodySmMediumBlue),
-                  const TextSpan(text: Localisation.donneesUtiliseesPart3),
-                  TextSpan(
-                    text: Localisation.donneesUtiliseesNombreDeParts(state.nombreDePartsFiscales),
-                    style: bodySmMediumBlue,
-                  ),
-                  const TextSpan(text: Localisation.point),
-                ],
+              const SizedBox(height: DsfrSpacings.s1v),
+              Text.rich(
+                TextSpan(
+                  text: Localisation.donneesUtiliseesPart1,
+                  children: [
+                    TextSpan(
+                      text: Localisation.donneesUtiliseesCodePostalEtCommune(
+                        codePostal: state.codePostal,
+                        commune: state.commune,
+                      ),
+                      style: bodySmMediumBlue,
+                    ),
+                    const TextSpan(text: Localisation.donneesUtiliseesPart2),
+                    TextSpan(text: Localisation.donneesUtiliseesRevenuFiscal(state.revenuFiscal), style: bodySmMediumBlue),
+                    const TextSpan(text: Localisation.donneesUtiliseesPart3),
+                    TextSpan(
+                      text: Localisation.donneesUtiliseesNombreDeParts(state.nombreDePartsFiscales),
+                      style: bodySmMediumBlue,
+                    ),
+                    const TextSpan(text: Localisation.point),
+                  ],
+                ),
+                style: const DsfrTextStyle.bodySm(),
               ),
-              style: const DsfrTextStyle.bodySm(),
-            ),
-            const SizedBox(height: DsfrSpacings.s3v),
-            Align(
-              alignment: Alignment.centerRight,
-              child: DsfrLink.md(
-                label: Localisation.modifier,
-                icon: DsfrIcons.designPencilFill,
-                onTap: () => context.read<AideVeloBloc>().add(const AideVeloModificationDemandee()),
+              const SizedBox(height: DsfrSpacings.s3v),
+              Align(
+                alignment: Alignment.centerRight,
+                child: DsfrLink.md(
+                  label: Localisation.modifier,
+                  icon: DsfrIcons.designPencilFill,
+                  onTap: () => context.read<AideVeloBloc>().add(const AideVeloModificationDemandee()),
+                ),
               ),
-            ),
-          ],
-        );
+            ],
+          );
   }
 }
 
@@ -256,12 +260,14 @@ class _Avertissement extends StatelessWidget {
   const _Avertissement();
 
   @override
-  Widget build(final BuildContext context) =>
-      context.watch<AideVeloBloc>().state.estValide
-          ? const SizedBox.shrink()
-          : const Column(
-            children: [FnvAlert.error(label: Localisation.aideVeloAvertissement), SizedBox(height: DsfrSpacings.s2w)],
-          );
+  Widget build(final BuildContext context) => context.watch<AideVeloBloc>().state.estValide
+      ? const SizedBox.shrink()
+      : const Column(
+          children: [
+            FnvAlert.error(label: Localisation.aideVeloAvertissement),
+            SizedBox(height: DsfrSpacings.s2w),
+          ],
+        );
 }
 
 class _CodePostalEtCommune extends StatefulWidget {
@@ -381,13 +387,12 @@ class _EstimerMesAides extends StatelessWidget {
     label: Localisation.estimerMesAides,
     variant: DsfrButtonVariant.primary,
     size: DsfrComponentSize.lg,
-    onPressed:
-        context.watch<AideVeloBloc>().state.estValide
-            ? () async {
-              context.read<AideVeloBloc>().add(const AideVeloEstimationDemandee());
-              await GoRouter.of(context).pushNamed(AideSimulateurVeloDisponiblePage.name);
-            }
-            : null,
+    onPressed: context.watch<AideVeloBloc>().state.estValide
+        ? () async {
+            context.read<AideVeloBloc>().add(const AideVeloEstimationDemandee());
+            await GoRouter.of(context).pushNamed(AideSimulateurVeloDisponiblePage.name);
+          }
+        : null,
   );
 }
 

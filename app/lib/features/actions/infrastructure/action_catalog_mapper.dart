@@ -8,19 +8,15 @@ abstract final class ActionCatalogMapper {
   const ActionCatalogMapper._();
 
   static ActionCatalog fromJson(final Map<String, dynamic> json) => ActionCatalog(
-    actions:
-        (json['actions'] as List<dynamic>)
-            .cast<Map<String, dynamic>>()
-            .map(ActionSummaryMapper.fromJson)
-            .where((final e) => e.type != ActionType.simulator || ActionSimulatorId.isSimulatorId(e.id))
-            .toList(),
-    themes:
-        (json['filtres'] as List<dynamic>)
-            .cast<Map<String, dynamic>>()
-            .map(
-              (final e) => ActionFilter(code: e['code'] as String, label: e['label'] as String, selected: e['selected'] as bool),
-            )
-            .toList(),
+    actions: (json['actions'] as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map(ActionSummaryMapper.fromJson)
+        .where((final e) => e.type != ActionType.simulator || ActionSimulatorId.isSimulatorId(e.id))
+        .toList(),
+    themes: (json['filtres'] as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map((final e) => ActionFilter(code: e['code'] as String, label: e['label'] as String, selected: e['selected'] as bool))
+        .toList(),
     alreadyConsulted: json['consultation'] as String == 'vu',
   );
 }

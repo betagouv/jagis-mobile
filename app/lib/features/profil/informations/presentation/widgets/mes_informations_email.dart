@@ -16,7 +16,10 @@ class MesInformationsEmail extends StatelessWidget {
         style: const DsfrTextStyle.bodyMd(),
         children: <TextSpan>[
           const TextSpan(text: Localisation.mesInformationsAdresseEmail),
-          TextSpan(text: email, style: const TextStyle(fontWeight: FontWeight.bold)),
+          TextSpan(
+            text: email,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );

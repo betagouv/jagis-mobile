@@ -1,15 +1,16 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_bloc.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_event.dart';
 import 'package:app/features/services/lvao/presentation/bloc/lvao_state.dart';
+import 'package:app/features/services/lvao/presentation/lvao_detail/pages/lvao_detail_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LvaoHorizontalList extends StatelessWidget {
   const LvaoHorizontalList({super.key, required this.category});
@@ -28,11 +29,10 @@ class _Part extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<LvaoBloc, LvaoState>(
-    builder:
-        (final context, final state) => switch (state) {
-          LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox.shrink(),
-          LvaoLoadSuccess() => _Success(state: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      LvaoInitial() || LvaoLoadInProgress() || LvaoLoadFailure() => const SizedBox.shrink(),
+      LvaoLoadSuccess() => _Success(state: state),
+    },
   );
 }
 
@@ -56,7 +56,7 @@ class _Success extends StatelessWidget {
               p: DsfrTextStyle(fontSize: 22),
             ),
             Text(
-              'Trouvez les cordonniers et réparateurs agréés près de chez vous pour bénéficier d’une aide d’État', // TODO(lsaudon): Texte pour réparation
+              'Trouvez les cordonniers et réparateurs agréés près de chez vous pour bénéficier d’une aide d’État',
               style: DsfrTextStyle(fontSize: 16),
             ),
           ],
@@ -69,50 +69,51 @@ class _Success extends StatelessWidget {
         child: IntrinsicHeight(
           child: Row(
             spacing: DsfrSpacings.s2w,
-            children:
-                state.actors
-                    .map(
-                      (final e) => DecoratedBox(
-                        decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
-                        child: SizedBox(
-                          width: 346,
-                          child: Padding(
-                            padding: const EdgeInsets.all(DsfrSpacings.s1w),
-                            child: Row(
-                              spacing: DsfrSpacings.s2w,
-                              children: [
-                                const DecoratedBox(
-                                  decoration: BoxDecoration(color: Color(0xffF2EAF8)),
-                                  child: FnvImage.asset(AssetImages.lvaoStore, width: 72, height: 99),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
-                                      Text(
-                                        e.address,
-                                        style: const DsfrTextStyle.bodyXs(),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 3,
-                                      ),
-                                      const Spacer(),
-                                      DsfrTag.sm(
-                                        label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
-                                        backgroundColor: const Color(0xffEAEAEA),
-                                        foregroundColor: const Color(0xff3F3F3F),
-                                        textStyle: const DsfrTextStyle.bodyXsMedium(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+            children: state.actors
+                .map(
+                  (final e) => FnvCard(
+                    onTap: () async {
+                      await GoRouter.of(context).pushNamed(LvaoDetailPage.name, pathParameters: {'id': e.id});
+                    },
+                    child: SizedBox(
+                      width: 346,
+                      child: Padding(
+                        padding: const EdgeInsets.all(DsfrSpacings.s1w),
+                        child: Row(
+                          spacing: DsfrSpacings.s2w,
+                          children: [
+                            const DecoratedBox(
+                              decoration: BoxDecoration(color: Color(0xffF2EAF8)),
+                              child: FnvImage.asset(AssetImages.lvaoStore, width: 72, height: 99),
                             ),
-                          ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(e.name, style: const DsfrTextStyle.bodyMdBold()),
+                                  Text(
+                                    e.address,
+                                    style: const DsfrTextStyle.bodyXs(),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 3,
+                                  ),
+                                  const Spacer(),
+                                  DsfrTag.sm(
+                                    label: TextSpan(text: Localisation.distance(e.distanceInMeters)),
+                                    backgroundColor: const Color(0xffEAEAEA),
+                                    foregroundColor: const Color(0xff3F3F3F),
+                                    textStyle: const DsfrTextStyle.bodyXsMedium(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

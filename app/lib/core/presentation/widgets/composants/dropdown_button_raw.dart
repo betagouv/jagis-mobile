@@ -44,18 +44,17 @@ class _DropdownButtonRawState<T> extends State<DropdownButtonRaw<T>> {
             anchorRect: anchorRect,
             onTapOutside: (final _) => _controller.hide(),
             style: widget.menuStyle,
-            children:
-                widget.items.entries
-                    .map(
-                      (final e) => _DropdownMenuItem(
-                        item: e,
-                        onChanged: (final newValue) {
-                          _controller.hide();
-                          widget.onChanged(newValue);
-                        },
-                      ),
-                    )
-                    .toList(),
+            children: widget.items.entries
+                .map(
+                  (final e) => _DropdownMenuItem(
+                    item: e,
+                    onChanged: (final newValue) {
+                      _controller.hide();
+                      widget.onChanged(newValue);
+                    },
+                  ),
+                )
+                .toList(),
           );
         },
         child: value,
@@ -81,8 +80,10 @@ class _DropdownMenu extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(final BuildContext context) =>
-      TapRegion(onTapOutside: onTapOutside, child: _DropdownMenuLayout(anchorRect: anchorRect, style: style, children: children));
+  Widget build(final BuildContext context) => TapRegion(
+    onTapOutside: onTapOutside,
+    child: _DropdownMenuLayout(anchorRect: anchorRect, style: style, children: children),
+  );
 }
 
 class _DropdownMenuItem<T> extends StatelessWidget {
@@ -94,7 +95,10 @@ class _DropdownMenuItem<T> extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Material(
     type: MaterialType.transparency,
-    child: InkWell(onTap: () => onChanged(item.key), child: Center(child: item.value)),
+    child: InkWell(
+      onTap: () => onChanged(item.key),
+      child: Center(child: item.value),
+    ),
   );
 }
 

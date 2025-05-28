@@ -76,7 +76,10 @@ class BodyPartial extends StatelessWidget {
         child: EnvironmentalPerformanceCategories(categories: data.categories),
       ),
       const SizedBox(height: DsfrSpacings.s4w),
-      const Padding(padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage), child: EnvironmentalPerformancePartnerCard()),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
+        child: EnvironmentalPerformancePartnerCard(),
+      ),
       const SafeArea(child: SizedBox.shrink()),
     ],
   );

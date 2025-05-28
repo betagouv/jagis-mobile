@@ -7,19 +7,18 @@ import 'package:fpdart/fpdart.dart';
 
 class QuestionCodePostalBloc extends Bloc<QuestionCodePostalEvent, QuestionCodePostalState> {
   QuestionCodePostalBloc({required final ProfilRepository profilRepository, required final CommunesRepository communesRepository})
-    : super(const QuestionCodePostalState(prenom: '', codePostal: '', communes: [], commune: '', aEteChange: false)) {
-    on<QuestionCodePostalPrenomDemande>((final event, final emit) async {
+    : super(const QuestionCodePostalState(pseudonym: '', codePostal: '', communes: [], commune: '', aEteChange: false)) {
+    on<QuestionCodePostalPseudonymDemande>((final event, final emit) async {
       final result = await profilRepository.recupererProfil();
       if (result.isRight()) {
         final profil = result.getRight().getOrElse(() => throw Exception());
-        emit(state.copyWith(prenom: profil.prenom));
+        emit(state.copyWith(pseudonym: profil.pseudonym));
       }
     });
     on<QuestionCodePostalAChange>((final event, final emit) async {
-      final result =
-          (event.valeur.length == 5
-              ? await communesRepository.recupererLesCommunes(event.valeur)
-              : Either<Exception, List<String>>.right(<String>[]));
+      final result = (event.valeur.length == 5
+          ? await communesRepository.recupererLesCommunes(event.valeur)
+          : Either<Exception, List<String>>.right(<String>[]));
       if (result.isRight()) {
         final communes = result.getRight().getOrElse(() => throw Exception());
         emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));

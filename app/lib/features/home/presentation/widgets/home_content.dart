@@ -75,9 +75,8 @@ class _HomeContentState extends State<HomeContent> {
         );
       }
     },
-    listenWhen:
-        (final previous, final current) =>
-            previous.user?.isIntegrationCompleted != current.user?.isIntegrationCompleted ||
-            previous.user?.shouldShowResetPopup != current.user?.shouldShowResetPopup,
+    listenWhen: (final previous, final current) =>
+        previous.user?.isIntegrationCompleted != current.user?.isIntegrationCompleted ||
+        previous.user?.shouldShowResetPopup != current.user?.shouldShowResetPopup,
   );
 }

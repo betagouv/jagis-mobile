@@ -1,4 +1,5 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
@@ -42,17 +43,16 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
             const Center(child: CircularProgressIndicator())
           else
             DsfrAccordionsGroup(
-              values:
-                  state.aidesDisponibles
-                      .map(
-                        (final e) => DsfrAccordion.custom(
-                          headerBuilder:
-                              (final isExpanded) => _Header(titre: e.titre, montantMax: e.montantTotal, isExpanded: isExpanded),
-                          body: _Body(aides: e.aides),
-                          isEnable: e.aides.isNotEmpty,
-                        ),
-                      )
-                      .toList(),
+              values: state.aidesDisponibles
+                  .map(
+                    (final e) => DsfrAccordion.custom(
+                      headerBuilder: (final isExpanded) =>
+                          _Header(titre: e.titre, montantMax: e.montantTotal, isExpanded: isExpanded),
+                      body: _Body(aides: e.aides),
+                      isEnable: e.aides.isNotEmpty,
+                    ),
+                  )
+                  .toList(),
             ),
           const SizedBox(height: DsfrSpacings.s3w),
           Padding(
@@ -106,13 +106,12 @@ class _Header extends StatelessWidget {
         Expanded(child: Text(titre, style: isExpanded ? const DsfrTextStyle.bodyMdBold() : const DsfrTextStyle.bodyMd())),
         Text.rich(
           TextSpan(
-            children:
-                montantMax == null
-                    ? [const TextSpan(text: Localisation.aucuneAideDisponible, style: DsfrTextStyle.bodyMdBold())]
-                    : [
-                      const TextSpan(text: Localisation.jusqua),
-                      TextSpan(text: Localisation.euro(montantMax!), style: const DsfrTextStyle.bodyMdBold()),
-                    ],
+            children: montantMax == null
+                ? [const TextSpan(text: Localisation.aucuneAideDisponible, style: DsfrTextStyle.bodyMdBold())]
+                : [
+                    const TextSpan(text: Localisation.jusqua),
+                    TextSpan(text: formatCurrencyWithSymbol(montantMax), style: const DsfrTextStyle.bodyMdBold()),
+                  ],
           ),
           style: const DsfrTextStyle.bodyMd(),
         ),
@@ -128,40 +127,39 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Column(
-    children:
-        aides
-            .map(
-              (final e) => Padding(
-                padding: const EdgeInsets.all(DsfrSpacings.s2w),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: DsfrSpacings.s1w,
-                  children: [
-                    FnvImage.network(e.logo, width: DsfrSpacings.s7w, height: DsfrSpacings.s7w),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: DsfrSpacings.s1v,
-                        children: [
-                          Text(e.libelle, style: const DsfrTextStyle.bodyMdBold()),
-                          Text(e.description.trim(), style: const DsfrTextStyle.bodyXs()),
-                          DsfrLink.sm(
-                            label: Localisation.voirLesDemarches,
-                            icon: DsfrIcons.systemExternalLinkFill,
-                            iconPosition: DsfrLinkIconPosition.end,
-                            onTap: () async {
-                              await FnvUrlLauncher.launch(e.lien);
-                            },
-                          ),
-                        ],
+    children: aides
+        .map(
+          (final e) => Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: DsfrSpacings.s1w,
+              children: [
+                FnvImage.network(e.logo, width: DsfrSpacings.s7w, height: DsfrSpacings.s7w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: DsfrSpacings.s1v,
+                    children: [
+                      Text(e.libelle, style: const DsfrTextStyle.bodyMdBold()),
+                      Text(e.description.trim(), style: const DsfrTextStyle.bodyXs()),
+                      DsfrLink.sm(
+                        label: Localisation.voirLesDemarches,
+                        icon: DsfrIcons.systemExternalLinkFill,
+                        iconPosition: DsfrLinkIconPosition.end,
+                        onTap: () async {
+                          await FnvUrlLauncher.launch(e.lien);
+                        },
                       ),
-                    ),
-                    Text(Localisation.euro(e.montant), style: const DsfrTextStyle.bodyMdBold()),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-            .separator(const Divider())
-            .toList(),
+                Text(formatCurrencyWithSymbol(e.montant), style: const DsfrTextStyle.bodyMdBold()),
+              ],
+            ),
+          ),
+        )
+        .separator(const Divider())
+        .toList(),
   );
 }

@@ -10,9 +10,8 @@ import './step/the_application_is_launched.dart';
 import './step/the_email_dont_exists.dart';
 import './step/i_tap_on.dart';
 import './step/i_enter_in_the_field.dart';
-import './step/i_accept_the_terms_of_use.dart';
 import './step/i_tap_on_create_my_account_button.dart';
-import './step/i_enter_in_the_pin_field.dart';
+import './step/im_redirect_to_magic_link_callback.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_select_date_in_the_field.dart';
 import './step/i_see.dart';
@@ -36,10 +35,8 @@ void main() {
       await theEmailDontExists(tester);
       await iTapOn(tester, 'Je crée mon compte');
       await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
-      await iEnterInTheField(tester, 'Azertyuiop1&', 'Mot de passe');
-      await iAcceptTheTermsOfUse(tester);
       await iTapOnCreateMyAccountButton(tester);
-      await iEnterInThePinField(tester, '999999');
+      await imRedirectToMagicLinkCallback(tester);
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {
@@ -56,7 +53,7 @@ void main() {
       try {
         await beforeEach('''Répondre aux premieres questions''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, 'Joe', 'Mon pseudonyme');
+        await iEnterInTheField(tester, 'Joe123', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
         await iSelectDateInTheField(
             tester, '15/01/1974', 'Ma date de naissance');
@@ -106,7 +103,7 @@ void main() {
       try {
         await beforeEach('''Saisir un pseudonyme invalide''');
         await bddSetUp(tester);
-        await iEnterInTheField(tester, '123', 'Mon pseudonyme');
+        await iEnterInTheField(tester, 'Joe#123', 'Mon pseudonyme');
         await iSee(tester, 'Le pseudonyme n’est pas valide.');
       } on TestFailure {
         success = false;
@@ -160,7 +157,6 @@ void main() {
         await beforeEach(
             '''Vérifier l'accessibilité sur la page du pseudonyme''');
         await bddSetUp(tester);
-        await iSeeSemantics(tester, 'Question 1 sur 3');
         await iSeeSemantics(
             tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
         await iSeeSemantics(tester,

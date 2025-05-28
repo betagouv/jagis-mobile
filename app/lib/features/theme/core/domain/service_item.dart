@@ -15,9 +15,12 @@ final class ServiceItem extends Equatable {
   final String externalUrl;
   final String iconUrl;
 
-  bool get isInternalService => idService == 'fruits_legumes' || idService == 'recettes';
+  bool get isInternalService =>
+      idService == 'fruits_legumes' || idService == 'recettes' || idService == 'proximite' || idService == 'longue_vie_objets';
   bool get isFruitsLegumesService => idService == 'fruits_legumes';
   bool get isRecipeService => idService == 'recettes';
+  bool get isPdcnService => idService == 'proximite';
+  bool get isLvaoService => idService == 'longue_vie_objets';
 
   @override
   List<Object?> get props => [idService, titre, sousTitre, externalUrl, iconUrl];

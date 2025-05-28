@@ -14,7 +14,9 @@ class FnvAlertInfo extends StatelessWidget {
       spacing: DsfrSpacings.s1w,
       children: [
         const Icon(DsfrIcons.systemQuestionLine, color: DsfrColors.blueFranceSun113),
-        Expanded(child: FnvMarkdown(data: label, p: const DsfrTextStyle(fontSize: 15))),
+        Expanded(
+          child: FnvMarkdown(data: label, p: const DsfrTextStyle(fontSize: 15)),
+        ),
       ],
     );
     if (content != null) {

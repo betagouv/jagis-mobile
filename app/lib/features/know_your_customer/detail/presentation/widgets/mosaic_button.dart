@@ -14,8 +14,8 @@ class _MosaicButtonStyle {
     : this._(
         backgroundColor: const Color(0xfff3f3f8),
         borderColor: DsfrColors.blueFranceSun113,
-        borderWidth: 3,
-        textStyle: const DsfrTextStyle.bodySmBold(color: DsfrColors.blueFranceSun113),
+        borderWidth: 1,
+        textStyle: const DsfrTextStyle.bodyMdBold(color: DsfrColors.blueFranceSun113),
       );
 
   const _MosaicButtonStyle.unselected()
@@ -23,7 +23,7 @@ class _MosaicButtonStyle {
         backgroundColor: const Color(0xfff8f8f7),
         borderColor: const Color(0xffe3e3db),
         borderWidth: 1,
-        textStyle: const DsfrTextStyle.bodySmMedium(),
+        textStyle: const DsfrTextStyle.bodyMd(),
       );
 
   final Color backgroundColor;
@@ -68,23 +68,18 @@ class MosaicButton extends StatelessWidget {
                   padding: const EdgeInsets.all(DsfrSpacings.s1w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: DsfrSpacings.s1w,
-                    children: [emoji, Text(title, style: style.textStyle, textAlign: TextAlign.center)],
+                    spacing: DsfrSpacings.s1v,
+                    children: [
+                      emoji,
+                      Text(title, style: style.textStyle, textAlign: TextAlign.center),
+                    ],
                   ),
                 ),
               ),
             ),
           ),
         ),
-        if (value)
-          const Positioned(
-            top: -14,
-            right: -14,
-            child: DecoratedBox(
-              decoration: BoxDecoration(color: DsfrColors.blueFranceSun113, shape: BoxShape.circle),
-              child: SizedBox.square(dimension: 29, child: Icon(DsfrIcons.systemCheckLine, size: 20, color: Colors.white)),
-            ),
-          ),
+        Positioned(top: 14, right: 14, child: DsfrCheckboxIcon(value: value)),
       ],
     );
   }

@@ -12,15 +12,21 @@ class FranceConnectSection extends StatelessWidget {
   const FranceConnectSection({super.key});
 
   @override
-  Widget build(final BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Text(Localisation.franceConnectTitle, style: DsfrTextStyle.headline2()),
-      const SizedBox(height: DsfrSpacings.s1w),
-      const Text(Localisation.franceConnectDescription, style: DsfrTextStyle.bodyLg()),
-      const SizedBox(height: DsfrSpacings.s3w),
-      _FranceConnectButton(onTap: () => context.read<AuthentificationRepository>().franceConnectStep1()),
-    ],
+  Widget build(final BuildContext context) => ColoredBox(
+    color: const Color(0xFFF6F7FA),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(Localisation.franceConnectTitle, style: DsfrTextStyle.headline3()),
+          const SizedBox(height: DsfrSpacings.s1v),
+          const Text(Localisation.franceConnectDescription, style: DsfrTextStyle.bodySm(color: DsfrColors.grey75Hover)),
+          const SizedBox(height: DsfrSpacings.s2w),
+          _FranceConnectButton(onTap: () => context.read<AuthentificationRepository>().franceConnectStep1()),
+        ],
+      ),
+    ),
   );
 }
 

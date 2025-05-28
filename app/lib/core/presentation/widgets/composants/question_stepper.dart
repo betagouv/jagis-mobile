@@ -12,7 +12,10 @@ class QuestionStepper extends StatelessWidget {
     TextSpan(
       text: 'Question ',
       children: [
-        TextSpan(text: '$current sur $total', style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.blueFranceSun113)),
+        TextSpan(
+          text: '$current sur $total',
+          style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.blueFranceSun113),
+        ),
       ],
     ),
     style: const DsfrTextStyle.bodyMd(color: DsfrColors.blueFranceSun113),

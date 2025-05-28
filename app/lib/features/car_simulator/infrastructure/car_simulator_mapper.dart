@@ -6,10 +6,9 @@ abstract final class CarInfosMapper {
     emissions: json['empreinte'] as double,
     size: ComputedValueMapper.fromJson(json['gabarit'] as Map<String, dynamic>, CarSizeMapper.fromJson),
     motorisation: ComputedValueMapper.fromJson(json['motorisation'] as Map<String, dynamic>, CarMotorisationMapper.fromJson),
-    fuel:
-        json['carburant'] == null
-            ? null
-            : ComputedValueMapper.fromJson(json['carburant'] as Map<String, dynamic>, CarFuelMapper.fromJson),
+    fuel: json['carburant'] == null
+        ? null
+        : ComputedValueMapper.fromJson(json['carburant'] as Map<String, dynamic>, CarFuelMapper.fromJson),
   );
 }
 
@@ -17,7 +16,6 @@ abstract final class CarSimulatorOptionMapper {
   static CarSimulatorOption fromJson(final dynamic json) {
     final carInfos = CarInfosMapper.fromJson(json as Map<String, dynamic>);
 
-    // TODO(erolley): for the moment, there is only one alternative, but we should be able to handle more than one.
     return CarSimulatorOption(
       cost: carInfos.cost,
       emissions: carInfos.emissions,

@@ -53,37 +53,34 @@ class _QuestionView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<QuizQuestionBloc, QuizQuestionState>(
-    builder:
-        (final context, final state) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: DsfrSpacings.s4w,
-          children: [
-            Text(state.quiz.question, style: const DsfrTextStyle.headline2()),
-            if (state.isCorrect == null) _Form(responses: state.quiz.responses) else _Result(quizQuestionState: state),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: FittedBox(
-                child:
-                    state.isCorrect == null
-                        ? DsfrButton(
-                          label: Localisation.voirLaReponse,
-                          variant: DsfrButtonVariant.primary,
-                          size: DsfrComponentSize.lg,
-                          onPressed:
-                              state.selectedResponse == null
-                                  ? null
-                                  : () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
-                        )
-                        : DsfrButton(
-                          label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,
-                          variant: DsfrButtonVariant.primary,
-                          size: DsfrComponentSize.lg,
-                          onPressed: () => context.read<QuizzesBloc>().add(const QuizzesNextQuestion()),
-                        ),
-              ),
-            ),
-          ],
+    builder: (final context, final state) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: DsfrSpacings.s4w,
+      children: [
+        Text(state.quiz.question, style: const DsfrTextStyle.headline2()),
+        if (state.isCorrect == null) _Form(responses: state.quiz.responses) else _Result(quizQuestionState: state),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FittedBox(
+            child: state.isCorrect == null
+                ? DsfrButton(
+                    label: Localisation.voirLaReponse,
+                    variant: DsfrButtonVariant.primary,
+                    size: DsfrComponentSize.lg,
+                    onPressed: state.selectedResponse == null
+                        ? null
+                        : () => context.read<QuizQuestionBloc>().add(const QuizQuestionValidationRequested()),
+                  )
+                : DsfrButton(
+                    label: state.isLastQuestion ? Localisation.voirLeResultat : Localisation.questionSuivante,
+                    variant: DsfrButtonVariant.primary,
+                    size: DsfrComponentSize.lg,
+                    onPressed: () => context.read<QuizzesBloc>().add(const QuizzesNextQuestion()),
+                  ),
+          ),
         ),
+      ],
+    ),
   );
 }
 

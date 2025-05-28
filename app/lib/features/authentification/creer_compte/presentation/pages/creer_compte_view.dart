@@ -1,19 +1,18 @@
+import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/alert.dart';
-import 'package:app/core/presentation/widgets/composants/mot_de_passe/mot_de_passe.dart';
-import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/features/authentification/check_inbox/check_inbox_page.dart';
 import 'package:app/features/authentification/creer_compte/presentation/bloc/creer_compte_bloc.dart';
 import 'package:app/features/authentification/creer_compte/presentation/bloc/creer_compte_event.dart';
 import 'package:app/features/authentification/creer_compte/presentation/bloc/creer_compte_state.dart';
-import 'package:app/features/authentification/creer_compte/presentation/widgets/jaccepte.dart';
-import 'package:app/features/authentification/saisie_code/presentation/pages/saisie_code_page.dart';
+import 'package:app/features/authentification/france_connect/presentation/widgets/france_connect_section.dart';
 import 'package:app/features/authentification/se_connecter/presentation/pages/se_connecter_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:fpdart/fpdart.dart' hide State;
 import 'package:go_router/go_router.dart';
 
 class CreerCompteView extends StatelessWidget {
@@ -22,21 +21,23 @@ class CreerCompteView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocListener<CreerCompteBloc, CreerCompteState>(
     listener: (final context, final state) async {
-      await GoRouter.of(context).pushNamed(SaisieCodePage.name, pathParameters: {'email': state.adresseMail});
+      await GoRouter.of(context).pushNamed(CheckInboxPage.name, pathParameters: {'email': state.email});
     },
-    listenWhen: (final previous, final current) => previous.compteCree != current.compteCree && current.compteCree,
-    child: FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+    listenWhen: (final previous, final current) =>
+        previous.isAccountCreated != current.isAccountCreated && current.isAccountCreated,
+    child: Scaffold(
+      appBar: AppBar(iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          // TODO(lsaudon): à réactiver quand ce sera prêt côté backend
-          // const FranceConnectSection(),
-          // const SizedBox(height: DsfrSpacings.s3w),
-          // const DividerWithText(),
-          // const SizedBox(height: DsfrSpacings.s3w),
-          const Text(Localisation.creerMonCompteApp, style: DsfrTextStyle.headline2()),
+          const Text(Localisation.creerMonCompte, style: DsfrTextStyle.headline2()),
+          const SizedBox(height: DsfrSpacings.s1w),
+          const _Cgu(),
           const SizedBox(height: DsfrSpacings.s3w),
+          const FranceConnectSection(),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const Text(Localisation.avecMonAdresseEmail, style: DsfrTextStyle.headline3()),
+          const SizedBox(height: DsfrSpacings.s2w),
           DsfrInput(
             label: Localisation.adresseEmail,
             hintText: Localisation.adresseEmailHint,
@@ -46,21 +47,19 @@ class CreerCompteView extends StatelessWidget {
             autocorrect: false,
             autofillHints: const [AutofillHints.email],
           ),
-          const SizedBox(height: DsfrSpacings.s2w),
-          FnvMotDePasse(onChanged: (final value) => context.read<CreerCompteBloc>().add(CreerCompteMotDePasseAChange(value))),
           const _MessageErreur(),
-          const SizedBox(height: DsfrSpacings.s2w),
-          const _Cgu(),
           const SizedBox(height: DsfrSpacings.s3w),
           const _BoutonCreerCompte(),
-          const SizedBox(height: DsfrSpacings.s2w),
-          Center(
-            child: DsfrLink.md(
-              label: Localisation.vousAvezDejaUnCompte,
-              onTap: () async {
-                await GoRouter.of(context).pushReplacementNamed(SeConnecterPage.name);
-              },
-            ),
+          const SizedBox(height: DsfrSpacings.s3w),
+          const DsfrDivider(color: Color(0xFFE8E9F2)),
+          const SizedBox(height: DsfrSpacings.s4w),
+          DsfrButton(
+            label: Localisation.jaiDejaUnCompte,
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrComponentSize.lg,
+            onPressed: () async {
+              await GoRouter.of(context).pushReplacementNamed(SeConnecterPage.name);
+            },
           ),
           const SafeArea(child: SizedBox.shrink()),
         ],
@@ -69,20 +68,54 @@ class CreerCompteView extends StatelessWidget {
   );
 }
 
-class _Cgu extends StatelessWidget {
+class _Cgu extends StatefulWidget {
   const _Cgu();
 
   @override
-  Widget build(final BuildContext context) {
-    final valeur = context.select<CreerCompteBloc, bool>((final bloc) => bloc.state.aCguAcceptees);
+  State<_Cgu> createState() => _CguState();
+}
 
-    return Jaccepte(
-      label: Localisation.lesCgu,
-      url: Localisation.lesCguSite,
-      value: valeur,
-      onChanged: (final value) => context.read<CreerCompteBloc>().add(CreerCompteCguAChange(value)),
-    );
+class _CguState extends State<_Cgu> {
+  final _tapGestureRecognizer = TapGestureRecognizer();
+
+  @override
+  void initState() {
+    super.initState();
+    _tapGestureRecognizer.onTap = () async {
+      await FnvUrlLauncher.launch(Localisation.lesCguSite);
+    };
   }
+
+  @override
+  void dispose() {
+    _tapGestureRecognizer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) => Text.rich(
+    TextSpan(
+      text: Localisation.lesCguTitrePart1,
+      style: const DsfrTextStyle.bodySm(),
+      children: [
+        TextSpan(
+          recognizer: _tapGestureRecognizer,
+          children: [
+            TextSpan(
+              text: Localisation.lesCguTitrePart2,
+              style: const DsfrTextStyle.bodySm(
+                color: DsfrColors.blueFranceSun113,
+              ).copyWith(decoration: TextDecoration.underline, decorationColor: DsfrColors.blueFranceSun113),
+            ),
+            const WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Icon(DsfrIcons.systemExternalLinkFill, size: 16, color: DsfrColors.blueFranceSun113),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
 
 class _MessageErreur extends StatelessWidget {
@@ -90,10 +123,15 @@ class _MessageErreur extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => context
-      .select<CreerCompteBloc, Option<String>>((final bloc) => bloc.state.erreur)
+      .select<CreerCompteBloc, Option<String>>((final bloc) => bloc.state.errorMessage)
       .fold(
         () => const SizedBox.shrink(),
-        (final t) => Column(children: [const SizedBox(height: DsfrSpacings.s2w), FnvAlert.error(label: t)]),
+        (final t) => Column(
+          children: [
+            const SizedBox(height: DsfrSpacings.s2w),
+            FnvAlert.error(label: t),
+          ],
+        ),
       );
 }
 
@@ -102,13 +140,13 @@ class _BoutonCreerCompte extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final estValide = context.select<CreerCompteBloc, bool>((final bloc) => bloc.state.estValide);
+    final isAccountValid = context.select<CreerCompteBloc, bool>((final bloc) => bloc.state.isAccountValid);
 
     return DsfrButton(
       label: Localisation.creerMonCompte,
       variant: DsfrButtonVariant.primary,
       size: DsfrComponentSize.lg,
-      onPressed: estValide ? () => context.read<CreerCompteBloc>().add(const CreerCompteCreationDemandee()) : null,
+      onPressed: isAccountValid ? () => context.read<CreerCompteBloc>().add(const CreerCompteCreationDemandee()) : null,
     );
   }
 }

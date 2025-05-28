@@ -90,7 +90,7 @@ void main() {
           ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
-      await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');
+      await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

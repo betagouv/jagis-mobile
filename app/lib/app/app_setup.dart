@@ -120,10 +120,9 @@ class _AppSetupState extends State<AppSetup> {
         throw const MissingEnvironmentKeyException(apiUrlKey);
       }
 
-      final dio =
-          Dio(BaseOptions(baseUrl: Uri.parse(apiUrl).toString(), validateStatus: (final status) => true))
-            ..httpClientAdapter = NativeAdapter()
-            ..addSentry();
+      final dio = Dio(BaseOptions(baseUrl: Uri.parse(apiUrl).toString(), validateStatus: (final status) => true))
+        ..httpClientAdapter = NativeAdapter()
+        ..addSentry();
       final client = DioHttpClient(dio: dio, authenticationService: _authenticationService);
 
       return App(

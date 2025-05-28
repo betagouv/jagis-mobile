@@ -32,12 +32,11 @@ class _View extends StatelessWidget {
   Widget build(final BuildContext context) => FnvScaffold(
     appBar: FnvAppBar(),
     body: BlocBuilder<RankingBloc, RankingState>(
-      builder:
-          (final context, final state) => switch (state) {
-            RankingInitial() || RankingLoadFailure() => const SizedBox.shrink(),
-            RankingLoadInProgress() => const Center(child: CircularProgressIndicator()),
-            RankingLoadSuccess() => _Success(successState: state),
-          },
+      builder: (final context, final state) => switch (state) {
+        RankingInitial() || RankingLoadFailure() => const SizedBox.shrink(),
+        RankingLoadInProgress() => const Center(child: CircularProgressIndicator()),
+        RankingLoadSuccess() => _Success(successState: state),
+      },
     ),
   );
 }

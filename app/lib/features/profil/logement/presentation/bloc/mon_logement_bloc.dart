@@ -34,10 +34,9 @@ class MonLogementBloc extends Bloc<MonLogementEvent, MonLogementState> {
     final result = await _profilRepository.recupererLogement();
     if (result.isRight()) {
       final logement = result.getRight().getOrElse(() => throw Exception());
-      final communes =
-          logement.codePostal == null
-              ? Either<Exception, List<String>>.right(<String>[])
-              : await _communesRepository.recupererLesCommunes(logement.codePostal!);
+      final communes = logement.codePostal == null
+          ? Either<Exception, List<String>>.right(<String>[])
+          : await _communesRepository.recupererLesCommunes(logement.codePostal!);
 
       emit(
         state.copyWith(
@@ -58,10 +57,9 @@ class MonLogementBloc extends Bloc<MonLogementEvent, MonLogementState> {
   }
 
   Future<void> _onCodePostalChange(final MonLogementCodePostalChange event, final Emitter<MonLogementState> emit) async {
-    final result =
-        (event.valeur.length == 5
-            ? await _communesRepository.recupererLesCommunes(event.valeur)
-            : Either<Exception, List<String>>.right(<String>[]));
+    final result = (event.valeur.length == 5
+        ? await _communesRepository.recupererLesCommunes(event.valeur)
+        : Either<Exception, List<String>>.right(<String>[]));
     if (result.isRight()) {
       final communes = result.getRight().getOrElse(() => throw Exception());
       emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));

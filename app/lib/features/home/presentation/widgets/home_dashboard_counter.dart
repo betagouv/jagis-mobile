@@ -51,7 +51,10 @@ class HomeDashboardCounter extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(padding: const EdgeInsets.only(top: 20), child: DsfrDivider(width: 1, height: progressSize)),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: DsfrDivider(width: 1, height: progressSize),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
@@ -76,18 +79,24 @@ class HomeDashboardCounter extends StatelessWidget {
                         Text.rich(
                           bilanIsDone && environmentalKgCO2e != null
                               ? TextSpan(
-                                text: FnvNumberFormat.kgToTonnes(environmentalKgCO2e!),
-                                children: const [
-                                  TextSpan(text: 'T', style: DsfrTextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
-                                  TextSpan(text: '/an', style: DsfrTextStyle(fontSize: 13)),
-                                ],
-                              )
+                                  text: FnvNumberFormat.kgToTonnes(environmentalKgCO2e!),
+                                  children: const [
+                                    TextSpan(
+                                      text: 'T',
+                                      style: DsfrTextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(text: '/an', style: DsfrTextStyle(fontSize: 13)),
+                                  ],
+                                )
                               : TextSpan(
-                                text: bilanCarbonePercentageCompletion.toString(),
-                                children: const [
-                                  TextSpan(text: '%', style: DsfrTextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
+                                  text: bilanCarbonePercentageCompletion.toString(),
+                                  children: const [
+                                    TextSpan(
+                                      text: '%',
+                                      style: DsfrTextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                           style: const DsfrTextStyle(fontSize: 37, fontWeight: FontWeight.bold),
                         ),
                       ],

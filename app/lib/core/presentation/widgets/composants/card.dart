@@ -26,17 +26,16 @@ class _FnvCardState extends State<FnvCard> with MaterialStateMixin<FnvCard> {
       ),
       child: Material(
         color: FnvColors.transparent,
-        child:
-            widget.onTap == null
-                ? widget.child
-                : InkWell(
-                  onTap: widget.onTap,
-                  onHighlightChanged: updateMaterialState(WidgetState.pressed),
-                  onHover: updateMaterialState(WidgetState.hovered),
-                  focusColor: FnvColors.transparent,
-                  onFocusChange: updateMaterialState(WidgetState.focused),
-                  child: widget.child,
-                ),
+        child: widget.onTap == null
+            ? widget.child
+            : InkWell(
+                onTap: widget.onTap,
+                onHighlightChanged: updateMaterialState(WidgetState.pressed),
+                onHover: updateMaterialState(WidgetState.hovered),
+                focusColor: FnvColors.transparent,
+                onFocusChange: updateMaterialState(WidgetState.focused),
+                child: widget.child,
+              ),
       ),
     ),
   );

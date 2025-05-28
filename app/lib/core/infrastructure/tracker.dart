@@ -12,14 +12,18 @@ class Tracker {
     if (!MatomoTracker.instance.initialized) {
       return;
     }
-    MatomoTracker.instance.trackEvent(eventInfo: EventInfo(category: 'click', action: page, name: contenu));
+    MatomoTracker.instance.trackEvent(
+      eventInfo: EventInfo(category: 'click', action: page, name: contenu),
+    );
   }
 
   void trackNotificationOpened(final String name) {
     if (!MatomoTracker.instance.initialized) {
       return;
     }
-    MatomoTracker.instance.trackEvent(eventInfo: EventInfo(category: 'notification', action: 'opened', name: name));
+    MatomoTracker.instance.trackEvent(
+      eventInfo: EventInfo(category: 'notification', action: 'opened', name: name),
+    );
   }
 
   void dispose() {

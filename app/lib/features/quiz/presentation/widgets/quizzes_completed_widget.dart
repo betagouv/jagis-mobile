@@ -68,7 +68,12 @@ class _CompletedQuizTitle extends StatelessWidget {
   Widget build(final BuildContext context) => Text.rich(
     TextSpan(
       text: Localisation.vousAvezTermineLeQuiz,
-      children: [TextSpan(text: ' "$name"', style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113))],
+      children: [
+        TextSpan(
+          text: ' "$name"',
+          style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),
+        ),
+      ],
     ),
     style: const DsfrTextStyle.bodyLg(color: DsfrColors.blueFranceSun113),
   );

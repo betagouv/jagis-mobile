@@ -10,11 +10,10 @@ abstract final class ThemeDataMapper {
     communeName: json['nom_commune'] as String,
     isQuestionsNeeded: json['est_personnalisation_necessaire'] as bool,
     sequenceId: json['enchainement_questions_personnalisation'] as String,
-    actionsRecommanded:
-        (json['liste_actions_recommandees'] as List<dynamic>)
-            .cast<Map<String, dynamic>>()
-            .map(ActionSummaryMapper.fromJson)
-            .toList(),
+    actionsRecommanded: (json['liste_actions_recommandees'] as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map(ActionSummaryMapper.fromJson)
+        .toList(),
     actionCount: json['nombre_actions'] as int,
     aidCount: json['nombre_aides'] as int,
     simulatorCount: json['nombre_simulateurs'] as int,

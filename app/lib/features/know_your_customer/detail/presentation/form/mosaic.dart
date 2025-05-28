@@ -59,21 +59,13 @@ class _MosaicSetState extends State<_MosaicSet> {
             value: e.isSelected,
             onChanged: (final value) {
               setState(() {
-                _responses =
-                    _responses
-                        .map(
-                          (final r) =>
-                              r.code == e.code
-                                  ? ResponseMosaic(
-                                    code: r.code,
-                                    label: r.label,
-                                    emoji: r.emoji,
-                                    imageUrl: r.imageUrl,
-                                    isSelected: value,
-                                  )
-                                  : r,
-                        )
-                        .toList();
+                _responses = _responses
+                    .map(
+                      (final r) => r.code == e.code
+                          ? ResponseMosaic(code: r.code, label: r.label, emoji: r.emoji, imageUrl: r.imageUrl, isSelected: value)
+                          : r,
+                    )
+                    .toList();
               });
               context.read<QuestionEditBloc>().add(QuestionEditMosaicChangee(_responses));
             },

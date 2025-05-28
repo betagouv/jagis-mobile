@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 class Article extends Equatable {
   const Article({
     required this.id,
+    required this.imageUrl,
     required this.titre,
     required this.sousTitre,
     required this.contenu,
@@ -15,6 +16,7 @@ class Article extends Equatable {
   });
 
   final String id;
+  final String imageUrl;
   final String titre;
   final String? sousTitre;
   final String contenu;
@@ -25,6 +27,7 @@ class Article extends Equatable {
 
   Article copyWith({
     final String? id,
+    final String? imageUrl,
     final String? titre,
     final String? sousTitre,
     final String? contenu,
@@ -34,6 +37,7 @@ class Article extends Equatable {
     final bool? isRead,
   }) => Article(
     id: id ?? this.id,
+    imageUrl: imageUrl ?? this.imageUrl,
     titre: titre ?? this.titre,
     sousTitre: sousTitre ?? this.sousTitre,
     contenu: contenu ?? this.contenu,
@@ -44,5 +48,5 @@ class Article extends Equatable {
   );
 
   @override
-  List<Object?> get props => [id, titre, sousTitre, contenu, partner, sources, isFavorite, isRead];
+  List<Object?> get props => [id, imageUrl, titre, sousTitre, contenu, partner, sources, isFavorite, isRead];
 }

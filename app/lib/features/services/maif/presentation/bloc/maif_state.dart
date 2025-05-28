@@ -30,6 +30,7 @@ final class MaifLoadSuccess extends MaifState {
     required this.numberOfCatNat,
     required this.droughtPercentage,
     required this.floodPercentage,
+    required this.isLoading,
   });
 
   final Address userAddress;
@@ -38,6 +39,7 @@ final class MaifLoadSuccess extends MaifState {
   final int numberOfCatNat;
   final int droughtPercentage;
   final int floodPercentage;
+  final bool isLoading;
 
   bool get isNewAddress => userAddress != searchAddress;
 
@@ -48,6 +50,7 @@ final class MaifLoadSuccess extends MaifState {
     final int? numberOfCatNat,
     final int? droughtPercentage,
     final int? floodPercentage,
+    final bool? isLoading,
   }) => MaifLoadSuccess(
     userAddress: userAddress ?? this.userAddress,
     searchAddress: searchAddress ?? this.searchAddress,
@@ -55,10 +58,11 @@ final class MaifLoadSuccess extends MaifState {
     numberOfCatNat: numberOfCatNat ?? this.numberOfCatNat,
     droughtPercentage: droughtPercentage ?? this.droughtPercentage,
     floodPercentage: floodPercentage ?? this.floodPercentage,
+    isLoading: isLoading ?? this.isLoading,
   );
 
   @override
-  List<Object?> get props => [userAddress, searchAddress, risks, numberOfCatNat, droughtPercentage, floodPercentage];
+  List<Object?> get props => [userAddress, searchAddress, risks, numberOfCatNat, droughtPercentage, floodPercentage, isLoading];
 }
 
 @immutable

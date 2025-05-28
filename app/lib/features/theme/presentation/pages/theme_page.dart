@@ -65,13 +65,12 @@ class _PageState extends State<_Page> with RouteAware {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<ThemeBloc, ThemeState>(
-    builder:
-        (final context, final state) => switch (state) {
-          ThemeInitial() => const SizedBox.shrink(),
-          ThemeLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          ThemeLoadSuccess() => _Success(data: state),
-          ThemeLoadFailure() => const Center(child: Text('Erreur')),
-        },
+    builder: (final context, final state) => switch (state) {
+      ThemeInitial() => const SizedBox.shrink(),
+      ThemeLoadInProgress() => const Center(child: CircularProgressIndicator()),
+      ThemeLoadSuccess() => _Success(data: state),
+      ThemeLoadFailure() => const Center(child: Text('Erreur')),
+    },
   );
 }
 
@@ -93,7 +92,10 @@ class _Success extends StatelessWidget {
         ThemeHeader(themeType: themeType, themeSummary: data.summary),
         ActionsRecommandedSection(theme: theme),
         sizedBox,
-        Padding(padding: padding, child: _Services(services: data.services)),
+        Padding(
+          padding: padding,
+          child: _Services(services: data.services),
+        ),
         sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),
@@ -117,7 +119,10 @@ class _Services extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         clipBehavior: Clip.none,
         child: IntrinsicHeight(
-          child: Row(spacing: DsfrSpacings.s2w, children: services.map((final e) => ServiceCard(service: e)).toList()),
+          child: Row(
+            spacing: DsfrSpacings.s2w,
+            children: services.map((final e) => ServiceCard(service: e)).toList(),
+          ),
         ),
       ),
     ],

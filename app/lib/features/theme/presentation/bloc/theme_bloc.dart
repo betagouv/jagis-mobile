@@ -37,7 +37,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
               commune: theme.communeName,
               links: ThemeSummary.buildThemeLinksFor(
                 themeType: theme.themeType,
-                commune: theme.communeName,
                 aidCount: theme.aidCount,
                 recipeCount: theme.recipeCount,
               ),
@@ -80,7 +79,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
               commune: theme.communeName,
               links: ThemeSummary.buildThemeLinksFor(
                 themeType: theme.themeType,
-                commune: theme.communeName,
                 aidCount: theme.aidCount,
                 recipeCount: theme.recipeCount,
               ),
@@ -106,7 +104,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
               commune: theme.communeName,
               links: ThemeSummary.buildThemeLinksFor(
                 themeType: theme.themeType,
-                commune: theme.communeName,
                 aidCount: theme.aidCount,
                 recipeCount: theme.recipeCount,
               ),

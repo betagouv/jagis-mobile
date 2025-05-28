@@ -65,7 +65,10 @@ class FnvAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return Material(
       color: FnvColors.appBarFond,
-      child: DecoratedBox(decoration: const BoxDecoration(boxShadow: appBarOmbre), child: SafeArea(child: widget)),
+      child: DecoratedBox(
+        decoration: const BoxDecoration(boxShadow: appBarOmbre),
+        child: SafeArea(child: widget),
+      ),
     );
   }
 }

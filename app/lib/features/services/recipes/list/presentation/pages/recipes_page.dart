@@ -33,11 +33,10 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<RecipesBloc, RecipesState>(
-    builder:
-        (final context, final state) => switch (state) {
-          RecipesInitial() || RecipesLoadInProgress() || RecipesLoadFailure() => const SizedBox.shrink(),
-          RecipesLoadSuccess() => _Success(value: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      RecipesInitial() || RecipesLoadInProgress() || RecipesLoadFailure() => const SizedBox.shrink(),
+      RecipesLoadSuccess() => _Success(value: state),
+    },
   );
 }
 

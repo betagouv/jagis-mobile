@@ -16,7 +16,7 @@ abstract final class ActionServiceMapper {
   static ServiceId? _mapServiceId(final String type) => switch (type) {
     'longue_vie_objets' => ServiceId.lvao,
     'recettes' => ServiceId.mangerBouger,
-    'proximite' => ServiceId.presDeChezVous,
+    'proximite' => ServiceId.pdcn,
     _ => null,
   };
 }

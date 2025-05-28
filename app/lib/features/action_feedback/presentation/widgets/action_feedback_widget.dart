@@ -27,7 +27,9 @@ class ActionFeedbackWidget extends StatelessWidget {
         child: Row(
           spacing: DsfrSpacings.s1v,
           children: [
-            const Expanded(child: Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.bodyMd(color: color))),
+            const Expanded(
+              child: Text(Localisation.avezVousAimeCettePage, style: DsfrTextStyle.bodyMd(color: color)),
+            ),
             FeedbackStars(
               size: 22,
               value: action.rate ?? 0,

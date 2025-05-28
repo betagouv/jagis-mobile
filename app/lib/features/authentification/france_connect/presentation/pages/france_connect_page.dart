@@ -19,7 +19,9 @@ class FranceConnectPage extends StatelessWidget {
     builder: (final context, final state) {
       final queryParameters = state.uri.queryParameters;
 
-      return FranceConnectPage(openId: OpenId(code: queryParameters['code']!, state: queryParameters['state']!));
+      return FranceConnectPage(
+        openId: OpenId(code: queryParameters['code']!, state: queryParameters['state']!),
+      );
     },
     redirect: (final context, final state) {
       final queryParameters = state.uri.queryParameters;
@@ -41,12 +43,11 @@ class _Body extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvScaffold(
     body: BlocBuilder<FranceConnectBloc, FranceConnectState>(
-      builder:
-          (final context, final state) => switch (state) {
-            FranceConnectInitial() || FranceConnectLoadInProgress() => const Center(child: CircularProgressIndicator()),
-            FranceConnectLoadFailure() => const Center(child: Text('Erreur lors de la connexion')),
-            FranceConnectLoadSuccess() => const Center(child: Text('Connexion réussie')),
-          },
+      builder: (final context, final state) => switch (state) {
+        FranceConnectInitial() || FranceConnectLoadInProgress() => const Center(child: CircularProgressIndicator()),
+        FranceConnectLoadFailure() => const Center(child: Text('Erreur lors de la connexion')),
+        FranceConnectLoadSuccess() => const Center(child: Text('Connexion réussie')),
+      },
     ),
   );
 }

@@ -29,11 +29,17 @@ class AppEstEncoreEnExperimentationPage extends StatelessWidget {
     const bodyLg = DsfrTextStyle.bodyLg();
 
     return FnvScaffold(
-      appBar: AppBar(backgroundColor: FnvColors.background, iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113)),
+      appBar: AppBar(
+        backgroundColor: FnvColors.background,
+        iconTheme: const IconThemeData(color: DsfrColors.blueFranceSun113),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(paddingVerticalPage),
         children: [
-          const Align(alignment: Alignment.centerLeft, child: OnboardingIllustration(assetName: AssetImages.illustration3)),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: OnboardingIllustration(assetName: AssetImages.illustration3),
+          ),
           const Text(Localisation.appEstEncoreEnExperimentation, style: DsfrTextStyle.headline2()),
           const SizedBox(height: DsfrSpacings.s2w),
           Text.rich(

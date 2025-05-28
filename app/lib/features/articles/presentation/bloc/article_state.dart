@@ -6,24 +6,8 @@ import 'package:meta/meta.dart';
 final class ArticleState extends Equatable {
   const ArticleState({required this.article});
 
-  const ArticleState.empty()
-    : this(
-        article: const Article(
-          id: '',
-          titre: '',
-          sousTitre: null,
-          contenu: '',
-          partner: null,
-          sources: [],
-          isFavorite: false,
-          isRead: false,
-        ),
-      );
-
-  final Article article;
-
-  ArticleState copyWith({final Article? article}) => ArticleState(article: article ?? this.article);
+  final Article? article;
 
   @override
-  List<Object> get props => [article];
+  List<Object?> get props => [article];
 }

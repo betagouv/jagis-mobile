@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:app/core/address/address.dart';
+import 'package:app/core/address/address_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -100,14 +101,6 @@ class ProfilRepository {
         : Left(Exception('Erreur lors de la suppression du compte'));
   }
 
-  Future<Either<Exception, Unit>> changerMotDePasse({required final String motDePasse}) async {
-    final response = await _client.patch(Endpoints.profile, data: jsonEncode({'mot_de_passe': motDePasse}));
-
-    return isResponseSuccessful(response.statusCode)
-        ? const Right(unit)
-        : Left(Exception('Erreur lors de la mise à jour du mot de passe'));
-  }
-
   Future<Either<Exception, Unit>> mettreAJourCodePostalEtCommune({
     required final String codePostal,
     required final String commune,
@@ -117,6 +110,18 @@ class ProfilRepository {
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)
         : Left(Exception('Erreur lors de la mise à jour du code postal et de la commune'));
+  }
+
+  Future<Either<Exception, Address>> fetchAddress() async {
+    final response = await _client.get(Endpoints.logement);
+
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception('Erreur lors de la récupération de l’adresse'));
+    }
+
+    final json = response.data as Map<String, dynamic>;
+
+    return Right(AddressMapper.fromJson(json));
   }
 
   Future<Either<Exception, Unit>> modifyAddress(final Address address) async {

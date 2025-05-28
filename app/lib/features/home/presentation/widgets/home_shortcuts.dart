@@ -8,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeShortcuts extends StatelessWidget {
-  const HomeShortcuts({super.key, required this.commune, required this.nbAids, required this.nbRecipies});
+  const HomeShortcuts({super.key, required this.nbAids, required this.nbRecipies});
 
-  final String commune;
   final int nbAids;
   final int nbRecipies;
 
@@ -30,25 +29,20 @@ class HomeShortcuts extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 spacing: DsfrSpacings.s3v,
-                children:
-                    ThemeType.values
-                        .flatMap(
-                          (final themeType) => ThemeSummary.buildThemeLinksFor(
-                            themeType: themeType,
-                            commune: commune,
-                            aidCount: nbAids,
-                            recipeCount: nbRecipies,
-                          ),
-                        )
-                        .toSet()
-                        .map(
-                          (final link) => SizedBox(
-                            width: screenWidth(context, percentage: 0.8),
-                            height: double.infinity,
-                            child: ThemeServiceInfo(link: link),
-                          ),
-                        )
-                        .toList(),
+                children: ThemeType.values
+                    .flatMap(
+                      (final themeType) =>
+                          ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipies),
+                    )
+                    .toSet()
+                    .map(
+                      (final link) => SizedBox(
+                        width: screenWidth(context, percentage: 0.8),
+                        height: double.infinity,
+                        child: ThemeServiceInfo(link: link),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
           ),

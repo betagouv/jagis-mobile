@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
@@ -19,8 +20,11 @@ class RecipePage extends StatelessWidget {
   static const name = 'recette';
   static const path = 'recettes/:id';
 
-  static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => RecipePage(id: state.pathParameters['id']!));
+  static GoRoute get route => GoRoute(
+    path: path,
+    name: name,
+    builder: (final context, final state) => RecipePage(id: state.pathParameters['id']!),
+  );
 
   final String id;
 
@@ -36,12 +40,11 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<RecipeBloc, RecipeState>(
-    builder:
-        (final context, final state) => switch (state) {
-          RecipeInitial() || RecipeLoadInProgress() => const Center(child: CircularProgressIndicator()),
-          RecipeLoadSuccess() => _Success(state),
-          RecipeLoadFailure() => const Center(child: Text('Erreur lors du chargement de la recette')),
-        },
+    builder: (final context, final state) => switch (state) {
+      RecipeInitial() || RecipeLoadInProgress() => const Center(child: CircularProgressIndicator()),
+      RecipeLoadSuccess() => _Success(state),
+      RecipeLoadFailure() => const Center(child: Text('Erreur lors du chargement de la recette')),
+    },
   );
 }
 
@@ -66,7 +69,10 @@ class _Success extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(alignment: Alignment.centerLeft, child: RecipeDifficulty(value: recipe.difficulty)),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: RecipeDifficulty(value: recipe.difficulty),
+              ),
               const SizedBox(height: DsfrSpacings.s1v),
               Text(recipe.title, style: const DsfrTextStyle.headline2()),
               const SizedBox(height: DsfrSpacings.s1v),
@@ -75,7 +81,16 @@ class _Success extends StatelessWidget {
               const Text(Localisation.ingredients, style: DsfrTextStyle.headline4()),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.ingredients
-                  .map((final e) => Text('• ${e.quantity} ${e.unit} ${e.name}', style: const DsfrTextStyle.bodyMd()))
+                  .map(
+                    (final e) => Text(
+                      [
+                        FnvNumberFormat.formatNumber(e.quantity),
+                        e.unit,
+                        e.name,
+                      ].where((final element) => element.isNotEmpty).join(' '),
+                      style: const DsfrTextStyle.bodyMd(),
+                    ),
+                  )
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),
               const SizedBox(height: DsfrSpacings.s2w),
               const Text(Localisation.etapes, style: DsfrTextStyle.headline4()),

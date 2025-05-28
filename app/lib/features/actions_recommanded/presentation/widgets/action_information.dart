@@ -10,23 +10,22 @@ class ActionInformation extends StatelessWidget {
   final String suffix;
 
   @override
-  Widget build(final BuildContext context) =>
-      value == 0
-          ? const SizedBox.shrink()
-          : ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 24),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: DsfrSpacings.s1w,
-              children: [
-                ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
-                Expanded(
-                  child: FnvMarkdown(
-                    data: '**$value** $suffix${value > 1 ? 's' : ''}',
-                    p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
-                  ),
+  Widget build(final BuildContext context) => value == 0
+      ? const SizedBox.shrink()
+      : ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 24),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: DsfrSpacings.s1w,
+            children: [
+              ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
+              Expanded(
+                child: FnvMarkdown(
+                  data: '**$value** $suffix${value > 1 ? 's' : ''}',
+                  p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
                 ),
-              ],
-            ),
-          );
+              ),
+            ],
+          ),
+        );
 }

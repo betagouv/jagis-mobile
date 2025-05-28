@@ -36,11 +36,10 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<AidListBloc, AidListState>(
-    builder:
-        (final context, final state) => switch (state) {
-          AidListInitial() || AidListLoadInProgress() || AidListLoadFailure() => const SizedBox.shrink(),
-          AidListLoadSuccess() => _Success(state: state),
-        },
+    builder: (final context, final state) => switch (state) {
+      AidListInitial() || AidListLoadInProgress() || AidListLoadFailure() => const SizedBox.shrink(),
+      AidListLoadSuccess() => _Success(state: state),
+    },
   );
 }
 
@@ -54,15 +53,14 @@ class _Success extends StatelessWidget {
     children: [
       if (!state.isCovered)
         BlocBuilder<AidsDisclaimerCubit, AidsDisclaimerState>(
-          builder:
-              (final context, final state) => switch (state) {
-                AidsDisclaimerVisible() => DsfrNotice(
-                  titre: Localisation.leServiveNeCouvrePasEncoreVotreVille,
-                  description: Localisation.leServiveNeCouvrePasEncoreVotreVilleDescription,
-                  onClose: () => context.read<AidsDisclaimerCubit>().closeDisclaimer(),
-                ),
-                AidsDisclaimerNotVisible() => const SizedBox.shrink(),
-              },
+          builder: (final context, final state) => switch (state) {
+            AidsDisclaimerVisible() => DsfrNotice(
+              titre: Localisation.leServiveNeCouvrePasEncoreVotreVille,
+              description: Localisation.leServiveNeCouvrePasEncoreVotreVilleDescription,
+              onClose: () => context.read<AidsDisclaimerCubit>().closeDisclaimer(),
+            ),
+            AidsDisclaimerNotVisible() => const SizedBox.shrink(),
+          },
         ),
       SafeArea(child: _List(state: state)),
     ],

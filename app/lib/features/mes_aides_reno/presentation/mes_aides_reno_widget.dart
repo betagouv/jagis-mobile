@@ -5,6 +5,7 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_bloc.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_event.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_state.dart';
+import 'package:app/features/mes_aides_reno/infrastructure/mes_aides_reno_repository.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:dsfr/dsfr.dart';
 import 'package:flutter/foundation.dart';
@@ -19,7 +20,8 @@ class MesAidesRenoWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => MesAidesRenoBloc(context.read())..add(const MesAidesRenoIframeUrlRequested()),
+    create: (final context) =>
+        MesAidesRenoBloc(MesAidesRenoRepository(context.read()))..add(const MesAidesRenoIframeUrlRequested()),
     child: _View(isDone),
   );
 }
@@ -31,16 +33,15 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<MesAidesRenoBloc, MesAidesRenoState>(
-    builder:
-        (final context, final state) => switch (state.status) {
-          MesAidesRenoStateStatus.initial || MesAidesRenoStateStatus.loading => const Center(child: CircularProgressIndicator()),
-          MesAidesRenoStateStatus.success => _Success(
-            iframeUrl: state.iframeUrl!,
-            isDone: isDone,
-            skipQuestions: state.whenIsDone ?? false,
-          ),
-          MesAidesRenoStateStatus.failure => Center(child: Text(state.errorMessage ?? 'Erreur inconnue')),
-        },
+    builder: (final context, final state) => switch (state.status) {
+      MesAidesRenoStateStatus.initial || MesAidesRenoStateStatus.loading => const Center(child: CircularProgressIndicator()),
+      MesAidesRenoStateStatus.success => _Success(
+        iframeUrl: state.iframeUrl!,
+        isDone: isDone,
+        skipQuestions: state.whenIsDone ?? false,
+      ),
+      MesAidesRenoStateStatus.failure => Center(child: Text(state.errorMessage ?? 'Erreur inconnue')),
+    },
   );
 }
 
@@ -71,14 +72,12 @@ class _MesAidesRenoWidgetState extends State<_Success> {
 
   @override
   Widget build(final BuildContext context) {
-    var iframeUrl = WebUri(widget.iframeUrl).replace(host: 'reno-git-fork-emilerolley-master-mesaidesreno.vercel.app');
+    var iframeUrl = Uri.parse(widget.iframeUrl);
     if (!widget.skipQuestions) {
       iframeUrl = iframeUrl.replace(
         queryParameters: {'sendDataToHost': 'true', 'hostName': "J'agis", ...iframeUrl.queryParameters},
       );
     }
-
-    print(iframeUrl);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,13 +94,12 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                   const Text(Localisation.vousAvezDejaFaitCeSimulateur, style: DsfrTextStyle.bodyMd()),
                   DsfrLink.md(
                     label: Localisation.voirMesResultats,
-                    onTap:
-                        () => {
-                          setState(() {
-                            _isAtEllibilityResult = true;
-                          }),
-                          context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(skipQuestions: true)),
-                        },
+                    onTap: () => {
+                      setState(() {
+                        _isAtEllibilityResult = true;
+                      }),
+                      context.read<MesAidesRenoBloc>().add(const MesAidesRenoIframeUrlRequested(skipQuestions: true)),
+                    },
                   ),
                 ],
               ),
@@ -132,7 +130,6 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                       }
                     case 'mesaidesreno-eligibility-done':
                       {
-                        print('resultat : $data');
                         setState(() {
                           _isAtEllibilityResult = true;
                         });

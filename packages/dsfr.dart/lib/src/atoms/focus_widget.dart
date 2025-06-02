@@ -11,10 +11,6 @@ class DsfrFocusWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    if (!isFocused) {
-      return child;
-    }
-
     const marginAroundChild = DsfrSpacings.s0v5;
 
     return Stack(
@@ -22,22 +18,23 @@ class DsfrFocusWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         child,
-        Positioned(
-          left: -marginAroundChild,
-          top: -marginAroundChild,
-          right: -marginAroundChild,
-          bottom: -marginAroundChild,
-          child: IgnorePointer(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: const Border.fromBorderSide(
-                  BorderSide(color: DsfrColors.focus525, width: marginAroundChild, strokeAlign: BorderSide.strokeAlignOutside),
+        if (isFocused)
+          Positioned(
+            left: -marginAroundChild,
+            top: -marginAroundChild,
+            right: -marginAroundChild,
+            bottom: -marginAroundChild,
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: const Border.fromBorderSide(
+                    BorderSide(color: DsfrColors.focus525, width: marginAroundChild, strokeAlign: BorderSide.strokeAlignOutside),
+                  ),
+                  borderRadius: borderRadius?.add(const BorderRadius.all(Radius.circular(marginAroundChild))),
                 ),
-                borderRadius: borderRadius?.add(const BorderRadius.all(Radius.circular(marginAroundChild))),
               ),
             ),
           ),
-        ),
       ],
     );
   }

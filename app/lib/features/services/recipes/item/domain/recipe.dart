@@ -28,7 +28,7 @@ class Ingredient extends Equatable {
 
   final int order;
   final String name;
-  final int quantity;
+  final double quantity;
   final String unit;
 
   @override

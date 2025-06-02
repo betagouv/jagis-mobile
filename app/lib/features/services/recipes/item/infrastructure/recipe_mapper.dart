@@ -16,7 +16,7 @@ abstract final class RecipeMapper {
   static Ingredient ingredientFromJson(final Map<String, dynamic> json) => Ingredient(
     order: json['ordre'] as int,
     name: json['nom'] as String,
-    quantity: json['quantite'] as int,
+    quantity: (json['quantite'] as num).toDouble(),
     unit: json['unite'] as String,
   );
 

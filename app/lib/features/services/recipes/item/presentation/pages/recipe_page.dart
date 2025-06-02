@@ -1,3 +1,4 @@
+import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
@@ -80,7 +81,16 @@ class _Success extends StatelessWidget {
               const Text(Localisation.ingredients, style: DsfrTextStyle.headline4()),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.ingredients
-                  .map((final e) => Text('• ${e.quantity} ${e.unit} ${e.name}', style: const DsfrTextStyle.bodyMd()))
+                  .map(
+                    (final e) => Text(
+                      [
+                        FnvNumberFormat.formatNumber(e.quantity),
+                        e.unit,
+                        e.name,
+                      ].where((final element) => element.isNotEmpty).join(' '),
+                      style: const DsfrTextStyle.bodyMd(),
+                    ),
+                  )
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),
               const SizedBox(height: DsfrSpacings.s2w),
               const Text(Localisation.etapes, style: DsfrTextStyle.headline4()),

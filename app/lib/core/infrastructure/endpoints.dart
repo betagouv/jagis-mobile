@@ -17,6 +17,8 @@ abstract final class Endpoints {
   static const logement = '/utilisateurs/{userId}/logement';
   static const magicLinkSend = '/utilisateurs/send_magic_link';
   static const magicLinkLogin = '/utilisateurs/magic_link_login';
+  static const mesAidesRenoGetIframes = '/utilisateurs/{userId}/mes_aides_reno/get_iframe_urls';
+  static const mesAidesRenoPostSituation = '/utilisateurs/{userId}/mes_aides_reno/nouvelle_situation';
   static const logout = '/utilisateurs/{userId}/logout';
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';

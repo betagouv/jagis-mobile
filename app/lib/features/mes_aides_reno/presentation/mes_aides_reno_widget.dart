@@ -72,12 +72,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
 
   @override
   Widget build(final BuildContext context) {
-    var iframeUrl = Uri.parse(widget.iframeUrl);
-    if (!widget.skipQuestions) {
-      iframeUrl = iframeUrl.replace(
-        queryParameters: {'sendDataToHost': 'true', 'hostName': "J'agis", ...iframeUrl.queryParameters},
-      );
-    }
+    final iframeUrl = WebUri(widget.iframeUrl);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,9 +118,12 @@ class _MesAidesRenoWidgetState extends State<_Success> {
                   switch (data['kind']) {
                     case 'mesaidesreno-resize-height':
                       {
-                        setState(() {
-                          _webViewHeight = double.parse(data['value'].toString());
-                        });
+                        final height = double.parse(data['value'].toString());
+                        if (height != _webViewHeight) {
+                          setState(() {
+                            _webViewHeight = height;
+                          });
+                        }
                         break;
                       }
                     case 'mesaidesreno-eligibility-done':
@@ -154,8 +152,8 @@ class _MesAidesRenoWidgetState extends State<_Success> {
 
 const _injectEventListeners = '''
   if (!window.flutterMessageListenerAttached) {
-    window.flutterMessageListenerAttached = true;
 
+    window.flutterMessageListenerAttached = true;
     window.addEventListener("message", (event) => {
       window.flutter_inappwebview.callHandler("mesAidesRenoHandler", event.data);
     }, false);

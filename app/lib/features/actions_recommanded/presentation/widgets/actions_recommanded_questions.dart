@@ -1,6 +1,5 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/composants/loader.dart';
@@ -67,7 +66,6 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   Widget build(final BuildContext context) => _isExpanded
       ? _GetStarted(
           onPressed: () {
-            context.read<MessageBus>().publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
             setState(() => _isExpanded = false);
           },
         )

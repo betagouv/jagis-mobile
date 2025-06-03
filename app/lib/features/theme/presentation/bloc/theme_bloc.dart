@@ -1,5 +1,6 @@
 // ignore_for_file: avoid-long-functions
 
+import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/timed_delay.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
@@ -8,10 +9,7 @@ import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc({required final ThemeRepository themeRepository, required final TimedDelay timedDelay})
-    : _themeRepository = themeRepository,
-      _timedDelay = timedDelay,
-      super(const ThemeInitial()) {
+  ThemeBloc(this._themeRepository, this._messageBus, this._timedDelay) : super(const ThemeInitial()) {
     on<ThemeFetchRequested>(_onFetch);
     on<ThemeRefreshRequested>(_onRefresh);
     on<ThemeResetRequested>(_onReset);
@@ -19,6 +17,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   }
 
   final ThemeRepository _themeRepository;
+  final MessageBus _messageBus;
   final TimedDelay _timedDelay;
 
   Future<void> _onFetch(final ThemeFetchRequested event, final Emitter<ThemeState> emit) async {
@@ -53,6 +52,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     if (blocState is ThemeLoadSuccess) {
       final themeType = blocState.theme.themeType;
       await _themeRepository.confirmCustomization(themeType: themeType);
+      _messageBus.publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
       final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
 
       await _timedDelay.simulateDelay();

@@ -217,12 +217,28 @@ void main() {
                   "is_NGC": false,
                   "thematique": "transport"
                 }
+              ],
+              ['PUT', '/utilisateurs/{userId}/questionsKYC_v2/KYC003', 200, {}],
+              [
+                'GET',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/following/KYC003',
+                200,
+                {
+                  "nombre_total_questions": 3,
+                  "nombre_total_questions_effectives": 3,
+                  "position_courante": -1,
+                  "is_first": false,
+                  "is_last": false,
+                  "is_out_of_range": false
+                }
               ]
             ]));
         await theApplicationIsLaunched(tester);
         await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iScrollDownTo(tester, 'Commencer');
         await iSeePoints(tester, '0');
+        await iTapOn(tester, 'Commencer');
+        await iTapOn(tester, 'Oui');
         await theApiWillReturn(
             tester,
             const bdd.DataTable([
@@ -234,7 +250,7 @@ void main() {
                 {"points": 25}
               ]
             ]));
-        await iTapOn(tester, 'Commencer');
+        await iTapOn(tester, 'Question suivante');
         await iSeePoints(tester, '25');
       } on TestFailure {
         success = false;

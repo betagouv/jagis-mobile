@@ -23,10 +23,8 @@ class ThemePage extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => ThemeBloc(themeRepository: context.read(), timedDelay: context.read()),
-    child: _Page(themeType),
-  );
+  Widget build(final BuildContext context) =>
+      BlocProvider(create: (final context) => ThemeBloc(context.read(), context.read(), context.read()), child: _Page(themeType));
 }
 
 class _Page extends StatefulWidget {

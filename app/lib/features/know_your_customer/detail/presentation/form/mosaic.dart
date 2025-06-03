@@ -1,4 +1,3 @@
-import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/question/domain/question.dart';
 import 'package:app/core/question/domain/response_mosaic.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
@@ -51,19 +50,17 @@ class _MosaicSetState extends State<_MosaicSet> {
         ),
         itemBuilder: (final context, final index) {
           final e = _responses[index];
-          const size = 40.0;
 
           return MosaicButton(
-            emoji: FnvImage.network(e.imageUrl, width: size, height: size),
+            emoji: e.emoji,
             title: e.label,
             value: e.isSelected,
             onChanged: (final value) {
               setState(() {
                 _responses = _responses
                     .map(
-                      (final r) => r.code == e.code
-                          ? ResponseMosaic(code: r.code, label: r.label, emoji: r.emoji, imageUrl: r.imageUrl, isSelected: value)
-                          : r,
+                      (final r) =>
+                          r.code == e.code ? ResponseMosaic(code: r.code, label: r.label, emoji: r.emoji, isSelected: value) : r,
                     )
                     .toList();
               });

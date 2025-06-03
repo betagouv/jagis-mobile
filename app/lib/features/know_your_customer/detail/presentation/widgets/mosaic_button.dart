@@ -40,7 +40,7 @@ abstract final class _MosaicButtonStyles {
 class MosaicButton extends StatelessWidget {
   const MosaicButton({super.key, required this.emoji, required this.title, required this.value, required this.onChanged});
 
-  final Widget emoji;
+  final String? emoji;
   final String title;
   final bool value;
   final ValueChanged<bool> onChanged;
@@ -70,7 +70,7 @@ class MosaicButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: DsfrSpacings.s1v,
                     children: [
-                      emoji,
+                      Text(emoji ?? '', style: const TextStyle(fontSize: 40)),
                       Text(title, style: style.textStyle, textAlign: TextAlign.center),
                     ],
                   ),

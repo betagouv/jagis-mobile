@@ -1,16 +1,9 @@
 import 'package:app/core/question/domain/response_choice.dart';
 
 class ResponseMosaic extends ResponseChoice {
-  const ResponseMosaic({
-    required super.code,
-    required super.label,
-    required this.emoji,
-    required this.imageUrl,
-    required super.isSelected,
-  });
+  const ResponseMosaic({required super.code, required super.label, required this.emoji, required super.isSelected});
 
   final String? emoji;
-  final String imageUrl;
 
   @override
   ResponseMosaic copyWith({
@@ -23,10 +16,9 @@ class ResponseMosaic extends ResponseChoice {
     code: code ?? this.code,
     label: label ?? this.label,
     emoji: emoji ?? this.emoji,
-    imageUrl: imageUrl ?? this.imageUrl,
     isSelected: isSelected ?? this.isSelected,
   );
 
   @override
-  List<Object?> get props => [...super.props, emoji, imageUrl];
+  List<Object?> get props => [...super.props, emoji];
 }

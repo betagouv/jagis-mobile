@@ -96,7 +96,6 @@ abstract final class QuestionMapper {
           code: e['code'] as String,
           label: e['label'] as String,
           emoji: e['emoji'] as String?,
-          imageUrl: e['image_url'] as String,
           isSelected: e['selected'] as bool,
         ),
       )

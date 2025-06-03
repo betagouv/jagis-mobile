@@ -17,7 +17,7 @@ class SupprimerCompte extends StatelessWidget {
     const color = DsfrColors.error425;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       spacing: DsfrSpacings.s2w,
       children: [
         const ProfilTitrePartie(titre: Localisation.supprimerVotreCompte),

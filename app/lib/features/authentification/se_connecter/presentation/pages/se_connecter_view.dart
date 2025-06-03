@@ -1,5 +1,4 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/authentification/check_inbox/check_inbox_page.dart';
 import 'package:app/features/authentification/creer_compte/presentation/pages/creer_compte_page.dart';
@@ -8,6 +7,7 @@ import 'package:app/features/authentification/se_connecter/presentation/bloc/se_
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_event.dart';
 import 'package:app/features/authentification/se_connecter/presentation/bloc/se_connecter_state.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';

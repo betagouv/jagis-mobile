@@ -1,0 +1,6 @@
+include: package:jagis_lints/analysis_options.yaml
+
+dart_code_metrics:
+  rules:
+    - avoid-returning-widgets: false # NOTE(lsaudon): Incompatible avec Widgetbook
+    - avoid-unused-parameters: false # NOTE(lsaudon): Incompatible avec Widgetbook

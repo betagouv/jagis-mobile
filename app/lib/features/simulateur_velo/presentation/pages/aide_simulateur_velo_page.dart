@@ -3,7 +3,6 @@ import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/helpers/text_scaler.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/accordion.dart';
-import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/app_tag.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
@@ -15,6 +14,7 @@ import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.da
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_event.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_disponibles_page.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

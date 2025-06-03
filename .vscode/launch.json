@@ -53,6 +53,15 @@
         "env.production.json",
         "--dart-define=cronetHttpNoPlay=true"
       ]
+    },
+    {
+      "name": "Design system",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "packages/app_ds/example",
+      "args": [
+        "--track-widget-creation"
+      ]
     }
   ]
 }

@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   animated_digit: 3.2.3
+  app_ds:
+    path: ../packages/app_ds
   clock: 1.1.2
   collection: 1.19.1
   cupertino_icons: 1.0.8

@@ -1,6 +1,5 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/input_calendar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
@@ -13,6 +12,7 @@ import 'package:app/features/onboarding/question_code_postal/presentation/pages/
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

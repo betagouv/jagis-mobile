@@ -33,6 +33,7 @@ class _QuestionWidgetState extends State<QuestionsManagerQuestionView> {
 
   @override
   Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s3w,
     children: [
       QuestionForm(

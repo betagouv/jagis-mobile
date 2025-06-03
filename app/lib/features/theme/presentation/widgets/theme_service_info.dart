@@ -1,5 +1,4 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:dsfr/dsfr.dart';
@@ -9,18 +8,12 @@ import 'package:go_router/go_router.dart';
 class ThemeServiceInfo extends StatelessWidget {
   const ThemeServiceInfo({super.key, required this.link});
 
-  final ThemeSummaryLink link;
+  final ThemeSummaryInternalLink link;
 
   @override
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
-      final aLink = link;
-      switch (aLink) {
-        case ThemeSummaryInternalLink():
-          await GoRouter.of(context).pushNamed(aLink.route, pathParameters: aLink.pathParams ?? const {});
-        case ThemeSummaryExternalLink():
-          await FnvUrlLauncher.launch(aLink.url);
-      }
+      await GoRouter.of(context).pushNamed(link.route, pathParameters: link.pathParams ?? const {});
     },
     child: Padding(
       padding: const EdgeInsets.only(left: 12, top: 12, right: 8, bottom: 12),
@@ -29,14 +22,7 @@ class ThemeServiceInfo extends StatelessWidget {
         spacing: DsfrSpacings.s1v,
         children: [
           Flexible(child: FnvMarkdown(data: link.label)),
-          Icon(
-            switch (link) {
-              ThemeSummaryInternalLink() => DsfrIcons.systemArrowRightSLine,
-              ThemeSummaryExternalLink() => DsfrIcons.systemExternalLinkLine,
-            },
-            size: 20,
-            color: DsfrColors.blueFranceSun113,
-          ),
+          const Icon(DsfrIcons.systemArrowRightSLine, size: 20, color: DsfrColors.blueFranceSun113),
         ],
       ),
     ),

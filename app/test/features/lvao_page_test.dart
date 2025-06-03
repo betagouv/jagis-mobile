@@ -179,7 +179,7 @@ void main() {
           ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '👕 Mes achats');
-      await iTapOn(tester, '🔧 Des adresses de réparateur près de chez vous');
+      await iTapOn(tester, '🔧 Des adresses de réparateur près de chez vous');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

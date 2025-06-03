@@ -40,7 +40,11 @@ final class ThemeSummary extends Equatable {
         const ThemeSummaryInternalLink(label: '🛒 Des adresses pour manger local', route: PdcnListPage.name),
       ],
       ThemeType.logement => [
-        const ThemeSummaryExternalLink(label: '🧱 **1** simulateur *Mes aides Réno*', url: 'https://mesaidesreno.beta.gouv.fr/'),
+        ThemeSummaryInternalLink(
+          label: '🧱 **1** simulateur *Mes aides Réno*',
+          route: ActionPage.name,
+          pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.mesAidesReno.apiString),
+        ),
       ],
       ThemeType.transport => [
         ThemeSummaryInternalLink(

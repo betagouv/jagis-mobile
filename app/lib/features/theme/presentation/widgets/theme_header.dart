@@ -42,6 +42,7 @@ class ThemeHeader extends StatelessWidget {
             children: [
               Wrap(
                 spacing: DsfrSpacings.s1w,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   Text(themeType.displayNameWithoutEmoji, style: const DsfrTextStyle.headline1()),
                   DsfrTag.md(

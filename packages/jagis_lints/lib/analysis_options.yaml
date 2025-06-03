@@ -13,9 +13,6 @@ analyzer:
     missing_required_param: error
     missing_return: error
     record_literal_one_positional_no_trailing_comma: error
-  exclude: 
-    - '**/*.g.dart'
-
 
 linter:
   rules:

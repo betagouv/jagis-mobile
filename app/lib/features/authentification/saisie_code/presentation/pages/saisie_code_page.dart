@@ -1,4 +1,3 @@
-import 'package:app/core/presentation/widgets/composants/alert.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -6,6 +5,7 @@ import 'package:app/features/authentification/saisie_code/presentation/bloc/sais
 import 'package:app/features/authentification/saisie_code/presentation/bloc/saisie_code_event.dart';
 import 'package:app/features/authentification/saisie_code/presentation/widgets/saisie_code_input.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';

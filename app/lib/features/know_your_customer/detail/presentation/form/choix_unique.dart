@@ -14,7 +14,7 @@ class ChoixUnique extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvRadioButtonGroup(
     values: Map.fromEntries(question.responses.map((final r) => MapEntry(r.code, r.label))),
-    initialValue: question.responses.where((final r) => r.isSelected).firstOrNull?.label,
+    initialValue: question.responses.where((final r) => r.isSelected).firstOrNull?.code,
     onChanged: (final value) {
       if (value == null) {
         return;

@@ -51,6 +51,7 @@ class _FnvRadioButtonGroupState<T> extends State<FnvRadioButtonGroup<T>> {
             onChanged: _handleChange,
             enabled: widget.enabled,
             size: widget.size,
+            isExpanded: true,
           ),
         )
         .toList(),

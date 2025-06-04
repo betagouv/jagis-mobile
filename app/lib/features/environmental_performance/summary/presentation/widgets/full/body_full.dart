@@ -1,6 +1,5 @@
 // ignore_for_file: avoid-slow-collection-methods
 
-import 'package:app/core/presentation/widgets/composants/accordion.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/features/environmental_performance/core/presentation/widgets/performance_detail_body.dart';
 import 'package:app/features/environmental_performance/summary/domain/environmental_performance_data.dart';
@@ -10,6 +9,7 @@ import 'package:app/features/environmental_performance/summary/presentation/widg
 import 'package:app/features/environmental_performance/summary/presentation/widgets/full/top_emission_source_item.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/partial/environmental_performance_categories.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -66,7 +66,7 @@ class BodyFull extends StatelessWidget {
       FnvAccordionsGroup(
         values: data.detail
             .map(
-              (final e) => FnvAccordion(
+              (final e) => FnvAccordionItem(
                 headerBuilder: (final isExpanded) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s3w),
                   child: _DetailHeader(emoji: e.emoji, label: e.label, value: e.footprintInKgOfCO2ePerYear.tonnesRepresentation),

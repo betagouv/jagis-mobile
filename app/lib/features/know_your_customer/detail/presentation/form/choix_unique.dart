@@ -1,7 +1,7 @@
-import 'package:app/core/presentation/widgets/composants/radios/radio_button_group.dart';
 import 'package:app/core/question/domain/question.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
 import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -12,7 +12,7 @@ class ChoixUnique extends StatelessWidget {
   final QuestionSingleChoice question;
 
   @override
-  Widget build(final BuildContext context) => FnvRadioButtonGroup(
+  Widget build(final BuildContext context) => FnvRadiosGroup(
     values: Map.fromEntries(question.responses.map((final r) => MapEntry(r.code, r.label))),
     initialValue: question.responses.where((final r) => r.isSelected).firstOrNull?.code,
     onChanged: (final value) {

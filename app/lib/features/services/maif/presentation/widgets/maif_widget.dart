@@ -1,10 +1,7 @@
 import 'package:app/core/address/address_repository.dart';
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/autocomplete.dart';
-import 'package:app/core/presentation/widgets/composants/callout.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/core/presentation/widgets/composants/partner_card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
@@ -17,6 +14,7 @@ import 'package:app/features/services/maif/presentation/bloc/maif_bloc.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_event.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_state.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -73,7 +71,7 @@ class _Success extends StatelessWidget {
         FnvAutocomplete(
           initialValue: data.userAddress.isFull ? data.userAddress.label : '',
           displayStringForOption: (final option) => option.label,
-          onSearch: (final query) async => context.read<AddressRepository>().search(query),
+          onSearch: (final query) => context.read<AddressRepository>().search(query),
           onSelected: (final option) => context.read<MaifBloc>().add(MaifAddressChanged(option)),
         ),
         if (data.isLoading) ...[

@@ -2,7 +2,6 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
-import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
@@ -15,6 +14,7 @@ import 'package:app/core/question_flow/presentation/questions_manager_question_v
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';

@@ -1,7 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
-import 'package:app/core/presentation/widgets/composants/checkbox_set.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -11,6 +10,7 @@ import 'package:app/features/onboarding/question_themes/presentation/bloc/questi
 import 'package:app/features/onboarding/question_themes/presentation/bloc/question_themes_event.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';

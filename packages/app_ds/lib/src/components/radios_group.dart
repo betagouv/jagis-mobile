@@ -1,42 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
-class FnvRadioButtonGroup<T> extends StatefulWidget {
-  const FnvRadioButtonGroup({
+class FnvRadiosGroup<T> extends StatefulWidget {
+  const FnvRadiosGroup({
     super.key,
     required this.values,
     this.initialValue,
     required this.onChanged,
     required this.direction,
-    this.enabled = true,
     required this.size,
+    this.enabled = true,
   });
 
   final Map<T, String> values;
   final T? initialValue;
   final ValueChanged<T?> onChanged;
-  final bool enabled;
   final Direction direction;
   final DsfrComponentSize size;
+  final bool enabled;
 
   @override
-  State<FnvRadioButtonGroup<T>> createState() => _FnvRadioButtonGroupState<T>();
+  State<FnvRadiosGroup<T>> createState() => _FnvRadiosGroupState<T>();
 }
 
-class _FnvRadioButtonGroupState<T> extends State<FnvRadioButtonGroup<T>> {
+class _FnvRadiosGroupState<T> extends State<FnvRadiosGroup<T>> {
   T? _value;
 
   @override
   void initState() {
     super.initState();
     _value = widget.initialValue;
-  }
-
-  void _handleChange(final T? value) {
-    setState(() {
-      _value = value;
-    });
-    widget.onChanged(_value);
   }
 
   @override
@@ -48,10 +41,15 @@ class _FnvRadioButtonGroupState<T> extends State<FnvRadioButtonGroup<T>> {
             title: entry.value,
             value: entry.key,
             groupValue: _value,
-            onChanged: _handleChange,
+            onChanged: (final value) {
+              setState(() {
+                _value = value;
+              });
+              widget.onChanged(_value);
+            },
             enabled: widget.enabled,
             size: widget.size,
-            isExpanded: true,
+            isExpanded: widget.direction == Direction.vertical,
           ),
         )
         .toList(),

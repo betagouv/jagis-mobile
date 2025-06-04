@@ -2,7 +2,6 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
-import 'package:app/core/presentation/widgets/composants/accordion.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -12,6 +11,7 @@ import 'package:app/features/simulateur_velo/domain/aide_velo.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_state.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -46,7 +46,7 @@ class AideSimulateurVeloDisponiblePage extends StatelessWidget {
             FnvAccordionsGroup(
               values: state.aidesDisponibles
                   .map(
-                    (final e) => FnvAccordion(
+                    (final e) => FnvAccordionItem(
                       headerBuilder: (final isExpanded) =>
                           _Header(titre: e.titre, montantMax: e.montantTotal, isExpanded: isExpanded),
                       body: _Body(aides: e.aides),

@@ -2,7 +2,6 @@ import 'package:app/core/helpers/input_formatter.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/helpers/text_scaler.dart';
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/core/presentation/widgets/composants/accordion.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/app_tag.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
@@ -404,13 +403,13 @@ class _Questions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvAccordionsGroup(
     values: [
-      FnvAccordion(
+      FnvAccordionItem(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.ouTrouverCesInformations),
         body: const _AccordionBody(
           child: FnvMarkdown(data: Localisation.ouTrouverCesInformationsReponse, p: DsfrTextStyle(fontSize: 15)),
         ),
       ),
-      FnvAccordion(
+      FnvAccordionItem(
         headerBuilder: (final isExpanded) => const _AccordionHeader(text: Localisation.pourquoiCesQuestions),
         body: const _AccordionBody(
           child: FnvMarkdown(data: Localisation.pourquoiCesQuestionsReponse, p: DsfrTextStyle(fontSize: 15)),

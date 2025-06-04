@@ -1,6 +1,5 @@
 import 'package:app/core/presentation/widgets/composants/html_widget.dart';
 import 'package:app/core/presentation/widgets/composants/question_stepper.dart';
-import 'package:app/core/presentation/widgets/composants/radios/radio_button_group.dart';
 import 'package:app/core/source/sources_widget.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
 import 'package:app/features/quiz/presentation/bloc/quiz_question/quiz_question_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_event.dart';
 import 'package:app/features/quiz/presentation/bloc/quizzes/quizzes_state.dart';
 import 'package:app/features/quiz/presentation/widgets/panel.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -87,7 +87,7 @@ class _Form extends StatelessWidget {
   final List<QuizResponse> responses;
 
   @override
-  Widget build(final BuildContext context) => FnvRadioButtonGroup(
+  Widget build(final BuildContext context) => FnvRadiosGroup(
     values: Map.fromEntries(responses.map((final e) => e.response).map((final e) => MapEntry(e, e))),
     onChanged: (final value) {
       if (value == null) {

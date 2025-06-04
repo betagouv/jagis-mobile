@@ -1,4 +1,4 @@
-import 'package:app_ds/app_ds.dart';
+import 'package:app_ds/src/components/checkboxes/checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 

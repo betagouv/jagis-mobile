@@ -1,74 +1,23 @@
+import 'package:app_ds/src/components/accordions/accordion_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
-typedef FnvAccordionCallback = void Function(int panelIndex, bool isExpanded);
-typedef FnvAccordionHeaderBuilder = Widget Function(bool isExpanded);
+typedef FnvAccordionCallback = void Function(bool isExpanded);
 
-class FnvAccordion {
-  const FnvAccordion({this.headerBuilder, required this.body, this.isEnable = true});
+// TODO(lsaudon): Rendre plus générique
+class FnvAccordion extends StatefulWidget {
+  const FnvAccordion({super.key, required this.item, required this.isExpanded, required this.onAccordionCallback});
 
-  final FnvAccordionHeaderBuilder? headerBuilder;
-  final Widget body;
-  final bool isEnable;
-}
-
-class FnvAccordionsGroup extends StatefulWidget {
-  const FnvAccordionsGroup({super.key, required this.values});
-
-  final List<FnvAccordion> values;
-
-  @override
-  State<FnvAccordionsGroup> createState() => _FnvAccordionsGroupState();
-}
-
-class _FnvAccordionsGroupState extends State<FnvAccordionsGroup> {
-  int? _panelIndex;
-  var _isExpanded = false;
-
-  void _handleCallback(final int? panelIndex, final bool isExpanded) => setState(() {
-    _panelIndex = panelIndex;
-    _isExpanded = isExpanded;
-  });
-
-  @override
-  Widget build(final BuildContext context) {
-    const divider = DsfrDivider();
-
-    return Column(
-      children: [
-        divider,
-        ...widget.values.indexed
-            .map((final (int, FnvAccordion) e) {
-              final (index, item) = e;
-
-              return _FnvAccordion(
-                index: index,
-                item: item,
-                isExpanded: _panelIndex == index && _isExpanded,
-                onAccordionCallback: _handleCallback,
-              );
-            })
-            .separator(divider),
-        divider,
-      ],
-    );
-  }
-}
-
-class _FnvAccordion extends StatefulWidget {
-  const _FnvAccordion({required this.index, required this.item, required this.isExpanded, required this.onAccordionCallback});
-
-  final int index;
-  final FnvAccordion item;
+  final FnvAccordionItem item;
   final bool isExpanded;
   final FnvAccordionCallback onAccordionCallback;
 
   @override
-  State<_FnvAccordion> createState() => _FnvAccordionState();
+  State<FnvAccordion> createState() => _FnvAccordionState();
 }
 
-class _FnvAccordionState extends State<_FnvAccordion> with MaterialStateMixin<_FnvAccordion> {
-  void _handleTap() => widget.onAccordionCallback(widget.index, !widget.isExpanded);
+class _FnvAccordionState extends State<FnvAccordion> with MaterialStateMixin<FnvAccordion> {
+  void _handleTap() => widget.onAccordionCallback(!widget.isExpanded);
 
   @override
   Widget build(final BuildContext context) => Column(

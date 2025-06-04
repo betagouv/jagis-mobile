@@ -1,7 +1,6 @@
 // ignore_for_file: prefer-moving-to-variable
 
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/gamification/presentation/widgets/app_bar_gamification.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +65,9 @@ class FnvAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Material(
       color: FnvColors.appBarFond,
       child: DecoratedBox(
-        decoration: const BoxDecoration(boxShadow: appBarOmbre),
+        decoration: const BoxDecoration(
+          boxShadow: [BoxShadow(color: Color(0x0A000000), offset: Offset(0, 2), blurRadius: 10)],
+        ),
         child: SafeArea(child: widget),
       ),
     );

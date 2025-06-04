@@ -1,6 +1,5 @@
 // ignore_for_file: avoid-single-child-column-or-row
 
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -15,7 +14,7 @@ class FnvBottomBar extends StatelessWidget {
     top: false,
     right: false,
     child: DecoratedBox(
-      decoration: const BoxDecoration(boxShadow: bottomNavigationBarOmbre),
+      decoration: const BoxDecoration(boxShadow: [BoxShadow(color: Color(0x0D000000), blurRadius: 18)]),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,

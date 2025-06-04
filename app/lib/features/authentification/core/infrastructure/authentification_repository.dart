@@ -61,8 +61,12 @@ class AuthentificationRepository {
     return const Right(unit);
   }
 
-  void franceConnectStep1() =>
-      unawaited(FnvUrlLauncher.launch('${_client.baseUrl}/login_france_connect', mode: LaunchMode.externalApplication));
+  void franceConnectStep1() => unawaited(
+    FnvUrlLauncher.launch(
+      '${_client.baseUrl}/login_france_connect?source_inscription=mobile',
+      mode: LaunchMode.externalApplication,
+    ),
+  );
 
   Future<Either<ApiErreur, Unit>> franceConnectStep2({required final OpenId openId}) async {
     final response = await _client.post(

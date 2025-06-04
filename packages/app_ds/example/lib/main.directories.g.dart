@@ -11,6 +11,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:example/components/alert.dart' as _i2;
+import 'package:example/components/checkbox.dart' as _i3;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -21,7 +22,14 @@ final directories = <_i1.WidgetbookNode>[
         name: 'FnvAlert',
         useCase: _i1.WidgetbookUseCase(
           name: 'Error',
-          builder: _i2.buildCoolButtonUseCase,
+          builder: _i2.buildAlertUseCase,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'FnvCheckbox',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Default',
+          builder: _i3.buildCheckboxDefaultUseCase,
         ),
       ),
     ],

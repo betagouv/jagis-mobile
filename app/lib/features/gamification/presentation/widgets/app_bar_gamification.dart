@@ -1,3 +1,4 @@
+import 'package:app/core/presentation/widgets/composants/ink_well.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
 import 'package:app/features/gamification/presentation/widgets/app_bar_badge.dart';
 import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
@@ -26,14 +27,14 @@ class AppBarGamification extends StatelessWidget {
     return Row(
       spacing: DsfrSpacings.s1w,
       children: [
-        InkWell(
+        FnvInkWell(
           onTap: () async {
             await _onTap(context);
           },
           child: PointsWidget(points: gamificationState.points),
         ),
         if (gamificationState.badges > 0)
-          InkWell(
+          FnvInkWell(
             onTap: () async {
               await _onTap(context);
             },

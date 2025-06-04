@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class DsfrTabIndicator extends Decoration {
-  const DsfrTabIndicator({this.borderSide = const BorderSide(color: Colors.white, width: 2), this.insets = EdgeInsets.zero});
+class FnvTabIndicator extends Decoration {
+  const FnvTabIndicator({this.borderSide = const BorderSide(color: Colors.white, width: 2), this.insets = EdgeInsets.zero});
   final BorderSide borderSide;
   final EdgeInsetsGeometry insets;
 
   @override
-  Decoration? lerpFrom(final Decoration? a, final double t) => a is DsfrTabIndicator
-      ? DsfrTabIndicator(
+  Decoration? lerpFrom(final Decoration? a, final double t) => a is FnvTabIndicator
+      ? FnvTabIndicator(
           borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
           insets: EdgeInsetsGeometry.lerp(a.insets, insets, t)!,
         )
       : super.lerpFrom(a, t);
 
   @override
-  Decoration? lerpTo(final Decoration? b, final double t) => b is DsfrTabIndicator
-      ? DsfrTabIndicator(
+  Decoration? lerpTo(final Decoration? b, final double t) => b is FnvTabIndicator
+      ? FnvTabIndicator(
           borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
           insets: EdgeInsetsGeometry.lerp(insets, b.insets, t)!,
         )
@@ -37,7 +37,7 @@ class DsfrTabIndicator extends Decoration {
 class _AboveLinePainter extends BoxPainter {
   const _AboveLinePainter(this.decoration, super.onChanged);
 
-  final DsfrTabIndicator decoration;
+  final FnvTabIndicator decoration;
 
   @override
   void paint(final Canvas canvas, final Offset offset, final ImageConfiguration configuration) {

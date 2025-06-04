@@ -21,6 +21,7 @@ abstract final class Endpoints {
   static const mesAidesRenoPostSituation = '/utilisateurs/{userId}/mes_aides_reno/nouvelle_situation';
   static const logout = '/utilisateurs/{userId}/logout';
   static const lvaoSearch = '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2';
+  static const localRanking = '/utilisateurs/{userId}/classement/local';
   static const nationalRanking = '/utilisateurs/{userId}/classement/national';
   static const notificationToken = '/utilisateurs/{userId}/mobile_token';
   static const profile = '/utilisateurs/{userId}/profile';

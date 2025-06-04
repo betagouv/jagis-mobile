@@ -193,6 +193,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
   static const mesAidesDisponibles = 'Mes aides disponibles';
+  static const mesBadges = 'Mes badges';
   static const mesCommerces = 'Mes commerces';
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
@@ -204,6 +205,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
+  static const monClassement = 'Mon classement';
   static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';
   static const monLogement = 'Mon logement';

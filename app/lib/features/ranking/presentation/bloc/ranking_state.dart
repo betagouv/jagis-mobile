@@ -22,12 +22,13 @@ final class RankingLoadInProgress extends RankingState {
 
 @immutable
 final class RankingLoadSuccess extends RankingState {
-  const RankingLoadSuccess({required this.ranking});
+  const RankingLoadSuccess({required this.localRanking, required this.nationalRanking});
 
-  final Ranking ranking;
+  final Ranking localRanking;
+  final Ranking nationalRanking;
 
   @override
-  List<Object> get props => [ranking];
+  List<Object> get props => [localRanking, nationalRanking];
 }
 
 @immutable

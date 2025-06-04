@@ -79,7 +79,7 @@ class _Success extends StatelessWidget {
               Tab(text: Localisation.fruits),
               Tab(text: Localisation.legumes),
             ],
-            indicator: DsfrTabIndicator(borderSide: BorderSide(color: DsfrColors.blueFranceSun113, width: 3)),
+            indicator: FnvTabIndicator(borderSide: BorderSide(color: DsfrColors.blueFranceSun113, width: 3)),
             indicatorSize: TabBarIndicatorSize.tab,
             dividerHeight: 0,
             labelStyle: DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),

@@ -10,11 +10,19 @@ class RankingRepository {
 
   final DioHttpClient _client;
 
+  Future<Either<Exception, Ranking>> fetchLocalRanking() async {
+    final response = await _client.get(Endpoints.localRanking);
+
+    return isResponseUnsuccessful(response.statusCode)
+        ? Left(Exception('Erreur lors de la récupération du classement local'))
+        : Right(RankingDto.fromJson(response.data as Map<String, dynamic>));
+  }
+
   Future<Either<Exception, Ranking>> fetchNationalRanking() async {
     final response = await _client.get(Endpoints.nationalRanking);
 
     return isResponseUnsuccessful(response.statusCode)
-        ? Left(Exception('Erreur lors de la récupération du classement'))
+        ? Left(Exception('Erreur lors de la récupération du classement national'))
         : Right(RankingDto.fromJson(response.data as Map<String, dynamic>));
   }
 }

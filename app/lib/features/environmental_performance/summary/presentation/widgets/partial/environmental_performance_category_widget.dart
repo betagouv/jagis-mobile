@@ -1,4 +1,3 @@
-import 'package:app/core/presentation/widgets/composants/badge.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
@@ -42,7 +41,7 @@ class EnvironmentalPerformanceCategoryWidget extends StatelessWidget {
             numberOfQuestions: numberOfQuestions,
           ),
         ),
-        if (progression >= 1) FnvBadge(label: 'TERMINÉ !', backgroundColor: color),
+        if (progression >= 1) _Badge(label: 'TERMINÉ !', backgroundColor: color),
       ],
     );
   }
@@ -119,6 +118,22 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
           ),
         ),
       ),
+    ),
+  );
+}
+
+class _Badge extends StatelessWidget {
+  const _Badge({required this.label, required this.backgroundColor});
+
+  final String label;
+  final Color backgroundColor;
+
+  @override
+  Widget build(final BuildContext context) => DecoratedBox(
+    decoration: ShapeDecoration(color: backgroundColor, shape: const StadiumBorder()),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s0v5, horizontal: DsfrSpacings.s1w),
+      child: Text(label, style: const DsfrTextStyle.bodySmBold(color: Colors.white)),
     ),
   );
 }

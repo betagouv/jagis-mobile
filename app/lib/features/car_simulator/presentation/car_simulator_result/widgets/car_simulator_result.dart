@@ -1,7 +1,6 @@
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/app_tag.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
-import 'package:app/core/presentation/widgets/composants/loader.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
@@ -13,6 +12,7 @@ import 'package:app/features/car_simulator/presentation/car_simulator_result/blo
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_event.dart';
 import 'package:app/features/car_simulator/presentation/car_simulator_result/bloc/car_simulator_result_state.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';

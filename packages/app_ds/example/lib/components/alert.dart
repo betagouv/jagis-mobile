@@ -4,6 +4,6 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @UseCase(type: FnvAlert, name: 'Error')
-Widget buildCoolButtonUseCase(final BuildContext context) => FnvAlert.error(
-  label: context.knobs.string(label: 'Label', initialValue: 'Une erreur est survenue'),
+Widget buildAlertUseCase(final BuildContext context) => FnvAlert.error(
+  label: context.knobs.string(label: 'Libellé', initialValue: 'Une erreur est survenue'),
 );

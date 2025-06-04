@@ -1,3 +1,4 @@
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -63,30 +64,11 @@ class _FnvCheckboxSetState extends State<FnvCheckboxSet> {
     spacing: DsfrSpacings.s2w,
     children: widget.options
         .map(
-          (final option) => GestureDetector(
-            onTap: () => _handleChanged(
-              options: widget.options,
-              selectedOptions: _selectedOptions,
-              option: option,
-              value: !_selectedOptions.contains(option),
-            ),
-            behavior: HitTestBehavior.opaque,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: Border.fromBorderSide(
-                  BorderSide(color: _selectedOptions.contains(option) ? DsfrColors.blueFranceSun113 : DsfrColors.grey900),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(DsfrSpacings.s2w),
-                child: DsfrCheckbox(
-                  label: option,
-                  size: DsfrComponentSize.md,
-                  value: _selectedOptions.contains(option),
-                  onChanged: null,
-                ),
-              ),
-            ),
+          (final option) => FnvCheckbox(
+            label: option,
+            value: _selectedOptions.contains(option),
+            onChanged: (final value) =>
+                _handleChanged(options: widget.options, selectedOptions: _selectedOptions, option: option, value: value),
           ),
         )
         .toList(),

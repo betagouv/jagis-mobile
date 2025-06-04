@@ -1,6 +1,7 @@
 import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:example/main.directories.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
@@ -15,6 +16,8 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Widgetbook.material(
     directories: directories,
+    appBuilder: (final context, final child) =>
+        DsfrThemeModeProvider.withBuilder(isLightMode: true, builder: (final context) => child),
     addons: [
       ViewportAddon([IosViewports.iPhoneSE, IosViewports.iPhone13ProMax, Viewports.none]),
       TextScaleAddon(min: 1, divisions: 1),
@@ -24,5 +27,8 @@ class WidgetbookApp extends StatelessWidget {
       ),
       SemanticsAddon(),
     ],
+    lightTheme: ThemeData.light().copyWith(scaffoldBackgroundColor: DsfrColors.grey1000),
+    darkTheme: ThemeData.dark().copyWith(scaffoldBackgroundColor: DsfrColors.grey50),
+    themeMode: ThemeMode.light,
   );
 }

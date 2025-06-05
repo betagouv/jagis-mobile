@@ -76,10 +76,10 @@ packages:
     dependency: "direct dev"
     description:
       name: bdd_widget_test
-      sha256: "7908b933db8abaac5dedf99388b9c7a326fcd05f39a10c109bdff3c1d59c2192"
+      sha256: "2131915d6135683c00339ff813bd88983226032736af29c6245feacb6cec2298"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.2"
   bloc:
     dependency: transitive
     description:

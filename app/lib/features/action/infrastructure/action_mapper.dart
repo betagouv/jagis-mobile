@@ -2,6 +2,7 @@ import 'package:app/core/helpers/json_mapper.dart';
 import 'package:app/core/infrastructure/theme_type_mapper.dart';
 import 'package:app/core/source/source_mapper.dart';
 import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/domain/explanations_recommended.dart';
 import 'package:app/features/action/infrastructure/action_service_mapper.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/infrastructure/aid_summary_mapper.dart';
@@ -44,6 +45,7 @@ abstract final class ActionClassicMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    explanationsRecommended: ExplanationsRecommended.fromJson(json['explications_recommandation'] as Map<String, dynamic>),
     articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
     instruction: json['consigne'] as String,
@@ -69,6 +71,7 @@ abstract final class ActionQuizMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    explanationsRecommended: ExplanationsRecommended.fromJson(json['explications_recommandation'] as Map<String, dynamic>),
     articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     quizzes: JsonHelpers.fromJsonList(json['quizzes'], QuizMapper.fromJson),
     congratulatoryText: json['quizz_felicitations'] as String,
@@ -92,6 +95,7 @@ abstract final class ActionSimulatorMapper {
     sequenceId: json['enchainement_id'] as String,
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    explanationsRecommended: ExplanationsRecommended.fromJson(json['explications_recommandation'] as Map<String, dynamic>),
     articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     why: json['pourquoi'] as String,
   );
@@ -113,6 +117,7 @@ abstract final class ActionPerformanceMapper {
     faq: ActionMapper.faqFromJson(json),
     rate: (json['like_level'] as num?)?.toInt(),
     sources: JsonHelpers.fromJsonList(json['sources'], SourceMapper.fromJson),
+    explanationsRecommended: ExplanationsRecommended.fromJson(json['explications_recommandation'] as Map<String, dynamic>),
     articles: JsonHelpers.fromJsonList(json['articles'], RecommandationMapper.fromJson),
     sequenceId: json['enchainement_id'] as String,
   );

@@ -3,7 +3,6 @@ import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
 import 'package:app/core/presentation/widgets/animation_shake.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/core/question_flow/bloc/question_flow_bloc.dart';
 import 'package:app/core/question_flow/bloc/question_flow_event.dart';
 import 'package:app/core/question_flow/bloc/question_flow_state.dart';
@@ -102,7 +101,7 @@ class _GetStarted extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Padding(
       padding: const EdgeInsets.only(
         left: DsfrSpacings.s3w,

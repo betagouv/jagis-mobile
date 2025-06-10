@@ -1,8 +1,8 @@
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
 import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +26,7 @@ class _LibraryContentState extends State<LibraryContent> with MaterialStateMixin
     return DsfrFocusWidget(
       isFocused: isFocused,
       child: DecoratedBox(
-        decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: FnvShadows.card),
         child: Material(
           color: FnvColors.transparent,
           child: InkWell(

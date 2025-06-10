@@ -1,7 +1,6 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
@@ -9,6 +8,7 @@ import 'package:app/features/profil/informations/presentation/pages/mes_informat
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +29,7 @@ class ProfilPage extends StatelessWidget {
         const FnvTitle(title: Localisation.monProfil),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(
-          decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+          decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
           child: Column(
             children: [
               _MenuElement(

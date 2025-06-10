@@ -4,11 +4,11 @@ import 'package:app/core/helpers/string.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_list_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
 import 'package:app/features/theme/core/domain/service_item.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
@@ -101,7 +101,7 @@ class _ServiceCardBaseState extends State<_ServiceCardBase> with MaterialStateMi
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         border: Border.all(color: widget.borderColor),
-        boxShadow: cardShadow,
+        boxShadow: FnvShadows.card,
       ),
       child: Material(
         color: FnvColors.transparent,

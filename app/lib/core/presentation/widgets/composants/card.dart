@@ -1,5 +1,5 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -22,7 +22,7 @@ class _FnvCardState extends State<FnvCard> with MaterialStateMixin<FnvCard> {
       decoration: BoxDecoration(
         color: FnvColors.carteFond,
         border: widget.borderColor == null ? null : Border.all(color: widget.borderColor!, width: DsfrSpacings.s0v5),
-        boxShadow: cardShadow,
+        boxShadow: FnvShadows.card,
       ),
       child: Material(
         color: FnvColors.transparent,

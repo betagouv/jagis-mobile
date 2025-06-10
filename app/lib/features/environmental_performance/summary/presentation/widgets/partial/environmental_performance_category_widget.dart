@@ -1,6 +1,6 @@
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -78,7 +78,7 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
   Widget build(final BuildContext context) => DsfrFocusWidget(
     isFocused: isFocused,
     child: DecoratedBox(
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: FnvShadows.card),
       child: Material(
         color: FnvColors.transparent,
         child: InkWell(

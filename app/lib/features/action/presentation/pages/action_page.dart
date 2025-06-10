@@ -1,7 +1,8 @@
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
+import 'package:app/features/action/domain/explanations_recommended.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
@@ -15,6 +16,8 @@ import 'package:app/features/action/presentation/widgets/action_simulator_view.d
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
+import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -73,9 +76,9 @@ class _Success extends StatelessWidget {
 
   @override
   // TODO(lsaudon): Si on utilise un ListView, ça rebuild le quiz et du coup on perd l'avancement
-  // ignore: prefer-using-list-view
   Widget build(final BuildContext context) => SingleChildScrollView(
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: DsfrSpacings.s3w),
         _PaddingHorizontal(
@@ -83,7 +86,7 @@ class _Success extends StatelessWidget {
         ),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: cardShadow),
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: FnvShadows.card),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DsfrSpacings.s3w,
@@ -106,11 +109,55 @@ class _Success extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
           child: ActionScoreInstructionView(action: action),
         ),
+        if (action.explanationsRecommended.explanations.isNotEmpty) ...[
+          const SizedBox(height: DsfrSpacings.s3w),
+          _PaddingHorizontal(child: _Explanation(explanationsRecommended: action.explanationsRecommended)),
+        ],
         if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
         const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
       ],
     ),
   );
+}
+
+class _Explanation extends StatelessWidget {
+  const _Explanation({required this.explanationsRecommended});
+
+  final ExplanationsRecommended explanationsRecommended;
+
+  @override
+  Widget build(final BuildContext context) {
+    const color = Color(0xFF39826C);
+
+    return FnvBlockQuote(
+      color: color,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: DsfrSpacings.s1w,
+        children: [
+          FnvMarkdown(
+            data: explanationsRecommended.isExcluded
+                ? '**N’est pas recommandée** pour vous, car'
+                : '**Recommandée** pour vous, car',
+          ),
+          Column(
+            spacing: DsfrSpacings.s3v,
+            children: [
+              ...explanationsRecommended.explanations.map(
+                (final e) => FnvEditTag(
+                  color: color,
+                  label: e,
+                  onTap: () async {
+                    await GoRouter.of(context).pushNamed(KnowYourCustomersPage.name);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _PaddingHorizontal extends StatelessWidget {

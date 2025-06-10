@@ -1,5 +1,6 @@
 import 'package:app/core/source/source.dart';
 import 'package:app/features/action/domain/action_service.dart';
+import 'package:app/features/action/domain/explanations_recommended.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/faq/domain/faq.dart';
@@ -22,6 +23,7 @@ sealed class Action extends Equatable {
     required this.faq,
     required this.rate,
     required this.sources,
+    required this.explanationsRecommended,
     required this.articles,
   });
 
@@ -37,6 +39,7 @@ sealed class Action extends Equatable {
   final List<FAQItem>? faq;
   final int? rate;
   final List<Source> sources;
+  final ExplanationsRecommended explanationsRecommended;
   final List<Recommandation> articles;
 
   String get instruction;
@@ -57,6 +60,7 @@ sealed class Action extends Equatable {
     faq,
     rate,
     sources,
+    explanationsRecommended,
     articles,
   ];
 }
@@ -75,6 +79,7 @@ final class ActionClassic extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.explanationsRecommended,
     required super.articles,
     required this.why,
     required this.instruction,
@@ -122,6 +127,7 @@ final class ActionQuiz extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.explanationsRecommended,
     required super.articles,
     required this.quizzes,
     required this.congratulatoryText,
@@ -162,6 +168,7 @@ final class ActionPerformance extends Action {
     required super.faq,
     required super.rate,
     required super.sources,
+    required super.explanationsRecommended,
     required super.articles,
     required this.sequenceId,
   });
@@ -196,6 +203,7 @@ final class ActionSimulator extends ActionPerformance {
     required super.sequenceId,
     required super.rate,
     required super.sources,
+    required super.explanationsRecommended,
     required super.articles,
     required this.why,
   });

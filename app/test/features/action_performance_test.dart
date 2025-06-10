@@ -74,7 +74,12 @@ void main() {
                 "sources": [],
                 "articles": [],
                 "like_level": null,
-                "enchainement_id": "bilan_action_bilan_alimentation"
+                "enchainement_id": "bilan_action_bilan_alimentation",
+                "explications_recommandation": {
+                  "liste_explications": [],
+                  "est_exclu": false
+                },
+                "explications_recommandation_raw": {"liste_explications": []}
               }
             ],
             [

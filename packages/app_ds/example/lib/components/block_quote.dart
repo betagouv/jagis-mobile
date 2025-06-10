@@ -12,18 +12,19 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildBlockQuoteUseCase(final BuildContext context) {
   const color = Color(0xFF39826C);
 
-  return const FnvBlockQuote(
+  return FnvBlockQuote(
     color: color,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s3v,
       children: [
-        FnvEditTag(label: 'Vous mangez de la viande', color: color),
-        FnvEditTag(label: 'Vous souhaitez faire des économies', color: color),
+        FnvEditTag(color: color, label: 'Vous mangez de la viande', onTap: () {}),
+        FnvEditTag(color: color, label: 'Vous souhaitez faire des économies', onTap: () {}),
         FnvEditTag(
-          label: "Mettre un texte assez long pour être sur deux lignes enfin j'espère que cela fonctionne",
           color: color,
+          label: "Mettre un texte assez long pour être sur deux lignes enfin j'espère que cela fonctionne",
+          onTap: () {},
         ),
       ],
     ),

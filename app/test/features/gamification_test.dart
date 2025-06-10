@@ -403,7 +403,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ],
               [
@@ -522,6 +527,11 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []},
                   "enchainement_id": "bilan_action_bilan_alimentation"
                 }
               ],

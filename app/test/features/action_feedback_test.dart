@@ -138,7 +138,12 @@ void main() {
                   }
                 ],
                 "articles": [],
-                "like_level": null
+                "like_level": null,
+                "explications_recommandation": {
+                  "liste_explications": [],
+                  "est_exclu": false
+                },
+                "explications_recommandation_raw": {"liste_explications": []}
               }
             ],
             [

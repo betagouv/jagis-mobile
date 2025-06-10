@@ -28,6 +28,8 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
             {'recherche_service_id': e['service_id'], 'categorie': e['service_category']},
           ],
           'aides': <Aid>[],
+          'explications_recommandation': {'liste_explications': <dynamic>[], 'est_exclu': true},
+          'explications_recommandation_raw': {'liste_explications': <dynamic>[]},
         },
       )
       .forEach((final e) {

@@ -155,7 +155,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));
@@ -296,7 +301,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));
@@ -452,7 +462,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));
@@ -573,7 +588,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));
@@ -694,7 +714,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));
@@ -855,7 +880,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ],
               [
@@ -1036,7 +1066,12 @@ void main() {
                   "deja_vue": true,
                   "deja_faite": true,
                   "faqs": [],
-                  "points": 20
+                  "points": 20,
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
                 }
               ]
             ]));

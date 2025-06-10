@@ -4,7 +4,6 @@ import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/partner_card.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
@@ -162,7 +161,7 @@ class _Risk extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Column(
@@ -245,7 +244,7 @@ class _NaturalDisastersWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Column(
@@ -278,7 +277,7 @@ class _DroughtWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Stack(
       children: [
         Padding(
@@ -319,7 +318,7 @@ class _FloodWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Stack(
       children: [
         Padding(

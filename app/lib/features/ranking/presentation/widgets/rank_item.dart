@@ -1,7 +1,7 @@
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
 import 'package:app/features/ranking/domain/user_rank.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -21,7 +21,7 @@ class RankItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         border: Border.all(color: borderColor),
-        boxShadow: cardShadow,
+        boxShadow: FnvShadows.card,
       ),
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),

@@ -1,12 +1,12 @@
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/action_information.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -19,7 +19,7 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

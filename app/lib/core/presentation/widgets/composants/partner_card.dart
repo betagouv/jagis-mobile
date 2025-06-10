@@ -1,8 +1,8 @@
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
@@ -26,7 +26,7 @@ class PartnerCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

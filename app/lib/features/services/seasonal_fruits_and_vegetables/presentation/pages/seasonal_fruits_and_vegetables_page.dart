@@ -6,11 +6,11 @@ import 'package:app/core/presentation/widgets/composants/partner_card.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/core/presentation/widgets/fondamentaux/shadows.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/tab_indicator.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/domain/plant.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/bloc/seasonal_fruits_and_vegetables_bloc.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -229,7 +229,7 @@ class _PlantCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: cardShadow),
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: child,
   );
 }

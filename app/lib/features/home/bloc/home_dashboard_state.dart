@@ -3,7 +3,6 @@ import 'package:app/features/recommandations/domain/recommandation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-// TODO(erolley): add an abstract class for each state using this status enum framework
 enum HomeDashboardStateStatus { init, loading, success, failure }
 
 @immutable

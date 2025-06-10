@@ -71,8 +71,7 @@ class _Card extends StatefulWidget {
 }
 
 class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
-  static const _imageWidth = 130.0;
-  static const _imageHeight = 126.0;
+  static const _imageSize = 140.0;
 
   @override
   Widget build(final BuildContext context) => DsfrFocusWidget(
@@ -95,11 +94,11 @@ class _CardState extends State<_Card> with MaterialStateMixin<_Card> {
               bottom: DsfrSpacings.s3v,
             ),
             child: SizedBox(
-              width: _imageWidth,
+              width: _imageSize,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FnvImage.network(widget.imageUrl, width: _imageWidth, height: _imageHeight),
+                  FnvImage.network(widget.imageUrl, width: _imageSize, height: _imageSize),
                   const SizedBox(height: DsfrSpacings.s1v),
                   LinearProgressIndicator(
                     value: widget.progression,

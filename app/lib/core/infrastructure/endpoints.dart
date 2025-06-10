@@ -5,8 +5,6 @@ abstract final class Endpoints {
   static const aids = '/utilisateurs/{userId}/aides_v2';
   static const bibliotheque = '/utilisateurs/{userId}/bibliotheque_v2';
   static const bilan = '/utilisateurs/{userId}/bilans/last_v3';
-  // Car Simulator Endpoints
-  // FIXME(erolley): Should we have sub classes for each endpoint type (eg: Endpoints.CarSimulator.getCurrentCarResult)?
   static const carSimulatorComputeCurrentCar = '/utilisateurs/{userId}/simulateur_voiture/resultat/voiture_actuelle';
   static const carSimulatorComputeOptions = '/utilisateurs/{userId}/simulateur_voiture/resultat/alternatives';
   static const events = '/utilisateurs/{userId}/events';

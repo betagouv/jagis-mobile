@@ -71,7 +71,7 @@ class _Success extends StatelessWidget {
           ),
         ),
         Text(detail.title, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
-        Text(detail.description, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
+        if (detail.description != null) Text(detail.description!, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.5,

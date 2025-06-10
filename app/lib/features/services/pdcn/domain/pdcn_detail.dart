@@ -22,7 +22,7 @@ class PdcnDetail extends Equatable {
 
     return PdcnDetail(
       title: json['titre'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       address: address,
       latitude: json['latitude'] as double,
       longitude: json['longitude'] as double,
@@ -34,7 +34,7 @@ class PdcnDetail extends Equatable {
   }
 
   final String title;
-  final String description;
+  final String? description;
   final String address;
   final double latitude;
   final double longitude;

@@ -450,7 +450,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "29f3eec4cc3ad186df60fafb3710c9d2d988d219"
+      resolved-ref: "174833770d68385e2e6bace50c41fe25502b2672"
       url: "https://github.com/Octo-Open-Source/flutter-dsfr.git"
     source: git
     version: "0.4.0"
@@ -1525,10 +1525,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
-      sha256: "7cb32b21825bd65569665c32bb00a34ded5779786d6201f5350979d2d529940d"
+      sha256: f0dc2dc3a2b1e3a6abdd6801b9355ebfeb3b8f6cde6b9dc7c9235909c4a1f147
       url: "https://pub.dev"
     source: hosted
-    version: "2.13.0"
+    version: "2.13.1"
   webview_flutter_wkwebview:
     dependency: transitive
     description:

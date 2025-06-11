@@ -40,7 +40,7 @@ dependencies:
   gpt_markdown: 1.0.19
   html: 0.15.6
   intl: 0.20.2
-  jovial_svg: 1.1.25
+  jovial_svg: 1.1.26
   latlong2: 0.9.1
   matomo_tracker: 6.0.0
   meta: 1.16.0 # Bloqué en 1.16.0 par flutter_test

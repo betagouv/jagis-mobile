@@ -6,6 +6,7 @@ export 'src/components/alert.dart';
 export 'src/components/autocomplete.dart';
 export 'src/components/block_quote.dart';
 export 'src/components/callout.dart';
+export 'src/components/charts/doughnut_chart.dart';
 export 'src/components/checkboxes/checkbox.dart';
 export 'src/components/checkboxes/checkbox_set.dart';
 export 'src/components/edit_tag.dart';

@@ -7,11 +7,13 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  fl_chart: 1.0.0
   flutter:
     sdk: flutter
   flutter_dsfr:
     git:
       url: https://github.com/Octo-Open-Source/flutter-dsfr.git
+  graphic: 2.6.0
 
 dev_dependencies:
   dart_code_metrics_presets: 2.22.0

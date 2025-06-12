@@ -115,6 +115,9 @@ class _BoldMd extends BoldMd {
 
 class _ATagMd extends ATagMd {
   @override
+  RegExp get exp => RegExp(r'\[([^\[\]]*)\]\(([^\s]*)\)');
+
+  @override
   InlineSpan span(final BuildContext context, final String text, final GptMarkdownConfig config) {
     final match = exp.firstMatch(text.trim());
     if (match?[1] == null && match?[2] == null) {
@@ -137,12 +140,14 @@ class _ATagMd extends ATagMd {
 
 class _ImageMd extends ImageMd {
   @override
+  RegExp get exp => RegExp(r'\!\[([^\[\]]*)\]\(([^\s]*)\)');
+
+  @override
   InlineSpan span(final BuildContext context, final String text, final GptMarkdownConfig config) {
     final match = exp.firstMatch(text.trim());
     if (match == null) {
       return const TextSpan();
     }
-
     final imageUrl = match[2];
 
     if (imageUrl == null) {

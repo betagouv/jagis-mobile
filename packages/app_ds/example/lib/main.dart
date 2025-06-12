@@ -1,5 +1,6 @@
 import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:example/main.directories.g.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -19,7 +20,7 @@ class WidgetbookApp extends StatelessWidget {
     appBuilder: (final context, final child) =>
         DsfrThemeModeProvider.withBuilder(isLightMode: true, builder: (final context) => child),
     addons: [
-      ViewportAddon([IosViewports.iPhoneSE, IosViewports.iPhone13ProMax, Viewports.none]),
+      if (kIsWeb) ViewportAddon([IosViewports.iPhoneSE, IosViewports.iPhone13ProMax, Viewports.none]),
       TextScaleAddon(min: 1, divisions: 1),
       BuilderAddon(
         name: 'a11y',

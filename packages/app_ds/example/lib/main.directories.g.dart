@@ -16,8 +16,9 @@ import 'package:example/components/alert.dart' as _i2;
 import 'package:example/components/autocomplete.dart' as _i3;
 import 'package:example/components/block_quote.dart' as _i4;
 import 'package:example/components/callout.dart' as _i5;
-import 'package:example/components/checkboxes/checkbox.dart' as _i12;
-import 'package:example/components/checkboxes/checkbox_set.dart' as _i13;
+import 'package:example/components/charts/doughnut_chart.dart' as _i12;
+import 'package:example/components/checkboxes/checkbox.dart' as _i13;
+import 'package:example/components/checkboxes/checkbox_set.dart' as _i14;
 import 'package:example/components/link.dart' as _i6;
 import 'package:example/components/loader.dart' as _i7;
 import 'package:example/components/progress_bar.dart' as _i8;
@@ -106,20 +107,32 @@ final directories = <_i1.WidgetbookNode>[
         ],
       ),
       _i1.WidgetbookFolder(
+        name: 'charts',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'FnvDoughnutChart',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Default',
+              builder: _i12.buildDoughnutChartUseCase,
+            ),
+          ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
         name: 'checkboxes',
         children: [
           _i1.WidgetbookLeafComponent(
             name: 'FnvCheckbox',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i12.buildCheckboxDefaultUseCase,
+              builder: _i13.buildCheckboxDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FnvCheckboxSet',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i13.buildCheckboxSetUseCase,
+              builder: _i14.buildCheckboxSetUseCase,
             ),
           ),
         ],

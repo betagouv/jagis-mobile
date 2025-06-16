@@ -1,4 +1,4 @@
-import 'package:app/core/address/address_repository.dart';
+import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -68,9 +68,9 @@ class _Success extends StatelessWidget {
         const Text(Localisation.choisissezUneAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         FnvAutocomplete(
-          initialValue: data.userAddress.isFull ? data.userAddress.label : '',
+          initialValue: data.userAddress.isFull ? data.userAddress.label : null,
           displayStringForOption: (final option) => option.label,
-          onSearch: (final query) => context.read<AddressRepository>().search(query),
+          onSearch: (final query) => context.read<GeocodingRepository>().search(query),
           onSelected: (final option) => context.read<MaifBloc>().add(MaifAddressChanged(option)),
         ),
         if (data.isLoading) ...[

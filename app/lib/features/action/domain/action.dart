@@ -228,12 +228,26 @@ final class ActionSimulator extends ActionPerformance {
 enum ActionSimulatorId {
   carSimulator('action_simulateur_voiture'),
   mesAidesReno('simu_aides_reno'),
-  maif('action_simulateur_maif');
+  maif('action_simulateur_maif'),
+  winter('action_simulateur_winter');
 
   const ActionSimulatorId(this.apiString);
   final String apiString;
 
-  static bool isSimulatorId(final String id) => values.any((final element) => element.apiString == id);
+  static bool isSimulatorId(final String id) => values.any((final element) {
+    if (id == winter.apiString) {
+      // TODO(lsaudon): Désactiver le simulateur Winter pour l'instant
+      // Reste à faire:
+      // - Adapter les radios buttons
+      // - Faire le cas avec PRM
+      // - Poser les questions
+      // - Voir le résultat
+      // - Voir les actions associées
+      return false;
+    }
+
+    return element.apiString == id;
+  });
 
   static ActionSimulatorId fromApiString(final String id) => values.firstWhere(
     (final element) => element.apiString == id,

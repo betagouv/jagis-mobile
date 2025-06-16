@@ -33,6 +33,7 @@ abstract final class Endpoints {
   static const seasonalFruitsAndVegetablesSearch = '/utilisateurs/{userId}/recherche_services/fruits_legumes/search2';
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';
+  static const winterVerify = '/utilisateurs/{userId}/winter/verify';
   static String _service(final String service) => '/utilisateurs/{userId}/recherche_services/$service';
   static String serviceCategories(final String service) => '${_service(service)}/categories';
   static String serviceSearch(final String service) => '${_service(service)}/search2';

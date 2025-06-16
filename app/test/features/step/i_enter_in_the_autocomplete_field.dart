@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helper/feature_context.dart';
@@ -41,7 +40,8 @@ Future<void> iEnterInTheAutocompleteField(final WidgetTester tester, final Strin
     },
   );
 
-  await tester.tap(find.byType(DsfrInputHeadless));
-  await tester.enterText(find.byType(DsfrInputHeadless), text);
+  final byKey = find.byKey(const ValueKey('autocomplete_input'));
+  await tester.tap(byKey);
+  await tester.enterText(byKey, text);
   await tester.pump(Durations.long2);
 }

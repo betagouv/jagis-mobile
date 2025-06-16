@@ -3,8 +3,8 @@
 import 'package:app/core/address/address.dart';
 import 'package:dio/dio.dart';
 
-class AddressRepository {
-  const AddressRepository(this._client);
+class GeocodingRepository {
+  const GeocodingRepository(this._client);
 
   final Dio _client;
 

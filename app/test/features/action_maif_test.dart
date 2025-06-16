@@ -780,8 +780,8 @@ void main() {
               ['PATCH', '/utilisateurs/{userId}/logement', 200, null, {}]
             ]));
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
-        await iTapOn(tester, 'Choisir');
-        await iDontSee(tester, 'Choisir');
+        await iTapOn(tester, 'Enregistrer');
+        await iDontSee(tester, 'Enregistrer');
         await theApiReceives(
             tester,
             const bdd.DataTable([

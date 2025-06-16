@@ -165,13 +165,15 @@ class _Card extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                   ),
-                  const Spacer(),
-                  DsfrTag(
-                    label: Localisation.distance(suggestion.distanceInMeters),
-                    size: DsfrComponentSize.sm,
-                    backgroundColor: const Color(0xffEAEAEA),
-                    textColor: const Color(0xff3F3F3F),
-                  ),
+                  if (suggestion.distanceInMeters != null) ...[
+                    const Spacer(),
+                    DsfrTag(
+                      label: Localisation.distance(suggestion.distanceInMeters!),
+                      size: DsfrComponentSize.sm,
+                      backgroundColor: const Color(0xffEAEAEA),
+                      textColor: const Color(0xff3F3F3F),
+                    ),
+                  ],
                 ],
               ),
             ),

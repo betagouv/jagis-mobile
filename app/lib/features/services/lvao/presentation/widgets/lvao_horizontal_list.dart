@@ -97,13 +97,15 @@ class _Success extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 3,
                                   ),
-                                  const Spacer(),
-                                  DsfrTag(
-                                    label: Localisation.distance(e.distanceInMeters),
-                                    size: DsfrComponentSize.sm,
-                                    backgroundColor: const Color(0xFFEAEAEA),
-                                    textColor: const Color(0xFF3F3F3F),
-                                  ),
+                                  if (e.distanceInMeters != null) ...[
+                                    const Spacer(),
+                                    DsfrTag(
+                                      label: Localisation.distance(e.distanceInMeters!),
+                                      size: DsfrComponentSize.sm,
+                                      backgroundColor: const Color(0xFFEAEAEA),
+                                      textColor: const Color(0xFF3F3F3F),
+                                    ),
+                                  ],
                                 ],
                               ),
                             ),

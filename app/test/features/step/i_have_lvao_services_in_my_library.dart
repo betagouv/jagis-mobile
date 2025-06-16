@@ -17,7 +17,7 @@ Future<void> iHaveLvaoServicesInMyLibrary(final WidgetTester tester) async {
           'adresse_rue': '17 RUE DES BLANCHERS, 31000, TOULOUSE',
           'est_favoris': false,
           'nombre_favoris': 0,
-          'distance_metres': 387,
+          'distance_metres': null,
           'categories': ['reparer'],
           'latitude': 43.602354,
           'longitude': 1.437978,

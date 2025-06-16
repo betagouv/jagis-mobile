@@ -61,15 +61,7 @@ class _Success extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: DsfrTag(
-            label: Localisation.distance(detail.distanceInMeters),
-            size: DsfrComponentSize.sm,
-            backgroundColor: const Color(0xffEAEAEA),
-            textColor: const Color(0xff3F3F3F),
-          ),
-        ),
+        if (detail.distanceInMeters != null) _DistanceTag(distanceInMeters: detail.distanceInMeters!),
         Text(detail.name, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
         SizedBox(
@@ -107,6 +99,23 @@ class _Success extends StatelessWidget {
       ],
     );
   }
+}
+
+class _DistanceTag extends StatelessWidget {
+  const _DistanceTag({required this.distanceInMeters});
+
+  final int distanceInMeters;
+
+  @override
+  Widget build(final BuildContext context) => Align(
+    alignment: Alignment.centerLeft,
+    child: DsfrTag(
+      label: Localisation.distance(distanceInMeters),
+      size: DsfrComponentSize.sm,
+      backgroundColor: const Color(0xffEAEAEA),
+      textColor: const Color(0xff3F3F3F),
+    ),
+  );
 }
 
 class _DetailInfo extends StatelessWidget {

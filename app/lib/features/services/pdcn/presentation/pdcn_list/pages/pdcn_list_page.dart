@@ -1,4 +1,4 @@
-import 'package:app/core/address/address_repository.dart';
+import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
@@ -86,7 +86,7 @@ class _Success extends StatelessWidget {
                   const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
                   FnvAutocomplete(
                     displayStringForOption: (final option) => option.label,
-                    onSearch: (final query) => context.read<AddressRepository>().search(query),
+                    onSearch: (final query) => context.read<GeocodingRepository>().search(query),
                     onSelected: (final option) =>
                         context.read<ServiceBloc<PdcnSummary>>().add(ServiceAddressChanged(address: option)),
                   ),

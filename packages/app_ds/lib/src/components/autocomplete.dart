@@ -82,6 +82,7 @@ class _FnvAutocompleteState<T extends Object> extends State<FnvAutocomplete<T>> 
     },
     displayStringForOption: (final option) => widget.displayStringForOption(option),
     fieldViewBuilder: (final context, final textEditingController, final focusNode, final onFieldSubmitted) => DsfrInputHeadless(
+      key: const ValueKey('autocomplete_input'),
       controller: textEditingController,
       suffixIcon: const Icon(DsfrIcons.systemSearchLine, color: DsfrColors.grey50),
       onFieldSubmitted: (final value) => onFieldSubmitted(),

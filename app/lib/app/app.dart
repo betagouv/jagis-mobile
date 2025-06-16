@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:app/app/router/app_router.dart';
-import 'package:app/core/address/address_repository.dart';
+import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/infrastructure/authentication_injection.dart';
 import 'package:app/core/authentication/infrastructure/authentication_redirection.dart';
@@ -169,7 +169,7 @@ class _AppState extends State<App> {
                 RepositoryProvider.value(value: communesRepository),
                 RepositoryProvider.value(value: profilRepository),
                 RepositoryProvider.value(value: environmentalPerformanceSummaryRepository),
-                RepositoryProvider(create: (final context) => AddressRepository(widget.addressClient)),
+                RepositoryProvider(create: (final context) => GeocodingRepository(widget.addressClient)),
                 RepositoryProvider(create: (final context) => AidsRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => ActionsRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => RecommandationsRepository(widget.apiClient)),

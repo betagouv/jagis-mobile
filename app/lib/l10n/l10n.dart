@@ -45,9 +45,9 @@ abstract final class Localisation {
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
-  static const choisirCommeAdressePrincipale = 'Choisir';
+  static const choisirCommeAdressePrincipale = 'Enregistrer';
   static const choisirCommeAdressePrincipaleDescription =
-      'Voulez-vous choisir cette adresse comme votre adresse principale à l’avenir ?';
+      'Pratique : souhaitez-vous enregistrer votre adresse principale pour une prochaine fois ?';
   static const choisissezUneAdresse = 'Choisissez une adresse';
   static const codeDeVerification = 'Code de vérification';
   static const codePostal = 'Code postal';
@@ -157,6 +157,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCguTitrePart1 = 'En m’inscrivant j’accepte les ';
   static const lesCguTitrePart2 = 'Conditions générales d’utilisation';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
+  static const localiserMonCompteur = 'Localiser mon compteur';
   static const lvaoDescription =
       'L’ADEME vous aide à prolonger la vie de vos objets. Pour préserver les ressources de la planète… et de votre porte-monnaie !';
   static const lvaoNom = 'Que faire de mes objets - ADEME';
@@ -204,6 +205,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
+  static const monAdresse = 'Mon adresse';
   static const monClassement = 'Mon classement';
   static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';
@@ -213,6 +215,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const monPseudonyme = 'Mon pseudonyme';
   static const monPseudonymeIndice = 'Doit être composés de 3 à 21 caractères. Lettres et chiffres uniquement.';
   static const nom = 'Nom';
+  static const nomDeFamille = 'Nom de famille (du titulaire du contrat électrique)';
   static const nombreDePartsFiscales = 'Nombre de parts fiscales de votre foyer';
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
@@ -306,6 +309,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';
   static const uneMaison = 'Une maison';
+  static const valider = 'Valider';
   static const verifiezVotreBoiteEmail = 'Vérifiez votre boîte e-mail';
   static const voirLaReponse = 'Voir la réponse';
   static const voirLeResultat = 'Voir le résultat';
@@ -323,6 +327,11 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
   static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
+  static const winterTitre = 'Réduisez jusqu’à 25% votre facture d’énergie';
+  static const winterDescription =
+      'En nous renseignant votre adresse et en répondant à quelques questions sur votre logement, découvrez vos postes les plus gourmands en énergie et les astuces pour réduire leur consommation !';
+  static const winterJeDeclare =
+      'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
   static String a(final String value) => 'à $value';
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';

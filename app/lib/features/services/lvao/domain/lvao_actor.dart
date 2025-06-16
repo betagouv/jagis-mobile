@@ -16,7 +16,7 @@ class LvaoActor extends Equatable {
         id: json['id'] as String,
         name: json['titre'] as String,
         address: json['adresse_rue'] as String,
-        distanceInMeters: json['distance_metres'] as int,
+        distanceInMeters: json['distance_metres'] as int?,
         latitude: json['latitude'] as double,
         longitude: json['longitude'] as double,
         sources: json.containsKey('sources') ? (json['sources'] as List<dynamic>).map((final e) => e as String).toList() : [],
@@ -25,10 +25,10 @@ class LvaoActor extends Equatable {
   final String id;
   final String name;
   final String address;
-  final int distanceInMeters;
+  final int? distanceInMeters;
   final double latitude;
   final double longitude;
   final List<String> sources;
   @override
-  List<Object> get props => [id, name, address, distanceInMeters, latitude, longitude, sources];
+  List<Object?> get props => [id, name, address, distanceInMeters, latitude, longitude, sources];
 }

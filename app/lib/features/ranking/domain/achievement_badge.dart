@@ -3,10 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 class AchievementBadge extends Equatable {
-  const AchievementBadge({required this.imageUrl, required this.title, required this.description});
+  AchievementBadge.fromJson(final Map<String, dynamic> json)
+    : imageUrl = json['image_url'] as String,
+      title = json['titre'] as String,
+      description = json['description'] as String;
 
   final String imageUrl;
   final String title;
+
   final String description;
 
   @override

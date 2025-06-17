@@ -1,11 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class UserRank extends Equatable {
-  const UserRank({required this.points, required this.rank, required this.pseudo, required this.id});
+  UserRank.fromJson(final Map<String, dynamic> json)
+    : points = json['points'] as int,
+      rank = json['rank'] as int,
+      pseudo = json['pseudo'] as String?,
+      id = json['id'] as String;
 
   final int points;
   final int rank;
   final String? pseudo;
+
   final String id;
 
   @override

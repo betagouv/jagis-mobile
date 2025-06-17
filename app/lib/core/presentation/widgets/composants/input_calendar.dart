@@ -53,6 +53,9 @@ class _FnvInputCalendarState extends State<FnvInputCalendar> {
       initialDate: initialDate,
       firstDate: DateTime(now.year - 123),
       lastDate: now,
+      helpText: widget.label,
+      fieldHintText: widget.hintText,
+      fieldLabelText: widget.label,
     );
     if (dateSelected == null) {
       return;

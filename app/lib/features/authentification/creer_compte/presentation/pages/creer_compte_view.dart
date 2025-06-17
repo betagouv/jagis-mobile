@@ -99,13 +99,13 @@ class _CguState extends State<_Cgu> {
       style: const DsfrTextStyle.bodySm(color: DsfrColors.grey50),
       children: [
         TextSpan(
-          recognizer: _tapGestureRecognizer,
           children: [
             TextSpan(
               text: Localisation.lesCguTitrePart2,
               style: const DsfrTextStyle.bodySm(
                 color: DsfrColors.blueFranceSun113,
               ).copyWith(decoration: TextDecoration.underline, decorationColor: DsfrColors.blueFranceSun113),
+              recognizer: _tapGestureRecognizer,
             ),
             const WidgetSpan(
               alignment: PlaceholderAlignment.middle,

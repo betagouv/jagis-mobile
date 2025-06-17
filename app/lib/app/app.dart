@@ -238,27 +238,26 @@ class _AppState extends State<App> {
                         CarSimulatorResultBloc(carSimulatorRepository: CarSimulatorRepository(widget.apiClient)),
                   ),
                 ],
-                child: DsfrThemeModeProvider.withBuilder(
-                  isLightMode: true,
-                  builder: (final context) => MaterialApp.router(
-                    routerConfig: _goRouter,
-                    builder: (final context, final child) =>
-                        UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox()),
-                    theme: ThemeData(
-                      colorSchemeSeed: DsfrColors.blueFranceSun113,
-                      scaffoldBackgroundColor: Colors.white,
-                      fontFamily: 'Marianne',
-                      package: 'dsfr',
-                      appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
-                    ),
-                    locale: locale,
-                    localizationsDelegates: const [
-                      GlobalCupertinoLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                    ],
-                    supportedLocales: const [locale],
+                child: MaterialApp.router(
+                  routerConfig: _goRouter,
+                  builder: (final context, final child) =>
+                      UpgradeWidget(navigatorKey: _goRouter.routerDelegate.navigatorKey, child: child ?? const SizedBox()),
+                  theme: ThemeData(
+                    brightness: Brightness.light,
+                    colorSchemeSeed: DsfrColors.blueFranceSun113,
+                    scaffoldBackgroundColor: DsfrColors.grey1000,
+                    fontFamily: 'Marianne',
+                    package: 'dsfr',
+                    appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
                   ),
+                  themeMode: ThemeMode.light,
+                  locale: locale,
+                  localizationsDelegates: const [
+                    GlobalCupertinoLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  supportedLocales: const [locale],
                 ),
               ),
             ),

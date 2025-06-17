@@ -20,35 +20,45 @@ Future<void> pumpPage({
   final Map<String, String>? routes,
 }) async {
   DeviceInfo.setup(tester);
-  Widget widget = DsfrThemeModeProvider.withBuilder(
-    isLightMode: true,
-    builder: (final context) => MaterialApp.router(
-      routerConfig:
-          router ??
-          GoRouter(
-            routes: [
-              GoRoute(
-                path: '/',
-                builder: (final context, final state) => const Text('pop'),
-                routes: [
-                  page!,
-                  ?realRoutes,
-                  if (realRoutes == null)
-                    ...?routes?.entries.map(
-                      (final e) =>
-                          GoRoute(path: e.value, name: e.key, builder: (final context, final state) => Text('route: ${e.key}')),
-                    ),
-                ],
-              ),
-            ],
-            initialLocation: '/${page.path}',
-          ),
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
+  const locale = Locale('fr', 'FR');
+
+  Widget widget = MaterialApp.router(
+    routerConfig:
+        router ??
+        GoRouter(
+          routes: [
+            GoRoute(
+              path: '/',
+              builder: (final context, final state) => const Text('pop'),
+              routes: [
+                page!,
+                ?realRoutes,
+                if (realRoutes == null)
+                  ...?routes?.entries.map(
+                    (final e) =>
+                        GoRoute(path: e.value, name: e.key, builder: (final context, final state) => Text('route: ${e.key}')),
+                  ),
+              ],
+            ),
+          ],
+          initialLocation: '/${page.path}',
+        ),
+    theme: ThemeData(
+      brightness: Brightness.light,
+      colorSchemeSeed: DsfrColors.blueFranceSun113,
+      scaffoldBackgroundColor: DsfrColors.grey1000,
+      fontFamily: 'Marianne',
+      package: 'dsfr',
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
     ),
+    themeMode: ThemeMode.light,
+    locale: locale,
+    localizationsDelegates: const [
+      GlobalCupertinoLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: const [locale],
   );
 
   if (blocProviders.isNotEmpty) {

@@ -157,23 +157,6 @@ void main() {
       await Hooks.afterEach(title, success, tags);
     }
 
-    testWidgets('''Voir les actions recommandées''', (tester) async {
-      var success = true;
-      try {
-        await beforeEach('''Voir les actions recommandées''');
-        await bddSetUp(tester);
-        await iTapOnText(tester, 1, '🚅 Me déplacer');
-        await iSee(tester, 'Mes actions recommandées');
-      } on TestFailure {
-        success = false;
-        rethrow;
-      } finally {
-        await afterEach(
-          '''Voir les actions recommandées''',
-          success,
-        );
-      }
-    });
     testWidgets('''Voir la popup si la personnalisation n'a pas été faite''',
         (tester) async {
       var success = true;
@@ -182,7 +165,7 @@ void main() {
             '''Voir la popup si la personnalisation n'a pas été faite''');
         await bddSetUp(tester);
         await iTapOnText(tester, 1, '🚅 Me déplacer');
-        await iSee(tester, 'Envie d’avoir un vrai impact ?');
+        await iSee(tester, '3 questions pour…');
       } on TestFailure {
         success = false;
         rethrow;
@@ -247,7 +230,7 @@ void main() {
         await iHaveThemeWithCustomizationNeeded(tester);
         await iScrollDownTo(tester, 'Refaire');
         await iTapOn(tester, 'Refaire');
-        await iSee(tester, 'Envie d’avoir un vrai impact ?');
+        await iSee(tester, '3 questions pour…');
       } on TestFailure {
         success = false;
         rethrow;

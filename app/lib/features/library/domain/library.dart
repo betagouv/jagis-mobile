@@ -1,10 +1,10 @@
-import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:equatable/equatable.dart';
 
 class Library extends Equatable {
   const Library({required this.contents, required this.filters});
 
-  final List<Recommandation> contents;
+  final List<Recommendation> contents;
   final List<LibraryFilter> filters;
 
   @override

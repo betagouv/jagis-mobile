@@ -12,15 +12,7 @@ import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
-final class ThemeSummary extends Equatable {
-  const ThemeSummary({required this.commune, required this.links});
-
-  final String commune;
-  final List<ThemeSummaryInternalLink> links;
-
-  @override
-  List<Object> get props => [commune, links];
-
+abstract final class ThemeSummary {
   static List<ThemeSummaryInternalLink> buildThemeLinksFor({
     required final ThemeType themeType,
     required final int aidCount,

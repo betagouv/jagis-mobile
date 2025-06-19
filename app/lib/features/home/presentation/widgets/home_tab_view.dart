@@ -1,4 +1,3 @@
-import 'package:app/features/home/presentation/widgets/home_app_bar_title.dart';
 import 'package:app/features/home/presentation/widgets/home_content.dart';
 import 'package:app/features/home/presentation/widgets/home_tab_bar.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
@@ -24,7 +23,6 @@ class HomeTabView extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: RootPage(
-        title: const HomeAppBarTitle(),
         appBarBottom: HomeTabBar(textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 2), tabs: tabs),
         body: TabBarView(physics: const NeverScrollableScrollPhysics(), children: pages),
       ),

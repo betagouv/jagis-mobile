@@ -1,7 +1,7 @@
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/features/articles/presentation/pages/article_page.dart';
-import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 class LibraryContent extends StatefulWidget {
   const LibraryContent({super.key, required this.content});
 
-  final Recommandation content;
+  final Recommendation content;
 
   @override
   State<LibraryContent> createState() => _LibraryContentState();

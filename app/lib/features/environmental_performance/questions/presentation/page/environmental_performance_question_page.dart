@@ -69,7 +69,13 @@ class _LoadSuccess extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: DsfrSpacings.s1v,
       children: [
-        FnvProgressBar(current: cursor.index, total: cursor.total),
+        FnvProgressBar(
+          height: 8,
+          trackColor: DsfrColorDecisions.backgroundContrastGrey(context),
+          progressColor: DsfrColorDecisions.backgroundActiveBlueFrance(context),
+          current: cursor.index,
+          total: cursor.total,
+        ),
         Flexible(
           child: SingleChildScrollView(
             child: SafeArea(

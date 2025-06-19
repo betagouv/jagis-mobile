@@ -15,6 +15,16 @@ final class HomeDashboardLoadRequested extends HomeDashboardEvent {
 }
 
 @immutable
-final class HomeDashboardRecommandationsUpdated extends HomeDashboardEvent {
-  const HomeDashboardRecommandationsUpdated();
+final class HomeDashboardActionsSwitchRequested extends HomeDashboardEvent {
+  const HomeDashboardActionsSwitchRequested(this.areRecommendedActions);
+
+  final bool areRecommendedActions;
+
+  @override
+  List<Object> get props => [areRecommendedActions];
+}
+
+@immutable
+final class HomeDashboardRecommendationsUpdated extends HomeDashboardEvent {
+  const HomeDashboardRecommendationsUpdated();
 }

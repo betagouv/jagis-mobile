@@ -26,7 +26,7 @@ abstract final class Endpoints {
   static const questionsKyc = '/utilisateurs/{userId}/questionsKYC_v2';
   static const recipesCategories = '/utilisateurs/{userId}/recherche_services/recettes/categories';
   static const recipesSearch = '/utilisateurs/{userId}/recherche_services/recettes/search2';
-  static const recommandationsV3 = '/utilisateurs/{userId}/recommandations_v3';
+  static const recommendations = '/utilisateurs/{userId}/recommandations_v3';
   static const riskCity = '/utilisateurs/{userId}/risques_commune';
   static const riskStreet = '/utilisateurs/{userId}/risques_adresse';
   static const seasonalFruitsAndVegetablesCategories = '/utilisateurs/{userId}/recherche_services/fruits_legumes/categories';
@@ -61,8 +61,6 @@ abstract final class Endpoints {
   static String quiz(final String contentId) => '/utilisateurs/{userId}/bibliotheque/quizz/$contentId';
   static String quizScore(final String contentId) => '/utilisateurs/{userId}/actions/quizz/$contentId/score';
   static String recipe(final String recipeId) => '/utilisateurs/{userId}/recherche_services/recettes/last_results/$recipeId';
-  static String replaceAction({required final String themeCode, required final String type, required final String code}) =>
-      '/${theme(themeCode)}/actions/$type/$code';
   static String resetCustomization(final String themeCode) => '${theme(themeCode)}/reset_personnalisation';
   static String theme(final String themeCode) => '/utilisateurs/{userId}/thematiques/$themeCode';
 }

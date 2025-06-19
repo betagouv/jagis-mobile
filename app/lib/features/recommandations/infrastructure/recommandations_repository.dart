@@ -1,7 +1,7 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
-import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:app/features/recommandations/infrastructure/recommandation_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -10,9 +10,9 @@ class RecommandationsRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, List<Recommandation>>> fetchForHome() async {
+  Future<Either<Exception, List<Recommendation>>> fetchForHome() async {
     final response = await _client.get(
-      Uri(path: Endpoints.recommandationsV3, queryParameters: {'nombre_max': '4', 'type': 'article'}).toString(),
+      Uri(path: Endpoints.recommendations, queryParameters: {'nombre_max': '4', 'type': 'article'}).toString(),
     );
 
     if (isResponseUnsuccessful(response.statusCode)) {

@@ -34,7 +34,7 @@ void main() {
         await beforeEach('''On voit le pseudonyme sur la page d'accueil''');
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
-        await iSee(tester, 'Bonjour,\nJoe !');
+        await iSee(tester, 'Bonjour Joe,');
       } on TestFailure {
         success = false;
         rethrow;

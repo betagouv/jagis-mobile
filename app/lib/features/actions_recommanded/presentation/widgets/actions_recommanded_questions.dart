@@ -62,13 +62,18 @@ class _QuestionsSuccessState extends State<_QuestionsSuccess> {
   var _isExpanded = true;
 
   @override
-  Widget build(final BuildContext context) => _isExpanded
-      ? _GetStarted(
-          onPressed: () {
-            setState(() => _isExpanded = false);
-          },
-        )
-      : _Question(element: widget.data.cursor.element, cursor: widget.data.cursor);
+  Widget build(final BuildContext context) {
+    final cursor = widget.data.cursor;
+
+    return _isExpanded
+        ? _GetStarted(
+            questionTotal: cursor.total,
+            onPressed: () {
+              setState(() => _isExpanded = false);
+            },
+          )
+        : _Question(element: cursor.element, cursor: cursor);
+  }
 }
 
 class _Loader extends StatelessWidget {
@@ -95,8 +100,9 @@ class _Loader extends StatelessWidget {
 }
 
 class _GetStarted extends StatelessWidget {
-  const _GetStarted({required this.onPressed});
+  const _GetStarted({required this.questionTotal, required this.onPressed});
 
+  final int questionTotal;
   final VoidCallback onPressed;
 
   @override
@@ -113,9 +119,9 @@ class _GetStarted extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(Localisation.envieDAvoirUnVraiImpact, style: DsfrTextStyle.headline5(color: DsfrColors.grey50)),
+          Text(Localisation.questionPour(questionTotal), style: const DsfrTextStyle.headline5(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s1v),
-          const FnvMarkdown(data: Localisation.envieDAvoirUnVraiImpactDescription),
+          const FnvMarkdown(data: Localisation.mieuxComprendreVosHabitudes),
           const SizedBox(height: DsfrSpacings.s2w),
           AnimationShake(
             child: DsfrRawButton(

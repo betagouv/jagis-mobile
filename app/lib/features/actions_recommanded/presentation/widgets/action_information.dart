@@ -21,7 +21,7 @@ class ActionInformation extends StatelessWidget {
               ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
               Expanded(
                 child: FnvMarkdown(
-                  data: '**$value** $suffix${value > 1 ? 's' : ''}',
+                  data: '**$value** $suffix${value > 1 ? 's' : ''}',
                   p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
                 ),
               ),

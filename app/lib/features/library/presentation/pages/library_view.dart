@@ -7,7 +7,7 @@ import 'package:app/features/library/presentation/bloc/library_bloc.dart';
 import 'package:app/features/library/presentation/bloc/library_event.dart';
 import 'package:app/features/library/presentation/pages/library_content.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
-import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -124,7 +124,7 @@ class _SliverListe extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final contenus = context.select<LibraryBloc, List<Recommandation>>((final value) => value.state.library.contents);
+    final contenus = context.select<LibraryBloc, List<Recommendation>>((final value) => value.state.library.contents);
 
     return contenus.isEmpty
         ? SliverFillRemaining(

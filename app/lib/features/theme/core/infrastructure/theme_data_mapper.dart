@@ -1,5 +1,5 @@
 import 'package:app/core/infrastructure/theme_type_mapper.dart';
-import 'package:app/features/actions/infrastructure/action_summary_mapper.dart';
+import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
 
 abstract final class ThemeDataMapper {
@@ -10,7 +10,7 @@ abstract final class ThemeDataMapper {
     communeName: json['nom_commune'] as String,
     isQuestionsNeeded: json['est_personnalisation_necessaire'] as bool,
     sequenceId: json['enchainement_questions_personnalisation'] as String,
-    actionsRecommanded: ActionSummaryMapper.fromJsonList(json['liste_actions_recommandees'] as List<dynamic>),
+    actionsRecommanded: ActionSummary.fromJsonList(json['liste_actions_recommandees'] as List<dynamic>),
     actionCount: json['nombre_actions'] as int,
     aidCount: json['nombre_aides'] as int,
     simulatorCount: json['nombre_simulateurs'] as int,

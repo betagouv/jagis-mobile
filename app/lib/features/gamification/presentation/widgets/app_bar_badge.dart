@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class AppBarBadge extends StatelessWidget {
-  const AppBarBadge({super.key, required this.value});
+  const AppBarBadge({super.key, required this.value, required this.onTap});
 
   final int value;
+  final VoidCallback? onTap;
 
   @override
   Widget build(final BuildContext context) {
@@ -17,9 +18,10 @@ class AppBarBadge extends StatelessWidget {
     return Semantics(
       label: Localisation.nombreBadges(value),
       child: AchievementBase(
-        value: value,
         icon: const FnvImage.asset(AssetImages.badgeIcon, width: size, height: size),
         backgroundColor: const Color(0xFFFEF4DA),
+        value: value,
+        onTap: onTap,
       ),
     );
   }

@@ -14,6 +14,8 @@ abstract final class Localisation {
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';
+  static const affinezVosRecommandations = 'Affinez vos recommandations';
+  static const affinezVosRecommandationsDetails = 'Répondez à quelques questions rapides sur le thème de votre choix';
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aide = 'aide';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
@@ -40,8 +42,10 @@ abstract final class Localisation {
   static const bibliothequeSousTitre = 'Retrouver ici vos articles déjà consultés ainsi que vos favoris';
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
+  static const bonjour = 'Bonjour,';
+  static String bonjourPseudonym(final String pseudonym) => 'Bonjour $pseudonym,';
+
   static const empreinteEcologique = 'Empreinte écologique';
-  static const bonjour = 'Bonjour,\n';
   static const catalogueActions = 'Catalogue d’actions';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
@@ -56,7 +60,6 @@ abstract final class Localisation {
   static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commencerVotreDemarche = 'Commencer votre démarche';
   static const commune = 'Commune';
-  static const completer = 'Compléter';
   static const confirmer = 'Confirmer';
   static const consommationsEnergetiques = 'Consommations énergétiques';
   static const continuer = 'Continuer';
@@ -64,7 +67,6 @@ abstract final class Localisation {
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
   static const creerUnCompte = 'Créer un compte';
-  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const dateDeNaissance = 'Date de naissance';
   static const dateDeNaissanceDescription = 'Nécessaire pour faciliter votre identification';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
@@ -97,9 +99,6 @@ abstract final class Localisation {
   static const entre35et70m2 = 'Entre 35 et 70 m²';
   static const entre70et100m2 = 'Entre 70 et 100 m²';
   static const entrezLeCodeRecuParMail = 'Entrez le code reçu par e-mail !';
-  static const envieDAvoirUnVraiImpact = 'Envie d’avoir un vrai impact ?';
-  static const envieDAvoirUnVraiImpactDescription =
-      'Laissez-vous guider par nos recommandations d’actions **choisies pour vous !**';
   static const envieDeVoirOuRevoirToutesLesActions = 'Envie de voir ou revoir toutes les actions ?';
   static const envoyer = 'Envoyer';
   static const erreurInattendue = 'Erreur inattendue';
@@ -131,6 +130,7 @@ abstract final class Localisation {
   static const fruitsEtLegumesTitre = 'Les fruits et légumes pour le mois de ';
   static const gratuit = 'Gratuit';
   static const home = 'Accueil';
+  static const ilEstTempsDAgirChoisissezVotreProchaineAction = 'Il est temps d’agir, choisissez votre prochaine action !';
   static const ilYADuNouveauSurApp = 'Il y a du nouveau sur J’agis !';
   static const ilYADuNouveauSurAppDescription = '''
 Nous avons écouté vos retours et concocté une toute **nouvelle version** du service.
@@ -187,9 +187,6 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
 Vous avez fait partie des **premiers utilisateurs** à tester ce nouveau service, à nous faire vos retours, et nous permettre de nous améliorer.
 
 Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour commencer cette **nouvelle aventure…**''';
-  static const mesActionsRecommandees = 'Mes actions recommandées';
-  static const mesActionsRecommandeesDescription =
-      'Afin d’obtenir vos actions personnalisées, pouvez-vous nous en dire un peu plus sur vous ?';
   static const mesActionsRecommandeesEpuiseeDescription =
       'Chaque mois, J’agis s’enrichit en nouveautés pour vous proposer toujours plus d’actions qui vous correspondent.';
   static const mesActionsRecommandeesEpuiseeTitre = 'C’est tout, pour le moment';
@@ -201,6 +198,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
   static const mettreAJour = 'Mettre à jour';
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
+  static const mieuxComprendreVosHabitudes = 'Mieux comprendre vos habitudes';
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
@@ -262,7 +260,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const prixDuVeloObligatoire = 'Le prix du vélo ne peux pas être vide';
   static const proposePar = 'Proposé par';
   static const proposerUneModification = 'Proposer une modification';
-  static const proposezMoiAutreChose = 'Proposez-moi autre chose';
   static const propulsePar = 'Propulsé par ';
   static const pseudonymEmpty = 'Le pseudonyme ne peut pas être vide.';
   static const pseudonymInvalid = 'Le pseudonyme n’est pas valide.';
@@ -280,6 +277,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const serviceAucunResultat = '😢 Aucun résultat n’est encore disponible pour votre localisation';
   static const rechercherParTitre = 'Rechercher par titre';
   static const recolter = 'Récolter';
+  static const recommandees = 'Recommandées';
   static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
@@ -305,6 +303,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
+  static const terminees = 'Terminées';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
   static const unAppartement = 'Un appartement';
@@ -315,7 +314,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
   static const voirMesResultats = 'Voir mes résultats';
-  static const voirPlusActions = 'Voir plus d’actions';
   static const voirTout = 'Voir tout';
   static const vosRisques = 'Vos risques';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
@@ -336,7 +334,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
   static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
-  static String actionsTerminees(final int nbActions) => nbActions > 1 ? 'Actions terminées' : 'Action terminée';
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;
 
@@ -374,8 +371,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String nombreBadges(final int value) => value <= 1 ? '$value badge' : '$value badges';
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
-  static String pseudonymExclamation(final String value) => '$value !';
 
+  static String questionPour(final int max) => '$max questions pour…';
   static String questionCourantSurMax(final int actuel, final int max) => '**Question $actuel** sur $max';
 
   static String tempsDePreparation(final int value) => 'Temps de préparation : $value min';

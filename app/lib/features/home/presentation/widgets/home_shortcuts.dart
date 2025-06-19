@@ -8,16 +8,21 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeShortcuts extends StatelessWidget {
-  const HomeShortcuts({super.key, required this.nbAids, required this.nbRecipies});
+  const HomeShortcuts({super.key, required this.nbAids, required this.nbRecipes});
 
   final int nbAids;
-  final int nbRecipies;
+  final int nbRecipes;
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(color: Color(0xFFECEBE0)),
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s6w, horizontal: DsfrSpacings.s2w),
+      padding: const EdgeInsets.only(
+        left: DsfrSpacings.s2w,
+        top: DsfrSpacings.s4w,
+        right: DsfrSpacings.s2w,
+        bottom: DsfrSpacings.s6w,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: DsfrSpacings.s3w,
@@ -32,7 +37,7 @@ class HomeShortcuts extends StatelessWidget {
                 children: ThemeType.values
                     .flatMap(
                       (final themeType) =>
-                          ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipies),
+                          ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipes),
                     )
                     .toSet()
                     .map(

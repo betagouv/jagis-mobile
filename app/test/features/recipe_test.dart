@@ -91,6 +91,7 @@ void main() {
         await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
         await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
         await iSee(tester, 'Temps de préparation : 5 min');
+        await iSee(tester, '© Santé publique France');
       } on TestFailure {
         success = false;
         rethrow;

@@ -2,12 +2,10 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
-import 'package:app/features/theme/core/domain/service_item.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
-import 'package:app/features/theme/presentation/widgets/service_card.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -90,41 +88,11 @@ class _Success extends StatelessWidget {
         ThemeHeader(themeType: themeType, themeSummary: data.summary),
         ActionsRecommandedSection(theme: theme),
         sizedBox,
-        Padding(
-          padding: padding,
-          child: _Services(services: data.services),
-        ),
-        sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),
       ],
     );
   }
-}
-
-class _Services extends StatelessWidget {
-  const _Services({required this.services});
-
-  final List<ServiceItem> services;
-
-  @override
-  Widget build(final BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: DsfrSpacings.s2w,
-    children: [
-      const Text(Localisation.mesServices, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        clipBehavior: Clip.none,
-        child: IntrinsicHeight(
-          child: Row(
-            spacing: DsfrSpacings.s2w,
-            children: services.map((final e) => ServiceCard(service: e)).toList(),
-          ),
-        ),
-      ),
-    ],
-  );
 }
 
 class _ActionCatalog extends StatelessWidget {

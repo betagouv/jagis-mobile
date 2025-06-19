@@ -81,7 +81,6 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
       },
     )
     ..getM(Endpoints.aid(aid['content_id']! as String), responseData: aid)
-    ..getM(Endpoints.servicesParThematique('alimentation'), responseData: <dynamic>[])
     ..getM(
       Endpoints.theme(ThemeType.alimentation.name),
       responseData: {

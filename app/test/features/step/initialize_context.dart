@@ -241,21 +241,6 @@ void setCommunes() => FeatureContext.instance.dioMock.getM(
 );
 
 void setServices() => FeatureContext.instance.dioMock
-  ..getM(Endpoints.servicesParThematique(ThemeType.transport.name), responseData: <dynamic>[])
-  ..getM(
-    Endpoints.servicesParThematique(ThemeType.alimentation.name),
-    responseData: [
-      {
-        'id_service': 'fruits_legumes',
-        'titre': 'Fruits et légumes de saison',
-        'sous_titre': 'janvier',
-        'external_url': 'https://impactco2.fr/outils/fruitsetlegumes',
-        'icon_url': 'https://agir-front-dev.osc-fr1.scalingo.io/cerise.webp',
-        'thematique': 'alimentation',
-        'is_available_inhouse': true,
-      },
-    ],
-  )
   ..getM(
     Endpoints.seasonalFruitsAndVegetablesCategories,
     responseData: [

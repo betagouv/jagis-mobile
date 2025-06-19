@@ -1,7 +1,3 @@
-import 'package:flutter/widgets.dart';
-
-String capitalize(final String text) => text[0].toUpperCase() + text.characters.getRange(1).string;
-
 String titleToKebabCase(final String text) =>
     {
           '-': ' ',

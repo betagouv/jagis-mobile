@@ -24,23 +24,18 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     emit(const ThemeLoadInProgress());
     final themeType = event.themeType;
     final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
-    final servicesResult = await _themeRepository.getServices(themeType);
     themeDataResult.fold(
       (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-      (final theme) => servicesResult.fold(
-        (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-        (final services) => emit(
-          ThemeLoadSuccess(
-            theme: theme,
-            summary: ThemeSummary(
-              commune: theme.communeName,
-              links: ThemeSummary.buildThemeLinksFor(
-                themeType: theme.themeType,
-                aidCount: theme.aidCount,
-                recipeCount: theme.recipeCount,
-              ),
+      (final theme) => emit(
+        ThemeLoadSuccess(
+          theme: theme,
+          summary: ThemeSummary(
+            commune: theme.communeName,
+            links: ThemeSummary.buildThemeLinksFor(
+              themeType: theme.themeType,
+              aidCount: theme.aidCount,
+              recipeCount: theme.recipeCount,
             ),
-            services: services,
           ),
         ),
       ),

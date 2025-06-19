@@ -18,7 +18,7 @@ class PdcnDetail extends Equatable {
       json['adresse_rue'] as String?,
       json['adresse_code_postal'] as String?,
       json['adresse_nom_ville'] as String?,
-    ].where((final part) => part != null && part.isNotEmpty).join(' ');
+    ].where((final part) => part != null && part.isNotEmpty).join(', ');
 
     return PdcnDetail(
       title: json['titre'] as String,

@@ -8,7 +8,7 @@ abstract final class PdcnSummaryMapper {
       json['adresse_rue'] as String?,
       json['adresse_code_postal'] as String?,
       json['adresse_nom_ville'] as String?,
-    ].where((final part) => part != null && part.isNotEmpty).join(' ');
+    ].where((final part) => part != null && part.isNotEmpty).join(', ');
 
     return PdcnSummary(
       id: json['id'] as String,

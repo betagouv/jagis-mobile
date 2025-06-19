@@ -36,7 +36,7 @@ dependencies:
   flutter_widget_from_html_core: 0.16.0
   fpdart: 1.1.1
   fwfh_webview: 0.15.4
-  go_router: 15.2.0
+  go_router: 15.2.3
   gpt_markdown: 1.0.20
   html: 0.15.6
   intl: 0.20.2

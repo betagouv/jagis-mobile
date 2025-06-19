@@ -21,3 +21,4 @@ Feature: Recipe
     When I scroll down to {'Salade de pâtes complètes et lentilles'}
     When I tap on {'Salade de pâtes complètes et lentilles'}
     Then I see {'Temps de préparation : 5 min'}
+    Then I see {'© Santé publique France'}

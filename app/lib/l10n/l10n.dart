@@ -290,6 +290,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const revenirAuSimulateur = 'Revenir au simulateur';
   static const revenuFiscal = 'Revenu fiscal de référence de mon foyer';
   static const revenuQuestion = 'Quelle est votre tranche de revenus ?';
+  static const santePubliqueFrance = '© Santé publique France';
   static const seDeconnecter = 'Se déconnecter';
   static const simulateur = 'Simulateur';
   static const simulerMonAide = 'Simuler mon aide';

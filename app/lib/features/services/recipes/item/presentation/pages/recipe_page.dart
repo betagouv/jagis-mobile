@@ -59,6 +59,7 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final fontTitleColor = DsfrColorDecisions.textTitleGrey(context);
     final recipe = state.recipe;
 
     return ListView(
@@ -74,11 +75,11 @@ class _Success extends StatelessWidget {
                 child: RecipeDifficulty(value: recipe.difficulty),
               ),
               const SizedBox(height: DsfrSpacings.s1v),
-              Text(recipe.title, style: const DsfrTextStyle.headline2(color: DsfrColors.grey50)),
+              Text(recipe.title, style: DsfrTextStyle.headline2(color: fontTitleColor)),
               const SizedBox(height: DsfrSpacings.s1v),
               EstimadedTimedInfo(text: Localisation.tempsDePreparation(recipe.preparationTime)),
               const SizedBox(height: DsfrSpacings.s2w),
-              const Text(Localisation.ingredients, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
+              Text(Localisation.ingredients, style: DsfrTextStyle.headline4(color: fontTitleColor)),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.ingredients
                   .map(
@@ -93,24 +94,31 @@ class _Success extends StatelessWidget {
                   )
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),
               const SizedBox(height: DsfrSpacings.s2w),
-              const Text(Localisation.etapes, style: DsfrTextStyle.headline4(color: DsfrColors.grey50)),
+              Text(Localisation.etapes, style: DsfrTextStyle.headline4(color: fontTitleColor)),
               const SizedBox(height: DsfrSpacings.s2w),
               ...recipe.steps
-                  .map(
-                    (final e) => Text.rich(
+                  .map((final e) {
+                    final fontColor = DsfrColorDecisions.textLabelGrey(context);
+
+                    return Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
                             text: '${e.order}. ',
-                            style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
+                            style: DsfrTextStyle.bodyMdBold(color: fontColor),
                           ),
                           TextSpan(text: _decodeUnicodeEscapes(e.description)),
                         ],
                       ),
-                      style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
-                    ),
-                  )
+                      style: DsfrTextStyle.bodyMd(color: fontColor),
+                    );
+                  })
                   .separator(const SizedBox(height: DsfrSpacings.s1w)),
+              const SizedBox(height: DsfrSpacings.s2w),
+              Text(
+                Localisation.santePubliqueFrance,
+                style: DsfrTextStyle.bodyMd(color: DsfrColorDecisions.textLabelGrey(context)),
+              ),
             ],
           ),
         ),

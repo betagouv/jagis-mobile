@@ -66,7 +66,6 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => SingleChildScrollView(
-    // FIXME(lsaudon): j'utilise SingleChildScrollView pour éviter le fait de déconstruire FnvAutocomplete
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
       child: Column(

@@ -5,7 +5,7 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/faq/domain/faq.dart';
 import 'package:app/features/quiz/domain/quiz.dart';
-import 'package:app/features/recommandations/domain/recommandation.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
@@ -40,7 +40,7 @@ sealed class Action extends Equatable {
   final int? rate;
   final List<Source> sources;
   final ExplanationsRecommended explanationsRecommended;
-  final List<Recommandation> articles;
+  final List<Recommendation> articles;
 
   String get instruction;
   String get instructionWhenDone;

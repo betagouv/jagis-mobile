@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
-class FnvToggleSwitch extends StatelessWidget {
+class FnvToggleSwitch extends StatefulWidget {
   const FnvToggleSwitch({
     super.key,
     required this.leftLabel,
@@ -15,9 +15,27 @@ class FnvToggleSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
 
+  @override
+  State<FnvToggleSwitch> createState() => _FnvToggleSwitchState();
+}
+
+class _FnvToggleSwitchState extends State<FnvToggleSwitch> {
+  var _value = false;
+  bool get _isLeft => _value;
+  bool get _isRight => !_value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
+
   void _handleTap(final bool selectLeft) {
-    if (value != selectLeft) {
-      onChanged(selectLeft);
+    if (_value != selectLeft) {
+      setState(() {
+        _value = selectLeft;
+      });
+      widget.onChanged(selectLeft);
     }
   }
 
@@ -33,18 +51,18 @@ class FnvToggleSwitch extends StatelessWidget {
         children: [
           Flexible(
             child: Semantics(
-              selected: value,
+              selected: _isLeft,
               button: true,
-              label: 'Sélectionner $leftLabel',
-              child: _ToggleSwitchOption(label: leftLabel, isSelected: value, onTap: () => _handleTap(true)),
+              label: 'Sélectionner ${widget.leftLabel}',
+              child: _ToggleSwitchOption(label: widget.leftLabel, isSelected: _isLeft, onTap: () => _handleTap(true)),
             ),
           ),
           Flexible(
             child: Semantics(
-              selected: !value,
+              selected: _isRight,
               button: true,
-              label: 'Sélectionner $rightLabel',
-              child: _ToggleSwitchOption(label: rightLabel, isSelected: !value, onTap: () => _handleTap(false)),
+              label: 'Sélectionner ${widget.rightLabel}',
+              child: _ToggleSwitchOption(label: widget.rightLabel, isSelected: _isRight, onTap: () => _handleTap(false)),
             ),
           ),
         ],

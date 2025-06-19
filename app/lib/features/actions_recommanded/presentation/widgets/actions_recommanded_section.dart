@@ -1,7 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
-import 'package:app/features/actions/domain/action_summary.dart';
-import 'package:app/features/actions_recommanded/presentation/widgets/action_card.dart';
+import 'package:app/features/actions_recommanded/presentation/widgets/actions_horizontal_list.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_questions.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
@@ -19,34 +18,12 @@ class ActionsRecommandedSection extends StatelessWidget {
   final ThemeInfo theme;
 
   @override
-  Widget build(final BuildContext context) => ColoredBox(
-    color: const Color(0xFFF3EDE5),
-    child: Padding(
-      padding: const EdgeInsets.only(
-        left: DsfrSpacings.s2w,
-        top: DsfrSpacings.s4w,
-        right: DsfrSpacings.s2w,
-        bottom: DsfrSpacings.s6w,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(Localisation.mesActionsRecommandees, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
-          if (theme.isQuestionsNeeded) ...[
-            const SizedBox(height: DsfrSpacings.s1w),
-            const Text(Localisation.mesActionsRecommandeesDescription, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
-          ],
-          const SizedBox(height: DsfrSpacings.s3w),
-          switch (theme) {
-            ThemeInfo(:final sequenceId) when theme.isQuestionsNeeded => ActionsRecommandedQuestions(sequenceId: sequenceId),
-            ThemeInfo(:final actionsRecommanded) when theme.hasRecommandedActions => _Actions(actions: actionsRecommanded),
-            ThemeInfo(:final themeType) when theme.hasNoRecommandedActions => _ActionsEmpty(themeType: themeType),
-            ThemeInfo _ => const SizedBox.shrink(),
-          },
-        ],
-      ),
-    ),
-  );
+  Widget build(final BuildContext context) => switch (theme) {
+    ThemeInfo(:final sequenceId) when theme.isQuestionsNeeded => ActionsRecommandedQuestions(sequenceId: sequenceId),
+    ThemeInfo(:final actionsRecommanded) when theme.hasRecommandedActions => ActionsHorizontalList(actions: actionsRecommanded),
+    ThemeInfo(:final themeType) when theme.hasNoRecommandedActions => _ActionsEmpty(themeType: themeType),
+    ThemeInfo _ => const SizedBox.shrink(),
+  };
 }
 
 class _ActionsEmpty extends StatelessWidget {
@@ -110,40 +87,6 @@ class _ExploreAnotherTheme extends StatelessWidget {
       onPressed: () {
         navigateToTheme(context, themeExplored);
       },
-    );
-  }
-}
-
-class _Actions extends StatefulWidget {
-  const _Actions({required this.actions});
-
-  final List<ActionSummary> actions;
-
-  @override
-  State<_Actions> createState() => _ActionsState();
-}
-
-class _ActionsState extends State<_Actions> {
-  static const _initialItemsToShow = 3;
-  var _showAllItems = false;
-
-  @override
-  Widget build(final BuildContext context) {
-    final visibleActions = _showAllItems ? widget.actions : widget.actions.take(_initialItemsToShow).toList();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      spacing: DsfrSpacings.s2w,
-      children: [
-        ...visibleActions.map((final e) => ActionCard(action: e)),
-        if (widget.actions.length > _initialItemsToShow && !_showAllItems)
-          DsfrButton(
-            label: Localisation.voirPlusActions,
-            variant: DsfrButtonVariant.secondary,
-            size: DsfrComponentSize.md,
-            onPressed: () => setState(() => _showAllItems = true),
-          ),
-      ],
     );
   }
 }

@@ -22,6 +22,11 @@ Future<void> theApiReceives(final WidgetTester tester, final bdd.DataTable dataT
 
       return;
     }
+    if (e['method'] == 'GET') {
+      verify(() => FeatureContext.instance.dioMock.get<dynamic>(e['path'] as String, data: e['requestData']));
+
+      return;
+    }
     throw Exception('Method ${e['method']} not supported');
   });
 }

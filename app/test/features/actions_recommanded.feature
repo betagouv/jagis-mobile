@@ -13,13 +13,9 @@ Feature: Mes actions recommandées
       | 'GET'    | '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/following/KYC_possede_voiture_oui_non' |          200 | {"nombre_total_questions":3,"nombre_total_questions_effectives":3,"position_courante":-1,"is_first":false,"is_last":true,"is_out_of_range":false}                                                                                                                                                                                                                                                                                                                                               |
     Given The application is launched
 
-  Scenario: Voir les actions recommandées
-    When I tap on {1} text {'🚅 Me déplacer'}
-    Then I see {'Mes actions recommandées'}
-
   Scenario: Voir la popup si la personnalisation n'a pas été faite
     When I tap on {1} text {'🚅 Me déplacer'}
-    Then I see {'Envie d’avoir un vrai impact ?'}
+    Then I see {'3 questions pour…'}
 
   Scenario: Commencer les questions
     When I tap on {1} text {'🚅 Me déplacer'}
@@ -44,4 +40,4 @@ Feature: Mes actions recommandées
     Given I have theme with customization needed
     When I scroll down to {'Refaire'}
     When I tap on {'Refaire'}
-    Then I see {'Envie d’avoir un vrai impact ?'}
+    Then I see {'3 questions pour…'}

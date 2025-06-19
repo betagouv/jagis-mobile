@@ -13,7 +13,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<ThemeFetchRequested>(_onFetch);
     on<ThemeRefreshRequested>(_onRefresh);
     on<ThemeResetRequested>(_onReset);
-    on<ThemeReplaceActionRequested>(_onReplaceAction);
   }
 
   final ThemeRepository _themeRepository;
@@ -28,14 +27,11 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
       (final theme) => emit(
         ThemeLoadSuccess(
-          theme: theme,
-          summary: ThemeSummary(
-            commune: theme.communeName,
-            links: ThemeSummary.buildThemeLinksFor(
-              themeType: theme.themeType,
-              aidCount: theme.aidCount,
-              recipeCount: theme.recipeCount,
-            ),
+          themeInfo: theme,
+          links: ThemeSummary.buildThemeLinksFor(
+            themeType: theme.themeType,
+            aidCount: theme.aidCount,
+            recipeCount: theme.recipeCount,
           ),
         ),
       ),
@@ -45,7 +41,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Future<void> _onRefresh(final ThemeRefreshRequested event, final Emitter<ThemeState> emit) async {
     final blocState = state;
     if (blocState is ThemeLoadSuccess) {
-      final themeType = blocState.theme.themeType;
+      final themeType = blocState.themeInfo.themeType;
       await _themeRepository.confirmCustomization(themeType: themeType);
       _messageBus.publish(startFirstTimeQuestionsToPersonalizeActionsTopic);
       final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
@@ -54,7 +50,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
 
       themeDataResult.fold(
         (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-        (final theme) => emit(blocState.copyWith(theme: theme)),
+        (final themeInfo) => emit(blocState.copyWith(themeInfo: themeInfo)),
       );
     }
   }
@@ -62,49 +58,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Future<void> _onReset(final ThemeResetRequested event, final Emitter<ThemeState> emit) async {
     final blocState = state;
     if (blocState is ThemeLoadSuccess) {
-      final themeType = blocState.theme.themeType;
+      final themeType = blocState.themeInfo.themeType;
       await _themeRepository.resetCustomization(themeType: themeType);
       final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
       themeDataResult.fold(
         (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-        (final theme) => emit(
-          blocState.copyWith(
-            theme: theme,
-            summary: ThemeSummary(
-              commune: theme.communeName,
-              links: ThemeSummary.buildThemeLinksFor(
-                themeType: theme.themeType,
-                aidCount: theme.aidCount,
-                recipeCount: theme.recipeCount,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
-  Future<void> _onReplaceAction(final ThemeReplaceActionRequested event, final Emitter<ThemeState> emit) async {
-    final blocState = state;
-    if (blocState is ThemeLoadSuccess) {
-      final themeType = blocState.theme.themeType;
-      await _themeRepository.replaceAction(themeType: themeType, actionSummary: event.action);
-      final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
-      themeDataResult.fold(
-        (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-        (final theme) => emit(
-          blocState.copyWith(
-            theme: theme,
-            summary: ThemeSummary(
-              commune: theme.communeName,
-              links: ThemeSummary.buildThemeLinksFor(
-                themeType: theme.themeType,
-                aidCount: theme.aidCount,
-                recipeCount: theme.recipeCount,
-              ),
-            ),
-          ),
-        ),
+        (final themeInfo) => emit(blocState.copyWith(themeInfo: themeInfo)),
       );
     }
   }

@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class FnvProgressBar extends StatelessWidget {
-  const FnvProgressBar({super.key, required this.current, required this.total});
+  const FnvProgressBar({
+    super.key,
+    required this.height,
+    required this.trackColor,
+    required this.progressColor,
+    required this.current,
+    required this.total,
+  });
 
+  final double height;
+  final Color trackColor;
+  final Color progressColor;
   final int current;
   final int total;
 
@@ -11,18 +20,18 @@ class FnvProgressBar extends StatelessWidget {
   Widget build(final BuildContext context) => Semantics(
     label: 'Question $current sur $total',
     child: CustomPaint(
-      painter: _Painter(value: current / total),
-      size: const Size(double.infinity, 8),
+      painter: _Painter(trackColor: trackColor, progressColor: progressColor, value: current / total),
+      size: Size(double.infinity, height),
     ),
   );
 }
 
 class _Painter extends CustomPainter {
-  const _Painter({required this.value});
+  const _Painter({required this.trackColor, required this.progressColor, required this.value});
 
+  final Color trackColor;
+  final Color progressColor;
   final double value;
-
-  static const _color = DsfrColors.blueFranceSun113;
 
   @override
   void paint(final Canvas canvas, final Size size) {
@@ -32,7 +41,7 @@ class _Painter extends CustomPainter {
 
   void _drawTrack(final Canvas canvas, final Size size) {
     final track = Rect.fromLTWH(0, 0, size.width, size.height);
-    final trackPaint = Paint()..color = const Color(0x80C2C2C2);
+    final trackPaint = Paint()..color = trackColor;
     canvas.drawRect(track, trackPaint);
   }
 
@@ -44,7 +53,7 @@ class _Painter extends CustomPainter {
 
     final rect = Rect.fromLTWH(0, 0, width, size.height);
     final paint = Paint()
-      ..color = _color
+      ..color = progressColor
       ..style = PaintingStyle.fill;
 
     canvas.drawRect(rect, paint);

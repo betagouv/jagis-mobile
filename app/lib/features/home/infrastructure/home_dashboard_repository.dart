@@ -2,7 +2,6 @@ import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/features/home/domain/home_dashboard.dart';
-import 'package:app/features/home/infrastructure/home_dashboard_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeDashboardRepository {
@@ -19,6 +18,6 @@ class HomeDashboardRepository {
 
     final json = response.data as Map<String, dynamic>;
 
-    return Right(HomeDashboardMapper.fromJson(json));
+    return Right(HomeDashboard.fromJson(json));
   }
 }

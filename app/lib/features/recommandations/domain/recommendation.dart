@@ -1,8 +1,8 @@
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
-class Recommandation extends Equatable {
-  const Recommandation({
+class Recommendation extends Equatable {
+  const Recommendation({
     required this.id,
     required this.titre,
     required this.sousTitre,

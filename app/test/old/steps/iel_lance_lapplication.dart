@@ -61,6 +61,10 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
     )
     ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
     ..getM(
+      '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+      responseData: {'actions': <dynamic>[]},
+    )
+    ..getM(
       Endpoints.homeBoard,
       responseData: {
         'nom_commune': 'Dole',
@@ -70,6 +74,11 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
         'bilan_carbone_total_kg': 10.5,
         'nombre_aides': 3,
         'nombre_recettes': 4,
+        'pourcentage_alimentation_reco_done': 0,
+        'pourcentage_consommation_reco_done': 0,
+        'pourcentage_logement_reco_done': 0,
+        'pourcentage_transport_reco_done': 0,
+        'pourcentage_global_reco_done': 0,
       },
     )
     ..getM(Endpoints.gamification, responseData: {'points': 650})

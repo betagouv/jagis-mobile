@@ -1,12 +1,12 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
-import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
+import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,16 +77,21 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final theme = data.theme;
-    final themeType = theme.themeType;
-
     const sizedBox = SizedBox(height: DsfrSpacings.s4w);
     const padding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
 
     return ListView(
       children: [
-        ThemeHeader(themeType: themeType, themeSummary: data.summary),
-        ActionsRecommandedSection(theme: theme),
+        ThemeHeader(themeInfo: data.themeInfo),
+        sizedBox,
+        Padding(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: DsfrSpacings.s3v,
+            children: data.links.map((final e) => ThemeServiceInfo(link: e)).toList(),
+          ),
+        ),
         sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),

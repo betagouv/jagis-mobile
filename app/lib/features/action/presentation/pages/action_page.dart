@@ -141,6 +141,7 @@ class _Explanation extends StatelessWidget {
                 : '**Recommandée** pour vous, car',
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DsfrSpacings.s3v,
             children: [
               ...explanationsRecommended.explanations.map(

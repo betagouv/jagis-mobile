@@ -11,7 +11,10 @@ class FnvEditTag extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => FnvInkWell(
-    decoration: ShapeDecoration(color: color.withAlpha(25), shape: const StadiumBorder()),
+    decoration: ShapeDecoration(
+      color: color.withAlpha(25),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(17))),
+    ),
     onTap: onTap,
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1v, horizontal: DsfrSpacings.s1w),
@@ -24,6 +27,7 @@ class FnvEditTag extends StatelessWidget {
               label,
               style: DsfrTextStyle.bodySm(color: DsfrColorDecisions.textLabelGrey(context)),
               overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ),
           Icon(DsfrIcons.designEditLine, size: 18, color: color),

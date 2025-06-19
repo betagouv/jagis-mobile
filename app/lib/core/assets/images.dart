@@ -40,6 +40,7 @@ abstract final class AssetImages {
   static const mangerBougerLogo = 'assets/images/logo_manger_bouger.svg';
   static const mesAidesVeloLogo = 'assets/images/mesaidesvelo_logo.svg';
   static const mesAidesVeloTexte = 'assets/images/mesaidesvelo_texte.svg';
+  static const nosGestesClimatPetit = 'assets/images/nos_gestes_climat_petit.webp';
   static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
   static const pdcnIllustration = 'assets/images/pdcn.webp';

@@ -56,7 +56,6 @@ abstract final class Localisation {
   static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commencerVotreDemarche = 'Commencer votre démarche';
   static const commune = 'Commune';
-  static const completer = 'Compléter';
   static const confirmer = 'Confirmer';
   static const consommationsEnergetiques = 'Consommations énergétiques';
   static const continuer = 'Continuer';
@@ -64,7 +63,6 @@ abstract final class Localisation {
   static const coutAnnuel = 'Coût annuel';
   static const creerMonCompte = 'Créer mon compte';
   static const creerUnCompte = 'Créer un compte';
-  static const dansQuelDomaineSouhaitezVousAgir = 'Dans quel domaine\nsouhaitez-vous agir ?';
   static const dateDeNaissance = 'Date de naissance';
   static const dateDeNaissanceDescription = 'Nécessaire pour faciliter votre identification';
   static const declarationAccessibilite = 'Déclaration d’accessibilité';
@@ -336,7 +334,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
   static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
-  static String actionsTerminees(final int nbActions) => nbActions > 1 ? 'Actions terminées' : 'Action terminée';
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;
 

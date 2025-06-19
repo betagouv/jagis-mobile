@@ -23,6 +23,7 @@ class HomeRecommendations extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const Expanded(
               child: Text(Localisation.quoiDeNeuf, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),

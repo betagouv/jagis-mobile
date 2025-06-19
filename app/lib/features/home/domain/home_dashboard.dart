@@ -1,32 +1,32 @@
 import 'package:equatable/equatable.dart';
 
 class HomeDashboard extends Equatable {
-  const HomeDashboard({
-    required this.communeName,
-    required this.nbActionsDoneNational,
-    required this.nbActionsDoneUser,
-    required this.environmentalImpactPercentageCompletion,
-    required this.environmentalKgCO2e,
-    required this.nbAids,
-    required this.nbRecipies,
-  });
+  HomeDashboard.fromJson(final Map<String, dynamic> json)
+    : ecologicalFootprint = EcologicalFootprint(
+        progressValue: json['pourcentage_bilan_done'] as int,
+        carbonDioxideEquivalent: json['bilan_carbone_total_kg'] as double?,
+      ),
+      nbAids = json['nombre_aides'] as int,
+      nbRecipes = json['nombre_recettes'] as int,
+      nbActionsDoneNational = json['total_national_actions_faites'] as int;
 
-  final String communeName;
-  final int nbActionsDoneNational;
-  final int nbActionsDoneUser;
-  final int environmentalImpactPercentageCompletion;
-  final double? environmentalKgCO2e;
+  final EcologicalFootprint ecologicalFootprint;
   final int nbAids;
-  final int nbRecipies;
+  final int nbRecipes;
+  final int nbActionsDoneNational;
 
   @override
-  List<Object?> get props => [
-    communeName,
-    nbActionsDoneNational,
-    nbActionsDoneUser,
-    environmentalImpactPercentageCompletion,
-    environmentalKgCO2e,
-    nbAids,
-    nbRecipies,
-  ];
+  List<Object?> get props => [nbActionsDoneNational, ecologicalFootprint, nbAids, nbRecipes];
+}
+
+class EcologicalFootprint extends Equatable {
+  const EcologicalFootprint({required this.progressValue, required this.carbonDioxideEquivalent});
+
+  final int progressValue;
+  final double? carbonDioxideEquivalent;
+
+  bool get isDone => progressValue == 100;
+
+  @override
+  List<Object?> get props => [progressValue, carbonDioxideEquivalent];
 }

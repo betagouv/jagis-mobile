@@ -47,7 +47,7 @@ class _FnvInputCalendarState extends State<FnvInputCalendar> {
 
   Future<void> _selectDate(final BuildContext context) async {
     final now = context.read<Clock>().now();
-    final initialDate = widget.initialValue ?? DateTime(now.year - 18);
+    final initialDate = _dateFormat.tryParse(_controller.text) ?? widget.initialValue ?? DateTime(now.year - 18);
     final dateSelected = await showDatePicker(
       context: context,
       initialDate: initialDate,

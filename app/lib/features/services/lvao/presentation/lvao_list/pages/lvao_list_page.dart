@@ -53,10 +53,25 @@ final class _Body extends StatelessWidget {
       ServiceStatus.initial => const SizedBox(),
       ServiceStatus.loading => const Center(child: CircularProgressIndicator()),
       ServiceStatus.failure => const Center(child: Text('Erreur de chargement')),
-      ServiceStatus.success => ListView(
-        padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
+      ServiceStatus.success => _Success(current: state),
+    },
+  );
+}
+
+class _Success extends StatelessWidget {
+  const _Success({required this.current});
+
+  final ServiceState<LvaoActor> current;
+
+  @override
+  Widget build(final BuildContext context) => SingleChildScrollView(
+    // FIXME(lsaudon): j'utilise SingleChildScrollView pour éviter le fait de déconstruire FnvAutocomplete
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s3w, horizontal: DsfrSpacings.s2w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _ServiceCategoriesInput(categories: state.categories, selected: state.categorySelected),
+          _ServiceCategoriesInput(categories: current.categories, selected: current.categorySelected),
           const SizedBox(height: DsfrSpacings.s1w),
           const Text(Localisation.lvaoSousTitre, style: DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
           const SizedBox(height: DsfrSpacings.s3w),
@@ -79,7 +94,7 @@ final class _Body extends StatelessWidget {
             ),
           ),
           const SizedBox(height: DsfrSpacings.s3w),
-          if (state.suggestions.isEmpty) ...[
+          if (current.suggestions.isEmpty) ...[
             const FnvImage.asset(AssetImages.serviceAucunResultat),
             const Text(
               Localisation.serviceAucunResultat,
@@ -89,7 +104,7 @@ final class _Body extends StatelessWidget {
           ] else ...[
             const Text(Localisation.suggestions, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s3w),
-            ...state.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
+            ...current.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
           ],
           const SizedBox(height: DsfrSpacings.s3w),
           const PartnerCard(
@@ -100,7 +115,7 @@ final class _Body extends StatelessWidget {
           ),
         ],
       ),
-    },
+    ),
   );
 }
 

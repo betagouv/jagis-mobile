@@ -35,12 +35,16 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="jagis.beta.gouv.fr"
-                    android:scheme="https" />
-                <data
-                    android:host="agir-front-dev.osc-fr1.scalingo.io"
-                    android:scheme="https" />
+
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" />
+
+                <data android:scheme="https" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="jagis" />
             </intent-filter>
         </activity>

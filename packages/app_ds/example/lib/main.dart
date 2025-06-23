@@ -17,8 +17,6 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Widgetbook.material(
     directories: directories,
-    appBuilder: (final context, final child) =>
-        DsfrThemeModeProvider.withBuilder(isLightMode: true, builder: (final context) => child),
     addons: [
       if (kIsWeb) ViewportAddon([IosViewports.iPhoneSE, IosViewports.iPhone13ProMax, Viewports.none]),
       TextScaleAddon(min: 1, divisions: 1),

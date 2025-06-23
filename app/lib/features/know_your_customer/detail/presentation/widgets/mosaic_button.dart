@@ -79,7 +79,11 @@ class MosaicButton extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(top: 14, right: 14, child: DsfrCheckboxIcon(value: value)),
+        Positioned(
+          top: 14,
+          right: 14,
+          child: DsfrCheckboxIcon(size: DsfrComponentSize.md, value: value),
+        ),
       ],
     );
   }

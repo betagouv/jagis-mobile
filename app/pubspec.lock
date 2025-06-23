@@ -458,7 +458,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f2d4e93b90f1f973b1f1cfb040018e4a7dd6d0d0
+      resolved-ref: "49b66c2228caa06e497d0b5f402338af1e6e19f1"
       url: "https://github.com/Octo-Open-Source/flutter-dsfr.git"
     source: git
     version: "0.4.0"

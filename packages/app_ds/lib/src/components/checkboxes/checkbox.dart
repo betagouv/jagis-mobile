@@ -31,7 +31,7 @@ class _FnvCheckboxState extends State<FnvCheckbox> with MaterialStateMixin<FnvCh
           child: Row(
             spacing: DsfrSpacings.s1w,
             children: [
-              DsfrCheckboxIcon(value: widget.value),
+              DsfrCheckboxIcon(size: DsfrComponentSize.md, value: widget.value),
               Flexible(
                 child: Text(widget.label, style: DsfrTextStyle.bodyMdCenter(color: DsfrColorDecisions.textLabelGrey(context))),
               ),

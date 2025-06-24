@@ -55,7 +55,7 @@ dependencies:
 
 dev_dependencies:
   bdd_widget_test: 1.8.2
-  build_runner: 2.5.3
+  build_runner: 2.5.4
   dart_code_metrics_presets: 2.22.0
   faker: 2.2.0
   flutter_launcher_icons: 0.14.4

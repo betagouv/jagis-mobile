@@ -34,7 +34,7 @@ class FnvMarkdown extends StatelessWidget {
     child: GptMarkdown(
       data.replaceAll(' ?', ' ?').replaceAll(' !', ' !').replaceAll(' :', ' :'),
       style: p,
-      onLinkTab: (final url, final title) async {
+      onLinkTap: (final url, final title) async {
         await FnvUrlLauncher.launch(url);
       },
       overflow: overflow,
@@ -131,7 +131,7 @@ class _ATagMd extends ATagMd {
       child: DsfrLink(
         label: linkText,
         onTap: () {
-          config.onLinkTab?.call(url, linkText);
+          config.onLinkTap?.call(url, linkText);
         },
       ),
     );

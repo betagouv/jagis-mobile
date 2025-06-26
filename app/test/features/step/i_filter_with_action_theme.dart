@@ -1,3 +1,4 @@
+import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -16,6 +17,8 @@ Future<void> iFilterWithActionTheme(final WidgetTester tester, final String them
           'titre': 'Tester une nouvelle recette végétarienne',
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': 1,
+          'nombre_actions_faites': Faker().randomGenerator.integer(100),
+          'aides': <Aid>[],
         },
       ],
       'filtres': [

@@ -17,7 +17,6 @@ abstract final class Localisation {
   static const affinezVosRecommandations = 'Affinez vos recommandations';
   static const affinezVosRecommandationsDetails = 'Répondez à quelques questions rapides sur le thème de votre choix';
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
-  static const aide = 'aide';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aides = 'Aides';
   static const aidesEtBonsPlans = 'Aides et bons plans !';

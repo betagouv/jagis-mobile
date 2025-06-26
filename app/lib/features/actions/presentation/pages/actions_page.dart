@@ -1,16 +1,12 @@
 import 'package:app/core/assets/images.dart';
-import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/infrastructure/svg.dart';
-import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_filter.dart';
-import 'package:app/features/actions/domain/action_summary.dart';
-import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions/presentation/bloc/actions_bloc.dart';
 import 'package:app/features/actions/presentation/bloc/actions_event.dart';
 import 'package:app/features/actions/presentation/bloc/actions_state.dart';
+import 'package:app/features/actions_recommanded/presentation/widgets/action_card.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +142,7 @@ class _Success extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            itemBuilder: (final context, final index) => _Element(action: actions[index]),
+            itemBuilder: (final context, final index) => ActionCard(action: actions[index]),
             separatorBuilder: (final context, final index) => const SizedBox(height: DsfrSpacings.s2w),
             itemCount: actions.length,
           ),
@@ -155,89 +151,4 @@ class _Success extends StatelessWidget {
       ],
     );
   }
-}
-
-class _Element extends StatelessWidget {
-  const _Element({required this.action});
-
-  final ActionSummary action;
-
-  @override
-  Widget build(final BuildContext context) {
-    Future<void> onTap() async {
-      await GoRouter.of(context).pushNamed(
-        ActionPage.name,
-        pathParameters: ActionPage.pathParameters(type: action.type, title: action.title, id: action.id),
-      );
-    }
-
-    return FnvCard(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: DsfrSpacings.s2w,
-          top: DsfrSpacings.s3w,
-          right: DsfrSpacings.s2w,
-          bottom: DsfrSpacings.s1w,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FnvMarkdown(
-              data:
-                  switch (action.type) {
-                    ActionType.quiz => 'Quiz - ',
-                    ActionType.simulator => 'Simulateur - ',
-                    ActionType.performance => 'Bilan - ',
-                    ActionType.classic => '',
-                  } +
-                  action.title,
-              p: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
-            ),
-            const SizedBox(height: DsfrSpacings.s1v),
-            _Information(
-              icon: DsfrIcons.financeMoneyEuroCircleLine,
-              value: action.numberOfAidsAvailable,
-              suffix: Localisation.aide,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: DsfrButton(
-                icon: DsfrIcons.systemArrowRightLine,
-                variant: DsfrButtonVariant.tertiaryWithoutBorder,
-                size: DsfrComponentSize.md,
-                onPressed: onTap,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Information extends StatelessWidget {
-  const _Information({required this.icon, required this.value, required this.suffix});
-
-  final IconData icon;
-  final int value;
-  final String suffix;
-
-  @override
-  Widget build(final BuildContext context) => value == 0
-      ? const SizedBox.shrink()
-      : ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 24),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: DsfrSpacings.s1w,
-            children: [
-              ExcludeSemantics(child: Icon(icon, size: 18, color: DsfrColors.blueFranceSun113)),
-              FnvMarkdown(
-                data: '**$value** $suffix${value > 1 ? 's' : ''}',
-                p: const DsfrTextStyle.bodySmMedium(color: Color(0xff5d5d5d)),
-              ),
-            ],
-          ),
-        );
 }

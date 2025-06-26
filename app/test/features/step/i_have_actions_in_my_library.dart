@@ -17,6 +17,7 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
           'titre': e['title'],
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': e['nb_aids_available'],
+          'nombre_actions_faites': Faker().randomGenerator.integer(100),
           'aides': <Aid>[],
         },
       )

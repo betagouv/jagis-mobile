@@ -316,8 +316,7 @@ void main() {
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
       await iTapOn(tester, 'Actions');
-      await iTapOn(
-          tester, 'Bilan - Calculer les impacts liés à votre alimentation');
+      await iTapOn(tester, 'Calculer les impacts liés à votre alimentation');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

@@ -425,7 +425,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Quiz - Bien trier les déchets');
+        await iTapOn(tester, 'Bien trier les déchets');
         await iTapOn(tester, 'Faux');
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -750,8 +750,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(
-            tester, 'Bilan - Calculer les impacts liés à votre alimentation');
+        await iTapOn(tester, 'Calculer les impacts liés à votre alimentation');
         await iTapOn(tester, 'Viennoiserie et pain');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');

@@ -20,7 +20,7 @@ Feature: Action Performance
     Given The application is launched
     When I tap on the menu button
     When I tap on {'Actions'}
-    When I tap on {'Bilan - Calculer les impacts liés à votre alimentation'}
+    When I tap on {'Calculer les impacts liés à votre alimentation'}
 
   Scenario: Voir la première question
     Then I see {'Quel est votre régime alimentaire habituel'}

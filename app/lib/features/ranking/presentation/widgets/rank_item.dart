@@ -34,7 +34,7 @@ class RankItem extends StatelessWidget {
                   ? const SizedBox.shrink()
                   : Text(pseudo, style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50)),
             ),
-            PointsWidget(points: userRank.points, backgroundColor: FnvColors.carteFond),
+            PointsWidget(backgroundColor: FnvColors.carteFond, points: userRank.points),
           ],
         ),
       ),

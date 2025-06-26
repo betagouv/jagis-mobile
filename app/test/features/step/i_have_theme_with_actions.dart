@@ -15,7 +15,7 @@ Future<void> iHaveThemeWithActions(final WidgetTester tester) async {
       'enchainement_questions_personnalisation': 'ENCHAINEMENT_KYC_personnalisation_transport',
       'liste_actions_recommandees': [
         {
-          'nombre_actions_en_cours': 442,
+          'nombre_actions_faites': 442,
           'nombre_aides_disponibles': 0,
           'code': 'action_simulateur_voiture',
           'titre': 'Trouver le **type de voiture** qui vous convient le mieux',
@@ -25,7 +25,7 @@ Future<void> iHaveThemeWithActions(final WidgetTester tester) async {
           'deja_vue': true,
         },
         {
-          'nombre_actions_en_cours': 640,
+          'nombre_actions_faites': 640,
           'nombre_aides_disponibles': 0,
           'code': 'action_bilan_transports',
           'titre': 'Faire le bilan sur **vos habitudes de déplacements**',

@@ -7,13 +7,15 @@ final class ActionSummary extends Equatable {
     : type = actionTypeFromAPIString(json['type'] as String),
       id = json['code'] as String,
       title = json['titre'] as String,
-      numberOfAidsAvailable = json['nombre_aides_disponibles'] as int;
+      numberOfAidsAvailable = json['nombre_aides_disponibles'] as int,
+      numberOfActionsDone = json['nombre_actions_faites'] as int;
 
   final ActionType type;
   final String id;
   final String title;
 
   final int numberOfAidsAvailable;
+  final int numberOfActionsDone;
 
   static List<ActionSummary> fromJsonList(final List<dynamic> jsonList) => jsonList
       .cast<Map<String, dynamic>>()
@@ -22,5 +24,5 @@ final class ActionSummary extends Equatable {
       .toList();
 
   @override
-  List<Object?> get props => [type, id, title, numberOfAidsAvailable];
+  List<Object?> get props => [type, id, title, numberOfAidsAvailable, numberOfActionsDone];
 }

@@ -4,7 +4,6 @@ import 'package:app/features/action/presentation/pages/action_page.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/action_information.dart';
-import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
@@ -46,13 +45,24 @@ class ActionCard extends StatelessWidget {
                 spacing: DsfrSpacings.s1w,
                 children: [
                   if (action.type != ActionType.classic) _Badge(actionType: action.type),
-                  Flexible(
-                    child: ActionInformation(
-                      icon: DsfrIcons.financeMoneyEuroCircleLine,
-                      value: action.numberOfAidsAvailable,
-                      suffix: Localisation.aide,
+                  if (action.numberOfAidsAvailable > 0)
+                    Flexible(
+                      child: ActionInformation(
+                        icon: DsfrIcons.financeMoneyEuroCircleLine,
+                        value: action.numberOfAidsAvailable,
+                        singular: 'aide',
+                        plural: 'aides',
+                      ),
+                    )
+                  else if (action.numberOfActionsDone > 0)
+                    Flexible(
+                      child: ActionInformation(
+                        icon: DsfrIcons.financeMoneyEuroCircleLine,
+                        value: action.numberOfActionsDone,
+                        singular: 'action réalisée',
+                        plural: 'actions réalisées',
+                      ),
                     ),
-                  ),
                 ],
               ),
             ],

@@ -22,6 +22,7 @@ class QuestionForm extends StatelessWidget {
     super.key,
     required this.questionId,
     this.withoutTitle = false,
+    this.withAlreadyDoneAlert = true,
     required this.questionController,
     this.inputController,
     this.onSaved,
@@ -29,6 +30,7 @@ class QuestionForm extends StatelessWidget {
 
   final String questionId;
   final bool withoutTitle;
+  final bool withAlreadyDoneAlert;
   final QuestionController questionController;
   final InputController? inputController;
   final VoidCallback? onSaved;
@@ -39,6 +41,7 @@ class QuestionForm extends StatelessWidget {
     lazy: false,
     child: _Content(
       withoutTitle: withoutTitle,
+      withAlreadyDoneAlert: withAlreadyDoneAlert,
       questionController: questionController,
       inputController: inputController,
       onSaved: onSaved,
@@ -49,12 +52,14 @@ class QuestionForm extends StatelessWidget {
 class _Content extends StatelessWidget {
   const _Content({
     required this.withoutTitle,
+    required this.withAlreadyDoneAlert,
     required this.questionController,
     required this.inputController,
     required this.onSaved,
   });
 
   final bool withoutTitle;
+  final bool withAlreadyDoneAlert;
   final QuestionController questionController;
   final InputController? inputController;
   final VoidCallback? onSaved;
@@ -75,7 +80,12 @@ class _Content extends StatelessWidget {
     child: BlocBuilder<QuestionEditBloc, QuestionEditState>(
       builder: (final context, final state) => switch (state) {
         QuestionEditInitial() => const SizedBox(height: 550),
-        QuestionEditLoaded() => _LoadedContent(withoutTitle: withoutTitle, controller: questionController, state: state),
+        QuestionEditLoaded() => _LoadedContent(
+          withoutTitle: withoutTitle,
+          withAlreadyDoneAlert: withAlreadyDoneAlert,
+          controller: questionController,
+          state: state,
+        ),
         QuestionEditError() => FnvFailureWidget(
           onPressed: () => context.read<QuestionEditBloc>().add(QuestionEditRecuperationDemandee(state.id)),
         ),
@@ -87,9 +97,15 @@ class _Content extends StatelessWidget {
 }
 
 class _LoadedContent extends StatefulWidget {
-  const _LoadedContent({required this.withoutTitle, required this.controller, required this.state});
+  const _LoadedContent({
+    required this.withoutTitle,
+    required this.withAlreadyDoneAlert,
+    required this.controller,
+    required this.state,
+  });
 
   final bool withoutTitle;
+  final bool withAlreadyDoneAlert;
   final QuestionEditLoaded state;
   final QuestionController controller;
 
@@ -135,6 +151,7 @@ class _LoadedContentState extends State<_LoadedContent> {
               QuestionSingleChoice() || QuestionInteger() || QuestionDecimal() || QuestionOpen() => null,
             },
           ),
+        if (widget.withAlreadyDoneAlert && question.isAnswered) const _QuestionIsAnsweredAlert(),
         switch (question) {
           QuestionSingleChoice() => ChoixUnique(question: question),
           QuestionMultipleChoice() => ChoixMultiple(question: question),
@@ -146,4 +163,20 @@ class _LoadedContentState extends State<_LoadedContent> {
       ],
     );
   }
+}
+
+class _QuestionIsAnsweredAlert extends StatelessWidget {
+  const _QuestionIsAnsweredAlert();
+
+  @override
+  Widget build(final BuildContext context) => ColoredBox(
+    color: DsfrColors.blueCumulus975,
+    child: Padding(
+      padding: const EdgeInsets.all(DsfrSpacings.s1w),
+      child: Text(
+        '🧠 Nous pensons déjà connaître la réponse à cette question, mais vous pouvez la modifier',
+        style: DsfrTextStyle.bodySmMedium(color: DsfrColorDecisions.backgroundFlatInfo(context)),
+      ),
+    ),
+  );
 }

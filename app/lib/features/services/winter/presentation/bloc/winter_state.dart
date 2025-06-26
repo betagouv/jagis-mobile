@@ -1,3 +1,6 @@
+import 'package:app/core/address/address.dart';
+import 'package:app/features/services/winter/domain/winter_my_consumption_data.dart';
+import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -10,13 +13,13 @@ sealed class WinterState extends Equatable {
 }
 
 @immutable
-final class WinterInitial extends WinterState {
-  const WinterInitial();
+final class WinterLoading extends WinterState {
+  const WinterLoading();
 }
 
 @immutable
-final class WinterLoading extends WinterState {
-  const WinterLoading();
+final class WinterInitial extends WinterState {
+  const WinterInitial();
 }
 
 enum WinterConnectionStatus { unknown, established, failed }
@@ -24,32 +27,59 @@ enum WinterConnectionStatus { unknown, established, failed }
 @immutable
 final class WinterForm extends WinterState {
   const WinterForm({
+    required this.formType,
     required this.address,
     required this.lastName,
+    required this.prmNumber,
     required this.isDeclarationChecked,
     required this.connectionStatus,
   });
 
-  final String address;
+  final RegistrationType formType;
+  final Address address;
   final String lastName;
+  final String prmNumber;
   final bool isDeclarationChecked;
   final WinterConnectionStatus connectionStatus;
 
-  bool get isFormValid => address.isNotEmpty && lastName.isNotEmpty && isDeclarationChecked;
+  bool get isFormValid => switch (formType) {
+    RegistrationType.address => address.isFull && lastName.isNotEmpty && isDeclarationChecked,
+    RegistrationType.prm => prmNumber.isNotEmpty && isDeclarationChecked,
+  };
   bool get isFormInvalid => !isFormValid;
 
   WinterForm copyWith({
-    final String? address,
+    final RegistrationType? formType,
+    final Address? address,
     final String? lastName,
+    final String? prmNumber,
     final bool? isDeclarationChecked,
     final WinterConnectionStatus? connectionStatus,
   }) => WinterForm(
+    formType: formType ?? this.formType,
     address: address ?? this.address,
     lastName: lastName ?? this.lastName,
+    prmNumber: prmNumber ?? this.prmNumber,
     isDeclarationChecked: isDeclarationChecked ?? this.isDeclarationChecked,
     connectionStatus: connectionStatus ?? this.connectionStatus,
   );
 
   @override
-  List<Object> get props => [address, lastName, isDeclarationChecked, connectionStatus];
+  List<Object> get props => [formType, address, lastName, prmNumber, isDeclarationChecked, connectionStatus];
+}
+
+@immutable
+final class WinterQuestionsState extends WinterState {
+  const WinterQuestionsState();
+}
+
+@immutable
+final class WinterMyConsumption extends WinterState {
+  const WinterMyConsumption({required this.data, required this.numberOfActions});
+
+  final WinterMyConsumptionData data;
+  final int numberOfActions;
+
+  @override
+  List<Object> get props => [data, numberOfActions];
 }

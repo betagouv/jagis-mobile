@@ -38,7 +38,6 @@ linter:
     unnecessary_final: false # incompatible with `prefer_final_parameters`.
     unsafe_variance: false
 
-
 dart_code_metrics:
   extends:
     - package:dart_code_metrics_presets/all.yaml
@@ -47,7 +46,7 @@ dart_code_metrics:
   pubspec-rules:
     - avoid-any-version
     - avoid-dependency-overrides
-    # - banned-dependencies 
+    # - banned-dependencies
     # - prefer-caret-version-syntax # incompatible with `prefer-pinned-version-syntax`.
     # - prefer-correct-package-name
     - prefer-correct-screenshots
@@ -125,7 +124,7 @@ dart_code_metrics:
     - prefer-correct-throws: false # NOTE(lsaudon): C'est quoi @Throws ?
     - prefer-correct-type-name: false # NOTE(lsaudon): Je nomme comme je veux.
     - prefer-digit-separators: false # NOTE(lsaudon): Si il y a l'option régle tous pourquoi pas
-    - prefer-early-return: false # NOTE(lsaudon): Bonne règle mais plus dans la tête que dans le linter, c'est des fois moins compréhensible 
+    - prefer-early-return: false # NOTE(lsaudon): Bonne règle mais plus dans la tête que dans le linter, c'est des fois moins compréhensible
     - prefer-extracting-callbacks: false # NOTE(lsaudon): La plus part des cas ça éloigne juste le code de son appelant sans plus value
     - prefer-explicit-type-arguments: false # NOTE(lsaudon): Pourquoi pas
     - prefer-extracting-function-callbacks: false # NOTE(lsaudon): La plus part des cas ça éloigne juste le code de son appelant sans plus value

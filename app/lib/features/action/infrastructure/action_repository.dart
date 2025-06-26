@@ -37,7 +37,8 @@ class ActionRepository {
   }
 
   Future<Either<Exception, Unit>> markAsDone({required final ActionType type, required final String id}) async {
-    await _client.post(Endpoints.actionFaite(type: actionTypeToAPIString(type), code: id));
+    final path = Endpoints.actionFaite(type: actionTypeToAPIString(type), code: id);
+    await _client.post(path);
 
     _messageBus.publish(actionDoneTopic);
 

@@ -52,6 +52,7 @@ class _ViewState extends State<_View> {
       padding: const EdgeInsets.all(paddingVerticalPage),
       child: QuestionForm(
         questionId: widget.id,
+        withAlreadyDoneAlert: false,
         questionController: _mieuxVousConnaitreController,
         onSaved: () {
           ScaffoldMessenger.of(context)

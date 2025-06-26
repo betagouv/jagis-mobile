@@ -52,6 +52,6 @@ Feature: Action Performance
     When I scroll down to {'Question suivante'}
     When I tap on {'Question suivante'}
     Then I see {'Votre bilan alimentation'}
-    Then I scroll down to {'Recommmencer le bilan'}
-    When I tap on {'Recommmencer le bilan'}
+    Then I scroll down to {'Recommencer le bilan'}
+    When I tap on {'Recommencer le bilan'}
     Then I see {'Question 1 sur 2'}

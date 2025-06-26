@@ -33,6 +33,8 @@ abstract final class Localisation {
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
   static const aucuneDeCesPropositions = 'Aucune de ces propositions';
   static const avecMonAdresseEmail = 'Avec mon adresse email';
+  static const avecMonAdressePostale = 'Avec mon adresse postale';
+  static const avecMonNumeroDePrm = 'Avec mon numéro de PRM';
   static const avezVousAimeCettePage = 'Avez-vous aimé cette page ?';
   static const avezVousAimeCettePageDescription =
       'Vos retours sont précieux et façonnent ce service. Partagez-nous vos impressions, nous nous efforcerons d’y répondre prochainement.';
@@ -45,10 +47,8 @@ abstract final class Localisation {
   static const bienvenueSur = 'Bienvenue sur J’agis ! Faisons connaissance…';
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bonjour = 'Bonjour,';
-  static String bonjourPseudonym(final String pseudonym) => 'Bonjour $pseudonym,';
-
-  static const empreinteEcologique = 'Empreinte écologique';
   static const catalogueActions = 'Catalogue d’actions';
+  static const cesInformationsSontEllesCorrectes = 'Ces informations sont-elles correctes ?';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
   static const choisirCommeAdressePrincipale = 'Enregistrer';
@@ -59,11 +59,14 @@ abstract final class Localisation {
   static const codePostal = 'Code postal';
   static const combienEtesVousDansVotreLogement = 'Combien êtes-vous dans votre logement (vous inclus) ?';
   static const commencer = 'Commencer';
-  static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commencerVotreDemarche = 'Commencer votre démarche';
+  static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commune = 'Commune';
   static const confirmer = 'Confirmer';
+  static const connexionEtablie = 'Connexion établie';
+  static const conseille = 'CONSEILLÉ';
   static const consommationsEnergetiques = 'Consommations énergétiques';
+  static const consommes = 'consommés';
   static const continuer = 'Continuer';
   static const contributeursOpenStreetMap = 'Contributeurs OpenStreetMap';
   static const coutAnnuel = 'Coût annuel';
@@ -90,13 +93,16 @@ abstract final class Localisation {
   static const dpeF = 'F';
   static const dpeG = 'G';
   static const dpeJeNeSaisPas = 'Je ne sais pas';
+  static const economiesPossibles = 'économies possibles';
+  static const economises = 'économisés';
   static const elementsNecessaireAuCalcul = 'Éléments nécessaires au calcul';
   static const emissionsAnnuelles = 'Émissions annuelles';
+  static const empreinteEcologique = 'Empreinte écologique';
+  static const enSavoirPlus = 'En savoir plus';
   static const enchante = 'Enchanté, ';
   static const enchanteDetails =
       'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.';
   static const enfants = 'Enfant(s) de moins de 18 ans';
-  static const enSavoirPlus = 'En savoir plus';
   static const entre100et150m2 = 'Entre 100 et 150 m²';
   static const entre35et70m2 = 'Entre 35 et 70 m²';
   static const entre70et100m2 = 'Entre 70 et 100 m²';
@@ -146,8 +152,13 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
   static const jeCreeMonCompte = 'Je crée mon compte';
+  static const jePrefereRentrerLeCodeManuellement = 'Je préfère rentrer le code manuellement';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
+  static const laConnexionAEchoue = 'La connexion a échoué';
+  static const laConnexionAEchoueDescription = '''
+Nous n’avons pas trouvé de compteur relié aux informations que nous vous avez données. 
+Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous vous expliquerons où le trouver.''';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
   static const leServiveNeCouvrePasEncoreVotreVille = 'Le service ne couvre pas encore votre ville.';
@@ -175,11 +186,6 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';
   static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus';
-  static const pdcnSousTitre = 'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
-  static const pdcnDescription =
-      'Près de chez nous est une cartographie collaborative qui recense l’ensemble des structures qui proposent des produits bio, équitables et locaux.';
-  static const pdcnNom = 'Près de chez nous';
-  static const pdcnUrl = 'https://presdecheznous.fr';
   static const meConnecter = 'Me connecter';
   static const mentionsLegales = 'Mentions légales';
   static const mentionsLegalesSite = 'https://jagis.beta.gouv.fr/mentions-legales';
@@ -204,6 +210,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
+  static const modifierLeNumero = 'Modifier le numéro';
   static const moinsDe35m2 = 'Moins de 35 m²';
   static const monAdresse = 'Mon adresse';
   static const monClassement = 'Mon classement';
@@ -219,12 +226,16 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const nombreDePartsFiscales = 'Nombre de parts fiscales de votre foyer';
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
+  static const notreEquipeVousRepond = ', notre équipe vous répond !';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
+  static const numeroDePrm = 'Numéro de PRM';
+  static const numeroDePrmHint = 'Il s’agit d’une suite de 14 chiffres qui identifie le logement sur le réseau électrique';
   static const obligatoire = 'Obligatoire';
   static const onRepondAVosQuestions = 'On répond à vos questions !';
   static const onSeLanceLeDefi = 'On se lance le défi ?';
   static const optionsAvancees = 'Options avancées';
   static const ouHabitezVous = 'Où habitez-vous ?';
+  static const ouTrouverCeNumero = 'Où trouver ce numéro ?';
   static const ouTrouverCesInformations = 'Où trouver ces informations ?';
   static const ouTrouverCesInformationsReponse = '''
 Le revenu fiscal de référence et votre nombre de parts se trouvent sur la 1ère page de votre dernier avis d’impôt.
@@ -238,8 +249,14 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez 1 part pour
 Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme des revenus de toutes les personnes avec lequelles vous partagez vos déclarations d’impôts (pour toute l’année) pour vous faire une première idée.''';
   static const oui = 'Oui';
   static const pageConnexionTitre = 'Connexion à *J’agis*';
+  static const parAn = 'par an';
   static const partagerLArticle = 'Partager l’article';
   static const passerLaQuestion = 'Passer la question';
+  static const pdcnDescription =
+      'Près de chez nous est une cartographie collaborative qui recense l’ensemble des structures qui proposent des produits bio, équitables et locaux.';
+  static const pdcnNom = 'Près de chez nous';
+  static const pdcnSousTitre = 'Produits locaux, bio, de saisons et vendeurs de vrac, pour une cuisine savoureuse et responsable';
+  static const pdcnUrl = 'https://presdecheznous.fr';
   static const pionnier = 'Pionnier';
   static const pionnierDescription = 'Présent depuis les premiers jours';
   static const plusDe150m2 = 'Plus de 150 m²';
@@ -248,10 +265,10 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const politiqueDeConfidentialite = 'Politique de confidentialité';
   static const politiqueDeConfidentialiteSite = 'https://jagis.beta.gouv.fr/politique-de-confidentialite';
   static const posezVotreQuestion = 'Posez votre question';
-  static const posezVotreQuestionSnackBar = 'Merci pour votre question ! Notre équipe en prendra connaissance très prochainement';
-  static const notreEquipeVousRepond = ', notre équipe vous répond !';
   static const posezVotreQuestionDescription =
       'Une question ou une difficulté pour réaliser cette action ?\nNotre équipe vous répondra par email !';
+  static const posezVotreQuestionSnackBar = 'Merci pour votre question ! Notre équipe en prendra connaissance très prochainement';
+  static const pourAllerPlusLoin = 'Pour aller **plus loin**';
   static const pourquoiCesQuestions = 'Pourquoi ces questions ?';
   static const pourquoiCesQuestionsReponse =
       'Votre revenu fiscal de référence et le nombre de parts permettent d’afficher les aides en fonction de vos ressources.';
@@ -270,19 +287,19 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const questionPrecedente = 'Question précédente';
   static const questionSuivante = 'Question suivante';
   static const quoiDeNeuf = 'Quoi de neuf ?';
-  static const pourAllerPlusLoin = 'Pour aller **plus loin**';
   static const raccourcis = 'Raccourcis';
   static const rafraichir = 'Rafraichir';
   static const recettes = 'Recettes';
   static const rechargeElectriqueQuestion = 'J’ai la possibilité de recharger un véhicule électrique au quotidien.';
   static const rechercherParAdresse = 'Rechercher par adresse';
-  static const serviceAucunResultat = '😢 Aucun résultat n’est encore disponible pour votre localisation';
   static const rechercherParTitre = 'Rechercher par titre';
   static const recolter = 'Récolter';
   static const recommandees = 'Recommandées';
-  static const recommencerLeBilan = 'Recommmencer le bilan';
+  static const recommencer = 'Recommencer';
+  static const recommencerLeBilan = 'Recommencer le bilan';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
+  static const renseignerLeNumeroDePrm = 'Renseigner le numéro de PRM';
   static const reponse = 'Réponse';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retirerDesFavoris = 'Retirer des favoris';
@@ -294,6 +311,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const revenuQuestion = 'Quelle est votre tranche de revenus ?';
   static const santePubliqueFrance = '© Santé publique France';
   static const seDeconnecter = 'Se déconnecter';
+  static const serviceAucunResultat = '😢 Aucun résultat n’est encore disponible pour votre localisation';
   static const simulateur = 'Simulateur';
   static const simulerMonAide = 'Simuler mon aide';
   static const sources = 'Sources :';
@@ -301,10 +319,15 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
   static const suggestions = 'Suggestions';
   static const supprimerVotreCompte = 'Supprimer mon compte';
-  static const jePrefereRentrerLeCodeManuellement = 'Je préfère rentrer le code manuellement';
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
       'Vous pouvez à tout moment choisir de supprimer votre compte ainsi que l’ensemble des données qui y sont associées.';
+  static const surVotreCompteurLinky = 'Sur votre compteur Linky';
+  static const surVotreCompteurLinkyDetail =
+      'Faire défiler les affichages du compteur (appui sur la touche +) jusqu’à lire la valeur du “numéro de PRM”.';
+  static const surVotreFacture = 'Sur votre facture';
+  static const surVotreFactureDetail =
+      'Ex : ENGIE mentionne cette information en page 3 des factures d’électricité dans la rubrique “Votre contrat d’énergie avec ENGIE”.';
   static const terminees = 'Terminées';
   static const tout = 'Tout';
   static const toutEstPret = 'Tout est prêt !';
@@ -317,8 +340,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirLesDemarches = 'Voir les démarches';
   static const voirMesResultats = 'Voir mes résultats';
   static const voirTout = 'Voir tout';
-  static const vosRisques = 'Vos risques';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
+  static const vosRisques = 'Vos risques';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
   static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
@@ -327,15 +350,34 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousAvezObtenuUnScoreOkDe = '👏 Vous avez obtenu un score de';
   static const vousAvezTermineLeQuiz = 'Vous avez terminé le quiz';
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
-  static const winterTitre = 'Réduisez jusqu’à 25% votre facture d’énergie';
+  static const wattWatchers = 'Watt-Watchers';
+  static const wattWatchersUrl = 'https://www.wattwatchers.fr/';
   static const winterDescription =
       'En nous renseignant votre adresse et en répondant à quelques questions sur votre logement, découvrez vos postes les plus gourmands en énergie et les astuces pour réduire leur consommation !';
   static const winterJeDeclare =
-      'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
+      'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
+  static const winterParametres = 'Paramètres';
+  static const winterParametresDetails = 'Vous avez changé d’adresse ou effectué des travaux importants dans votre habitation ?';
+  static const winterTitre = 'Réduisez jusqu’à 25% votre facture d’énergie';
+  static const winterTypeAppareils = 'Appareils';
+  static const winterTypeAutres = 'Autres';
+  static const winterTypeChauffage = 'Chauffage';
+  static const winterTypeClimatisation = 'Climatisation';
+  static const winterTypeCuisine = 'Cuisine';
+  static const winterTypeEauChaude = 'Eau chaude';
+  static const winterTypeEclairage = 'Éclairage';
+  static const winterTypeMobilite = 'Mobilité';
+  static const winterTypeMultimedia = 'Multimédia';
+  static const winterTypePiscine = 'Piscine';
+  static const faitesDesEconomies = 'Faites des économies';
+  static const faitesDesEconomiesDetails =
+      'Découvrez des actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.';
+  static String faitesDesEconomiesBouton(final int value) => value <= 1 ? 'Découvrir $value action' : 'Découvrir $value actions';
   static String a(final String value) => 'à $value';
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
   static String actionPerformanceTermineTitle(final String value) => 'Votre bilan $value';
+  static String bonjourPseudonym(final String pseudonym) => 'Bonjour $pseudonym,';
   static String cacherEmail(final String email) {
     final indexArobase = email.characters.findFirst(Characters('@'))!.stringBeforeLength;
 
@@ -350,6 +392,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   }
 
   static String communeEtSaRegion(final String commune) => '$commune et sa région.';
+
+  static String compteur(final String prm) => 'Compteur #$prm';
 
   static String distance(final int value) =>
       value >= 1000 ? 'À ${NumberFormat('0.#', 'fr').format(value / 1000)} km' : 'À $value m';
@@ -374,8 +418,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
   static String nombrePoints(final int value) => value <= 1 ? '$value point' : '$value points';
 
-  static String questionPour(final int max) => '$max questions pour…';
   static String questionCourantSurMax(final int actuel, final int max) => '**Question $actuel** sur $max';
+  static String questionPour(final int max) => '$max questions pour…';
 
   static String tempsDePreparation(final int value) => 'Temps de préparation : $value min';
 

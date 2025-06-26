@@ -12,6 +12,7 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
     : super(const HomeDashboardState.init()) {
     on<HomeDashboardLoadRequested>(_onLoadRequested);
     on<HomeDashboardActionsSwitchRequested>(_onActionsSwitchRequested);
+    on<HomeDashboardActionsRefreshRequested>(_onRefreshRequested);
     on<HomeDashboardRecommendationsUpdated>(_onRecommendationsUpdated);
   }
 
@@ -50,6 +51,16 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
     final resultActions = await _actionsRepository.fetchForHome(areRecommendedActions: areRecommendedActions);
     await resultActions.fold((final error) async {}, (final actions) async {
       emit(state.copyWith(areRecommendedActions: areRecommendedActions, actions: actions));
+    });
+  }
+
+  Future<void> _onRefreshRequested(
+    final HomeDashboardActionsRefreshRequested event,
+    final Emitter<HomeDashboardState> emit,
+  ) async {
+    final resultActions = await _actionsRepository.fetchForHome(areRecommendedActions: state.areRecommendedActions);
+    await resultActions.fold((final error) async {}, (final actions) async {
+      emit(state.copyWith(actions: actions));
     });
   }
 

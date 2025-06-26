@@ -25,6 +25,11 @@ final class HomeDashboardActionsSwitchRequested extends HomeDashboardEvent {
 }
 
 @immutable
+final class HomeDashboardActionsRefreshRequested extends HomeDashboardEvent {
+  const HomeDashboardActionsRefreshRequested();
+}
+
+@immutable
 final class HomeDashboardRecommendationsUpdated extends HomeDashboardEvent {
   const HomeDashboardRecommendationsUpdated();
 }

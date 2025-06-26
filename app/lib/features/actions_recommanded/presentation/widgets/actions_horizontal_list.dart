@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class ActionsHorizontalList extends StatelessWidget {
-  const ActionsHorizontalList({super.key, required this.actions});
+  const ActionsHorizontalList({super.key, required this.actions, this.onPop});
 
   final List<ActionSummary> actions;
+  final VoidCallback? onPop;
 
   @override
   Widget build(final BuildContext context) => SingleChildScrollView(
@@ -22,7 +23,7 @@ class ActionsHorizontalList extends StatelessWidget {
             .map(
               (final e) => SizedBox(
                 width: screenWidth(context, percentage: 0.65),
-                child: ActionCard(action: e),
+                child: ActionCard(action: e, onPop: onPop),
               ),
             )
             .toList(),

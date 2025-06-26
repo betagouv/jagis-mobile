@@ -9,9 +9,10 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionCard extends StatelessWidget {
-  const ActionCard({super.key, required this.action});
+  const ActionCard({super.key, required this.action, this.onPop});
 
   final ActionSummary action;
+  final VoidCallback? onPop;
 
   @override
   Widget build(final BuildContext context) => FnvCard(
@@ -20,6 +21,7 @@ class ActionCard extends StatelessWidget {
         ActionPage.name,
         pathParameters: ActionPage.pathParameters(type: action.type, title: action.title, id: action.id),
       );
+      onPop?.call();
     },
     child: Padding(
       padding: const EdgeInsets.only(
@@ -87,7 +89,7 @@ class _Badge extends StatelessWidget {
     final label = switch (actionType) {
       ActionType.quiz => 'QUIZ',
       ActionType.simulator => 'SIMULATEUR',
-      ActionType.performance => 'PERFORMANCE',
+      ActionType.performance => 'BILAN',
       ActionType.classic => throw UnimplementedError(),
     };
 

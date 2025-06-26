@@ -244,7 +244,10 @@ class _ActionsWidget extends StatelessWidget {
         value: context.select<HomeDashboardBloc, bool>((final value) => value.state.areRecommendedActions),
         onChanged: (final value) => context.read<HomeDashboardBloc>().add(HomeDashboardActionsSwitchRequested(value)),
       ),
-      ActionsHorizontalList(actions: actions),
+      ActionsHorizontalList(
+        actions: actions,
+        onPop: () => context.read<HomeDashboardBloc>().add(const HomeDashboardActionsRefreshRequested()),
+      ),
     ],
   );
 }

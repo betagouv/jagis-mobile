@@ -99,8 +99,9 @@ class _DoughnutChartGraphic extends StatelessWidget {
                       decoration: ShapeDecoration(color: e.color, shape: const CircleBorder()),
                       child: SizedBox.square(
                         dimension: 30,
-                        child: Center(
-                          child: Text(e.emoji, style: const TextStyle(fontSize: 17, height: 0), textAlign: TextAlign.center),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 3),
+                          child: Text(e.emoji, style: const TextStyle(fontSize: 17, height: 1.6), textAlign: TextAlign.center),
                         ),
                       ),
                     ),

@@ -11,9 +11,9 @@ class Points extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => alreadyEarned
       ? PointsWidget(
-          points: points,
           backgroundColor: DsfrColorDecisions.backgroundContrastGrey(context),
           iconColor: DsfrColorDecisions.textDefaultGrey(context),
+          points: points,
         )
       : PointsWidget(points: points);
 }

@@ -10,9 +10,13 @@ abstract final class AssetImages {
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
   static const bibliothequeEmpty = 'assets/images/bibliotheque_illustration.svg';
+  static const bulbOffIllustration = 'assets/images/bulb_off.svg';
+  static const bulbOnIllustration = 'assets/images/bulb_on.svg';
   static const checkInbox = 'assets/images/check_inbox.svg';
+  static const compteurLinky = 'assets/images/compteur_linky.webp';
   static const consommation = 'assets/images/consommation.svg';
   static const errorIllustration = 'assets/images/error_illustration.svg';
+  static const factureEngie = 'assets/images/facture_engie.webp';
   static const feedback = 'assets/images/feedback.webp';
   static const flags = 'assets/images/flags.svg';
   static const franceNationVerte = 'assets/images/logo_fnv.png';
@@ -27,8 +31,8 @@ abstract final class AssetImages {
   static const impactCo2Logo = 'assets/images/logo_impact_co2.svg';
   static const leaf = 'assets/images/leaf.svg';
   static const logement = 'assets/images/logement.svg';
-  static const lvaoStore = 'assets/images/lvao_store.svg';
   static const lvaoIllustration = 'assets/images/lvao.webp';
+  static const lvaoStore = 'assets/images/lvao_store.svg';
   static const maifArgile = 'assets/images/maif_argile.svg';
   static const maifImage = 'assets/images/maif_image.webp';
   static const maifInondation = 'assets/images/maif_inondation.svg';
@@ -40,9 +44,9 @@ abstract final class AssetImages {
   static const mangerBougerLogo = 'assets/images/logo_manger_bouger.svg';
   static const mesAidesVeloLogo = 'assets/images/mesaidesvelo_logo.svg';
   static const mesAidesVeloTexte = 'assets/images/mesaidesvelo_texte.svg';
-  static const nosGestesClimatPetit = 'assets/images/nos_gestes_climat_petit.webp';
   static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
+  static const nosGestesClimatPetit = 'assets/images/nos_gestes_climat_petit.webp';
   static const pdcnIllustration = 'assets/images/pdcn.webp';
   static const pdcnStore = 'assets/images/pdcn_store.svg';
   static const republiqueFrancaise = 'assets/images/logo_rf.svg';
@@ -51,4 +55,5 @@ abstract final class AssetImages {
   static const resetPointsIllustrations2 = 'assets/images/reset_points_2.webp';
   static const serviceAucunResultat = 'assets/images/service_aucun_resultat.svg';
   static const transport = 'assets/images/transport.svg';
+  static const wattWatchers = 'assets/images/watt_watchers.webp';
 }

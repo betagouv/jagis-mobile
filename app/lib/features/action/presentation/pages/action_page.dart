@@ -1,6 +1,9 @@
+import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
+import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/domain/explanations_recommended.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
@@ -15,8 +18,10 @@ import 'package:app/features/action/presentation/widgets/action_score_instructio
 import 'package:app/features/action/presentation/widgets/action_simulator_view.dart';
 import 'package:app/features/action/presentation/widgets/action_title_with_sub_title_view.dart';
 import 'package:app/features/actions/domain/action_type.dart';
+import 'package:app/features/articles/domain/partner.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
+import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,18 +109,74 @@ class _Success extends StatelessWidget {
             ],
           ),
         ),
+        if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
         const SizedBox(height: DsfrSpacings.s3w),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
           child: ActionScoreInstructionView(action: action),
         ),
+        switch (action) {
+          final ActionSimulator a => switch (a.getId()) {
+            ActionSimulatorId.carSimulator || ActionSimulatorId.mesAidesReno || ActionSimulatorId.maif => const SizedBox.shrink(),
+            ActionSimulatorId.winter => const Padding(
+              padding: EdgeInsets.only(top: 24),
+              child: _PartnerWidget(
+                partner: Partner(
+                  name: Localisation.wattWatchers,
+                  logo: AssetImages.wattWatchers,
+                  url: Localisation.wattWatchersUrl,
+                ),
+              ),
+            ),
+          },
+          ActionClassic() || ActionQuiz() || ActionPerformance() => const SizedBox.shrink(),
+        },
         if (action.explanationsRecommended.explanations.isNotEmpty) ...[
           const SizedBox(height: DsfrSpacings.s3w),
           _PaddingHorizontal(child: _Explanation(explanationsRecommended: action.explanationsRecommended)),
         ],
-        if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
         const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
       ],
+    ),
+  );
+}
+
+class _PartnerWidget extends StatelessWidget {
+  const _PartnerWidget({required this.partner});
+
+  final Partner partner;
+
+  @override
+  Widget build(final BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: DecoratedBox(
+      decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(Localisation.proposePar, style: DsfrTextStyle.bodySmItalic(color: DsfrColors.grey425)),
+                  Text(
+                    partner.name,
+                    style: DsfrTextStyle.bodyXl(color: DsfrColorDecisions.textLabelGrey(context)),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  if (partner.url != null) ...[
+                    const SizedBox(height: DsfrSpacings.s1v),
+                    Text(partner.url!, style: DsfrTextStyle.bodySm(color: DsfrColorDecisions.textActionHighBlueFrance(context))),
+                  ],
+                ],
+              ),
+            ),
+            FnvImage.asset(partner.logo, height: 68),
+          ],
+        ),
+      ),
     ),
   );
 }

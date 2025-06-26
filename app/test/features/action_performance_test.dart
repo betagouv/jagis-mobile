@@ -420,8 +420,8 @@ void main() {
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
         await iSee(tester, 'Votre bilan alimentation');
-        await iScrollDownTo(tester, 'Recommmencer le bilan');
-        await iTapOn(tester, 'Recommmencer le bilan');
+        await iScrollDownTo(tester, 'Recommencer le bilan');
+        await iTapOn(tester, 'Recommencer le bilan');
         await iSee(tester, 'Question 1 sur 2');
       } on TestFailure {
         success = false;

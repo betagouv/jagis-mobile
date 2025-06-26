@@ -36,7 +36,7 @@ class _FnvTagState extends State<FnvTag> with MaterialStateMixin<FnvTag> {
           borderRadius: borderRadius,
           onFocusChange: updateMaterialState(WidgetState.focused),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1v5, horizontal: DsfrSpacings.s3v),
+            padding: const EdgeInsets.symmetric(vertical: DsfrSpacings.s1w, horizontal: DsfrSpacings.s3v),
             child: Text(widget.label, style: DsfrTextStyle.bodySmMedium(color: widget.selected ? Colors.white : blue)),
           ),
         ),

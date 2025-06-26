@@ -21,7 +21,7 @@ class ActionSimulatorView extends StatelessWidget {
         ActionSimulatorId.carSimulator => CarSimulatorWidget(sequenceId: action.sequenceId, isDone: action.isDone),
         ActionSimulatorId.mesAidesReno => MesAidesRenoWidget(isDone: action.isDone),
         ActionSimulatorId.maif => MaifWidget(action: action),
-        ActionSimulatorId.winter => const WinterWidget(),
+        ActionSimulatorId.winter => WinterWidget(sequenceId: action.sequenceId, isDone: action.isDone),
       },
     ],
   );

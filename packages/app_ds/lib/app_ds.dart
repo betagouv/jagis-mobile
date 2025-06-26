@@ -14,4 +14,5 @@ export 'src/components/link.dart';
 export 'src/components/loader.dart';
 export 'src/components/progress_bar.dart';
 export 'src/components/radios_group.dart';
+export 'src/components/toggle_switch.dart';
 export 'src/fondamentaux/shadows.dart';

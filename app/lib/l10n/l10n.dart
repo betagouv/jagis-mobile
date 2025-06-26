@@ -43,9 +43,9 @@ abstract final class Localisation {
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bonjour = 'Bonjour,';
   static String bonjourPseudonym(final String pseudonym) => 'Bonjour $pseudonym,';
-
   static const empreinteEcologique = 'Empreinte écologique';
   static const catalogueActions = 'Catalogue d’actions';
+  static const cesInformationsSontEllesCorrectes = 'Ces informations sont-elles correctes ?';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
   static const choisirCommeAdressePrincipale = 'Enregistrer';
@@ -59,6 +59,7 @@ abstract final class Localisation {
   static const commentPourrionsNousLAmeliorer = 'Comment pourrions-nous l’améliorer ?';
   static const commencerVotreDemarche = 'Commencer votre démarche';
   static const commune = 'Commune';
+  static const connexionEtablie = 'Connexion établie';
   static const confirmer = 'Confirmer';
   static const consommationsEnergetiques = 'Consommations énergétiques';
   static const continuer = 'Continuer';
@@ -145,6 +146,10 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jeCreeMonCompte = 'Je crée mon compte';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
+  static const laConnexionAEchoue = 'La connexion a échoué';
+  static const laConnexionAEchoueDescription = '''
+Nous n’avons pas trouvé de compteur relié aux informations que nous vous avez données. 
+Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous vous expliquerons où le trouver.''';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
   static const leServiveNeCouvrePasEncoreVotreVille = 'Le service ne couvre pas encore votre ville.';
@@ -201,6 +206,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
+  static const modifierLeNumero = 'Modifier le numéro';
   static const moinsDe35m2 = 'Moins de 35 m²';
   static const monAdresse = 'Mon adresse';
   static const monClassement = 'Mon classement';
@@ -217,11 +223,14 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
+  static const numeroDePrm = 'Numéro de PRM';
+  static const numeroDePrmHint = 'Il s’agit d’une suite de 14 chiffres qui identifie le logement sur le réseau électrique';
   static const obligatoire = 'obligatoire';
   static const onRepondAVosQuestions = 'On répond à vos questions !';
   static const onSeLanceLeDefi = 'On se lance le défi ?';
   static const optionsAvancees = 'Options avancées';
   static const ouHabitezVous = 'Où habitez-vous ?';
+  static const ouTrouverCeNumero = 'Où trouver ce numéro ?';
   static const ouTrouverCesInformations = 'Où trouver ces informations ?';
   static const ouTrouverCesInformationsReponse = '''
 Le revenu fiscal de référence et votre nombre de parts se trouvent sur la 1ère page de votre dernier avis d’impôt.
@@ -280,6 +289,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeBilan = 'Recommmencer le bilan';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
+  static const renseignerLeNumeroDePrm = 'Renseigner le numéro de PRM';
   static const reponse = 'Réponse';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retirerDesFavoris = 'Retirer des favoris';
@@ -298,6 +308,12 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
   static const suggestions = 'Suggestions';
   static const supprimerVotreCompte = 'Supprimer mon compte';
+  static const surVotreFacture = 'Sur votre facture';
+  static const surVotreFactureDetail =
+      'Ex : ENGIE mentionne cette information en page 3 des factures d’électricité dans la rubrique “Votre contrat d’énergie avec ENGIE”.';
+  static const surVotreCompteurLinky = 'Sur votre compteur Linky';
+  static const surVotreCompteurLinkyDetail =
+      'Faire défiler les affichages du compteur (appui sur la touche +) jusqu’à lire la valeur du “numéro de PRM”.';
   static const jePrefereRentrerLeCodeManuellement = 'Je préfère rentrer le code manuellement';
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =
@@ -328,7 +344,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const winterDescription =
       'En nous renseignant votre adresse et en répondant à quelques questions sur votre logement, découvrez vos postes les plus gourmands en énergie et les astuces pour réduire leur consommation !';
   static const winterJeDeclare =
-      'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
+      'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
   static String a(final String value) => 'à $value';
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
@@ -347,6 +363,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   }
 
   static String communeEtSaRegion(final String commune) => '$commune et sa région.';
+
+  static String compteur(final String prm) => 'Compteur #$prm';
 
   static String distance(final int value) =>
       value >= 1000 ? 'À ${NumberFormat('0.#', 'fr').format(value / 1000)} km' : 'À $value m';

@@ -1,6 +1,7 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
+import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:fpdart/fpdart.dart';
 
 class WinterRepository {
@@ -8,11 +9,38 @@ class WinterRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, Unit>> verify(final String address, final String lastName) async {
-    final response = await _client.post(Endpoints.winterVerify, data: {'adresse': address, 'nom': lastName});
+  Future<Either<Exception, Unit>> register(final WinterRegistration registration) => switch (registration.type) {
+    RegistrationType.address => _registerByAddress(registration),
+    RegistrationType.prm => _registerByPrm(registration),
+  };
+
+  Future<Either<Exception, Unit>> _registerByAddress(final WinterRegistration registration) async {
+    final address = registration.address!;
+    final response = await _client.post(
+      Endpoints.winterInscriptionParAdresse,
+      data: {
+        'nom': registration.lastName,
+        'adresse': '${address.houseNumber ?? ''} ${address.street ?? ''}',
+        'code_postal': address.postCode,
+        'code_commune': address.cityCode,
+      },
+    );
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la vérification'));
+      return Left(Exception("Erreur lors de l'inscription par adresse"));
+    }
+
+    return const Right(unit);
+  }
+
+  Future<Either<Exception, Unit>> _registerByPrm(final WinterRegistration registration) async {
+    final response = await _client.post(
+      Endpoints.winterInscriptionParPrm,
+      data: {'nom': registration.lastName, 'prm': registration.prmNumber!},
+    );
+
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception("Erreur lors de l'inscription par PRM"));
     }
 
     return const Right(unit);

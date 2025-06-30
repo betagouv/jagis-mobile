@@ -17,6 +17,7 @@ import 'package:app/features/authentification/se_connecter/presentation/pages/se
 import 'package:app/features/environmental_performance/questions/presentation/page/environmental_performance_question_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
+import 'package:app/features/home/presentation/widgets/home_content_layout.dart';
 import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/library/presentation/pages/library_page.dart';
@@ -108,6 +109,6 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
     };
   },
   initialLocation: '/loading',
-  observers: [themeRouteObserver, tracker.navigatorObserver],
+  observers: [themeRouteObserver, dashboardObserver, tracker.navigatorObserver],
   navigatorKey: navigatorKey,
 );

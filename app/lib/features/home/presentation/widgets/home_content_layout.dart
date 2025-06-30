@@ -33,8 +33,36 @@ class HomeContentLayout extends StatelessWidget {
   );
 }
 
-class _View extends StatelessWidget {
+final dashboardObserver = RouteObserver<ModalRoute<dynamic>>();
+
+class _View extends StatefulWidget {
   const _View();
+
+  @override
+  State<_View> createState() => _ViewState();
+}
+
+class _ViewState extends State<_View> with RouteAware {
+  void _refresh() {
+    if (mounted) {
+      context.read<HomeDashboardBloc>().add(const HomeDashboardLoadRequested());
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    dashboardObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() => _refresh();
+
+  @override
+  void dispose() {
+    dashboardObserver.unsubscribe(this);
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) => BlocBuilder<HomeDashboardBloc, HomeDashboardState>(

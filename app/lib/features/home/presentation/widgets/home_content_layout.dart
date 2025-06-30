@@ -366,12 +366,8 @@ class _ThemesShortcut extends StatelessWidget {
         size: 24,
         color: theme.isDone ? DsfrColorDecisions.textDefaultSuccess(context) : const Color(0xFFC8C1B0),
       ),
-      Expanded(
-        child: DsfrLink(
-          label: theme.themeType.displayName,
-          onTap: theme.isDone ? null : () => navigateToTheme(context, theme.themeType),
-        ),
-      ),
+      FnvLink(label: theme.themeType.displayName, onTap: theme.isDone ? null : () => navigateToTheme(context, theme.themeType)),
+      const Spacer(),
       Opacity(
         opacity: theme.isDone ? 0.5 : 1,
         child: const PointsWidget(backgroundColor: Color(0xFFDCD6C5), points: 25),

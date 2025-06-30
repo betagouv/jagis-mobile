@@ -1,8 +1,6 @@
 import 'package:app/core/notifications/infrastructure/notification_repository.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
 import 'package:app/core/presentation/widgets/composants/modal.dart';
-import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_bloc.dart';
-import 'package:app/features/environmental_performance/summary/presentation/bloc/environmental_performance_event.dart';
 import 'package:app/features/gamification/reset/presentation/widgets/reset_widget.dart';
 import 'package:app/features/home/presentation/widgets/home_content_layout.dart';
 import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';
@@ -25,12 +23,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   void initState() {
     super.initState();
-    _initializeData();
-  }
-
-  void _initializeData() {
     context.read<UserBloc>().add(const UserFetchRequested());
-    context.read<EnvironmentalPerformanceBloc>().add(const EnvironmentalPerformanceStarted());
   }
 
   Future<void> _handleNotifications(final BuildContext context) async {

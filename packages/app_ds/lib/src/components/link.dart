@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
+/// Utilisé DsfrLink par défaut.
+///
+/// À utiliser uniquement si il y un emoji dans le lien
+///
+/// Il a été fait pour réglé le souci qui semble avoir avec
+/// la font DSFR et Flutter qui souligne bizarrement
+/// quand il y a un emoji.
+/// Ce widget gère mal le fait de souligné sur le multiligne
 class FnvLink extends StatefulWidget {
   const FnvLink({
     super.key,
     required this.label,
-    this.iconPosition = DsfrLinkIconPosition.start,
-    this.icon,
     this.onTap,
     this.size = DsfrComponentSize.md,
     this.enabled = true,
@@ -14,8 +20,6 @@ class FnvLink extends StatefulWidget {
   });
 
   final String label;
-  final IconData? icon;
-  final DsfrLinkIconPosition iconPosition;
   final VoidCallback? onTap;
   final DsfrComponentSize size;
   final bool enabled;
@@ -46,11 +50,6 @@ class _FnvLinkState extends State<FnvLink> with MaterialStateMixin<FnvLink> {
       ? DsfrColorDecisions.textDisabledGrey(context)
       : DsfrColorDecisions.textActionHighBlueFrance(context);
 
-  double _getIconSize() => switch (widget.size) {
-    DsfrComponentSize.lg => 24,
-    DsfrComponentSize.md || DsfrComponentSize.sm => 16,
-  };
-
   double _getClickedUnderlineThickness() => switch (widget.size) {
     DsfrComponentSize.lg => 2.25,
     DsfrComponentSize.md => 2,
@@ -64,28 +63,13 @@ class _FnvLinkState extends State<FnvLink> with MaterialStateMixin<FnvLink> {
   }
 
   @override
-  Widget build(final context) {
-    final list = [
-      if (widget.icon != null)
-        WidgetSpan(
-          alignment: PlaceholderAlignment.top,
-          child: Padding(
-            padding: widget.iconPosition == DsfrLinkIconPosition.start
-                ? const EdgeInsets.only(right: DsfrSpacings.s1w)
-                : const EdgeInsets.only(left: DsfrSpacings.s1w),
-            child: Icon(widget.icon, size: _getIconSize(), color: _getColor(context)),
-          ),
-        ),
-      TextSpan(text: widget.label),
-    ];
-
-    final backgroundTransparent = DsfrColorDecisions.backgroundTransparent(context);
-
-    return Semantics(
+  Widget build(final context) => DsfrFocusWidget(
+    isFocused: isFocused,
+    child: Semantics(
       enabled: widget.onTap != null,
       link: true,
       child: Material(
-        color: backgroundTransparent,
+        color: DsfrColorDecisions.backgroundTransparent(context),
         child: InkWell(
           onTap: widget.enabled ? widget.onTap : null,
           onHighlightChanged: updateMaterialState(WidgetState.pressed),
@@ -94,22 +78,21 @@ class _FnvLinkState extends State<FnvLink> with MaterialStateMixin<FnvLink> {
           highlightColor: DsfrColorDecisions.backgroundTransparentActive(context),
           canRequestFocus: widget.onTap != null,
           onFocusChange: updateMaterialState(WidgetState.focused),
-          child: DsfrFocusWidget(
-            isFocused: isFocused,
-            child: Text.rich(
-              TextSpan(children: widget.iconPosition == DsfrLinkIconPosition.start ? list : list.reversed.toList()),
-              style: _getTextStyle(context).copyWith(
-                color: backgroundTransparent,
-                shadows: [Shadow(color: _getColor(context), offset: const Offset(0, -5))],
-                decoration: isDisabled ? TextDecoration.none : TextDecoration.underline,
-                decorationColor: _getColor(context),
-                decorationThickness: isPressed || isHovered ? _getClickedUnderlineThickness() : 1,
-              ),
-              textAlign: widget.textAlign,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: !isFocused && !isDisabled
+                  ? Border(
+                      bottom: BorderSide(
+                        color: _getColor(context),
+                        width: isPressed || isHovered ? _getClickedUnderlineThickness() : 1,
+                      ),
+                    )
+                  : null,
             ),
+            child: Text(widget.label, style: _getTextStyle(context), textAlign: widget.textAlign),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

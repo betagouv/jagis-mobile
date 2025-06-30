@@ -6,13 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @UseCase(type: FnvLink, name: 'Default')
 Widget buildLinkUseCase(final BuildContext context) => FnvLink(
-  label: context.knobs.string(label: 'Libellé', initialValue: 'Libellé lien'),
-  iconPosition: context.knobs.list(
-    label: "Position de l'icône",
-    options: DsfrLinkIconPosition.values,
-    initialOption: DsfrLinkIconPosition.start,
-  ),
-  icon: context.knobs.listOrNull(label: 'Icône', options: [Icons.chevron_left, Icons.chevron_right]),
+  label: context.knobs.string(label: 'Libellé', initialValue: '🎨 Libellé'),
   onTap: () {},
   size: context.knobs.list(label: 'Taille', options: DsfrComponentSize.values, initialOption: DsfrComponentSize.lg),
   enabled: context.knobs.boolean(label: 'Activé', initialValue: true),

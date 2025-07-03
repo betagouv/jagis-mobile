@@ -13,7 +13,7 @@ abstract final class FnvModal {
     context: context,
     builder: (final context) => Center(
       child: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        padding: const EdgeInsets.only(left: 24, right: 16, bottom: 16),
         child: DsfrModal(isDismissible: isDismissible, closeLabel: 'Fermer', child: builder(context)),
       ),
     ),

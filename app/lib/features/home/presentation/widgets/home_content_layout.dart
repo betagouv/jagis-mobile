@@ -2,7 +2,6 @@ import 'package:app/core/assets/images.dart';
 import 'package:app/core/helpers/number_format.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/domain/action_summary.dart';
-import 'package:app/features/actions_recommanded/presentation/widgets/actions_horizontal_list.dart';
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/environmental_performance/summary/presentation/widgets/compare_gauge.dart';
 import 'package:app/features/gamification/presentation/widgets/points_widget.dart';
@@ -11,6 +10,7 @@ import 'package:app/features/home/bloc/home_dashboard_event.dart';
 import 'package:app/features/home/bloc/home_dashboard_state.dart';
 import 'package:app/features/home/domain/home_dashboard.dart';
 import 'package:app/features/home/presentation/widgets/home_action_global_counter.dart';
+import 'package:app/features/home/presentation/widgets/home_actions_part.dart';
 import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
 import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
 import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
@@ -272,10 +272,7 @@ class _ActionsWidget extends StatelessWidget {
         value: context.select<HomeDashboardBloc, bool>((final value) => value.state.areRecommendedActions),
         onChanged: (final value) => context.read<HomeDashboardBloc>().add(HomeDashboardActionsSwitchRequested(value)),
       ),
-      ActionsHorizontalList(
-        actions: actions,
-        onPop: () => context.read<HomeDashboardBloc>().add(const HomeDashboardActionsRefreshRequested()),
-      ),
+      HomeActionsPart(actions: actions),
     ],
   );
 }

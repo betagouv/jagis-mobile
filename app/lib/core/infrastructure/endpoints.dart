@@ -52,6 +52,7 @@ abstract final class Endpoints {
   static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
+  static String questionSkip(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId/skip';
   static String questions(final String sequenceId) => '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/$sequenceId';
   static String questionsFirst(final String sequenceId) => '${questions(sequenceId)}/first';
   static String questionsPrevious(final String sequenceId, final String questionCode) =>

@@ -104,7 +104,14 @@ class _LoadedContentState extends State<_LoadedContent> {
     widget.controller.addListener(_listener);
   }
 
-  void _listener() => context.read<QuestionEditBloc>().add(const QuestionEditMisAJourDemandee());
+  void _listener() {
+    switch (widget.controller.status) {
+      case QuestionControllerStatus.save:
+        context.read<QuestionEditBloc>().add(const QuestionEditMisAJourDemandee());
+      case QuestionControllerStatus.skip:
+        context.read<QuestionEditBloc>().add(const QuestionEditSkipRequested());
+    }
+  }
 
   @override
   void dispose() {

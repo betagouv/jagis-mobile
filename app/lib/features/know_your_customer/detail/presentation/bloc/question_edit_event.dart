@@ -86,6 +86,11 @@ final class QuestionEditDecimalChangee extends QuestionEditEvent {
 }
 
 @immutable
+final class QuestionEditSkipRequested extends QuestionEditEvent {
+  const QuestionEditSkipRequested();
+}
+
+@immutable
 final class QuestionEditMisAJourDemandee extends QuestionEditEvent {
   const QuestionEditMisAJourDemandee();
 }

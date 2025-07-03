@@ -60,7 +60,7 @@ class _QuestionsManagerButtonsState extends State<QuestionsManagerButtons> {
           label: Localisation.passerLaQuestion,
           variant: DsfrButtonVariant.secondary,
           size: DsfrComponentSize.lg,
-          onPressed: () => context.read<QuestionFlowBloc>().add(const QuestionFlowNextRequested()),
+          onPressed: widget.questionController.skip,
         )
       else
         DsfrButton(

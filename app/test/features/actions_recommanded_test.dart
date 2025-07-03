@@ -14,6 +14,7 @@ import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_tap_on.dart';
 import './step/i_have_theme_with_actions.dart';
+import './step/the_api_receives.dart';
 import './step/i_have_theme_with_no_action.dart';
 import './step/i_have_theme_with_customization_needed.dart';
 
@@ -79,6 +80,12 @@ void main() {
               }
             ],
             ["PUT", '/utilisateurs/{userId}/questionsKYC_v2/KYC003', 200, {}],
+            [
+              'POST',
+              '/utilisateurs/{userId}/questionsKYC_v2/KYC003/skip',
+              200,
+              {}
+            ],
             [
               'GET',
               '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/ENCHAINEMENT_KYC_personnalisation_transport/following/KYC003',
@@ -216,6 +223,36 @@ void main() {
       } finally {
         await afterEach(
           '''Répondre à toutes les questions''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Passez une question''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Passez une question''');
+        await bddSetUp(tester);
+        await iTapOnText(tester, 1, '🚅 Me déplacer');
+        await iScrollDownTo(tester, 'Commencer');
+        await iTapOn(tester, 'Commencer');
+        await iTapOn(tester, "Passer la question");
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/questionsKYC_v2/KYC003/skip',
+                200,
+                null
+              ]
+            ]));
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Passez une question''',
           success,
         );
       }

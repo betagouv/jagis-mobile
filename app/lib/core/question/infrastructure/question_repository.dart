@@ -41,4 +41,14 @@ class QuestionRepository {
 
     return Left(Exception('Erreur lors de la mise à jour des réponses'));
   }
+
+  Future<Either<Exception, Unit>> skip(final Question question) async {
+    final response = await _client.post(Endpoints.questionSkip(question.code.value));
+
+    if (isResponseSuccessful(response.statusCode)) {
+      return const Right(unit);
+    }
+
+    return Left(Exception('Erreur lors de la mise à jour des réponses'));
+  }
 }

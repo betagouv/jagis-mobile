@@ -11,6 +11,9 @@ abstract final class Localisation {
   static const actionPerformanceTerminePart1 = 'Vous avez terminé votre bilan ! Il est de ';
   static const actions = 'Actions';
   static const actionsRealiseesEnFrance = 'Actions réalisées ensemble partout en France';
+  static const actionsTermineesVide = 'Vous n’avez pas encore terminé d’action.';
+  static const actionsTermineesVideDetail =
+      'Pour y remédier, choisissez une action recommandée qui vous plaît, effectuez-la à l’aide de nos astuces et cliquez sur “J’ai relevé le défi !”.';
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';

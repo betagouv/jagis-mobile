@@ -10,20 +10,21 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:example/components/accordions/accordion.dart' as _i11;
-import 'package:example/components/accordions/accordions_group.dart' as _i12;
+import 'package:example/components/accordions/accordion.dart' as _i12;
+import 'package:example/components/accordions/accordions_group.dart' as _i13;
 import 'package:example/components/alert.dart' as _i2;
 import 'package:example/components/autocomplete.dart' as _i3;
 import 'package:example/components/block_quote.dart' as _i4;
 import 'package:example/components/callout.dart' as _i5;
-import 'package:example/components/charts/doughnut_chart.dart' as _i13;
-import 'package:example/components/checkboxes/checkbox.dart' as _i14;
-import 'package:example/components/checkboxes/checkbox_set.dart' as _i15;
+import 'package:example/components/charts/doughnut_chart.dart' as _i14;
+import 'package:example/components/checkboxes/checkbox.dart' as _i15;
+import 'package:example/components/checkboxes/checkbox_set.dart' as _i16;
 import 'package:example/components/link.dart' as _i6;
 import 'package:example/components/loader.dart' as _i7;
 import 'package:example/components/progress_bar.dart' as _i8;
 import 'package:example/components/radios_group.dart' as _i9;
-import 'package:example/components/toggle_switch.dart' as _i10;
+import 'package:example/components/stepper.dart' as _i10;
+import 'package:example/components/toggle_switch.dart' as _i11;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -89,10 +90,17 @@ final directories = <_i1.WidgetbookNode>[
         ),
       ),
       _i1.WidgetbookLeafComponent(
+        name: 'FnvStepper',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Default',
+          builder: _i10.buildUseCase,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
         name: 'FnvToggleSwitch',
         useCase: _i1.WidgetbookUseCase(
           name: 'Default',
-          builder: _i10.buildToggleSwitchUseCase,
+          builder: _i11.buildToggleSwitchUseCase,
         ),
       ),
       _i1.WidgetbookFolder(
@@ -102,14 +110,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'FnvAccordion',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i11.buildAccordionUseCase,
+              builder: _i12.buildAccordionUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FnvAccordionsGroup',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i12.buildAccordionsGroupUseCase,
+              builder: _i13.buildAccordionsGroupUseCase,
             ),
           ),
         ],
@@ -121,7 +129,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'FnvDoughnutChart',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i13.buildDoughnutChartUseCase,
+              builder: _i14.buildDoughnutChartUseCase,
             ),
           ),
         ],
@@ -133,14 +141,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'FnvCheckbox',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i14.buildCheckboxDefaultUseCase,
+              builder: _i15.buildCheckboxDefaultUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FnvCheckboxSet',
             useCase: _i1.WidgetbookUseCase(
               name: 'Default',
-              builder: _i15.buildCheckboxSetUseCase,
+              builder: _i16.buildCheckboxSetUseCase,
             ),
           ),
         ],

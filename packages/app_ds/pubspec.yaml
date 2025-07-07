@@ -1,6 +1,6 @@
 name: app_ds
 description: "App Design System"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 0.0.1
 
 environment:
@@ -13,10 +13,9 @@ dependencies:
   flutter_dsfr:
     git:
       url: https://github.com/Octo-Open-Source/flutter-dsfr.git
-  graphic: 2.6.0
 
 dev_dependencies:
-  dart_code_metrics_presets: 2.22.0
+  dart_code_metrics_presets: 2.24.0
   flutter_test:
     sdk: flutter
   jagis_lints:

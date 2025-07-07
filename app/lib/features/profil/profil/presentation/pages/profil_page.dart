@@ -12,6 +12,7 @@ import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
@@ -60,7 +61,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.politiqueDeConfidentialite,
                 onTap: () async {
-                  await FnvUrlLauncher.launch(Localisation.politiqueDeConfidentialiteSite);
+                  await FnvUrlLauncher.launch(Localisation.politiqueDeConfidentialiteSite, mode: LaunchMode.inAppWebView);
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
@@ -69,7 +70,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.lesCguMenu,
                 onTap: () async {
-                  await FnvUrlLauncher.launch(Localisation.lesCguSite);
+                  await FnvUrlLauncher.launch(Localisation.lesCguSite, mode: LaunchMode.inAppWebView);
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
@@ -78,7 +79,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.mentionsLegales,
                 onTap: () async {
-                  await FnvUrlLauncher.launch(Localisation.mentionsLegalesSite);
+                  await FnvUrlLauncher.launch(Localisation.mentionsLegalesSite, mode: LaunchMode.inAppWebView);
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
@@ -87,7 +88,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.documentArticleLine,
                 label: Localisation.declarationAccessibilite,
                 onTap: () async {
-                  await FnvUrlLauncher.launch(Localisation.declarationAccessibiliteSite);
+                  await FnvUrlLauncher.launch(Localisation.declarationAccessibiliteSite, mode: LaunchMode.inAppWebView);
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),
@@ -96,7 +97,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.businessLineChartLine,
                 label: Localisation.statistiques,
                 onTap: () async {
-                  await FnvUrlLauncher.launch(Localisation.statistiquesSite);
+                  await FnvUrlLauncher.launch(Localisation.statistiquesSite, mode: LaunchMode.inAppWebView);
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,
               ),

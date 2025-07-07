@@ -159,7 +159,7 @@ class _Question extends StatelessWidget {
       child: Column(
         spacing: DsfrSpacings.s4w,
         children: [
-          DsfrStepper(currentStep: cursor.index, stepsCount: cursor.total, stepTitle: element.question.label),
+          FnvStepper(currentStep: cursor.index, stepsCount: cursor.total, stepTitle: element.question.label),
           QuestionsManagerQuestionView(key: ValueKey(element), cursor: cursor, withoutTitle: true),
         ],
       ),

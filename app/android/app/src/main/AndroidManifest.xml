@@ -35,11 +35,86 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" android:host="jagis.beta.gouv.fr" />
-                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" />
-
-                <data android:scheme="https" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/action" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/action" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/action" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/action" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/actions" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/actions" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/actions" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/actions" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/agir" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/agir" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/agir" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/agir" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/aides" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/aides" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/aides" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/aides" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/article" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/article" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/article" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/article" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/bibliotheque" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/bibliotheque" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/bibliotheque" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/bibliotheque" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/recettes" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/recettes" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/recettes" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/recettes" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/service" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/service" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/service" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/service" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/thematique" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/thematique" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/thematique" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/thematique" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/authentification" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/authentification" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/authentification" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/authentification" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/compte" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/compte" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/compte" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/compte" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/creation-compte" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/creation-compte" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/creation-compte" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/creation-compte" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/fc-login-callback" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/fc-login-callback" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/fc-login-callback" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/fc-login-callback" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/validation-authentification" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/validation-authentification" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/validation-authentification" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/validation-authentification" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/validation-compte" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/validation-compte" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/validation-compte" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/validation-compte" />
+                
+                <data android:scheme="http" android:host="jagis.beta.gouv.fr" android:pathPrefix="/bilan-environnemental" />
+                <data android:scheme="https" android:host="jagis.beta.gouv.fr" android:pathPrefix="/bilan-environnemental" />
+                <data android:scheme="http" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/bilan-environnemental" />
+                <data android:scheme="https" android:host="agir-front-dev.osc-fr1.scalingo.io" android:pathPrefix="/bilan-environnemental" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

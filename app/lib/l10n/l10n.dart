@@ -114,7 +114,7 @@ abstract final class Localisation {
   static const etatDuVelo = 'État du vélo';
   static const etesVousEnSituationDeHandicap = 'Êtes-vous en situation de handicap ?';
   static const euroSymbol = '€';
-  static const facultatif = 'facultatif';
+  static const facultatif = 'Facultatif';
   static const fermer = 'Fermer';
   static const franceConnectDescription =
       'FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.';
@@ -213,14 +213,14 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const monLogementPlusDe15Ans = 'Mon logement a-t-il plus de 15 ans ?';
   static const monProfil = 'Mon profil';
   static const monPseudonyme = 'Mon pseudonyme';
-  static const monPseudonymeIndice = 'Doit être composés de 3 à 21 caractères. Lettres et chiffres uniquement.';
+  static const monPseudonymeIndice = 'Doit être composé de 3 à 21 caractères. Lettres et chiffres uniquement.';
   static const nom = 'Nom';
   static const nomDeFamille = 'Nom de famille (du titulaire du contrat électrique)';
   static const nombreDePartsFiscales = 'Nombre de parts fiscales de votre foyer';
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
-  static const obligatoire = 'obligatoire';
+  static const obligatoire = 'Obligatoire';
   static const onRepondAVosQuestions = 'On répond à vos questions !';
   static const onSeLanceLeDefi = 'On se lance le défi ?';
   static const optionsAvancees = 'Options avancées';

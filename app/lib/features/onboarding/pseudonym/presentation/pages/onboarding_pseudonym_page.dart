@@ -84,7 +84,7 @@ class _Content extends StatelessWidget {
               keyboardType: TextInputType.name,
               textCapitalization: TextCapitalization.sentences,
               textInputAction: isUserFranceConnect ? TextInputAction.done : TextInputAction.next,
-              inputFormatters: [LengthLimitingTextInputFormatter(30)],
+              inputFormatters: [LengthLimitingTextInputFormatter(21)],
             ),
             BlocSelector<OnboardingPseudonymBloc, OnboardingPseudonymState, String?>(
               selector: (final state) => state.errorMessage,

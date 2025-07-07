@@ -15,12 +15,12 @@ class MesInformationsPseudonyme extends StatelessWidget {
 
     return DsfrInput(
       label: Localisation.pseudonyme,
-      hintText: Localisation.obligatoire,
+      hintText: '${Localisation.obligatoire}. ${Localisation.monPseudonymeIndice}',
       initialValue: pseudonym,
       onChanged: (final value) => context.read<MesInformationsBloc>().add(MesInformationsPseudonymChange(value)),
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,
-      inputFormatters: [LengthLimitingTextInputFormatter(30)],
+      inputFormatters: [LengthLimitingTextInputFormatter(21)],
     );
   }
 }

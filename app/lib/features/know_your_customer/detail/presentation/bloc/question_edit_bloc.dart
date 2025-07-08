@@ -133,7 +133,6 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
         }
 
       default:
-        return;
     }
   }
 
@@ -149,7 +148,6 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
         });
       default:
-        return;
     }
   }
 
@@ -165,7 +163,6 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
         });
       default:
-        return;
     }
   }
 }

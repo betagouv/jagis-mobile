@@ -20,10 +20,10 @@ class FnvMarkdown extends StatelessWidget {
   });
 
   final String data;
-  final TextStyle? h1;
-  final TextStyle? h2;
-  final TextStyle? h3;
-  final TextStyle? p;
+  final TextStyle h1;
+  final TextStyle h2;
+  final TextStyle h3;
+  final TextStyle p;
   final TextStyle? strong;
   final HTag? hTag;
   final TextOverflow? overflow;

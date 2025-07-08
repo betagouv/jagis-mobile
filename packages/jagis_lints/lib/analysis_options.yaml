@@ -62,6 +62,7 @@ dart_code_metrics:
         last:
           - child
           - children
+    - avoid-default-tostring: false # NOTE(lsaudon): à réactiver quand tu auras le temps
     - avoid-duplicate-collection-elements: false # NOTE(lsaudon): Pas pertinent en flutter
     - avoid-duplicate-test-assertions: false # NOTE(lsaudon): Le test de comportement fait que l'on teste plusieurs fois la même chose
     - avoid-dynamic: false
@@ -147,6 +148,7 @@ dart_code_metrics:
     - prefer-static-class: false # NOTE(lsaudon): Pourquoi pas
     - prefer-static-method: false # NOTE(lsaudon): C'est mieux dans une classe pour pouvoir mock/fake
     - prefer-trailing-comma: false # NOTE(lsaudon): dartfmt le gère maintenant
+    - prefer-pushing-conditional-expressions: false # NOTE(lsaudon): Faux positif
     - prefer-widget-private-members:
         ignore-static: true
     - unnecessary-trailing-comma: false # NOTE(lsaudon): dartfmt le gère maintenant

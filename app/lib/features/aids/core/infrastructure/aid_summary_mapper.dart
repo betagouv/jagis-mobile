@@ -8,7 +8,7 @@ abstract final class AidSummaryMapper {
 
   static AidSummary fromJson(final Map<String, dynamic> json) => AidSummary(
     id: json['content_id'] as String,
-    themeType: ThemeTypeMapper.convert((json['thematiques'] as List<dynamic>).cast<String>().firstOrNull ?? ''),
+    themeType: ThemeTypeMapper.convert((json['thematiques'] as List<dynamic>?)?.cast<String>().firstOrNull ?? ''),
     title: json['titre'] as String,
     isFree: json['est_gratuit'] as bool,
     partner: json['partenaire_nom'] == null

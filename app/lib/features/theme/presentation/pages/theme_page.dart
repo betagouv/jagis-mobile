@@ -5,6 +5,7 @@ import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
+import 'package:app/features/theme/presentation/widgets/theme_aids_horizontal_list.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
@@ -21,8 +22,10 @@ class ThemePage extends StatelessWidget {
   final ThemeType themeType;
 
   @override
-  Widget build(final BuildContext context) =>
-      BlocProvider(create: (final context) => ThemeBloc(context.read(), context.read(), context.read()), child: _Page(themeType));
+  Widget build(final BuildContext context) => BlocProvider(
+    create: (final context) => ThemeBloc(context.read(), context.read(), context.read(), context.read()),
+    child: _Page(themeType),
+  );
 }
 
 class _Page extends StatefulWidget {
@@ -92,6 +95,7 @@ class _Success extends StatelessWidget {
             children: data.links.map((final e) => ThemeServiceInfo(link: e)).toList(),
           ),
         ),
+        if (data.aids.isNotEmpty) ...[sizedBox, ThemeAidsHorizontalList(aids: data.aids)],
         sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),

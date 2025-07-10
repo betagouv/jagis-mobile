@@ -1,4 +1,4 @@
-import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -26,9 +26,9 @@ final class AidListLoadSuccess extends AidListState {
   const AidListLoadSuccess({required this.isCovered, required this.themes, required this.themeSelected});
 
   final bool isCovered;
-  final Map<ThemeType, List<Aid>> themes;
+  final Map<ThemeType, List<AidSummary>> themes;
   final ThemeType? themeSelected;
-  Map<ThemeType, List<Aid>> get currentTheme {
+  Map<ThemeType, List<AidSummary>> get currentTheme {
     if (themeSelected == null) {
       return themes;
     }

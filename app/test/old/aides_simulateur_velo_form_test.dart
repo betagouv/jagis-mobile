@@ -25,12 +25,12 @@ void main() {
   group('Aides Simulateur vélo formulaire', () {
     const aide2 = Aid(
       id: '2',
+      themeType: ThemeType.transport,
       title: 'Acheter un vélo',
       maxAmount: 3500,
       isFree: false,
       partner: null,
       scale: GeographicalScale.country,
-      themeType: ThemeType.transport,
       content: '<p>Contenu</p>',
       simulatorUrl: '/aides/velo',
     );

@@ -1,6 +1,6 @@
 import 'package:app/core/error/domain/api_erreur.dart';
-import 'package:app/features/aids/core/domain/aid.dart';
 import 'package:app/features/aids/core/domain/aid_list.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_event.dart';
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_state.dart';
@@ -30,7 +30,7 @@ class AidListBloc extends Bloc<AidListEvent, AidListState> {
     });
   }
 
-  Map<ThemeType, List<Aid>> _groupAssistancesByTheme(final AidList r) => Map.fromEntries(
+  Map<ThemeType, List<AidSummary>> _groupAssistancesByTheme(final AidList r) => Map.fromEntries(
     ThemeType.values
         .map((final themeType) {
           final assistances = r.aids.where((final a) => a.themeType == themeType);
@@ -38,6 +38,6 @@ class AidListBloc extends Bloc<AidListEvent, AidListState> {
           return assistances.isNotEmpty ? MapEntry(themeType, assistances.toList()) : null;
         })
         .where((final entry) => entry != null)
-        .cast<MapEntry<ThemeType, List<Aid>>>(),
+        .cast<MapEntry<ThemeType, List<AidSummary>>>(),
   );
 }

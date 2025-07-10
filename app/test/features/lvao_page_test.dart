@@ -64,6 +64,12 @@ void main() {
             ],
             [
               'GET',
+              '/utilisateurs/%7BuserId%7D/aides_v2?thematique=consommation',
+              200,
+              {"couverture_aides_ok": false, "liste_aides": []}
+            ],
+            [
+              'GET',
               '/utilisateurs/{userId}/thematiques/consommation/recherche_services',
               200,
               [

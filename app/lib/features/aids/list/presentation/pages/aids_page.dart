@@ -1,7 +1,7 @@
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/tag.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/aids/core/domain/aid.dart';
+import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/aids/core/presentation/widgets/aid_summary_card.dart';
 import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_disclaimer_cubit.dart';
 import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_disclaimer_state.dart';
@@ -118,7 +118,7 @@ class _List extends StatelessWidget {
 class _Elements extends StatelessWidget {
   const _Elements({required this.themes});
 
-  final Map<ThemeType, List<Aid>> themes;
+  final Map<ThemeType, List<AidSummary>> themes;
 
   @override
   Widget build(final BuildContext context) {
@@ -148,7 +148,7 @@ class _ThemeSection extends StatelessWidget {
   const _ThemeSection({required this.themeType, required this.aids});
 
   final ThemeType themeType;
-  final List<Aid> aids;
+  final List<AidSummary> aids;
 
   @override
   Widget build(final BuildContext context) => Column(

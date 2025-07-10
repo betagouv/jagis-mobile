@@ -40,14 +40,12 @@ class AidSummaryCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: DsfrSpacings.s1w,
                     children: [
-                      if (aidSummary.hasSimulator) ...[const SimulatorTag(), const SizedBox(width: DsfrSpacings.s1w)],
+                      if (aidSummary.hasSimulator) const SimulatorTag(),
                       Text(aidSummary.title, style: const DsfrTextStyle.bodyMd(color: DsfrColors.grey50)),
-                      if (aidSummary.isFree) ...[const SizedBox(height: DsfrSpacings.s1w), const _IsFree()],
-                      if (aidSummary.maxAmount != null) ...[
-                        const SizedBox(height: DsfrSpacings.s1w),
-                        _AmountMax(value: aidSummary.maxAmount!),
-                      ],
+                      if (aidSummary.isFree) const _IsFree(),
+                      if (aidSummary.maxAmount != null) _AmountMax(value: aidSummary.maxAmount!),
                     ],
                   ),
                 ),

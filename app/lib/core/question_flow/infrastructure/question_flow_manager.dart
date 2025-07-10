@@ -14,7 +14,8 @@ class QuestionFlowManager implements CursorManager<CurrentQuestion> {
 
   @override
   Future<Cursor<CurrentQuestion>> first() async {
-    final response = await _client.get(Endpoints.questionsFirst(sequenceId));
+    final path = Endpoints.questionsFirst(sequenceId);
+    final response = await _client.get(path);
     final element = CurrentQuestionMapper.fromJson(response.data as Map<String, dynamic>);
 
     return Cursor(element: element, index: element.currentPosition, total: element.totalNumberOfQuestions);

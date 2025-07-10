@@ -170,7 +170,7 @@ void main() {
           ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
-      await iTapOn(tester, '🛒 Des adresses pour manger local');
+      await iTapOn(tester, 'Les commerces locaux');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

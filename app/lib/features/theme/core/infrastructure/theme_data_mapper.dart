@@ -11,9 +11,5 @@ abstract final class ThemeDataMapper {
     isQuestionsNeeded: json['est_personnalisation_necessaire'] as bool,
     sequenceId: json['enchainement_questions_personnalisation'] as String,
     actionsRecommanded: ActionSummary.fromJsonList(json['liste_actions_recommandees'] as List<dynamic>),
-    actionCount: json['nombre_actions'] as int,
-    aidCount: json['nombre_aides'] as int,
-    simulatorCount: json['nombre_simulateurs'] as int,
-    recipeCount: json['nombre_recettes'] as int?,
   );
 }

@@ -32,6 +32,13 @@ abstract final class AssetImages {
   static const leaf = 'assets/images/leaf.svg';
   static const logement = 'assets/images/logement.svg';
   static const lvaoIllustration = 'assets/images/lvao.webp';
+  static const lvaoServiceIllustration = 'assets/images/services/illustrations/lvao.svg';
+  static const calendrierServiceIllustration = 'assets/images/services/illustrations/calendrier_fruits.svg';
+  static const commercesServiceIllustration = 'assets/images/services/illustrations/commerces.svg';
+  static const mesAidesRenoServiceIllustration = 'assets/images/services/illustrations/mes-aides-reno.svg';
+  static const recettesServiceIllustration = 'assets/images/services/illustrations/recettes.svg';
+  static const veloServiceIllustration = 'assets/images/services/illustrations/velo.svg';
+  static const voitureServiceIllustration = 'assets/images/services/illustrations/voiture.svg';
   static const lvaoStore = 'assets/images/lvao_store.svg';
   static const maifArgile = 'assets/images/maif_argile.svg';
   static const maifImage = 'assets/images/maif_image.webp';

@@ -13,7 +13,7 @@ class ThemeServiceInfo extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
-      await GoRouter.of(context).pushNamed(link.route, pathParameters: link.pathParams ?? const {});
+      await GoRouter.of(context).pushNamed(link.route, pathParameters: link.pathParameters ?? const {});
     },
     child: Padding(
       padding: const EdgeInsets.only(left: 12, top: 12, right: 8, bottom: 12),

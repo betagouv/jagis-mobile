@@ -10,7 +10,7 @@ Feature: Près de chez nous
       | 'POST'   | '/utilisateurs/{userId}/recherche_services/proximite/search2'                                             |          200 | {"encore_plus_resultats_dispo":false,"resultats":[{"id":"BG1","titre":"EARL les maraîchers du Val d'Amour","adresse_code_postal":"39120","adresse_nom_ville":"Rahon","adresse_rue":"6, ruelle des Merles","est_favoris":false,"nombre_favoris":0,"distance_metres":605,"image_url":null,"description":"Maraîcher bio en demi gros. Légumes de saison.","phone":"09 61 48 96 07","categories":["Alimentation et Agriculture","Légumes","Circuits courts","Producteur / Artisan"],"open_hours":[],"latitude":46.99214,"longitude":5.4661,"ingredients":[],"etapes_recette":[],"categories_labels":["Alimentation et Agriculture","Légumes","Circuits courts","Producteur / Artisan"]}]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
     Given The application is launched
     When I tap on {1} text {'🍛 Me nourrir'}
-    When I tap on {'🛒 Des adresses pour manger local'}
+    When I tap on {'Les commerces locaux'}
 
   Scenario: Voir les suggestions
     Then I see {"EARL les maraîchers du Val d'Amour"}

@@ -10,6 +10,7 @@ import './step/i_am_logged_in.dart';
 import './step/the_application_is_launched.dart';
 import './step/the_api_will_return.dart';
 import './step/i_tap_on_text.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';
 
@@ -138,6 +139,7 @@ void main() {
               ]
             ]));
         await iTapOnText(tester, 1, '🏠 Me loger');
+        await iScrollDownTo(tester, 'Mes aides');
         await iSee(tester, 'Mes aides');
         await iSee(tester,
             'Être accompagné par France Rénov pour votre rénovation énergétique');

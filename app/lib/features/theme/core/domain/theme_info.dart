@@ -9,10 +9,6 @@ class ThemeInfo extends Equatable {
     required this.isQuestionsNeeded,
     required this.sequenceId,
     required this.actionsRecommanded,
-    required this.actionCount,
-    required this.aidCount,
-    required this.simulatorCount,
-    required this.recipeCount,
   });
 
   final ThemeType themeType;
@@ -20,24 +16,10 @@ class ThemeInfo extends Equatable {
   final bool isQuestionsNeeded;
   final String sequenceId;
   final List<ActionSummary> actionsRecommanded;
-  final int actionCount;
-  final int aidCount;
-  final int simulatorCount;
-  final int? recipeCount;
 
   bool get hasRecommandedActions => !isQuestionsNeeded && actionsRecommanded.isNotEmpty;
   bool get hasNoRecommandedActions => !isQuestionsNeeded && actionsRecommanded.isEmpty;
 
   @override
-  List<Object?> get props => [
-    themeType,
-    communeName,
-    isQuestionsNeeded,
-    sequenceId,
-    actionsRecommanded,
-    actionCount,
-    aidCount,
-    simulatorCount,
-    recipeCount,
-  ];
+  List<Object?> get props => [themeType, communeName, isQuestionsNeeded, sequenceId, actionsRecommanded];
 }

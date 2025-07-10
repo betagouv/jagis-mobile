@@ -7,7 +7,7 @@ import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:app/features/theme/presentation/widgets/theme_aids_horizontal_list.dart';
 import 'package:app/features/theme/presentation/widgets/theme_header.dart';
-import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
+import 'package:app/features/theme/presentation/widgets/theme_services.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,11 +89,7 @@ class _Success extends StatelessWidget {
         sizedBox,
         Padding(
           padding: padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: DsfrSpacings.s3v,
-            children: data.links.map((final e) => ThemeServiceInfo(link: e)).toList(),
-          ),
+          child: ThemeServices(themeType: data.themeInfo.themeType),
         ),
         if (data.aids.isNotEmpty) ...[sizedBox, ThemeAidsHorizontalList(aids: data.aids)],
         sizedBox,

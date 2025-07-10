@@ -12,7 +12,8 @@ class ThemeRepository {
   final DioHttpClient _client;
 
   Future<Either<Exception, ThemeInfo>> fetchTheme({required final ThemeType themeType}) async {
-    final response = await _client.get(Endpoints.theme(themeType.name));
+    final path = Endpoints.theme(themeType.name);
+    final response = await _client.get(path);
 
     return isResponseSuccessful(response.statusCode)
         ? Right(ThemeDataMapper.fromJson(response.data as Map<String, dynamic>))

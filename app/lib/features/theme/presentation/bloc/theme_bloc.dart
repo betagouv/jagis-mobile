@@ -2,6 +2,7 @@
 
 import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/timed_delay.dart';
+import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
@@ -9,13 +10,14 @@ import 'package:app/features/theme/presentation/bloc/theme_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc(this._themeRepository, this._messageBus, this._timedDelay) : super(const ThemeInitial()) {
+  ThemeBloc(this._themeRepository, this._aidsRepository, this._messageBus, this._timedDelay) : super(const ThemeInitial()) {
     on<ThemeFetchRequested>(_onFetch);
     on<ThemeRefreshRequested>(_onRefresh);
     on<ThemeResetRequested>(_onReset);
   }
 
   final ThemeRepository _themeRepository;
+  final AidsRepository _aidsRepository;
   final MessageBus _messageBus;
   final TimedDelay _timedDelay;
 
@@ -23,19 +25,22 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     emit(const ThemeLoadInProgress());
     final themeType = event.themeType;
     final themeDataResult = await _themeRepository.fetchTheme(themeType: themeType);
-    themeDataResult.fold(
-      (final l) => emit(ThemeLoadFailure(errorMessage: l.toString())),
-      (final theme) => emit(
-        ThemeLoadSuccess(
-          themeInfo: theme,
-          links: ThemeSummary.buildThemeLinksFor(
-            themeType: theme.themeType,
-            aidCount: theme.aidCount,
-            recipeCount: theme.recipeCount,
+    final aidsResult = await _aidsRepository.fetchByTheme(themeType: themeType);
+    themeDataResult.fold((final l) => emit(ThemeLoadFailure(errorMessage: l.toString())), (final theme) {
+      aidsResult.fold((final l) {}, (final aids) {
+        emit(
+          ThemeLoadSuccess(
+            themeInfo: theme,
+            aids: aids,
+            links: ThemeSummary.buildThemeLinksFor(
+              themeType: theme.themeType,
+              aidCount: theme.aidCount,
+              recipeCount: theme.recipeCount,
+            ),
           ),
-        ),
-      ),
-    );
+        );
+      });
+    });
   }
 
   Future<void> _onRefresh(final ThemeRefreshRequested event, final Emitter<ThemeState> emit) async {

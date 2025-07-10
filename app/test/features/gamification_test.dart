@@ -168,6 +168,12 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
+                '/utilisateurs/%7BuserId%7D/aides_v2?thematique=transport',
+                200,
+                {"couverture_aides_ok": false, "liste_aides": []}
+              ],
+              [
+                'GET',
                 '/utilisateurs/{userId}/gamification',
                 200,
                 {"points": 0}

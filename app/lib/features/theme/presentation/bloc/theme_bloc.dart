@@ -3,7 +3,6 @@
 import 'package:app/core/infrastructure/message_bus.dart';
 import 'package:app/core/infrastructure/timed_delay.dart';
 import 'package:app/features/aids/list/infrastructure/aids_repository.dart';
-import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
 import 'package:app/features/theme/presentation/bloc/theme_state.dart';
@@ -28,17 +27,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     final aidsResult = await _aidsRepository.fetchByTheme(themeType: themeType);
     themeDataResult.fold((final l) => emit(ThemeLoadFailure(errorMessage: l.toString())), (final theme) {
       aidsResult.fold((final l) {}, (final aids) {
-        emit(
-          ThemeLoadSuccess(
-            themeInfo: theme,
-            aids: aids,
-            links: ThemeSummary.buildThemeLinksFor(
-              themeType: theme.themeType,
-              aidCount: theme.aidCount,
-              recipeCount: theme.recipeCount,
-            ),
-          ),
-        );
+        emit(ThemeLoadSuccess(themeInfo: theme, aids: aids));
       });
     });
   }

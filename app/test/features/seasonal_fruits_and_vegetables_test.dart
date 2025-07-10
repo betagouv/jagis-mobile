@@ -10,6 +10,7 @@ import './step/i_am_logged_in.dart';
 import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/i_dont_see.dart';
@@ -96,7 +97,8 @@ void main() {
           ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '🍛 Me nourrir');
-      await iTapOn(tester, '🍓 1 calendrier de fruits et légumes de saison');
+      await iScrollDownTo(tester, 'Les fruits et légumes de septembre');
+      await iTapOn(tester, 'Les fruits et légumes de septembre');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

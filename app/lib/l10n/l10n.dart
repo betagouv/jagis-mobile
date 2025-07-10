@@ -22,6 +22,7 @@ abstract final class Localisation {
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aides = 'Aides';
+  static const aidesALaRenovation = 'Aides à la rénovation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
   static const annuler = 'Annuler';
@@ -78,6 +79,7 @@ abstract final class Localisation {
   static const declarationAccessibiliteSite = 'https://jagis.beta.gouv.fr/accessibilite';
   static const dejaConsultees = 'Déjà consultées';
   static const details = 'Détails';
+  static const doisJeChangerDeVoiture = 'Dois-je changer de voiture ?';
   static const donneesPersonnelles = 'Données personnelles';
   static const donneesUtiliseesPart1 = 'Données utilisées : code postal ';
   static const donneesUtiliseesPart2 = ', revenu fiscal de référence ';
@@ -116,6 +118,7 @@ abstract final class Localisation {
   static const erreurRoutePageDescription = 'La page est introuvable. Excusez-nous pour la gêne occasionnée.';
   static const erreurRoutePageTitre = 'Page non trouvée';
   static const estimerMesAides = 'Estimer mes aides';
+  static const estimerMesAidesVelo = 'Estimer mes aides vélo';
   static const etapes = 'Étapes';
   static const etatDuVelo = 'État du vélo';
   static const etesVousEnSituationDeHandicap = 'Êtes-vous en situation de handicap ?';
@@ -169,6 +172,7 @@ Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous
   static const lesCguSite = 'https://jagis.beta.gouv.fr/cgu';
   static const lesCguTitrePart1 = 'En m’inscrivant j’accepte les ';
   static const lesCguTitrePart2 = 'Conditions générales d’utilisation';
+  static const lesCommercesLocaux = 'Les commerces locaux';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
   static const localiserMonCompteur = 'Localiser mon compteur';
   static const lvaoDescription =
@@ -283,6 +287,8 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const pseudonymEmpty = 'Le pseudonyme ne peut pas être vide.';
   static const pseudonymInvalid = 'Le pseudonyme n’est pas valide.';
   static const pseudonyme = 'Pseudonyme';
+  static const queFaireDeMesObjets = 'Que faire de mes objets ?';
+  static const queFaireDeMesObjetsDetail = 'Réparer, vendre, louer…';
   static const quelleEstLaSuperficie = 'Quelle est la superficie ?';
   static const questionPrecedente = 'Question précédente';
   static const questionSuivante = 'Question suivante';
@@ -409,6 +415,16 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
       'Pour vérifier votre identité et vous permettre d’accéder à votre compte, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
 
   static String lesChiffresClesDe(final String city) => 'Les chiffres clés de **$city**';
+
+  static String _getMonthWithPreposition(final DateTime dateTime) {
+    final month = DateFormat.LLLL('fr_FR').format(dateTime);
+
+    return month[0] == 'a' ? 'd’$month' : 'de $month';
+  }
+
+  static String lesFruitsEtLegumes(final DateTime dateTime) => 'Les fruits et légumes ${_getMonthWithPreposition(dateTime)}';
+
+  static String lesRecettes(final DateTime dateTime) => 'Les recettes ${_getMonthWithPreposition(dateTime)}';
 
   static String nombreAction(final int value) => value <= 1 ? '$value action' : '$value actions';
 

@@ -1,6 +1,5 @@
 import 'package:app/features/aids/core/domain/aid_summary.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
-import 'package:app/features/theme/core/domain/theme_summary.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -24,20 +23,16 @@ final class ThemeLoadInProgress extends ThemeState {
 
 @immutable
 final class ThemeLoadSuccess extends ThemeState {
-  const ThemeLoadSuccess({required this.themeInfo, required this.aids, required this.links});
+  const ThemeLoadSuccess({required this.themeInfo, required this.aids});
 
   final ThemeInfo themeInfo;
   final List<AidSummary> aids;
-  final List<ThemeSummaryInternalLink> links;
 
-  ThemeLoadSuccess copyWith({
-    final ThemeInfo? themeInfo,
-    final List<AidSummary>? aids,
-    final List<ThemeSummaryInternalLink>? links,
-  }) => ThemeLoadSuccess(themeInfo: themeInfo ?? this.themeInfo, aids: aids ?? this.aids, links: links ?? this.links);
+  ThemeLoadSuccess copyWith({final ThemeInfo? themeInfo, final List<AidSummary>? aids}) =>
+      ThemeLoadSuccess(themeInfo: themeInfo ?? this.themeInfo, aids: aids ?? this.aids);
 
   @override
-  List<Object> get props => [themeInfo, aids, links];
+  List<Object> get props => [themeInfo, aids];
 }
 
 @immutable

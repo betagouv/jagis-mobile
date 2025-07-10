@@ -35,14 +35,14 @@ abstract final class ThemeSummary {
         ThemeSummaryInternalLink(
           label: '🧱 **1** simulateur *Mes aides Réno*',
           route: ActionPage.name,
-          pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.mesAidesReno.apiString),
+          pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.mesAidesReno.apiString),
         ),
       ],
       ThemeType.transport => [
         ThemeSummaryInternalLink(
           label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
           route: ActionPage.name,
-          pathParams: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
+          pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
         ),
         const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
       ],
@@ -61,12 +61,12 @@ abstract final class ThemeSummary {
 }
 
 final class ThemeSummaryInternalLink extends Equatable {
-  const ThemeSummaryInternalLink({required this.label, required this.route, this.pathParams});
+  const ThemeSummaryInternalLink({required this.label, required this.route, this.pathParameters});
 
   final String label;
   final String route;
-  final Map<String, String>? pathParams;
+  final Map<String, String>? pathParameters;
 
   @override
-  List<Object?> get props => [label, route, pathParams];
+  List<Object?> get props => [label, route, pathParameters];
 }

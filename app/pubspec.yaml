@@ -74,6 +74,7 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/images/services/illustrations/
 
 # 'dart run flutter_native_splash:create' to update
 flutter_native_splash:

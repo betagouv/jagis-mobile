@@ -11,15 +11,22 @@ Feature: Longue vie aux objets
       | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2'    |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
     Given The application is launched
     When I tap on {1} text {'👕 Mes achats'}
-    When I tap on {'Que faire de mes objets ?'}
 
   Scenario: Voir les suggestions
+    Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
     Then the API receives
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 9, "rayon_metres": 5000} |
 
   Scenario: Choisir une catégorie
+    Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
     When I tap on {'Vos objets'}
     When I tap on {'Donner'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
@@ -28,6 +35,10 @@ Feature: Longue vie aux objets
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "donner", "nombre_max_resultats": 9, "rayon_metres": 5000} |
 
   Scenario: Recherche avec une adresse
+    Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
     When I enter {"110 Rue Garibaldi"} in the autocomplete field
     When I tap on {'110 Rue Garibaldi 69006 Lyon'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
@@ -37,8 +48,34 @@ Feature: Longue vie aux objets
 
   Scenario: Aller sur la page de détails
     Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
+    Given the API will return
       | 'method' | 'path'                                                                                                         | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                         |
       | 'GET'    | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/last_results/refashion_TLC-REFASHION-PAV-3289828' |          200 | {"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]} |
     When I tap on {'EBS LE RELAIS NORD PAS DE CALAIS'}
     When I scroll down to {'Sources :'}
     Then I see {'· REFASHION'}
+
+  Scenario: Ne pas voir Voir plus qaund il n'y a pas de encore de resultat
+    Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":false,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
+    When I don't see {'Voir plus'}
+
+  Scenario: Voir plus
+    Given the API will return
+      | 'method' | 'path'                                                                | 'statusCode' | 'responseData'                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      | 'POST'   | '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2' |          200 | {"encore_plus_resultats_dispo":true,"resultats":[{"id":"refashion_TLC-REFASHION-PAV-3289828","titre":"EBS LE RELAIS NORD PAS DE CALAIS","adresse_rue":"2 rue Anatole France, 69006, Lyon 6e  Arrondissement","est_favoris":false,"nombre_favoris":0,"distance_metres":67,"categories":["donner"],"latitude":45.772192,"longitude":4.856551,"ingredients":[],"etapes_recette":[],"categories_labels":["Donner"],"sources":["Longue Vie Aux Objets","ADEME","REFASHION"]}]} |
+    When I tap on {'Que faire de mes objets ?'}
+    When I scroll down to {'Voir plus'}
+    When I tap on {'Voir plus'}
+    Then the API receives
+      | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                 |
+      | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 18, "rayon_metres": 5000} |
+    When I tap on {'Voir plus'}
+    Then the API receives
+      | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                 |
+      | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 27, "rayon_metres": 5000} |

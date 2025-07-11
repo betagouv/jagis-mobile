@@ -94,7 +94,7 @@ class _Success extends StatelessWidget {
             ),
           ),
           const SizedBox(height: DsfrSpacings.s3w),
-          if (current.suggestions.isEmpty) ...[
+          if (current.results.suggestions.isEmpty) ...[
             const FnvImage.asset(AssetImages.serviceAucunResultat),
             const Text(
               Localisation.serviceAucunResultat,
@@ -104,7 +104,16 @@ class _Success extends StatelessWidget {
           ] else ...[
             const Text(Localisation.suggestions, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
             const SizedBox(height: DsfrSpacings.s3w),
-            ...current.suggestions.map((final e) => _Card(suggestion: e)).separator(const SizedBox(height: DsfrSpacings.s3w)),
+            ...current.results.suggestions
+                .map((final e) => _Card(suggestion: e))
+                .separator(const SizedBox(height: DsfrSpacings.s3w)),
+            if (current.results.moreResultsAvailable) ...[
+              const SizedBox(height: DsfrSpacings.s3w),
+              DsfrLink(
+                label: Localisation.voirPlus,
+                onTap: () => context.read<ServiceBloc<PdcnSummary>>().add(const ServiceSeeMore()),
+              ),
+            ],
           ],
           const SizedBox(height: DsfrSpacings.s3w),
           const PartnerCard(

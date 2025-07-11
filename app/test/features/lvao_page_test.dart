@@ -15,6 +15,7 @@ import './step/i_see.dart';
 import './step/the_api_receives.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 import './step/i_scroll_down_to.dart';
+import './step/i_dont_see.dart';
 
 void main() {
   setUpAll(() async {
@@ -185,7 +186,6 @@ void main() {
           ]));
       await theApplicationIsLaunched(tester);
       await iTapOnText(tester, 1, '👕 Mes achats');
-      await iTapOn(tester, 'Que faire de mes objets ?');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {
@@ -202,6 +202,38 @@ void main() {
       try {
         await beforeEach('''Voir les suggestions''');
         await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": true,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
         await theApiReceives(
             tester,
@@ -233,6 +265,38 @@ void main() {
       try {
         await beforeEach('''Choisir une catégorie''');
         await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": true,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
         await iTapOn(tester, 'Vos objets');
         await iTapOn(tester, 'Donner');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
@@ -266,6 +330,38 @@ void main() {
       try {
         await beforeEach('''Recherche avec une adresse''');
         await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": true,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
         await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
@@ -306,6 +402,38 @@ void main() {
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'responseData'],
               [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": true,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
                 'GET',
                 '/utilisateurs/{userId}/recherche_services/longue_vie_objets/last_results/refashion_TLC-REFASHION-PAV-3289828',
                 200,
@@ -336,6 +464,137 @@ void main() {
       } finally {
         await afterEach(
           '''Aller sur la page de détails''',
+          success,
+        );
+      }
+    });
+    testWidgets(
+        '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''',
+        (tester) async {
+      var success = true;
+      try {
+        await beforeEach(
+            '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": false,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
+        await iDontSee(tester, 'Voir plus');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Voir plus''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Voir plus''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": true,
+                  "resultats": [
+                    {
+                      "id": "refashion_TLC-REFASHION-PAV-3289828",
+                      "titre": "EBS LE RELAIS NORD PAS DE CALAIS",
+                      "adresse_rue":
+                          "2 rue Anatole France, 69006, Lyon 6e  Arrondissement",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 67,
+                      "categories": ["donner"],
+                      "latitude": 45.772192,
+                      "longitude": 4.856551,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": ["Donner"],
+                      "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Que faire de mes objets ?');
+        await iScrollDownTo(tester, 'Voir plus');
+        await iTapOn(tester, 'Voir plus');
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2",
+                200,
+                {
+                  "categorie": "vos_objets",
+                  "nombre_max_resultats": 18,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
+        await iTapOn(tester, 'Voir plus');
+        await theApiReceives(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2",
+                200,
+                {
+                  "categorie": "vos_objets",
+                  "nombre_max_resultats": 27,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Voir plus''',
           success,
         );
       }

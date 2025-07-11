@@ -35,30 +35,37 @@ class ServiceRepository {
     );
   }
 
-  Future<Either<Exception, List<T>>> fetch<T extends Object>({
+  Future<Either<Exception, ServiceResults<T>>> fetch<T extends Object>({
     required final String service,
     required final String category,
     required final int limit,
     required final ServiceResult<T> fromJson,
     required final Address? address,
   }) async {
-    final data = {
+    final requestData = {
       'categorie': category,
       'nombre_max_resultats': limit,
       'rayon_metres': 5000,
       if (address != null) ...{'latitude': address.latitude, 'longitude': address.longitude},
     };
 
-    final response = await _client.post(Endpoints.serviceSearch(service), data: data);
+    final response = await _client.post(Endpoints.serviceSearch(service), data: requestData);
 
-    return isResponseUnsuccessful(response.statusCode)
-        ? Left(Exception('Erreur lors de la récupération des résultats du service'))
-        : Right(
-            ((response.data as Map<String, dynamic>)['resultats'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
-                .map(fromJson)
-                .toList(),
-          );
+    if (isResponseUnsuccessful(response.statusCode)) {
+      return Left(Exception('Erreur lors de la récupération des résultats du service'));
+    }
+
+    final responseData = response.data as Map<String, dynamic>;
+
+    final list = (responseData['resultats'] as List<dynamic>).cast<Map<String, dynamic>>().map(fromJson).toList();
+
+    return Right(
+      ServiceResults(
+        moreResultsAvailable: responseData['encore_plus_resultats_dispo'] as bool,
+        numberResult: limit,
+        suggestions: list,
+      ),
+    );
   }
 
   Future<Either<Exception, T>> fetchOne<T extends Object>({

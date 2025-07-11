@@ -11,7 +11,7 @@ final class ServiceState<T extends Object> extends Equatable {
     required this.categories,
     required this.categorySelected,
     required this.address,
-    required this.suggestions,
+    required this.results,
   });
 
   const ServiceState.initial()
@@ -19,16 +19,16 @@ final class ServiceState<T extends Object> extends Equatable {
       categories = const ServiceCategories(elements: []),
       categorySelected = const ServiceCategory(code: '', label: '', isDefault: false),
       address = null,
-      suggestions = const [];
+      results = const ServiceResults(moreResultsAvailable: false, numberResult: 0, suggestions: []);
 
   const ServiceState.loading()
     : status = ServiceStatus.loading,
       categories = const ServiceCategories(elements: []),
       categorySelected = const ServiceCategory(code: '', label: '', isDefault: false),
       address = null,
-      suggestions = const [];
+      results = const ServiceResults(moreResultsAvailable: false, numberResult: 0, suggestions: []);
 
-  const ServiceState.success({required this.categories, required this.categorySelected, required this.suggestions})
+  const ServiceState.success({required this.categories, required this.categorySelected, required this.results})
     : address = null,
       status = ServiceStatus.success;
 
@@ -37,30 +37,30 @@ final class ServiceState<T extends Object> extends Equatable {
       categories = const ServiceCategories(elements: []),
       categorySelected = const ServiceCategory(code: '', label: '', isDefault: false),
       address = null,
-      suggestions = const [];
+      results = const ServiceResults(moreResultsAvailable: false, numberResult: 0, suggestions: []);
 
   final ServiceStatus status;
   final ServiceCategories categories;
   final ServiceCategory categorySelected;
   final Address? address;
-  final List<T> suggestions;
+  final ServiceResults<T> results;
 
   ServiceState<T> copyWith({
     final ServiceStatus? status,
     final ServiceCategories? categories,
     final ServiceCategory? categorySelected,
     final Address? address,
-    final List<T>? suggestions,
+    final ServiceResults<T>? results,
   }) => ServiceState(
     status: status ?? this.status,
     categories: categories ?? this.categories,
     categorySelected: categorySelected ?? this.categorySelected,
     address: address ?? this.address,
-    suggestions: suggestions ?? this.suggestions,
+    results: results ?? this.results,
   );
 
   @override
-  List<Object?> get props => [status, categories, categorySelected, address, suggestions];
+  List<Object?> get props => [status, categories, categorySelected, address, results];
 }
 
 class ServiceCategories extends Equatable {
@@ -81,4 +81,15 @@ class ServiceCategory extends Equatable {
 
   @override
   List<Object> get props => [code, label, isDefault];
+}
+
+class ServiceResults<T extends Object> extends Equatable {
+  const ServiceResults({required this.moreResultsAvailable, required this.numberResult, required this.suggestions});
+
+  final bool moreResultsAvailable;
+  final int numberResult;
+  final List<T> suggestions;
+
+  @override
+  List<Object?> get props => [moreResultsAvailable, numberResult, suggestions];
 }

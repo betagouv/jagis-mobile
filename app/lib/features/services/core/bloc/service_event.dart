@@ -33,3 +33,8 @@ final class ServiceAddressChanged<T extends Object> extends ServiceEvent<T> {
   @override
   List<Object> get props => [address];
 }
+
+@immutable
+final class ServiceSeeMore<T extends Object> extends ServiceEvent<T> {
+  const ServiceSeeMore();
+}

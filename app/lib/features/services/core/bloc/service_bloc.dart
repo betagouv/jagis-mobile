@@ -11,6 +11,7 @@ class ServiceBloc<T extends Object> extends Bloc<ServiceEvent<T>, ServiceState<T
     on<ServiceLoadRequested<T>>(_serviceLoadRequested);
     on<ServiceCategoryChanged<T>>(_categoryChanged);
     on<ServiceAddressChanged<T>>(_addressChanged);
+    on<ServiceSeeMore<T>>(_seeMore);
   }
 
   final ServiceRepository _serviceRepository;
@@ -40,7 +41,7 @@ class ServiceBloc<T extends Object> extends Bloc<ServiceEvent<T>, ServiceState<T
     result.fold(
       (final exception) => emit(const ServiceState.failure()),
       (final suggestions) =>
-          emit(ServiceState.success(categories: categories, categorySelected: defaultCategory, suggestions: suggestions)),
+          emit(ServiceState.success(categories: categories, categorySelected: defaultCategory, results: suggestions)),
     );
   }
 
@@ -55,7 +56,7 @@ class ServiceBloc<T extends Object> extends Bloc<ServiceEvent<T>, ServiceState<T
 
     result.fold(
       (final exception) => emit(const ServiceState.failure()),
-      (final suggestions) => emit(state.copyWith(categorySelected: event.category, suggestions: suggestions)),
+      (final results) => emit(state.copyWith(categorySelected: event.category, results: results)),
     );
   }
 
@@ -71,7 +72,22 @@ class ServiceBloc<T extends Object> extends Bloc<ServiceEvent<T>, ServiceState<T
 
     result.fold(
       (final exception) => emit(const ServiceState.failure()),
-      (final suggestions) => emit(state.copyWith(address: address, suggestions: suggestions)),
+      (final results) => emit(state.copyWith(address: address, results: results)),
+    );
+  }
+
+  Future<void> _seeMore(final ServiceSeeMore<T> event, final Emitter<ServiceState<T>> emit) async {
+    final result = await _serviceRepository.fetch(
+      service: _service,
+      category: state.categorySelected.code,
+      limit: state.results.numberResult + _limit,
+      fromJson: _fromJson,
+      address: state.address,
+    );
+
+    result.fold(
+      (final exception) => emit(const ServiceState.failure()),
+      (final results) => emit(state.copyWith(results: results)),
     );
   }
 }

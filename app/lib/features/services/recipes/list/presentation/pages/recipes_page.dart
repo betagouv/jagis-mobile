@@ -23,7 +23,7 @@ class RecipesPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => RecipesBloc(repository: context.read())..add(const RecipesLoadRequested()),
+    create: (final context) => RecipesBloc(context.read())..add(const RecipesLoadRequested()),
     child: FnvScaffold(appBar: FnvAppBar(), body: const _Body()),
   );
 }
@@ -49,7 +49,7 @@ class _Success extends StatelessWidget {
   Widget build(final BuildContext context) {
     final items = [
       _Header(value: value),
-      ...value.recipes.map(
+      ...value.recipes.suggestions.map(
         (final e) => RecipeCard(
           id: e.id,
           imageUrl: e.imageUrl,
@@ -58,6 +58,8 @@ class _Success extends StatelessWidget {
           preparationTime: e.preparationTime,
         ),
       ),
+      if (value.recipes.moreResultsAvailable)
+        DsfrLink(label: Localisation.voirPlus, onTap: () => context.read<RecipesBloc>().add(const RecipesSeeMore())),
       const PartnerCard(
         image: AssetImages.mangerBouger,
         name: Localisation.mangerBougerNom,

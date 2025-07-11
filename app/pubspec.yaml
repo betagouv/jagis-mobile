@@ -30,7 +30,7 @@ dependencies:
   flutter_inset_shadow: 2.0.3
   flutter_localizations:
     sdk: flutter
-  flutter_map: 8.1.1
+  flutter_map: 8.2.0
   flutter_native_splash: 2.4.6
   flutter_secure_storage: 9.2.4
   flutter_widget_from_html_core: 0.16.0

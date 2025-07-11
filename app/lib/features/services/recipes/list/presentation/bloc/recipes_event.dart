@@ -23,3 +23,8 @@ final class RecipesFilterSelected extends RecipesEvent {
   @override
   List<Object> get props => [value];
 }
+
+@immutable
+final class RecipesSeeMore extends RecipesEvent {
+  const RecipesSeeMore();
+}

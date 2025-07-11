@@ -1,3 +1,4 @@
+import 'package:app/features/services/core/bloc/service_state.dart';
 import 'package:app/features/services/recipes/list/domain/recipe_filter.dart';
 import 'package:app/features/services/recipes/list/domain/recipe_summary.dart';
 import 'package:equatable/equatable.dart';
@@ -27,7 +28,17 @@ final class RecipesLoadSuccess extends RecipesState {
 
   final List<RecipeFilter> filters;
   final String filterSelected;
-  final List<RecipeSummary> recipes;
+  final ServiceResults<RecipeSummary> recipes;
+
+  RecipesLoadSuccess copyWith({
+    final List<RecipeFilter>? filters,
+    final String? filterSelected,
+    final ServiceResults<RecipeSummary>? recipes,
+  }) => RecipesLoadSuccess(
+    filters: filters ?? this.filters,
+    filterSelected: filterSelected ?? this.filterSelected,
+    recipes: recipes ?? this.recipes,
+  );
 
   @override
   List<Object> get props => [filters, filterSelected, recipes];

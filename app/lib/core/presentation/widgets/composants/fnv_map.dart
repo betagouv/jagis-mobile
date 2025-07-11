@@ -19,7 +19,7 @@ class FnvMap extends StatelessWidget {
       options: MapOptions(initialCenter: latLng),
       children: [
         TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', userAgentPackageName: 'fr.gouv.agir'),
-        SimpleAttributionWidget(
+        _SimpleAttributionWidget(
           source: const Text(Localisation.contributeursOpenStreetMap),
           onTap: () async {
             await FnvUrlLauncher.launch('https://www.openstreetmap.org/copyright');
@@ -38,4 +38,33 @@ class FnvMap extends StatelessWidget {
       ],
     );
   }
+}
+
+class _SimpleAttributionWidget extends StatelessWidget {
+  const _SimpleAttributionWidget({required this.source, this.onTap});
+
+  final Text source;
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(final BuildContext context) => Align(
+    alignment: Alignment.bottomRight,
+    child: ColoredBox(
+      color: Theme.of(context).colorScheme.surface,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(3),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('flutter_map | © '),
+              MouseRegion(cursor: onTap == null ? MouseCursor.defer : SystemMouseCursors.click, child: source),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

@@ -70,8 +70,8 @@ class _AlimentationServices extends StatelessWidget {
   }
 }
 
-class _LogementServices extends StatelessWidget {
-  const _LogementServices();
+class _TransportServices extends StatelessWidget {
+  const _TransportServices();
 
   @override
   Widget build(final BuildContext context) => _GridView(
@@ -97,8 +97,8 @@ class _LogementServices extends StatelessWidget {
   );
 }
 
-class _TransportServices extends StatelessWidget {
-  const _TransportServices();
+class _LogementServices extends StatelessWidget {
+  const _LogementServices();
 
   @override
   Widget build(final BuildContext context) => _GridView(

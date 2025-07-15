@@ -4,7 +4,7 @@ abstract final class PlantMapper {
   static Plant fromJson(final Map<String, dynamic> json) => Plant(
     type: plantTypeFromJson(json['type_fruit_legume'] as String),
     title: json['titre'] as String,
-    carbonFootprintInKg: json['impact_carbone_kg'] as double,
+    carbonFootprintInKg: (json['impact_carbone_kg'] as num).toDouble(),
     imageUrl: json['image_url'] as String,
   );
 

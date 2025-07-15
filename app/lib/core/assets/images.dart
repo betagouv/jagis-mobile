@@ -24,7 +24,6 @@ abstract final class AssetImages {
   static const homeIllustration = 'assets/images/home_illustration.webp';
   static const illustration1 = 'assets/images/illustration1.svg';
   static const illustration2 = 'assets/images/illustration2.svg';
-  static const illustration3 = 'assets/images/illustration3.svg';
   static const illustration4 = 'assets/images/illustration4.svg';
   static const illustration5 = 'assets/images/illustration5.svg';
   static const impactCo2Illustration = 'assets/images/service-fruits.webp';

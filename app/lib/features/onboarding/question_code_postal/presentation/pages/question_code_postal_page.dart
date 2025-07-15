@@ -5,9 +5,9 @@ import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/onboarding/presentation/pages/app_est_encore_en_experimentation_page.dart';
 import 'package:app/features/onboarding/question_code_postal/presentation/bloc/question_code_postal_bloc.dart';
 import 'package:app/features/onboarding/question_code_postal/presentation/bloc/question_code_postal_event.dart';
+import 'package:app/features/onboarding/question_themes/presentation/pages/question_themes_page.dart';
 import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -171,11 +171,8 @@ class _ButtonContinuer extends StatelessWidget {
       size: DsfrComponentSize.lg,
       onPressed: estRempli
           ? () async {
-              final bloc = context.read<QuestionCodePostalBloc>()..add(const QuestionCodePostalMiseAJourDemandee());
-
-              await GoRouter.of(
-                context,
-              ).pushNamed(AppEstEncoreEnExperimentationPage.name, pathParameters: {'commune': bloc.state.commune});
+              context.read<QuestionCodePostalBloc>().add(const QuestionCodePostalMiseAJourDemandee());
+              await GoRouter.of(context).pushNamed(QuestionThemesPage.name);
             }
           : null,
     );

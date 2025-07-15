@@ -63,8 +63,6 @@ void main() {
         await iEnterInTheField(tester, '39100', 'Code postal');
         await iSelectInTheField(tester, 'DOLE', 'Commune');
         await iTapOn(tester, 'Continuer');
-        await iSee(tester, 'J’agis est encore en expérimentation !');
-        await iTapOn(tester, 'J’ai compris');
         await iSee(tester, 'C’est presque terminé !');
         await iTapOn(tester, 'La cuisine et l’alimentation');
         await iTapOn(tester, 'Continuer');

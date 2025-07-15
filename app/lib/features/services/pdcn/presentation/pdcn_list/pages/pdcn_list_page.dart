@@ -168,44 +168,52 @@ class _Card extends StatelessWidget {
     onTap: () async {
       await GoRouter.of(context).pushNamed(PdcnDetailPage.name, pathParameters: {'id': suggestion.id});
     },
-    child: IntrinsicHeight(
-      child: Row(
-        children: [
-          const DecoratedBox(
-            decoration: BoxDecoration(color: Color(0xffF2EAF8)),
-            child: FnvImage.asset(AssetImages.pdcnStore, width: 72, fit: BoxFit.fitHeight),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(DsfrSpacings.s2w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    suggestion.name,
-                    style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  Text(
-                    suggestion.address,
-                    style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
-                  const Spacer(),
-                  DsfrTag(
-                    label: Localisation.distance(suggestion.distanceInMeters),
-                    size: DsfrComponentSize.sm,
-                    backgroundColor: const Color(0xffEAEAEA),
-                    textColor: const Color(0xff3F3F3F),
-                  ),
-                ],
-              ),
+    child: Row(
+      children: [
+        const FnvImage.asset(AssetImages.pdcnStore, width: 88, height: 140, fit: BoxFit.cover),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: DsfrSpacings.s1w,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: DsfrSpacings.s0v5,
+                  children: [
+                    Text(
+                      suggestion.name,
+                      style: DsfrTextStyle.headline5(color: DsfrColorDecisions.textTitleGrey(context)),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    if (suggestion.description != null)
+                      Text(
+                        suggestion.description!,
+                        style: DsfrTextStyle.bodySmBold(color: DsfrColorDecisions.textLabelGrey(context)),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    Text(
+                      suggestion.address,
+                      style: DsfrTextStyle.bodyXs(color: DsfrColorDecisions.textDefaultGrey(context)),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+                DsfrTag(
+                  label: Localisation.distance(suggestion.distanceInMeters),
+                  size: DsfrComponentSize.sm,
+                  backgroundColor: DsfrColors.blueCumulus950,
+                  textColor: DsfrColors.blueFranceSun113,
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

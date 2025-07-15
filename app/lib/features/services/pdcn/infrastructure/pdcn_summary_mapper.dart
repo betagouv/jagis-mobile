@@ -14,6 +14,7 @@ abstract final class PdcnSummaryMapper {
       id: json['id'] as String,
       name: json['titre'] as String,
       address: address,
+      description: json['description'] as String?,
       distanceInMeters: json['distance_metres'] as int,
     );
   }

@@ -18,8 +18,8 @@ class LvaoActor extends Equatable {
         name: json['titre'] as String,
         address: json['adresse_rue'] as String,
         distanceInMeters: json['distance_metres'] as int?,
-        latitude: json['latitude'] as double,
-        longitude: json['longitude'] as double,
+        latitude: (json['latitude'] as num).toDouble(),
+        longitude: (json['longitude'] as num).toDouble(),
         sources: json.containsKey('sources') ? (json['sources'] as List<dynamic>).map((final e) => e as String).toList() : [],
         categories: json.containsKey('categories_labels')
             ? (json['categories_labels'] as List<dynamic>).map((final e) => e as String).toList()

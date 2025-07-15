@@ -1,5 +1,5 @@
 import 'package:app/core/assets/images.dart';
-import 'package:app/core/infrastructure/svg.dart';
+import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
 import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
@@ -21,13 +21,7 @@ class ThemeHeader extends StatelessWidget {
       fit: StackFit.passthrough,
       clipBehavior: Clip.none,
       children: [
-        switch (themeInfo.themeType) {
-          ThemeType.alimentation => const _BackgroundImage(assetName: AssetImages.alimentation),
-          ThemeType.transport => const _BackgroundImage(assetName: AssetImages.transport),
-          ThemeType.logement => const _BackgroundImage(assetName: AssetImages.logement),
-          ThemeType.consommation => const _BackgroundImage(assetName: AssetImages.consommation),
-          ThemeType.decouverte => const SizedBox.shrink(),
-        },
+        _BackgroundImage(themeType: themeInfo.themeType),
         Padding(
           padding: const EdgeInsets.only(
             left: DsfrSpacings.s2w,
@@ -70,10 +64,20 @@ class ThemeHeader extends StatelessWidget {
 }
 
 class _BackgroundImage extends StatelessWidget {
-  const _BackgroundImage({required this.assetName});
+  const _BackgroundImage({required this.themeType});
 
-  final String assetName;
+  final ThemeType themeType;
 
   @override
-  Widget build(final BuildContext context) => Positioned(left: 100, top: 0, bottom: 0, child: FnvSvg.asset(assetName));
+  Widget build(final BuildContext context) {
+    final assetName = switch (themeType) {
+      ThemeType.alimentation => AssetImages.alimentation,
+      ThemeType.transport => AssetImages.transport,
+      ThemeType.logement => AssetImages.logement,
+      ThemeType.consommation => AssetImages.consommation,
+      ThemeType.decouverte => throw UnimplementedError(),
+    };
+
+    return Align(alignment: Alignment.topRight, child: FnvImage.asset(assetName));
+  }
 }

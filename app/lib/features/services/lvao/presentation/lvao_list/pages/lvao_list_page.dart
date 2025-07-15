@@ -181,11 +181,11 @@ class _Card extends StatelessWidget {
             padding: const EdgeInsets.all(DsfrSpacings.s2w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 8,
+              spacing: DsfrSpacings.s1w,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 2,
+                  spacing: DsfrSpacings.s0v5,
                   children: [
                     Text(
                       suggestion.name,

@@ -22,6 +22,7 @@ abstract final class Localisation {
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aides = 'Aides';
+  static const lesRisquesNaturelesAMonAdresse = 'Les risques naturels à mon adresse';
   static const aidesALaRenovation = 'Aides à la rénovation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';

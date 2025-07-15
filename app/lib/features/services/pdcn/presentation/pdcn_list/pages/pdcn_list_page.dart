@@ -109,9 +109,13 @@ class _Success extends StatelessWidget {
                 .separator(const SizedBox(height: DsfrSpacings.s3w)),
             if (current.results.moreResultsAvailable) ...[
               const SizedBox(height: DsfrSpacings.s3w),
-              DsfrLink(
-                label: Localisation.voirPlus,
-                onTap: () => context.read<ServiceBloc<PdcnSummary>>().add(const ServiceSeeMore()),
+              Center(
+                child: DsfrButton(
+                  label: Localisation.afficherPlusDeSuggestions,
+                  variant: DsfrButtonVariant.secondary,
+                  size: DsfrComponentSize.lg,
+                  onPressed: () => context.read<ServiceBloc<PdcnSummary>>().add(const ServiceSeeMore()),
+                ),
               ),
             ],
           ],

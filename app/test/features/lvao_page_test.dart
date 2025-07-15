@@ -469,12 +469,12 @@ void main() {
       }
     });
     testWidgets(
-        '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''',
+        '''Ne pas voir 'Afficher plus de suggestions' qaund il n'y a pas de encore de resultat''',
         (tester) async {
       var success = true;
       try {
         await beforeEach(
-            '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''');
+            '''Ne pas voir 'Afficher plus de suggestions' qaund il n'y a pas de encore de resultat''');
         await bddSetUp(tester);
         await theApiWillReturn(
             tester,
@@ -508,21 +508,21 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Que faire de mes objets ?');
-        await iDontSee(tester, 'Voir plus');
+        await iDontSee(tester, 'Afficher plus de suggestions');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Ne pas voir Voir plus qaund il n'y a pas de encore de resultat''',
+          '''Ne pas voir 'Afficher plus de suggestions' qaund il n'y a pas de encore de resultat''',
           success,
         );
       }
     });
-    testWidgets('''Voir plus''', (tester) async {
+    testWidgets('''Afficher plus de suggestions''', (tester) async {
       var success = true;
       try {
-        await beforeEach('''Voir plus''');
+        await beforeEach('''Afficher plus de suggestions''');
         await bddSetUp(tester);
         await theApiWillReturn(
             tester,
@@ -556,8 +556,8 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Que faire de mes objets ?');
-        await iScrollDownTo(tester, 'Voir plus');
-        await iTapOn(tester, 'Voir plus');
+        await iScrollDownTo(tester, 'Afficher plus de suggestions');
+        await iTapOn(tester, 'Afficher plus de suggestions');
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -573,7 +573,8 @@ void main() {
                 }
               ]
             ]));
-        await iTapOn(tester, 'Voir plus');
+        await iScrollDownTo(tester, 'Afficher plus de suggestions');
+        await iTapOn(tester, 'Afficher plus de suggestions');
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -594,7 +595,7 @@ void main() {
         rethrow;
       } finally {
         await afterEach(
-          '''Voir plus''',
+          '''Afficher plus de suggestions''',
           success,
         );
       }

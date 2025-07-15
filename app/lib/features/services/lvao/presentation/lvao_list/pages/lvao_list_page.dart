@@ -109,9 +109,13 @@ class _Success extends StatelessWidget {
 
             if (current.results.moreResultsAvailable) ...[
               const SizedBox(height: DsfrSpacings.s3w),
-              DsfrLink(
-                label: Localisation.voirPlus,
-                onTap: () => context.read<ServiceBloc<LvaoActor>>().add(const ServiceSeeMore()),
+              Center(
+                child: DsfrButton(
+                  label: Localisation.afficherPlusDeSuggestions,
+                  variant: DsfrButtonVariant.secondary,
+                  size: DsfrComponentSize.lg,
+                  onPressed: () => context.read<ServiceBloc<LvaoActor>>().add(const ServiceSeeMore()),
+                ),
               ),
             ],
           ],

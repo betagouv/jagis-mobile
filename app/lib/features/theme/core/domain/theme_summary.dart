@@ -9,55 +9,31 @@ import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_lis
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_page.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:equatable/equatable.dart';
 
 abstract final class ThemeSummary {
-  static List<ThemeSummaryInternalLink> buildThemeLinksFor({
-    required final ThemeType themeType,
-    required final int aidCount,
-    required final int? recipeCount,
-  }) {
-    List<ThemeSummaryInternalLink> getThemeSpecificLinks() => switch (themeType) {
-      ThemeType.alimentation => [
-        if (recipeCount != null)
-          ThemeSummaryInternalLink(
-            label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison',
-            route: RecipesPage.name,
-          ),
-        const ThemeSummaryInternalLink(
-          label: '🍓 **1** calendrier de fruits et légumes de saison',
-          route: SeasonalFruitsAndVegetablesPage.name,
-        ),
-        const ThemeSummaryInternalLink(label: '🛒 Des adresses pour manger local', route: PdcnListPage.name),
-      ],
-      ThemeType.logement => [
-        ThemeSummaryInternalLink(
-          label: '🧱 **1** simulateur *Mes aides Réno*',
-          route: ActionPage.name,
-          pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.mesAidesReno.apiString),
-        ),
-      ],
-      ThemeType.transport => [
-        ThemeSummaryInternalLink(
-          label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
-          route: ActionPage.name,
-          pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
-        ),
-        const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
-      ],
-      ThemeType.consommation => [
-        const ThemeSummaryInternalLink(label: '🔧 Des adresses de réparateur près de chez vous', route: LvaoListPage.name),
-      ],
-      ThemeType.decouverte => [],
-    };
-
-    List<ThemeSummaryInternalLink> getAidLinks() => aidCount > 0
-        ? [ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name)]
-        : [];
-
-    return [...getThemeSpecificLinks(), ...getAidLinks()];
-  }
+  static List<ThemeSummaryInternalLink> buildThemeLinksFor({required final int aidCount, required final int? recipeCount}) => [
+    if (aidCount > 0) ThemeSummaryInternalLink(label: '💶 **$aidCount** aides sur votre territoire', route: AidsPage.name),
+    if (recipeCount != null)
+      ThemeSummaryInternalLink(label: '🥘 **$recipeCount** recettes délicieuses, saines et de saison', route: RecipesPage.name),
+    const ThemeSummaryInternalLink(
+      label: '🍓 **1** calendrier de fruits et légumes de saison',
+      route: SeasonalFruitsAndVegetablesPage.name,
+    ),
+    const ThemeSummaryInternalLink(label: '🛒 Des adresses pour manger local', route: PdcnListPage.name),
+    ThemeSummaryInternalLink(
+      label: '🧱 **1** simulateur *Mes aides Réno*',
+      route: ActionPage.name,
+      pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.mesAidesReno.apiString),
+    ),
+    ThemeSummaryInternalLink(
+      label: '🚙 **1** simulateur *Dois-je changer de voiture ?*',
+      route: ActionPage.name,
+      pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.carSimulator.apiString),
+    ),
+    const ThemeSummaryInternalLink(label: '🚲 **1** simulateur *Mes aides vélo*', route: AideSimulateurVeloPage.name),
+    const ThemeSummaryInternalLink(label: '🔧 Des adresses de réparateur près de chez vous', route: LvaoListPage.name),
+  ];
 }
 
 final class ThemeSummaryInternalLink extends Equatable {

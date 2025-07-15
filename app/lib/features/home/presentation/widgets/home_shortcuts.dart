@@ -1,11 +1,9 @@
 import 'package:app/core/helpers/size.dart';
 import 'package:app/features/theme/core/domain/theme_summary.dart';
-import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/widgets/theme_service_info.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
-import 'package:fpdart/fpdart.dart';
 
 class HomeShortcuts extends StatelessWidget {
   const HomeShortcuts({super.key, required this.nbAids, required this.nbRecipes});
@@ -34,12 +32,7 @@ class HomeShortcuts extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 spacing: DsfrSpacings.s3v,
-                children: ThemeType.values
-                    .flatMap(
-                      (final themeType) =>
-                          ThemeSummary.buildThemeLinksFor(themeType: themeType, aidCount: nbAids, recipeCount: nbRecipes),
-                    )
-                    .toSet()
+                children: ThemeSummary.buildThemeLinksFor(aidCount: nbAids, recipeCount: nbRecipes)
                     .map(
                       (final link) => SizedBox(
                         width: screenWidth(context, percentage: 0.8),

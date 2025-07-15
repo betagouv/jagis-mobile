@@ -106,7 +106,6 @@ class _Success extends StatelessWidget {
             ...current.results.suggestions
                 .map((final e) => _Card(suggestion: e))
                 .separator(const SizedBox(height: DsfrSpacings.s3w)),
-
             if (current.results.moreResultsAvailable) ...[
               const SizedBox(height: DsfrSpacings.s3w),
               Center(
@@ -168,46 +167,57 @@ class _Card extends StatelessWidget {
     onTap: () async {
       await GoRouter.of(context).pushNamed(LvaoDetailPage.name, pathParameters: {'id': suggestion.id});
     },
-    child: IntrinsicHeight(
-      child: Row(
-        children: [
-          const DecoratedBox(
-            decoration: BoxDecoration(color: Color(0xffF2EAF8)),
-            child: FnvImage.asset(AssetImages.lvaoStore, width: 72, fit: BoxFit.fitHeight),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(DsfrSpacings.s2w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    suggestion.name,
-                    style: const DsfrTextStyle.bodyMdBold(color: DsfrColors.grey50),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  Text(
-                    suggestion.address,
-                    style: const DsfrTextStyle.bodyXs(color: DsfrColors.grey50),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
-                  if (suggestion.distanceInMeters != null) ...[
-                    const Spacer(),
-                    DsfrTag(
-                      label: Localisation.distance(suggestion.distanceInMeters!),
-                      size: DsfrComponentSize.sm,
-                      backgroundColor: const Color(0xffEAEAEA),
-                      textColor: const Color(0xff3F3F3F),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(color: Color(0xfff7f8fc)),
+          child: FnvImage.asset(AssetImages.lvaoStore, width: 88, height: 140, fit: BoxFit.cover),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(DsfrSpacings.s2w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 8,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 2,
+                  children: [
+                    Text(
+                      suggestion.name,
+                      style: DsfrTextStyle.headline5(color: DsfrColorDecisions.textTitleGrey(context)),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    if (suggestion.categories.isNotEmpty)
+                      Text(
+                        suggestion.categories.join(', '),
+                        style: DsfrTextStyle.bodySmBold(color: DsfrColorDecisions.textLabelGrey(context)),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    Text(
+                      suggestion.address,
+                      style: DsfrTextStyle.bodyXs(color: DsfrColorDecisions.textDefaultGrey(context)),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ],
-                ],
-              ),
+                ),
+                if (suggestion.distanceInMeters != null)
+                  DsfrTag(
+                    label: Localisation.distance(suggestion.distanceInMeters!),
+                    size: DsfrComponentSize.sm,
+                    backgroundColor: DsfrColors.blueCumulus950,
+                    textColor: DsfrColors.blueFranceSun113,
+                  ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

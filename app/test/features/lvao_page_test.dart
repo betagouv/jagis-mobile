@@ -221,12 +221,12 @@ void main() {
                       "est_favoris": false,
                       "nombre_favoris": 0,
                       "distance_metres": 67,
-                      "categories": ["donner"],
+                      "categories": ["acheter"],
                       "latitude": 45.772192,
                       "longitude": 4.856551,
                       "ingredients": [],
                       "etapes_recette": [],
-                      "categories_labels": ["Donner"],
+                      "categories_labels": ["Acheter d'occasion"],
                       "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
                     }
                   ]
@@ -235,6 +235,7 @@ void main() {
             ]));
         await iTapOn(tester, 'Que faire de mes objets ?');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
+        await iSee(tester, "Acheter d'occasion");
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -284,12 +285,12 @@ void main() {
                       "est_favoris": false,
                       "nombre_favoris": 0,
                       "distance_metres": 67,
-                      "categories": ["donner"],
+                      "categories": [],
                       "latitude": 45.772192,
                       "longitude": 4.856551,
                       "ingredients": [],
                       "etapes_recette": [],
-                      "categories_labels": ["Donner"],
+                      "categories_labels": [],
                       "sources": ["Longue Vie Aux Objets", "ADEME", "REFASHION"]
                     }
                   ]

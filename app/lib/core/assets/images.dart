@@ -19,7 +19,7 @@ abstract final class AssetImages {
   static const factureEngie = 'assets/images/facture_engie.webp';
   static const feedback = 'assets/images/feedback.webp';
   static const flags = 'assets/images/flags.svg';
-  static const franceNationVerte = 'assets/images/logo_fnv.png';
+  static const franceNationVerte = 'assets/images/logo_fnv.webp';
   static const franceNationVerteSemantic = 'Logo de France Nation Verte';
   static const homeIllustration = 'assets/images/home_illustration.webp';
   static const illustration1 = 'assets/images/illustration1.svg';
@@ -51,7 +51,7 @@ abstract final class AssetImages {
   static const mangerBougerLogo = 'assets/images/logo_manger_bouger.svg';
   static const mesAidesVeloLogo = 'assets/images/mesaidesvelo_logo.svg';
   static const mesAidesVeloTexte = 'assets/images/mesaidesvelo_texte.svg';
-  static const nosGestesClimat = 'assets/images/nos_gestes_climat.png';
+  static const nosGestesClimat = 'assets/images/nos_gestes_climat.webp';
   static const nosGestesClimatIllustration = 'assets/images/bilan-carbone-ngc-screenshot.svg';
   static const nosGestesClimatPetit = 'assets/images/nos_gestes_climat_petit.webp';
   static const pdcnIllustration = 'assets/images/pdcn.webp';

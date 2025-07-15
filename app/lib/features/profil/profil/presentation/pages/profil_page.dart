@@ -102,6 +102,15 @@ class ProfilPage extends StatelessWidget {
               ),
               const DsfrDivider(),
               _MenuElement(
+                icon: DsfrIcons.communicationQuestionnaireLine,
+                label: Localisation.nousContacter,
+                onTap: () async {
+                  await FnvUrlLauncher.launch('mailto:contact@jagis.beta.gouv.fr');
+                },
+                iconRight: DsfrIcons.systemExternalLinkLine,
+              ),
+              const DsfrDivider(),
+              _MenuElement(
                 icon: DsfrIcons.systemSettings5Line,
                 label: Localisation.optionsAvancees,
                 onTap: () async {

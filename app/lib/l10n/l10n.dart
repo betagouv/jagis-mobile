@@ -26,9 +26,6 @@ abstract final class Localisation {
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
   static const annuler = 'Annuler';
-  static const appEstEncoreEnExperimentation = 'J’agis est encore en expérimentation !';
-  static const appEstEncoreEnExperimentationDetails = 'Nous ajoutons progressivement les aides et contenus locaux à ';
-  static const appEstEncoreEnExperimentationDetails2 = '\nRevenez régulièrement pour profiter de nos dernières nouveautés';
   static const attentionAucuneDonneeNePourraEtreRecuperee = 'Attention, aucune donnée ne pourra être récupérée.';
   static const aucuneActionTrouvee = 'Aucune action trouvée';
   static const aucuneAideDisponible = 'Aucune aide\ndisponible';
@@ -151,7 +148,6 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const impactCo2Description = 'Des informations fiables et sourcées issues des données environnementales de l’ADEME';
   static const impactCo2Url = 'https://impactco2.fr';
   static const ingredients = 'Ingrédients';
-  static const jaiCompris = 'J’ai compris';
   static const jaiDejaUnCompte = 'J’ai déjà un compte';
   static const jaiReleveLeDefi = 'J’ai relevé le défi !';
   static const jeCreeMonCompte = 'Je crée mon compte';
@@ -396,8 +392,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
     return email;
   }
-
-  static String communeEtSaRegion(final String commune) => '$commune et sa région.';
 
   static String compteur(final String prm) => 'Compteur #$prm';
 

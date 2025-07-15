@@ -17,8 +17,6 @@ Feature: Onboarding
     When I enter {'39100'} in the {'Code postal'} field
     When I select {'DOLE'} in the {'Commune'} field
     When I tap on {'Continuer'}
-    Then I see {'J’agis est encore en expérimentation !'}
-    When I tap on {'J’ai compris'}
     Then I see {'C’est presque terminé !'}
     When I tap on {'La cuisine et l’alimentation'}
     When I tap on {'Continuer'}

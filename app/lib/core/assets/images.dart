@@ -35,6 +35,7 @@ abstract final class AssetImages {
   static const lvaoServiceIllustration = 'assets/images/services/illustrations/lvao.svg';
   static const calendrierServiceIllustration = 'assets/images/services/illustrations/calendrier_fruits.svg';
   static const commercesServiceIllustration = 'assets/images/services/illustrations/commerces.svg';
+  static const maifServiceIllustration = 'assets/images/services/illustrations/maif.svg';
   static const mesAidesRenoServiceIllustration = 'assets/images/services/illustrations/mes-aides-reno.svg';
   static const recettesServiceIllustration = 'assets/images/services/illustrations/recettes.svg';
   static const veloServiceIllustration = 'assets/images/services/illustrations/velo.svg';

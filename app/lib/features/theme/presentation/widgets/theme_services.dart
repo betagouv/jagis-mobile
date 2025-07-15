@@ -104,6 +104,16 @@ class _LogementServices extends StatelessWidget {
   Widget build(final BuildContext context) => _GridView(
     children: [
       _Service(
+        title: Localisation.lesRisquesNaturelesAMonAdresse,
+        image: AssetImages.maifServiceIllustration,
+        onTap: () async {
+          await GoRouter.of(context).pushNamed(
+            ActionPage.name,
+            pathParameters: ActionPage.pathParameters(type: ActionType.simulator, id: ActionSimulatorId.maif.apiString),
+          );
+        },
+      ),
+      _Service(
         title: Localisation.aidesALaRenovation,
         image: AssetImages.mesAidesRenoServiceIllustration,
         onTap: () async {

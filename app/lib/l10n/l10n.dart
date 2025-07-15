@@ -345,7 +345,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
   static const voirMesResultats = 'Voir mes résultats';
-  static const voirPlus = 'Voir plus';
+  static const afficherPlusDeSuggestions = 'Afficher plus de suggestions';
   static const voirTout = 'Voir tout';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
   static const vosRisques = 'Vos risques';

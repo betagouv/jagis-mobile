@@ -59,7 +59,14 @@ class _Success extends StatelessWidget {
         ),
       ),
       if (value.recipes.moreResultsAvailable)
-        DsfrLink(label: Localisation.voirPlus, onTap: () => context.read<RecipesBloc>().add(const RecipesSeeMore())),
+        Center(
+          child: DsfrButton(
+            label: Localisation.afficherPlusDeSuggestions,
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrComponentSize.lg,
+            onPressed: () => context.read<RecipesBloc>().add(const RecipesSeeMore()),
+          ),
+        ),
       const PartnerCard(
         image: AssetImages.mangerBouger,
         name: Localisation.mangerBougerNom,

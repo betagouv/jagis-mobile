@@ -61,6 +61,10 @@ abstract final class AssetImages {
   static const resetPointsIllustrations1 = 'assets/images/reset_points_1.webp';
   static const resetPointsIllustrations2 = 'assets/images/reset_points_2.webp';
   static const serviceAucunResultat = 'assets/images/service_aucun_resultat.svg';
+  static const thematiquesQuestionsMeNourrirIllustrations = 'assets/images/thematiques_questions_me_nourrir_illustration.webp';
+  static const thematiquesQuestionsMeDeplacerIllustrations = 'assets/images/thematiques_questions_me_deplacer_illustration.webp';
+  static const thematiquesQuestionsMeLogerIllustrations = 'assets/images/thematiques_questions_me_loger_illustration.webp';
+  static const thematiquesQuestionsMesAchatsIllustrations = 'assets/images/thematiques_questions_mes_achats_illustration.webp';
   static const transport = 'assets/images/transport.svg';
   static const wattWatchers = 'assets/images/watt_watchers.webp';
 }

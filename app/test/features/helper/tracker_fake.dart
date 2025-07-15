@@ -9,7 +9,7 @@ class TrackerFake extends Tracker {
   Future<void> init({required final String siteId, required final String url}) async {}
 
   @override
-  void trackClick(final String page, final String contenu) {}
+  void trackClick({required final String action, final String? name}) {}
 
   @override
   void trackNotificationOpened(final String name) {}

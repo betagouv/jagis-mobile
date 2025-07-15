@@ -8,12 +8,12 @@ class Tracker {
     await MatomoTracker.instance.initialize(siteId: siteId, url: url, verbosityLevel: Level.all);
   }
 
-  void trackClick(final String page, final String contenu) {
+  void trackClick({required final String action, final String? name}) {
     if (!MatomoTracker.instance.initialized) {
       return;
     }
     MatomoTracker.instance.trackEvent(
-      eventInfo: EventInfo(category: 'click', action: page, name: contenu),
+      eventInfo: EventInfo(category: 'click', action: action, name: name),
     );
   }
 

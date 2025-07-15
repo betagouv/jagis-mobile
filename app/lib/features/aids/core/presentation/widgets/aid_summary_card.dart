@@ -20,7 +20,7 @@ class AidSummaryCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => FnvCard(
     onTap: () async {
-      context.read<Tracker>().trackClick('Aides', aidSummary.title);
+      context.read<Tracker>().trackClick(action: 'Aides', name: aidSummary.title);
       await GoRouter.of(context).pushNamed(
         AidPage.name,
         pathParameters: AidPage.pathParameters(title: aidSummary.title, id: aidSummary.id),

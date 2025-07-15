@@ -1,3 +1,4 @@
+import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -10,6 +11,7 @@ import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
@@ -105,6 +107,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.communicationQuestionnaireLine,
                 label: Localisation.nousContacter,
                 onTap: () async {
+                  context.read<Tracker>().trackClick(action: Localisation.nousContacter);
                   await FnvUrlLauncher.launch('mailto:contact@jagis.beta.gouv.fr');
                 },
                 iconRight: DsfrIcons.systemExternalLinkLine,

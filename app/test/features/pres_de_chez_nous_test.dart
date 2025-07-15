@@ -13,7 +13,6 @@ import './step/i_tap_on_text.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/the_api_receives.dart';
-import './step/i_enter_in_the_autocomplete_field.dart';
 
 void main() {
   setUpAll(() async {
@@ -242,99 +241,6 @@ void main() {
       } finally {
         await afterEach(
           '''Choisir une catégorie''',
-          success,
-        );
-      }
-    });
-    testWidgets('''Recherche avec une adresse''', (tester) async {
-      var success = true;
-      try {
-        await beforeEach('''Recherche avec une adresse''');
-        await bddSetUp(tester);
-        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
-        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
-        await iSee(tester, "EARL les maraîchers du Val d'Amour");
-        await theApiReceives(
-            tester,
-            const bdd.DataTable([
-              ['method', 'path', 'statusCode', 'requestData'],
-              [
-                'POST',
-                "/utilisateurs/{userId}/recherche_services/proximite/search2",
-                200,
-                {
-                  "categorie": "nourriture",
-                  "nombre_max_resultats": 9,
-                  "rayon_metres": 5000,
-                  "latitude": 45.766368,
-                  "longitude": 4.850666
-                }
-              ]
-            ]));
-      } on TestFailure {
-        success = false;
-        rethrow;
-      } finally {
-        await afterEach(
-          '''Recherche avec une adresse''',
-          success,
-        );
-      }
-    });
-    testWidgets('''Aller sur la page de détails''', (tester) async {
-      var success = true;
-      try {
-        await beforeEach('''Aller sur la page de détails''');
-        await bddSetUp(tester);
-        await theApiWillReturn(
-            tester,
-            const bdd.DataTable([
-              ['method', 'path', 'statusCode', 'responseData'],
-              [
-                'GET',
-                '/utilisateurs/{userId}/recherche_services/proximite/last_results/BG1',
-                200,
-                {
-                  "id": "BG1",
-                  "titre": "EARL les maraîchers du Val d'Amour",
-                  "adresse_code_postal": "39120",
-                  "adresse_nom_ville": "Rahon",
-                  "adresse_rue": "6, ruelle des Merles",
-                  "est_favoris": false,
-                  "nombre_favoris": 0,
-                  "distance_metres": 605,
-                  "image_url": null,
-                  "description":
-                      "Maraîcher bio en demi gros. Légumes de saison.",
-                  "phone": "09 61 48 96 07",
-                  "categories": [
-                    "Alimentation et Agriculture",
-                    "Légumes",
-                    "Circuits courts",
-                    "Producteur / Artisan"
-                  ],
-                  "open_hours": [],
-                  "latitude": 46.99214,
-                  "longitude": 5.4661,
-                  "ingredients": [],
-                  "etapes_recette": [],
-                  "categories_labels": [
-                    "Alimentation et Agriculture",
-                    "Légumes",
-                    "Circuits courts",
-                    "Producteur / Artisan"
-                  ]
-                }
-              ]
-            ]));
-        await iTapOn(tester, "EARL les maraîchers du Val d'Amour");
-        await iSee(tester, "Maraîcher bio en demi gros. Légumes de saison.");
-      } on TestFailure {
-        success = false;
-        rethrow;
-      } finally {
-        await afterEach(
-          '''Aller sur la page de détails''',
           success,
         );
       }

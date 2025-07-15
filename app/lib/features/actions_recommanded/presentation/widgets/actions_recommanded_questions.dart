@@ -149,19 +149,29 @@ class _GetStarted extends StatelessWidget {
             ],
           ),
         ),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: FnvImage.asset(switch (themeType) {
-            ThemeType.alimentation => AssetImages.thematiquesQuestionsMeNourrirIllustrations,
-            ThemeType.transport => AssetImages.thematiquesQuestionsMeDeplacerIllustrations,
-            ThemeType.logement => AssetImages.thematiquesQuestionsMeLogerIllustrations,
-            ThemeType.consommation => AssetImages.thematiquesQuestionsMesAchatsIllustrations,
-            ThemeType.decouverte => throw UnimplementedError(),
-          }),
-        ),
+        _IllustrationsWidget(themeType: themeType),
       ],
     ),
   );
+}
+
+class _IllustrationsWidget extends StatelessWidget {
+  const _IllustrationsWidget({required this.themeType});
+
+  final ThemeType themeType;
+
+  @override
+  Widget build(final BuildContext context) {
+    final assetName = switch (themeType) {
+      ThemeType.alimentation => AssetImages.thematiquesQuestionsMeNourrirIllustrations,
+      ThemeType.transport => AssetImages.thematiquesQuestionsMeDeplacerIllustrations,
+      ThemeType.logement => AssetImages.thematiquesQuestionsMeLogerIllustrations,
+      ThemeType.consommation => AssetImages.thematiquesQuestionsMesAchatsIllustrations,
+      ThemeType.decouverte => throw UnimplementedError(),
+    };
+
+    return Align(alignment: Alignment.bottomLeft, child: FnvImage.asset(assetName));
+  }
 }
 
 class _Question extends StatelessWidget {

@@ -231,6 +231,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const nombreDePartsFiscalesDescription = '(Pré-calculé à partir des membres de votre foyer)';
   static const non = 'Non';
   static const notreEquipeVousRepond = ', notre équipe vous répond !';
+  static const nousContacter = 'Nous contacter';
   static const nousPreparonsVosRecommandationsPersonnalisees = 'Nous préparons vos recommandations personnalisées…';
   static const numeroDePrm = 'Numéro de PRM';
   static const numeroDePrmHint = 'Il s’agit d’une suite de 14 chiffres qui identifie le logement sur le réseau électrique';

@@ -137,9 +137,8 @@ class _MenuElement extends StatelessWidget {
   Widget build(final BuildContext context) {
     const iconColor = DsfrColors.blueFranceSun113;
 
-    return GestureDetector(
+    return FnvInkWell(
       onTap: onTap,
-      behavior: HitTestBehavior.opaque,
       child: Padding(
         padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: Row(

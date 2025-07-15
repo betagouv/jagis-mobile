@@ -5,7 +5,7 @@ abstract final class AssetImages {
   static const actionsRecommandedEmpty = 'assets/images/actions_recommanded_empty.webp';
   static const ademe = 'assets/images/logo_ademe.svg';
   static const ademeSemantic = 'Logo de l’ADEME : Agence de la transition écologique';
-  static const alimentation = 'assets/images/alimentation.svg';
+  static const alimentation = 'assets/images/alimentation.webp';
   static const askQuestion = 'assets/images/ask_question.svg';
   static const badgeIcon = 'assets/images/badge_icon.svg';
   static const badgePionner = 'assets/images/badge_pioneer.webp';
@@ -14,7 +14,7 @@ abstract final class AssetImages {
   static const bulbOnIllustration = 'assets/images/bulb_on.svg';
   static const checkInbox = 'assets/images/check_inbox.svg';
   static const compteurLinky = 'assets/images/compteur_linky.webp';
-  static const consommation = 'assets/images/consommation.svg';
+  static const consommation = 'assets/images/consommation.webp';
   static const errorIllustration = 'assets/images/error_illustration.svg';
   static const factureEngie = 'assets/images/facture_engie.webp';
   static const feedback = 'assets/images/feedback.webp';
@@ -30,7 +30,7 @@ abstract final class AssetImages {
   static const impactCo2Illustration = 'assets/images/service-fruits.webp';
   static const impactCo2Logo = 'assets/images/logo_impact_co2.svg';
   static const leaf = 'assets/images/leaf.svg';
-  static const logement = 'assets/images/logement.svg';
+  static const logement = 'assets/images/logement.webp';
   static const lvaoIllustration = 'assets/images/lvao.webp';
   static const lvaoServiceIllustration = 'assets/images/services/illustrations/lvao.svg';
   static const calendrierServiceIllustration = 'assets/images/services/illustrations/calendrier_fruits.svg';
@@ -65,6 +65,6 @@ abstract final class AssetImages {
   static const thematiquesQuestionsMeDeplacerIllustrations = 'assets/images/thematiques_questions_me_deplacer_illustration.webp';
   static const thematiquesQuestionsMeLogerIllustrations = 'assets/images/thematiques_questions_me_loger_illustration.webp';
   static const thematiquesQuestionsMesAchatsIllustrations = 'assets/images/thematiques_questions_mes_achats_illustration.webp';
-  static const transport = 'assets/images/transport.svg';
+  static const transport = 'assets/images/transport.webp';
   static const wattWatchers = 'assets/images/watt_watchers.webp';
 }

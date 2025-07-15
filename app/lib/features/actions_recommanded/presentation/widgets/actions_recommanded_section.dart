@@ -19,7 +19,10 @@ class ActionsRecommandedSection extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => switch (theme) {
-    ThemeInfo(:final sequenceId) when theme.isQuestionsNeeded => ActionsRecommandedQuestions(sequenceId: sequenceId),
+    ThemeInfo(:final sequenceId, :final themeType) when theme.isQuestionsNeeded => ActionsRecommandedQuestions(
+      themeType: themeType,
+      sequenceId: sequenceId,
+    ),
     ThemeInfo(:final actionsRecommanded) when theme.hasRecommandedActions => ActionsHorizontalList(actions: actionsRecommanded),
     ThemeInfo(:final themeType) when theme.hasNoRecommandedActions => _ActionsEmpty(themeType: themeType),
     ThemeInfo _ => const SizedBox.shrink(),

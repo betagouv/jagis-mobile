@@ -117,7 +117,13 @@ class _Success extends StatelessWidget {
         ),
         switch (action) {
           final ActionSimulator a => switch (a.getId()) {
-            ActionSimulatorId.carSimulator || ActionSimulatorId.mesAidesReno || ActionSimulatorId.maif => const SizedBox.shrink(),
+            ActionSimulatorId.carSimulator || ActionSimulatorId.mesAidesReno => const SizedBox.shrink(),
+            ActionSimulatorId.maif => const Padding(
+              padding: EdgeInsets.only(top: 24),
+              child: _PartnerWidget(
+                partner: Partner(name: Localisation.maifNom, logo: AssetImages.maifImage, url: Localisation.maifUrl),
+              ),
+            ),
             ActionSimulatorId.winter => const Padding(
               padding: EdgeInsets.only(top: 24),
               child: _PartnerWidget(
@@ -162,7 +168,7 @@ class _PartnerWidget extends StatelessWidget {
                   const Text(Localisation.proposePar, style: DsfrTextStyle.bodySmItalic(color: DsfrColors.grey425)),
                   Text(
                     partner.name,
-                    style: DsfrTextStyle.bodyXl(color: DsfrColorDecisions.textLabelGrey(context)),
+                    style: DsfrTextStyle.bodyXlBold(color: DsfrColorDecisions.textLabelGrey(context)),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),

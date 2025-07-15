@@ -183,10 +183,8 @@ Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous
   static const maDateDeNaissance = 'Ma date de naissance';
   static const maReponse = 'Ma réponse';
   static const maResidencePrincipaleEst = 'Ma résidence principale est …';
-  static const maifDescription =
-      'Exposition aux risques climatiques, services de proximité, prix de l’immobilier… Retrouvez toutes les informations utiles aux alentours de votre adresse !';
   static const maifNom = 'Aux Alentours par MAIF';
-  static const maifUrl = 'https://auxalentours.maif.fr';
+  static const maifUrl = 'https://auxalentours.maif.fr/';
   static const mangerBougerDescription = 'Pour vous aider jour après jour à manger varié et équilibré.';
   static const mangerBougerNom = 'La fabrique à Menus';
   static const mangerBougerUrl = 'https://www.mangerbouger.fr/manger-mieux/la-fabrique-a-menus';

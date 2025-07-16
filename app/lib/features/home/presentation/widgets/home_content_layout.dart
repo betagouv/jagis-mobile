@@ -98,7 +98,7 @@ class _Success extends StatelessWidget {
           const SizedBox(height: DsfrSpacings.s6w),
           HomeShortcuts(nbAids: homeDashboard.nbAids, nbRecipes: homeDashboard.nbRecipes),
           const SizedBox(height: DsfrSpacings.s6w),
-          _HomeCounterSection(homeDashboard.nbActionsDoneNational),
+          SafeArea(child: _HomeCounterSection(homeDashboard.nbActionsDoneNational)),
         ],
       ),
     );

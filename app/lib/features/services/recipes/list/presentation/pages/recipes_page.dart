@@ -67,12 +67,14 @@ class _Success extends StatelessWidget {
             onPressed: () => context.read<RecipesBloc>().add(const RecipesSeeMore()),
           ),
         ),
-      const PartnerCard(
-        image: AssetImages.mangerBouger,
-        name: Localisation.mangerBougerNom,
-        description: Localisation.mangerBougerDescription,
-        url: Localisation.mangerBougerUrl,
-        logo: AssetImages.mangerBougerLogo,
+      const SafeArea(
+        child: PartnerCard(
+          image: AssetImages.mangerBouger,
+          name: Localisation.mangerBougerNom,
+          description: Localisation.mangerBougerDescription,
+          url: Localisation.mangerBougerUrl,
+          logo: AssetImages.mangerBougerLogo,
+        ),
       ),
     ];
 

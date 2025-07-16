@@ -138,7 +138,6 @@ class _RankingList extends StatelessWidget {
             .map((final userRank) => RankItem(userRank: userRank, isCurrentUser: userRank.id == ranking.user.id))
             .separator(const SizedBox(height: DsfrSpacings.s2w)),
       ],
-      const SafeArea(child: SizedBox(height: DsfrSpacings.s3w)),
     ],
   );
 }

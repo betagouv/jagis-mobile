@@ -119,11 +119,13 @@ class _Success extends StatelessWidget {
             ],
           ],
           const SizedBox(height: DsfrSpacings.s3w),
-          const PartnerCard(
-            image: AssetImages.lvaoIllustration,
-            name: Localisation.lvaoNom,
-            description: Localisation.lvaoDescription,
-            url: Localisation.lvaoUrl,
+          const SafeArea(
+            child: PartnerCard(
+              image: AssetImages.lvaoIllustration,
+              name: Localisation.lvaoNom,
+              description: Localisation.lvaoDescription,
+              url: Localisation.lvaoUrl,
+            ),
           ),
         ],
       ),

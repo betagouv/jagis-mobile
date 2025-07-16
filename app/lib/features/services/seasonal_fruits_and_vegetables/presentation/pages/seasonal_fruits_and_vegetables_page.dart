@@ -162,14 +162,15 @@ class _List extends StatelessWidget {
           subtitle: Localisation.fruitsEtLegumesConsommateursDescription,
           items: moreThan5Kg,
         ),
-      const PartnerCard(
-        image: AssetImages.impactCo2Illustration,
-        name: Localisation.impactCo2,
-        description: Localisation.impactCo2Description,
-        url: Localisation.impactCo2Url,
-        logo: AssetImages.impactCo2Logo,
+      const SafeArea(
+        child: PartnerCard(
+          image: AssetImages.impactCo2Illustration,
+          name: Localisation.impactCo2,
+          description: Localisation.impactCo2Description,
+          url: Localisation.impactCo2Url,
+          logo: AssetImages.impactCo2Logo,
+        ),
       ),
-      const SizedBox.shrink(),
     ];
 
     return ListView.separated(

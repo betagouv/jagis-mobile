@@ -9,6 +9,7 @@ export 'src/components/callout.dart';
 export 'src/components/charts/doughnut_chart.dart';
 export 'src/components/checkboxes/checkbox.dart';
 export 'src/components/checkboxes/checkbox_set.dart';
+export 'src/components/date_only_input.dart';
 export 'src/components/edit_tag.dart';
 export 'src/components/link.dart';
 export 'src/components/loader.dart';

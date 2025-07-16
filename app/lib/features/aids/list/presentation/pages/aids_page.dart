@@ -8,6 +8,7 @@ import 'package:app/features/aids/list/presentation/bloc/aids_disclaimer/aids_di
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_bloc.dart';
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_event.dart';
 import 'package:app/features/aids/list/presentation/bloc/assistance_list/aid_list_state.dart';
+import 'package:app/features/aids/list/presentation/widgets/notice.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
@@ -54,7 +55,7 @@ class _Success extends StatelessWidget {
       if (!state.isCovered)
         BlocBuilder<AidsDisclaimerCubit, AidsDisclaimerState>(
           builder: (final context, final state) => switch (state) {
-            AidsDisclaimerVisible() => DsfrNotice(
+            AidsDisclaimerVisible() => FnvNotice(
               titre: Localisation.leServiveNeCouvrePasEncoreVotreVille,
               description: Localisation.leServiveNeCouvrePasEncoreVotreVilleDescription,
               onClose: () => context.read<AidsDisclaimerCubit>().closeDisclaimer(),

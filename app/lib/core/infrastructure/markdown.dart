@@ -15,6 +15,7 @@ class FnvMarkdown extends StatelessWidget {
     this.h3 = const DsfrTextStyle.headline5(color: DsfrColors.grey50),
     this.p = const DsfrTextStyle.bodyMd(color: DsfrColors.grey50),
     this.strong,
+    this.aTag,
     this.hTag,
     this.overflow,
   });
@@ -25,6 +26,7 @@ class FnvMarkdown extends StatelessWidget {
   final TextStyle h3;
   final TextStyle p;
   final TextStyle? strong;
+  final ATagMd? aTag;
   final HTag? hTag;
   final TextOverflow? overflow;
 
@@ -43,7 +45,7 @@ class FnvMarkdown extends StatelessWidget {
         NewLines(),
         BlockQuote(),
         _ImageMd(),
-        _ATagMd(),
+        aTag ?? _ATagMd(),
         TableMd(),
         hTag ?? FNVHTag(),
         UnOrderedList(),

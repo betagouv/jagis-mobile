@@ -160,8 +160,9 @@ Nous n’avons pas trouvé de compteur relié aux informations que nous vous ave
 Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous vous expliquerons où le trouver.''';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
-  static const leServiveNeCouvrePasEncoreVotreVille = 'Le service ne couvre pas encore votre ville.';
-  static const leServiveNeCouvrePasEncoreVotreVilleDescription = 'Nous mettons les informations à jour progressivement.';
+  static const leServiveNeCouvrePasEncoreVotreVille = 'Plus de 1000 aides sont listées dans J’agis';
+  static const leServiveNeCouvrePasEncoreVotreVilleDescription =
+      'Une erreur ou une aide manquante ? N’hésitez pas à nous écrire à [contact@jagis.beta.gouv.fr](mailto:contact@jagis.beta.gouv.fr)';
   static const legumes = 'Légumes';
   static const lesCategories = 'Les catégories';
   static const lesCguMenu = 'CGU';

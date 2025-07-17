@@ -72,7 +72,7 @@ jobs:
           name: app_${{ inputs.FLAVOR }}_ios
           path: app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa
       - name: 🚀 Publier sur TestFlight
-        run: xcrun altool --upload-app -t ios -f app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+        run: xcrun altool --upload-package app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa -t ios -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
       - name: 🗑️ Nettoyer les fichiers secrets
         if: always()
         run: |

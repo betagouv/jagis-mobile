@@ -1,3 +1,4 @@
+import 'package:app/app/router/deep_link.dart';
 import 'package:app/core/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:app/core/authentication/presentation/bloc/authentication_state.dart';
 import 'package:app/core/infrastructure/tracker.dart';
@@ -45,7 +46,7 @@ import 'package:go_router/go_router.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-GoRouter goRouter({required final Tracker tracker}) => GoRouter(
+GoRouter goRouter({required final Tracker tracker, required final DeepLink deepLink}) => GoRouter(
   routes: [
     GoRoute(
       path: '/loading',
@@ -94,6 +95,10 @@ GoRouter goRouter({required final Tracker tracker}) => GoRouter(
   ],
   errorPageBuilder: (final context, final state) => const NoTransitionPage(child: FnvErrorRoutePage()),
   redirect: (final context, final state) {
+    if (state.uri.hasAuthority) {
+      deepLink.uri(state.uri);
+    }
+
     final isUnauthenticatedPath =
         state.uri.path.startsWith('/unauthenticated') ||
         state.uri.path.startsWith(CheckInboxPage.path) ||

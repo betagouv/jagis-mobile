@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/app/router/app_router.dart';
+import 'package:app/app/router/deep_link.dart';
 import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/infrastructure/authentication_injection.dart';
@@ -76,6 +77,7 @@ class App extends StatefulWidget {
     super.key,
     required this.clock,
     required this.tracker,
+    required this.deepLink,
     required this.messageBus,
     required this.apiClient,
     required this.addressClient,
@@ -87,6 +89,7 @@ class App extends StatefulWidget {
 
   final Clock clock;
   final Tracker tracker;
+  final DeepLink deepLink;
   final MessageBus messageBus;
   final DioHttpClient apiClient;
   final Dio addressClient;
@@ -106,7 +109,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    _goRouter = goRouter(tracker: widget.tracker);
+    _goRouter = goRouter(tracker: widget.tracker, deepLink: widget.deepLink);
     _messageOpenedSubscription = widget.notificationService.onMessageOpenedApp.listen((final event) async {
       widget.tracker.trackNotificationOpened('${event.runtimeType} - ${event.pageId}');
 
@@ -158,6 +161,7 @@ class _AppState extends State<App> {
         authenticationService: widget.authenticationService,
         child: RestartWidget(
           child: AuthenticationRedirection(
+            deepLink: widget.deepLink,
             child: MultiRepositoryProvider(
               providers: [
                 RepositoryProvider.value(value: widget.clock),

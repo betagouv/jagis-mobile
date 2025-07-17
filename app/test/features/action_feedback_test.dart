@@ -45,6 +45,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_comparer_elecgaz",
+                    "emoji": "🌧️",
                     "titre":
                         "Comparer et **choisir entre l'électricité et le gaz** pour équiper votre logement",
                     "sous_titre":
@@ -100,6 +101,7 @@ void main() {
                 "nombre_actions_faites": 0,
                 "nombre_aides_disponibles": 0,
                 "code": "action_comparer_elecgaz",
+                "emoji": "🌧️",
                 "titre":
                     "Comparer et **choisir entre l'électricité et le gaz** pour équiper votre logement",
                 "sous_titre":
@@ -157,7 +159,7 @@ void main() {
       await iTapOnTheMenuButton(tester);
       await iTapOn(tester, 'Actions');
       await iTapOn(tester,
-          "Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
+          "🌧️ Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
       await iScrollDown(tester);
       await iScrollDown(tester);
       await iScrollDown(tester);

@@ -6,12 +6,14 @@ final class ActionSummary extends Equatable {
   ActionSummary._fromJson(final Map<String, dynamic> json)
     : type = actionTypeFromAPIString(json['type'] as String),
       id = json['code'] as String,
+      emoji = json['emoji'] as String,
       title = json['titre'] as String,
       numberOfAidsAvailable = json['nombre_aides_disponibles'] as int,
       numberOfActionsDone = json['nombre_actions_faites'] as int;
 
   final ActionType type;
   final String id;
+  final String emoji;
   final String title;
 
   final int numberOfAidsAvailable;
@@ -24,5 +26,5 @@ final class ActionSummary extends Equatable {
       .toList();
 
   @override
-  List<Object?> get props => [type, id, title, numberOfAidsAvailable, numberOfActionsDone];
+  List<Object?> get props => [type, id, emoji, title, numberOfAidsAvailable, numberOfActionsDone];
 }

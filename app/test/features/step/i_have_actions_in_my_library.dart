@@ -14,6 +14,7 @@ Future<void> iHaveActionsInMyLibrary(final WidgetTester tester, final bdd.DataTa
         (final e) => {
           'type': e['type'],
           'code': e['code'],
+          'emoji': '🌧️',
           'titre': e['title'],
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': e['nb_aids_available'],

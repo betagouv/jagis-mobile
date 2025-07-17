@@ -221,8 +221,8 @@ void main() {
         await iTapOn(tester, 'Non');
         await iHaveThemeWithActions(tester);
         await iTapOn(tester, "Question suivante");
-        await iSee(
-            tester, 'Trouver le type de voiture qui vous convient le mieux');
+        await iSee(tester,
+            '🌧️ Trouver le type de voiture qui vous convient le mieux');
       } on TestFailure {
         success = false;
         rethrow;

@@ -43,6 +43,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_simulateur_maif",
+                    "emoji": "🌧️",
                     "titre":
                         "Connaître les risques naturels auxquels votre logement est exposé",
                     "type": "simulateur",
@@ -122,6 +123,7 @@ void main() {
                   "nombre_actions_faites": 3,
                   "nombre_aides_disponibles": 1,
                   "code": "action_simulateur_maif",
+                  "emoji": "🌧️",
                   "titre":
                       "Connaître les risques naturels auxquels votre logement est exposé",
                   "label_compteur":
@@ -184,7 +186,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            'Connaître les risques naturels auxquels votre logement est exposé');
+            '🌧️ Connaître les risques naturels auxquels votre logement est exposé');
         await iDontSee(tester, 'Vos risques');
         await iSee(tester, 'Les chiffres clés de Dole');
         await iSee(tester, '21%');
@@ -219,6 +221,7 @@ void main() {
                   "nombre_actions_faites": 3,
                   "nombre_aides_disponibles": 1,
                   "code": "action_simulateur_maif",
+                  "emoji": "🌧️",
                   "titre":
                       "Connaître les risques naturels auxquels votre logement est exposé",
                   "label_compteur":
@@ -337,7 +340,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            'Connaître les risques naturels auxquels votre logement est exposé');
+            '🌧️ Connaître les risques naturels auxquels votre logement est exposé');
         await iSee(tester, '5 Chemin de Rougemont 39100 Dole');
         await iDontSee(tester, 'Choisir comme adresse principale');
         await iSee(tester, 'Vos risques');
@@ -389,6 +392,7 @@ void main() {
                   "nombre_actions_faites": 3,
                   "nombre_aides_disponibles": 1,
                   "code": "action_simulateur_maif",
+                  "emoji": "🌧️",
                   "titre":
                       "Connaître les risques naturels auxquels votre logement est exposé",
                   "label_compteur":
@@ -500,7 +504,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            'Connaître les risques naturels auxquels votre logement est exposé');
+            '🌧️ Connaître les risques naturels auxquels votre logement est exposé');
         await iScrollDownTo(tester, 'Choisissez une adresse');
         await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
         await theApiWillReturn(
@@ -596,6 +600,7 @@ void main() {
                   "nombre_actions_faites": 3,
                   "nombre_aides_disponibles": 1,
                   "code": "action_simulateur_maif",
+                  "emoji": "🌧️",
                   "titre":
                       "Connaître les risques naturels auxquels votre logement est exposé",
                   "label_compteur":
@@ -714,7 +719,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            'Connaître les risques naturels auxquels votre logement est exposé');
+            '🌧️ Connaître les risques naturels auxquels votre logement est exposé');
         await iScrollDownTo(tester, 'Choisissez une adresse');
         await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
         await theApiWillReturn(

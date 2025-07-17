@@ -17,6 +17,7 @@ Future<void> iEnterInTheSearchByTitleFieldActions(final WidgetTester tester, fin
         {
           'type': 'classique',
           'code': '3',
+          'emoji': '🌧️',
           'titre': 'Tester une nouvelle recette végétarienne',
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': 1,

@@ -89,7 +89,7 @@ void main() {
               ['id', 'title', 'preparation_time'],
               ['1', 'Salade de pâtes complètes et lentilles', 5]
             ]));
-        await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
+        await iTapOn(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iScrollDownTo(tester, 'Salade de pâtes complètes et lentilles');
         await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
         await iSee(tester, 'Temps de préparation : 5 min');

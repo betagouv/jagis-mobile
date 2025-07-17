@@ -17,6 +17,7 @@ abstract final class ActionMapper {
 
   static ThemeType themeTypeFromJson(final Map<String, dynamic> json) => ThemeTypeMapper.convert(json['thematique'] as String);
   static String idFromJson(final Map<String, dynamic> json) => json['code'] as String;
+  static String emojiFromJson(final Map<String, dynamic> json) => json['emoji'] as String;
   static String titleFromJson(final Map<String, dynamic> json) => json['titre'] as String;
   static String? subTitleFromJson(final Map<String, dynamic> json) => json['sous_titre'] as String?;
   static bool alreadySeenFromJson(final Map<String, dynamic> json) => json['deja_vue'] as bool;
@@ -35,6 +36,7 @@ abstract final class ActionClassicMapper {
   static ActionClassic fromJson(final Map<String, dynamic> json) => ActionClassic(
     themeType: ActionMapper.themeTypeFromJson(json),
     id: ActionMapper.idFromJson(json),
+    emoji: ActionMapper.emojiFromJson(json),
     title: ActionMapper.titleFromJson(json),
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),
@@ -61,6 +63,7 @@ abstract final class ActionQuizMapper {
   static ActionQuiz fromJson(final Map<String, dynamic> json) => ActionQuiz(
     themeType: ActionMapper.themeTypeFromJson(json),
     id: ActionMapper.idFromJson(json),
+    emoji: ActionMapper.emojiFromJson(json),
     title: ActionMapper.titleFromJson(json),
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),
@@ -84,6 +87,7 @@ abstract final class ActionSimulatorMapper {
   static ActionSimulator fromJson(final Map<String, dynamic> json) => ActionSimulator(
     themeType: ActionMapper.themeTypeFromJson(json),
     id: ActionMapper.idFromJson(json),
+    emoji: ActionMapper.emojiFromJson(json),
     title: ActionMapper.titleFromJson(json),
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),
@@ -107,6 +111,7 @@ abstract final class ActionPerformanceMapper {
   static ActionPerformance fromJson(final Map<String, dynamic> json) => ActionPerformance(
     themeType: ActionMapper.themeTypeFromJson(json),
     id: ActionMapper.idFromJson(json),
+    emoji: ActionMapper.emojiFromJson(json),
     title: ActionMapper.titleFromJson(json),
     subTitle: ActionMapper.subTitleFromJson(json),
     alreadySeen: ActionMapper.alreadySeenFromJson(json),

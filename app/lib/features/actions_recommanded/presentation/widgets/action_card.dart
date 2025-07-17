@@ -40,7 +40,7 @@ class ActionCard extends StatelessWidget {
             spacing: DsfrSpacings.s1w,
             children: [
               FnvMarkdown(
-                data: action.title,
+                data: '${action.emoji} ${action.title}',
                 p: DsfrTextStyle.headline6(color: DsfrColorDecisions.textTitleGrey(context)),
               ),
               Row(

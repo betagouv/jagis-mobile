@@ -40,6 +40,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_recuperer_eau_pluie",
+                    "emoji": "🌧️",
                     "titre":
                         "**Utiliser l'eau de pluie** pour votre maison ou vos plantes",
                     "sous_titre": null,
@@ -118,6 +119,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_recuperer_eau_pluie",
+                  "emoji": "🌧️",
                   "titre":
                       "**Utiliser l'eau de pluie** pour votre maison ou vos plantes",
                   "sous_titre": null,
@@ -178,8 +180,8 @@ void main() {
                 }
               ]
             ]));
-        await iTapOn(
-            tester, "Utiliser l'eau de pluie pour votre maison ou vos plantes");
+        await iTapOn(tester,
+            "🌧️ Utiliser l'eau de pluie pour votre maison ou vos plantes");
         await iScrollDownTo(tester, 'N’est pas recommandée pour vous, car');
         await iSee(tester, 'N’est pas recommandée pour vous, car');
         await iSee(tester, "Vous n'avez pas de jardin");
@@ -211,6 +213,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_recuperer_eau_pluie",
+                  "emoji": "🌧️",
                   "titre":
                       "**Utiliser l'eau de pluie** pour votre maison ou vos plantes",
                   "sous_titre": null,
@@ -271,8 +274,8 @@ void main() {
                 }
               ]
             ]));
-        await iTapOn(
-            tester, "Utiliser l'eau de pluie pour votre maison ou vos plantes");
+        await iTapOn(tester,
+            "🌧️ Utiliser l'eau de pluie pour votre maison ou vos plantes");
         await iScrollDownTo(tester, 'Recommandée pour vous, car');
         await iSee(tester, 'Recommandée pour vous, car');
         await iSee(tester, "Vous avez un jardin");
@@ -307,6 +310,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_recuperer_eau_pluie",
+                  "emoji": "🌧️",
                   "titre":
                       "**Utiliser l'eau de pluie** pour votre maison ou vos plantes",
                   "sous_titre": null,
@@ -368,8 +372,8 @@ void main() {
               ],
               ['GET', '/utilisateurs/{userId}/questionsKYC_v2', 200, []]
             ]));
-        await iTapOn(
-            tester, "Utiliser l'eau de pluie pour votre maison ou vos plantes");
+        await iTapOn(tester,
+            "🌧️ Utiliser l'eau de pluie pour votre maison ou vos plantes");
         await iScrollDownTo(tester, 'Recommandée pour vous, car');
         await iTapOn(tester, "Vous avez un jardin");
         await iSee(tester, 'Mieux vous connaître');

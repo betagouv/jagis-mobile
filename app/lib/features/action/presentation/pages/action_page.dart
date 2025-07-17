@@ -87,7 +87,11 @@ class _Success extends StatelessWidget {
       children: [
         const SizedBox(height: DsfrSpacings.s3w),
         _PaddingHorizontal(
-          child: ActionTitleWithSubTitleView(title: action.title, subTitle: action.subTitle, type: action.type),
+          child: ActionTitleWithSubTitleView(
+            title: '${action.emoji} ${action.title}',
+            subTitle: action.subTitle,
+            type: action.type,
+          ),
         ),
         const SizedBox(height: DsfrSpacings.s3w),
         DecoratedBox(

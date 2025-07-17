@@ -77,7 +77,7 @@ void main() {
             ]));
         await iHaveLvaoServicesInMyLibrary(tester);
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Faire réparer une paire de chaussures');
+        await iTapOn(tester, '🌧️ Faire réparer une paire de chaussures');
         await iSee(tester, 'Octavent');
       } on TestFailure {
         success = false;
@@ -129,8 +129,9 @@ void main() {
             ]));
         await iHaveRecipeServicesInMyLibrary(tester);
         await iTapOn(tester, 'Actions');
-        await iScrollDownTo(tester, 'Tester une nouvelle recette végétarienne');
-        await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
+        await iScrollDownTo(
+            tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iTapOn(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iSee(tester, 'Salade de pâtes complètes et lentilles');
       } on TestFailure {
         success = false;
@@ -182,8 +183,9 @@ void main() {
             ]));
         await iHavePresDeChezNousServicesInMyLibrary(tester);
         await iTapOn(tester, 'Actions');
-        await iScrollDownTo(tester, 'Tester une nouvelle recette végétarienne');
-        await iTapOn(tester, 'Tester une nouvelle recette végétarienne');
+        await iScrollDownTo(
+            tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iTapOn(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iSee(tester, 'COOPERACTIVE paysanne');
       } on TestFailure {
         success = false;

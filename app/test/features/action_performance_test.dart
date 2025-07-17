@@ -51,6 +51,7 @@ void main() {
                 "nombre_actions_faites": 0,
                 "nombre_aides_disponibles": 0,
                 "code": "action_bilan_alimentation",
+                "emoji": "🌧️",
                 "titre": "Calculer les impacts liés à **votre alimentation**",
                 "sous_titre":
                     "Quelques questions pour mieux comprendre vos habitudes et calculer le bilan carbone de votre alimentation",
@@ -316,7 +317,8 @@ void main() {
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
       await iTapOn(tester, 'Actions');
-      await iTapOn(tester, 'Calculer les impacts liés à votre alimentation');
+      await iTapOn(
+          tester, '🌧️ Calculer les impacts liés à votre alimentation');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

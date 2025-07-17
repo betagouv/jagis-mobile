@@ -318,6 +318,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -431,7 +432,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iTapOn(tester, 'Faux');
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -509,6 +510,7 @@ void main() {
                   "nombre_actions_faites": 0,
                   "nombre_aides_disponibles": 0,
                   "code": "action_bilan_alimentation",
+                  "emoji": "🌧️",
                   "titre": "Calculer les impacts liés à **votre alimentation**",
                   "sous_titre":
                       "Quelques questions pour mieux comprendre vos habitudes et calculer le bilan carbone de votre alimentation",
@@ -756,7 +758,8 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Calculer les impacts liés à votre alimentation');
+        await iTapOn(
+            tester, '🌧️ Calculer les impacts liés à votre alimentation');
         await iTapOn(tester, 'Viennoiserie et pain');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');

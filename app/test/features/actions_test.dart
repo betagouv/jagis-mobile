@@ -72,9 +72,9 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iSee(tester, 'Contribuer à la bonne santé de son sol');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
-        await iSee(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester, '🌧️ Contribuer à la bonne santé de son sol');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Faire réparer une paire de chaussures');
         await iDontSee(tester, '0 aide');
         await iSee(tester, '1 aide');
         await iSee(tester, '2 aides');
@@ -117,10 +117,10 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
-        await iSee(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Faire réparer une paire de chaussures');
         await iEnterInTheSearchByTitleFieldActions(tester, 'végétarienne');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
       } on TestFailure {
         success = false;
@@ -161,10 +161,10 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
-        await iSee(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Faire réparer une paire de chaussures');
         await iFilterWithActionTheme(tester, '🥦 Alimentation');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
       } on TestFailure {
         success = false;
@@ -205,10 +205,10 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
-        await iSee(tester, 'Faire réparer une paire de chaussures');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Faire réparer une paire de chaussures');
         await iFilterByAction(tester, 'Déjà consultées');
-        await iSee(tester, 'Tester une nouvelle recette végétarienne');
+        await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
       } on TestFailure {
         success = false;
@@ -255,7 +255,7 @@ void main() {
             ]));
         await iHaveLvaoServicesInMyLibrary(tester);
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Faire réparer une paire de chaussures');
+        await iTapOn(tester, '🌧️ Faire réparer une paire de chaussures');
         await iSee(tester,
             'Faites des économies en donnant une seconde vie à vos paires de chaussures');
       } on TestFailure {

@@ -15,6 +15,8 @@ on:
         required: true
       EXPORT_OPTIONS:
         required: true
+      APPLE_ID:
+        required: true
       USERNAME:
         required: true
       PASSWORD:
@@ -72,7 +74,14 @@ jobs:
           name: app_${{ inputs.FLAVOR }}_ios
           path: app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa
       - name: 🚀 Publier sur TestFlight
-        run: xcrun altool --upload-app -t ios -f app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+        run: |
+          if [ "${{ inputs.FLAVOR }}" == "production" ]; then
+            BUNDLE_ID="fr.gouv.agir"
+          else
+            BUNDLE_ID="fr.gouv.agir.dev2"
+          fi
+          VERSION=$(grep "^version:" app/pubspec.yaml | cut -d' ' -f2 | cut -d'+' -f1)
+          xcrun altool --upload-package app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa --type ios --bundle-id "$BUNDLE_ID" --bundle-version "${GITHUB_RUN_NUMBER}" --bundle-short-version-string "$VERSION" --apple-id "${{ secrets.APPLE_ID }}" -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
       - name: 🗑️ Nettoyer les fichiers secrets
         if: always()
         run: |

@@ -1,4 +1,5 @@
 import 'package:app/app/app.dart';
+import 'package:app/app/router/deep_link.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/domain/authentication_status.dart';
 import 'package:app/core/authentication/infrastructure/authentication_storage.dart';
@@ -111,6 +112,7 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
       App(
         clock: clock,
         tracker: tracker,
+        deepLink: DeepLink(),
         messageBus: MessageBus(),
         apiClient: DioHttpClient(dio: dioMock, authenticationService: authenticationService),
         addressClient: dioMock,

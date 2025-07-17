@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:app/app/app.dart';
+import 'package:app/app/router/deep_link.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/infrastructure/authentication_storage.dart';
 import 'package:app/core/error/infrastructure/crash_reporting.dart';
@@ -128,6 +129,7 @@ class _AppSetupState extends State<AppSetup> {
       return App(
         clock: _clock,
         tracker: _tracker,
+        deepLink: DeepLink(),
         messageBus: _messageBus,
         apiClient: client,
         addressClient: _dio,

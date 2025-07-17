@@ -1,4 +1,5 @@
 import 'package:app/app/app.dart';
+import 'package:app/app/router/deep_link.dart';
 import 'package:app/core/authentication/domain/authentication_service.dart';
 import 'package:app/core/authentication/infrastructure/authentication_storage.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
@@ -29,6 +30,7 @@ Future<void> theApplicationIsLaunched(final WidgetTester tester) async {
     App(
       clock: clock,
       tracker: tracker,
+      deepLink: DeepLink(),
       messageBus: messageBus,
       apiClient: dioHttpClient,
       addressClient: dioMock,

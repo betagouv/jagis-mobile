@@ -19,7 +19,7 @@ class ActionCard extends StatelessWidget {
     onTap: () async {
       await GoRouter.of(context).pushNamed(
         ActionPage.name,
-        pathParameters: ActionPage.pathParameters(type: action.type, title: action.title, id: action.id),
+        pathParameters: ActionPage.pathParameters(type: action.type, id: action.id, title: action.title),
       );
       onPop?.call();
     },

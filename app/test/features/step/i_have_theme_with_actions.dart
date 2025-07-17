@@ -18,6 +18,7 @@ Future<void> iHaveThemeWithActions(final WidgetTester tester) async {
           'nombre_actions_faites': 442,
           'nombre_aides_disponibles': 0,
           'code': 'action_simulateur_voiture',
+          'emoji': '🌧️',
           'titre': 'Trouver le **type de voiture** qui vous convient le mieux',
           'sous_titre': 'Comparez les coûts et les émissions de votre voiture à des alternatives économiques et écologiques',
           'type': 'simulateur',
@@ -28,6 +29,7 @@ Future<void> iHaveThemeWithActions(final WidgetTester tester) async {
           'nombre_actions_faites': 640,
           'nombre_aides_disponibles': 0,
           'code': 'action_bilan_transports',
+          'emoji': '🌧️',
           'titre': 'Faire le bilan sur **vos habitudes de déplacements**',
           'sous_titre':
               'Répondez à des questions pour calculer les impacts de vos déplacements et vous proposer des actions adaptées',

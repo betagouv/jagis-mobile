@@ -64,6 +64,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -165,7 +166,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iSee(tester, 'Question 1 sur 2');
@@ -210,6 +211,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -311,7 +313,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iTapOn(tester, 'Faux');
@@ -371,6 +373,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -472,7 +475,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iTapOn(tester, 'Vrai');
@@ -531,6 +534,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -598,7 +602,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iTapOn(tester, "Poubelle jaune, l'aluminium se recycle");
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
@@ -657,6 +661,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -724,7 +729,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iTapOn(tester,
             "Avec les ordures ménagères, l'aluminium ne se recycle pas");
         await iScrollDownTo(tester, 'Voir la réponse');
@@ -789,6 +794,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -902,7 +908,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iSee(tester, 'Question 1 sur 2');
@@ -975,6 +981,7 @@ void main() {
                   "nombre_actions_faites": 5,
                   "nombre_aides_disponibles": 0,
                   "code": "quiz_tri_dechets",
+                  "emoji": "🌧️",
                   "titre": "Bien trier les déchets",
                   "sous_titre":
                       "Testez vos connaissances sur le tri des déchets avec ce quiz !",
@@ -1076,7 +1083,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester, 'Actions');
-        await iTapOn(tester, 'Bien trier les déchets');
+        await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
       } on TestFailure {

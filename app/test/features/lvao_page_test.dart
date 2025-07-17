@@ -47,6 +47,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_stoppub",
+                    "emoji": "🌧️",
                     "titre":
                         "**Afficher un Stop Pub** sur votre boîte aux lettres",
                     "sous_titre": null,

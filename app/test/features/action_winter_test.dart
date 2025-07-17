@@ -43,6 +43,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_simulateur_winter",
+                    "emoji": "🌧️",
                     "titre": "**Faire des économies sur ma facture d’énergie**",
                     "type": "simulateur",
                     "thematique": "logement",
@@ -121,6 +122,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -228,7 +230,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
@@ -285,6 +288,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -392,7 +396,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iEnterInTheField(tester, 'Saudon',
@@ -448,6 +453,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -555,7 +561,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
@@ -610,6 +617,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -717,7 +725,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iEnterInTheField(tester, 'Saudon',
@@ -761,6 +770,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -868,7 +878,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iEnterInTheField(tester, 'Saudon',
@@ -910,6 +921,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -1073,7 +1085,8 @@ void main() {
                 }
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iEnterInTheField(tester, 'Saudon',
@@ -1115,6 +1128,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
                   "consigne":
@@ -1472,7 +1486,8 @@ void main() {
                 {}
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iEnterInTheField(tester, 'Saudon',
@@ -1533,6 +1548,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies** sur ma facture d’énergie",
                   "sous_titre": null,
                   "consigne":
@@ -1708,7 +1724,8 @@ void main() {
                 ]
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, '1234567€');
       } on TestFailure {
         success = false;
@@ -1738,6 +1755,7 @@ void main() {
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
                   "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
                   "titre": "**Faire des économies** sur ma facture d’énergie",
                   "sous_titre": null,
                   "consigne":
@@ -1913,7 +1931,8 @@ void main() {
                 ]
               ]
             ]));
-        await iTapOn(tester, 'Faire des économies sur ma facture d’énergie');
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, '1234567€');
         await iScrollDownTo(tester, 'Recommencer');
         await iTapOn(tester, 'Recommencer');

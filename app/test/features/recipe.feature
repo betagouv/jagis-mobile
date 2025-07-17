@@ -17,7 +17,7 @@ Feature: Recipe
     Given I have recipe detail in my library
       | 'id' | 'title'                                  | 'preparation_time' |
       | '1'  | 'Salade de pâtes complètes et lentilles' |                  5 |
-    When I tap on {'Tester une nouvelle recette végétarienne'}
+    When I tap on {'🌧️ Tester une nouvelle recette végétarienne'}
     When I scroll down to {'Salade de pâtes complètes et lentilles'}
     When I tap on {'Salade de pâtes complètes et lentilles'}
     Then I see {'Temps de préparation : 5 min'}

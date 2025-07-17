@@ -75,6 +75,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_recettes_sans_cuisson",
+                      "emoji": "🌧️",
                       "titre":
                           "**Cuisiner une recette sans cuisson** pour limiter les sources de chaleur",
                       "sous_titre":
@@ -128,6 +129,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_legumineuse_nouvelle",
+                      "emoji": "🌧️",
                       "titre":
                           "**Goûter une légumineuse produite en France** que vous ne connaissez pas",
                       "sous_titre": null,
@@ -162,6 +164,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 1,
                       "code": "action_mettre_sa_voiture_a_disposition",
+                      "emoji": "🌧️",
                       "titre":
                           "**Mettre votre voiture à disposition** quand vous ne vous en servez pas",
                       "sous_titre": null,
@@ -195,6 +198,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_plat_local",
+                      "emoji": "🌧️",
                       "titre":
                           "Préparer un plat avec **des ingrédients locaux**",
                       "sous_titre": "Où trouver des produits locaux ?",
@@ -229,6 +233,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_avant_compost",
+                      "emoji": "🌧️",
                       "titre":
                           "**Évaluer les solutions pour composter** avant de vous lancer",
                       "sous_titre": null,
@@ -261,6 +266,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "quiz_impact_poissons",
+                      "emoji": "🌧️",
                       "titre":
                           "Comprendre les produits de la mer et leur impact",
                       "sous_titre": null,
@@ -333,7 +339,7 @@ void main() {
             ]));
         await theApplicationIsLaunched(tester);
         await iSee(tester,
-            'Cuisiner une recette sans cuisson pour limiter les sources de chaleur');
+            '🌧️ Cuisiner une recette sans cuisson pour limiter les sources de chaleur');
       } on TestFailure {
         success = false;
         rethrow;
@@ -383,6 +389,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_recettes_sans_cuisson",
+                      "emoji": "🌧️",
                       "titre":
                           "**Cuisiner une recette sans cuisson** pour limiter les sources de chaleur",
                       "sous_titre":
@@ -436,6 +443,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_legumineuse_nouvelle",
+                      "emoji": "🌧️",
                       "titre":
                           "**Goûter une légumineuse produite en France** que vous ne connaissez pas",
                       "sous_titre": null,
@@ -470,6 +478,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 1,
                       "code": "action_mettre_sa_voiture_a_disposition",
+                      "emoji": "🌧️",
                       "titre":
                           "**Mettre votre voiture à disposition** quand vous ne vous en servez pas",
                       "sous_titre": null,
@@ -503,6 +512,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_plat_local",
+                      "emoji": "🌧️",
                       "titre":
                           "Préparer un plat avec **des ingrédients locaux**",
                       "sous_titre": "Où trouver des produits locaux ?",
@@ -537,6 +547,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_avant_compost",
+                      "emoji": "🌧️",
                       "titre":
                           "**Évaluer les solutions pour composter** avant de vous lancer",
                       "sous_titre": null,
@@ -569,6 +580,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "quiz_impact_poissons",
+                      "emoji": "🌧️",
                       "titre":
                           "Comprendre les produits de la mer et leur impact",
                       "sous_titre": null,
@@ -649,6 +661,7 @@ void main() {
                       "nombre_actions_faites": 3,
                       "nombre_aides_disponibles": 2,
                       "code": "simu_aides_reno",
+                      "emoji": "🌧️",
                       "titre":
                           "**Calculer vos aides** pour rénover votre logement",
                       "sous_titre": null,
@@ -670,6 +683,7 @@ void main() {
                       "nombre_actions_faites": 5,
                       "nombre_aides_disponibles": 2,
                       "code": "action_simulateur_voiture",
+                      "emoji": "🌧️",
                       "titre":
                           "Trouver le **type de voiture** qui vous convient le mieux",
                       "sous_titre":
@@ -692,6 +706,7 @@ void main() {
                       "nombre_actions_faites": 6,
                       "nombre_aides_disponibles": 0,
                       "code": "action_simulateur_maif",
+                      "emoji": "🌧️",
                       "titre":
                           "**Connaître les risques naturels** auxquels votre logement est exposé",
                       "sous_titre": null,
@@ -773,7 +788,8 @@ void main() {
             ]));
         await theApplicationIsLaunched(tester);
         await iTapOn(tester, 'Terminées');
-        await iSee(tester, 'Calculer vos aides pour rénover votre logement');
+        await iSee(
+            tester, '🌧️ Calculer vos aides pour rénover votre logement');
         await theApiReceives(
             tester,
             const bdd.DataTable([
@@ -835,6 +851,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_recettes_sans_cuisson",
+                      "emoji": "🌧️",
                       "titre":
                           "**Cuisiner une recette sans cuisson** pour limiter les sources de chaleur",
                       "sous_titre":
@@ -888,6 +905,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_legumineuse_nouvelle",
+                      "emoji": "🌧️",
                       "titre":
                           "**Goûter une légumineuse produite en France** que vous ne connaissez pas",
                       "sous_titre": null,
@@ -922,6 +940,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 1,
                       "code": "action_mettre_sa_voiture_a_disposition",
+                      "emoji": "🌧️",
                       "titre":
                           "**Mettre votre voiture à disposition** quand vous ne vous en servez pas",
                       "sous_titre": null,
@@ -955,6 +974,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_plat_local",
+                      "emoji": "🌧️",
                       "titre":
                           "Préparer un plat avec **des ingrédients locaux**",
                       "sous_titre": "Où trouver des produits locaux ?",
@@ -989,6 +1009,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_avant_compost",
+                      "emoji": "🌧️",
                       "titre":
                           "**Évaluer les solutions pour composter** avant de vous lancer",
                       "sous_titre": null,
@@ -1021,6 +1042,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "quiz_impact_poissons",
+                      "emoji": "🌧️",
                       "titre":
                           "Comprendre les produits de la mer et leur impact",
                       "sous_titre": null,
@@ -1210,6 +1232,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_recettes_sans_cuisson",
+                      "emoji": "🌧️",
                       "titre":
                           "**Cuisiner une recette sans cuisson** pour limiter les sources de chaleur",
                       "sous_titre":
@@ -1263,6 +1286,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_legumineuse_nouvelle",
+                      "emoji": "🌧️",
                       "titre":
                           "**Goûter une légumineuse produite en France** que vous ne connaissez pas",
                       "sous_titre": null,
@@ -1297,6 +1321,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 1,
                       "code": "action_mettre_sa_voiture_a_disposition",
+                      "emoji": "🌧️",
                       "titre":
                           "**Mettre votre voiture à disposition** quand vous ne vous en servez pas",
                       "sous_titre": null,
@@ -1330,6 +1355,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_plat_local",
+                      "emoji": "🌧️",
                       "titre":
                           "Préparer un plat avec **des ingrédients locaux**",
                       "sous_titre": "Où trouver des produits locaux ?",
@@ -1364,6 +1390,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_avant_compost",
+                      "emoji": "🌧️",
                       "titre":
                           "**Évaluer les solutions pour composter** avant de vous lancer",
                       "sous_titre": null,
@@ -1396,6 +1423,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "quiz_impact_poissons",
+                      "emoji": "🌧️",
                       "titre":
                           "Comprendre les produits de la mer et leur impact",
                       "sous_titre": null,
@@ -1518,6 +1546,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_recettes_sans_cuisson",
+                      "emoji": "🌧️",
                       "titre":
                           "**Cuisiner une recette sans cuisson** pour limiter les sources de chaleur",
                       "sous_titre":
@@ -1571,6 +1600,7 @@ void main() {
                       "nombre_actions_faites": 1,
                       "nombre_aides_disponibles": 0,
                       "code": "action_legumineuse_nouvelle",
+                      "emoji": "🌧️",
                       "titre":
                           "**Goûter une légumineuse produite en France** que vous ne connaissez pas",
                       "sous_titre": null,
@@ -1605,6 +1635,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 1,
                       "code": "action_mettre_sa_voiture_a_disposition",
+                      "emoji": "🌧️",
                       "titre":
                           "**Mettre votre voiture à disposition** quand vous ne vous en servez pas",
                       "sous_titre": null,
@@ -1638,6 +1669,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_plat_local",
+                      "emoji": "🌧️",
                       "titre":
                           "Préparer un plat avec **des ingrédients locaux**",
                       "sous_titre": "Où trouver des produits locaux ?",
@@ -1672,6 +1704,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "action_avant_compost",
+                      "emoji": "🌧️",
                       "titre":
                           "**Évaluer les solutions pour composter** avant de vous lancer",
                       "sous_titre": null,
@@ -1704,6 +1737,7 @@ void main() {
                       "nombre_actions_faites": 0,
                       "nombre_aides_disponibles": 0,
                       "code": "quiz_impact_poissons",
+                      "emoji": "🌧️",
                       "titre":
                           "Comprendre les produits de la mer et leur impact",
                       "sous_titre": null,

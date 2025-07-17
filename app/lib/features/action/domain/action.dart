@@ -13,6 +13,7 @@ sealed class Action extends Equatable {
   const Action({
     required this.themeType,
     required this.id,
+    required this.emoji,
     required this.title,
     required this.subTitle,
     required this.nbActionsDone,
@@ -29,6 +30,7 @@ sealed class Action extends Equatable {
 
   final ThemeType themeType;
   final String id;
+  final String emoji;
   final String title;
   final String? subTitle;
   final List<AidSummary> aidSummaries;
@@ -50,6 +52,7 @@ sealed class Action extends Equatable {
   List<Object?> get props => [
     themeType,
     id,
+    emoji,
     title,
     subTitle,
     aidSummaries,
@@ -69,6 +72,7 @@ final class ActionClassic extends Action {
   const ActionClassic({
     required super.themeType,
     required super.id,
+    required super.emoji,
     required super.title,
     required super.subTitle,
     required super.alreadySeen,
@@ -117,6 +121,7 @@ final class ActionQuiz extends Action {
   const ActionQuiz({
     required super.themeType,
     required super.id,
+    required super.emoji,
     required super.title,
     required super.subTitle,
     required super.alreadySeen,
@@ -158,6 +163,7 @@ final class ActionPerformance extends Action {
   const ActionPerformance({
     required super.themeType,
     required super.id,
+    required super.emoji,
     required super.title,
     required super.subTitle,
     required super.alreadySeen,
@@ -192,6 +198,7 @@ final class ActionSimulator extends ActionPerformance {
   const ActionSimulator({
     required super.themeType,
     required super.id,
+    required super.emoji,
     required super.title,
     required super.subTitle,
     required super.alreadySeen,

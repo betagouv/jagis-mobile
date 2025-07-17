@@ -14,6 +14,7 @@ Future<void> iFilterByAction(final WidgetTester tester, final String theme) asyn
         {
           'type': 'classique',
           'code': '3',
+          'emoji': '🌧️',
           'titre': 'Tester une nouvelle recette végétarienne',
           'sous_titre': Faker().lorem.sentence(),
           'nombre_aides_disponibles': 1,

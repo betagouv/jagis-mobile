@@ -45,6 +45,7 @@ void main() {
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
                     "code": "action_comparer_elecgaz",
+                    "emoji": "🌧️",
                     "titre":
                         "Comparer et **choisir entre l'électricité et le gaz** pour équiper votre logement",
                     "sous_titre":
@@ -124,6 +125,7 @@ void main() {
                   "nombre_actions_faites": 0,
                   "nombre_aides_disponibles": 0,
                   "code": "action_comparer_elecgaz",
+                  "emoji": "🌧️",
                   "titre":
                       "Comparer et **choisir entre l'électricité et le gaz** pour équiper votre logement",
                   "sous_titre":
@@ -180,7 +182,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            "Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
+            "🌧️ Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
         await iScrollDownTo(tester, 'Posez votre question');
         await iSee(tester, 'Posez votre question');
         await iDontSee(tester,
@@ -231,6 +233,7 @@ void main() {
                   "nombre_actions_faites": 0,
                   "nombre_aides_disponibles": 0,
                   "code": "action_comparer_elecgaz",
+                  "emoji": "🌧️",
                   "titre":
                       "Comparer et **choisir entre l'électricité et le gaz** pour équiper votre logement",
                   "sous_titre":
@@ -279,7 +282,7 @@ void main() {
               ]
             ]));
         await iTapOn(tester,
-            "Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
+            "🌧️ Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
         await iDontSee(tester, 'Posez votre question');
       } on TestFailure {
         success = false;

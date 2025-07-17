@@ -14,6 +14,7 @@ Future<void> iHaveActionDetailInMyLibrary(final WidgetTester tester, final bdd.D
         (final e) => {
           'thematique': ThemeType.alimentation.name,
           'code': e['id'],
+          'emoji': '🌧️',
           'titre': e['title'],
           'sous_titre': e['subTitle'],
           'comment': e['how'],

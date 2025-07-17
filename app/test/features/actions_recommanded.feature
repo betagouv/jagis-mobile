@@ -34,7 +34,7 @@ Feature: Mes actions recommandées
     When I tap on {'Non'}
     Then I have theme with actions
     When I tap on {"Question suivante"}
-    When I see {'Trouver le type de voiture qui vous convient le mieux'}
+    When I see {'🌧️ Trouver le type de voiture qui vous convient le mieux'}
 
   Scenario: Passez une question
     When I tap on {1} text {'🚅 Me déplacer'}

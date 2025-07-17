@@ -27,6 +27,7 @@ jobs:
       P12_PASSWORD: ${{ secrets.DEV_IOS_P12_PASSWORD }}
       PROFILE: ${{ secrets.DEV_IOS_PROFILE }}
       EXPORT_OPTIONS: ${{ secrets.DEV_IOS_EXPORT_OPTIONS }}
+      APPLE_ID: ${{ secrets.DEV_APPLE_ID }}
       USERNAME: ${{ secrets.DEV_IOS_USERNAME }}
       PASSWORD: ${{ secrets.DEV_IOS_PASSWORD }}
       GOOGLE_SERVICES_INFO_PLIST: ${{ secrets.DEV_IOS_GOOGLE_SERVICES_INFO_PLIST }}
@@ -63,6 +64,7 @@ jobs:
       P12_PASSWORD: ${{ secrets.PROD_IOS_P12_PASSWORD }}
       PROFILE: ${{ secrets.PROD_IOS_PROFILE }}
       EXPORT_OPTIONS: ${{ secrets.PROD_IOS_EXPORT_OPTIONS }}
+      APPLE_ID: ${{ secrets.PROD_APPLE_ID }}
       USERNAME: ${{ secrets.PROD_IOS_USERNAME }}
       PASSWORD: ${{ secrets.PROD_IOS_PASSWORD }}
       GOOGLE_SERVICES_INFO_PLIST: ${{ secrets.PROD_IOS_GOOGLE_SERVICES_INFO_PLIST }}

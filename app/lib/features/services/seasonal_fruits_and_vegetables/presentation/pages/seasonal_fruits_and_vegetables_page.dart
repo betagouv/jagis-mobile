@@ -212,7 +212,7 @@ class _Section extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  FnvImage.network(e.imageUrl, width: 24, height: 24),
+                  FnvImage.asset('assets/svg/impact_co2_img_fruits_legumes/${e.imageUrl}', width: 24, height: 24),
                 ],
               ),
             ),

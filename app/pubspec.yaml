@@ -40,7 +40,6 @@ dependencies:
   gpt_markdown: 1.1.2
   html: 0.15.6
   intl: 0.20.2
-  jovial_svg: 1.1.27
   latlong2: 0.9.1
   matomo_tracker: 6.0.0
   meta: 1.16.0 # Bloqué en 1.16.0 par flutter_test
@@ -52,6 +51,8 @@ dependencies:
   sentry_flutter: 8.14.2 # Bloqué en 8.14.2 par cronet_http qui doit passer jni en 0.14.0
   share_plus: 11.0.0
   url_launcher: 6.3.2
+  vector_graphics: 1.1.19
+  vector_graphics_compiler: 1.1.17
 
 dev_dependencies:
   bdd_widget_test: 1.8.2
@@ -73,8 +74,16 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/images/
-    - assets/images/services/illustrations/
+    - path: assets/images/
+    - path: assets/svg/
+      transformers:
+        - package: vector_graphics_compiler
+    - path: assets/svg/impact_co2_img_fruits_legumes/
+      transformers:
+        - package: vector_graphics_compiler
+    - path: assets/svg/services/illustrations/
+      transformers:
+        - package: vector_graphics_compiler
 
 # 'dart run flutter_native_splash:create' to update
 flutter_native_splash:

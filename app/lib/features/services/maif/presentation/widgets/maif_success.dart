@@ -1,5 +1,5 @@
-import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/infrastructure/markdown.dart';
+import 'package:app/core/presentation/widgets/composants/address/address_search_widget.dart';
 import 'package:app/features/services/maif/domain/maif_risk.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_bloc.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_event.dart';
@@ -27,10 +27,8 @@ class MaifSuccess extends StatelessWidget {
       children: [
         const Text(Localisation.choisissezUneAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         const SizedBox(height: DsfrSpacings.s2w),
-        FnvAutocomplete(
-          initialValue: data.userAddress.isFull ? data.userAddress.label : null,
-          displayStringForOption: (final option) => option.label,
-          onSearch: (final query) => context.read<GeocodingRepository>().search(query),
+        AddressSearchWidget(
+          address: data.userAddress.isFull ? data.userAddress : null,
           onSelected: (final option) => context.read<MaifBloc>().add(MaifAddressChanged(option)),
         ),
         if (data.isLoading) ...[

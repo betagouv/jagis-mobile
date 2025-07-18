@@ -21,6 +21,7 @@ class Address extends Equatable {
 
   String get label => '${houseNumber ?? ''} ${street ?? ''} $postCode $city';
   bool get isFull => latitude != null && longitude != null && houseNumber != null && street != null;
+  bool get isNotFull => !isFull;
 
   @override
   List<Object?> get props => [latitude, longitude, houseNumber, street, postCode, city, cityCode];

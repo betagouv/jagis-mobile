@@ -47,7 +47,8 @@ abstract final class Localisation {
   static const bienvenueSurDetails = 'Nous avons quelques questions à vous poser pour personnaliser votre expérience !';
   static const bonjour = 'Bonjour,';
   static const catalogueActions = 'Catalogue d’actions';
-  static const cesInformationsSontEllesCorrectes = 'Ces informations sont-elles correctes ?';
+  static const cesInformationsSontEllesCorrectes =
+      'La connexion a été établie avec succès. Dans le futur, pour modifier vos informations, rendez-vous dans';
   static const cestParti = 'C’est parti !';
   static const cestPresqueTermine = 'C’est presque terminé !';
   static const choisirCommeAdressePrincipale = 'Enregistrer';
@@ -156,9 +157,9 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
   static const laConnexionAEchoue = 'La connexion a échoué';
-  static const laConnexionAEchoueDescription = '''
-Nous n’avons pas trouvé de compteur relié aux informations que nous vous avez données. 
-Nous vous proposons d’essayer avec le numéro de PRM de votre compteur ! Nous vous expliquerons où le trouver.''';
+  static const laConnexionAEchoueDescription =
+      'Nous n’avons pas trouvé de compteur relié aux informations que vous nous avez données.';
+  static const laConnexionAEchoueAstuce = 'Astuce : Tentez avec votre **numéro de PRM**.';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
   static const leServiveNeCouvrePasEncoreVotreVille = 'Plus de 1000 aides sont listées dans J’agis';
@@ -210,9 +211,8 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mieuxVousConnaitre = 'Mieux vous connaître';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
-  static const modifierLeNumero = 'Modifier le numéro';
   static const moinsDe35m2 = 'Moins de 35 m²';
-  static const monAdresse = 'Mon adresse';
+  static const adresseDeMaResidencePrincipale = 'L’adresse de ma résidence principale';
   static const monClassement = 'Mon classement';
   static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';
@@ -302,7 +302,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const recommencerLeBilan = 'Recommencer le bilan';
   static const recommencerLeQuiz = 'Recommencer le quiz';
   static const refaire = 'Refaire';
-  static const renseignerLeNumeroDePrm = 'Renseigner le numéro de PRM';
   static const reponse = 'Réponse';
   static const retentezVotreChancePourValiderCetteAction = 'Retentez votre chance pour valider cette action.';
   static const retirerDesFavoris = 'Retirer des favoris';
@@ -346,6 +345,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirTout = 'Voir tout';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
   static const vosRisques = 'Vos risques';
+  static const votreProfil = 'votre profil';
   static const votreVehiculeActuel = 'Votre véhicule actuel';
   static const vousAvezDejaFaitCeSimulateur = 'Vous avez déjà fait ce simulateur';
   static const vousAvezDejaLOptionLaPlusEcologique = 'Vous avez déjà l’option la plus écologique !';
@@ -373,6 +373,11 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const winterTypeMobilite = 'Mobilité';
   static const winterTypeMultimedia = 'Multimédia';
   static const winterTypePiscine = 'Piscine';
+  static const winterAddressInfoRemplie =
+      'Besoin de modifier l’adresse de votre résidence principale ? Rendez-vous dans le profil !';
+  static const winterAddressInfoVide = 'Elle sera enregistrée dans votre profil';
+  static const winterPourSupprimerLesDonnees =
+      'Pour **supprimer** les données liées au service ou **modifier** l’adresse de votre résidence principale, rendez-vous dans le profil.';
   static const faitesDesEconomies = 'Faites des économies';
   static const faitesDesEconomiesDetails =
       'Découvrez des actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.';
@@ -394,8 +399,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
 
     return email;
   }
-
-  static String compteur(final String prm) => 'Compteur #$prm';
 
   static String distance(final int value) =>
       value >= 1000 ? 'À ${NumberFormat('0.#', 'fr').format(value / 1000)} km' : 'À $value m';

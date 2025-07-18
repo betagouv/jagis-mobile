@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/core/address/address.dart';
+import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
 import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:app/features/services/winter/infrastructure/winter_repository.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_event.dart';
@@ -8,7 +8,7 @@ import 'package:app/features/services/winter/presentation/bloc/winter_state.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WinterBloc extends Bloc<WinterEvent, WinterState> {
-  WinterBloc(this._repository) : super(const WinterLoading()) {
+  WinterBloc(this._repository, this._userAddressRepository) : super(const WinterLoading()) {
     on<WinterActionIsDone>(_onActionIsDone);
     on<WinterStarted>(_onStarted);
     on<WinterFormTypeChanged>(_onFormTypeChanged);
@@ -24,6 +24,7 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
   }
 
   final WinterRepository _repository;
+  final UserAddressRepository _userAddressRepository;
 
   Future<void> _onActionIsDone(final WinterActionIsDone event, final Emitter<WinterState> emit) async {
     if (!event.isDone) {
@@ -41,17 +42,20 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
     });
   }
 
-  void _onStarted(final WinterStarted event, final Emitter<WinterState> emit) {
-    emit(
-      const WinterForm(
-        formType: RegistrationType.address,
-        address: Address(latitude: null, longitude: null, houseNumber: '', street: '', postCode: '', city: '', cityCode: ''),
-        lastName: '',
-        prmNumber: '',
-        isDeclarationChecked: false,
-        connectionStatus: WinterConnectionStatus.unknown,
-      ),
-    );
+  Future<void> _onStarted(final WinterStarted event, final Emitter<WinterState> emit) async {
+    final addressResult = await _userAddressRepository.fetchAddress();
+    addressResult.fold((final l) {}, (final address) {
+      emit(
+        WinterForm(
+          formType: RegistrationType.address,
+          address: address,
+          lastName: '',
+          prmNumber: '',
+          isDeclarationChecked: false,
+          connectionStatus: WinterConnectionStatus.unknown,
+        ),
+      );
+    });
   }
 
   void _onFormTypeChanged(final WinterFormTypeChanged event, final Emitter<WinterState> emit) {

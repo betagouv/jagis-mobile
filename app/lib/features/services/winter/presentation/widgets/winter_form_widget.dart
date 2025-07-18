@@ -11,7 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
 class WinterFormWidget extends StatelessWidget {
-  const WinterFormWidget({super.key});
+  const WinterFormWidget({super.key, required this.current});
+
+  final WinterForm current;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -39,7 +41,7 @@ class WinterFormWidget extends StatelessWidget {
           return current.formType;
         },
         builder: (final context, final formType) => switch (formType) {
-          RegistrationType.address => const WinterAddressForm(),
+          RegistrationType.address => WinterAddressForm(current: current),
           RegistrationType.prm => const WinterPrmForm(),
         },
       ),

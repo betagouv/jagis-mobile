@@ -1,6 +1,7 @@
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
+import 'package:app/features/actions/domain/action_summary.dart';
 import 'package:app/features/services/winter/domain/winter_my_consumption_data.dart';
 import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:fpdart/fpdart.dart';
@@ -69,5 +70,17 @@ class WinterRepository {
     final body = response.data as List<dynamic>;
 
     return Right(body.length);
+  }
+
+  Future<List<ActionSummary>> getActions() async {
+    final response = await _client.get(Endpoints.winterActions);
+
+    if (isResponseUnsuccessful(response.statusCode)) {
+      throw Exception('Erreur lors de la récupération de la consommation');
+    }
+
+    final body = response.data as List<dynamic>;
+
+    return ActionSummary.fromJsonList(body);
   }
 }

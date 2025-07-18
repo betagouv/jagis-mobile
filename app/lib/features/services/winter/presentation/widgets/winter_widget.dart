@@ -1,10 +1,9 @@
+import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
 import 'package:app/core/presentation/widgets/composants/modal.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/actions/domain/action_type.dart';
-import 'package:app/features/services/winter/domain/winter_registration.dart';
-import 'package:app/features/services/winter/infrastructure/winter_repository.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_bloc.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_event.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_state.dart';
@@ -29,7 +28,8 @@ class WinterWidget extends StatelessWidget {
   Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: BlocProvider(
-      create: (final context) => WinterBloc(WinterRepository(context.read()))..add(WinterActionIsDone(isDone)),
+      create: (final context) =>
+          WinterBloc(context.read(), UserAddressRepository(context.read()))..add(WinterActionIsDone(isDone)),
       child: _View(sequenceId: sequenceId, isDone: isDone),
     ),
   );
@@ -56,46 +56,42 @@ class _View extends StatelessWidget {
       case WinterConnectionStatus.unknown:
         break;
       case WinterConnectionStatus.established:
-        await _handleConnectionEstablished(context, state);
+        await _handleConnectionEstablished(context);
       case WinterConnectionStatus.failed:
         await _handleConnectionFailed(context);
     }
   }
 
-  Future<void> _handleConnectionEstablished(final BuildContext context, final WinterForm state) async {
+  Future<void> _handleConnectionEstablished(final BuildContext context) async {
     final isContinued = await FnvModal.showFullModal<bool>(
       context: context,
-      builder: (final context) =>
-          WinterConnectionEstablishedModal(lastName: state.lastName, city: state.address.city, prm: state.prmNumber),
+      builder: (final context) => const WinterConnectionEstablishedModal(),
       name: 'connection-established-modal',
     );
 
-    if (!context.mounted || isContinued == null) {
+    if (!context.mounted) {
       return;
     }
 
-    if (isContinued) {
-      context.read<WinterBloc>().add(WinterStartQuestions(sequenceId));
-    } else {
+    if (isContinued == null) {
       context.read<WinterBloc>().add(const WinterConnectionStatusReset());
+    } else {
+      context.read<WinterBloc>().add(WinterStartQuestions(sequenceId));
     }
   }
 
   Future<void> _handleConnectionFailed(final BuildContext context) async {
-    final isSwitchedToPrm = await FnvModal.showFullModal<bool>(
+    await FnvModal.showFullModal<void>(
       context: context,
       builder: (final context) => const WinterConnectionFailedModal(),
       name: 'connection-failed-modal',
     );
 
-    if (!context.mounted || isSwitchedToPrm == null) {
+    if (!context.mounted) {
       return;
     }
 
-    final bloc = context.read<WinterBloc>()..add(const WinterConnectionStatusReset());
-    if (isSwitchedToPrm) {
-      bloc.add(const WinterFormTypeChanged(RegistrationType.prm));
-    }
+    context.read<WinterBloc>().add(const WinterConnectionStatusReset());
   }
 
   @override
@@ -103,7 +99,7 @@ class _View extends StatelessWidget {
     builder: (final context, final state) => switch (state) {
       WinterLoading() => const FnvLoader(),
       WinterInitial() => const WinterStartWidget(),
-      WinterForm() => const WinterFormWidget(),
+      WinterForm() => WinterFormWidget(current: state),
       WinterQuestionsState() => WinterQuestionsPart(sequenceId: sequenceId),
       WinterMyConsumption() => WinterConsumptionPart(myConsumption: state),
     },

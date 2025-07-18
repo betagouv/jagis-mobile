@@ -23,22 +23,4 @@ class UserAddressRepository {
 
     return Right(AddressMapper.fromJson(json));
   }
-
-  Future<Either<Exception, Unit>> modifyAddress(final Address address) async {
-    final response = await _client.patch(
-      Endpoints.logement,
-      data: {
-        'rue': address.street,
-        'numero_rue': address.houseNumber,
-        'code_postal': address.postCode,
-        'code_commune': address.cityCode,
-        'latitude': address.latitude,
-        'longitude': address.longitude,
-      },
-    );
-
-    return isResponseSuccessful(response.statusCode)
-        ? const Right(unit)
-        : Left(Exception('Erreur lors de la mise à jour de l’adresse'));
-  }
 }

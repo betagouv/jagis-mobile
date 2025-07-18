@@ -37,6 +37,7 @@ import 'package:app/features/services/pdcn/presentation/pdcn_list/pages/pdcn_lis
 import 'package:app/features/services/recipes/item/presentation/pages/recipe_page.dart';
 import 'package:app/features/services/recipes/list/presentation/pages/recipes_page.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/presentation/pages/seasonal_fruits_and_vegetables_page.dart';
+import 'package:app/features/services/winter/presentation/pages/winter_actions_page.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_disponibles_page.dart';
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_page.dart';
 import 'package:app/features/theme/presentation/pages/theme_page.dart';
@@ -90,6 +91,7 @@ GoRouter goRouter({required final Tracker tracker, required final DeepLink deepL
         RecipesPage.route,
         SeasonalFruitsAndVegetablesPage.route,
         ToutEstPretPage.route,
+        WinterActionsPage.route,
       ],
     ),
   ],

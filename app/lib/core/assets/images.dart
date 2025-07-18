@@ -67,4 +67,5 @@ abstract final class AssetImages {
   static const thematiquesQuestionsMesAchatsIllustrations = 'assets/images/thematiques_questions_mes_achats_illustration.webp';
   static const transport = 'assets/images/transport.webp';
   static const wattWatchers = 'assets/images/watt_watchers.webp';
+  static const wattWatchersIllustration = 'assets/images/watt_watchers_illustration.webp';
 }

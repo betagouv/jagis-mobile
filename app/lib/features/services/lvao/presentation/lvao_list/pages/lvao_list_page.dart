@@ -1,5 +1,5 @@
-import 'package:app/core/address/geocoding_repository.dart';
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/presentation/widgets/composants/address/address_search_widget.dart';
 import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/card.dart';
 import 'package:app/core/presentation/widgets/composants/dropdown_button.dart';
@@ -13,7 +13,6 @@ import 'package:app/features/services/core/infrastructure/service_repository.dar
 import 'package:app/features/services/lvao/domain/lvao_actor.dart';
 import 'package:app/features/services/lvao/presentation/lvao_detail/pages/lvao_detail_page.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -82,9 +81,7 @@ class _Success extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(Localisation.rechercherParAdresse, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
-                  FnvAutocomplete(
-                    displayStringForOption: (final option) => option.label,
-                    onSearch: (final query) => context.read<GeocodingRepository>().search(query),
+                  AddressSearchWidget(
                     onSelected: (final option) =>
                         context.read<ServiceBloc<LvaoActor>>().add(ServiceAddressChanged(address: option)),
                   ),

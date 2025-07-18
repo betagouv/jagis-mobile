@@ -10,32 +10,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
+const _prmPattern = '## ### ### ### ###';
+
 class WinterPrmForm extends StatelessWidget {
   const WinterPrmForm({super.key});
 
   @override
-  Widget build(final BuildContext context) {
-    const prmPattern = '## ### ### ### ###';
-
-    return Column(
-      spacing: DsfrSpacings.s2w,
-      children: [
-        DsfrInput(
-          label: Localisation.numeroDePrm,
-          hintText: Localisation.numeroDePrmHint,
-          onChanged: (final value) => context.read<WinterBloc>().add(WinterPrmNumberChanged(value.replaceAll(' ', ''))),
-          autocorrect: false,
-          keyboardType: TextInputType.number,
-          inputFormatters: const [PatternFormatter(pattern: prmPattern)],
-        ),
-        const _Accordion(),
-        DsfrInput(
-          label: Localisation.nomDeFamille,
-          onChanged: (final value) => context.read<WinterBloc>().add(WinterLastNameChanged(value)),
-        ),
-      ],
-    );
-  }
+  Widget build(final BuildContext context) => Column(
+    spacing: DsfrSpacings.s2w,
+    children: [
+      DsfrInput(
+        label: Localisation.numeroDePrm,
+        hintText: Localisation.numeroDePrmHint,
+        onChanged: (final value) => context.read<WinterBloc>().add(WinterPrmNumberChanged(value.replaceAll(' ', ''))),
+        autocorrect: false,
+        keyboardType: TextInputType.number,
+        inputFormatters: const [PatternFormatter(pattern: _prmPattern)],
+      ),
+      const _Accordion(),
+      DsfrInput(
+        label: Localisation.nomDeFamille,
+        onChanged: (final value) => context.read<WinterBloc>().add(WinterLastNameChanged(value)),
+      ),
+    ],
+  );
 }
 
 class _Accordion extends StatefulWidget {

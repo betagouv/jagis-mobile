@@ -52,6 +52,7 @@ import 'package:app/features/services/recipes/action/infrastructure/action_recip
 import 'package:app/features/services/recipes/item/infrastructure/recipe_repository.dart';
 import 'package:app/features/services/recipes/list/infrastructure/recipes_repository.dart';
 import 'package:app/features/services/seasonal_fruits_and_vegetables/infrastructure/seasonal_fruits_and_vegetables_repository.dart';
+import 'package:app/features/services/winter/infrastructure/winter_repository.dart';
 import 'package:app/features/simulateur_velo/infrastructure/aide_velo_repository.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_bloc.dart';
 import 'package:app/features/theme/core/infrastructure/theme_repository.dart';
@@ -204,6 +205,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => ResetRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => HomeDashboardRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => LibraryRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => WinterRepository(widget.apiClient)),
               ],
               child: MultiBlocProvider(
                 providers: [

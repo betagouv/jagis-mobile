@@ -9,12 +9,14 @@ typedef OnSearch<T> = Future<Iterable<T>> Function(String query);
 class FnvAutocomplete<T extends Object> extends StatefulWidget {
   const FnvAutocomplete({
     super.key,
+    this.enabled = true,
     this.initialValue,
     required this.displayStringForOption,
     required this.onSearch,
     required this.onSelected,
   });
 
+  final bool enabled;
   final String? initialValue;
   final String Function(T option) displayStringForOption;
   final OnSearch<T> onSearch;
@@ -88,6 +90,7 @@ class _FnvAutocompleteState<T extends Object> extends State<FnvAutocomplete<T>> 
       onFieldSubmitted: (final value) => onFieldSubmitted(),
       keyboardType: TextInputType.streetAddress,
       autocorrect: false,
+      enabled: widget.enabled,
       focusNode: focusNode,
     ),
     onSelected: (final option) {

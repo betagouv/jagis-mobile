@@ -1,94 +1,22 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
+import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
 import 'package:app/l10n/l10n.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
 class WinterConnectionEstablishedModal extends StatelessWidget {
-  const WinterConnectionEstablishedModal({super.key, required this.lastName, required this.city, required this.prm});
-
-  final String lastName;
-  final String city;
-  final String prm;
+  const WinterConnectionEstablishedModal({super.key});
 
   @override
   Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: DsfrSpacings.s5w,
     children: [
-      const FnvImage.asset(AssetImages.bulbOnIllustration, height: 100),
-      _Content(lastName: lastName, city: city, prm: prm),
-      const _Buttons(),
-    ],
-  );
-}
-
-class _Content extends StatelessWidget {
-  const _Content({required this.lastName, required this.city, required this.prm});
-
-  final String lastName;
-  final String city;
-  final String prm;
-
-  @override
-  Widget build(final BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    spacing: DsfrSpacings.s1w,
-    children: [
-      Text(Localisation.connexionEtablie, style: DsfrTextStyle.headline4(color: DsfrColorDecisions.textTitleGrey(context))),
-      Text(
-        Localisation.cesInformationsSontEllesCorrectes,
-        style: DsfrTextStyle.bodyMd(color: DsfrColorDecisions.textLabelGrey(context)),
-      ),
-      _PrmInfo(lastName: lastName, city: city, prm: prm),
-    ],
-  );
-}
-
-class _PrmInfo extends StatelessWidget {
-  const _PrmInfo({required this.lastName, required this.city, required this.prm});
-
-  final String lastName;
-  final String city;
-  final String prm;
-
-  @override
-  Widget build(final BuildContext context) => ColoredBox(
-    color: DsfrColorDecisions.backgroundAltBlueFrance(context),
-    child: Padding(
-      padding: const EdgeInsets.only(
-        left: DsfrSpacings.s2w,
-        top: DsfrSpacings.s2w,
-        right: DsfrSpacings.s2w,
-        bottom: DsfrSpacings.s1w,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: DsfrSpacings.s1w,
-        children: [
-          Text(lastName, style: DsfrTextStyle.bodyMdBold(color: DsfrColorDecisions.textLabelGrey(context))),
-          DsfrTag(label: Localisation.a(city), size: DsfrComponentSize.md),
-          Text(Localisation.compteur(prm), style: DsfrTextStyle.bodyMdBold(color: DsfrColorDecisions.textLabelGrey(context))),
-        ],
-      ),
-    ),
-  );
-}
-
-class _Buttons extends StatelessWidget {
-  const _Buttons();
-
-  @override
-  Widget build(final BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    spacing: DsfrSpacings.s2w,
-    children: [
-      DsfrButton(
-        label: Localisation.modifierLeNumero,
-        variant: DsfrButtonVariant.secondary,
-        size: DsfrComponentSize.lg,
-        onPressed: () => GoRouter.of(context).pop(false),
-      ),
+      const FnvImage.asset(AssetImages.bulbOnIllustration, width: 100, height: 100),
+      const _Content(),
       DsfrButton(
         label: Localisation.continuer,
         variant: DsfrButtonVariant.primary,
@@ -96,5 +24,64 @@ class _Buttons extends StatelessWidget {
         onPressed: () => GoRouter.of(context).pop(true),
       ),
     ],
+  );
+}
+
+class _Content extends StatelessWidget {
+  const _Content();
+
+  @override
+  Widget build(final BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    spacing: DsfrSpacings.s1w,
+    children: [
+      Text(Localisation.connexionEtablie, style: DsfrTextStyle.headline4(color: DsfrColorDecisions.textTitleGrey(context))),
+      const _Description(),
+    ],
+  );
+}
+
+class _Description extends StatefulWidget {
+  const _Description();
+
+  @override
+  State<_Description> createState() => _DescriptionState();
+}
+
+class _DescriptionState extends State<_Description> {
+  late final TapGestureRecognizer _tapGestureRecognizer;
+
+  @override
+  void initState() {
+    super.initState();
+    _tapGestureRecognizer = TapGestureRecognizer()
+      ..onTap = () async {
+        await GoRouter.of(context).pushNamed(ProfilPage.name);
+      };
+  }
+
+  @override
+  void dispose() {
+    _tapGestureRecognizer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) => Text.rich(
+    TextSpan(
+      text: Localisation.cesInformationsSontEllesCorrectes,
+      children: [
+        const TextSpan(text: ' '),
+        TextSpan(
+          text: Localisation.votreProfil,
+          style: DsfrTextStyle.bodyMd(
+            color: DsfrColorDecisions.textActiveBlueFrance(context),
+          ).copyWith(decoration: TextDecoration.underline),
+          recognizer: _tapGestureRecognizer,
+        ),
+        const TextSpan(text: '.'),
+      ],
+    ),
+    style: DsfrTextStyle.bodyMd(color: DsfrColorDecisions.textLabelGrey(context)),
   );
 }

@@ -62,7 +62,7 @@ Future<void> ielLanceLapplication(final WidgetTester tester) async {
     )
     ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
     ..getM(
-      '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+      '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
       responseData: {'actions': <dynamic>[]},
     )
     ..getM(

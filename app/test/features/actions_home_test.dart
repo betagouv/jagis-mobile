@@ -66,7 +66,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [
@@ -380,7 +380,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [
@@ -652,7 +652,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [
@@ -796,7 +796,7 @@ void main() {
               ['method', 'path', 'statusCode', 'requestData'],
               [
                 "GET",
-                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&recommandation=recommandee&take=6',
                 200,
                 null
               ]
@@ -842,7 +842,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [
@@ -1114,7 +1114,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [],
@@ -1223,7 +1223,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [
@@ -1537,7 +1537,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&ordre=recommandee_filtre_perso&take=6',
+                '/utilisateurs/%7BuserId%7D/actions?realisation=pas_faite&recommandation=recommandee&take=6',
                 200,
                 {
                   "actions": [

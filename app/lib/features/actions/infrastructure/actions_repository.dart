@@ -41,7 +41,7 @@ class ActionsRepository {
   Future<Either<Exception, List<ActionSummary>>> fetchForHome({required final bool areRecommendedActions}) async {
     final queryParameters = <String, dynamic>{
       'realisation': areRecommendedActions ? 'pas_faite' : 'faite',
-      'ordre': 'recommandee_filtre_perso',
+      'recommandation': 'recommandee',
       'take': '6',
     };
 

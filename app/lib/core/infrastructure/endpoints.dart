@@ -33,7 +33,8 @@ abstract final class Endpoints {
   static const seasonalFruitsAndVegetablesSearch = '/utilisateurs/{userId}/recherche_services/fruits_legumes/search2';
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';
-  static const winterActions = '/utilisateurs/{userId}/winter/actions';
+  static const winterActions =
+      '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter';
   static const winterConsumption = '/utilisateurs/{userId}/winter/consommation';
   static const winterInscriptionParAdresse = '/utilisateurs/{userId}/winter/inscription_par_adresse';
   static const winterInscriptionParPrm = '/utilisateurs/{userId}/winter/inscription_par_prm';

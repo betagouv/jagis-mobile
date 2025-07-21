@@ -64,12 +64,13 @@ class WinterRepository {
     final response = await _client.get(Endpoints.winterActions);
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération de la consommation'));
+      return Left(Exception('Erreur lors de la récupération du nombre d’actions'));
     }
 
-    final body = response.data as List<dynamic>;
+    final body = response.data as Map<String, dynamic>;
+    final actions = body['actions'] as List<dynamic>;
 
-    return Right(body.length);
+    return Right(actions.length);
   }
 
   Future<List<ActionSummary>> getActions() async {
@@ -79,8 +80,9 @@ class WinterRepository {
       throw Exception('Erreur lors de la récupération de la consommation');
     }
 
-    final body = response.data as List<dynamic>;
+    final body = response.data as Map<String, dynamic>;
+    final actions = body['actions'] as List<dynamic>;
 
-    return ActionSummary.fromJsonList(body);
+    return ActionSummary.fromJsonList(actions);
   }
 }

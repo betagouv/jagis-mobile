@@ -1317,17 +1317,165 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/winter/actions',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
                 200,
-                [
-                  {
-                    "action": {
-                      "code": "chauffe_eau_temperature",
-                      "type": "classique"
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
                     },
-                    "montant_economies_euro": 12
-                  }
-                ]
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_winter",
+                      "label": "actions_winter",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
               ],
               [
                 'POST',
@@ -1366,7 +1514,7 @@ void main() {
               ]
             ]));
         await iSee(tester, '1234567€');
-        await iSee(tester, 'Découvrir 1 action');
+        await iSee(tester, 'Découvrir 3 actions');
       } on TestFailure {
         success = false;
         rethrow;
@@ -1561,17 +1709,165 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/winter/actions',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
                 200,
-                [
-                  {
-                    "action": {
-                      "code": "chauffe_eau_temperature",
-                      "type": "classique"
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
                     },
-                    "montant_economies_euro": 12
-                  }
-                ]
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_winter",
+                      "label": "actions_winter",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
               ]
             ]));
         await iTapOn(
@@ -1768,17 +2064,165 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/winter/actions',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
                 200,
-                [
-                  {
-                    "action": {
-                      "code": "chauffe_eau_temperature",
-                      "type": "classique"
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
                     },
-                    "montant_economies_euro": 12
-                  }
-                ]
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_winter",
+                      "label": "actions_winter",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
               ]
             ]));
         await iTapOn(

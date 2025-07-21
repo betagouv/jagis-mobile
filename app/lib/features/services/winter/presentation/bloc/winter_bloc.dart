@@ -32,6 +32,7 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
 
       return;
     }
+
     final consumptionResult = await _repository.getConsumption();
     final numberOfActionsResult = await _repository.getNumberOfActions();
     consumptionResult.fold((final l) {}, (final consumption) {

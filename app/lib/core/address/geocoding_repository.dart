@@ -34,7 +34,7 @@ class GeocodingRepository {
           houseNumber: properties['housenumber'] as String,
           street: properties['street'] as String,
           postCode: properties['postcode'] as String,
-          city: properties['city'] as String,
+          municipality: properties['city'] as String,
           cityCode: properties['citycode'] as String,
         ),
       );

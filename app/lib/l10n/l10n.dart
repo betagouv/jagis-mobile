@@ -320,6 +320,7 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const statistiques = 'Statistiques';
   static const statistiquesSite = 'https://jagis.beta.gouv.fr/statistiques';
   static const suggestions = 'Suggestions';
+  static const supprimerMonAdresse = 'Supprimer mon adresse';
   static const supprimerVotreCompte = 'Supprimer mon compte';
   static const supprimerVotreCompteConfirmation = 'Veuillez confirmer la suppression du compte';
   static const supprimerVotreCompteContenu =

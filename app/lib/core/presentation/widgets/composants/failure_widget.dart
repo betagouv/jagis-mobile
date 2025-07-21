@@ -19,13 +19,15 @@ class FnvFailureWidget extends StatelessWidget {
         const Text(Localisation.erreurInattendue, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
         FnvSvg.asset(AssetImages.errorIllustration),
         const Text(Localisation.erreurInattendueContent, style: DsfrTextStyle.bodyXl(color: DsfrColors.grey50)),
-        const SizedBox(height: DsfrSpacings.s4w),
-        DsfrButton(
-          label: Localisation.rafraichir,
-          variant: DsfrButtonVariant.secondary,
-          size: DsfrComponentSize.lg,
-          onPressed: onPressed,
-        ),
+        if (onPressed != null) ...[
+          const SizedBox(height: DsfrSpacings.s4w),
+          DsfrButton(
+            label: Localisation.rafraichir,
+            variant: DsfrButtonVariant.secondary,
+            size: DsfrComponentSize.lg,
+            onPressed: onPressed,
+          ),
+        ],
       ],
     ),
   );

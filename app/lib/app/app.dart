@@ -14,6 +14,7 @@ import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/notifications/domain/notification_data.dart';
 import 'package:app/core/notifications/infrastructure/notification_repository.dart';
 import 'package:app/core/notifications/infrastructure/notification_service.dart';
+import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
 import 'package:app/core/question/infrastructure/question_repository.dart';
 import 'package:app/features/action/infrastructure/action_repository.dart';
 import 'package:app/features/action/presentation/pages/action_page.dart';
@@ -206,6 +207,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => HomeDashboardRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => LibraryRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => WinterRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => UserAddressRepository(widget.apiClient)),
               ],
               child: MultiBlocProvider(
                 providers: [

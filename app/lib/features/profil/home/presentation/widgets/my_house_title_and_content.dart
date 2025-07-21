@@ -2,19 +2,19 @@ import 'package:app/features/profil/profil/presentation/widgets/profil_titre_par
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
-class MonLogementTitreEtContenu extends StatelessWidget {
-  const MonLogementTitreEtContenu({super.key, required this.titre, required this.contenu});
+class MyHouseTitleAndContent extends StatelessWidget {
+  const MyHouseTitleAndContent({super.key, required this.title, required this.content});
 
-  final String titre;
-  final Widget contenu;
+  final String title;
+  final Widget content;
 
   @override
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     spacing: DsfrSpacings.s2w,
     children: [
-      ProfilTitrePartie(titre: titre),
-      contenu,
+      ProfilTitrePartie(titre: title),
+      content,
     ],
   );
 }

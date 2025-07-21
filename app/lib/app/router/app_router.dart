@@ -28,8 +28,8 @@ import 'package:app/features/onboarding/question_code_postal/presentation/pages/
 import 'package:app/features/onboarding/question_themes/presentation/pages/question_themes_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
 import 'package:app/features/pre_onboarding/presentation/pages/pre_onboarding_page.dart';
+import 'package:app/features/profil/home/presentation/pages/my_home_page.dart';
 import 'package:app/features/profil/informations/presentation/pages/mes_informations_page.dart';
-import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/pages/profil_page.dart';
 import 'package:app/features/ranking/presentation/pages/ranking_page.dart';
 import 'package:app/features/services/lvao/presentation/lvao_list/pages/lvao_list_page.dart';
@@ -78,12 +78,11 @@ GoRouter goRouter({required final Tracker tracker, required final DeepLink deepL
         LibraryPage.route,
         MesInformationsPage.route,
         MieuxVousConnaitreEditPage.route,
-        MonLogementPage.route,
         OnboardingPseudonymPage.route,
         OptionsAvanceesPage.route,
         PdcnListPage.route,
         LvaoListPage.route,
-        ProfilPage.route,
+        ProfilPage.route(routes: [MyHomePage.route]),
         QuestionCodePostalPage.route,
         QuestionThemesPage.route,
         RankingPage.route,

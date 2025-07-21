@@ -1,7 +1,7 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions_recommanded/presentation/widgets/actions_recommanded_section.dart';
-import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
+import 'package:app/features/profil/home/presentation/pages/my_home_page.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
@@ -48,7 +48,7 @@ class ThemeHeader extends StatelessWidget {
                     textColor: DsfrColors.blueFranceSun113,
                     icon: DsfrIcons.mapMapPin2Fill,
                     onTap: () async {
-                      await GoRouter.of(context).pushNamed(MonLogementPage.name);
+                      await GoRouter.of(context).pushNamed(MyHomePage.name);
                     },
                   ),
                 ],

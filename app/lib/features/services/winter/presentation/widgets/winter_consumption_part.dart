@@ -1,9 +1,9 @@
 import 'package:app/core/infrastructure/markdown.dart';
-import 'package:app/features/actions/presentation/pages/actions_page.dart';
 import 'package:app/features/services/winter/domain/winter_my_consumption_data.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_bloc.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_event.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_state.dart';
+import 'package:app/features/services/winter/presentation/pages/winter_actions_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
@@ -223,7 +223,7 @@ class _ActionsShortcut extends StatelessWidget {
             variant: DsfrButtonVariant.primary,
             size: DsfrComponentSize.lg,
             onPressed: () async {
-              await GoRouter.of(context).pushNamed(ActionsPage.name);
+              await GoRouter.of(context).pushNamed(WinterActionsPage.name);
             },
           ),
         ],

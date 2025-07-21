@@ -59,7 +59,7 @@ class MaifSuccess extends StatelessWidget {
           if (data.searchAddress.isFull) ...[const SizedBox(height: DsfrSpacings.s3w), _Risks(risks: data.risks)],
           const SizedBox(height: DsfrSpacings.s3w),
           FnvMarkdown(
-            data: Localisation.lesChiffresClesDe(data.searchAddress.city),
+            data: Localisation.lesChiffresClesDe(data.searchAddress.municipality),
             p: const DsfrTextStyle.headline3(color: DsfrColors.grey50),
             strong: const DsfrTextStyle.headline3(color: DsfrColors.blueFranceSun113),
           ),

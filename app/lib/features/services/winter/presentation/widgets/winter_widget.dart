@@ -1,4 +1,3 @@
-import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
 import 'package:app/core/presentation/widgets/composants/modal.dart';
 import 'package:app/features/action/domain/action.dart';
 import 'package:app/features/action/presentation/bloc/action_bloc.dart';
@@ -28,8 +27,7 @@ class WinterWidget extends StatelessWidget {
   Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),
     child: BlocProvider(
-      create: (final context) =>
-          WinterBloc(context.read(), UserAddressRepository(context.read()))..add(WinterActionIsDone(isDone)),
+      create: (final context) => WinterBloc(context.read(), context.read())..add(WinterActionIsDone(isDone)),
       child: _View(sequenceId: sequenceId, isDone: isDone),
     ),
   );

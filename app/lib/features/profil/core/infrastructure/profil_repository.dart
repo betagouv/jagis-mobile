@@ -2,14 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:app/core/address/address.dart';
-import 'package:app/core/address/address_mapper.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
 import 'package:app/features/profil/core/infrastructure/logement_mapper.dart';
+import 'package:app/features/profil/home/domain/home.dart';
 import 'package:app/features/profil/informations/domain/entities/informations.dart';
-import 'package:app/features/profil/logement/domain/logement.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ProfilRepository {
@@ -73,24 +71,16 @@ class ProfilRepository {
         : Left(Exception('Erreur lors de la mise à jour du profil'));
   }
 
-  Future<Either<Exception, Logement>> recupererLogement() async {
+  Future<Home> getHome() async {
     final response = await _client.get(Endpoints.logement);
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération du logement'));
+      throw Exception('Erreur lors de la récupération du logement');
     }
 
     final json = response.data as Map<String, dynamic>;
 
-    return Right(LogementMapper.mapLogementFromJson(json));
-  }
-
-  Future<Either<Exception, Unit>> mettreAJourLogement({required final Logement logement}) async {
-    final response = await _client.patch(Endpoints.logement, data: jsonEncode(LogementMapper.mapLogementToJson(logement)));
-
-    return isResponseSuccessful(response.statusCode)
-        ? const Right(unit)
-        : Left(Exception('Erreur lors de la mise à jour du logement'));
+    return LogementMapper.mapLogementFromJson(json);
   }
 
   Future<Either<Exception, Unit>> supprimerLeCompte() async {
@@ -112,33 +102,22 @@ class ProfilRepository {
         : Left(Exception('Erreur lors de la mise à jour du code postal et de la commune'));
   }
 
-  Future<Either<Exception, Address>> fetchAddress() async {
-    final response = await _client.get(Endpoints.logement);
+  Future<void> updateHome(final Home home) async {
+    final response = await _client.patch(Endpoints.logement, data: LogementMapper.mapLogementToJson(home));
 
     if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération de l’adresse'));
+      throw Exception('Erreur lors de la mise à jour du logement');
     }
-
-    final json = response.data as Map<String, dynamic>;
-
-    return Right(AddressMapper.fromJson(json));
   }
 
-  Future<Either<Exception, Unit>> modifyAddress(final Address address) async {
+  Future<void> deleteAddress() async {
     final response = await _client.patch(
       Endpoints.logement,
-      data: {
-        'rue': address.street,
-        'numero_rue': address.houseNumber,
-        'code_postal': address.postCode,
-        'code_commune': address.cityCode,
-        'latitude': address.latitude,
-        'longitude': address.longitude,
-      },
+      data: {'latitude': null, 'longitude': null, 'numero_rue': null, 'rue': null},
     );
 
-    return isResponseSuccessful(response.statusCode)
-        ? const Right(unit)
-        : Left(Exception('Erreur lors de la mise à jour de l’adresse'));
+    if (isResponseUnsuccessful(response.statusCode)) {
+      throw Exception('Erreur lors de la mise à jour du logement');
+    }
   }
 }

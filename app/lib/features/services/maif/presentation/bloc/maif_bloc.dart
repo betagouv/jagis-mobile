@@ -1,4 +1,4 @@
-import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
+import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
 import 'package:app/features/services/maif/domain/fetch_risk_info_for_address.dart';
 import 'package:app/features/services/maif/infrastructure/maif_repository.dart';
 import 'package:app/features/services/maif/presentation/bloc/maif_event.dart';
@@ -7,13 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MaifBloc extends Bloc<MaifEvent, MaifState> {
   MaifBloc(
-    final ProfilRepository profilRepository,
+    final UserAddressRepository userAddressRepository,
     final MaifRepository repository,
     final FetchRiskInfoForAddress fetchRiskInfoForAddress,
   ) : super(const MaifInitial()) {
     on<MaifLoadRequested>((final event, final emit) async {
       emit(const MaifLoadInProgress());
-      final addressResult = await profilRepository.fetchAddress();
+      final addressResult = await userAddressRepository.fetchAddress();
       await addressResult.fold((final failure) async => emit(const MaifLoadFailure()), (final address) async {
         final cityRiskResult = await repository.fetchCityRisk(address.cityCode);
         await cityRiskResult.fold((final failure) async => emit(const MaifLoadFailure()), (final cityRisk) async {
@@ -70,7 +70,7 @@ class MaifBloc extends Bloc<MaifEvent, MaifState> {
         return;
       }
       final address = event.value;
-      await profilRepository.modifyAddress(address);
+      await userAddressRepository.updateAddress(address);
       emit(currentState.copyWith(userAddress: address));
     });
   }

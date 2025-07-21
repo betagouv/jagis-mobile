@@ -5,8 +5,8 @@ import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_bor
 import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
+import 'package:app/features/profil/home/presentation/pages/my_home_page.dart';
 import 'package:app/features/profil/informations/presentation/pages/mes_informations_page.dart';
-import 'package:app/features/profil/logement/presentation/pages/mon_logement_page.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
@@ -18,10 +18,11 @@ import 'package:go_router/go_router.dart';
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
 
-  static const name = 'profil';
+  static const name = 'compte';
   static const path = name;
 
-  static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const ProfilPage());
+  static GoRoute route({required final List<RouteBase> routes}) =>
+      GoRoute(path: path, name: name, builder: (final context, final state) => const ProfilPage(), routes: routes);
 
   @override
   Widget build(final BuildContext context) => RootPage(
@@ -46,7 +47,7 @@ class ProfilPage extends StatelessWidget {
                 icon: DsfrIcons.buildingsHome4Line,
                 label: Localisation.monLogement,
                 onTap: () async {
-                  await GoRouter.of(context).pushNamed(MonLogementPage.name);
+                  await GoRouter.of(context).pushNamed(MyHomePage.name);
                 },
               ),
               const DsfrDivider(),

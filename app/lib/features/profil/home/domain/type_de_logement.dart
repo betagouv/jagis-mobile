@@ -1,0 +1,1 @@
+enum TypeDeLogement { appartement, maison }

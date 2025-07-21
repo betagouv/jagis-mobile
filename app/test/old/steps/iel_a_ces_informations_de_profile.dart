@@ -1,8 +1,6 @@
 // ignore_for_file: avoid-long-parameter-list
 
 import 'package:app/core/infrastructure/endpoints.dart';
-import 'package:app/features/profil/core/infrastructure/logement_mapper.dart';
-import 'package:app/features/profil/logement/domain/logement.dart';
 
 import 'scenario_context.dart';
 
@@ -30,9 +28,4 @@ void ielACesInformationsDeProfil({
       'annee_naissance': null,
     },
   );
-}
-
-/// Iel a ces informations de logement.
-void ielACesInformationsDeLogement(final Logement logement) {
-  ScenarioContext().dioMock!.getM(Endpoints.logement, responseData: LogementMapper.mapLogementToJson(logement));
 }

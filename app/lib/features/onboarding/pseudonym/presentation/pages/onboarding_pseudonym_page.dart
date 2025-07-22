@@ -1,7 +1,6 @@
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
-import 'package:app/core/presentation/widgets/composants/input_calendar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
@@ -13,6 +12,7 @@ import 'package:app/features/onboarding/widgets/onboarding_illustration.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -103,13 +103,12 @@ class _Content extends StatelessWidget {
             ),
             if (!isUserFranceConnect) ...[
               const SizedBox(height: DsfrSpacings.s2w),
-              FnvInputCalendar(
-                hintText: Localisation.dateDeNaissanceDescription,
+              FnvDateOnlyInput(
                 label: Localisation.maDateDeNaissance,
-                onDateSelected: (final value) {
-                  if (value == null) {
-                    return;
-                  }
+                hint: Localisation.dateDeNaissanceDescription,
+                maxYear: context.read<Clock>().now().year,
+                initialValue: null,
+                onChanged: (final value) {
                   context.read<OnboardingPseudonymBloc>().add(OnboardingBirthdateChanged(value));
                 },
               ),

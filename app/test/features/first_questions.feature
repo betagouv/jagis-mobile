@@ -11,7 +11,9 @@ Feature: Onboarding
   Scenario: Répondre aux premieres questions
     When I enter {'Joe123'} in the {'Mon pseudonyme'} field
     When I scroll down to {'Ma date de naissance'}
-    When I select {'15/01/1974'} date in the {'Ma date de naissance'} field
+    When I enter {'15'} in the {'Jour'} field
+    When I enter {'01'} in the {'Mois'} field
+    When I enter {'1974'} in the {'Année'} field
     When I tap on {'Continuer'}
     Then I see {'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.'}
     When I enter {'39100'} in the {'Code postal'} field
@@ -37,7 +39,9 @@ Feature: Onboarding
       | "PATCH"  | "/utilisateurs/{userId}/profile" |          400 | { "message": "Une erreur est survenue." } |
     When I enter {'Lucas'} in the {'Mon pseudonyme'} field
     When I scroll down to {'Ma date de naissance'}
-    When I select {'15/01/1974'} date in the {'Ma date de naissance'} field
+    When I enter {'15'} in the {'Jour'} field
+    When I enter {'01'} in the {'Mois'} field
+    When I enter {'1974'} in the {'Année'} field
     When I tap on {'Continuer'}
     Then I see {'Une erreur est survenue.'}
 

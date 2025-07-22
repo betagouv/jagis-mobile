@@ -26,6 +26,6 @@ Feature: Action Feedback
     When I scroll down to {'Envoyer'}
     When I tap on {'Envoyer'}
     Then I don't see {'Envoyer'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                      | 'statusCode' | 'requestData'                                           |
       | "POST"   | "/utilisateurs/{userId}/actions/classique/action_comparer_elecgaz/feedback" |          200 | {"like_level":4,"feedback":"Cette action est superbe."} |

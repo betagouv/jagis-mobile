@@ -13,7 +13,7 @@ import './step/i_tap_on.dart';
 import './step/the_api_will_return.dart';
 import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 
 void main() {
@@ -114,7 +114,7 @@ void main() {
         await iScrollDownTo(tester, 'Un appartement');
         await iTapOn(tester, 'Un appartement');
         await iTapOn(tester, 'Mettre à jour mes informations');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -174,7 +174,7 @@ void main() {
         await iTapOn(tester, 'Mon logement');
         await iSee(tester, "36 Rue des Cyprès 38280 Villette-d'Anthon");
         await iTapOn(tester, 'Supprimer mon adresse');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -236,7 +236,7 @@ void main() {
         await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iTapOn(tester, 'Mettre à jour mes informations');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

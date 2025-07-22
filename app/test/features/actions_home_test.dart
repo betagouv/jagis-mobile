@@ -11,7 +11,7 @@ import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_see.dart';
 import './step/i_tap_on.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_dont_see.dart';
 
 void main() {
@@ -790,7 +790,7 @@ void main() {
         await iTapOn(tester, 'Terminées');
         await iSee(
             tester, '🌧️ Calculer vos aides pour rénover votre logement');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

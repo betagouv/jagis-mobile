@@ -34,8 +34,6 @@ class Address extends Equatable {
   String get label => '${houseNumber ?? ''} ${street ?? ''} $postCode $municipality';
   bool get isFull => latitude != null && longitude != null && houseNumber != null && street != null;
 
-  bool get isNotFull => !isFull;
-
   Address copyWith({
     final double? latitude,
     final double? longitude,

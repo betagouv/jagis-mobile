@@ -29,14 +29,14 @@ Feature: Action Performance
     When I tap on {'Peu de viande'}
     When I scroll down to {'Question suivante'}
     When I tap on {'Question suivante'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                           | 'statusCode' | 'requestData'                                                                                                                                                                       |
       | 'PUT'    | '/utilisateurs/{userId}/questionsKYC_v2/KYC_alimentation_regime' |          200 | [{"code": "chaque_jour_viande", "selected": false}, {"code": "peu_viande", "selected": true}, {"code": "vegetarien", "selected": false}, {"code": "vegetalien", "selected": false}] |
     When I scroll down to {'Viennoiserie et pain'}
     When I tap on {'Viennoiserie et pain'}
     When I scroll down to {'Question suivante'}
     When I tap on {'Question suivante'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                 | 'statusCode' | 'requestData'                                                                                                                                                            |
       | 'PUT'    | "/utilisateurs/{userId}/questionsKYC_v2/KYC_petitdej"                  |          200 | [{"code":"pain","selected":true},{"code":"lait","selected":false},{"code":"bacon","selected":false},{"code":"fruit","selected":false},{"code":"aucun","selected":false}] |
       | 'POST'   | "/utilisateurs/{userId}/actions/bilan/action_bilan_alimentation/faite" |          200 | null                                                                                                                                                                     |

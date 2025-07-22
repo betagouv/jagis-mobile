@@ -14,7 +14,9 @@ import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_enter_in_the_field.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
+import './step/the_api_doesnt_receive.dart';
+import './step/i_enter_in_the_autocomplete_field.dart';
 import './step/i_dont_see.dart';
 
 void main() {
@@ -241,7 +243,7 @@ void main() {
         await iTapOn(tester,
             'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
         await iTapOn(tester, 'Valider');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -249,13 +251,14 @@ void main() {
                 'POST',
                 "/utilisateurs/{userId}/winter/inscription_par_adresse",
                 200,
-                {
-                  'nom': 'Saudon',
-                  'adresse': '5 Chemin de Rougemont',
-                  'code_postal': '39100',
-                  'code_commune': '39198'
-                }
+                {'nom': 'Saudon'}
               ]
+            ]));
+        await theApiDoesntReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              ['PATCH', '/utilisateurs/{userId}/logement', 200, null]
             ]));
         await iSee(tester, 'Connexion établie');
       } on TestFailure {
@@ -264,6 +267,179 @@ void main() {
       } finally {
         await afterEach(
           '''S'incrire par l'adresse et la connexion est établie''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Remplir l'adresse''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Remplir l'adresse''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                200,
+                {
+                  "nombre_actions_en_cours": 1,
+                  "nombre_actions_faites": 1,
+                  "nombre_aides_disponibles": 0,
+                  "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
+                  "titre": "**Faire des économies sur ma facture d’énergie**",
+                  "sous_titre": null,
+                  "consigne":
+                      "Réalisez cette action dans les prochaines semaines et partagez vos retours",
+                  "label_compteur":
+                      "**453 actions** réalisées par la communauté",
+                  "besoins": [],
+                  "comment": null,
+                  "pourquoi":
+                      "## En quelques mots\n\nObtenez la répartition de votre consommation d'énergie en plus d’actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.",
+                  "type": "simulateur",
+                  "thematique": "logement",
+                  "kycs": [
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "question": "Achetez-vous en vrac ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "non", "label": "Non", "selected": true},
+                        {
+                          "code": "ne_sais_pas",
+                          "label": "Je ne sais pas",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "test",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": true,
+                      "thematique": "alimentation"
+                    },
+                    {
+                      "code": "KYC_appetence_cuisine",
+                      "question": "Aimez-vous cuisiner ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {
+                          "code": "parfois",
+                          "label": "De temps en temps",
+                          "selected": false
+                        },
+                        {"code": "non", "label": "Non", "selected": false},
+                        {
+                          "code": "pas_de_reponse",
+                          "label": "Je ne souhaite pas répondre",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": false,
+                      "categorie": "recommandation",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": false,
+                      "thematique": "alimentation"
+                    }
+                  ],
+                  "quizzes": [],
+                  "aides": [],
+                  "services": [],
+                  "nom_commune": "Lyon",
+                  "quizz_felicitations": null,
+                  "deja_vue": true,
+                  "deja_faite": false,
+                  "faqs": [],
+                  "points": 30,
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": null,
+                  "longitude": null,
+                  "numero_rue": null,
+                  "rue": null,
+                  "code_postal": "39100",
+                  "commune": "Dole",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198"
+                }
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/winter/inscription_par_adresse',
+                200,
+                {}
+              ]
+            ]));
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
+        await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
+        await iScrollDownTo(tester, 'Commencer');
+        await iTapOn(tester, 'Commencer');
+        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
+        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
+        await iEnterInTheField(tester, 'Saudon',
+            'Nom de famille (du titulaire du contrat électrique)');
+        await iScrollDownTo(tester, 'Valider');
+        await iTapOn(tester,
+            'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
+        await iTapOn(tester, 'Valider');
+        await theApiReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'PATCH',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "latitude": 45.766368,
+                  "longitude": 4.850666,
+                  "numero_rue": "110",
+                  "rue": "Rue Garibaldi",
+                  "code_postal": "69006",
+                  "code_commune": "69386"
+                }
+              ],
+              [
+                'POST',
+                "/utilisateurs/{userId}/winter/inscription_par_adresse",
+                200,
+                {'nom': 'Saudon'}
+              ]
+            ]));
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Remplir l'adresse''',
           success,
         );
       }
@@ -406,7 +582,7 @@ void main() {
         await iTapOn(tester,
             'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
         await iTapOn(tester, 'Valider');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -414,12 +590,7 @@ void main() {
                 'POST',
                 "/utilisateurs/{userId}/winter/inscription_par_adresse",
                 400,
-                {
-                  'nom': 'Saudon',
-                  'adresse': '5 Chemin de Rougemont',
-                  'code_postal': '39100',
-                  'code_commune': '39198'
-                }
+                {'nom': 'Saudon'}
               ]
             ]));
         await iSee(tester, 'La connexion a échoué');
@@ -575,7 +746,7 @@ void main() {
         await iTapOn(tester,
             'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
         await iTapOn(tester, 'Valider');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -1502,7 +1673,7 @@ void main() {
         await iTapOn(tester, 'Oui');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -2237,6 +2408,152 @@ void main() {
       } finally {
         await afterEach(
           '''Pouvoir recommencer l'action''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Saisir l'adresse puis la saisir à nouveau''',
+        (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Saisir l'adresse puis la saisir à nouveau''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                200,
+                {
+                  "nombre_actions_en_cours": 1,
+                  "nombre_actions_faites": 1,
+                  "nombre_aides_disponibles": 0,
+                  "code": "action_simulateur_winter",
+                  "emoji": "🌧️",
+                  "titre": "**Faire des économies sur ma facture d’énergie**",
+                  "sous_titre": null,
+                  "consigne":
+                      "Réalisez cette action dans les prochaines semaines et partagez vos retours",
+                  "label_compteur":
+                      "**453 actions** réalisées par la communauté",
+                  "besoins": [],
+                  "comment": null,
+                  "pourquoi":
+                      "## En quelques mots\n\nObtenez la répartition de votre consommation d'énergie en plus d’actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.",
+                  "type": "simulateur",
+                  "thematique": "logement",
+                  "kycs": [
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "question": "Achetez-vous en vrac ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "non", "label": "Non", "selected": true},
+                        {
+                          "code": "ne_sais_pas",
+                          "label": "Je ne sais pas",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "test",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": true,
+                      "thematique": "alimentation"
+                    },
+                    {
+                      "code": "KYC_appetence_cuisine",
+                      "question": "Aimez-vous cuisiner ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {
+                          "code": "parfois",
+                          "label": "De temps en temps",
+                          "selected": false
+                        },
+                        {"code": "non", "label": "Non", "selected": false},
+                        {
+                          "code": "pas_de_reponse",
+                          "label": "Je ne souhaite pas répondre",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": false,
+                      "categorie": "recommandation",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": false,
+                      "thematique": "alimentation"
+                    }
+                  ],
+                  "quizzes": [],
+                  "aides": [],
+                  "services": [],
+                  "nom_commune": "Lyon",
+                  "quizz_felicitations": null,
+                  "deja_vue": true,
+                  "deja_faite": false,
+                  "faqs": [],
+                  "points": 30,
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": null,
+                  "longitude": null,
+                  "numero_rue": null,
+                  "rue": null,
+                  "code_postal": "39100",
+                  "commune": "Dole",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198"
+                }
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/winter/inscription_par_adresse',
+                200,
+                {}
+              ]
+            ]));
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
+        await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
+        await iScrollDownTo(tester, 'Commencer');
+        await iTapOn(tester, 'Commencer');
+        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
+        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
+        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
+        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Saisir l'adresse puis la saisir à nouveau''',
           success,
         );
       }

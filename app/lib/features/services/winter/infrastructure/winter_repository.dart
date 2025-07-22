@@ -17,16 +17,7 @@ class WinterRepository {
   };
 
   Future<Either<Exception, Unit>> _registerByAddress(final WinterRegistration registration) async {
-    final address = registration.address!;
-    final response = await _client.post(
-      Endpoints.winterInscriptionParAdresse,
-      data: {
-        'nom': registration.lastName,
-        'adresse': '${address.houseNumber ?? ''} ${address.street ?? ''}',
-        'code_postal': address.postCode,
-        'code_commune': address.cityCode,
-      },
-    );
+    final response = await _client.post(Endpoints.winterInscriptionParAdresse, data: {'nom': registration.lastName});
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception("Erreur lors de l'inscription par adresse"));

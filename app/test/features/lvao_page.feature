@@ -19,7 +19,7 @@ Feature: Longue vie aux objets
     When I tap on {'Que faire de mes objets ?'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
     Then I see {"Acheter d'occasion"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 9, "rayon_metres": 5000} |
 
@@ -31,7 +31,7 @@ Feature: Longue vie aux objets
     When I tap on {'Vos objets'}
     When I tap on {'Donner'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                            |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "donner", "nombre_max_resultats": 9, "rayon_metres": 5000} |
 
@@ -43,7 +43,7 @@ Feature: Longue vie aux objets
     When I enter {"110 Rue Garibaldi"} in the autocomplete field
     When I tap on {'110 Rue Garibaldi 69006 Lyon'}
     Then I see {"EBS LE RELAIS NORD PAS DE CALAIS"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                                                     |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie":"vos_objets","nombre_max_resultats":9,"rayon_metres":5000,"latitude":45.766368,"longitude":4.850666} |
 
@@ -73,11 +73,11 @@ Feature: Longue vie aux objets
     When I tap on {'Que faire de mes objets ?'}
     When I scroll down to {'Afficher plus de suggestions'}
     When I tap on {'Afficher plus de suggestions'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                 |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 18, "rayon_metres": 5000} |
     When I scroll down to {'Afficher plus de suggestions'}
     When I tap on {'Afficher plus de suggestions'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                | 'statusCode' | 'requestData'                                                                 |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/longue_vie_objets/search2" |          200 | {"categorie": "vos_objets", "nombre_max_resultats": 27, "rayon_metres": 5000} |

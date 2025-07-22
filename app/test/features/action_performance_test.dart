@@ -14,7 +14,7 @@ import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 
 void main() {
   setUpAll(() async {
@@ -354,7 +354,7 @@ void main() {
         await iTapOn(tester, 'Peu de viande');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -374,7 +374,7 @@ void main() {
         await iTapOn(tester, 'Viennoiserie et pain');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

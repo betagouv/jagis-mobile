@@ -18,8 +18,9 @@ class WinterAddressForm extends StatelessWidget {
     spacing: DsfrSpacings.s2w,
     children: [
       _AddressInput(
-        label: Localisation.adresseDeMaResidencePrincipale,
+        label: Localisation.lAdresseDeMaResidencePrincipale,
         address: current.address,
+        isAddressCompleted: current.isAddressCompleted,
         onSelected: (final option) => context.read<WinterBloc>().add(WinterAddressChanged(option)),
       ),
       DsfrInput(
@@ -31,10 +32,11 @@ class WinterAddressForm extends StatelessWidget {
 }
 
 class _AddressInput extends StatelessWidget {
-  const _AddressInput({required this.label, required this.address, required this.onSelected});
+  const _AddressInput({required this.label, required this.address, required this.isAddressCompleted, required this.onSelected});
 
   final String label;
-  final Address address;
+  final Address? address;
+  final bool isAddressCompleted;
   final AutocompleteOnSelected<Address> onSelected;
 
   @override
@@ -43,14 +45,14 @@ class _AddressInput extends StatelessWidget {
     spacing: DsfrSpacings.s1w,
     children: [
       Text(label, style: DsfrTextStyle.bodyMd(color: DsfrColorDecisions.textLabelGrey(context))),
-      AddressSearchWidget(enabled: address.isNotFull, address: address, onSelected: onSelected),
+      AddressSearchWidget(enabled: !isAddressCompleted, address: address, onSelected: onSelected),
       Row(
         spacing: DsfrSpacings.s1v,
         children: [
           Icon(DsfrIcons.systemFrInfoFill, size: DsfrSpacings.s2w, color: DsfrColorDecisions.borderPlainInfo(context)),
           Flexible(
             child: Text(
-              address.isNotFull ? Localisation.winterAddressInfoVide : Localisation.winterAddressInfoRemplie,
+              isAddressCompleted ? Localisation.winterAddressInfoRemplie : Localisation.winterAddressInfoVide,
               style: DsfrTextStyle.bodyXs(color: DsfrColorDecisions.textDefaultInfo(context)),
             ),
           ),

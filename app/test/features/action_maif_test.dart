@@ -13,7 +13,7 @@ import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
 import './step/i_dont_see.dart';
 import './step/i_see.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 
@@ -349,7 +349,7 @@ void main() {
         await iSee(tester, 'Risques retrait-gonflement des sols argileux');
         await iSee(tester, 'Risques sismiques');
         await iSee(tester, "Risques d'exposition au radon");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -787,7 +787,7 @@ void main() {
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iTapOn(tester, 'Enregistrer');
         await iDontSee(tester, 'Enregistrer');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

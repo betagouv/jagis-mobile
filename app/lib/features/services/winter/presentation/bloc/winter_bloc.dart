@@ -49,7 +49,8 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
       emit(
         WinterForm(
           formType: RegistrationType.address,
-          address: address,
+          address: address.isFull ? address : null,
+          isAddressCompleted: address.isFull,
           lastName: '',
           prmNumber: '',
           isDeclarationChecked: false,
@@ -95,21 +96,25 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
   }
 
   Future<void> _onSubmit(final WinterSubmit event, final Emitter<WinterState> emit) async {
-    final currentState = state;
+    final state = this.state;
 
-    if (currentState is! WinterForm || currentState.isFormInvalid) {
+    if (state is! WinterForm || state.isFormInvalid) {
       return;
     }
 
     final registration = WinterRegistration(
-      type: switch (currentState.formType) {
+      type: switch (state.formType) {
         RegistrationType.address => RegistrationType.address,
         RegistrationType.prm => RegistrationType.prm,
       },
-      lastName: currentState.lastName,
-      address: currentState.formType == RegistrationType.address ? currentState.address : null,
-      prmNumber: currentState.formType == RegistrationType.prm ? currentState.prmNumber : null,
+      lastName: state.lastName,
+      prmNumber: state.formType == RegistrationType.prm ? state.prmNumber : null,
     );
+
+    final address = state.address;
+    if (state.formType == RegistrationType.address && !state.isAddressCompleted && address != null) {
+      await _userAddressRepository.updateAddress(address);
+    }
 
     final result = await _repository.register(registration);
 
@@ -117,7 +122,7 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
       (final l) => WinterConnectionStatus.failed,
       (final r) => WinterConnectionStatus.established,
     );
-    emit(currentState.copyWith(connectionStatus: connectionStatus));
+    emit(state.copyWith(connectionStatus: connectionStatus));
   }
 
   void _onConnectionStatusReset(final WinterConnectionStatusReset event, final Emitter<WinterState> emit) {

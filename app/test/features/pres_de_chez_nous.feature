@@ -14,7 +14,7 @@ Feature: Près de chez nous
 
   Scenario: Voir les suggestions
     Then I see {"EARL les maraîchers du Val d'Amour"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                        | 'statusCode' | 'requestData'                                                                |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/proximite/search2" |          200 | {"categorie": "nourriture", "nombre_max_resultats": 9, "rayon_metres": 5000} |
 
@@ -22,7 +22,7 @@ Feature: Près de chez nous
     When I tap on {'Tous les commerces'}
     When I tap on {'Les producteurs locaux'}
     Then I see {"EARL les maraîchers du Val d'Amour"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                        | 'statusCode' | 'requestData'                                                                   |
       | 'POST'   | "/utilisateurs/{userId}/recherche_services/proximite/search2" |          200 | {"categorie": "circuit_court", "nombre_max_resultats": 9, "rayon_metres": 5000} |
   # TODO(lsaudon): Corriger les tests liés à l'ajout de l'image dans ActionsRecommandedQuestions
@@ -30,7 +30,7 @@ Feature: Près de chez nous
   #   When I enter {"110 Rue Garibaldi"} in the autocomplete field
   #   When I tap on {'110 Rue Garibaldi 69006 Lyon'}
   #   Then I see {"EARL les maraîchers du Val d'Amour"}
-  #   Then the API receives
+  #   Then the API receive
   #     | 'method' | 'path'                                                        | 'statusCode' | 'requestData'                                                                                                     |
   #     | 'POST'   | "/utilisateurs/{userId}/recherche_services/proximite/search2" |          200 | {"categorie":"nourriture","nombre_max_resultats":9,"rayon_metres":5000,"latitude":45.766368,"longitude":4.850666} |
   # Scenario: Aller sur la page de détails

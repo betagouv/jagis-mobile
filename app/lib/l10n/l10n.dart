@@ -212,7 +212,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
-  static const adresseDeMaResidencePrincipale = 'L’adresse de ma résidence principale';
+  static const lAdresseDeMaResidencePrincipale = 'L’adresse de ma résidence principale';
   static const monClassement = 'Mon classement';
   static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';

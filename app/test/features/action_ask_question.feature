@@ -23,7 +23,7 @@ Feature: Action ask a question to the team
     When I enter {"Voici ma question."} in the {'Posez votre question'} field
     When I scroll down to {'Envoyer'}
     When I tap on {'Envoyer'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                      | 'statusCode' | 'requestData'                     |
       | "POST"   | "/utilisateurs/{userId}/actions/classique/action_comparer_elecgaz/question" |          200 | {"question":"Voici ma question."} |
 

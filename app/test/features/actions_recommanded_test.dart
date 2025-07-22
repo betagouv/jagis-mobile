@@ -14,7 +14,7 @@ import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_tap_on.dart';
 import './step/i_have_theme_with_actions.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_have_theme_with_no_action.dart';
 import './step/i_have_theme_with_customization_needed.dart';
 
@@ -242,7 +242,7 @@ void main() {
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iTapOn(tester, "Passer la question");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

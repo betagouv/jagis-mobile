@@ -25,7 +25,7 @@ Feature: My home
     When I scroll down to {'Un appartement'}
     When I tap on {'Un appartement'}
     When I tap on {'Mettre à jour mes informations'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                            | 'statusCode' | 'requestData'                                                        |
       | 'PATCH'  | '/utilisateurs/{userId}/logement' |          200 | {"code_postal":"38280","code_commune":"38557","type":"appartement",} |
 
@@ -38,7 +38,7 @@ Feature: My home
     When I tap on {'Mon logement'}
     Then I see {"36 Rue des Cyprès 38280 Villette-d'Anthon"}
     When I tap on {'Supprimer mon adresse'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                            | 'statusCode' | 'requestData'                                                   |
       | 'PATCH'  | '/utilisateurs/{userId}/logement' |          200 | {"latitude":null,"longitude":null,"numero_rue":null,"rue":null} |
 
@@ -52,6 +52,6 @@ Feature: My home
     When I enter {"110 Rue Garibaldi"} in the autocomplete field
     When I tap on {'110 Rue Garibaldi 69006 Lyon'}
     When I tap on {'Mettre à jour mes informations'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                            | 'statusCode' | 'requestData'                                                                                                                     |
       | 'PATCH'  | '/utilisateurs/{userId}/logement' |          200 | {"latitude":45.766368,"longitude":4.850666,"numero_rue":"110","rue":"Rue Garibaldi","code_postal":"69006","code_commune":"69386"} |

@@ -9,7 +9,7 @@ sealed class WinterState extends Equatable {
   const WinterState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 @immutable
@@ -29,6 +29,7 @@ final class WinterForm extends WinterState {
   const WinterForm({
     required this.formType,
     required this.address,
+    required this.isAddressCompleted,
     required this.lastName,
     required this.prmNumber,
     required this.isDeclarationChecked,
@@ -36,14 +37,15 @@ final class WinterForm extends WinterState {
   });
 
   final RegistrationType formType;
-  final Address address;
+  final Address? address;
+  final bool isAddressCompleted;
   final String lastName;
   final String prmNumber;
   final bool isDeclarationChecked;
   final WinterConnectionStatus connectionStatus;
 
   bool get isFormValid => switch (formType) {
-    RegistrationType.address => address.isFull && lastName.isNotEmpty && isDeclarationChecked,
+    RegistrationType.address => address != null && address!.isFull && lastName.isNotEmpty && isDeclarationChecked,
     RegistrationType.prm => prmNumber.isNotEmpty && isDeclarationChecked,
   };
   bool get isFormInvalid => !isFormValid;
@@ -51,6 +53,7 @@ final class WinterForm extends WinterState {
   WinterForm copyWith({
     final RegistrationType? formType,
     final Address? address,
+    final bool? isAddressCompleted,
     final String? lastName,
     final String? prmNumber,
     final bool? isDeclarationChecked,
@@ -58,6 +61,7 @@ final class WinterForm extends WinterState {
   }) => WinterForm(
     formType: formType ?? this.formType,
     address: address ?? this.address,
+    isAddressCompleted: isAddressCompleted ?? this.isAddressCompleted,
     lastName: lastName ?? this.lastName,
     prmNumber: prmNumber ?? this.prmNumber,
     isDeclarationChecked: isDeclarationChecked ?? this.isDeclarationChecked,
@@ -65,7 +69,7 @@ final class WinterForm extends WinterState {
   );
 
   @override
-  List<Object> get props => [formType, address, lastName, prmNumber, isDeclarationChecked, connectionStatus];
+  List<Object?> get props => [formType, address, isAddressCompleted, lastName, prmNumber, isDeclarationChecked, connectionStatus];
 }
 
 @immutable

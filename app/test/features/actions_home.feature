@@ -20,7 +20,7 @@ Feature: Actions home
     Given The application is launched
     When I tap on {'Terminées'}
     Then I see {'🌧️ Calculer vos aides pour rénover votre logement'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                                   | 'statusCode' | 'requestData' |
       | "GET"    | '/utilisateurs/%7BuserId%7D/actions?realisation=faite&recommandation=recommandee&take=6' |          200 | null          |
 

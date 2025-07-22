@@ -38,7 +38,7 @@ Feature: Action MAIF
     Then I see {'Risques retrait-gonflement des sols argileux'}
     Then I see {'Risques sismiques'}
     Then I see {"Risques d'exposition au radon"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                   | 'statusCode' | 'requestData' |
       | 'POST'   | "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite" |          200 | null          |
 
@@ -78,7 +78,7 @@ Feature: Action MAIF
     When I tap on {'110 Rue Garibaldi 69006 Lyon'}
     When I tap on {'Enregistrer'}
     Then I don't see {'Enregistrer'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                                   | 'statusCode' | 'requestData'                                                                                                                     |
       | 'POST'   | "/utilisateurs/{userId}/actions/simulateur/action_simulateur_maif/faite" |          200 | null                                                                                                                              |
       | 'PATCH'  | "/utilisateurs/{userId}/logement"                                        |          200 | {"rue":"Rue Garibaldi","numero_rue":"110","code_postal":"69006","code_commune":"69386","latitude":45.766368,"longitude":4.850666} |

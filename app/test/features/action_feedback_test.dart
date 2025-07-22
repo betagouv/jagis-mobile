@@ -17,7 +17,7 @@ import './step/i_tap_on_semantics.dart';
 import './step/i_see.dart';
 import './step/i_enter_in_the_field.dart';
 import './step/i_dont_see.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 
 void main() {
   setUpAll(() async {
@@ -191,7 +191,7 @@ void main() {
         await iScrollDownTo(tester, 'Envoyer');
         await iTapOn(tester, 'Envoyer');
         await iDontSee(tester, 'Envoyer');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

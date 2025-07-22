@@ -33,7 +33,7 @@ Feature: Action Quiz
     When I tap on {'Voir la réponse'}
     Then I see {'✅ Votre réponse : Faux'}
     Then I see {'Les idées reçues sur le compost'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'    |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/123" |          200 | {"pourcent":100} |
 
@@ -52,7 +52,7 @@ Feature: Action Quiz
     When I scroll down to {'Voir la réponse'}
     When I tap on {'Voir la réponse'}
     Then I see {'❌ Votre réponse : Vrai'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'  |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/123" |          200 | {"pourcent":0} |
 
@@ -71,7 +71,7 @@ Feature: Action Quiz
     When I tap on {'Voir la réponse'}
     Then I see {"✅ Votre réponse : Poubelle jaune, l'aluminium se recycle"}
     Then I see {"explication OK"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'    |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/216" |          200 | {"pourcent":100} |
 
@@ -90,7 +90,7 @@ Feature: Action Quiz
     When I tap on {'Voir la réponse'}
     Then I see {"❌ Votre réponse : Avec les ordures ménagères, l'aluminium ne se recycle pas"}
     Then I see {"explication KO"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                          | 'statusCode' | 'requestData'  |
       | "PATCH"  | "/utilisateurs/{userId}/bibliotheque/quizz/216" |          200 | {"pourcent":0} |
 
@@ -123,7 +123,7 @@ Feature: Action Quiz
     Then I see {"✅ Votre réponse : Poubelle jaune, l'aluminium se recycle"}
     When I scroll down to {'Voir le résultat'}
     When I tap on {'Voir le résultat'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                        | 'statusCode' | 'requestData' |
       | "POST"   | "/utilisateurs/{userId}/actions/quizz/quiz_tri_dechets/faite" |          200 | null          |
     When I see {'Recommencer le quiz'}

@@ -12,7 +12,7 @@ import './step/the_application_is_launched.dart';
 import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
 import './step/i_scroll_down_to.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 
 void main() {
   setUpAll(() async {
@@ -161,7 +161,7 @@ void main() {
         await iTapOn(tester, 'Quels modes de chauffage existent chez vous ?');
         await iScrollDownTo(tester, 'Aucune de ces propositions');
         await iTapOn(tester, 'Aucune de ces propositions');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

@@ -41,7 +41,7 @@ Feature: Mes actions recommandées
     When I scroll down to {'Commencer'}
     When I tap on {'Commencer'}
     When I tap on {"Passer la question"}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                               | 'statusCode' | 'requestData' |
       | 'POST'   | '/utilisateurs/{userId}/questionsKYC_v2/KYC003/skip' |          200 | null          |
 

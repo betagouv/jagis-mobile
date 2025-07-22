@@ -27,7 +27,7 @@ Feature: Gamification
     Then I see {'200'} points
     Then I see {'1'} badges
     Then I don't see {'Merci pour votre soutien !'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                | 'statusCode' | 'requestData' |
       | "POST"   | "/utilisateurs/{userId}/gamification/popup_reset_vue" |          200 | null          |
 

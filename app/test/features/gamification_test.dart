@@ -15,7 +15,7 @@ import './step/i_see.dart';
 import './step/i_tap_on.dart';
 import './step/i_see_badges.dart';
 import './step/i_dont_see.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_tap_on_the_menu_button.dart';
@@ -133,7 +133,7 @@ void main() {
         await iSeePoints(tester, '200');
         await iSeeBadges(tester, '1');
         await iDontSee(tester, 'Merci pour votre soutien !');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

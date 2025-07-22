@@ -12,7 +12,7 @@ import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_dont_see.dart';
@@ -237,7 +237,7 @@ void main() {
         await iTapOn(tester, 'Que faire de mes objets ?');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
         await iSee(tester, "Acheter d'occasion");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -302,7 +302,7 @@ void main() {
         await iTapOn(tester, 'Vos objets');
         await iTapOn(tester, 'Donner');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -367,7 +367,7 @@ void main() {
         await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iSee(tester, "EBS LE RELAIS NORD PAS DE CALAIS");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -560,7 +560,7 @@ void main() {
         await iTapOn(tester, 'Que faire de mes objets ?');
         await iScrollDownTo(tester, 'Afficher plus de suggestions');
         await iTapOn(tester, 'Afficher plus de suggestions');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -577,7 +577,7 @@ void main() {
             ]));
         await iScrollDownTo(tester, 'Afficher plus de suggestions');
         await iTapOn(tester, 'Afficher plus de suggestions');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

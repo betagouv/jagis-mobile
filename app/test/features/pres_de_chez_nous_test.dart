@@ -12,7 +12,7 @@ import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 
 void main() {
   setUpAll(() async {
@@ -187,7 +187,7 @@ void main() {
         await beforeEach('''Voir les suggestions''');
         await bddSetUp(tester);
         await iSee(tester, "EARL les maraîchers du Val d'Amour");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -220,7 +220,7 @@ void main() {
         await iTapOn(tester, 'Tous les commerces');
         await iTapOn(tester, 'Les producteurs locaux');
         await iSee(tester, "EARL les maraîchers du Val d'Amour");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

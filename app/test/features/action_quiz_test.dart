@@ -14,7 +14,7 @@ import './step/the_api_will_return.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
-import './step/the_api_receives.dart';
+import './step/the_api_receive.dart';
 
 void main() {
   setUpAll(() async {
@@ -321,7 +321,7 @@ void main() {
         await iTapOn(tester, 'Voir la réponse');
         await iSee(tester, '✅ Votre réponse : Faux');
         await iSee(tester, 'Les idées reçues sur le compost');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -482,7 +482,7 @@ void main() {
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
         await iSee(tester, '❌ Votre réponse : Vrai');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -609,7 +609,7 @@ void main() {
         await iSee(
             tester, "✅ Votre réponse : Poubelle jaune, l'aluminium se recycle");
         await iSee(tester, "explication OK");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -737,7 +737,7 @@ void main() {
         await iSee(tester,
             "❌ Votre réponse : Avec les ordures ménagères, l'aluminium ne se recycle pas");
         await iSee(tester, "explication KO");
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
@@ -927,7 +927,7 @@ void main() {
             tester, "✅ Votre réponse : Poubelle jaune, l'aluminium se recycle");
         await iScrollDownTo(tester, 'Voir le résultat');
         await iTapOn(tester, 'Voir le résultat');
-        await theApiReceives(
+        await theApiReceive(
             tester,
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],

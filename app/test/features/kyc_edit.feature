@@ -16,6 +16,6 @@ Feature: KYC edit
     When I tap on {'Quels modes de chauffage existent chez vous ?'}
     When I scroll down to {'Aucune de ces propositions'}
     When I tap on {'Aucune de ces propositions'}
-    Then the API receives
+    Then the API receive
       | 'method' | 'path'                                                    | 'statusCode' | 'requestData'                                                                                                                                                                                 |
       | "PUT"    | '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE' |          200 | [{"code":"KYC_chauffage_bois","selected":false},{"code":"KYC_chauffage_fioul","selected":false},{"code":"KYC_chauffage_gaz","selected":false},{"code":"KYC_chauffage_elec","selected":false}] |

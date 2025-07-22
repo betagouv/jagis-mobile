@@ -60,12 +60,13 @@
 1. Aller sur [App Store Connect](https://appstoreconnect.apple.com/)
 1. Sélectionner l'application J’agis
 1. Aller dans l'onglet `Apps` puis sélectionner l'app J’agis
-1. Cliquer sur `+`
+1. Cliquer sur `App iOS +` en haut à gauche
 1. Saisir le numéro de version (X.X.X)
-1. Dans la section `Build`, cliquer sur `Choisir` et sélectionner le build correspondant
-1. Remplir les informations de mise à jour (nouveautés, corrections, etc.)
-1. Cliquer sur `Enregistrer` puis `Envoyer pour examen`
-1. Une fois approuvé par Apple, cliquer sur `Publier cette version`
+1. Appuyer sur `Créer`
+1. Remplir la section Nouveautés de cette version (ex: Correction de bugs mineurs et amélioration des performances)
+1. Dans la section `Build`, cliquer sur `Ajouter un build` et sélectionner le build correspondant
+1. Cliquer sur `Enregistrer` puis `Ajouter pour vérification`
+1. Une fois approuvé par Apple, cliquer sur `Soumettre à l'équipe de vérifications des apps`
 
 ### Notes importantes
 

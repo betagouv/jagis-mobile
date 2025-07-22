@@ -10,14 +10,16 @@ class FnvDateOnlyInput extends StatefulWidget {
     required this.label,
     required this.hint,
     required this.maxYear,
-    required this.dateTime,
+    required this.initialValue,
     required this.onChanged,
+    this.enabled = true,
   });
 
+  final bool enabled;
   final String label;
   final String hint;
   final int maxYear;
-  final DateTime? dateTime;
+  final DateTime? initialValue;
   final ValueChanged<DateTime> onChanged;
 
   @override
@@ -51,7 +53,7 @@ class _FnvDateOnlyInputState extends State<FnvDateOnlyInput> {
   @override
   void initState() {
     super.initState();
-    final dateTime = widget.dateTime;
+    final dateTime = widget.initialValue;
     if (dateTime != null) {
       _dayController.text = dateTime.day.toString().padLeft(_lenghtDay, '0');
       _monthController.text = dateTime.month.toString().padLeft(_lenghtMonth, '0');
@@ -222,6 +224,7 @@ class _FnvDateOnlyInputState extends State<FnvDateOnlyInput> {
                   label: 'Jour',
                   hintText: 'Exemple : 14',
                   controller: _dayController,
+                  enabled: widget.enabled,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
@@ -234,6 +237,7 @@ class _FnvDateOnlyInputState extends State<FnvDateOnlyInput> {
                   label: 'Mois',
                   hintText: 'Exemple : 09',
                   controller: _monthController,
+                  enabled: widget.enabled,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
@@ -246,6 +250,7 @@ class _FnvDateOnlyInputState extends State<FnvDateOnlyInput> {
                   label: 'Année',
                   hintText: 'Exemple : 1984',
                   controller: _yearController,
+                  enabled: widget.enabled,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(4)],

@@ -9,7 +9,7 @@ Widget buildDateOnlyInputUseCase(final BuildContext context) => Padding(
     label: 'Date de naissance',
     hint: 'Indication : texte de description additionnel',
     maxYear: DateTime.now().year,
-    dateTime: null,
+    initialValue: null,
     onChanged: print,
   ),
 );

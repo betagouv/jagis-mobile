@@ -6,14 +6,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
-import '../features/step/i_select_date_in_the_field.dart';
+import '../features/step/i_see.dart';
 import '../features/step/i_tap_on.dart';
 import 'steps/iel_a_ces_informations_de_profile.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
 import 'steps/iel_scrolle.dart';
-import 'steps/iel_voit_le_texte.dart';
 import 'steps/iel_voit_le_texte_dans_texte_riche.dart';
 import 'steps/iel_voit_le_texte_markdown.dart';
 import 'steps/scenario_context.dart';
@@ -23,30 +22,30 @@ void main() {
   testWidgets('Voir tous les textes', (final tester) async {
     setUpWidgets(tester);
     await _allerSurMesInformations(tester);
-    ielVoitLeTexte(Localisation.mesInformations);
-    ielVoitLeTexte(Localisation.monIdentite);
-    ielVoitLeTexte(Localisation.pseudonyme);
-    ielVoitLeTexte(Localisation.prenom);
-    ielVoitLeTexte(Localisation.nom);
-    ielVoitLeTexte(Localisation.nom);
+    await iSee(tester, Localisation.mesInformations);
+    await iSee(tester, Localisation.monIdentite);
+    await iSee(tester, Localisation.pseudonyme);
+    await iSee(tester, Localisation.prenom);
+    await iSee(tester, Localisation.nom);
+    await iSee(tester, Localisation.nom);
     await ielScrolle(tester, Localisation.donneesPersonnelles);
-    ielVoitLeTexte(Localisation.donneesPersonnelles);
-    ielVoitLeTexte(Localisation.nombreDePartsFiscales);
-    ielVoitLeTexte(Localisation.nombreDePartsFiscalesDescription);
-    ielVoitLeTexte(Localisation.revenuFiscal);
+    await iSee(tester, Localisation.donneesPersonnelles);
+    await iSee(tester, Localisation.nombreDePartsFiscales);
+    await iSee(tester, Localisation.nombreDePartsFiscalesDescription);
+    await iSee(tester, Localisation.revenuFiscal);
     ielVoitLeTexteMarkdown(tester, Localisation.pourquoiCesQuestionsReponse);
-    ielVoitLeTexte(Localisation.mettreAJourMesInformations);
+    await iSee(tester, Localisation.mettreAJourMesInformations);
   });
 
   testWidgets('Iel voit les informations prérempli', (final tester) async {
     setUpWidgets(tester);
     await _allerSurMesInformations(tester);
-    ielVoitLeTexte('Dupont');
-    ielVoitLeTexte('Michel');
+    await iSee(tester, 'Dupont');
+    await iSee(tester, 'Michel');
     ielVoitLeTexteDansTexteRiche('michel@dupont.fr');
     await ielScrolle(tester, Localisation.revenuFiscal);
-    ielVoitLeTexte(FnvNumberFormat.formatNumber(1.5));
-    ielVoitLeTexte(formatCurrency(16000));
+    await iSee(tester, FnvNumberFormat.formatNumber(1.5));
+    await iSee(tester, formatCurrency(16000));
   });
 
   testWidgets('Iel rempli ces informations et appuie sur mettre à jour', (final tester) async {
@@ -57,7 +56,9 @@ void main() {
     await iEnterInTheField(tester, 'Nouveau prenom', Localisation.prenom);
     await iEnterInTheField(tester, 'Nouveau nom', Localisation.nom);
     final year = ScenarioContext().clock!.now().year - 18;
-    await iSelectDateInTheField(tester, '15/01/$year', Localisation.dateDeNaissance);
+    await iEnterInTheField(tester, '15', 'Jour');
+    await iEnterInTheField(tester, '01', 'Mois');
+    await iEnterInTheField(tester, year.toString(), 'Année');
     await ielScrolle(tester, Localisation.revenuFiscal);
     await iEnterInTheField(tester, 2.5.toString(), Localisation.nombreDePartsFiscales);
     await iEnterInTheField(tester, 35000.toString(), Localisation.revenuFiscal);

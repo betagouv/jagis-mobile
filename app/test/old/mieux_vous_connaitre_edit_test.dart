@@ -2,12 +2,12 @@ import 'package:app/l10n/l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../features/step/i_enter_in_the_field.dart';
+import '../features/step/i_see.dart';
 import '../features/step/i_tap_on.dart';
 import 'steps/iel_appuie_sur_accesibilite.dart';
 import 'steps/iel_est_connecte.dart';
 import 'steps/iel_lance_lapplication.dart';
 import 'steps/iel_ne_voit_pas_le_texte.dart';
-import 'steps/iel_voit_le_texte.dart';
 import 'steps/le_serveur_retourne_ces_questions.dart';
 import 'steps/set_up_widgets.dart';
 
@@ -29,8 +29,8 @@ void main() {
     ]);
     await _allerSurMieuxVousConnaitre(tester);
     await iTapOn(tester, question);
-    ielVoitLeTexte(question);
-    ielVoitLeTexte(reponse);
+    await iSee(tester, question);
+    await iSee(tester, reponse);
   });
 
   testWidgets('Modifier la réponse à une question libre', (final tester) async {
@@ -64,8 +64,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(nouvelleReponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, nouvelleReponse);
   });
 
   testWidgets('Modifier la réponse à une question entier', (final tester) async {
@@ -99,8 +99,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(nouvelleReponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, nouvelleReponse);
   });
 
   testWidgets('Ne pas modifier la réponse à une question entier', (final tester) async {
@@ -123,8 +123,8 @@ void main() {
     const nouvelleReponse = 'Michel';
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(reponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, reponse);
     ielNeVoitPasLeTexte(nouvelleReponse);
   });
 
@@ -146,8 +146,8 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await iTapOn(tester, question);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(reponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, reponse);
   });
 
   testWidgets('Modifier la réponse à une question choix unique', (final tester) async {
@@ -187,8 +187,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(nouvelleReponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, nouvelleReponse);
   });
 
   testWidgets('Modifier la réponse à une question choix multiple', (final tester) async {
@@ -233,8 +233,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte([...reponses, reponseEnPlus].join(' - '));
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, [...reponses, reponseEnPlus].join(' - '));
   });
 
   testWidgets('Modifier plusieurs questions', (final tester) async {
@@ -297,8 +297,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(nouvelleReponse);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, nouvelleReponse);
     await iTapOn(tester, question2);
     await iTapOn(tester, nouvelleReponse2);
     leServeurRetourneCesQuestions([
@@ -325,8 +325,8 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    ielVoitLeTexte(Localisation.mieuxVousConnaitre);
-    ielVoitLeTexte(nouvelleReponse2);
+    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, nouvelleReponse2);
   });
 }
 

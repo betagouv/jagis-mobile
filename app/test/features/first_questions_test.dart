@@ -13,7 +13,6 @@ import './step/i_enter_in_the_field.dart';
 import './step/i_tap_on_create_my_account_button.dart';
 import './step/im_redirect_to_magic_link_callback.dart';
 import './step/i_scroll_down_to.dart';
-import './step/i_select_date_in_the_field.dart';
 import './step/i_see.dart';
 import './step/i_select_in_the_field.dart';
 import './step/the_api_receive.dart';
@@ -55,8 +54,9 @@ void main() {
         await bddSetUp(tester);
         await iEnterInTheField(tester, 'Joe123', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
-        await iSelectDateInTheField(
-            tester, '15/01/1974', 'Ma date de naissance');
+        await iEnterInTheField(tester, '15', 'Jour');
+        await iEnterInTheField(tester, '01', 'Mois');
+        await iEnterInTheField(tester, '1974', 'Année');
         await iTapOn(tester, 'Continuer');
         await iSee(tester,
             'Pour découvrir des aides, services et contenus disponibles proches de chez vous, indiquez-nous votre lieu de résidence.');
@@ -134,8 +134,9 @@ void main() {
             ]));
         await iEnterInTheField(tester, 'Lucas', 'Mon pseudonyme');
         await iScrollDownTo(tester, 'Ma date de naissance');
-        await iSelectDateInTheField(
-            tester, '15/01/1974', 'Ma date de naissance');
+        await iEnterInTheField(tester, '15', 'Jour');
+        await iEnterInTheField(tester, '01', 'Mois');
+        await iEnterInTheField(tester, '1974', 'Année');
         await iTapOn(tester, 'Continuer');
         await iSee(tester, 'Une erreur est survenue.');
       } on TestFailure {

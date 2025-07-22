@@ -87,20 +87,23 @@ class _Loader extends StatelessWidget {
   const _Loader();
 
   @override
-  Widget build(final BuildContext context) => const SizedBox(
-    height: 200,
-    child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: DsfrSpacings.s1w,
-        children: [
-          FnvLoader(),
-          Text(
-            Localisation.nousPreparonsVosRecommandationsPersonnalisees,
-            style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
-            textAlign: TextAlign.center,
-          ),
-        ],
+  Widget build(final BuildContext context) => const DecoratedBox(
+    decoration: BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
+    child: SizedBox(
+      height: 200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: DsfrSpacings.s1w,
+          children: [
+            FnvLoader(),
+            Text(
+              Localisation.nousPreparonsVosRecommandationsPersonnalisees,
+              style: DsfrTextStyle.bodyLg(color: DsfrColors.grey50),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -181,8 +184,8 @@ class _Question extends StatelessWidget {
   final Cursor<CurrentQuestion> cursor;
 
   @override
-  Widget build(final BuildContext context) => ColoredBox(
-    color: Colors.white,
+  Widget build(final BuildContext context) => DecoratedBox(
+    decoration: const BoxDecoration(color: FnvColors.carteFond, boxShadow: FnvShadows.card),
     child: Padding(
       padding: const EdgeInsets.all(DsfrSpacings.s2w),
       child: Column(

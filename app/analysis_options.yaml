@@ -1,13 +1,5 @@
 include: package:jagis_lints/analysis_options.yaml
-analyzer:
-  exclude: 
-    - 'test/features/*_test.dart'
 dart_code_metrics:
-  exclude:
-    unused-files:
-      - test/features/step/*.dart
-    unused-code:
-      - test/features/step/*.dart
   rules:
     - avoid-unnecessary-futures:
         exclude:

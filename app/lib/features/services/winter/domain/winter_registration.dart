@@ -1,14 +1,29 @@
+import 'package:app/core/address/address.dart';
 import 'package:equatable/equatable.dart';
 
-enum RegistrationType { address, prm }
+sealed class WinterRegistration extends Equatable {
+  const WinterRegistration({required this.lastName});
 
-class WinterRegistration extends Equatable {
-  const WinterRegistration({required this.type, required this.lastName, this.prmNumber});
-
-  final RegistrationType type;
   final String lastName;
-  final String? prmNumber;
 
   @override
-  List<Object?> get props => [type, lastName, prmNumber];
+  List<Object?> get props => [lastName];
+}
+
+final class WinterRegistrationByAddress extends WinterRegistration {
+  const WinterRegistrationByAddress({required super.lastName, required this.address});
+
+  final Address address;
+
+  @override
+  List<Object?> get props => [...super.props, address];
+}
+
+final class WinterRegistrationByPrm extends WinterRegistration {
+  const WinterRegistrationByPrm({required super.lastName, required this.prmNumber});
+
+  final String prmNumber;
+
+  @override
+  List<Object?> get props => [...super.props, prmNumber];
 }

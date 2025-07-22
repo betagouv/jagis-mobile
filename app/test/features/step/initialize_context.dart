@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
 
 import '../../environmental_performance/summary/environmental_performance_data.dart';
 import '../../helpers/dio_mock.dart';
-import '../../helpers/url_launcher_mock.dart';
 import '../helper/feature_context.dart';
 import '../helper/flutter_secure_storage_fake.dart';
 import '../helper/http_override.dart';
@@ -21,7 +18,6 @@ Future<void> initializeContext() async {
   FeatureContext.instance.secureStorage = FlutterSecureStorageFake();
   FeatureContext.instance.packageInfo = const PackageInfoFake(version: '1.2.3', buildNumber: '4');
   FeatureContext.instance.dioMock = DioMock();
-  _mockUrlLauncher();
 
   setLogout();
   setNotification();
@@ -60,14 +56,6 @@ Future<void> initializeContext() async {
         'pourcentage_global_reco_done': 0,
       },
     );
-}
-
-void _mockUrlLauncher() {
-  final mock = UrlLauncherMock();
-  registerFallbackValue(const LaunchOptions());
-  when(() => mock.launchUrl(any(), any())).thenAnswer((_) async => true);
-  FeatureContext.instance.urlLauncherMock = mock;
-  UrlLauncherPlatform.instance = mock;
 }
 
 void setThemes() => FeatureContext.instance.dioMock

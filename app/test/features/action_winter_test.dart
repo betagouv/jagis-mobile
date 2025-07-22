@@ -15,7 +15,6 @@ import './step/i_see.dart';
 import './step/i_scroll_down_to.dart';
 import './step/i_enter_in_the_field.dart';
 import './step/the_api_receive.dart';
-import './step/the_api_doesnt_receive.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 import './step/i_dont_see.dart';
 
@@ -251,14 +250,16 @@ void main() {
                 'POST',
                 "/utilisateurs/{userId}/winter/inscription_par_adresse",
                 200,
-                {'nom': 'Saudon'}
+                {
+                  'nom': 'Saudon',
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "code_commune": "39198"
+                }
               ]
-            ]));
-        await theApiDoesntReceive(
-            tester,
-            const bdd.DataTable([
-              ['method', 'path', 'statusCode', 'requestData'],
-              ['PATCH', '/utilisateurs/{userId}/logement', 200, null]
             ]));
         await iSee(tester, 'Connexion établie');
       } on TestFailure {
@@ -415,10 +416,11 @@ void main() {
             const bdd.DataTable([
               ['method', 'path', 'statusCode', 'requestData'],
               [
-                'PATCH',
-                '/utilisateurs/{userId}/logement',
+                'POST',
+                "/utilisateurs/{userId}/winter/inscription_par_adresse",
                 200,
                 {
+                  'nom': 'Saudon',
                   "latitude": 45.766368,
                   "longitude": 4.850666,
                   "numero_rue": "110",
@@ -426,12 +428,6 @@ void main() {
                   "code_postal": "69006",
                   "code_commune": "69386"
                 }
-              ],
-              [
-                'POST',
-                "/utilisateurs/{userId}/winter/inscription_par_adresse",
-                200,
-                {'nom': 'Saudon'}
               ]
             ]));
       } on TestFailure {
@@ -590,7 +586,15 @@ void main() {
                 'POST',
                 "/utilisateurs/{userId}/winter/inscription_par_adresse",
                 400,
-                {'nom': 'Saudon'}
+                {
+                  'nom': 'Saudon',
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "code_commune": "39198"
+                }
               ]
             ]));
         await iSee(tester, 'La connexion a échoué');

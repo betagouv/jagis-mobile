@@ -53,7 +53,6 @@ class ThemeHeader extends StatelessWidget {
                   ),
                 ],
               ),
-
               ActionsRecommandedSection(theme: themeInfo),
             ],
           ),

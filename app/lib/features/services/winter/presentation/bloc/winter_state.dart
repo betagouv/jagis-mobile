@@ -1,8 +1,9 @@
 import 'package:app/core/address/address.dart';
 import 'package:app/features/services/winter/domain/winter_my_consumption_data.dart';
-import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
+enum RegistrationType { address, prm }
 
 @immutable
 sealed class WinterState extends Equatable {

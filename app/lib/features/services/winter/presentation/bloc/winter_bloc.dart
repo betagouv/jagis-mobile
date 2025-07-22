@@ -102,21 +102,12 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
       return;
     }
 
-    final registration = WinterRegistration(
-      type: switch (state.formType) {
-        RegistrationType.address => RegistrationType.address,
-        RegistrationType.prm => RegistrationType.prm,
-      },
-      lastName: state.lastName,
-      prmNumber: state.formType == RegistrationType.prm ? state.prmNumber : null,
-    );
+    final registrationDetails = switch (state.formType) {
+      RegistrationType.address => WinterRegistrationByAddress(lastName: state.lastName, address: state.address!),
+      RegistrationType.prm => WinterRegistrationByPrm(lastName: state.lastName, prmNumber: state.prmNumber),
+    };
 
-    final address = state.address;
-    if (state.formType == RegistrationType.address && !state.isAddressCompleted && address != null) {
-      await _userAddressRepository.updateAddress(address);
-    }
-
-    final result = await _repository.register(registration);
+    final result = await _repository.register(registrationDetails);
 
     final connectionStatus = result.fold(
       (final l) => WinterConnectionStatus.failed,

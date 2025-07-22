@@ -1,4 +1,3 @@
-import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_bloc.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_event.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_state.dart';

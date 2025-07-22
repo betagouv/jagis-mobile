@@ -11,13 +11,17 @@ class WinterRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, Unit>> register(final WinterRegistration registration) => switch (registration.type) {
-    RegistrationType.address => _registerByAddress(registration),
-    RegistrationType.prm => _registerByPrm(registration),
+  Future<Either<Exception, Unit>> register(final WinterRegistration registration) => switch (registration) {
+    WinterRegistrationByAddress() => _registerByAddress(registration),
+    WinterRegistrationByPrm() => _registerByPrm(registration),
   };
 
-  Future<Either<Exception, Unit>> _registerByAddress(final WinterRegistration registration) async {
-    final response = await _client.post(Endpoints.winterInscriptionParAdresse, data: {'nom': registration.lastName});
+  Future<Either<Exception, Unit>> _registerByAddress(final WinterRegistrationByAddress registration) async {
+    final addressToJson = registration.address.toJson();
+    final response = await _client.post(
+      Endpoints.winterInscriptionParAdresse,
+      data: {'nom': registration.lastName, ...addressToJson},
+    );
 
     if (isResponseUnsuccessful(response.statusCode)) {
       return Left(Exception("Erreur lors de l'inscription par adresse"));
@@ -26,10 +30,10 @@ class WinterRepository {
     return const Right(unit);
   }
 
-  Future<Either<Exception, Unit>> _registerByPrm(final WinterRegistration registration) async {
+  Future<Either<Exception, Unit>> _registerByPrm(final WinterRegistrationByPrm registration) async {
     final response = await _client.post(
       Endpoints.winterInscriptionParPrm,
-      data: {'nom': registration.lastName, 'prm': registration.prmNumber!},
+      data: {'nom': registration.lastName, 'prm': registration.prmNumber},
     );
 
     if (isResponseUnsuccessful(response.statusCode)) {

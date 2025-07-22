@@ -1,5 +1,5 @@
 import 'package:app/core/address/address.dart';
-import 'package:app/features/services/winter/domain/winter_registration.dart';
+import 'package:app/features/services/winter/presentation/bloc/winter_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

@@ -24,11 +24,8 @@ Feature: Action Winter
     When I tap on {'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.'}
     When I tap on {'Valider'}
     Then the API receive
-      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'    |
-      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          200 | {'nom':'Saudon'} |
-    Then the API doesn't receive
-      | 'method' | 'path'                            | 'statusCode' | 'requestData' |
-      | 'PATCH'  | '/utilisateurs/{userId}/logement' |          200 | null          |
+      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'                                                                                                                                       |
+      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          200 | {'nom':'Saudon',"latitude":47.10341,"longitude":5.480833,"numero_rue":"5","rue":"Chemin de Rougemont","code_postal":"39100","code_commune":"39198"} |
     Then I see {'Connexion établie'}
 
   Scenario: Remplir l'adresse
@@ -48,9 +45,8 @@ Feature: Action Winter
     When I tap on {'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.'}
     When I tap on {'Valider'}
     Then the API receive
-      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'                                                                                                                     |
-      | 'PATCH'  | '/utilisateurs/{userId}/logement'                       |          200 | {"latitude":45.766368,"longitude":4.850666,"numero_rue":"110","rue":"Rue Garibaldi","code_postal":"69006","code_commune":"69386"} |
-      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          200 | {'nom':'Saudon'}                                                                                                                  |
+      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'                                                                                                                                    |
+      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          200 | {'nom':'Saudon',"latitude":45.766368,"longitude":4.850666,"numero_rue":"110","rue":"Rue Garibaldi","code_postal":"69006","code_commune":"69386"} |
 
   Scenario: S'incrire par l'adresse et la connexion a échoué
     Given the API will return
@@ -66,8 +62,8 @@ Feature: Action Winter
     When I tap on {'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.'}
     When I tap on {'Valider'}
     Then the API receive
-      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'    |
-      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          400 | {'nom':'Saudon'} |
+      | 'method' | 'path'                                                  | 'statusCode' | 'requestData'                                                                                                                                       |
+      | 'POST'   | "/utilisateurs/{userId}/winter/inscription_par_adresse" |          400 | {'nom':'Saudon',"latitude":47.10341,"longitude":5.480833,"numero_rue":"5","rue":"Chemin de Rougemont","code_postal":"39100","code_commune":"39198"} |
     Then I see {'La connexion a échoué'}
 
   Scenario: S'incrire par le prm et la connexion est établie

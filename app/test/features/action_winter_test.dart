@@ -43,7 +43,7 @@ void main() {
                     "nombre_actions_en_cours": 0,
                     "nombre_actions_faites": 0,
                     "nombre_aides_disponibles": 0,
-                    "code": "action_simulateur_winter",
+                    "code": "actions_watt_watchers",
                     "emoji": "🌧️",
                     "titre": "**Faire des économies sur ma facture d’énergie**",
                     "type": "simulateur",
@@ -116,13 +116,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -193,7 +193,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -283,13 +283,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -360,7 +360,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -453,13 +453,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -530,7 +530,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -621,13 +621,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -698,7 +698,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -786,13 +786,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -863,7 +863,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -939,13 +939,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -1016,7 +1016,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -1055,7 +1055,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_action_simulateur_winter/first',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_actions_watt_watchers/first',
                 200,
                 {
                   "nombre_total_questions": 2,
@@ -1146,13 +1146,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies sur ma facture d’énergie**",
                   "sous_titre": null,
@@ -1223,7 +1223,7 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -1262,7 +1262,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_action_simulateur_winter/first',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_actions_watt_watchers/first',
                 200,
                 {
                   "nombre_total_questions": 2,
@@ -1324,7 +1324,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_action_simulateur_winter/following/KYC_alimentation_achat_vrac',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_actions_watt_watchers/following/KYC_alimentation_achat_vrac',
                 200,
                 {
                   "nombre_total_questions": 2,
@@ -1396,7 +1396,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_action_simulateur_winter/following/KYC_appetence_cuisine',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_actions_watt_watchers/following/KYC_appetence_cuisine',
                 200,
                 {
                   "nombre_total_questions": 2,
@@ -1492,7 +1492,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
                 200,
                 {
                   "actions": [
@@ -1641,8 +1641,8 @@ void main() {
                   ],
                   "selections": [
                     {
-                      "code": "actions_winter",
-                      "label": "actions_winter",
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
                       "selected": true
                     }
                   ],
@@ -1654,7 +1654,7 @@ void main() {
               ],
               [
                 'POST',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter/faite',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers/faite',
                 200,
                 {}
               ]
@@ -1670,6 +1670,7 @@ void main() {
             'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
         await iTapOn(tester, 'Valider');
         await iTapOn(tester, 'Continuer');
+        await iScrollDownTo(tester, 'Oui');
         await iTapOn(tester, 'Oui');
         await iScrollDownTo(tester, 'Question suivante');
         await iTapOn(tester, 'Question suivante');
@@ -1683,7 +1684,7 @@ void main() {
               ['method', 'path', 'statusCode', 'requestData'],
               [
                 'POST',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter/faite',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers/faite',
                 200,
                 null
               ]
@@ -1714,13 +1715,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies** sur ma facture d’énergie",
                   "sous_titre": null,
@@ -1791,12 +1792,38 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
                   },
                   "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "commune": "DOLE",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198",
+                  "est_prm_present": true,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": true
                 }
               ],
               [
@@ -1884,7 +1911,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
                 200,
                 {
                   "actions": [
@@ -2033,8 +2060,8 @@ void main() {
                   ],
                   "selections": [
                     {
-                      "code": "actions_winter",
-                      "label": "actions_winter",
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
                       "selected": true
                     }
                   ],
@@ -2069,13 +2096,13 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
                   "titre": "**Faire des économies** sur ma facture d’énergie",
                   "sous_titre": null,
@@ -2146,12 +2173,38 @@ void main() {
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
                   },
                   "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "commune": "DOLE",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198",
+                  "est_prm_present": true,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": true
                 }
               ],
               [
@@ -2239,7 +2292,7 @@ void main() {
               ],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
                 200,
                 {
                   "actions": [
@@ -2388,8 +2441,8 @@ void main() {
                   ],
                   "selections": [
                     {
-                      "code": "actions_winter",
-                      "label": "actions_winter",
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
                       "selected": true
                     }
                   ],
@@ -2416,11 +2469,13 @@ void main() {
         );
       }
     });
-    testWidgets('''Saisir l'adresse puis la saisir à nouveau''',
+    testWidgets(
+        '''Si le logement n'a pas de PRM alors on arrive sur la première page''',
         (tester) async {
       var success = true;
       try {
-        await beforeEach('''Saisir l'adresse puis la saisir à nouveau''');
+        await beforeEach(
+            '''Si le logement n'a pas de PRM alors on arrive sur la première page''');
         await bddSetUp(tester);
         await theApiWillReturn(
             tester,
@@ -2428,15 +2483,15 @@ void main() {
               ['method', 'path', 'statusCode', 'responseData'],
               [
                 'GET',
-                '/utilisateurs/{userId}/actions/simulateur/action_simulateur_winter',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
                 200,
                 {
                   "nombre_actions_en_cours": 1,
                   "nombre_actions_faites": 1,
                   "nombre_aides_disponibles": 0,
-                  "code": "action_simulateur_winter",
+                  "code": "actions_watt_watchers",
                   "emoji": "🌧️",
-                  "titre": "**Faire des économies sur ma facture d’énergie**",
+                  "titre": "**Faire des économies** sur ma facture d’énergie",
                   "sous_titre": null,
                   "consigne":
                       "Réalisez cette action dans les prochaines semaines et partagez vos retours",
@@ -2472,7 +2527,7 @@ void main() {
                       "code": "KYC_appetence_cuisine",
                       "question": "Aimez-vous cuisiner ?",
                       "reponse_multiple": [
-                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "oui", "label": "Oui", "selected": true},
                         {
                           "code": "parfois",
                           "label": "De temps en temps",
@@ -2485,7 +2540,7 @@ void main() {
                           "selected": false
                         }
                       ],
-                      "is_answered": false,
+                      "is_answered": true,
                       "categorie": "recommandation",
                       "points": 5,
                       "type": "choix_unique",
@@ -2499,13 +2554,13 @@ void main() {
                   "nom_commune": "Lyon",
                   "quizz_felicitations": null,
                   "deja_vue": true,
-                  "deja_faite": false,
+                  "deja_faite": true,
                   "faqs": [],
                   "points": 30,
                   "sources": [],
                   "articles": [],
                   "like_level": null,
-                  "enchainement_id": "simulateur_action_simulateur_winter",
+                  "enchainement_id": "simulateur_actions_watt_watchers",
                   "explications_recommandation": {
                     "liste_explications": [],
                     "est_exclu": false
@@ -2520,12 +2575,12 @@ void main() {
                 {
                   "nombre_adultes": 2,
                   "nombre_enfants": 1,
-                  "latitude": null,
-                  "longitude": null,
-                  "numero_rue": null,
-                  "rue": null,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
                   "code_postal": "39100",
-                  "commune": "Dole",
+                  "commune": "DOLE",
                   "type": "maison",
                   "superficie": "superficie_150",
                   "proprietaire": null,
@@ -2533,31 +2588,1035 @@ void main() {
                   "plus_de_15_ans": true,
                   "dpe": null,
                   "commune_label": "Dole",
-                  "code_commune": "39198"
+                  "code_commune": "39198",
+                  "est_prm_present": false,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": true
                 }
               ],
               [
-                'POST',
-                '/utilisateurs/{userId}/winter/inscription_par_adresse',
+                'GET',
+                '/utilisateurs/{userId}/winter/consommation',
                 200,
-                {}
+                {
+                  "consommation_totale_euros": 1234567,
+                  "economies_possibles_euros": 3345,
+                  "economies_realisees_euros": 0,
+                  "nombre_actions_associees": 0,
+                  "detail_usages": [
+                    {
+                      "eur": 130,
+                      "percent": 15,
+                      "type": "airConditioning",
+                      "couleur": "00809D",
+                      "emoji": "❄️"
+                    },
+                    {
+                      "eur": 1000,
+                      "percent": 20,
+                      "type": "heating",
+                      "couleur": "F3A26D",
+                      "emoji": "🔥"
+                    },
+                    {
+                      "eur": 453,
+                      "percent": 10,
+                      "type": "appliances",
+                      "couleur": "FCECDD",
+                      "emoji": "📠"
+                    },
+                    {
+                      "eur": 200,
+                      "percent": 7,
+                      "type": "cooking",
+                      "couleur": "FF7601",
+                      "emoji": "🍕"
+                    },
+                    {
+                      "eur": 220,
+                      "percent": 8,
+                      "type": "hotWater",
+                      "couleur": "FCD8CD",
+                      "emoji": "💧"
+                    },
+                    {
+                      "eur": 120,
+                      "percent": 5,
+                      "type": "lighting",
+                      "couleur": "FEEBF6",
+                      "emoji": "💡"
+                    },
+                    {
+                      "eur": 70,
+                      "percent": 5,
+                      "type": "mobility",
+                      "couleur": "EBD6FB",
+                      "emoji": "🚙"
+                    },
+                    {
+                      "eur": 42,
+                      "percent": 10,
+                      "type": "multimedia",
+                      "couleur": "748873",
+                      "emoji": "🎮"
+                    },
+                    {
+                      "eur": 987,
+                      "percent": 15,
+                      "type": "other",
+                      "couleur": "D1A980",
+                      "emoji": "❓"
+                    },
+                    {
+                      "eur": 123,
+                      "percent": 5,
+                      "type": "swimmingPool",
+                      "couleur": "E5E0D8",
+                      "emoji": "🏊"
+                    }
+                  ]
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
+                200,
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
               ]
             ]));
         await iTapOn(
             tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
-        await iScrollDownTo(tester, 'Commencer');
-        await iTapOn(tester, 'Commencer');
-        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
-        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
-        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
-        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Saisir l'adresse puis la saisir à nouveau''',
+          '''Si le logement n'a pas de PRM alors on arrive sur la première page''',
+          success,
+        );
+      }
+    });
+    testWidgets(
+        '''Si le logement a un prm obsolète alors on arrive sur la première page''',
+        (tester) async {
+      var success = true;
+      try {
+        await beforeEach(
+            '''Si le logement a un prm obsolète alors on arrive sur la première page''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
+                200,
+                {
+                  "nombre_actions_en_cours": 1,
+                  "nombre_actions_faites": 1,
+                  "nombre_aides_disponibles": 0,
+                  "code": "actions_watt_watchers",
+                  "emoji": "🌧️",
+                  "titre": "**Faire des économies** sur ma facture d’énergie",
+                  "sous_titre": null,
+                  "consigne":
+                      "Réalisez cette action dans les prochaines semaines et partagez vos retours",
+                  "label_compteur":
+                      "**453 actions** réalisées par la communauté",
+                  "besoins": [],
+                  "comment": null,
+                  "pourquoi":
+                      "## En quelques mots\n\nObtenez la répartition de votre consommation d'énergie en plus d’actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.",
+                  "type": "simulateur",
+                  "thematique": "logement",
+                  "kycs": [
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "question": "Achetez-vous en vrac ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "non", "label": "Non", "selected": true},
+                        {
+                          "code": "ne_sais_pas",
+                          "label": "Je ne sais pas",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "test",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": true,
+                      "thematique": "alimentation"
+                    },
+                    {
+                      "code": "KYC_appetence_cuisine",
+                      "question": "Aimez-vous cuisiner ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": true},
+                        {
+                          "code": "parfois",
+                          "label": "De temps en temps",
+                          "selected": false
+                        },
+                        {"code": "non", "label": "Non", "selected": false},
+                        {
+                          "code": "pas_de_reponse",
+                          "label": "Je ne souhaite pas répondre",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "recommandation",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": false,
+                      "thematique": "alimentation"
+                    }
+                  ],
+                  "quizzes": [],
+                  "aides": [],
+                  "services": [],
+                  "nom_commune": "Lyon",
+                  "quizz_felicitations": null,
+                  "deja_vue": true,
+                  "deja_faite": true,
+                  "faqs": [],
+                  "points": 30,
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "simulateur_actions_watt_watchers",
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "commune": "DOLE",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198",
+                  "est_prm_present": true,
+                  "est_prm_obsolete": true,
+                  "est_adresse_complete": true
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/winter/consommation',
+                200,
+                {
+                  "consommation_totale_euros": 1234567,
+                  "economies_possibles_euros": 3345,
+                  "economies_realisees_euros": 0,
+                  "nombre_actions_associees": 0,
+                  "detail_usages": [
+                    {
+                      "eur": 130,
+                      "percent": 15,
+                      "type": "airConditioning",
+                      "couleur": "00809D",
+                      "emoji": "❄️"
+                    },
+                    {
+                      "eur": 1000,
+                      "percent": 20,
+                      "type": "heating",
+                      "couleur": "F3A26D",
+                      "emoji": "🔥"
+                    },
+                    {
+                      "eur": 453,
+                      "percent": 10,
+                      "type": "appliances",
+                      "couleur": "FCECDD",
+                      "emoji": "📠"
+                    },
+                    {
+                      "eur": 200,
+                      "percent": 7,
+                      "type": "cooking",
+                      "couleur": "FF7601",
+                      "emoji": "🍕"
+                    },
+                    {
+                      "eur": 220,
+                      "percent": 8,
+                      "type": "hotWater",
+                      "couleur": "FCD8CD",
+                      "emoji": "💧"
+                    },
+                    {
+                      "eur": 120,
+                      "percent": 5,
+                      "type": "lighting",
+                      "couleur": "FEEBF6",
+                      "emoji": "💡"
+                    },
+                    {
+                      "eur": 70,
+                      "percent": 5,
+                      "type": "mobility",
+                      "couleur": "EBD6FB",
+                      "emoji": "🚙"
+                    },
+                    {
+                      "eur": 42,
+                      "percent": 10,
+                      "type": "multimedia",
+                      "couleur": "748873",
+                      "emoji": "🎮"
+                    },
+                    {
+                      "eur": 987,
+                      "percent": 15,
+                      "type": "other",
+                      "couleur": "D1A980",
+                      "emoji": "❓"
+                    },
+                    {
+                      "eur": 123,
+                      "percent": 5,
+                      "type": "swimmingPool",
+                      "couleur": "E5E0D8",
+                      "emoji": "🏊"
+                    }
+                  ]
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
+                200,
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
+              ]
+            ]));
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
+        await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Si le logement a un prm obsolète alors on arrive sur la première page''',
+          success,
+        );
+      }
+    });
+    testWidgets(
+        '''Si le logement a une adresse incomplète alors on arrive sur la première page''',
+        (tester) async {
+      var success = true;
+      try {
+        await beforeEach(
+            '''Si le logement a une adresse incomplète alors on arrive sur la première page''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
+                200,
+                {
+                  "nombre_actions_en_cours": 1,
+                  "nombre_actions_faites": 1,
+                  "nombre_aides_disponibles": 0,
+                  "code": "actions_watt_watchers",
+                  "emoji": "🌧️",
+                  "titre": "**Faire des économies** sur ma facture d’énergie",
+                  "sous_titre": null,
+                  "consigne":
+                      "Réalisez cette action dans les prochaines semaines et partagez vos retours",
+                  "label_compteur":
+                      "**453 actions** réalisées par la communauté",
+                  "besoins": [],
+                  "comment": null,
+                  "pourquoi":
+                      "## En quelques mots\n\nObtenez la répartition de votre consommation d'énergie en plus d’actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.",
+                  "type": "simulateur",
+                  "thematique": "logement",
+                  "kycs": [
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "question": "Achetez-vous en vrac ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "non", "label": "Non", "selected": true},
+                        {
+                          "code": "ne_sais_pas",
+                          "label": "Je ne sais pas",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "test",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": true,
+                      "thematique": "alimentation"
+                    },
+                    {
+                      "code": "KYC_appetence_cuisine",
+                      "question": "Aimez-vous cuisiner ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": true},
+                        {
+                          "code": "parfois",
+                          "label": "De temps en temps",
+                          "selected": false
+                        },
+                        {"code": "non", "label": "Non", "selected": false},
+                        {
+                          "code": "pas_de_reponse",
+                          "label": "Je ne souhaite pas répondre",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "recommandation",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": false,
+                      "thematique": "alimentation"
+                    }
+                  ],
+                  "quizzes": [],
+                  "aides": [],
+                  "services": [],
+                  "nom_commune": "Lyon",
+                  "quizz_felicitations": null,
+                  "deja_vue": true,
+                  "deja_faite": true,
+                  "faqs": [],
+                  "points": 30,
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "simulateur_actions_watt_watchers",
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "commune": "DOLE",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198",
+                  "est_prm_present": true,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": false
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/winter/consommation',
+                200,
+                {
+                  "consommation_totale_euros": 1234567,
+                  "economies_possibles_euros": 3345,
+                  "economies_realisees_euros": 0,
+                  "nombre_actions_associees": 0,
+                  "detail_usages": [
+                    {
+                      "eur": 130,
+                      "percent": 15,
+                      "type": "airConditioning",
+                      "couleur": "00809D",
+                      "emoji": "❄️"
+                    },
+                    {
+                      "eur": 1000,
+                      "percent": 20,
+                      "type": "heating",
+                      "couleur": "F3A26D",
+                      "emoji": "🔥"
+                    },
+                    {
+                      "eur": 453,
+                      "percent": 10,
+                      "type": "appliances",
+                      "couleur": "FCECDD",
+                      "emoji": "📠"
+                    },
+                    {
+                      "eur": 200,
+                      "percent": 7,
+                      "type": "cooking",
+                      "couleur": "FF7601",
+                      "emoji": "🍕"
+                    },
+                    {
+                      "eur": 220,
+                      "percent": 8,
+                      "type": "hotWater",
+                      "couleur": "FCD8CD",
+                      "emoji": "💧"
+                    },
+                    {
+                      "eur": 120,
+                      "percent": 5,
+                      "type": "lighting",
+                      "couleur": "FEEBF6",
+                      "emoji": "💡"
+                    },
+                    {
+                      "eur": 70,
+                      "percent": 5,
+                      "type": "mobility",
+                      "couleur": "EBD6FB",
+                      "emoji": "🚙"
+                    },
+                    {
+                      "eur": 42,
+                      "percent": 10,
+                      "type": "multimedia",
+                      "couleur": "748873",
+                      "emoji": "🎮"
+                    },
+                    {
+                      "eur": 987,
+                      "percent": 15,
+                      "type": "other",
+                      "couleur": "D1A980",
+                      "emoji": "❓"
+                    },
+                    {
+                      "eur": 123,
+                      "percent": 5,
+                      "type": "swimmingPool",
+                      "couleur": "E5E0D8",
+                      "emoji": "🏊"
+                    }
+                  ]
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers',
+                200,
+                {
+                  "actions": [
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "mettre_couvercle_cuisson",
+                      "titre":
+                          "Je mets un couvercle sur mes casseroles et poëles pendant la cuisson",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 57,
+                      "emoji": "🍳",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.03516085788
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "regler_temperature_chauffe_eau",
+                      "titre": "Je règle mon chauffe-eau à 55°C",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 12,
+                      "emoji": "🚿",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.02447339413
+                    },
+                    {
+                      "nombre_actions_en_cours": 0,
+                      "nombre_actions_faites": 0,
+                      "nombre_aides_disponibles": 0,
+                      "code": "eteindre_box_internet",
+                      "titre": "J’éteins ma box internet en absence",
+                      "sous_titre": null,
+                      "type": "classique",
+                      "thematique": "logement",
+                      "deja_vue": false,
+                      "deja_faite": false,
+                      "points": 100,
+                      "explications_recommandation": {
+                        "liste_explications": [
+                          {
+                            "label_explication": "Recommandé par Watt Watchers",
+                            "tag": "recommandation_winter"
+                          }
+                        ],
+                        "est_exclu": false
+                      },
+                      "explications_recommandation_raw": {
+                        "liste_explications": [
+                          {
+                            "inclusion_tag": "recommandation_winter",
+                            "valeur": 10,
+                            "ponderation": 1
+                          }
+                        ]
+                      },
+                      "montant_max_economies_euros": 200,
+                      "emoji": "🛜",
+                      "label_compteur":
+                          "**0 actions** réalisées par la communauté",
+                      "score_recommandation": 100.00063908099
+                    }
+                  ],
+                  "filtres": [
+                    {
+                      "code": "alimentation",
+                      "label": "🥦 Alimentation",
+                      "selected": false
+                    },
+                    {
+                      "code": "transport",
+                      "label": "🚗 Transports",
+                      "selected": false
+                    },
+                    {
+                      "code": "logement",
+                      "label": "🏡 Logement",
+                      "selected": false
+                    },
+                    {
+                      "code": "consommation",
+                      "label": "🛒 Consommation durable",
+                      "selected": false
+                    },
+                    {
+                      "code": "climat",
+                      "label": "☀️ Environnement",
+                      "selected": false
+                    },
+                    {
+                      "code": "dechet",
+                      "label": "🗑️ Déchets",
+                      "selected": false
+                    },
+                    {"code": "loisir", "label": "⚽ Loisirs", "selected": false}
+                  ],
+                  "selections": [
+                    {
+                      "code": "actions_watt_watchers",
+                      "label": "actions_watt_watchers",
+                      "selected": true
+                    }
+                  ],
+                  "consultation": "tout",
+                  "realisation": "pas_faite",
+                  "nombre_resultats": 3,
+                  "nombre_resultats_disponibles": 3
+                }
+              ]
+            ]));
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
+        await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
+      } on TestFailure {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Si le logement a une adresse incomplète alors on arrive sur la première page''',
           success,
         );
       }

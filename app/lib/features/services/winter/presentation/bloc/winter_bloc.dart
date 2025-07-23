@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/core/presentation/widgets/composants/address/user_address_repository.dart';
+import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/services/winter/domain/winter_registration.dart';
 import 'package:app/features/services/winter/infrastructure/winter_repository.dart';
 import 'package:app/features/services/winter/presentation/bloc/winter_event.dart';
@@ -8,7 +9,7 @@ import 'package:app/features/services/winter/presentation/bloc/winter_state.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WinterBloc extends Bloc<WinterEvent, WinterState> {
-  WinterBloc(this._repository, this._userAddressRepository) : super(const WinterLoading()) {
+  WinterBloc(this._repository, this._userAddressRepository, this._profilRepository) : super(const WinterLoading()) {
     on<WinterActionIsDone>(_onActionIsDone);
     on<WinterStarted>(_onStarted);
     on<WinterFormTypeChanged>(_onFormTypeChanged);
@@ -25,9 +26,17 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
 
   final WinterRepository _repository;
   final UserAddressRepository _userAddressRepository;
+  final ProfilRepository _profilRepository;
 
   Future<void> _onActionIsDone(final WinterActionIsDone event, final Emitter<WinterState> emit) async {
     if (!event.isDone) {
+      emit(const WinterInitial());
+
+      return;
+    }
+
+    final home = await _profilRepository.getHome();
+    if (!home.isPrmPresent || home.isPrmObsolete || !home.isAddressComplete) {
       emit(const WinterInitial());
 
       return;
@@ -102,13 +111,14 @@ class WinterBloc extends Bloc<WinterEvent, WinterState> {
       return;
     }
 
+    emit(state.copyWith(connectionStatus: WinterConnectionStatus.loading));
+
     final registrationDetails = switch (state.formType) {
       RegistrationType.address => WinterRegistrationByAddress(lastName: state.lastName, address: state.address!),
       RegistrationType.prm => WinterRegistrationByPrm(lastName: state.lastName, prmNumber: state.prmNumber),
     };
 
     final result = await _repository.register(registrationDetails);
-
     final connectionStatus = result.fold(
       (final l) => WinterConnectionStatus.failed,
       (final r) => WinterConnectionStatus.established,

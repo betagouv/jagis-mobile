@@ -59,7 +59,10 @@ void main() {
                   "code_postal": "38280",
                   "commune": "Villette-d'Anthon",
                   "commune_label": "Villette-d'Anthon",
-                  "code_commune": "38557"
+                  "code_commune": "38557",
+                  "est_prm_present": false,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": false
                 }
               ],
               [
@@ -99,7 +102,10 @@ void main() {
                   "code_postal": "38280",
                   "commune": "Villette-d'Anthon",
                   "commune_label": "Villette-d'Anthon",
-                  "code_commune": "38557"
+                  "code_commune": "38557",
+                  "est_prm_present": false,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": false
                 }
               ],
               [
@@ -125,7 +131,7 @@ void main() {
                 {
                   "code_postal": "38280",
                   "code_commune": "38557",
-                  "type": "appartement",
+                  "type": "appartement"
                 }
               ]
             ]));
@@ -160,7 +166,10 @@ void main() {
                   "longitude": 5.115947,
                   "latitude": 45.793095,
                   "commune_label": "Villette-d'Anthon",
-                  "code_commune": "38557"
+                  "code_commune": "38557",
+                  "est_prm_present": false,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": true
                 }
               ],
               [
@@ -221,7 +230,10 @@ void main() {
                   "longitude": 5.115947,
                   "latitude": 45.793095,
                   "commune_label": "Villette-d'Anthon",
-                  "code_commune": "38557"
+                  "code_commune": "38557",
+                  "est_prm_present": false,
+                  "est_prm_obsolete": false,
+                  "est_adresse_complete": true
                 }
               ],
               [

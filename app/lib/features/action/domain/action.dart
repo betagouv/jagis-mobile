@@ -236,7 +236,7 @@ enum ActionSimulatorId {
   carSimulator('action_simulateur_voiture'),
   mesAidesReno('simu_aides_reno'),
   maif('action_simulateur_maif'),
-  winter('action_simulateur_winter');
+  wattWatchers('actions_watt_watchers');
 
   const ActionSimulatorId(this.apiString);
   final String apiString;

@@ -174,6 +174,7 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCommercesLocaux = 'Les commerces locaux';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
   static const localiserMonCompteur = 'Localiser mon compteur';
+  static const localisationDeVotreCompteur = 'Localisation de votre compteur…';
   static const lvaoDescription =
       'L’ADEME vous aide à prolonger la vie de vos objets. Pour préserver les ressources de la planète… et de votre porte-monnaie !';
   static const lvaoNom = 'Que faire de mes objets - ADEME';

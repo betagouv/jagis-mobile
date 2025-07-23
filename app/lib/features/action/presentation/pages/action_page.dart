@@ -128,7 +128,7 @@ class _Success extends StatelessWidget {
                 partner: Partner(name: Localisation.maifNom, logo: AssetImages.maifImage, url: Localisation.maifUrl),
               ),
             ),
-            ActionSimulatorId.winter => const Padding(
+            ActionSimulatorId.wattWatchers => const Padding(
               padding: EdgeInsets.only(top: 24),
               child: _PartnerWidget(
                 partner: Partner(

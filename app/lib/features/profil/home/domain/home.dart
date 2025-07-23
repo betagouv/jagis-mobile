@@ -14,6 +14,9 @@ class Home extends Equatable {
     required this.area,
     required this.over15Years,
     required this.energyPerformance,
+    required this.isPrmPresent,
+    required this.isPrmObsolete,
+    required this.isAddressComplete,
   });
 
   final Address address;
@@ -24,6 +27,9 @@ class Home extends Equatable {
   final Area? area;
   final bool? over15Years;
   final EnergyPerformance? energyPerformance;
+  final bool isPrmPresent;
+  final bool isPrmObsolete;
+  final bool isAddressComplete;
 
   Home copyWith({
     final Address? address,
@@ -34,6 +40,9 @@ class Home extends Equatable {
     final Area? area,
     final bool? over15Years,
     final EnergyPerformance? energyPerformance,
+    final bool? isPrmPresent,
+    final bool? isPrmObsolete,
+    final bool? isAddressComplete,
   }) => Home(
     address: address ?? this.address,
     numberOfAdults: numberOfAdults ?? this.numberOfAdults,
@@ -43,6 +52,9 @@ class Home extends Equatable {
     area: area ?? this.area,
     over15Years: over15Years ?? this.over15Years,
     energyPerformance: energyPerformance ?? this.energyPerformance,
+    isPrmPresent: isPrmPresent ?? this.isPrmPresent,
+    isPrmObsolete: isPrmObsolete ?? this.isPrmObsolete,
+    isAddressComplete: isAddressComplete ?? this.isAddressComplete,
   );
 
   @override
@@ -55,5 +67,8 @@ class Home extends Equatable {
     area,
     over15Years,
     energyPerformance,
+    isPrmPresent,
+    isPrmObsolete,
+    isAddressComplete,
   ];
 }

@@ -34,7 +34,7 @@ abstract final class Endpoints {
   static const simulerAideVelo = '/utilisateurs/{userId}/simulerAideVelo';
   static const utilisateur = '/utilisateurs/{userId}';
   static const winterActions =
-      '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_winter';
+      '/utilisateurs/{userId}/actions?recommandation=recommandee&realisation=pas_faite&selection=actions_watt_watchers';
   static const winterConsumption = '/utilisateurs/{userId}/winter/consommation';
   static const winterInscriptionParAdresse = '/utilisateurs/{userId}/winter/inscription_par_adresse';
   static const winterInscriptionParPrm = '/utilisateurs/{userId}/winter/inscription_par_prm';

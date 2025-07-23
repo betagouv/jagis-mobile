@@ -32,6 +32,9 @@ abstract final class LogementMapper {
     area: _mapSuperficieFromJson(json['superficie'] as String?),
     over15Years: json['plus_de_15_ans'] as bool?,
     energyPerformance: _mapDpeFromJson(json['dpe'] as String?),
+    isPrmPresent: json['est_prm_present'] as bool,
+    isPrmObsolete: json['est_prm_obsolete'] as bool,
+    isAddressComplete: json['est_adresse_complete'] as bool,
   );
 
   static String? _mapDpeToJson(final EnergyPerformance? dpe) => switch (dpe) {

@@ -13,7 +13,7 @@ abstract final class FnvModal {
     context: context,
     builder: (final context) => Center(
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 16, bottom: 16),
+        padding: const EdgeInsets.all(DsfrSpacings.s2w),
         child: DsfrModal(isDismissible: isDismissible, closeLabel: 'Fermer', child: builder(context)),
       ),
     ),
@@ -21,4 +21,39 @@ abstract final class FnvModal {
     barrierColor: DsfrColors.grey50.withAlpha(163),
     routeSettings: RouteSettings(name: name),
   );
+
+  static DialogRoute<T> getModal<T>(
+    final BuildContext context, {
+    required final WidgetBuilder builder,
+    final bool isDismissible = true,
+  }) {
+    final themes = InheritedTheme.capture(from: context, to: Navigator.of(context, rootNavigator: true).context);
+
+    return DialogRoute(
+      context: context,
+      builder: (final context) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(DsfrSpacings.s2w),
+          child: DsfrModal(isDismissible: isDismissible, closeLabel: 'Fermer', child: builder(context)),
+        ),
+      ),
+      themes: themes,
+      barrierColor: DsfrColors.grey50.withAlpha(163),
+      barrierDismissible: isDismissible,
+    );
+  }
+
+  static Future<void> push<T>(final BuildContext context, {required final DialogRoute<T>? dialogRoute}) async {
+    if (dialogRoute == null) {
+      return;
+    }
+    await Navigator.of(context, rootNavigator: true).push(dialogRoute);
+  }
+
+  static void pop<T>(final BuildContext context, {required final DialogRoute<T>? dialogRoute}) {
+    if (dialogRoute == null) {
+      return;
+    }
+    Navigator.of(context, rootNavigator: true).removeRoute(dialogRoute);
+  }
 }

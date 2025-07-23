@@ -23,7 +23,7 @@ final class WinterInitial extends WinterState {
   const WinterInitial();
 }
 
-enum WinterConnectionStatus { unknown, established, failed }
+enum WinterConnectionStatus { unknown, loading, established, failed }
 
 @immutable
 final class WinterForm extends WinterState {

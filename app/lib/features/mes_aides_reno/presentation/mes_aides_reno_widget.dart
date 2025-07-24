@@ -7,7 +7,6 @@ import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_event.dart';
 import 'package:app/features/mes_aides_reno/bloc/mes_aides_reno_state.dart';
 import 'package:app/features/mes_aides_reno/infrastructure/mes_aides_reno_repository.dart';
 import 'package:app/l10n/l10n.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
@@ -105,7 +104,7 @@ class _MesAidesRenoWidgetState extends State<_Success> {
         SizedBox(
           height: _webViewHeight,
           child: InAppWebView(
-            initialSettings: InAppWebViewSettings(isInspectable: kDebugMode, iframeAllow: 'clipboard-read; clipboard-write'),
+            initialSettings: InAppWebViewSettings(iframeAllow: 'clipboard-read; clipboard-write'),
             initialUrlRequest: URLRequest(url: WebUri.uri(iframeUrl)),
             onLoadStop: (final controller, final url) async {
               await controller.evaluateJavascript(source: _injectEventListeners);

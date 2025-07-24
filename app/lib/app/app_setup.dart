@@ -26,14 +26,15 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sentry_dio/sentry_dio.dart';
 
 class AppSetup extends StatefulWidget {
-  const AppSetup({super.key});
+  const AppSetup({super.key, required this.clock});
+
+  final Clock clock;
 
   @override
   State<AppSetup> createState() => _AppSetupState();
 }
 
 class _AppSetupState extends State<AppSetup> {
-  static const _clock = Clock();
   late final PackageInfo _packageInfo;
   late final Tracker _tracker;
   late final NotificationService _notificationService;
@@ -85,7 +86,7 @@ class _AppSetupState extends State<AppSetup> {
     );
     await authenticationStorage.init();
 
-    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: _clock);
+    final authenticationService = AuthenticationService(authenticationStorage: authenticationStorage, clock: widget.clock);
     await authenticationService.checkAuthenticationStatus();
 
     return authenticationService;
@@ -127,7 +128,7 @@ class _AppSetupState extends State<AppSetup> {
       final client = DioHttpClient(dio: dio, authenticationService: _authenticationService);
 
       return App(
-        clock: _clock,
+        clock: widget.clock,
         tracker: _tracker,
         deepLink: DeepLink(),
         messageBus: _messageBus,

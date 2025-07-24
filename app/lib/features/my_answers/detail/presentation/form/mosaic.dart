@@ -1,8 +1,8 @@
 import 'package:app/core/question/domain/question.dart';
 import 'package:app/core/question/domain/response_mosaic.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_bloc.dart';
-import 'package:app/features/know_your_customer/detail/presentation/bloc/question_edit_event.dart';
-import 'package:app/features/know_your_customer/detail/presentation/widgets/mosaic_button.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_bloc.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_event.dart';
+import 'package:app/features/my_answers/detail/presentation/widgets/mosaic_button.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

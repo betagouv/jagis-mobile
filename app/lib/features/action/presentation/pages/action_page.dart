@@ -20,7 +20,7 @@ import 'package:app/features/action/presentation/widgets/action_title_with_sub_t
 import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
-import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
+import 'package:app/features/my_answers/list/presentation/pages/my_answers_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart' hide Action;
@@ -220,7 +220,7 @@ class _Explanation extends StatelessWidget {
                   color: color,
                   label: e,
                   onTap: () async {
-                    await GoRouter.of(context).pushNamed(KnowYourCustomersPage.name);
+                    await GoRouter.of(context).pushNamed(MyAnswersPage.name);
                   },
                 ),
               ),

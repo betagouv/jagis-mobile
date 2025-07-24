@@ -19,9 +19,9 @@ import 'package:app/features/environmental_performance/questions/presentation/pa
 import 'package:app/features/environmental_performance/summary/presentation/page/environmental_performance_summary_page.dart';
 import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:app/features/home/presentation/widgets/home_content_layout.dart';
-import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
-import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/library/presentation/pages/library_page.dart';
+import 'package:app/features/my_answers/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
+import 'package:app/features/my_answers/list/presentation/pages/my_answers_page.dart';
 import 'package:app/features/onboarding/presentation/pages/tout_est_pret_page.dart';
 import 'package:app/features/onboarding/pseudonym/presentation/pages/onboarding_pseudonym_page.dart';
 import 'package:app/features/onboarding/question_code_postal/presentation/pages/question_code_postal_page.dart';
@@ -74,7 +74,6 @@ GoRouter goRouter({required final Tracker tracker, required final DeepLink deepL
         ArticlePage.route,
         EnvironmentalPerformanceQuestionPage.route,
         EnvironmentalPerformanceSummaryPage.route,
-        KnowYourCustomersPage.route,
         LibraryPage.route,
         MesInformationsPage.route,
         MieuxVousConnaitreEditPage.route,
@@ -82,7 +81,7 @@ GoRouter goRouter({required final Tracker tracker, required final DeepLink deepL
         OptionsAvanceesPage.route,
         PdcnListPage.route,
         LvaoListPage.route,
-        ProfilPage.route(routes: [MyHomePage.route]),
+        ProfilPage.route(routes: [MyHomePage.route, MyAnswersPage.route]),
         QuestionCodePostalPage.route,
         QuestionThemesPage.route,
         RankingPage.route,

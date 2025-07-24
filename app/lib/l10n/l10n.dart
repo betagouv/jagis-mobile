@@ -209,7 +209,7 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mettreAJour = 'Mettre à jour';
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxComprendreVosHabitudes = 'Mieux comprendre vos habitudes';
-  static const mieuxVousConnaitre = 'Mieux vous connaître';
+  static const mesReponses = 'Mes réponses';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';

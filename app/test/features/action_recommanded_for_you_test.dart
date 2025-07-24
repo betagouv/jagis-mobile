@@ -289,13 +289,12 @@ void main() {
         );
       }
     });
-    testWidgets(
-        '''Appuie sur une explication ouvre la page mieux vous connaître''',
+    testWidgets('''Appuie sur une explication ouvre la page Mes réponses''',
         (tester) async {
       var success = true;
       try {
         await beforeEach(
-            '''Appuie sur une explication ouvre la page mieux vous connaître''');
+            '''Appuie sur une explication ouvre la page Mes réponses''');
         await bddSetUp(tester);
         await theApiWillReturn(
             tester,
@@ -376,13 +375,13 @@ void main() {
             "🌧️ Utiliser l'eau de pluie pour votre maison ou vos plantes");
         await iScrollDownTo(tester, 'Recommandée pour vous, car');
         await iTapOn(tester, "Vous avez un jardin");
-        await iSee(tester, 'Mieux vous connaître');
+        await iSee(tester, 'Mes réponses');
       } on TestFailure {
         success = false;
         rethrow;
       } finally {
         await afterEach(
-          '''Appuie sur une explication ouvre la page mieux vous connaître''',
+          '''Appuie sur une explication ouvre la page Mes réponses''',
           success,
         );
       }

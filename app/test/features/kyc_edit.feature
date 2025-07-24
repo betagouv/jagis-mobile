@@ -10,7 +10,7 @@ Feature: KYC edit
     Given The application is launched
     When I tap on the menu button
     When I tap on {'Mon profil'}
-    When I tap on {'Mieux vous connaître'}
+    When I tap on {'Mes réponses'}
 
   Scenario: Question mosaique Répondre aucune de ces propostions
     When I tap on {'Quels modes de chauffage existent chez vous ?'}

@@ -4,32 +4,32 @@ import 'package:fpdart/fpdart.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-sealed class KnowYourCustomersEvent extends Equatable {
-  const KnowYourCustomersEvent();
+sealed class MyAnswersEvent extends Equatable {
+  const MyAnswersEvent();
 
   @override
   List<Object?> get props => [];
 }
 
 @immutable
-final class KnowYourCustomersStarted extends KnowYourCustomersEvent {
-  const KnowYourCustomersStarted();
+final class MyAnswersStarted extends MyAnswersEvent {
+  const MyAnswersStarted();
 
   @override
   List<Object> get props => [];
 }
 
 @immutable
-final class KnowYourCustomersRefreshNeed extends KnowYourCustomersEvent {
-  const KnowYourCustomersRefreshNeed();
+final class MyAnswersRefreshNeed extends MyAnswersEvent {
+  const MyAnswersRefreshNeed();
 
   @override
   List<Object> get props => [];
 }
 
 @immutable
-final class KnowYourCustomersThemePressed extends KnowYourCustomersEvent {
-  const KnowYourCustomersThemePressed(this.theme);
+final class MyAnswersThemePressed extends MyAnswersEvent {
+  const MyAnswersThemePressed(this.theme);
 
   final Option<ThemeType> theme;
 

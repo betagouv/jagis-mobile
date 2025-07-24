@@ -139,7 +139,7 @@ void main() {
       await theApplicationIsLaunched(tester);
       await iTapOnTheMenuButton(tester);
       await iTapOn(tester, 'Mon profil');
-      await iTapOn(tester, 'Mieux vous connaître');
+      await iTapOn(tester, 'Mes réponses');
     }
 
     Future<void> beforeEach(String title, [List<String>? tags]) async {

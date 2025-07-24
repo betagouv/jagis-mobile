@@ -64,7 +64,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, nouvelleReponse);
   });
 
@@ -99,7 +99,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, nouvelleReponse);
   });
 
@@ -123,7 +123,7 @@ void main() {
     const nouvelleReponse = 'Michel';
     await iEnterInTheField(tester, nouvelleReponse, Localisation.maReponse);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, reponse);
     ielNeVoitPasLeTexte(nouvelleReponse);
   });
@@ -146,7 +146,7 @@ void main() {
     await _allerSurMieuxVousConnaitre(tester);
     await iTapOn(tester, question);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, reponse);
   });
 
@@ -187,7 +187,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, nouvelleReponse);
   });
 
@@ -233,7 +233,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, [...reponses, reponseEnPlus].join(' - '));
   });
 
@@ -297,7 +297,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, nouvelleReponse);
     await iTapOn(tester, question2);
     await iTapOn(tester, nouvelleReponse2);
@@ -325,7 +325,7 @@ void main() {
       },
     ]);
     await iTapOn(tester, Localisation.mettreAJour);
-    await iSee(tester, Localisation.mieuxVousConnaitre);
+    await iSee(tester, Localisation.mesReponses);
     await iSee(tester, nouvelleReponse2);
   });
 }
@@ -336,5 +336,5 @@ Future<void> _allerSurMieuxVousConnaitre(final WidgetTester tester) async {
   await ielLanceLapplication(tester);
   await ielAppuieSurAccessibilite(tester, Localisation.menu);
   await iTapOn(tester, Localisation.monProfil);
-  await iTapOn(tester, Localisation.mieuxVousConnaitre);
+  await iTapOn(tester, Localisation.mesReponses);
 }

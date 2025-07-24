@@ -6,8 +6,8 @@ import 'package:app/core/question/domain/question.dart';
 import 'package:app/core/question/infrastructure/question_mapper.dart';
 import 'package:fpdart/fpdart.dart';
 
-class KnowYourCustomersRepository {
-  const KnowYourCustomersRepository(this._client);
+class MyAnswersRepository {
+  const MyAnswersRepository(this._client);
 
   final DioHttpClient _client;
 

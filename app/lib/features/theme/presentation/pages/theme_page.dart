@@ -1,6 +1,8 @@
 import 'package:app/core/assets/images.dart';
+import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
 import 'package:app/features/actions/presentation/pages/actions_page.dart';
+import 'package:app/features/recommandations/presentation/widgets/recommandations_widget.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:app/features/theme/presentation/bloc/theme_event.dart';
@@ -23,7 +25,7 @@ class ThemePage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => ThemeBloc(context.read(), context.read(), context.read(), context.read()),
+    create: (final context) => ThemeBloc(context.read(), context.read(), context.read(), context.read(), context.read()),
     child: _Page(themeType),
   );
 }
@@ -92,6 +94,18 @@ class _Success extends StatelessWidget {
           child: ThemeServices(themeType: data.themeInfo.themeType),
         ),
         if (data.aids.isNotEmpty) ...[sizedBox, ThemeAidsHorizontalList(aids: data.aids)],
+        if (data.recommendations.isNotEmpty) ...[
+          sizedBox,
+          RecommendationsWidget(
+            title: const FnvMarkdown(
+              data: Localisation.pourAllerPlusLoin,
+              p: DsfrTextStyle(fontSize: 24),
+              overflow: TextOverflow.ellipsis,
+            ),
+            recommendations: data.recommendations,
+            onPop: () => context.read<ThemeBloc>().add(const ThemeRecommendationsRefreshRequested()),
+          ),
+        ],
         sizedBox,
         const Padding(padding: padding, child: _ActionCatalog()),
         const SafeArea(child: sizedBox),

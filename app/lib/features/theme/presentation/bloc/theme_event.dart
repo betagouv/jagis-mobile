@@ -29,3 +29,8 @@ final class ThemeRefreshRequested extends ThemeEvent {
 final class ThemeResetRequested extends ThemeEvent {
   const ThemeResetRequested();
 }
+
+@immutable
+final class ThemeRecommendationsRefreshRequested extends ThemeEvent {
+  const ThemeRecommendationsRefreshRequested();
+}

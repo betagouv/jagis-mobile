@@ -10,7 +10,6 @@ import 'package:app/features/action/presentation/bloc/action_bloc.dart';
 import 'package:app/features/action/presentation/bloc/action_event.dart';
 import 'package:app/features/action/presentation/bloc/action_state.dart';
 import 'package:app/features/action/presentation/widgets/action_aids_view.dart';
-import 'package:app/features/action/presentation/widgets/action_articles.dart';
 import 'package:app/features/action/presentation/widgets/action_classic_view.dart';
 import 'package:app/features/action/presentation/widgets/action_faq_view.dart';
 import 'package:app/features/action/presentation/widgets/action_quiz_view.dart';
@@ -21,6 +20,7 @@ import 'package:app/features/actions/domain/action_type.dart';
 import 'package:app/features/articles/domain/partner.dart';
 import 'package:app/features/environmental_performance/action/presentation/action_performance_view.dart';
 import 'package:app/features/my_answers/list/presentation/pages/my_answers_page.dart';
+import 'package:app/features/recommandations/presentation/widgets/recommandations_widget.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart' hide Action;
@@ -113,7 +113,17 @@ class _Success extends StatelessWidget {
             ],
           ),
         ),
-        if (action.articles.isNotEmpty) ...[const SizedBox(height: DsfrSpacings.s3w), ActionArticles(articles: action.articles)],
+        if (action.articles.isNotEmpty) ...[
+          const SizedBox(height: DsfrSpacings.s3w),
+          RecommendationsWidget(
+            title: const FnvMarkdown(
+              data: Localisation.pourAllerPlusLoin,
+              p: DsfrTextStyle(fontSize: 24),
+              overflow: TextOverflow.ellipsis,
+            ),
+            recommendations: action.articles,
+          ),
+        ],
         const SizedBox(height: DsfrSpacings.s3w),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w),

@@ -29,7 +29,7 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
       (final error) async =>
           emit(const HomeDashboardState.failure('Une erreur est survenue lors de la récupération du tableau de bord')),
       (final dashboard) async {
-        final resultRecommendations = await _recommandationsRepository.fetchForHome();
+        final resultRecommendations = await _recommandationsRepository.fetchByTheme(themeType: null);
         await resultRecommendations.fold(
           (final error) async => emit(const HomeDashboardState.failure('Erreur lors de la récupération des recommandations')),
           (final recommendations) async {
@@ -68,7 +68,7 @@ class HomeDashboardBloc extends Bloc<HomeDashboardEvent, HomeDashboardState> {
     final HomeDashboardRecommendationsUpdated event,
     final Emitter<HomeDashboardState> emit,
   ) async {
-    final result = await _recommandationsRepository.fetchForHome();
+    final result = await _recommandationsRepository.fetchByTheme(themeType: null);
 
     result.fold((final l) => emit(const HomeDashboardState.failure('Erreur lors de la récupération des recommandations')), (
       final r,

@@ -1,4 +1,5 @@
 import 'package:app/features/aids/core/domain/aid_summary.dart';
+import 'package:app/features/recommandations/domain/recommendation.dart';
 import 'package:app/features/theme/core/domain/theme_info.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -23,16 +24,24 @@ final class ThemeLoadInProgress extends ThemeState {
 
 @immutable
 final class ThemeLoadSuccess extends ThemeState {
-  const ThemeLoadSuccess({required this.themeInfo, required this.aids});
+  const ThemeLoadSuccess({required this.themeInfo, required this.aids, required this.recommendations});
 
   final ThemeInfo themeInfo;
   final List<AidSummary> aids;
+  final List<Recommendation> recommendations;
 
-  ThemeLoadSuccess copyWith({final ThemeInfo? themeInfo, final List<AidSummary>? aids}) =>
-      ThemeLoadSuccess(themeInfo: themeInfo ?? this.themeInfo, aids: aids ?? this.aids);
+  ThemeLoadSuccess copyWith({
+    final ThemeInfo? themeInfo,
+    final List<AidSummary>? aids,
+    final List<Recommendation>? recommendations,
+  }) => ThemeLoadSuccess(
+    themeInfo: themeInfo ?? this.themeInfo,
+    aids: aids ?? this.aids,
+    recommendations: recommendations ?? this.recommendations,
+  );
 
   @override
-  List<Object> get props => [themeInfo, aids];
+  List<Object> get props => [themeInfo, aids, recommendations];
 }
 
 @immutable

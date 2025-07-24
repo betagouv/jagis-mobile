@@ -11,8 +11,8 @@ import 'package:app/features/home/bloc/home_dashboard_state.dart';
 import 'package:app/features/home/domain/home_dashboard.dart';
 import 'package:app/features/home/presentation/widgets/home_action_global_counter.dart';
 import 'package:app/features/home/presentation/widgets/home_actions_part.dart';
-import 'package:app/features/home/presentation/widgets/home_recommendations.dart';
 import 'package:app/features/home/presentation/widgets/home_shortcuts.dart';
+import 'package:app/features/recommandations/presentation/widgets/recommandations_widget.dart';
 import 'package:app/features/theme/presentation/helpers/tab_bar_router.dart';
 import 'package:app/features/utilisateur/presentation/bloc/user_bloc.dart';
 import 'package:app/l10n/l10n.dart';
@@ -94,7 +94,11 @@ class _Success extends StatelessWidget {
           _EcologicalFootprint(ecologicalFootprint: homeDashboard.ecologicalFootprint),
           _ActionRecommendations(current: current),
           const SizedBox(height: DsfrSpacings.s5w),
-          HomeRecommendations(current.recommendations),
+          RecommendationsWidget(
+            title: const Text(Localisation.quoiDeNeuf, style: DsfrTextStyle.headline3(color: DsfrColors.grey50)),
+            recommendations: current.recommendations,
+            onPop: () => context.read<HomeDashboardBloc>().add(const HomeDashboardRecommendationsUpdated()),
+          ),
           const SizedBox(height: DsfrSpacings.s6w),
           HomeShortcuts(nbAids: homeDashboard.nbAids, nbRecipes: homeDashboard.nbRecipes),
           const SizedBox(height: DsfrSpacings.s6w),

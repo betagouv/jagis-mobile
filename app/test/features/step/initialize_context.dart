@@ -40,6 +40,22 @@ Future<void> initializeContext() async {
     )
     ..getM('/utilisateurs/%7BuserId%7D/recommandations_v3?nombre_max=4&type=article', responseData: <dynamic>[])
     ..getM(
+      '/utilisateurs/%7BuserId%7D/recommandations_v3?thematique=alimentation&nombre_max=4&type=article',
+      responseData: <dynamic>[],
+    )
+    ..getM(
+      '/utilisateurs/%7BuserId%7D/recommandations_v3?thematique=transport&nombre_max=4&type=article',
+      responseData: <dynamic>[],
+    )
+    ..getM(
+      '/utilisateurs/%7BuserId%7D/recommandations_v3?thematique=logement&nombre_max=4&type=article',
+      responseData: <dynamic>[],
+    )
+    ..getM(
+      '/utilisateurs/%7BuserId%7D/recommandations_v3?thematique=consommation&nombre_max=4&type=article',
+      responseData: <dynamic>[],
+    )
+    ..getM(
       Endpoints.homeBoard,
       responseData: {
         'nom_commune': 'Dole',

@@ -17,12 +17,12 @@ abstract final class Localisation {
   static const adresseEmail = 'Mon adresse email';
   static const adresseEmailHint = 'Format attendu : nom@domaine.fr';
   static const adultes = 'Adulte(s)';
+  static const afficherPlusDeSuggestions = 'Afficher plus de suggestions';
   static const affinezVosRecommandations = 'Affinez vos recommandations';
   static const affinezVosRecommandationsDetails = 'Répondez à quelques questions rapides sur le thème de votre choix';
   static const aidListTitle = '**Aides financières** et bons plans **chez vous**';
   static const aideVeloAvertissement = 'Veuillez compléter ces informations afin de débuter l’estimation';
   static const aides = 'Aides';
-  static const lesRisquesNaturelesAMonAdresse = 'Les risques naturels à mon adresse';
   static const aidesALaRenovation = 'Aides à la rénovation';
   static const aidesEtBonsPlans = 'Aides et bons plans !';
   static const ajouterEnFavoris = 'Ajouter en favoris';
@@ -123,6 +123,9 @@ abstract final class Localisation {
   static const etesVousEnSituationDeHandicap = 'Êtes-vous en situation de handicap ?';
   static const euroSymbol = '€';
   static const facultatif = 'Facultatif';
+  static const faitesDesEconomies = 'Faites des économies';
+  static const faitesDesEconomiesDetails =
+      'Découvrez des actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.';
   static const fermer = 'Fermer';
   static const franceConnectDescription =
       'FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.';
@@ -156,10 +159,11 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const jePrefereRentrerLeCodeManuellement = 'Je préfère rentrer le code manuellement';
   static const jusqua = 'Jusqu’à ';
   static const kgCO2e = 'kgCO2e';
+  static const lAdresseDeMaResidencePrincipale = 'L’adresse de ma résidence principale';
   static const laConnexionAEchoue = 'La connexion a échoué';
+  static const laConnexionAEchoueAstuce = 'Astuce : Tentez avec votre **numéro de PRM**.';
   static const laConnexionAEchoueDescription =
       'Nous n’avons pas trouvé de compteur relié aux informations que vous nous avez données.';
-  static const laConnexionAEchoueAstuce = 'Astuce : Tentez avec votre **numéro de PRM**.';
   static const laPlusEcologique = 'La plus écologique';
   static const laPlusEconomique = 'La plus économique';
   static const leServiveNeCouvrePasEncoreVotreVille = 'Plus de 1000 aides sont listées dans J’agis';
@@ -173,8 +177,9 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCguTitrePart2 = 'Conditions générales d’utilisation';
   static const lesCommercesLocaux = 'Les commerces locaux';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
-  static const localiserMonCompteur = 'Localiser mon compteur';
+  static const lesRisquesNaturelesAMonAdresse = 'Les risques naturels à mon adresse';
   static const localisationDeVotreCompteur = 'Localisation de votre compteur…';
+  static const localiserMonCompteur = 'Localiser mon compteur';
   static const lvaoDescription =
       'L’ADEME vous aide à prolonger la vie de vos objets. Pour préserver les ressources de la planète… et de votre porte-monnaie !';
   static const lvaoNom = 'Que faire de mes objets - ADEME';
@@ -206,14 +211,13 @@ Pour cela, nous aimerions vous remercier avec **ce badge** et 200 feuilles pour 
   static const mesFavoris = 'Mes favoris';
   static const mesInformations = 'Mes informations';
   static const mesInformationsAdresseEmail = 'Adresse e-mail : ';
+  static const mesReponses = 'Mes réponses';
   static const mettreAJour = 'Mettre à jour';
   static const mettreAJourMesInformations = 'Mettre à jour mes informations';
   static const mieuxComprendreVosHabitudes = 'Mieux comprendre vos habitudes';
-  static const mesReponses = 'Mes réponses';
   static const miseAJourEffectuee = 'Mise à jour effectuée';
   static const modifier = 'Modifier';
   static const moinsDe35m2 = 'Moins de 35 m²';
-  static const lAdresseDeMaResidencePrincipale = 'L’adresse de ma résidence principale';
   static const monClassement = 'Mon classement';
   static const monEmpreinteEcologique = 'Mon empreinte écologique';
   static const monIdentite = 'Mon identité';
@@ -343,7 +347,6 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const voirLeResultat = 'Voir le résultat';
   static const voirLesDemarches = 'Voir les démarches';
   static const voirMesResultats = 'Voir mes résultats';
-  static const afficherPlusDeSuggestions = 'Afficher plus de suggestions';
   static const voirTout = 'Voir tout';
   static const voirToutesLesRecettes = 'Voir toutes les recettes';
   static const vosRisques = 'Vos risques';
@@ -358,12 +361,17 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const vousEtesProprietaireDeVotreLogement = 'Vous êtes propriétaire de votre logement ?';
   static const wattWatchers = 'Watt-Watchers';
   static const wattWatchersUrl = 'https://www.wattwatchers.fr/';
+  static const winterAddressInfoRemplie =
+      'Besoin de modifier l’adresse de votre résidence principale ? Rendez-vous dans le profil !';
+  static const winterAddressInfoVide = 'Elle sera enregistrée dans votre profil';
   static const winterDescription =
       'En nous renseignant votre adresse et en répondant à quelques questions sur votre logement, découvrez vos postes les plus gourmands en énergie et les astuces pour réduire leur consommation !';
   static const winterJeDeclare =
       'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.';
   static const winterParametres = 'Paramètres';
   static const winterParametresDetails = 'Vous avez changé d’adresse ou effectué des travaux importants dans votre habitation ?';
+  static const winterPourSupprimerLesDonnees =
+      'Pour **supprimer** les données liées au service ou **modifier** l’adresse de votre résidence principale, rendez-vous dans le profil.';
   static const winterTitre = 'Réduisez jusqu’à 25% votre facture d’énergie';
   static const winterTypeAppareils = 'Appareils';
   static const winterTypeAutres = 'Autres';
@@ -375,15 +383,12 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static const winterTypeMobilite = 'Mobilité';
   static const winterTypeMultimedia = 'Multimédia';
   static const winterTypePiscine = 'Piscine';
-  static const winterAddressInfoRemplie =
-      'Besoin de modifier l’adresse de votre résidence principale ? Rendez-vous dans le profil !';
-  static const winterAddressInfoVide = 'Elle sera enregistrée dans votre profil';
-  static const winterPourSupprimerLesDonnees =
-      'Pour **supprimer** les données liées au service ou **modifier** l’adresse de votre résidence principale, rendez-vous dans le profil.';
-  static const faitesDesEconomies = 'Faites des économies';
-  static const faitesDesEconomiesDetails =
-      'Découvrez des actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.';
-  static String faitesDesEconomiesBouton(final int value) => value <= 1 ? 'Découvrir $value action' : 'Découvrir $value actions';
+  static String _getMonthWithPreposition(final DateTime dateTime) {
+    final month = DateFormat.LLLL('fr_FR').format(dateTime);
+
+    return month[0] == 'a' ? 'd’$month' : 'de $month';
+  }
+
   static String a(final String value) => 'à $value';
   static String actionPerformanceTerminePart2(final String value) => '$value tonnes';
   static String actionPerformanceTerminePart3(final String value) => ' de CO₂e par an pour votre $value';
@@ -415,13 +420,9 @@ Si vous ne disposez pas de votre dernier avis d’impôt, renseignez la somme de
   static String entrezLeCodeRecuParMailDetails(final String value) =>
       'Pour vérifier votre identité et vous permettre d’accéder à votre compte, nous vous avons envoyé un e-mail à l’adresse : ${cacherEmail(value)}';
 
+  static String faitesDesEconomiesBouton(final int value) => value <= 1 ? 'Découvrir $value action' : 'Découvrir $value actions';
+
   static String lesChiffresClesDe(final String city) => 'Les chiffres clés de **$city**';
-
-  static String _getMonthWithPreposition(final DateTime dateTime) {
-    final month = DateFormat.LLLL('fr_FR').format(dateTime);
-
-    return month[0] == 'a' ? 'd’$month' : 'de $month';
-  }
 
   static String lesFruitsEtLegumes(final DateTime dateTime) => 'Les fruits et légumes ${_getMonthWithPreposition(dateTime)}';
 

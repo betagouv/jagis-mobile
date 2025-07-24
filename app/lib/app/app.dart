@@ -38,8 +38,8 @@ import 'package:app/features/gamification/presentation/bloc/gamification_bloc.da
 import 'package:app/features/gamification/presentation/bloc/gamification_event.dart';
 import 'package:app/features/gamification/reset/infrastructure/reset_repository.dart';
 import 'package:app/features/home/infrastructure/home_dashboard_repository.dart';
-import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
 import 'package:app/features/library/infrastructure/library_repository.dart';
+import 'package:app/features/my_answers/list/infrastructure/my_answers_repository.dart';
 import 'package:app/features/onboarding/pseudonym/infrastructure/onboarding_pseudonym_repository.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/quiz/infrastructure/quiz_repository.dart';
@@ -182,7 +182,7 @@ class _AppState extends State<App> {
                 RepositoryProvider(create: (final context) => RankingRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => QuizRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => QuestionRepository(widget.apiClient)),
-                RepositoryProvider(create: (final context) => KnowYourCustomersRepository(widget.apiClient)),
+                RepositoryProvider(create: (final context) => MyAnswersRepository(widget.apiClient)),
                 RepositoryProvider(create: (final context) => OnboardingPseudonymRepository(widget.apiClient)),
                 RepositoryProvider(
                   create: (final context) => AuthentificationRepository(widget.apiClient, widget.authenticationService),

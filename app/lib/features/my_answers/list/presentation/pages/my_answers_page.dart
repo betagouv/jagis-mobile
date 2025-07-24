@@ -5,10 +5,10 @@ import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
 import 'package:app/core/question/domain/question.dart';
-import 'package:app/features/know_your_customer/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
-import 'package:app/features/know_your_customer/list/presentation/bloc/know_your_customers_bloc.dart';
-import 'package:app/features/know_your_customer/list/presentation/bloc/know_your_customers_event.dart';
-import 'package:app/features/know_your_customer/list/presentation/bloc/know_your_customers_state.dart';
+import 'package:app/features/my_answers/detail/presentation/pages/mieux_vous_connaitre_edit_page.dart';
+import 'package:app/features/my_answers/list/presentation/bloc/my_answers_bloc.dart';
+import 'package:app/features/my_answers/list/presentation/bloc/my_answers_event.dart';
+import 'package:app/features/my_answers/list/presentation/bloc/my_answers_state.dart';
 import 'package:app/features/profil/profil/presentation/widgets/fnv_title.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
@@ -18,18 +18,17 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
-class KnowYourCustomersPage extends StatelessWidget {
-  const KnowYourCustomersPage({super.key});
+class MyAnswersPage extends StatelessWidget {
+  const MyAnswersPage({super.key});
 
-  static const name = 'know_your_customers';
+  static const name = 'mes-reponses';
   static const path = name;
 
-  static GoRoute get route =>
-      GoRoute(path: path, name: name, builder: (final context, final state) => const KnowYourCustomersPage());
+  static GoRoute get route => GoRoute(path: path, name: name, builder: (final context, final state) => const MyAnswersPage());
 
   @override
   Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => KnowYourCustomersBloc(repository: context.read())..add(const KnowYourCustomersStarted()),
+    create: (final context) => MyAnswersBloc(repository: context.read())..add(const MyAnswersStarted()),
     child: Builder(
       builder: (final context) => FnvScaffold(
         appBar: FnvAppBar(),
@@ -38,16 +37,16 @@ class KnowYourCustomersPage extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: paddingVerticalPage),
-              child: FnvTitle(title: Localisation.mieuxVousConnaitre),
+              child: FnvTitle(title: Localisation.mesReponses),
             ),
             const SizedBox(height: DsfrSpacings.s3w),
-            BlocBuilder<KnowYourCustomersBloc, KnowYourCustomersState>(
+            BlocBuilder<MyAnswersBloc, MyAnswersState>(
               builder: (final context, final state) => switch (state) {
-                KnowYourCustomersInitial() => const SizedBox.shrink(),
-                KnowYourCustomersLoading() => const Center(child: CircularProgressIndicator()),
-                KnowYourCustomersSuccess() => _Success(state),
-                KnowYourCustomersFailure() => FnvFailureWidget(
-                  onPressed: () => context.read<KnowYourCustomersBloc>().add(const KnowYourCustomersStarted()),
+                MyAnswersInitial() => const SizedBox.shrink(),
+                MyAnswersLoading() => const Center(child: CircularProgressIndicator()),
+                MyAnswersSuccess() => _Success(state),
+                MyAnswersFailure() => FnvFailureWidget(
+                  onPressed: () => context.read<MyAnswersBloc>().add(const MyAnswersStarted()),
                 ),
               },
             ),
@@ -61,7 +60,7 @@ class KnowYourCustomersPage extends StatelessWidget {
 class _Success extends StatelessWidget {
   const _Success(this.state);
 
-  final KnowYourCustomersSuccess state;
+  final MyAnswersSuccess state;
 
   @override
   Widget build(final BuildContext context) {
@@ -117,9 +116,8 @@ class _Tag extends StatelessWidget {
     return Material(
       color: FnvColors.transparent,
       child: InkWell(
-        onTap: () => context.read<KnowYourCustomersBloc>().add(
-          KnowYourCustomersThemePressed(thematique == null ? const None() : Some(thematique!)),
-        ),
+        onTap: () =>
+            context.read<MyAnswersBloc>().add(MyAnswersThemePressed(thematique == null ? const None() : Some(thematique!))),
         borderRadius: borderRadius,
         child: DecoratedBox(
           decoration: BoxDecoration(
@@ -159,7 +157,7 @@ class _Item extends StatelessWidget {
         return;
       }
 
-      context.read<KnowYourCustomersBloc>().add(const KnowYourCustomersRefreshNeed());
+      context.read<MyAnswersBloc>().add(const MyAnswersRefreshNeed());
     },
   );
 }

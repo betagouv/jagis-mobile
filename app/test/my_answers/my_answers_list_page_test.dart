@@ -5,8 +5,8 @@ import 'package:app/core/question/domain/question.dart';
 import 'package:app/core/question/infrastructure/question_mapper.dart';
 import 'package:app/features/gamification/infrastructure/gamification_repository.dart';
 import 'package:app/features/gamification/presentation/bloc/gamification_bloc.dart';
-import 'package:app/features/know_your_customer/list/infrastructure/know_your_customers_repository.dart';
-import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
+import 'package:app/features/my_answers/list/infrastructure/my_answers_repository.dart';
+import 'package:app/features/my_answers/list/presentation/pages/my_answers_page.dart';
 import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,16 +21,14 @@ Future<void> _pumpPage(final WidgetTester tester, {required final DioMock dio}) 
   final client = DioHttpClient(dio: dio, authenticationService: authenticationService);
   await pumpPage(
     tester: tester,
-    repositoryProviders: [
-      RepositoryProvider<KnowYourCustomersRepository>(create: (final context) => KnowYourCustomersRepository(client)),
-    ],
+    repositoryProviders: [RepositoryProvider<MyAnswersRepository>(create: (final context) => MyAnswersRepository(client))],
     blocProviders: [
       BlocProvider(
         create: (final context) =>
             GamificationBloc(GamificationRepository(client: client, messageBus: MessageBus()), authenticationService),
       ),
     ],
-    page: KnowYourCustomersPage.route,
+    page: MyAnswersPage.route,
   );
 }
 

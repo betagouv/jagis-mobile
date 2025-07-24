@@ -2,8 +2,8 @@ import 'package:app/core/infrastructure/tracker.dart';
 import 'package:app/core/infrastructure/url_launcher.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/colors.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
-import 'package:app/features/know_your_customer/list/presentation/pages/know_your_customers_page.dart';
 import 'package:app/features/menu/presentation/pages/root_page.dart';
+import 'package:app/features/my_answers/list/presentation/pages/my_answers_page.dart';
 import 'package:app/features/options_avancees/presentation/pages/options_avancees_page.dart';
 import 'package:app/features/profil/home/presentation/pages/my_home_page.dart';
 import 'package:app/features/profil/informations/presentation/pages/mes_informations_page.dart';
@@ -53,9 +53,9 @@ class ProfilPage extends StatelessWidget {
               const DsfrDivider(),
               _MenuElement(
                 icon: DsfrIcons.userUserSettingLine,
-                label: Localisation.mieuxVousConnaitre,
+                label: Localisation.mesReponses,
                 onTap: () async {
-                  await GoRouter.of(context).pushNamed(KnowYourCustomersPage.name);
+                  await GoRouter.of(context).pushNamed(MyAnswersPage.name);
                 },
               ),
               const DsfrDivider(),

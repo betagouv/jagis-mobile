@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-using-list-view
+
 import 'package:app/core/assets/images.dart';
 import 'package:app/core/infrastructure/markdown.dart';
 import 'package:app/core/presentation/widgets/composants/image.dart';
@@ -85,31 +87,33 @@ class _Success extends StatelessWidget {
     const sizedBox = SizedBox(height: DsfrSpacings.s4w);
     const padding = EdgeInsets.symmetric(horizontal: DsfrSpacings.s2w);
 
-    return ListView(
-      children: [
-        ThemeHeader(themeInfo: data.themeInfo),
-        sizedBox,
-        Padding(
-          padding: padding,
-          child: ThemeServices(themeType: data.themeInfo.themeType),
-        ),
-        if (data.aids.isNotEmpty) ...[sizedBox, ThemeAidsHorizontalList(aids: data.aids)],
-        if (data.recommendations.isNotEmpty) ...[
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ThemeHeader(themeInfo: data.themeInfo),
           sizedBox,
-          RecommendationsWidget(
-            title: const FnvMarkdown(
-              data: Localisation.pourAllerPlusLoin,
-              p: DsfrTextStyle(fontSize: 24),
-              overflow: TextOverflow.ellipsis,
-            ),
-            recommendations: data.recommendations,
-            onPop: () => context.read<ThemeBloc>().add(const ThemeRecommendationsRefreshRequested()),
+          Padding(
+            padding: padding,
+            child: ThemeServices(themeType: data.themeInfo.themeType),
           ),
+          if (data.aids.isNotEmpty) ...[sizedBox, ThemeAidsHorizontalList(aids: data.aids)],
+          if (data.recommendations.isNotEmpty) ...[
+            sizedBox,
+            RecommendationsWidget(
+              title: const FnvMarkdown(
+                data: Localisation.pourAllerPlusLoin,
+                p: DsfrTextStyle(fontSize: 24),
+                overflow: TextOverflow.ellipsis,
+              ),
+              recommendations: data.recommendations,
+              onPop: () => context.read<ThemeBloc>().add(const ThemeRecommendationsRefreshRequested()),
+            ),
+          ],
+          sizedBox,
+          const Padding(padding: padding, child: _ActionCatalog()),
+          const SafeArea(child: sizedBox),
         ],
-        sizedBox,
-        const Padding(padding: padding, child: _ActionCatalog()),
-        const SafeArea(child: sizedBox),
-      ],
+      ),
     );
   }
 }

@@ -88,7 +88,7 @@ class _View extends StatelessWidget {
                   },
                 ),
               ),
-      _ => null,
+      AidStateLoading() || AidStateErrorLoading() => null,
     },
   );
 }

@@ -4,10 +4,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 0.0.1
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.0
 
 dependencies:
-  fl_chart: 1.0.0
+  fl_chart: 1.1.0
   flutter:
     sdk: flutter
   flutter_dsfr:
@@ -15,10 +15,11 @@ dependencies:
       url: https://github.com/Octo-Open-Source/flutter-dsfr.git
 
 dev_dependencies:
-  dart_code_metrics_presets: 2.24.0
+  dart_code_metrics_presets: 2.25.1
   flutter_test:
     sdk: flutter
   jagis_lints:
     path: ../jagis_lints
 
 flutter:
+  uses-material-design: true

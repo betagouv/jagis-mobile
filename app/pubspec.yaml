@@ -4,22 +4,22 @@ publish_to: "none"
 version: 1.7.4+0
 
 environment:
-  sdk: 3.8.1
-  flutter: 3.32.7
+  sdk: 3.9.0
+  flutter: 3.35.2
 
 dependencies:
-  animated_digit: 3.2.3
+  animated_digit: 3.3.1+2
   app_ds:
     path: ../packages/app_ds
   clock: 1.1.2
   collection: 1.19.1
   cupertino_icons: 1.0.8
   device_info_plus: 11.5.0
-  dio: 5.8.0+1
+  dio: 5.9.0
   easy_image_viewer: 1.5.1
   equatable: 2.0.7
-  firebase_core: 3.15.2
-  firebase_messaging: 15.2.10
+  firebase_core: 4.1.0
+  firebase_messaging: 16.0.1
   flutter:
     sdk: flutter
   flutter_bloc: 9.1.1
@@ -35,29 +35,29 @@ dependencies:
   flutter_secure_storage: 9.2.4
   flutter_widget_from_html_core: 0.17.0
   fpdart: 1.1.1
-  fwfh_webview: 0.15.5
-  go_router: 16.0.0
-  gpt_markdown: 1.1.2
+  fwfh_webview: 0.15.6
+  go_router: 16.2.1
+  gpt_markdown: 1.1.3
   html: 0.15.6
   intl: 0.20.2
   latlong2: 0.9.1
   matomo_tracker: 6.0.0
   meta: 1.16.0 # Bloqué en 1.16.0 par flutter_test
   native_dio_adapter: 1.5.0
-  package_info_plus: 8.3.0
-  pinput: 5.0.1
+  package_info_plus: 8.3.1
+  pinput: 5.0.2
   rxdart: 0.28.0
-  sentry_dio: 8.14.2 # Bloqué en 8.14.2 par cronet_http qui doit passer jni en 0.14.2
-  sentry_flutter: 8.14.2 # Bloqué en 8.14.2 par sentry_flutter qui doit passer jni en 0.14.2
-  share_plus: 11.0.0
+  sentry_dio: 9.6.0
+  sentry_flutter: 9.6.0
+  share_plus: 11.1.0
   url_launcher: 6.3.2
   vector_graphics: 1.1.19
-  vector_graphics_compiler: 1.1.17
+  vector_graphics_compiler: 1.1.19
 
 dev_dependencies:
-  bdd_widget_test: 1.8.2
-  build_runner: 2.5.4 # Bloqué en 2.5.4 par bdd_widget_test
-  dart_code_metrics_presets: 2.24.0
+  bdd_widget_test: 2.0.1
+  build_runner: 2.7.1 # bdd_widget_test don't use build 4
+  dart_code_metrics_presets: 2.25.1
   faker: 2.2.0
   flutter_launcher_icons: 0.14.4
   flutter_test:

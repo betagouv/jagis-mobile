@@ -39,7 +39,7 @@ class SeasonalFruitsAndVegetablesBloc extends Bloc<SeasonalFruitsAndVegetablesEv
           SeasonalFruitsAndVegetablesLoadSuccess(
             months: switch (state) {
               final SeasonalFruitsAndVegetablesLoadSuccess s => s.months,
-              _ => const [],
+              SeasonalFruitsAndVegetablesInitial() || SeasonalFruitsAndVegetablesLoadFailure() => [],
             },
             monthSelected: monthSelected,
             plants: r,

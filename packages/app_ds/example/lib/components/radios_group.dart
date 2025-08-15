@@ -9,8 +9,8 @@ Widget buildRadiosGroupUseCase(final BuildContext context) => FnvRadiosGroup<Str
   values: const {'value1': 'Label 1', 'value2': 'Label 2', 'value3': 'Label 3'},
   initialValue: 'value1',
   onChanged: (final value) {},
-  direction: context.knobs.list(label: 'Direction', options: Direction.values),
-  size: context.knobs.list(
+  direction: context.knobs.object.dropdown(label: 'Direction', options: Direction.values),
+  size: context.knobs.object.dropdown(
     label: 'Taille',
     options: DsfrComponentSize.values.where((final element) => element != DsfrComponentSize.lg).toList(),
   ),

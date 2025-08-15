@@ -48,7 +48,7 @@ class _Painter extends CustomPainter {
         ..arcToPoint(const Offset(-3, 8), radius: const Radius.circular(3))
         ..close();
       final matrix = Matrix4.identity()
-        ..translate(position.dx, position.dy)
+        ..translateByDouble(position.dx, position.dy, 0, 1)
         ..rotateZ(-angle);
       final transformedPath = pionPath.transform(matrix.storage);
 

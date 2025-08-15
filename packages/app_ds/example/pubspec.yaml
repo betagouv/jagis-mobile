@@ -4,10 +4,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.0
 
 dependencies:
-  accessibility_tools: 2.6.0
+  accessibility_tools: 2.7.1
   app_ds:
     path: ../
   cupertino_icons: 1.0.8
@@ -16,17 +16,17 @@ dependencies:
   flutter_dsfr:
     git:
       url: https://github.com/Octo-Open-Source/flutter-dsfr.git
-  widgetbook: 3.14.3
-  widgetbook_annotation: 3.5.0
+  widgetbook: 3.16.0
+  widgetbook_annotation: 3.7.0
 
 dev_dependencies:
-  build_runner: 2.5.4
-  dart_code_metrics_presets: 2.24.0
+  build_runner: 2.7.1 # Bloqué par widgetbook_generator en 2.7.1
+  dart_code_metrics_presets: 2.25.1
   flutter_test:
     sdk: flutter
   jagis_lints:
     path: ../../jagis_lints
-  widgetbook_generator: 3.13.0
+  widgetbook_generator: 3.16.0
 
 flutter:
   uses-material-design: true

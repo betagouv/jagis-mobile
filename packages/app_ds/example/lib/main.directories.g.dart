@@ -10,153 +10,170 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:example/components/accordions/accordion.dart' as _i13;
-import 'package:example/components/accordions/accordions_group.dart' as _i14;
-import 'package:example/components/alert.dart' as _i2;
-import 'package:example/components/autocomplete.dart' as _i3;
-import 'package:example/components/block_quote.dart' as _i4;
-import 'package:example/components/callout.dart' as _i5;
-import 'package:example/components/charts/doughnut_chart.dart' as _i15;
-import 'package:example/components/checkboxes/checkbox.dart' as _i16;
-import 'package:example/components/checkboxes/checkbox_set.dart' as _i17;
-import 'package:example/components/date_only_input.dart' as _i6;
-import 'package:example/components/link.dart' as _i7;
-import 'package:example/components/loader.dart' as _i8;
-import 'package:example/components/progress_bar.dart' as _i9;
-import 'package:example/components/radios_group.dart' as _i10;
-import 'package:example/components/stepper.dart' as _i11;
-import 'package:example/components/toggle_switch.dart' as _i12;
-import 'package:widgetbook/widgetbook.dart' as _i1;
+import 'package:example/components/accordions/accordion.dart'
+    as _example_components_accordions_accordion;
+import 'package:example/components/accordions/accordions_group.dart'
+    as _example_components_accordions_accordions_group;
+import 'package:example/components/alert.dart' as _example_components_alert;
+import 'package:example/components/autocomplete.dart'
+    as _example_components_autocomplete;
+import 'package:example/components/block_quote.dart'
+    as _example_components_block_quote;
+import 'package:example/components/callout.dart' as _example_components_callout;
+import 'package:example/components/charts/doughnut_chart.dart'
+    as _example_components_charts_doughnut_chart;
+import 'package:example/components/checkboxes/checkbox.dart'
+    as _example_components_checkboxes_checkbox;
+import 'package:example/components/checkboxes/checkbox_set.dart'
+    as _example_components_checkboxes_checkbox_set;
+import 'package:example/components/date_only_input.dart'
+    as _example_components_date_only_input;
+import 'package:example/components/link.dart' as _example_components_link;
+import 'package:example/components/loader.dart' as _example_components_loader;
+import 'package:example/components/progress_bar.dart'
+    as _example_components_progress_bar;
+import 'package:example/components/radios_group.dart'
+    as _example_components_radios_group;
+import 'package:example/components/stepper.dart' as _example_components_stepper;
+import 'package:example/components/toggle_switch.dart'
+    as _example_components_toggle_switch;
+import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
-final directories = <_i1.WidgetbookNode>[
-  _i1.WidgetbookFolder(
+final directories = <_widgetbook.WidgetbookNode>[
+  _widgetbook.WidgetbookFolder(
     name: 'components',
     children: [
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvAlert',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Error',
-          builder: _i2.buildAlertUseCase,
+          builder: _example_components_alert.buildAlertUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvAutocomplete',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i3.buildAutocompleteUseCase,
+          builder: _example_components_autocomplete.buildAutocompleteUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvBlockQuote',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i4.buildBlockQuoteUseCase,
+          builder: _example_components_block_quote.buildBlockQuoteUseCase,
           designLink:
               'https://www.figma.com/design/CqHGLfk0uIdy61mDdZN0hv/J-agis-2025?node-id=17165-413000&t=fehBWDhYBNKlBsVt-4',
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvCallout',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i5.buildCalloutUseCase,
+          builder: _example_components_callout.buildCalloutUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvDateOnlyInput',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i6.buildDateOnlyInputUseCase,
+          builder:
+              _example_components_date_only_input.buildDateOnlyInputUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvLink',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i7.buildLinkUseCase,
+          builder: _example_components_link.buildLinkUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvLoader',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i8.buildLoaderUseCase,
+          builder: _example_components_loader.buildLoaderUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvProgressBar',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i9.buildProgressBarUseCase,
+          builder: _example_components_progress_bar.buildProgressBarUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvRadiosGroup',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i10.buildRadiosGroupUseCase,
+          builder: _example_components_radios_group.buildRadiosGroupUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvStepper',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i11.buildUseCase,
+          builder: _example_components_stepper.buildUseCase,
         ),
       ),
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'FnvToggleSwitch',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i12.buildToggleSwitchUseCase,
+          builder: _example_components_toggle_switch.buildToggleSwitchUseCase,
         ),
       ),
-      _i1.WidgetbookFolder(
+      _widgetbook.WidgetbookFolder(
         name: 'accordions',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FnvAccordion',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i13.buildAccordionUseCase,
+              builder: _example_components_accordions_accordion
+                  .buildAccordionUseCase,
             ),
           ),
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FnvAccordionsGroup',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i14.buildAccordionsGroupUseCase,
+              builder: _example_components_accordions_accordions_group
+                  .buildAccordionsGroupUseCase,
             ),
           ),
         ],
       ),
-      _i1.WidgetbookFolder(
+      _widgetbook.WidgetbookFolder(
         name: 'charts',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FnvDoughnutChart',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i15.buildDoughnutChartUseCase,
+              builder: _example_components_charts_doughnut_chart
+                  .buildDoughnutChartUseCase,
             ),
           ),
         ],
       ),
-      _i1.WidgetbookFolder(
+      _widgetbook.WidgetbookFolder(
         name: 'checkboxes',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FnvCheckbox',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i16.buildCheckboxDefaultUseCase,
+              builder: _example_components_checkboxes_checkbox
+                  .buildCheckboxDefaultUseCase,
             ),
           ),
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FnvCheckboxSet',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i17.buildCheckboxSetUseCase,
+              builder: _example_components_checkboxes_checkbox_set
+                  .buildCheckboxSetUseCase,
             ),
           ),
         ],

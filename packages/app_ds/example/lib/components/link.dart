@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildLinkUseCase(final BuildContext context) => FnvLink(
   label: context.knobs.string(label: 'Libellé', initialValue: '🎨 Libellé'),
   onTap: () {},
-  size: context.knobs.list(label: 'Taille', options: DsfrComponentSize.values, initialOption: DsfrComponentSize.lg),
+  size: context.knobs.object.dropdown(label: 'Taille', options: DsfrComponentSize.values, initialOption: DsfrComponentSize.lg),
   enabled: context.knobs.boolean(label: 'Activé', initialValue: true),
   textAlign: TextAlign.center,
 );

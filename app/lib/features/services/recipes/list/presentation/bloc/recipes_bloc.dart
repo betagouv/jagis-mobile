@@ -41,7 +41,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
         RecipesLoadSuccess(
           filters: switch (state) {
             final RecipesLoadSuccess s => s.filters,
-            _ => const [],
+            RecipesInitial() || RecipesLoadInProgress() || RecipesLoadFailure() => [],
           },
           filterSelected: filterSelected,
           recipes: r,

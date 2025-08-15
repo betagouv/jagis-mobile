@@ -96,7 +96,7 @@ abstract final class EnvironmentalPerformanceSummaryMapper {
     totalNumberQuestions: (json['nombre_total_question'] as num).toInt(),
   );
 
-  static String _mapThematique(final String? type) => switch (type) {
+  static String _mapThematique(final String type) => switch (type) {
     'alimentation' => 'Alimentation',
     'transport' => 'Transport',
     'consommation' => 'Consommation',

@@ -131,8 +131,9 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
             emit(QuestionEditLoaded(question: modifiedQuestion, newQuestion: modifiedQuestion, updated: false));
           });
         }
-
-      default:
+      case QuestionEditInitial():
+      case QuestionEditError():
+        break;
     }
   }
 
@@ -147,7 +148,9 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
         });
-      default:
+      case QuestionEditInitial():
+      case QuestionEditError():
+        break;
     }
   }
 
@@ -162,7 +165,9 @@ class QuestionEditBloc extends Bloc<QuestionEditEvent, QuestionEditState> {
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: true));
           emit(QuestionEditLoaded(question: newQuestion, newQuestion: newQuestion, updated: false));
         });
-      default:
+      case QuestionEditInitial():
+      case QuestionEditError():
+        break;
     }
   }
 }

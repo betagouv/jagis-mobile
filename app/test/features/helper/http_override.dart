@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:mocktail/mocktail.dart';
 
@@ -77,7 +78,7 @@ HttpClientResponse _createResponse(final Uri uri, final ImageResolver imageResol
     ),
   ).thenAnswer((final invocation) {
     final onData = invocation.positionalArguments.first as void Function(List<int>);
-    final onDone = invocation.namedArguments[#onDone] as void Function()?;
+    final onDone = invocation.namedArguments[#onDone] as VoidCallback?;
 
     return Stream<List<int>>.value(data).listen(onData, onDone: onDone);
   });

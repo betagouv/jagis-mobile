@@ -55,8 +55,8 @@ dependencies:
   vector_graphics_compiler: 1.1.17
 
 dev_dependencies:
-  bdd_widget_test: 1.8.2
-  build_runner: 2.5.4 # Bloqué en 2.5.4 par bdd_widget_test
+  bdd_widget_test: 2.0.1
+  build_runner: 2.6.0 # Bloqué en 2.5.4 par bdd_widget_test
   dart_code_metrics_presets: 2.24.0
   faker: 2.2.0
   flutter_launcher_icons: 0.14.4

@@ -32,6 +32,7 @@ sealed class Action extends Equatable {
   final String id;
   final String emoji;
   final String title;
+  String get emojiTitle => emoji.isNotEmpty ? '$emoji $title' : title;
   final String? subTitle;
   final List<AidSummary> aidSummaries;
   final bool alreadySeen;

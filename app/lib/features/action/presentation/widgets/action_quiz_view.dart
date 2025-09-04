@@ -9,5 +9,5 @@ class ActionQuizView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) =>
-      QuizPart(id: action.id, name: action.title, quizzes: action.quizzes, congratulatoryText: action.congratulatoryText);
+      QuizPart(id: action.id, name: action.emojiTitle, quizzes: action.quizzes, congratulatoryText: action.congratulatoryText);
 }

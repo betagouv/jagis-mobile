@@ -2,10 +2,14 @@ import 'package:app/core/presentation/widgets/composants/app_bar.dart';
 import 'package:app/core/presentation/widgets/composants/bottom_bar.dart';
 import 'package:app/core/presentation/widgets/composants/scaffold.dart';
 import 'package:app/core/presentation/widgets/fondamentaux/rounded_rectangle_border.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_bloc.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_event.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_state.dart';
 import 'package:app/features/my_answers/detail/presentation/form/question_controller.dart';
 import 'package:app/features/my_answers/detail/presentation/form/question_form.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,29 +50,41 @@ class _ViewState extends State<_View> {
   }
 
   @override
-  Widget build(final BuildContext context) => FnvScaffold(
-    appBar: FnvAppBar(),
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(paddingVerticalPage),
-      child: QuestionForm(
-        questionId: widget.id,
-        withAlreadyDoneAlert: false,
-        questionController: _mieuxVousConnaitreController,
-        onSaved: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(content: Text(Localisation.miseAJourEffectuee)));
-          GoRouter.of(context).pop<bool>(true);
-        },
+  Widget build(final BuildContext context) => BlocProvider(
+    create: (final context) => QuestionEditBloc(context.read())..add(QuestionEditRecuperationDemandee(widget.id)),
+    lazy: false,
+    child: FnvScaffold(
+      appBar: FnvAppBar(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(paddingVerticalPage),
+        child: QuestionForm(
+          withAlreadyDoneAlert: false,
+          questionController: _mieuxVousConnaitreController,
+          onSaved: () {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(content: Text(Localisation.miseAJourEffectuee)));
+            GoRouter.of(context).pop<bool>(true);
+          },
+        ),
       ),
-    ),
-    bottomNavigationBar: FnvBottomBar(
-      child: DsfrButton(
-        label: Localisation.mettreAJour,
-        icon: DsfrIcons.deviceSave3Fill,
-        variant: DsfrButtonVariant.primary,
-        size: DsfrComponentSize.lg,
-        onPressed: _mieuxVousConnaitreController.save,
+      bottomNavigationBar: FnvBottomBar(
+        child: BlocBuilder<QuestionEditBloc, QuestionEditState>(
+          builder: (final context, final state) {
+            var disabled = false;
+            if (state is QuestionEditLoaded) {
+              disabled = state.question.isMandatory && state.answers.isEmpty;
+            }
+
+            return DsfrButton(
+              label: Localisation.mettreAJour,
+              icon: DsfrIcons.deviceSave3Fill,
+              variant: DsfrButtonVariant.primary,
+              size: DsfrComponentSize.lg,
+              onPressed: disabled ? null : _mieuxVousConnaitreController.save,
+            );
+          },
+        ),
       ),
     ),
   );

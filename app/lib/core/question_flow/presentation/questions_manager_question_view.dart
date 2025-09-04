@@ -3,7 +3,8 @@ import 'package:app/core/question_flow/bloc/question_flow_event.dart';
 import 'package:app/core/question_flow/domain/current_question.dart';
 import 'package:app/core/question_flow/domain/cursor.dart';
 import 'package:app/core/question_flow/presentation/questions_manager_buttons_widget.dart';
-import 'package:app/features/my_answers/detail/presentation/form/input_controller.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_bloc.dart';
+import 'package:app/features/my_answers/detail/presentation/bloc/question_edit_event.dart';
 import 'package:app/features/my_answers/detail/presentation/form/question_controller.dart';
 import 'package:app/features/my_answers/detail/presentation/form/question_form.dart';
 import 'package:flutter/widgets.dart';
@@ -22,30 +23,31 @@ class QuestionsManagerQuestionView extends StatefulWidget {
 
 class _QuestionWidgetState extends State<QuestionsManagerQuestionView> {
   final _questionController = QuestionController();
-  final _inputController = InputController();
 
   @override
   void dispose() {
     _questionController.dispose();
-    _inputController.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(final BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    spacing: DsfrSpacings.s3w,
-    children: [
-      QuestionForm(
-        questionId: widget.cursor.element.question.code.value,
-        withoutTitle: widget.withoutTitle,
-        questionController: _questionController,
-        inputController: _inputController,
-        onSaved: () {
-          context.read<QuestionFlowBloc>().add(const QuestionFlowNextRequested());
-        },
-      ),
-      QuestionsManagerButtons(cursor: widget.cursor, questionController: _questionController, inputController: _inputController),
-    ],
+  Widget build(final BuildContext context) => BlocProvider(
+    create: (final context) =>
+        QuestionEditBloc(context.read())..add(QuestionEditRecuperationDemandee(widget.cursor.element.question.code)),
+    lazy: false,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: DsfrSpacings.s3w,
+      children: [
+        QuestionForm(
+          withoutTitle: widget.withoutTitle,
+          questionController: _questionController,
+          onSaved: () {
+            context.read<QuestionFlowBloc>().add(const QuestionFlowNextRequested());
+          },
+        ),
+        QuestionsManagerButtons(cursor: widget.cursor, questionController: _questionController),
+      ],
+    ),
   );
 }

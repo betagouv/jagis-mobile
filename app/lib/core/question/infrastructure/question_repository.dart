@@ -1,3 +1,4 @@
+import 'package:app/core/errors/failure.dart';
 import 'package:app/core/infrastructure/dio_http_client.dart';
 import 'package:app/core/infrastructure/endpoints.dart';
 import 'package:app/core/infrastructure/http_client_helpers.dart';
@@ -10,45 +11,47 @@ class QuestionRepository {
 
   final DioHttpClient _client;
 
-  Future<Either<Exception, Question>> fetchQuestion({required final String id}) async {
-    final response = await _client.get(Endpoints.question(id));
-
-    if (isResponseUnsuccessful(response.statusCode)) {
-      return Left(Exception('Erreur lors de la récupération de la question'));
-    }
-
+  Future<Either<Failure, Question>> fetchQuestion(final String questionCode) async {
     try {
+      final question = Endpoints.question(questionCode);
+      final response = await _client.get(question);
+
+      if (isResponseUnsuccessful(response.statusCode)) {
+        return const Left(ServerFailure('Erreur lors de la récupération de la question'));
+      }
+
       return Right(QuestionMapper.fromJson(response.data as Map<String, dynamic>));
-    } on Exception catch (error) {
-      return Left(Exception('Erreur lors de la récupération de la question: $error'));
+    } on Exception catch (exception) {
+      return Left(UnexpectedFailure(exception.toString()));
     }
   }
 
-  Future<Either<Exception, Unit>> update(final Question question) async {
-    final data = switch (question) {
-      QuestionMultiple() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
-      QuestionUnique() => [
-        {'value': question.response.value},
-      ],
-      QuestionMosaicBoolean() => question.responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList(),
-    };
+  Future<Either<Failure, Unit>> update(final String questionCode, final Answers answers) async {
+    try {
+      final data = answers.toApiPayload();
+      final response = await _client.put(Endpoints.question(questionCode), data: data);
 
-    final response = await _client.put(Endpoints.question(question.code.value), data: data);
+      if (isResponseSuccessful(response.statusCode)) {
+        return const Right(unit);
+      }
 
-    if (isResponseSuccessful(response.statusCode)) {
-      return const Right(unit);
+      return const Left(ServerFailure('Erreur lors de la mise à jour des réponses'));
+    } on Exception catch (exception) {
+      return Left(UnexpectedFailure(exception.toString()));
     }
-
-    return Left(Exception('Erreur lors de la mise à jour des réponses'));
   }
 
-  Future<Either<Exception, Unit>> skip(final Question question) async {
-    final response = await _client.post(Endpoints.questionSkip(question.code.value));
+  Future<Either<Failure, Unit>> skip(final Question question) async {
+    try {
+      final response = await _client.post(Endpoints.questionSkip(question.code));
 
-    if (isResponseSuccessful(response.statusCode)) {
-      return const Right(unit);
+      if (isResponseSuccessful(response.statusCode)) {
+        return const Right(unit);
+      }
+
+      return const Left(ServerFailure('Erreur lors de la mise à jour des réponses'));
+    } on Exception catch (exception) {
+      return Left(UnexpectedFailure(exception.toString()));
     }
-
-    return Left(Exception('Erreur lors de la mise à jour des réponses'));
   }
 }

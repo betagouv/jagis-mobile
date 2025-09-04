@@ -50,7 +50,7 @@ void main() {
       final expected = QuestionMapper.fromJson(question);
       if (expected.isAnswered) {
         expect(find.text(expected.label), findsOneWidget);
-        final responsesDisplay = expected.responsesDisplay();
+        final responsesDisplay = expected.answers.responsesDisplay();
         if (responsesDisplay.isNotEmpty) {
           expect(find.text(responsesDisplay), findsOneWidget);
         }

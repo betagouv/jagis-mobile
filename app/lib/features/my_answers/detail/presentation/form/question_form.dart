@@ -7,7 +7,6 @@ import 'package:app/features/my_answers/detail/presentation/form/choix_multiple.
 import 'package:app/features/my_answers/detail/presentation/form/choix_unique.dart';
 import 'package:app/features/my_answers/detail/presentation/form/decimal.dart';
 import 'package:app/features/my_answers/detail/presentation/form/entier.dart';
-import 'package:app/features/my_answers/detail/presentation/form/input_controller.dart';
 import 'package:app/features/my_answers/detail/presentation/form/libre.dart';
 import 'package:app/features/my_answers/detail/presentation/form/mosaic.dart';
 import 'package:app/features/my_answers/detail/presentation/form/question_controller.dart';
@@ -20,32 +19,23 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class QuestionForm extends StatelessWidget {
   const QuestionForm({
     super.key,
-    required this.questionId,
     this.withoutTitle = false,
     this.withAlreadyDoneAlert = true,
     required this.questionController,
-    this.inputController,
     this.onSaved,
   });
 
-  final String questionId;
   final bool withoutTitle;
   final bool withAlreadyDoneAlert;
   final QuestionController questionController;
-  final InputController? inputController;
   final VoidCallback? onSaved;
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
-    create: (final context) => QuestionEditBloc(context.read())..add(QuestionEditRecuperationDemandee(questionId)),
-    lazy: false,
-    child: _Content(
-      withoutTitle: withoutTitle,
-      withAlreadyDoneAlert: withAlreadyDoneAlert,
-      questionController: questionController,
-      inputController: inputController,
-      onSaved: onSaved,
-    ),
+  Widget build(final BuildContext context) => _Content(
+    withoutTitle: withoutTitle,
+    withAlreadyDoneAlert: withAlreadyDoneAlert,
+    questionController: questionController,
+    onSaved: onSaved,
   );
 }
 
@@ -54,14 +44,12 @@ class _Content extends StatelessWidget {
     required this.withoutTitle,
     required this.withAlreadyDoneAlert,
     required this.questionController,
-    required this.inputController,
     required this.onSaved,
   });
 
   final bool withoutTitle;
   final bool withAlreadyDoneAlert;
   final QuestionController questionController;
-  final InputController? inputController;
   final VoidCallback? onSaved;
 
   @override
@@ -69,14 +57,14 @@ class _Content extends StatelessWidget {
     listener: (final context, final state) {
       final aState = state;
 
-      if (aState is QuestionEditLoaded) {
-        inputController?.updateValue(aState.newQuestion.responsesDisplay());
-      }
-
-      if (aState is QuestionEditLoaded && aState.updated) {
+      if (aState is QuestionEditLoaded && aState.submissionStatus == SubmissionStatus.success) {
         onSaved?.call();
       }
     },
+    listenWhen: (final previous, final current) =>
+        current is QuestionEditLoaded &&
+        current.submissionStatus == SubmissionStatus.success &&
+        (previous is! QuestionEditLoaded || previous.submissionStatus != SubmissionStatus.success),
     child: BlocBuilder<QuestionEditBloc, QuestionEditState>(
       builder: (final context, final state) => switch (state) {
         QuestionEditInitial() => const SizedBox(height: 550),
@@ -138,6 +126,7 @@ class _LoadedContentState extends State<_LoadedContent> {
   @override
   Widget build(final BuildContext context) {
     final question = widget.state.question;
+    final answers = question.answers;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,19 +135,19 @@ class _LoadedContentState extends State<_LoadedContent> {
         if (!widget.withoutTitle)
           FnvTitle(
             title: question.label,
-            subtitle: switch (question) {
-              QuestionMultipleChoice() || QuestionMosaicBoolean() => Localisation.plusieursReponsesPossibles,
-              QuestionSingleChoice() || QuestionInteger() || QuestionDecimal() || QuestionOpen() => null,
+            subtitle: switch (answers) {
+              AnswersMultipleChoice() || AnswersMosaicBoolean() => Localisation.plusieursReponsesPossibles,
+              AnswersSingleChoice() || AnswersInteger() || AnswersDecimal() || AnswersOpen() => null,
             },
           ),
         if (widget.withAlreadyDoneAlert && question.isAnswered) const _QuestionIsAnsweredAlert(),
-        switch (question) {
-          QuestionSingleChoice() => ChoixUnique(question: question),
-          QuestionMultipleChoice() => ChoixMultiple(question: question),
-          QuestionInteger() => Entier(question: question),
-          QuestionDecimal() => Decimal(question: question),
-          QuestionOpen() => Libre(question: question),
-          QuestionMosaicBoolean() => Mosaic(question: question),
+        switch (answers) {
+          AnswersSingleChoice() => ChoixUnique(question: answers),
+          AnswersMultipleChoice() => ChoixMultiple(question: answers),
+          AnswersInteger() => Entier(question: answers),
+          AnswersDecimal() => Decimal(question: answers),
+          AnswersOpen() => Libre(question: answers),
+          AnswersMosaicBoolean() => Mosaic(question: answers),
         },
       ],
     );

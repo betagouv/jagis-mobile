@@ -2,6 +2,8 @@ import 'package:app/core/question/domain/question.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+enum SubmissionStatus { idle, success }
+
 @immutable
 sealed class QuestionEditState extends Equatable {
   const QuestionEditState();
@@ -17,14 +19,14 @@ final class QuestionEditInitial extends QuestionEditState {
 
 @immutable
 final class QuestionEditLoaded extends QuestionEditState {
-  const QuestionEditLoaded({required this.question, required this.newQuestion, required this.updated});
+  const QuestionEditLoaded({required this.question, required this.answers, required this.submissionStatus});
 
   final Question question;
-  final Question newQuestion;
-  final bool updated;
+  final Answers answers;
+  final SubmissionStatus submissionStatus;
 
   @override
-  List<Object> get props => [question, newQuestion, updated];
+  List<Object> get props => [question, answers, submissionStatus];
 }
 
 @immutable

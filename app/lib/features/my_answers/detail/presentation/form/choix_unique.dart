@@ -9,7 +9,7 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class ChoixUnique extends StatelessWidget {
   const ChoixUnique({super.key, required this.question});
 
-  final QuestionSingleChoice question;
+  final AnswersSingleChoice question;
 
   @override
   Widget build(final BuildContext context) => FnvRadiosGroup(
@@ -19,7 +19,7 @@ class ChoixUnique extends StatelessWidget {
       if (value == null) {
         return;
       }
-      context.read<QuestionEditBloc>().add(QuestionEditChoixUniqueChangee(value));
+      context.read<QuestionEditBloc>().add(QuestionEditAnswersChanged(question.changeResponses([value])));
     },
     direction: Direction.vertical,
     size: DsfrComponentSize.md,

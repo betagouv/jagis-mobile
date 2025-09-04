@@ -1,4 +1,3 @@
-import 'package:app/core/question/domain/question_code.dart';
 import 'package:app/core/question/domain/response.dart';
 import 'package:app/core/question/domain/response_choice.dart';
 import 'package:app/core/question/domain/response_mosaic.dart';
@@ -6,202 +5,181 @@ import 'package:app/features/theme/core/domain/theme_type.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
-sealed class Question extends Equatable {
-  const Question({required this.code, required this.theme, required this.label, required this.isAnswered, required this.points});
-
-  final QuestionCode code;
-  final ThemeType theme;
-  final String label;
-  final bool isAnswered;
-  final int points;
+sealed class Answers extends Equatable {
+  const Answers();
 
   String responsesDisplay();
 
+  /// Shape answers into the API payload expected by the backend.$
+  ///
+  /// For unique answers: `[{ 'value': string }]`.
+  /// For choice/mosaic answers: `[{ 'code': string, 'selected': bool }, ...]`.
+  List<Map<String, dynamic>> toApiPayload();
+
+  bool get isEmpty;
+  bool get isNotEmpty => !isEmpty;
+
   @override
-  List<Object> get props => [code, theme, label, isAnswered, points];
+  List<Object> get props => [];
 }
 
-sealed class QuestionUnique extends Question {
-  const QuestionUnique({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required this.response,
-    required super.points,
-  });
+sealed class AnswersUnique extends Answers {
+  const AnswersUnique({required this.response});
 
   final Response response;
 
-  QuestionUnique changeResponse(final String value);
+  AnswersUnique changeResponse(final String value);
 
   @override
-  List<Object> get props => [...super.props, response];
+  bool get isEmpty => response.value.trim().isEmpty;
+
+  @override
+  List<Object> get props => [response];
 }
 
-final class QuestionOpen extends QuestionUnique {
-  const QuestionOpen({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required super.response,
-    required super.points,
-  });
+final class AnswersOpen extends AnswersUnique {
+  const AnswersOpen({required super.response});
 
   @override
   String responsesDisplay() => response.value;
 
   @override
-  QuestionOpen changeResponse(final String value) => QuestionOpen(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    response: response.copyWith(value: value),
-    points: points,
-  );
+  AnswersOpen changeResponse(final String value) => AnswersOpen(response: response.copyWith(value: value));
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => [
+    {'value': response.value},
+  ];
 }
 
-final class QuestionInteger extends QuestionUnique {
-  const QuestionInteger({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required super.response,
-    required super.points,
-  });
+final class AnswersInteger extends AnswersUnique {
+  const AnswersInteger({required super.response});
 
   @override
   String responsesDisplay() => response.value;
 
   @override
-  QuestionInteger changeResponse(final String value) => QuestionInteger(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    response: response.copyWith(value: value),
-    points: points,
-  );
+  AnswersInteger changeResponse(final String value) => AnswersInteger(response: response.copyWith(value: value));
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => [
+    {'value': response.value},
+  ];
 }
 
-// TODO(erolley): Could be factorized with QuestionInteger
-final class QuestionDecimal extends QuestionUnique {
-  const QuestionDecimal({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required super.response,
-    required super.points,
-  });
+final class AnswersDecimal extends AnswersUnique {
+  const AnswersDecimal({required super.response});
 
   @override
   String responsesDisplay() => response.value;
 
   @override
-  QuestionDecimal changeResponse(final String value) => QuestionDecimal(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    response: response.copyWith(value: value),
-    points: points,
-  );
+  AnswersDecimal changeResponse(final String value) => AnswersDecimal(response: response.copyWith(value: value));
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => [
+    {'value': response.value},
+  ];
 }
 
-sealed class QuestionMultiple extends Question {
-  const QuestionMultiple({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required this.responses,
-    required super.points,
-  });
+sealed class AnswersMultiple extends Answers {
+  const AnswersMultiple({required this.responses});
 
   final List<ResponseChoice> responses;
 
-  QuestionMultiple changeResponses(final List<String> values);
+  AnswersMultiple changeResponses(final List<String> values);
+
+  @override
+  bool get isEmpty => !responses.any((final e) => e.isSelected);
 
   @override
   List<Object> get props => [...super.props, responses];
 }
 
-final class QuestionSingleChoice extends QuestionMultiple {
-  const QuestionSingleChoice({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required super.responses,
-    required super.points,
-  });
+final class AnswersSingleChoice extends AnswersMultiple {
+  const AnswersSingleChoice({required super.responses});
 
   @override
   String responsesDisplay() => responses.firstWhereOrNull((final r) => r.isSelected)?.label ?? '';
 
   @override
-  QuestionSingleChoice changeResponses(final List<String> values) => QuestionSingleChoice(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.code))).toList(),
-    points: points,
-  );
+  AnswersSingleChoice changeResponses(final List<String> values) =>
+      AnswersSingleChoice(responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.code))).toList());
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList();
 }
 
-final class QuestionMultipleChoice extends QuestionMultiple {
-  const QuestionMultipleChoice({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required super.responses,
-    required super.points,
-  });
+final class AnswersMultipleChoice extends AnswersMultiple {
+  const AnswersMultipleChoice({required super.responses});
 
   @override
   String responsesDisplay() => responses.where((final r) => r.isSelected).map((final e) => e.label).join(' - ');
 
   @override
-  QuestionMultipleChoice changeResponses(final List<String> values) => QuestionMultipleChoice(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.label))).toList(),
-    points: points,
-  );
+  AnswersMultipleChoice changeResponses(final List<String> values) =>
+      AnswersMultipleChoice(responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.code))).toList());
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList();
 }
 
-final class QuestionMosaicBoolean extends Question {
-  const QuestionMosaicBoolean({
-    required super.code,
-    required super.theme,
-    required super.label,
-    required super.isAnswered,
-    required this.responses,
-    required super.points,
-  });
+final class AnswersMosaicBoolean extends Answers {
+  const AnswersMosaicBoolean({required this.responses});
 
   final List<ResponseMosaic> responses;
 
   @override
   String responsesDisplay() => responses.where((final r) => r.isSelected).map((final e) => e.label).join(' - ');
 
-  QuestionMosaicBoolean changeResponses(final List<String> values) => QuestionMosaicBoolean(
-    code: code,
-    theme: theme,
-    label: label,
-    isAnswered: isAnswered,
-    responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.label))).toList(),
-    points: points,
-  );
+  AnswersMosaicBoolean changeResponses(final List<String> values) =>
+      AnswersMosaicBoolean(responses: responses.map((final r) => r.copyWith(isSelected: values.contains(r.code))).toList());
+
+  @override
+  bool get isEmpty => !responses.any((final e) => e.isSelected);
 
   @override
   List<Object> get props => [...super.props, responses];
+
+  @override
+  List<Map<String, dynamic>> toApiPayload() => responses.map((final e) => {'code': e.code, 'selected': e.isSelected}).toList();
+}
+
+final class Question extends Equatable {
+  const Question({
+    required this.code,
+    required this.theme,
+    required this.label,
+    required this.isMandatory,
+    required this.points,
+    required this.answers,
+  });
+
+  final String code;
+  final ThemeType theme;
+  final String label;
+  final bool isMandatory;
+  final int points;
+  final Answers answers;
+
+  bool get isAnswered => answers.isNotEmpty;
+
+  Question copyWith({
+    final String? code,
+    final ThemeType? theme,
+    final String? label,
+    final bool? isMandatory,
+    final int? points,
+    final Answers? answers,
+  }) => Question(
+    code: code ?? this.code,
+    theme: theme ?? this.theme,
+    label: label ?? this.label,
+    isMandatory: isMandatory ?? this.isMandatory,
+    points: points ?? this.points,
+    answers: answers ?? this.answers,
+  );
+
+  @override
+  List<Object> get props => [code, theme, label, isMandatory, points, answers];
 }

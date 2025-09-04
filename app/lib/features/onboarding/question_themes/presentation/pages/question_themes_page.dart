@@ -68,7 +68,8 @@ class _Question extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final question = context.select<QuestionThemesBloc, QuestionMultipleChoice?>((final bloc) => bloc.state.question);
+    final question = context.select<QuestionThemesBloc, Question?>((final bloc) => bloc.state.question);
+    final responses = (question?.answers as AnswersMultiple?)?.responses;
 
     return question == null
         ? const SizedBox.shrink()
@@ -77,8 +78,8 @@ class _Question extends StatelessWidget {
             children: [
               Text(question.label, style: const DsfrTextStyle.bodyLg(color: DsfrColors.grey50)),
               FnvCheckboxSet(
-                options: question.responses.map((final e) => e.label).toList(),
-                selectedOptions: question.responses.where((final e) => e.isSelected).map((final e) => e.label).toList(),
+                options: responses!.map((final e) => e.label).toList(),
+                selectedOptions: responses.where((final e) => e.isSelected).map((final e) => e.label).toList(),
                 onChanged: (final value) => context.read<QuestionThemesBloc>().add(QuestionThemesOntChange(value)),
               ),
             ],

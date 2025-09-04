@@ -1,4 +1,4 @@
-import 'package:app/core/question/domain/response_mosaic.dart';
+import 'package:app/core/question/domain/question.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -21,40 +21,10 @@ final class QuestionEditRecuperationDemandee extends QuestionEditEvent {
 }
 
 @immutable
-final class QuestionEditChoixMultipleChangee extends QuestionEditEvent {
-  const QuestionEditChoixMultipleChangee(this.value);
+final class QuestionEditAnswersChanged extends QuestionEditEvent {
+  const QuestionEditAnswersChanged(this.value);
 
-  final List<String> value;
-
-  @override
-  List<Object> get props => [value];
-}
-
-@immutable
-final class QuestionEditChoixUniqueChangee extends QuestionEditEvent {
-  const QuestionEditChoixUniqueChangee(this.value);
-
-  final String value;
-
-  @override
-  List<Object> get props => [value];
-}
-
-@immutable
-final class QuestionEditLibreChangee extends QuestionEditEvent {
-  const QuestionEditLibreChangee(this.value);
-
-  final String value;
-
-  @override
-  List<Object> get props => [value];
-}
-
-@immutable
-final class QuestionEditMosaicChangee extends QuestionEditEvent {
-  const QuestionEditMosaicChangee(this.value);
-
-  final List<ResponseMosaic> value;
+  final Answers value;
 
   @override
   List<Object> get props => [value];
@@ -63,26 +33,6 @@ final class QuestionEditMosaicChangee extends QuestionEditEvent {
 @immutable
 final class QuestionEditMosaicAucuneProposition extends QuestionEditEvent {
   const QuestionEditMosaicAucuneProposition();
-}
-
-@immutable
-final class QuestionEditEntierChangee extends QuestionEditEvent {
-  const QuestionEditEntierChangee(this.value);
-
-  final String value;
-
-  @override
-  List<Object> get props => [value];
-}
-
-@immutable
-final class QuestionEditDecimalChangee extends QuestionEditEvent {
-  const QuestionEditDecimalChangee(this.value);
-
-  final String value;
-
-  @override
-  List<Object> get props => [value];
 }
 
 @immutable

@@ -11,16 +11,16 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class Mosaic extends StatelessWidget {
   const Mosaic({super.key, required this.question});
 
-  final QuestionMosaicBoolean question;
+  final AnswersMosaicBoolean question;
 
   @override
-  Widget build(final BuildContext context) => _MosaicSet(responses: question.responses);
+  Widget build(final BuildContext context) => _MosaicSet(question: question);
 }
 
 class _MosaicSet extends StatefulWidget {
-  const _MosaicSet({required this.responses});
+  const _MosaicSet({required this.question});
 
-  final List<ResponseMosaic> responses;
+  final AnswersMosaicBoolean question;
 
   @override
   State<_MosaicSet> createState() => _MosaicSetState();
@@ -32,7 +32,7 @@ class _MosaicSetState extends State<_MosaicSet> {
   @override
   void initState() {
     super.initState();
-    _responses = List.of(widget.responses);
+    _responses = List.of(widget.question.responses);
   }
 
   @override
@@ -49,22 +49,27 @@ class _MosaicSetState extends State<_MosaicSet> {
           crossAxisSpacing: DsfrSpacings.s2w,
         ),
         itemBuilder: (final context, final index) {
-          final e = _responses[index];
+          final item = _responses[index];
 
           return MosaicButton(
-            emoji: e.emoji,
-            title: e.label,
-            value: e.isSelected,
+            emoji: item.emoji,
+            title: item.label,
+            value: item.isSelected,
             onChanged: (final value) {
               setState(() {
                 _responses = _responses
                     .map(
-                      (final r) =>
-                          r.code == e.code ? ResponseMosaic(code: r.code, label: r.label, emoji: r.emoji, isSelected: value) : r,
+                      (final r) => r.code == item.code
+                          ? ResponseMosaic(code: r.code, label: r.label, emoji: r.emoji, isSelected: value)
+                          : r,
                     )
                     .toList();
               });
-              context.read<QuestionEditBloc>().add(QuestionEditMosaicChangee(_responses));
+              context.read<QuestionEditBloc>().add(
+                QuestionEditAnswersChanged(
+                  widget.question.changeResponses(_responses.where((final f) => f.isSelected).map((final f) => f.label).toList()),
+                ),
+              );
             },
           );
         },

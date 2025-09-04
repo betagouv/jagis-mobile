@@ -147,11 +147,11 @@ class _Item extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => ListItem(
     title: question.label,
-    subTitle: question.responsesDisplay(),
+    subTitle: question.answers.responsesDisplay(),
     onTap: () async {
       final result = await GoRouter.of(
         context,
-      ).pushNamed<bool>(MieuxVousConnaitreEditPage.name, pathParameters: {'id': question.code.value});
+      ).pushNamed<bool>(MieuxVousConnaitreEditPage.name, pathParameters: {'id': question.code});
 
       if (result != true || !context.mounted) {
         return;

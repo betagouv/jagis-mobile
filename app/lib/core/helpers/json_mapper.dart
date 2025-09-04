@@ -10,4 +10,6 @@ abstract final class JsonHelpers {
       jsonList == null ? [] : (jsonList as List<dynamic>).cast<Map<String, dynamic>>().map(fromJson).whereType<T>().toList();
 
   static T? toNullable<T>(final Map<String, dynamic> json, final String key) => json.containsKey(key) ? json[key] as T? : null;
+
+  static bool toBool(final Map<String, dynamic> json, final String key) => json[key] == true;
 }

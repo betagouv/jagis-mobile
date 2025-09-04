@@ -94,7 +94,7 @@ void main() {
         await iTapOn(tester, 'Salade de pâtes complètes et lentilles');
         await iSee(tester, 'Temps de préparation : 5 min');
         await iSee(tester, '© Santé publique France');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -180,7 +180,7 @@ void main() {
             ]));
         await iTapOnText(tester, 1, '🍛 Me nourrir');
         await iSee(tester, 'Les recettes de septembre');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

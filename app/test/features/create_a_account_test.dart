@@ -49,7 +49,7 @@ void main() {
         await iSee(tester, 'Vérifiez votre boîte e-mail');
         await imRedirectToMagicLinkCallback(tester);
         await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -70,7 +70,7 @@ void main() {
         await iEnterInTheField(tester, 'joe@doe.fr', 'Mon adresse email');
         await iTapOnCreateMyAccountButton(tester);
         await iSee(tester, 'Adresse électronique joe@doe.fr déjà existante');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

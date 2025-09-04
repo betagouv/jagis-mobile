@@ -52,7 +52,7 @@ void main() {
         await theAccountDeletionEndpointHasBeenCalled(tester);
         await iSee(
             tester, 'Ensemble, améliorons nos habitudes au jour le jour');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -70,7 +70,7 @@ void main() {
         await iTapOn(tester, 'Annuler');
         await theAccountDeletionEndpointHasNotBeenCalled(tester);
         await iSee(tester, 'Options avancées');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

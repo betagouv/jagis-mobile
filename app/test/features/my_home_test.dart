@@ -75,7 +75,7 @@ void main() {
         await iTapOn(tester, 'Mon logement');
         await iSee(tester, '38280');
         await iSee(tester, "Villette-d'Anthon");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -135,7 +135,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -199,7 +199,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -266,7 +266,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

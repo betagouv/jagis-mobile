@@ -340,7 +340,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iSee(tester,
             '🌧️ Cuisiner une recette sans cuisson pour limiter les sources de chaleur');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -801,7 +801,7 @@ void main() {
                 null
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1183,7 +1183,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iTapOn(tester, 'Terminées');
         await iSee(tester, 'Vous n’avez pas encore terminé d’action.');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1496,7 +1496,7 @@ void main() {
             ]));
         await theApplicationIsLaunched(tester);
         await iSee(tester, 'Affinez vos recommandations');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1810,7 +1810,7 @@ void main() {
             ]));
         await theApplicationIsLaunched(tester);
         await iDontSee(tester, 'Affinez vos recommandations');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

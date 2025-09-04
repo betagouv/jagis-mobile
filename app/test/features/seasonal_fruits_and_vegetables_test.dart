@@ -119,7 +119,7 @@ void main() {
         await iSee(tester, 'janvier');
         await iSee(tester, 'Poire');
         await iDontSee(tester, 'Fraise');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -141,7 +141,7 @@ void main() {
         await iTapOn(tester, 'juin');
         await iSee(tester, 'Fraise');
         await iDontSee(tester, 'Poire');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

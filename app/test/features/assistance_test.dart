@@ -46,7 +46,7 @@ void main() {
         await iSee(tester, 'Rénover son logement');
         await iSee(tester, 'Acheter un vélo');
         await iSee(tester, 'Composter ses déchets');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -67,7 +67,7 @@ void main() {
         await iSee(tester, 'Acheter un vélo');
         await iDontSee(tester, 'Rénover son logement');
         await iDontSee(tester, 'Composter ses déchets');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -88,7 +88,7 @@ void main() {
         await iSee(tester, 'Composter ses déchets');
         await iDontSee(tester, 'Acheter un vélo');
         await iDontSee(tester, 'Rénover son logement');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

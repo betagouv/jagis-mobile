@@ -170,7 +170,7 @@ void main() {
         await iSee(tester,
             'Testez vos connaissances sur le tri des déchets avec ce quiz !');
         await iSee(tester, 'Question 1 sur 2');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -332,7 +332,7 @@ void main() {
                 {"pourcent": 100}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -493,7 +493,7 @@ void main() {
                 {"pourcent": 0}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -620,7 +620,7 @@ void main() {
                 {"pourcent": 100}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -748,7 +748,7 @@ void main() {
                 {"pourcent": 0}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -939,7 +939,7 @@ void main() {
               ]
             ]));
         await iSee(tester, 'Recommencer le quiz');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1086,7 +1086,7 @@ void main() {
         await iTapOn(tester, '🌧️ Bien trier les déchets');
         await iScrollDownTo(tester, 'Voir la réponse');
         await iTapOn(tester, 'Voir la réponse');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

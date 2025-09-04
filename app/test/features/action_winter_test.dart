@@ -262,7 +262,7 @@ void main() {
               ]
             ]));
         await iSee(tester, 'Connexion établie');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -430,7 +430,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -598,7 +598,7 @@ void main() {
               ]
             ]));
         await iSee(tester, 'La connexion a échoué');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -762,7 +762,7 @@ void main() {
               ]
             ]));
         await iSee(tester, 'Connexion établie');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -915,7 +915,7 @@ void main() {
         await iTapOn(tester,
             'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
         await iDontSee(tester, 'La connexion a échoué');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1122,7 +1122,7 @@ void main() {
         await iTapOn(tester, 'Valider');
         await iTapOn(tester, 'Continuer');
         await iSee(tester, 'Achetez-vous en vrac ?');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -1691,7 +1691,7 @@ void main() {
             ]));
         await iSee(tester, '1234567€');
         await iSee(tester, 'Découvrir 3 actions');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -2075,7 +2075,7 @@ void main() {
         await iTapOn(
             tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, '1234567€');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -2459,7 +2459,7 @@ void main() {
         await iScrollDownTo(tester, 'Recommencer');
         await iTapOn(tester, 'Recommencer');
         await iSee(tester, 'Commencer');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -2843,7 +2843,7 @@ void main() {
         await iTapOn(
             tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -3227,7 +3227,7 @@ void main() {
         await iTapOn(
             tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -3611,7 +3611,7 @@ void main() {
         await iTapOn(
             tester, '🌧️ Faire des économies sur ma facture d’énergie');
         await iSee(tester, 'Réduisez jusqu’à 25% votre facture d’énergie');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

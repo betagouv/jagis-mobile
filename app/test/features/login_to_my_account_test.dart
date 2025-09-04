@@ -48,7 +48,7 @@ void main() {
         await iSee(tester, 'Entrez le code reçu par e-mail !');
         await iEnterInThePinField(tester, '999999');
         await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -69,7 +69,7 @@ void main() {
         await iSee(tester, 'Vérifiez votre boîte e-mail');
         await imRedirectToMagicLinkCallback(tester);
         await iSee(tester, 'Bienvenue sur J’agis ! Faisons connaissance…');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -86,7 +86,7 @@ void main() {
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await iSeeTheHomePage(tester);
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -106,7 +106,7 @@ void main() {
         await iTapOn(tester, 'Se déconnecter');
         await iSee(
             tester, 'Ensemble, améliorons nos habitudes au jour le jour');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

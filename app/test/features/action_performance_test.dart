@@ -336,7 +336,7 @@ void main() {
         await beforeEach('''Voir la première question''');
         await bddSetUp(tester);
         await iSee(tester, 'Quel est votre régime alimentaire habituel');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -399,7 +399,7 @@ void main() {
             ]));
         await iSee(tester, 'Votre bilan alimentation');
         await iSee(tester, 'Viandes');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -425,7 +425,7 @@ void main() {
         await iScrollDownTo(tester, 'Recommencer le bilan');
         await iTapOn(tester, 'Recommencer le bilan');
         await iSee(tester, 'Question 1 sur 2');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

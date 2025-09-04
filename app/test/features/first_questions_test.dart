@@ -86,7 +86,7 @@ void main() {
         await iSee(tester, 'Tout est prêt !');
         await iTapOn(tester, 'C’est parti !');
         await iSeeTheHomePage(tester);
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -103,7 +103,7 @@ void main() {
         await bddSetUp(tester);
         await iEnterInTheField(tester, 'Joe#123', 'Mon pseudonyme');
         await iSee(tester, 'Le pseudonyme n’est pas valide.');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -139,7 +139,7 @@ void main() {
         await iEnterInTheField(tester, '1974', 'Année');
         await iTapOn(tester, 'Continuer');
         await iSee(tester, 'Une erreur est survenue.');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -162,7 +162,7 @@ void main() {
             'Nous avons quelques questions à vous poser pour personnaliser votre expérience !');
         await iSeeSemantics(tester, 'Mon pseudonyme');
         await iSeeSemantics(tester, 'Continuer');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

@@ -185,7 +185,7 @@ void main() {
         await iScrollDownTo(tester, 'N’est pas recommandée pour vous, car');
         await iSee(tester, 'N’est pas recommandée pour vous, car');
         await iSee(tester, "Vous n'avez pas de jardin");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -279,7 +279,7 @@ void main() {
         await iScrollDownTo(tester, 'Recommandée pour vous, car');
         await iSee(tester, 'Recommandée pour vous, car');
         await iSee(tester, "Vous avez un jardin");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -376,7 +376,7 @@ void main() {
         await iScrollDownTo(tester, 'Recommandée pour vous, car');
         await iTapOn(tester, "Vous avez un jardin");
         await iSee(tester, 'Mes réponses');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

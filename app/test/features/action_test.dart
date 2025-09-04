@@ -79,7 +79,7 @@ void main() {
         await iTapOn(tester, 'Actions');
         await iTapOn(tester, '🌧️ Faire réparer une paire de chaussures');
         await iSee(tester, 'Octavent');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -133,7 +133,7 @@ void main() {
             tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iTapOn(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iSee(tester, 'Salade de pâtes complètes et lentilles');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -187,7 +187,7 @@ void main() {
             tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iTapOn(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iSee(tester, 'COOPERACTIVE paysanne');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

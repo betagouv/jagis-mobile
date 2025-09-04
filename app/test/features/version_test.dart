@@ -35,7 +35,7 @@ void main() {
         await beforeEach('''User launches app and sees version number''');
         await theApplicationIsLaunched(tester);
         await iSee(tester, '1.2.3+4');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -53,7 +53,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iTapOnTheMenuButton(tester);
         await iSee(tester, '1.2.3+4');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

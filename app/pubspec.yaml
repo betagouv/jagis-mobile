@@ -49,7 +49,7 @@ dependencies:
   rxdart: 0.28.0
   sentry_dio: 8.14.2 # Bloqué en 8.14.2 par cronet_http qui doit passer jni en 0.14.2
   sentry_flutter: 8.14.2 # Bloqué en 8.14.2 par sentry_flutter qui doit passer jni en 0.14.2
-  share_plus: 11.0.0
+  share_plus: 11.1.0
   url_launcher: 6.3.2
   vector_graphics: 1.1.19
   vector_graphics_compiler: 1.1.17

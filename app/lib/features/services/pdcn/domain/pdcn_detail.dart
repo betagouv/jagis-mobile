@@ -26,7 +26,7 @@ class PdcnDetail extends Equatable {
       address: address,
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
-      phone: json['phone'] as String?,
+      phone: json['phone'] is List<String> ? (json['phone'] as List).join(', ') : json['phone'] as String?,
       openingHours: json['openhours_more_infos'] as String?,
       website: json['site_web'] as String?,
       distanceInMeters: json['distance_metres'] as int,

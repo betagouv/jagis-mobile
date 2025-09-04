@@ -70,7 +70,7 @@ class _CompletedQuizTitle extends StatelessWidget {
       text: Localisation.vousAvezTermineLeQuiz,
       children: [
         TextSpan(
-          text: ' "$name"',
+          text: ' "${name.replaceAll('**', '')}"',
           style: const DsfrTextStyle.bodyLgBold(color: DsfrColors.blueFranceSun113),
         ),
       ],

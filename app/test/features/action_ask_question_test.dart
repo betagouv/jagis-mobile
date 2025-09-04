@@ -205,7 +205,7 @@ void main() {
                 {"question": "Voici ma question."}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -284,7 +284,7 @@ void main() {
         await iTapOn(tester,
             "🌧️ Comparer et choisir entre l'électricité et le gaz pour équiper votre logement");
         await iDontSee(tester, 'Posez votre question');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

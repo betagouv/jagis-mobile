@@ -51,7 +51,7 @@ void main() {
         await iHaveArticlesInMyLibrary(tester, 1);
         await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '1 article');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -69,7 +69,7 @@ void main() {
         await iHaveArticlesInMyLibrary(tester, 2);
         await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '2 articles');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -88,7 +88,7 @@ void main() {
         await iTapOn(tester, 'Bibliothèque');
         await iSee(tester, '0 article');
         await iSee(tester, 'Aucun article trouvé');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -109,7 +109,7 @@ void main() {
         await iSee(tester, '1 article');
         await iSee(tester, "Comment réduire l'impact de ses vêtements ?");
         await iDontSee(tester, "Qu'est-ce qu'une alimentation durable ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -130,7 +130,7 @@ void main() {
         await iSee(tester, '1 article');
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iDontSee(tester, "Comment réduire l'impact de ses vêtements ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -152,7 +152,7 @@ void main() {
         await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iDontSee(tester, "Comment réduire l'impact de ses vêtements ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -175,7 +175,7 @@ void main() {
         await iScrollDownTo(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iDontSee(tester, "Comment réduire l'impact de ses vêtements ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -197,7 +197,7 @@ void main() {
         await iSee(tester, "Qu'est-ce qu'une alimentation durable ?");
         await iSee(tester,
             "Comment réduire l'impact de notre alimentation sur le climat ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

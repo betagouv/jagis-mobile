@@ -78,7 +78,7 @@ void main() {
         await iDontSee(tester, '0 aide');
         await iSee(tester, '1 aide');
         await iSee(tester, '2 aides');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -122,7 +122,7 @@ void main() {
         await iEnterInTheSearchByTitleFieldActions(tester, 'végétarienne');
         await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -166,7 +166,7 @@ void main() {
         await iFilterWithActionTheme(tester, '🥦 Alimentation');
         await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -210,7 +210,7 @@ void main() {
         await iFilterByAction(tester, 'Déjà consultées');
         await iSee(tester, '🌧️ Tester une nouvelle recette végétarienne');
         await iDontSee(tester, 'Faire réparer une paire de chaussures');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -258,7 +258,7 @@ void main() {
         await iTapOn(tester, '🌧️ Faire réparer une paire de chaussures');
         await iSee(tester,
             'Faites des économies en donnant une seconde vie à vos paires de chaussures');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

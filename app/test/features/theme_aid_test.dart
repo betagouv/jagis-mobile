@@ -143,7 +143,7 @@ void main() {
         await iSee(tester, 'Mes aides');
         await iSee(tester,
             'Être accompagné par France Rénov pour votre rénovation énergétique');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -225,7 +225,7 @@ void main() {
             ]));
         await iTapOnText(tester, 1, '🏠 Me loger');
         await iDontSee(tester, 'Mes aides');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

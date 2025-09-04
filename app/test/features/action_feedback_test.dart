@@ -202,7 +202,7 @@ void main() {
                 {"like_level": 4, "feedback": "Cette action est superbe."}
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

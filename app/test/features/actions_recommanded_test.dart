@@ -179,7 +179,7 @@ void main() {
         await bddSetUp(tester);
         await iTapOnText(tester, 1, '🚅 Me déplacer');
         await iSee(tester, '3 questions pour…');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -198,7 +198,7 @@ void main() {
         await iScrollDownTo(tester, 'Commencer');
         await iTapOn(tester, 'Commencer');
         await iSee(tester, "Êtes-vous équipé(e) d’un vélo ?");
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -223,7 +223,7 @@ void main() {
         await iTapOn(tester, "Question suivante");
         await iSee(tester,
             '🌧️ Trouver le type de voiture qui vous convient le mieux');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -253,7 +253,7 @@ void main() {
                 null
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -274,7 +274,7 @@ void main() {
         await iScrollDownTo(tester, 'Refaire');
         await iTapOn(tester, 'Refaire');
         await iSee(tester, '3 questions pour…');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

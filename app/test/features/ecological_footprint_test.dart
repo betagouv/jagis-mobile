@@ -70,7 +70,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iSee(tester, 'Calculer mon\nempreinte écologique');
         await iSee(tester, '39%');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -114,7 +114,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iSee(tester, 'Mon empreinte\nécologique');
         await iSee(tester, '8t\nde CO2e/an');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -273,7 +273,7 @@ void main() {
             ]));
         await iGoBack(tester);
         await iSee(tester, '69%');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

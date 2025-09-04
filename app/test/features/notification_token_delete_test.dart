@@ -41,7 +41,7 @@ void main() {
         await iTapOnTheMenuButton(tester);
         await iTapOn(tester, 'Se déconnecter');
         await theNotificationTokenDeleteEndpointHasBeenCalled(tester);
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

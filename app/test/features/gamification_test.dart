@@ -59,7 +59,7 @@ void main() {
         await theApplicationIsLaunched(tester);
         await iSeePoints(tester, '2000');
         await iDontSeeBadges(tester, '0');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -144,7 +144,7 @@ void main() {
                 null
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -258,7 +258,7 @@ void main() {
             ]));
         await iTapOn(tester, 'Question suivante');
         await iSeePoints(tester, '25');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -457,7 +457,7 @@ void main() {
             ]));
         await iTapOn(tester, 'Voir le résultat');
         await iSeePoints(tester, '21');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -779,7 +779,7 @@ void main() {
             ]));
         await iTapOn(tester, 'Question suivante');
         await iSeePoints(tester, '51');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

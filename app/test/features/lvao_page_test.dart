@@ -252,7 +252,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -317,7 +317,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -384,7 +384,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -460,7 +460,7 @@ void main() {
         await iTapOn(tester, 'EBS LE RELAIS NORD PAS DE CALAIS');
         await iScrollDownTo(tester, 'Sources :');
         await iSee(tester, '· REFASHION');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -511,7 +511,7 @@ void main() {
             ]));
         await iTapOn(tester, 'Que faire de mes objets ?');
         await iDontSee(tester, 'Afficher plus de suggestions');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -592,7 +592,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

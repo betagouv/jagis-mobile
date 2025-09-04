@@ -37,7 +37,7 @@ void main() {
         await iAmLoggedIn(tester);
         await theApplicationIsLaunched(tester);
         await theNotificationTokenSaveEndpointHasBeenCalled(tester);
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

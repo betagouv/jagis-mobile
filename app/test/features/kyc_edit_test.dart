@@ -177,7 +177,7 @@ void main() {
                 ]
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

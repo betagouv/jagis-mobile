@@ -191,7 +191,7 @@ void main() {
         await iSee(tester, 'Les chiffres clés de Dole');
         await iSee(tester, '21%');
         await iSee(tester, '100%');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -360,7 +360,7 @@ void main() {
                 null
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -570,7 +570,7 @@ void main() {
             ]));
         await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
         await iSee(tester, 'Les chiffres clés de Lyon');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -811,7 +811,7 @@ void main() {
                 }
               ]
             ]));
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

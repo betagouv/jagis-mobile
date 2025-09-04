@@ -51,7 +51,7 @@ void main() {
         await iSee(tester, 'Simulateur');
         await iTapOn(tester, 'Accéder au simulateur');
         await iSee(tester, 'Simuler mon aide');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -68,7 +68,7 @@ void main() {
         await bddSetUp(tester);
         await iTapOn(tester, 'Accéder au simulateur');
         await iSee(tester, '1000');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -87,7 +87,7 @@ void main() {
         await iScrollDown(tester);
         await iTapOn(tester, 'Vélo pliant standard : 500 €');
         await iSee(tester, '500');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -107,7 +107,7 @@ void main() {
         await iEnterInTheField(tester, '39100', 'Code postal');
         await iTapOnDropdownMenu(tester);
         await iSee(tester, 'DOLE');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -126,7 +126,7 @@ void main() {
         await iEnterInTheField(tester, '0', 'Prix du vélo');
         await iTapOn(tester, 'Estimer mes aides');
         await iDontSee(tester, 'Mes aides disponibles');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {
@@ -157,7 +157,7 @@ void main() {
         await theProfileEndpointHasBeenCalled(tester);
         await theLogementEndpointHasBeenCalled(tester);
         await iSee(tester, 'Mes aides disponibles');
-      } on TestFailure {
+      } catch (_) {
         success = false;
         rethrow;
       } finally {

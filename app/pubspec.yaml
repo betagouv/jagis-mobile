@@ -52,7 +52,7 @@ dependencies:
   share_plus: 11.0.0
   url_launcher: 6.3.2
   vector_graphics: 1.1.19
-  vector_graphics_compiler: 1.1.17
+  vector_graphics_compiler: 1.1.19
 
 dev_dependencies:
   bdd_widget_test: 1.8.2

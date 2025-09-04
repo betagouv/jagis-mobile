@@ -7,7 +7,7 @@ abstract final class ThemeDataMapper {
 
   static ThemeInfo fromJson(final Map<String, dynamic> json) => ThemeInfo(
     themeType: ThemeTypeMapper.convert(json['thematique'] as String),
-    communeName: json['nom_commune'] as String,
+    communeName: json['nom_commune'] as String? ?? '',
     isQuestionsNeeded: json['est_personnalisation_necessaire'] as bool,
     sequenceId: json['enchainement_questions_personnalisation'] as String,
     actionsRecommanded: ActionSummary.fromJsonList(json['liste_actions_recommandees'] as List<dynamic>),

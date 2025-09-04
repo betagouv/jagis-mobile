@@ -36,9 +36,9 @@ final class MaifLoadSuccess extends MaifState {
   final Address userAddress;
   final Address searchAddress;
   final List<MaifRisk> risks;
-  final int numberOfCatNat;
-  final int droughtPercentage;
-  final int floodPercentage;
+  final int? numberOfCatNat;
+  final int? droughtPercentage;
+  final int? floodPercentage;
   final bool isLoading;
 
   bool get isNewAddress => userAddress != searchAddress;

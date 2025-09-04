@@ -72,9 +72,9 @@ class MaifSuccess extends StatelessWidget {
               child: Row(
                 spacing: DsfrSpacings.s2w,
                 children: [
-                  MaifNaturalDisastersWidget(value: data.numberOfCatNat),
-                  MaifDroughtWidget(value: data.droughtPercentage),
-                  MaifFloodWidget(value: data.floodPercentage),
+                  if (data.numberOfCatNat != null) MaifNaturalDisastersWidget(value: data.numberOfCatNat!),
+                  if (data.droughtPercentage != null) MaifDroughtWidget(value: data.droughtPercentage!),
+                  if (data.floodPercentage != null) MaifFloodWidget(value: data.floodPercentage!),
                 ].map((final e) => SizedBox(width: 213, child: e)).toList(),
               ),
             ),

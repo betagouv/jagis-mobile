@@ -1,4 +1,3 @@
-import 'package:app/core/question/domain/question_code.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -19,7 +18,7 @@ final class EnvironmentalPerformanceQuestionInitial extends EnvironmentalPerform
 final class EnvironmentalPerformanceQuestionLoadSuccess extends EnvironmentalPerformanceQuestionState {
   const EnvironmentalPerformanceQuestionLoadSuccess({required this.questionIdList});
 
-  final List<QuestionCode> questionIdList;
+  final List<String> questionIdList;
 
   @override
   List<Object> get props => [questionIdList];

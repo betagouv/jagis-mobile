@@ -17,6 +17,7 @@ import './step/i_enter_in_the_field.dart';
 import './step/the_api_receive.dart';
 import './step/i_enter_in_the_autocomplete_field.dart';
 import './step/i_dont_see.dart';
+import './step/button_is_disabled.dart';
 
 void main() {
   setUpAll(() async {
@@ -3617,6 +3618,226 @@ void main() {
       } finally {
         await afterEach(
           '''Si le logement a une adresse incomplète alors on arrive sur la première page''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Avoir des questions obligatoire''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Avoir des questions obligatoire''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/actions/simulateur/actions_watt_watchers',
+                200,
+                {
+                  "nombre_actions_en_cours": 1,
+                  "nombre_actions_faites": 1,
+                  "nombre_aides_disponibles": 0,
+                  "code": "actions_watt_watchers",
+                  "emoji": "🌧️",
+                  "titre": "**Faire des économies sur ma facture d’énergie**",
+                  "sous_titre": null,
+                  "consigne":
+                      "Réalisez cette action dans les prochaines semaines et partagez vos retours",
+                  "label_compteur":
+                      "**453 actions** réalisées par la communauté",
+                  "besoins": [],
+                  "comment": null,
+                  "pourquoi":
+                      "## En quelques mots\n\nObtenez la répartition de votre consommation d'énergie en plus d’actions personnalisées pour réduire votre facture d’électricité sans sacrifier votre confort.",
+                  "type": "simulateur",
+                  "thematique": "logement",
+                  "kycs": [
+                    {
+                      "code": "KYC_alimentation_achat_vrac",
+                      "question": "Achetez-vous en vrac ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {"code": "non", "label": "Non", "selected": true},
+                        {
+                          "code": "ne_sais_pas",
+                          "label": "Je ne sais pas",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": true,
+                      "categorie": "test",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": true,
+                      "thematique": "alimentation"
+                    },
+                    {
+                      "code": "KYC_appetence_cuisine",
+                      "question": "Aimez-vous cuisiner ?",
+                      "reponse_multiple": [
+                        {"code": "oui", "label": "Oui", "selected": false},
+                        {
+                          "code": "parfois",
+                          "label": "De temps en temps",
+                          "selected": false
+                        },
+                        {"code": "non", "label": "Non", "selected": false},
+                        {
+                          "code": "pas_de_reponse",
+                          "label": "Je ne souhaite pas répondre",
+                          "selected": false
+                        }
+                      ],
+                      "is_answered": false,
+                      "categorie": "recommandation",
+                      "points": 5,
+                      "type": "choix_unique",
+                      "is_NGC": false,
+                      "thematique": "alimentation"
+                    }
+                  ],
+                  "quizzes": [],
+                  "aides": [],
+                  "services": [],
+                  "nom_commune": "Lyon",
+                  "quizz_felicitations": null,
+                  "deja_vue": true,
+                  "deja_faite": false,
+                  "faqs": [],
+                  "points": 30,
+                  "sources": [],
+                  "articles": [],
+                  "like_level": null,
+                  "enchainement_id": "simulateur_actions_watt_watchers",
+                  "explications_recommandation": {
+                    "liste_explications": [],
+                    "est_exclu": false
+                  },
+                  "explications_recommandation_raw": {"liste_explications": []}
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/logement',
+                200,
+                {
+                  "nombre_adultes": 2,
+                  "nombre_enfants": 1,
+                  "latitude": 47.10341,
+                  "longitude": 5.480833,
+                  "numero_rue": "5",
+                  "rue": "Chemin de Rougemont",
+                  "code_postal": "39100",
+                  "commune": "DOLE",
+                  "type": "maison",
+                  "superficie": "superficie_150",
+                  "proprietaire": null,
+                  "chauffage": null,
+                  "plus_de_15_ans": true,
+                  "dpe": null,
+                  "commune_label": "Dole",
+                  "code_commune": "39198"
+                }
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/winter/inscription_par_adresse',
+                200,
+                {}
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/enchainementQuestionsKYC_v2/simulateur_actions_watt_watchers/first',
+                200,
+                {
+                  "nombre_total_questions": 32,
+                  "nombre_total_questions_effectives": 22,
+                  "position_courante": 2,
+                  "question_courante": {
+                    "code": "KYC_logement_type_residence",
+                    "question":
+                        "Ce logement est-il votre résidence principale ou secondaire ?",
+                    "sous_titre": null,
+                    "reponse_multiple": [
+                      {
+                        "code": "principale",
+                        "label": "Résidence principale",
+                        "selected": false
+                      },
+                      {
+                        "code": "secondaire",
+                        "label": "Résidence secondaire",
+                        "selected": false
+                      }
+                    ],
+                    "is_answered": false,
+                    "is_mandatory": true,
+                    "is_skipped": false,
+                    "categorie": "recommandation",
+                    "points": 5,
+                    "type": "choix_unique",
+                    "is_NGC": false,
+                    "thematique": "logement"
+                  },
+                  "is_first": false,
+                  "is_last": false,
+                  "is_out_of_range": false
+                }
+              ],
+              [
+                'GET',
+                '/utilisateurs/{userId}/questionsKYC_v2/KYC_logement_type_residence',
+                200,
+                {
+                  "code": "KYC_logement_type_residence",
+                  "question":
+                      "Ce logement est-il votre résidence principale ou secondaire ?",
+                  "sous_titre": null,
+                  "reponse_multiple": [
+                    {
+                      "code": "principale",
+                      "label": "Résidence principale",
+                      "selected": false
+                    },
+                    {
+                      "code": "secondaire",
+                      "label": "Résidence secondaire",
+                      "selected": false
+                    }
+                  ],
+                  "is_answered": false,
+                  "is_mandatory": true,
+                  "is_skipped": false,
+                  "categorie": "recommandation",
+                  "points": 5,
+                  "type": "choix_unique",
+                  "is_NGC": false,
+                  "thematique": "logement"
+                }
+              ]
+            ]));
+        await iTapOn(
+            tester, '🌧️ Faire des économies sur ma facture d’énergie');
+        await iScrollDownTo(tester, 'Commencer');
+        await iTapOn(tester, 'Commencer');
+        await iEnterInTheField(tester, 'Saudon',
+            'Nom de famille (du titulaire du contrat électrique)');
+        await iScrollDownTo(tester, 'Valider');
+        await iTapOn(tester,
+            'En activant le suivi de ma consommation, je déclare sur l’honneur être titulaire du compte électrique ou être mandaté par celui-ci. J’autorise Watt Watchers à recueillir mon historique de consommation d’électricité sur 3 ans (demi-heure, journée et puissance maximum quotidienne), ainsi qu’à analyser mes consommations.');
+        await iTapOn(tester, 'Valider');
+        await iTapOn(tester, 'Continuer');
+        await iSee(tester,
+            'Ce logement est-il votre résidence principale ou secondaire ?');
+        await buttonIsDisabled(tester, 'Question suivante');
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Avoir des questions obligatoire''',
           success,
         );
       }

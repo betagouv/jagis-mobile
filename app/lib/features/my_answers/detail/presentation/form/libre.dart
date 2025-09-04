@@ -9,7 +9,7 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class Libre extends StatelessWidget {
   const Libre({super.key, required this.question});
 
-  final QuestionOpen question;
+  final AnswersOpen question;
 
   @override
   Widget build(final BuildContext context) {
@@ -18,7 +18,8 @@ class Libre extends StatelessWidget {
     return DsfrInputHeadless(
       key: const ValueKey(Localisation.maReponse),
       controller: controller,
-      onChanged: (final value) => context.read<QuestionEditBloc>().add(QuestionEditLibreChangee(value)),
+      onChanged: (final value) =>
+          context.read<QuestionEditBloc>().add(QuestionEditAnswersChanged(question.changeResponse(value))),
       maxLines: 4,
     );
   }

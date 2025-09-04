@@ -10,7 +10,7 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class Entier extends StatelessWidget {
   const Entier({super.key, required this.question});
 
-  final QuestionInteger question;
+  final AnswersInteger question;
 
   @override
   Widget build(final BuildContext context) {
@@ -21,7 +21,7 @@ class Entier extends StatelessWidget {
       controller: controller,
       suffixText: question.response.unit?.abbreviation,
       onChanged: (final value) {
-        context.read<QuestionEditBloc>().add(QuestionEditEntierChangee(value));
+        context.read<QuestionEditBloc>().add(QuestionEditAnswersChanged(question.changeResponse(value)));
       },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],

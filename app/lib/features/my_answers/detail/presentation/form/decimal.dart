@@ -10,7 +10,7 @@ import 'package:flutter_dsfr/flutter_dsfr.dart';
 class Decimal extends StatelessWidget {
   const Decimal({super.key, required this.question});
 
-  final QuestionDecimal question;
+  final AnswersDecimal question;
 
   @override
   Widget build(final BuildContext context) {
@@ -21,7 +21,7 @@ class Decimal extends StatelessWidget {
       controller: controller,
       suffixText: question.response.unit?.abbreviation,
       onChanged: (final value) {
-        context.read<QuestionEditBloc>().add(QuestionEditDecimalChangee(value));
+        context.read<QuestionEditBloc>().add(QuestionEditAnswersChanged(question.changeResponse(value)));
       },
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,.]'))],

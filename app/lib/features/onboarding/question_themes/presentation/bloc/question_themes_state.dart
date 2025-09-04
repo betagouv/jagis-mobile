@@ -6,10 +6,10 @@ import 'package:meta/meta.dart';
 final class QuestionThemesState extends Equatable {
   const QuestionThemesState({this.question, required this.valeur});
 
-  final QuestionMultipleChoice? question;
+  final Question? question;
   final List<String> valeur;
 
-  QuestionThemesState copyWith({final QuestionMultipleChoice? question, final List<String>? valeur}) =>
+  QuestionThemesState copyWith({final Question? question, final List<String>? valeur}) =>
       QuestionThemesState(question: question ?? this.question, valeur: valeur ?? this.valeur);
 
   @override

@@ -23,7 +23,7 @@ class QuestionFlowManager implements CursorManager<CurrentQuestion> {
 
   @override
   Future<Cursor<CurrentQuestion>> previous(final Cursor<CurrentQuestion> current) async {
-    final response = await _client.get(Endpoints.questionsPrevious(sequenceId, current.element.question.code.value));
+    final response = await _client.get(Endpoints.questionsPrevious(sequenceId, current.element.question.code));
     final element = CurrentQuestionMapper.fromJson(response.data as Map<String, dynamic>);
 
     return Cursor(element: element, index: element.currentPosition, total: element.totalNumberOfQuestions);
@@ -31,7 +31,7 @@ class QuestionFlowManager implements CursorManager<CurrentQuestion> {
 
   @override
   Future<Either<Unit, Cursor<CurrentQuestion>>> next(final Cursor<CurrentQuestion> current) async {
-    final response = await _client.get(Endpoints.questionsNext(sequenceId, current.element.question.code.value));
+    final response = await _client.get(Endpoints.questionsNext(sequenceId, current.element.question.code));
     final data = response.data as Map<String, dynamic>;
 
     if (!data.containsKey('question_courante')) {

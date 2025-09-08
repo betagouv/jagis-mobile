@@ -10,8 +10,11 @@ import './step/i_am_logged_in.dart';
 import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on_text.dart';
+import './step/i_scroll_down_to.dart';
 import './step/i_tap_on.dart';
 import './step/i_see.dart';
+import './step/the_api_receive.dart';
+import './step/i_enter_in_the_autocomplete_field.dart';
 
 void main() {
   setUpAll(() async {
@@ -217,6 +220,7 @@ void main() {
                 }
               ]
             ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
         await iTapOn(tester, 'Les commerces locaux');
         await iTapOn(tester, 'Accorderie de Chambery');
         await iSee(tester, 'Accorderie de Chambery');
@@ -342,6 +346,7 @@ void main() {
                 }
               ]
             ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
         await iTapOn(tester, 'Les commerces locaux');
         await iTapOn(tester, 'Accorderie de Chambery');
         await iSee(tester, 'Accorderie de Chambery');
@@ -351,6 +356,483 @@ void main() {
       } finally {
         await afterEach(
           '''Voir le détail avec une liste de téléphone''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Choisir une catégorie''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Choisir une catégorie''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/categories',
+                200,
+                [
+                  {
+                    "code": "nourriture",
+                    "label": "Tous les commerces",
+                    "is_default": true
+                  },
+                  {
+                    "code": "circuit_court",
+                    "label": "Les producteurs locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "epicerie_superette",
+                    "label": "Les épiceries et supérettes",
+                    "is_default": false
+                  },
+                  {
+                    "code": "marche_local",
+                    "label": "Les marchés locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "zero_dechet",
+                    "label": "Les boutiques zéro déchet",
+                    "is_default": false
+                  }
+                ]
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/proximite/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": false,
+                  "resultats": [
+                    {
+                      "id": "BG1",
+                      "titre": "EARL les maraîchers du Val d'Amour",
+                      "adresse_code_postal": "39120",
+                      "adresse_nom_ville": "Rahon",
+                      "adresse_rue": "6, ruelle des Merles",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 605,
+                      "image_url": null,
+                      "description":
+                          "Maraîcher bio en demi gros. Légumes de saison.",
+                      "phone": "09 61 48 96 07",
+                      "categories": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ],
+                      "open_hours": [],
+                      "latitude": 46.99214,
+                      "longitude": 5.4661,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
+        await iTapOn(tester, 'Les commerces locaux');
+        await iTapOn(tester, 'Tous les commerces');
+        await iTapOn(tester, 'Les producteurs locaux');
+        await iSee(tester, "EARL les maraîchers du Val d'Amour");
+        await theApiReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "circuit_court",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Choisir une catégorie''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Voir les suggestions''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Voir les suggestions''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/categories',
+                200,
+                [
+                  {
+                    "code": "nourriture",
+                    "label": "Tous les commerces",
+                    "is_default": true
+                  },
+                  {
+                    "code": "circuit_court",
+                    "label": "Les producteurs locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "epicerie_superette",
+                    "label": "Les épiceries et supérettes",
+                    "is_default": false
+                  },
+                  {
+                    "code": "marche_local",
+                    "label": "Les marchés locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "zero_dechet",
+                    "label": "Les boutiques zéro déchet",
+                    "is_default": false
+                  }
+                ]
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/proximite/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": false,
+                  "resultats": [
+                    {
+                      "id": "BG1",
+                      "titre": "EARL les maraîchers du Val d'Amour",
+                      "adresse_code_postal": "39120",
+                      "adresse_nom_ville": "Rahon",
+                      "adresse_rue": "6, ruelle des Merles",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 605,
+                      "image_url": null,
+                      "description":
+                          "Maraîcher bio en demi gros. Légumes de saison.",
+                      "phone": "09 61 48 96 07",
+                      "categories": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ],
+                      "open_hours": [],
+                      "latitude": 46.99214,
+                      "longitude": 5.4661,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
+        await iTapOn(tester, 'Les commerces locaux');
+        await iSee(tester, "EARL les maraîchers du Val d'Amour");
+        await theApiReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "nourriture",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000
+                }
+              ]
+            ]));
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Voir les suggestions''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Recherche avec une adresse''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Recherche avec une adresse''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/categories',
+                200,
+                [
+                  {
+                    "code": "nourriture",
+                    "label": "Tous les commerces",
+                    "is_default": true
+                  },
+                  {
+                    "code": "circuit_court",
+                    "label": "Les producteurs locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "epicerie_superette",
+                    "label": "Les épiceries et supérettes",
+                    "is_default": false
+                  },
+                  {
+                    "code": "marche_local",
+                    "label": "Les marchés locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "zero_dechet",
+                    "label": "Les boutiques zéro déchet",
+                    "is_default": false
+                  }
+                ]
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/proximite/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": false,
+                  "resultats": [
+                    {
+                      "id": "BG1",
+                      "titre": "EARL les maraîchers du Val d'Amour",
+                      "adresse_code_postal": "39120",
+                      "adresse_nom_ville": "Rahon",
+                      "adresse_rue": "6, ruelle des Merles",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 605,
+                      "image_url": null,
+                      "description":
+                          "Maraîcher bio en demi gros. Légumes de saison.",
+                      "phone": "09 61 48 96 07",
+                      "categories": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ],
+                      "open_hours": [],
+                      "latitude": 46.99214,
+                      "longitude": 5.4661,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
+        await iTapOn(tester, 'Les commerces locaux');
+        await iEnterInTheAutocompleteField(tester, "110 Rue Garibaldi");
+        await iTapOn(tester, '110 Rue Garibaldi 69006 Lyon');
+        await iSee(tester, "EARL les maraîchers du Val d'Amour");
+        await theApiReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                'POST',
+                "/utilisateurs/{userId}/recherche_services/proximite/search2",
+                200,
+                {
+                  "categorie": "nourriture",
+                  "nombre_max_resultats": 9,
+                  "rayon_metres": 5000,
+                  "latitude": 45.766368,
+                  "longitude": 4.850666
+                }
+              ]
+            ]));
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Recherche avec une adresse''',
+          success,
+        );
+      }
+    });
+    testWidgets('''Aller sur la page de détails''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Aller sur la page de détails''');
+        await bddSetUp(tester);
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/categories',
+                200,
+                [
+                  {
+                    "code": "nourriture",
+                    "label": "Tous les commerces",
+                    "is_default": true
+                  },
+                  {
+                    "code": "circuit_court",
+                    "label": "Les producteurs locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "epicerie_superette",
+                    "label": "Les épiceries et supérettes",
+                    "is_default": false
+                  },
+                  {
+                    "code": "marche_local",
+                    "label": "Les marchés locaux",
+                    "is_default": false
+                  },
+                  {
+                    "code": "zero_dechet",
+                    "label": "Les boutiques zéro déchet",
+                    "is_default": false
+                  }
+                ]
+              ],
+              [
+                'POST',
+                '/utilisateurs/{userId}/recherche_services/proximite/search2',
+                200,
+                {
+                  "encore_plus_resultats_dispo": false,
+                  "resultats": [
+                    {
+                      "id": "BG1",
+                      "titre": "EARL les maraîchers du Val d'Amour",
+                      "adresse_code_postal": "39120",
+                      "adresse_nom_ville": "Rahon",
+                      "adresse_rue": "6, ruelle des Merles",
+                      "est_favoris": false,
+                      "nombre_favoris": 0,
+                      "distance_metres": 605,
+                      "image_url": null,
+                      "description":
+                          "Maraîcher bio en demi gros. Légumes de saison.",
+                      "phone": "09 61 48 96 07",
+                      "categories": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ],
+                      "open_hours": [],
+                      "latitude": 46.99214,
+                      "longitude": 5.4661,
+                      "ingredients": [],
+                      "etapes_recette": [],
+                      "categories_labels": [
+                        "Alimentation et Agriculture",
+                        "Légumes",
+                        "Circuits courts",
+                        "Producteur / Artisan"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]));
+        await iScrollDownTo(tester, 'Les commerces locaux');
+        await iTapOn(tester, 'Les commerces locaux');
+        await theApiWillReturn(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'responseData'],
+              [
+                'GET',
+                '/utilisateurs/{userId}/recherche_services/proximite/last_results/BG1',
+                200,
+                {
+                  "id": "BG1",
+                  "titre": "EARL les maraîchers du Val d'Amour",
+                  "adresse_code_postal": "39120",
+                  "adresse_nom_ville": "Rahon",
+                  "adresse_rue": "6, ruelle des Merles",
+                  "est_favoris": false,
+                  "nombre_favoris": 0,
+                  "distance_metres": 605,
+                  "image_url": null,
+                  "description":
+                      "Maraîcher bio en demi gros. Légumes de saison.",
+                  "phone": "09 61 48 96 07",
+                  "categories": [
+                    "Alimentation et Agriculture",
+                    "Légumes",
+                    "Circuits courts",
+                    "Producteur / Artisan"
+                  ],
+                  "open_hours": [],
+                  "latitude": 46.99214,
+                  "longitude": 5.4661,
+                  "ingredients": [],
+                  "etapes_recette": [],
+                  "categories_labels": [
+                    "Alimentation et Agriculture",
+                    "Légumes",
+                    "Circuits courts",
+                    "Producteur / Artisan"
+                  ]
+                }
+              ]
+            ]));
+        await iTapOn(tester, "EARL les maraîchers du Val d'Amour");
+        await iSee(tester, "Maraîcher bio en demi gros. Légumes de saison.");
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Aller sur la page de détails''',
           success,
         );
       }

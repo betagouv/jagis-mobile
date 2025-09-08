@@ -21,8 +21,8 @@
    version: X.X.X+0 <----- Modifier ici
 
    environment:
-     sdk: 3.9.0
-     flutter: 3.35.1
+     sdk: 3.9.2
+     flutter: 3.35.3
    ```
 
 1. Committer avec le message `chore: release X.X.X`

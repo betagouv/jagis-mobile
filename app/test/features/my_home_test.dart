@@ -57,8 +57,8 @@ void main() {
                 200,
                 {
                   "code_postal": "38280",
-                  "commune": "Villette-d'Anthon",
-                  "commune_label": "Villette-d'Anthon",
+                  "commune": "VILLETTE D ANTHON",
+                  "commune_label": "VILLETTE D ANTHON",
                   "code_commune": "38557",
                   "est_prm_present": false,
                   "est_prm_obsolete": false,
@@ -67,14 +67,18 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ]
             ]));
         await iTapOn(tester, 'Mon logement');
         await iSee(tester, '38280');
-        await iSee(tester, "Villette-d'Anthon");
+        await iSee(tester, "VILLETTE D ANTHON");
       } catch (_) {
         success = false;
         rethrow;
@@ -110,9 +114,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));
@@ -174,9 +182,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));
@@ -238,9 +250,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));

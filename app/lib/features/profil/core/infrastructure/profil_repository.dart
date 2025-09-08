@@ -34,8 +34,8 @@ class ProfilRepository {
         anneeDeNaissance: json['annee_naissance'] as int?,
         moisDeNaissance: json['mois_naissance'] as int?,
         jourDeNaissance: json['jour_naissance'] as int?,
-        codePostal: json['code_postal'] as String?,
-        commune: json['commune'] as String?,
+        codePostal: (json['logement'] as Map<String, dynamic>)['code_postal'] as String?,
+        codeInsee: (json['logement'] as Map<String, dynamic>)['code_commune'] as String?,
         nombreDePartsFiscales: (json['nombre_de_parts_fiscales'] as num).toDouble(),
         revenuFiscal: (json['revenu_fiscal'] as num?)?.toInt(),
       ),
@@ -93,9 +93,12 @@ class ProfilRepository {
 
   Future<Either<Exception, Unit>> mettreAJourCodePostalEtCommune({
     required final String codePostal,
-    required final String commune,
+    required final String codeInsee,
   }) async {
-    final response = await _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'commune': commune}));
+    final response = await _client.patch(
+      Endpoints.logement,
+      data: jsonEncode({'code_postal': codePostal, 'code_commune': codeInsee}),
+    );
 
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)

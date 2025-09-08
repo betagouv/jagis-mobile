@@ -89,7 +89,7 @@ Future<void> _allerSurMesInformations(final WidgetTester tester) async {
     prenom: 'Michel',
     nom: 'Dupont',
     codePostal: '75018',
-    commune: 'Paris',
+    codeInsee: '75018',
     nombreDePartsFiscales: 1.5,
     revenuFiscal: 16000,
   );

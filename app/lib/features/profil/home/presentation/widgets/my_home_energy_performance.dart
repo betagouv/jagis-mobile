@@ -5,7 +5,7 @@ import 'package:app/core/presentation/widgets/composants/alert_info.dart';
 import 'package:app/features/profil/home/domain/energy_performance.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_bloc.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_event.dart';
-import 'package:app/features/profil/home/presentation/widgets/my_house_title_and_content.dart';
+import 'package:app/features/profil/home/presentation/widgets/my_home_title_and_content.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class MyHomeEnergyPerformance extends StatelessWidget {
   final EnergyPerformance? dpe;
 
   @override
-  Widget build(final BuildContext context) => MyHouseTitleAndContent(
+  Widget build(final BuildContext context) => MyHomeTitleAndContent(
     title: Localisation.consommationsEnergetiques,
     content: Column(
       spacing: DsfrSpacings.s2w,

@@ -10,7 +10,7 @@ void ielACesInformationsDeProfil({
   final String prenom = '',
   final String nom = '',
   final String codePostal = '',
-  final String commune = '',
+  final String codeInsee = '',
   final double nombreDePartsFiscales = 0,
   final int? revenuFiscal,
 }) {
@@ -21,8 +21,7 @@ void ielACesInformationsDeProfil({
       'is_nom_prenom_modifiable': true,
       'prenom': prenom,
       'nom': nom,
-      'code_postal': codePostal,
-      'commune': commune,
+      'logement': {'code_postal': codePostal, 'code_commune': codeInsee},
       'revenu_fiscal': revenuFiscal,
       'nombre_de_parts_fiscales': nombreDePartsFiscales,
       'annee_naissance': null,

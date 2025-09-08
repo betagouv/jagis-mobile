@@ -2,8 +2,8 @@ import 'package:app/features/profil/profil/presentation/widgets/profil_titre_par
 import 'package:flutter/material.dart';
 import 'package:flutter_dsfr/flutter_dsfr.dart';
 
-class MyHouseTitleAndContent extends StatelessWidget {
-  const MyHouseTitleAndContent({super.key, required this.title, required this.content});
+class MyHomeTitleAndContent extends StatelessWidget {
+  const MyHomeTitleAndContent({super.key, required this.title, required this.content});
 
   final String title;
   final Widget content;

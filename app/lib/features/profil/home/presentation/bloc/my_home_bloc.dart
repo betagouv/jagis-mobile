@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/core/address/address.dart';
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
+import 'package:app/features/communes/municipality.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_event.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_state.dart';
@@ -24,7 +25,7 @@ class MyHomeBloc extends Bloc<MyHomeEvent, MyHomeState> {
     try {
       final home = await _profilRepository.getHome();
       final postCode = home.address.postCode;
-      final municipalities = await _communesRepository.recupererLesCommunes(postCode);
+      final municipalities = await _communesRepository.fetchMunicipalities(postCode);
       emit(MyHomeLoadSuccess(logement: home, municipalities: municipalities));
     } on Exception {
       emit(const MyHomeLoadFailure());
@@ -36,11 +37,11 @@ class MyHomeBloc extends Bloc<MyHomeEvent, MyHomeState> {
     if (state is MyHomeLoadSuccess) {
       try {
         final municipalities = event.valeur.length == 5
-            ? await _communesRepository.recupererLesCommunes(event.valeur)
-            : <String>[];
+            ? await _communesRepository.fetchMunicipalities(event.valeur)
+            : <Municipality>[];
         final newAddress = state.logement.address.copyWith(
           postCode: event.valeur,
-          municipality: municipalities.length == 1 ? municipalities.first : '',
+          municipality: municipalities.length == 1 ? municipalities.first.label : '',
         );
         emit(
           MyHomeLoadSuccess(
@@ -66,7 +67,6 @@ class MyHomeBloc extends Bloc<MyHomeEvent, MyHomeState> {
               houseNumber: event.houseNumber,
               street: event.street,
               postCode: event.postCode,
-              municipality: event.municipality,
               cityCode: event.cityCode,
             ),
             numberOfAdults: event.numberOfAdults,

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/communes/infrastructure/communes_repository.dart';
+import 'package:app/features/communes/municipality.dart';
 import 'package:app/features/profil/core/infrastructure/profil_repository.dart';
 import 'package:app/features/simulateur_velo/infrastructure/aide_velo_repository.dart';
 import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_event.dart';
@@ -36,13 +37,18 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
 
   Future<void> _onInformationsDemandee(final AideVeloInformationsDemandee event, final Emitter<AideVeloState> emit) async {
     final result = await _profilRepository.recupererProfil();
+
     if (result.isRight()) {
       final informations = result.getRight().getOrElse(() => throw Exception());
+      final communes = informations.codePostal?.length == 5
+          ? await _communesRepository.fetchMunicipalities(informations.codePostal!)
+          : <Municipality>[];
       emit(
         const AideVeloState.empty().copyWith(
           veutModifierLesInformations: informations.revenuFiscal == null,
-          codePostal: informations.codePostal ?? '',
-          commune: informations.commune ?? '',
+          codePostal: informations.codePostal,
+          communes: communes,
+          codeInsee: informations.codeInsee,
           nombreDePartsFiscales: informations.nombreDePartsFiscales,
           revenuFiscal: informations.revenuFiscal,
         ),
@@ -51,7 +57,9 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onModificationDemandee(final AideVeloModificationDemandee event, final Emitter<AideVeloState> emit) async {
-    final communes = state.codePostal.length == 5 ? await _communesRepository.recupererLesCommunes(state.codePostal) : <String>[];
+    final communes = state.codePostal.length == 5
+        ? await _communesRepository.fetchMunicipalities(state.codePostal)
+        : <Municipality>[];
     emit(state.copyWith(veutModifierLesInformations: true, communes: communes));
   }
 
@@ -68,12 +76,14 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onCodePostalChange(final AideVeloCodePostalChange event, final Emitter<AideVeloState> emit) async {
-    final communes = event.valeur.length == 5 ? await _communesRepository.recupererLesCommunes(event.valeur) : <String>[];
-    emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));
+    final communes = event.valeur.length == 5 ? await _communesRepository.fetchMunicipalities(event.valeur) : <Municipality>[];
+    emit(
+      state.copyWith(codePostal: event.valeur, communes: communes, codeInsee: communes.length == 1 ? communes.first.code : ''),
+    );
   }
 
   void _onCommuneChange(final AideVeloCommuneChange event, final Emitter<AideVeloState> emit) {
-    emit(state.copyWith(commune: event.valeur));
+    emit(state.copyWith(codeInsee: event.valeur));
   }
 
   void _onNombreDePartsFiscalesChange(final AideVeloNombreDePartsFiscalesChange event, final Emitter<AideVeloState> emit) {
@@ -94,7 +104,7 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
       etatVelo: state.etatVelo,
       enSituationDeHandicap: state.enSituationDeHandicap,
       codePostal: state.codePostal,
-      commune: state.commune,
+      codeInsee: state.codeInsee,
       nombreDePartsFiscales: state.nombreDePartsFiscales,
       revenuFiscal: state.revenuFiscal!,
     );

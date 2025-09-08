@@ -11,7 +11,7 @@ class Informations extends Equatable {
     required this.moisDeNaissance,
     required this.jourDeNaissance,
     required this.codePostal,
-    required this.commune,
+    required this.codeInsee,
     required this.nombreDePartsFiscales,
     required this.revenuFiscal,
   });
@@ -25,7 +25,7 @@ class Informations extends Equatable {
   final int? moisDeNaissance;
   final int? jourDeNaissance;
   final String? codePostal;
-  final String? commune;
+  final String? codeInsee;
   final double nombreDePartsFiscales;
   final int? revenuFiscal;
 
@@ -38,7 +38,7 @@ class Informations extends Equatable {
     nom,
     anneeDeNaissance,
     codePostal,
-    commune,
+    codeInsee,
     nombreDePartsFiscales,
     revenuFiscal,
     moisDeNaissance,

@@ -36,7 +36,6 @@ final class MyHomeDataUpdated extends MyHomeEvent {
     this.street,
     this.postCode,
     this.cityCode,
-    this.municipality,
     this.numberOfAdults,
     this.numberOfChildren,
     this.housingType,
@@ -51,7 +50,6 @@ final class MyHomeDataUpdated extends MyHomeEvent {
   final String? houseNumber;
   final String? street;
   final String? postCode;
-  final String? municipality;
   final String? cityCode;
   final int? numberOfAdults;
   final int? numberOfChildren;
@@ -68,7 +66,7 @@ final class MyHomeDataUpdated extends MyHomeEvent {
     houseNumber,
     street,
     postCode,
-    municipality,
+    cityCode,
     numberOfAdults,
     numberOfChildren,
     housingType,
@@ -76,7 +74,6 @@ final class MyHomeDataUpdated extends MyHomeEvent {
     area,
     over15Years,
     energyPerformance,
-    cityCode,
   ];
 }
 

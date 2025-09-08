@@ -14,6 +14,7 @@ import 'package:app/features/simulateur_velo/presentation/bloc/aide_velo_event.d
 import 'package:app/features/simulateur_velo/presentation/pages/aide_simulateur_velo_disponibles_page.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -227,7 +228,7 @@ class _ElementsNecessaireAuCalcul extends StatelessWidget {
                     TextSpan(
                       text: Localisation.donneesUtiliseesCodePostalEtCommune(
                         codePostal: state.codePostal,
-                        commune: state.commune,
+                        commune: state.communes.firstWhereOrNull((final e) => e.code == state.codeInsee)?.label ?? '',
                       ),
                       style: bodySmMediumBlue,
                     ),
@@ -281,7 +282,7 @@ class _CodePostalEtCommune extends StatefulWidget {
 class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
   late final _textEditingController = TextEditingController();
 
-  void _handleCommune(final BuildContext context, final String? value) {
+  void _handleCodeInsee(final BuildContext context, final String? value) {
     if (value == null) {
       return;
     }
@@ -299,10 +300,9 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
     final state = context.watch<AideVeloBloc>().state;
     if (state.communes.length == 1) {
       final commune = state.communes.first;
-      _textEditingController.text = commune;
-      _handleCommune(context, commune);
+      _textEditingController.text = commune.label;
     } else {
-      _textEditingController.text = state.commune;
+      _textEditingController.text = state.communes.firstWhereOrNull((final e) => e.code == state.codeInsee)?.label ?? '';
     }
 
     return Row(
@@ -324,10 +324,10 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
         ),
         const SizedBox(width: DsfrSpacings.s2w),
         Expanded(
-          child: DsfrSelect<String>(
+          child: DsfrSelect(
             label: Localisation.commune,
-            dropdownMenuEntries: state.communes.map((final e) => DropdownMenuEntry(value: e, label: e)).toList(),
-            onSelected: (final value) => _handleCommune(context, value),
+            dropdownMenuEntries: state.communes.map((final e) => DropdownMenuEntry(value: e.code, label: e.label)).toList(),
+            onSelected: (final value) => _handleCodeInsee(context, value),
             controller: _textEditingController,
           ),
         ),

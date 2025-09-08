@@ -36,6 +36,7 @@ void main() {
     );
 
     const codePostal = '39100';
+    const codeInsee = '39198';
     const commune = 'DOLE';
     const nombreDePart = 2.5;
     const revenuFiscal = 16000;
@@ -45,7 +46,7 @@ void main() {
       await mockNetworkImages(() async {
         ielACesInformationsDeProfil(
           codePostal: codePostal,
-          commune: commune,
+          codeInsee: codeInsee,
           nombreDePartsFiscales: nombreDePart,
           revenuFiscal: revenuFiscal,
         );
@@ -63,7 +64,7 @@ void main() {
       await mockNetworkImages(() async {
         ielACesInformationsDeProfil(
           codePostal: codePostal,
-          commune: commune,
+          codeInsee: codeInsee,
           nombreDePartsFiscales: nombreDePart,
           revenuFiscal: revenuFiscal,
         );
@@ -82,7 +83,7 @@ void main() {
     testWidgets("Si le revenu fiscal n'est pas renseigné, le mode saisie est activé", (final tester) async {
       setUpWidgets(tester);
       await mockNetworkImages(() async {
-        ielACesInformationsDeProfil(codePostal: codePostal, commune: commune, nombreDePartsFiscales: nombreDePart);
+        ielACesInformationsDeProfil(codePostal: codePostal, codeInsee: codeInsee, nombreDePartsFiscales: nombreDePart);
         await _allerSurLeSimulateurVelo(tester, aide2);
         await iScrollDown(tester);
         ielVoitLeTexteDansTexteRiche(Localisation.aideVeloAvertissement);
@@ -95,7 +96,7 @@ void main() {
         leServeurRetourneCetteListeDeCommunes(['AUTHUME', commune]);
         ielACesInformationsDeProfil(
           codePostal: codePostal,
-          commune: commune,
+          codeInsee: codeInsee,
           nombreDePartsFiscales: nombreDePart,
           revenuFiscal: revenuFiscal,
         );
@@ -114,7 +115,7 @@ void main() {
         await mockNetworkImages(() async {
           ielACesInformationsDeProfil(
             codePostal: codePostal,
-            commune: commune,
+            codeInsee: codeInsee,
             nombreDePartsFiscales: nombreDePart,
             revenuFiscal: revenuFiscal,
           );

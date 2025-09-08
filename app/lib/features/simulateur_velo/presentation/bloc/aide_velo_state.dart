@@ -1,3 +1,4 @@
+import 'package:app/features/communes/municipality.dart';
 import 'package:app/features/simulateur_velo/domain/aide_velo.dart';
 import 'package:app/features/simulateur_velo/domain/velo_pour_simulateur.dart';
 import 'package:equatable/equatable.dart';
@@ -13,7 +14,7 @@ final class AideVeloState extends Equatable {
     required this.enSituationDeHandicap,
     required this.codePostal,
     required this.communes,
-    required this.commune,
+    required this.codeInsee,
     required this.nombreDePartsFiscales,
     required this.revenuFiscal,
     required this.aidesDisponibles,
@@ -28,7 +29,7 @@ final class AideVeloState extends Equatable {
         enSituationDeHandicap: false,
         codePostal: '',
         communes: const [],
-        commune: '',
+        codeInsee: '',
         nombreDePartsFiscales: 1,
         revenuFiscal: null,
         aidesDisponibles: const [],
@@ -41,15 +42,15 @@ final class AideVeloState extends Equatable {
   final bool enSituationDeHandicap;
   final bool veutModifierLesInformations;
   final String codePostal;
-  final List<String> communes;
-  final String commune;
+  final List<Municipality> communes;
+  final String codeInsee;
   final double nombreDePartsFiscales;
   final int? revenuFiscal;
   final AideVeloStatut aideVeloStatut;
 
   bool get prixEstValide => prix > 0;
   bool get codePostalEstValide => codePostal.isNotEmpty && codePostal.length == 5;
-  bool get communeEstValide => commune.isNotEmpty;
+  bool get communeEstValide => codeInsee.isNotEmpty;
   bool get nombreDePartsFiscalesEstValide => nombreDePartsFiscales > 0;
   bool get revenuFiscalEstValide => revenuFiscal != null && revenuFiscal! >= 0;
   bool get estValide =>
@@ -63,8 +64,8 @@ final class AideVeloState extends Equatable {
     final bool? enSituationDeHandicap,
     final bool? veutModifierLesInformations,
     final String? codePostal,
-    final List<String>? communes,
-    final String? commune,
+    final List<Municipality>? communes,
+    final String? codeInsee,
     final double? nombreDePartsFiscales,
     final int? revenuFiscal,
     final List<AideDisponiblesViewModel>? aidesDisponibles,
@@ -75,7 +76,7 @@ final class AideVeloState extends Equatable {
     enSituationDeHandicap: enSituationDeHandicap ?? this.enSituationDeHandicap,
     codePostal: codePostal ?? this.codePostal,
     communes: communes ?? this.communes,
-    commune: commune ?? this.commune,
+    codeInsee: codeInsee ?? this.codeInsee,
     nombreDePartsFiscales: nombreDePartsFiscales ?? this.nombreDePartsFiscales,
     revenuFiscal: revenuFiscal ?? this.revenuFiscal,
     aidesDisponibles: aidesDisponibles ?? this.aidesDisponibles,
@@ -88,14 +89,14 @@ final class AideVeloState extends Equatable {
     prix,
     etatVelo,
     enSituationDeHandicap,
+    veutModifierLesInformations,
     codePostal,
     communes,
-    commune,
+    codeInsee,
     nombreDePartsFiscales,
     revenuFiscal,
-    aidesDisponibles,
-    veutModifierLesInformations,
     aideVeloStatut,
+    aidesDisponibles,
   ];
 }
 

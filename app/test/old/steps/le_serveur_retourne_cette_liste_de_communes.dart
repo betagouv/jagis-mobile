@@ -4,5 +4,8 @@ import 'scenario_context.dart';
 
 /// Le serveur retourne cette liste de communes.
 void leServeurRetourneCetteListeDeCommunes(final List<String> communes) {
-  ScenarioContext().dioMock!.getM(Endpoints.communes('39100'), responseData: communes);
+  ScenarioContext().dioMock!.getM(
+    Endpoints.communes('39100'),
+    responseData: communes.map((final commune) => {'code': commune, 'label': commune}).toList(),
+  );
 }

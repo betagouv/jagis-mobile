@@ -1,7 +1,7 @@
 import 'package:app/features/profil/home/domain/type_de_logement.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_bloc.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_event.dart';
-import 'package:app/features/profil/home/presentation/widgets/my_house_title_and_content.dart';
+import 'package:app/features/profil/home/presentation/widgets/my_home_title_and_content.dart';
 import 'package:app/l10n/l10n.dart';
 import 'package:app_ds/app_ds.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class MyHomeMainResidence extends StatelessWidget {
   final TypeDeLogement? typeDeLogement;
 
   @override
-  Widget build(final BuildContext context) => MyHouseTitleAndContent(
+  Widget build(final BuildContext context) => MyHomeTitleAndContent(
     title: Localisation.maResidencePrincipaleEst,
     content: FnvRadiosGroup(
       values: const {TypeDeLogement.appartement: Localisation.unAppartement, TypeDeLogement.maison: Localisation.uneMaison},

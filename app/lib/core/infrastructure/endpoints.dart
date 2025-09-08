@@ -50,7 +50,7 @@ abstract final class Endpoints {
   static String article(final String contentId) => '/utilisateurs/{userId}/bibliotheque/articles/$contentId';
   static String articleShare(final String contentId) => '${article(contentId)}/share';
   static String bilanByTheme(final String type) => '/utilisateurs/{userId}/bilans/last_v3/$type';
-  static String communes(final String codePostal) => '/communes?code_postal=$codePostal';
+  static String communes(final String codePostal) => '/communes_v2?code_postal=$codePostal';
   static String confirmCustomization(final String themeCode) => '${theme(themeCode)}/personnalisation_ok';
   static String question(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId';
   static String questionSkip(final String questionId) => '/utilisateurs/{userId}/questionsKYC_v2/$questionId/skip';

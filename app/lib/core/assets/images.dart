@@ -40,7 +40,6 @@ abstract final class AssetImages {
   static const maifInondation = 'assets/svg/maif_inondation.svg';
   static const maifRadon = 'assets/svg/maif_radon.svg';
   static const maifSeisme = 'assets/svg/maif_seisme.svg';
-  static const maifServiceIllustration = 'assets/svg/services/illustrations/maif.svg';
   static const maifSubmersion = 'assets/svg/maif_submersion.svg';
   static const maifTempete = 'assets/svg/maif_tempete.svg';
   static const mangerBouger = 'assets/images/manger_bouger.webp';

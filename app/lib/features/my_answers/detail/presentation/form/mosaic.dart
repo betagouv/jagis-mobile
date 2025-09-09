@@ -67,7 +67,7 @@ class _MosaicSetState extends State<_MosaicSet> {
               });
               context.read<QuestionEditBloc>().add(
                 QuestionEditAnswersChanged(
-                  widget.question.changeResponses(_responses.where((final f) => f.isSelected).map((final f) => f.label).toList()),
+                  widget.question.changeResponses(_responses.where((final f) => f.isSelected).map((final f) => f.code).toList()),
                 ),
               );
             },

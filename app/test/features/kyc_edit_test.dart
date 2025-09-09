@@ -11,8 +11,8 @@ import './step/the_api_will_return.dart';
 import './step/the_application_is_launched.dart';
 import './step/i_tap_on_the_menu_button.dart';
 import './step/i_tap_on.dart';
-import './step/i_scroll_down_to.dart';
 import './step/the_api_receive.dart';
+import './step/i_scroll_down_to.dart';
 
 void main() {
   setUpAll(() async {
@@ -151,6 +151,40 @@ void main() {
       await Hooks.afterEach(title, success, tags);
     }
 
+    testWidgets('''Question mosaique Répondre Fioul''', (tester) async {
+      var success = true;
+      try {
+        await beforeEach('''Question mosaique Répondre Fioul''');
+        await bddSetUp(tester);
+        await iTapOn(tester, 'Quels modes de chauffage existent chez vous ?');
+        await iTapOn(tester, 'Fioul');
+        await iTapOn(tester, 'Mettre à jour');
+        await theApiReceive(
+            tester,
+            const bdd.DataTable([
+              ['method', 'path', 'statusCode', 'requestData'],
+              [
+                "PUT",
+                '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE',
+                200,
+                [
+                  {"code": "KYC_chauffage_bois", "selected": true},
+                  {"code": "KYC_chauffage_fioul", "selected": true},
+                  {"code": "KYC_chauffage_gaz", "selected": false},
+                  {"code": "KYC_chauffage_elec", "selected": false}
+                ]
+              ]
+            ]));
+      } catch (_) {
+        success = false;
+        rethrow;
+      } finally {
+        await afterEach(
+          '''Question mosaique Répondre Fioul''',
+          success,
+        );
+      }
+    });
     testWidgets('''Question mosaique Répondre aucune de ces propostions''',
         (tester) async {
       var success = true;

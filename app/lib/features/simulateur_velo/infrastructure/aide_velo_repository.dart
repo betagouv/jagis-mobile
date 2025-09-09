@@ -21,7 +21,7 @@ class AideVeloRepository {
     required final VeloEtat etatVelo,
     required final bool enSituationDeHandicap,
     required final String codePostal,
-    required final String commune,
+    required final String codeInsee,
     required final double nombreDePartsFiscales,
     required final int revenuFiscal,
   }) async {
@@ -29,7 +29,7 @@ class AideVeloRepository {
       nombreDePartsFiscales: nombreDePartsFiscales,
       revenuFiscal: revenuFiscal,
       codePostal: codePostal,
-      commune: commune,
+      codeInsee: codeInsee,
     );
 
     return result.fold(Left.new, (final r) async {
@@ -61,14 +61,14 @@ class AideVeloRepository {
     required final double nombreDePartsFiscales,
     required final int revenuFiscal,
     required final String codePostal,
-    required final String commune,
+    required final String codeInsee,
   }) async {
     final [profileResponse, logementResponse] = await Future.wait([
       _client.patch(
         Endpoints.profile,
         data: jsonEncode({'nombre_de_parts_fiscales': nombreDePartsFiscales, 'revenu_fiscal': revenuFiscal}),
       ),
-      _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'commune': commune})),
+      _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'code_commune': codeInsee})),
     ]);
 
     return isResponseUnsuccessful(profileResponse.statusCode) || isResponseUnsuccessful(logementResponse.statusCode)

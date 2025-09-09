@@ -93,9 +93,12 @@ class ProfilRepository {
 
   Future<Either<Exception, Unit>> mettreAJourCodePostalEtCommune({
     required final String codePostal,
-    required final String commune,
+    required final String codeInsee,
   }) async {
-    final response = await _client.patch(Endpoints.logement, data: jsonEncode({'code_postal': codePostal, 'commune': commune}));
+    final response = await _client.patch(
+      Endpoints.logement,
+      data: jsonEncode({'code_postal': codePostal, 'code_commune': codeInsee}),
+    );
 
     return isResponseSuccessful(response.statusCode)
         ? const Right(unit)

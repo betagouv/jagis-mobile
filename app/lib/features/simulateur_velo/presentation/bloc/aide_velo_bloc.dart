@@ -51,7 +51,9 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onModificationDemandee(final AideVeloModificationDemandee event, final Emitter<AideVeloState> emit) async {
-    final communes = state.codePostal.length == 5 ? await _communesRepository.recupererLesCommunes(state.codePostal) : <String>[];
+    final communes = state.codePostal.length == 5
+        ? await _communesRepository.recupererLesCommunes(state.codePostal)
+        : <Commune>[];
     emit(state.copyWith(veutModifierLesInformations: true, communes: communes));
   }
 
@@ -68,8 +70,8 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
   }
 
   Future<void> _onCodePostalChange(final AideVeloCodePostalChange event, final Emitter<AideVeloState> emit) async {
-    final communes = event.valeur.length == 5 ? await _communesRepository.recupererLesCommunes(event.valeur) : <String>[];
-    emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));
+    final communes = event.valeur.length == 5 ? await _communesRepository.recupererLesCommunes(event.valeur) : <Commune>[];
+    emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first.label : ''));
   }
 
   void _onCommuneChange(final AideVeloCommuneChange event, final Emitter<AideVeloState> emit) {
@@ -94,7 +96,7 @@ class AideVeloBloc extends Bloc<AideVeloEvent, AideVeloState> {
       etatVelo: state.etatVelo,
       enSituationDeHandicap: state.enSituationDeHandicap,
       codePostal: state.codePostal,
-      commune: state.commune,
+      codeInsee: state.communes.where((final e) => e.label == state.commune).first.code,
       nombreDePartsFiscales: state.nombreDePartsFiscales,
       revenuFiscal: state.revenuFiscal!,
     );

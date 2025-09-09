@@ -1,4 +1,5 @@
 import 'package:app/core/address/address.dart';
+import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:app/features/profil/home/domain/home.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -21,9 +22,9 @@ final class MyHomeLoadSuccess extends MyHomeState {
   const MyHomeLoadSuccess({required this.logement, required this.municipalities});
 
   final Home logement;
-  final List<String> municipalities;
+  final List<Commune> municipalities;
 
-  MyHomeLoadSuccess copyWith({final Home? logement, final List<String>? municipalities}) =>
+  MyHomeLoadSuccess copyWith({final Home? logement, final List<Commune>? municipalities}) =>
       MyHomeLoadSuccess(logement: logement ?? this.logement, municipalities: municipalities ?? this.municipalities);
 
   MyHomeLoadSuccess updateAddress(final Address address) => MyHomeLoadSuccess(

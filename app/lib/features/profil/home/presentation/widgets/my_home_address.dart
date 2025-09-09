@@ -1,6 +1,7 @@
 import 'package:app/core/address/address.dart';
 import 'package:app/core/helpers/text_scaler.dart';
 import 'package:app/core/presentation/widgets/composants/address/address_search_widget.dart';
+import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_bloc.dart';
 import 'package:app/features/profil/home/presentation/bloc/my_home_event.dart';
 import 'package:app/features/profil/home/presentation/widgets/my_house_title_and_content.dart';
@@ -14,7 +15,7 @@ class MyHomeAddress extends StatelessWidget {
   const MyHomeAddress({super.key, required this.address, required this.municipalities});
 
   final Address address;
-  final List<String> municipalities;
+  final List<Commune> municipalities;
 
   @override
   Widget build(final BuildContext context) => MyHouseTitleAndContent(
@@ -67,7 +68,7 @@ class _MyHomePostalCodeAndMunicipality extends StatefulWidget {
   const _MyHomePostalCodeAndMunicipality({required this.postCode, required this.municipalities, required this.municipality});
 
   final String postCode;
-  final List<String> municipalities;
+  final List<Commune> municipalities;
   final String municipality;
 
   @override
@@ -92,7 +93,7 @@ class _MyHomePostalCodeAndMunicipalityState extends State<_MyHomePostalCodeAndMu
 
   @override
   Widget build(final BuildContext context) {
-    _textEditingController.text = widget.municipalities.length == 1 ? widget.municipalities.first : widget.municipality;
+    _textEditingController.text = widget.municipalities.length == 1 ? widget.municipalities.first.label : widget.municipality;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +116,9 @@ class _MyHomePostalCodeAndMunicipalityState extends State<_MyHomePostalCodeAndMu
         Expanded(
           child: DsfrSelect<String>(
             label: Localisation.commune,
-            dropdownMenuEntries: widget.municipalities.map((final e) => DropdownMenuEntry(value: e, label: e)).toList(),
+            dropdownMenuEntries: widget.municipalities
+                .map((final e) => DropdownMenuEntry(value: e.label, label: e.label))
+                .toList(),
             onSelected: (final value) => _handleCommune(context, value),
             controller: _textEditingController,
           ),

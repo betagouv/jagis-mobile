@@ -67,9 +67,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ]
             ]));
         await iTapOn(tester, 'Mon logement');
@@ -110,9 +114,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));
@@ -174,9 +182,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));
@@ -238,9 +250,13 @@ void main() {
               ],
               [
                 'GET',
-                '/communes?code_postal=38280',
+                '/communes_v2?code_postal=38280',
                 200,
-                ["ANTHON", "JANNEYRIAS", "VILLETTE D ANTHON"]
+                [
+                  {"code": "38011", "label": "ANTHON"},
+                  {"code": "38197", "label": "JANNEYRIAS"},
+                  {"code": "38557", "label": "VILLETTE D ANTHON"}
+                ]
               ],
               ['PATCH', '/utilisateurs/{userId}/logement', 200, {}]
             ]));

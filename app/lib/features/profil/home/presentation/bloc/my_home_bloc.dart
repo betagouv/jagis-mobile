@@ -37,10 +37,10 @@ class MyHomeBloc extends Bloc<MyHomeEvent, MyHomeState> {
       try {
         final municipalities = event.valeur.length == 5
             ? await _communesRepository.recupererLesCommunes(event.valeur)
-            : <String>[];
+            : <Commune>[];
         final newAddress = state.logement.address.copyWith(
           postCode: event.valeur,
-          municipality: municipalities.length == 1 ? municipalities.first : '',
+          municipality: municipalities.length == 1 ? municipalities.first.label : '',
         );
         emit(
           MyHomeLoadSuccess(

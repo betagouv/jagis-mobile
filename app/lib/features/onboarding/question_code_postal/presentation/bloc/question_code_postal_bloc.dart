@@ -16,13 +16,17 @@ class QuestionCodePostalBloc extends Bloc<QuestionCodePostalEvent, QuestionCodeP
       }
     });
     on<QuestionCodePostalAChange>((final event, final emit) async {
-      final communes = event.valeur.length == 5 ? await communesRepository.recupererLesCommunes(event.valeur) : <String>[];
-      emit(state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first : ''));
+      final communes = event.valeur.length == 5 ? await communesRepository.recupererLesCommunes(event.valeur) : <Commune>[];
+      emit(
+        state.copyWith(codePostal: event.valeur, communes: communes, commune: communes.length == 1 ? communes.first.label : ''),
+      );
     });
     on<QuestionCommuneAChange>((final event, final emit) => emit(state.copyWith(commune: event.valeur)));
     on<QuestionCodePostalMiseAJourDemandee>((final event, final emit) async {
-      await profilRepository.mettreAJourCodePostalEtCommune(codePostal: state.codePostal, commune: state.commune);
-
+      await profilRepository.mettreAJourCodePostalEtCommune(
+        codePostal: state.codePostal,
+        codeInsee: state.communes.where((final e) => e.label == state.commune).first.code,
+      );
       emit(state.copyWith(aEteChange: true));
     });
   }

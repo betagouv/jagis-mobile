@@ -298,7 +298,7 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
   Widget build(final BuildContext context) {
     final state = context.watch<AideVeloBloc>().state;
     if (state.communes.length == 1) {
-      final commune = state.communes.first;
+      final commune = state.communes.first.label;
       _textEditingController.text = commune;
       _handleCommune(context, commune);
     } else {
@@ -326,7 +326,7 @@ class _CodePostalEtCommuneState extends State<_CodePostalEtCommune> {
         Expanded(
           child: DsfrSelect<String>(
             label: Localisation.commune,
-            dropdownMenuEntries: state.communes.map((final e) => DropdownMenuEntry(value: e, label: e)).toList(),
+            dropdownMenuEntries: state.communes.map((final e) => DropdownMenuEntry(value: e.label, label: e.label)).toList(),
             onSelected: (final value) => _handleCommune(context, value),
             controller: _textEditingController,
           ),

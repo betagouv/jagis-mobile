@@ -1,3 +1,4 @@
+import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:app/features/simulateur_velo/domain/aide_velo.dart';
 import 'package:app/features/simulateur_velo/domain/velo_pour_simulateur.dart';
 import 'package:equatable/equatable.dart';
@@ -41,7 +42,7 @@ final class AideVeloState extends Equatable {
   final bool enSituationDeHandicap;
   final bool veutModifierLesInformations;
   final String codePostal;
-  final List<String> communes;
+  final List<Commune> communes;
   final String commune;
   final double nombreDePartsFiscales;
   final int? revenuFiscal;
@@ -63,7 +64,7 @@ final class AideVeloState extends Equatable {
     final bool? enSituationDeHandicap,
     final bool? veutModifierLesInformations,
     final String? codePostal,
-    final List<String>? communes,
+    final List<Commune>? communes,
     final String? commune,
     final double? nombreDePartsFiscales,
     final int? revenuFiscal,

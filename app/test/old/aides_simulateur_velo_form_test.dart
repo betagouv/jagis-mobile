@@ -67,7 +67,10 @@ void main() {
           nombreDePartsFiscales: nombreDePart,
           revenuFiscal: revenuFiscal,
         );
-        leServeurRetourneCetteListeDeCommunes(['AUTHUME', commune]);
+        leServeurRetourneCetteListeDeCommunes([
+          {'code': '39030', 'label': 'AUTHUME'},
+          {'code': '39198', 'label': commune},
+        ]);
         await _allerSurLeSimulateurVelo(tester, aide2);
         await ielScrolle(tester, Localisation.modifier);
         await ielAppuieSurTexteComportant(tester, Localisation.modifier);
@@ -92,7 +95,10 @@ void main() {
     testWidgets('Iel modifie le code postal alors la commune est réinitialisé', (final tester) async {
       setUpWidgets(tester);
       await mockNetworkImages(() async {
-        leServeurRetourneCetteListeDeCommunes(['AUTHUME', commune]);
+        leServeurRetourneCetteListeDeCommunes([
+          {'code': '39030', 'label': 'AUTHUME'},
+          {'code': '39198', 'label': commune},
+        ]);
         ielACesInformationsDeProfil(
           codePostal: codePostal,
           commune: commune,
@@ -118,7 +124,9 @@ void main() {
             nombreDePartsFiscales: nombreDePart,
             revenuFiscal: revenuFiscal,
           );
-          leServeurRetourneCetteListeDeCommunes([commune]);
+          leServeurRetourneCetteListeDeCommunes([
+            {'code': '39198', 'label': commune},
+          ]);
           await _allerSurLeSimulateurVelo(tester, aide2);
           await ielScrolle(tester, Localisation.modifier);
           await ielAppuieSurTexteComportant(tester, Localisation.modifier);

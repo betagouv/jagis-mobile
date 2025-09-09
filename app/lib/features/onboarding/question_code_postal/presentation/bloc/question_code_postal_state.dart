@@ -1,3 +1,4 @@
+import 'package:app/features/communes/infrastructure/communes_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -13,7 +14,7 @@ final class QuestionCodePostalState extends Equatable {
 
   final String pseudonym;
   final String codePostal;
-  final List<String> communes;
+  final List<Commune> communes;
   final String commune;
   final bool aEteChange;
   bool get estRempli => codePostal.isNotEmpty && commune.isNotEmpty;
@@ -21,7 +22,7 @@ final class QuestionCodePostalState extends Equatable {
   QuestionCodePostalState copyWith({
     final String? pseudonym,
     final String? codePostal,
-    final List<String>? communes,
+    final List<Commune>? communes,
     final String? commune,
     final bool? aEteChange,
   }) => QuestionCodePostalState(

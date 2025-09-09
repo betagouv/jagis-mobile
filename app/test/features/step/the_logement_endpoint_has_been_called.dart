@@ -11,7 +11,7 @@ Future<void> theLogementEndpointHasBeenCalled(final WidgetTester tester) async {
   verify(
     () => FeatureContext.instance.dioMock.patch<dynamic>(
       Endpoints.logement,
-      data: jsonEncode({'code_postal': '39100', 'commune': 'DOLE'}),
+      data: jsonEncode({'code_postal': '39100', 'code_commune': '39198'}),
     ),
   );
 }

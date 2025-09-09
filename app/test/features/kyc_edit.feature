@@ -12,6 +12,14 @@ Feature: KYC edit
     When I tap on {'Mon profil'}
     When I tap on {'Mes réponses'}
 
+  Scenario: Question mosaique Répondre Fioul
+    When I tap on {'Quels modes de chauffage existent chez vous ?'}
+    When I tap on {'Fioul'}
+    When I tap on {'Mettre à jour'}
+    Then the API receive
+      | 'method' | 'path'                                                    | 'statusCode' | 'requestData'                                                                                                                                                                               |
+      | "PUT"    | '/utilisateurs/{userId}/questionsKYC_v2/MOSAIC_CHAUFFAGE' |          200 | [{"code":"KYC_chauffage_bois","selected":true},{"code":"KYC_chauffage_fioul","selected":true},{"code":"KYC_chauffage_gaz","selected":false},{"code":"KYC_chauffage_elec","selected":false}] |
+
   Scenario: Question mosaique Répondre aucune de ces propostions
     When I tap on {'Quels modes de chauffage existent chez vous ?'}
     When I scroll down to {'Aucune de ces propositions'}

@@ -177,7 +177,6 @@ Nous avons écouté vos retours et concocté une toute **nouvelle version** du s
   static const lesCguTitrePart2 = 'Conditions générales d’utilisation';
   static const lesCommercesLocaux = 'Les commerces locaux';
   static const lesMeilleuresAlternativesPourLeGabarit = 'Les meilleures alternatives pour le gabarit ';
-  static const lesRisquesNaturelesAMonAdresse = 'Les risques naturels à mon adresse';
   static const localisationDeVotreCompteur = 'Localisation de votre compteur…';
   static const localiserMonCompteur = 'Localiser mon compteur';
   static const lvaoDescription =

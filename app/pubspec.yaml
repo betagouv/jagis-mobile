@@ -55,8 +55,8 @@ dependencies:
   vector_graphics_compiler: 1.1.19
 
 dev_dependencies:
-  bdd_widget_test: 2.0.1
-  build_runner: 2.7.1 # bdd_widget_test don't use build 4
+  bdd_widget_test: 2.1.1
+  build_runner: 2.8.0 # bdd_widget_test don't use build 4
   dart_code_metrics_presets: 2.25.1
   faker: 2.2.0
   flutter_launcher_icons: 0.14.4

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🔑 Ajouter le fichier keystore
         working-directory: app/android/app
         run: echo "${{ secrets.DEV_ANDROID_KEYSTORE }}" | base64 --decode > agir.keystore

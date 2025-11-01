@@ -69,7 +69,7 @@ jobs:
         working-directory: app
         run: flutter build ipa --flavor ${{ inputs.FLAVOR }} --export-options-plist ../exportOptions.plist --dart-define-from-file env.json --build-number  ${GITHUB_RUN_NUMBER}
       - name: 📦 Télécharger artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: app_${{ inputs.FLAVOR }}_ios
           path: app/build/ios/ipa/app-${{ inputs.FLAVOR }}-release.ipa
